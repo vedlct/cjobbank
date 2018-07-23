@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     
-<!-- Mirrored from themesdesign.in/upcube/layouts/horizontal/ui-pagination.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 May 2018 07:46:36 GMT -->
+<!-- Mirrored from themesdesign.in/upcube/layouts/horizontal/form-elements.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 May 2018 07:46:42 GMT -->
 <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,6 +18,98 @@
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+        
+        
+        
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f1f1f1;
+        }
+
+        #regForm {
+            background-color: #ffffff;
+            margin: 100px auto;
+            font-family: Raleway;
+            padding: 40px;
+            width: 70%;
+            min-width: 300px;
+        }
+
+        h1 {
+            text-align: center;  
+        }
+
+        input {
+            padding: 10px;
+            width: 100%;
+            font-size: 17px;
+            font-family: Raleway;
+            border: 1px solid #aaaaaa;
+        }
+
+        /* Mark input boxes that gets an error on validation: */
+        input.invalid {
+            background-color: #ffdddd;
+        }
+
+        /* Hide all steps by default: */
+        .tab {
+            display: none;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 17px;
+            font-family: Raleway;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        #prevBtn {
+            background-color: #bbbbbb;
+        }
+
+        /* Make circles that indicate the steps of the form: */
+        .step {
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbbbbb;
+            border: none;  
+            border-radius: 50%;
+            display: inline-block;
+            opacity: 0.5;
+        }
+
+        .step.active {
+            opacity: 1;
+        }
+
+        /* Mark the steps that are finished and valid: */
+        .step.finish {
+            background-color: #4CAF50;
+        }
+
+        #regForm {
+  background-color: #ffffff;
+  font-family: Raleway;
+  margin: 100px auto;
+  min-width: 300px;
+  padding: 40px;
+  width: 40%;
+}
+    </style>
+        
 
     </head>
 
@@ -343,188 +435,80 @@
                             <div class="btn-group pull-right">
                                 <ol class="breadcrumb hide-phone p-0 m-0">
                                     <li class="breadcrumb-item"><a href="#">Upcube</a></li>
-                                    <li class="breadcrumb-item"><a href="#">UI</a></li>
-                                    <li class="breadcrumb-item active">Pagination</li>
+                                    <li class="breadcrumb-item"><a href="#">Forms</a></li>
+                                    <li class="breadcrumb-item active">Form Elements</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">Pagination</h4>
+                            <h4 class="page-title">Form Elements</h4>
                         </div>
                     </div>
                 </div>
                 <!-- end page title end breadcrumb -->
+
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-12">
                         <div class="card m-b-30">
                             <div class="card-body">
 
-                                <h4 class="mt-0 header-title">Default Example</h4>
-                                <p class="text-muted m-b-30 font-14">Pagination links indicate a series of related content exists across multiple pages.</p>
+                                <form id="regForm" action="/action_page.php">
+ 
+                                       <h2 style="margin-bottom: 40px; text-align: center;">Post New Job</h2> 
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label for="">First Name</label>
+                                                <input type="text" class="form-control" id="" placeholder="">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="inputPassword4">Last Name</label>
+                                                <input type="text" class="form-control" id="" placeholder="">
+                                            </div>
+                                        </div>
 
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination">
-                                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                    </ul>
-                                </nav>
+                                        <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <label for="">Current Address</label>
+                                                <input type="text" class="form-control" id="" placeholder="">
+                                            </div>
 
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination">
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
+                                        </div>
 
-                    <div class="col-lg-6">
-                        <div class="card m-b-30">
-                            <div class="card-body">
+                                        <div class="row">
 
-                                <h4 class="mt-0 header-title">Disabled and active states</h4>
-                                <p class="text-muted m-b-30 font-14">Pagination links are customizable for
-                                    different circumstances. Use <code
-                                            class="highlighter-rouge">.disabled</code> for links that appear
-                                    un-clickable and <code class="highlighter-rouge">.active</code> to
-                                    indicate the current page.</p>
+                                            <div class="form-group col-md-12">
+                                                <label for="">Permanent Address</label>
+                                                <input type="text" class="form-control" id="" placeholder="">
+                                            </div>
 
-                                <nav aria-label="...">
-                                    <ul class="pagination">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item active">
-                                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">Next</a>
-                                        </li>
-                                    </ul>
-                                </nav>
+                                        </div>
 
-                                <nav aria-label="...">
-                                    <ul class="pagination">
-                                        <li class="page-item disabled">
-                                            <span class="page-link">Previous</span>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item active">
-                                            <span class="page-link">
-                                                2
-                                                <span class="sr-only">(current)</span>
-                                            </span>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">Next</a>
-                                        </li>
-                                    </ul>
-                                </nav>
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label for="">Email</label>
+                                                <input type="text" class="form-control" id="" placeholder="">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="">Alternative Email</label>
+                                                <input type="text" class="form-control" id="" placeholder="">
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label for="">Contact No.</label>
+                                                <input type="text" class="form-control" id="" placeholder="">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="">Skype</label>
+                                                <input type="text" class="form-control" id="" placeholder="">
+                                            </div>
+                                        </div>
+
+                                </form>
+                                  
                             </div>
                         </div>
                     </div> <!-- end col -->
                 </div> <!-- end row -->
-
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="card m-b-30">
-                            <div class="card-body">
-
-                                <h4 class="mt-0 header-title">Sizing</h4>
-                                <p class="text-muted m-b-30 font-14">Fancy larger or smaller pagination? Add
-                                    <code class="highlighter-rouge">.pagination-lg</code> or <code
-                                            class="highlighter-rouge">.pagination-sm</code> for additional
-                                    sizes.</p>
-
-                                <nav aria-label="...">
-                                    <ul class="pagination pagination-lg">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">Next</a>
-                                        </li>
-                                    </ul>
-                                </nav>
-
-                                <nav aria-label="...">
-                                    <ul class="pagination pagination-sm">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">Next</a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div> <!-- end col -->
-
-                    <div class="col-lg-6">
-                        <div class="card m-b-30">
-                            <div class="card-body">
-
-                                <h4 class="mt-0 header-title">Alignment</h4>
-                                <p class="text-muted m-b-30 font-14">Change the alignment of pagination
-                                    components with flexbox utilities.</p>
-
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination justify-content-center">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">Next</a>
-                                        </li>
-                                    </ul>
-                                </nav>
-
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination justify-content-end">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#" tabindex="-1">Previous</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">Next</a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div> <!-- end col -->
-                </div> <!-- end row -->
-
 
             </div> <!-- end container -->
         </div>
@@ -556,8 +540,84 @@
 
         <!-- App js -->
         <script src="assets/js/app.js"></script>
+        
+        
+        <script>
+            var currentTab = 0; // Current tab is set to be the first tab (0)
+            showTab(currentTab); // Display the crurrent tab
+
+            function showTab(n) {
+                // This function will display the specified tab of the form...
+                var x = document.getElementsByClassName("tab");
+                x[n].style.display = "block";
+                //... and fix the Previous/Next buttons:
+                if (n == 0) {
+                    document.getElementById("prevBtn").style.display = "none";
+                } else {
+                    document.getElementById("prevBtn").style.display = "inline";
+                }
+                if (n == (x.length - 1)) {
+                    document.getElementById("nextBtn").innerHTML = "Submit";
+                } else {
+                    document.getElementById("nextBtn").innerHTML = "Next";
+                }
+                //... and run a function that will display the correct step indicator:
+                fixStepIndicator(n)
+            }
+
+            function nextPrev(n) {
+                // This function will figure out which tab to display
+                var x = document.getElementsByClassName("tab");
+                // Exit the function if any field in the current tab is invalid:
+                if (n == 1 && !validateForm()) return false;
+                // Hide the current tab:
+                x[currentTab].style.display = "none";
+                // Increase or decrease the current tab by 1:
+                currentTab = currentTab + n;
+                // if you have reached the end of the form...
+                if (currentTab >= x.length) {
+                    // ... the form gets submitted:
+                    document.getElementById("regForm").submit();
+                    return false;
+                }
+                // Otherwise, display the correct tab:
+                showTab(currentTab);
+            }
+
+            function validateForm() {
+                // This function deals with validation of the form fields
+                var x, y, i, valid = true;
+                x = document.getElementsByClassName("tab");
+                y = x[currentTab].getElementsByTagName("input");
+                // A loop that checks every input field in the current tab:
+                for (i = 0; i < y.length; i++) {
+                    // If a field is empty...
+                    if (y[i].value == "") {
+                        // add an "invalid" class to the field:
+                        y[i].className += " invalid";
+                        // and set the current valid status to false
+                        valid = false;
+                    }
+                }
+                // If the valid status is true, mark the step as finished and valid:
+                if (valid) {
+                    document.getElementsByClassName("step")[currentTab].className += " finish";
+                }
+                return valid; // return the valid status
+            }
+
+            function fixStepIndicator(n) {
+                // This function removes the "active" class of all steps...
+                var i, x = document.getElementsByClassName("step");
+                for (i = 0; i < x.length; i++) {
+                    x[i].className = x[i].className.replace(" active", "");
+                }
+                //... and adds the "active" class on the current step:
+                x[n].className += " active";
+            }
+        </script>
 
     </body>
 
-<!-- Mirrored from themesdesign.in/upcube/layouts/horizontal/ui-pagination.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 May 2018 07:46:36 GMT -->
+<!-- Mirrored from themesdesign.in/upcube/layouts/horizontal/form-elements.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 May 2018 07:46:42 GMT -->
 </html>

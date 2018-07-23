@@ -31,53 +31,56 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h3 class="text-center mt-0 m-b-15">
-                        <a href="index.html" class="logo logo-admin"><img src="assets/images/logo-dark.png" height="30" alt="logo"></a>
-                    </h3>
-
-                    <h4 class="text-muted text-center font-18"><b>Register</b></h4>
+                    <h2 class="text-muted text-center font-18">Agreements</h2>
 
                     <div class="p-3">
-                        <form class="form-horizontal m-t-20" action="http://themesdesign.in/upcube/layouts/horizontal/index.html">
+                        <form class="form-horizontal m-t-20" action="cvform.php">
 
                             <div class="form-group row">
-                                <div class="col-12">
-                                    <input class="form-control" type="email" required="" placeholder="Email">
+                                <div class="col-8">
+                                      <p>It is a long established fact that a reader will be distracted ?</p>  
+                                </div>
+                                <div class="col-4">
+                                    <label class="checkbox-inline"><input type="checkbox" value=""> Yes</label>
+                                    <label class="checkbox-inline"><input type="checkbox" value=""> No</label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-8">
+                                      <p>It is a long established fact that a reader will be distracted ?</p>  
+                                </div>
+                                <div class="col-4">
+                                    <label class="checkbox-inline"><input type="checkbox" value=""> Yes</label>
+                                    <label class="checkbox-inline"><input type="checkbox" value=""> No</label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-8">
+                                      <p>It is a long established fact that a reader will be distracted ?</p>  
+                                </div>
+                                <div class="col-4">
+                                    <label class="checkbox-inline"><input type="checkbox" value=""> Yes</label>
+                                    <label class="checkbox-inline"><input type="checkbox" value=""> No</label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-8">
+                                      <p>It is a long established fact that a reader will be distracted ?</p>  
+                                </div>
+                                <div class="col-4">
+                                    <label class="checkbox-inline"><input type="checkbox" value=""> Yes</label>
+                                    <label class="checkbox-inline"><input type="checkbox" value=""> No</label>
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <div class="col-12">
-                                    <input class="form-control" type="text" required="" placeholder="Username">
-                                </div>
-                            </div>
 
-                            <div class="form-group row">
-                                <div class="col-12">
-                                    <input class="form-control" type="password" required="" placeholder="Password">
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-12">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                        <label class="custom-control-label font-weight-normal" for="customCheck1">I accept <a href="#" class="text-muted">Terms and Conditions</a></label>
-                                    </div>
-                                </div>
-                            </div>
 
                             <div class="form-group text-center row m-t-20">
                                 <div class="col-12">
-                                    <button class="btn btn-info btn-block waves-effect waves-light" type="submit">Register</button>
+                                    <button class="btn btn-info btn-block waves-effect waves-light" type="submit">Submit</button>
                                 </div>
                             </div>
 
-                            <div class="form-group m-t-10 mb-0 row">
-                                <div class="col-12 m-t-20 text-center">
-                                    <a href="pages-login.html" class="text-muted">Already have account?</a>
-                                </div>
-                            </div>
                         </form>
                     </div>
 
