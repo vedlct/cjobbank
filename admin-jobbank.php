@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html>
 
 <!-- Mirrored from themesdesign.in/upcube/layouts/horizontal/form-elements.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 May 2018 07:46:42 GMT -->
@@ -10,7 +10,7 @@
 <body>
 
 <!-- Loader -->
-<div id="preloader"><div id="status"><div class="spinner"></div></div></div>
+<!--<div id="preloader"><div id="status"><div class="spinner"></div></div></div>-->
 
 <!-- Navigation Bar-->
 <?php include ('menu.php') ?>
@@ -31,7 +31,7 @@
                             <li class="breadcrumb-item active">Form Elements</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Form Elements</h4>
+                    <h4 class="page-title">Job Bank</h4>
                 </div>
             </div>
         </div>
@@ -41,26 +41,51 @@
             <div class="col-12">
                 <div class="card m-b-30">
                     <div class="card-body">
+                        <div class="card-header-tabs">
+                            <h4>Job Bank</h4>
+                        </div>
+
                         <div align="right">
                             <button class="btn btn-info">Add New</button>
                         </div>
+                        <br>
+                        <div class="row">
+                        <div class=" form-group col-lg-4">
+                            <label>Zone</label>
+                            <select class="form-control">
+                                <option>Select a Zone</option>
+                                <option>Dhaka</option>
+                                <option>Khulna</option>
+                                <option>Barishal</option>
+                                <option>Rangpur</option>
 
-                        <table id="adminjobbank" class="table table-striped table-bordered" style="width:100%">
+                            </select>
+                        </div>
+                        <div class=" form-group col-lg-4">
+                            <label>Post Date</label>
+                            <input class="form-control" type="date">
+                        </div>
+                        <div class=" form-group col-lg-4">
+                            <label>Deadline</label>
+                            <input class="form-control" type="date">
+                        </div>
+                        </div>
+                        <table id="adminjobbank" class="table table-striped table-bordered" style="width:100%" >
                             <thead>
                             <tr>
                                 <th width="5%">SL</th>
                                 <th>Job Title</th>
-                                <th>Location</th>
+                                <th>Zone</th>
                                 <th>Post Date</th>
                                 <th>Deadline</th>
-                                <th>Action</th>
+                                <th width="10%">Action</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
                                 <td>1</td>
                                 <td>System Architect</td>
-                                <td>Edinburgh</td>
+                                <td>Dhaka</td>
                                 <td>2009/09/15</td>
                                 <td>2011/04/25</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
@@ -69,9 +94,9 @@
                             </tr>
                             <tr>
                                 <td>2</td>
-                                <td>Accountant</td>
-                                <td>Tokyo</td>
-                                <td>2011/04/25</td>>
+                                <td>Rajshahi</td>
+                                <td>Dinajpur</td>
+                                <td>2011/04/25</td>
                                 <td>2011/07/25</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
@@ -80,7 +105,7 @@
                             <tr>
                                 <td>3</td>
                                 <td>Junior Technical Author</td>
-                                <td>San Francisco</td>
+                                <td>Khulna</td>
                                 <td>2009/09/15</td>
                                 <td>2009/01/12</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
@@ -90,7 +115,7 @@
                             <tr>
                                 <td>4</td>
                                 <td>Senior Javascript Developer</td>
-                                <td>Edinburgh</td>
+                                <td>Barisal</td>
                                 <td>2011/04/25</td>
                                 <td>2012/03/29</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
@@ -100,7 +125,7 @@
                             <tr>
                                 <td>5</td>
                                 <td>Accountant</td>
-                                <td>Tokyo</td>
+                                <td>Panchagare</td>
                                 <td>2011/04/25</td>
                                 <td>2008/11/28</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
@@ -110,7 +135,7 @@
                             <tr>
                                 <td>6</td>
                                 <td>Integration Specialist</td>
-                                <td>New York</td>
+                                <td>Rangpur</td>
                                 <td>2011/04/25</td>
                                 <td>2012/12/02</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
@@ -120,7 +145,7 @@
                             <tr>
                                 <td>7</td>
                                 <td>Sales Assistant</td>
-                                <td>San Francisco</td>
+                                <td>Noyakhali</td>
                                 <td>2011/04/25</td>
                                 <td>2012/08/06</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
@@ -130,7 +155,7 @@
                             <tr>
                                 <td>9</td>
                                 <td>Integration Specialist</td>
-                                <td>Tokyo</td>
+                                <td>Barisal</td>
                                 <td>2009/09/15</td>
                                 <td>2010/10/14</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
@@ -140,7 +165,7 @@
                             <tr>
                                 <td>10</td>
                                 <td>Javascript Developer</td>
-                                <td>San Francisco</td>
+                                <td>Barisal</td>
                                 <td>2009/09/15</td>
                                 <td>2009/09/15</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
@@ -150,7 +175,7 @@
                             <tr>
                                 <td>11</td>
                                 <td>Software Engineer</td>
-                                <td>Edinburgh</td>
+                                <td>Barisal</td>
                                 <td>2009/09/15</td>
                                 <td>2008/12/13</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
@@ -160,7 +185,7 @@
                             <tr>
                                 <td>12</td>
                                 <td>Office Manager</td>
-                                <td>London</td>
+                                <td>Barisal</td>
                                 <td>2009/09/15</td>
                                 <td>2008/12/19</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
@@ -170,7 +195,7 @@
                             <tr>
                                 <td>13</td>
                                 <td>Support Lead</td>
-                                <td>Edinburgh</td>
+                                <td>Panchagare</td>
                                 <td>2009/09/15</td>
                                 <td>2013/03/03</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
@@ -190,7 +215,7 @@
                             <tr>
                                 <td>15</td>
                                 <td>Senior Marketing Designer</td>
-                                <td>London</td>
+                                <td>Khulna</td>
                                 <td>2009/09/15</td>
                                 <td>2012/12/18</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
@@ -199,8 +224,8 @@
                             </tr>
                             <tr>
                                 <td>16</td>
-                                <td>Regional Director</td>
-                                <td>London</td>
+                                <td>Panchagare</td>
+                                <td>Khulna</td>
                                 <td>2009/04/10</td>
                                 <td>2010/03/17</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
@@ -210,7 +235,7 @@
                             <tr>
                                 <td>17</td>
                                 <td>Marketing Designer</td>
-                                <td>London</td>
+                                <td>Rajshahi</td>
                                 <td>2009/04/10</td>
                                 <td>2012/11/27</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
@@ -220,7 +245,7 @@
                             <tr>
                                 <td>18</td>
                                 <td>Chief Financial Officer (CFO)</td>
-                                <td>New York</td>
+                                <td>Rajshahi</td>
                                 <td>2009/04/10</td>
                                 <td>2010/06/09</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
@@ -230,7 +255,7 @@
                             <tr>
                                 <td>19</td>
                                 <td>Systems Administrator</td>
-                                <td>New York</td>
+                                <td>Dhaka</td>
                                 <td>2009/04/10</td>
                                 <td>2009/04/10</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
@@ -240,7 +265,7 @@
                             <tr>
                                 <td>20</td>
                                 <td>Software Engineer</td>
-                                <td>London</td>
+                                <td>Panchagare</td>
                                 <td>2009/04/10</td>
                                 <td>2012/10/13</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
@@ -248,7 +273,7 @@
                                 </td>
                             </tr>
 
-
+                            </tbody>
 
                         </table>
 
@@ -269,7 +294,15 @@
 
 <script>
     $(document).ready(function() {
-        $('#adminjobbank').DataTable();
+        $('#adminjobbank').DataTable(
+
+            {
+                columnDefs : [ {
+                    "targets": 5,
+                    "sortable"  : false
+                } ]
+            }
+        );
     } );
 </script>
 

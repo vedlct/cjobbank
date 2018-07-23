@@ -171,7 +171,7 @@
                         </li>
 
                         <li class="has-submenu">
-                            <a href="#"><i class="ti-archive"></i>Job Bank</a>
+                            <a href="admin-jobbank.php"><i class="ti-archive"></i>Job Bank</a>
                         </li>
 
                         <li class="has-submenu">
