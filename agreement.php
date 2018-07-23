@@ -31,11 +31,10 @@
             <div class="card">
                 <div class="card-body">
 
-
                     <h2 class="text-muted text-center font-18">Agreements</h2>
 
                     <div class="p-3">
-                        <form class="form-horizontal m-t-20" action="index.html">
+                        <form class="form-horizontal m-t-20" action="cvform.php">
 
                             <div class="form-group row">
                                 <div class="col-8">

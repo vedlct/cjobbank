@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     
-<!-- Mirrored from themesdesign.in/upcube/layouts/horizontal/pages-recoverpw.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 May 2018 07:47:39 GMT -->
+<!-- Mirrored from themesdesign.in/upcube/layouts/horizontal/pages-register.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 May 2018 07:47:39 GMT -->
 <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,28 +35,54 @@
                         <a href="index.html" class="logo logo-admin"><img src="assets/images/logo-dark.png" height="30" alt="logo"></a>
                     </h3>
 
-                    <h4 class="text-muted text-center font-18"><b>Reset Password</b></h4>
+                    <h4 class="text-muted text-center font-18"><b>Register</b></h4>
 
                     <div class="p-3">
                         <form class="form-horizontal m-t-20" action="http://themesdesign.in/upcube/layouts/horizontal/index.html">
 
-                            <div class="alert alert-info alert-dismissible">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                Enter your <b>Email</b> and instructions will be sent to you!
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <input class="form-control" type="email" required="" placeholder="Firstname">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <input class="form-control" type="email" required="" placeholder="Lastname">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <input class="form-control" type="email" required="" placeholder="Email">
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <div class="col-xs-12">
-                                    <input class="form-control" type="email" required="" placeholder="Email">
+
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <input class="form-control" type="password" required="" placeholder="Password">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                        <label class="custom-control-label font-weight-normal" for="customCheck1">I accept <a href="#" class="text-muted">Terms and Conditions</a></label>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="form-group text-center row m-t-20">
                                 <div class="col-12">
-                                    <button class="btn btn-info btn-block waves-effect waves-light" type="submit">Send Email</button>
+                                    <button class="btn btn-info btn-block waves-effect waves-light" type="submit">Register</button>
                                 </div>
                             </div>
 
+                            <div class="form-group m-t-10 mb-0 row">
+                                <div class="col-12 m-t-20 text-center">
+                                    <a href="index.php" class="text-muted">Already have account?</a>
+                                </div>
+                            </div>
                         </form>
                     </div>
 
@@ -65,8 +91,7 @@
         </div>
 
 
-
-    <!-- jQuery  -->
+        <!-- jQuery  -->
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/popper.min.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
@@ -81,5 +106,5 @@
 
     </body>
 
-<!-- Mirrored from themesdesign.in/upcube/layouts/horizontal/pages-recoverpw.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 May 2018 07:47:39 GMT -->
+<!-- Mirrored from themesdesign.in/upcube/layouts/horizontal/pages-register.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 May 2018 07:47:39 GMT -->
 </html>
