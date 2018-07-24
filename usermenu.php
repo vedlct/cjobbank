@@ -157,13 +157,13 @@
                     </li>
 
                     <li class="has-submenu">
-                        <a href="managecv.php"><i class="ti-layout-width-default"></i>Jobs</a>
+                        <a href="jobs.php"><i class="ti-layout-width-default"></i>Jobs</a>
                     </li>
 
-<!--                    <li class="has-submenu">-->
-<!--                        <a href="admin-jobbank.php"><i class="ti-archive"></i>Job Bank</a>-->
-<!--                    </li>-->
-<!---->
+                    <li class="has-submenu">
+                        <a href="usermanagejob.php"><i class="ti-archive"></i>Manage Job</a>
+                    </li>
+
 <!--                    <li class="has-submenu">-->
 <!--                        <a href="#"><i class="ti-user"></i>Application</a>-->
 <!--                    </li>-->
