@@ -1,6 +1,7 @@
 
 <html>
 
+<!-- Mirrored from themesdesign.in/upcube/layouts/horizontal/form-elements.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 May 2018 07:46:42 GMT -->
 <?php include ('head.php')?>
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css" rel="stylesheet" type="text/css" />
@@ -30,7 +31,7 @@
                             <li class="breadcrumb-item active">Form Elements</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Manage User</h4>
+                    <h4 class="page-title">Application</h4>
                 </div>
             </div>
         </div>
@@ -39,15 +40,13 @@
         <div class="row">
             <div class="col-12">
                 <div class="card m-b-30">
-
-
                     <div class="card-body">
                         <div class="card-header-tabs">
-                            <h4>Manage User</h4>
+                            <h4>Manage CV</h4>
                         </div>
 
                         <div align="right">
-                            <a href="user.php"> <button class="btn btn-info">Add New</button></a>
+                            <a href="cvform.php"> <button class="btn btn-info">Add New</button></a>
                         </div>
                         <br>
                         <div class="row">
@@ -62,15 +61,26 @@
 
                                 </select>
                             </div>
-
+                            <div class=" form-group col-lg-1">
+                                <label>Age to</label>
+                                <input class="form-control" type="number">
+                            </div>
+                            <div class=" form-group col-lg-1">
+                                <label>Age From</label>
+                                <input class="form-control" type="number">
+                            </div>
                             <div class=" form-group col-lg-2">
-                                <label>Degisnation</label>
+                                <label>Gender</label>
                                 <select class="form-control">
-                                    <option>Select a Degisnation</option>
-                                    <option>Excutive</option>
-                                    <option>Senior Excutive</option>
+                                    <option>Select a Gender</option>
+                                    <option>Male</option>
+                                    <option>Female</option>
 
                                 </select>
+                            </div>
+                            <div class=" form-group col-lg-2">
+                                <label>Apply Date</label>
+                                <input class="form-control" type="date">
                             </div>
                         </div>
 
@@ -79,10 +89,10 @@
                             <tr>
                                 <th width="4%">Select</th>
                                 <th>Name</th>
-                                <th>Degisnation</th>
+                                <th>Age</th>
                                 <th>Gender</th>
                                 <th>Email</th>
-                                <th>Zone</th>
+                                <th>Apply Date</th>
                                 <th width="8%">Action</th>
                             </tr>
                             </thead>
@@ -91,10 +101,10 @@
                             <tr>
                                 <td><input type="checkbox"></td>
                                 <td> Sakib Rahman</td>
-                                <td>Executive</td>
+                                <td>30</td>
                                 <td>Male</td>
                                 <td>sakib@gmail.com</td>
-                                <td>Dhaka</td>
+                                <td>2018/04/10</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
@@ -102,10 +112,10 @@
                             <tr>
                                 <td><input type="checkbox"></td>
                                 <td> Forhad Uddin</td>
-                                <td>Senior Executive</td>
+                                <td>40</td>
                                 <td>Male</td>
                                 <td>forhad@gmail.com</td>
-                                <td>Brisal</td>
+                                <td>2018/06/12</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
@@ -113,10 +123,10 @@
                             <tr>
                                 <td><input type="checkbox"></td>
                                 <td> Farzad Rahman</td>
-                                <td>Executive</td>
+                                <td>25</td>
                                 <td>Male</td>
                                 <td>farzad@gmail.com</td>
-                                <td>Dhaka</td>
+                                <td>2018/05/12</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
@@ -124,10 +134,10 @@
                             <tr>
                                 <td><input type="checkbox"></td>
                                 <td> Mujtaba Rumi</td>
-                                <td>Executive</td>
+                                <td>24</td>
                                 <td>Male</td>
                                 <td>sakib@gmail.com</td>
-                                <td>Dhaka</td>
+                                <td>2018/02/15</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
@@ -135,10 +145,10 @@
                             <tr>
                                 <td><input type="checkbox"></td>
                                 <td> Sakib Rahman</td>
-                                <td>Executive</td>
+                                <td>30</td>
                                 <td>Male</td>
                                 <td>sakib@gmail.com</td>
-                                <td>Khulna</td>
+                                <td>2018/04/10</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
@@ -146,10 +156,10 @@
                             <tr>
                                 <td><input type="checkbox"></td>
                                 <td> Forhad Uddin</td>
-                                <td>Executive</td>
+                                <td>40</td>
                                 <td>Male</td>
                                 <td>forhad@gmail.com</td>
-                                <td>Khulna</td>
+                                <td>2018/06/12</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
@@ -157,10 +167,10 @@
                             <tr>
                                 <td><input type="checkbox"></td>
                                 <td> Farzad Rahman</td>
-                                <td>Senior Executive</td>
+                                <td>25</td>
                                 <td>Male</td>
                                 <td>farzad@gmail.com</td>
-                                <td>Dhaka</td>
+                                <td>2018/05/12</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
@@ -168,10 +178,10 @@
                             <tr>
                                 <td><input type="checkbox"></td>
                                 <td> Mujtaba Rumi</td>
-                                <td>Senior Executive</td>
+                                <td>24</td>
                                 <td>Male</td>
                                 <td>sakib@gmail.com</td>
-                                <td>Dhaka</td>
+                                <td>2018/02/15</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
@@ -179,10 +189,10 @@
                             <tr>
                                 <td><input type="checkbox"></td>
                                 <td> Sakib Rahman</td>
-                                <td>Senior Executive</td>
+                                <td>30</td>
                                 <td>Male</td>
                                 <td>sakib@gmail.com</td>
-                                <td>Khulna</td>
+                                <td>2011/04/25</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
@@ -190,10 +200,10 @@
                             <tr>
                                 <td><input type="checkbox"></td>
                                 <td> Sakib Rahman</td>
-                                <td>Executive</td>
+                                <td>30</td>
                                 <td>Male</td>
                                 <td>sakib@gmail.com</td>
-                                <td>Dhaka</td>
+                                <td>2018/04/25</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
@@ -201,10 +211,10 @@
                             <tr>
                                 <td><input type="checkbox"></td>
                                 <td> Sakib Rahman</td>
-                                <td>Senior Executive</td>
+                                <td>30</td>
                                 <td>Male</td>
                                 <td>sakib@gmail.com</td>
-                                <td>Khulna</td>
+                                <td>2011/04/25</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
@@ -212,10 +222,10 @@
                             <tr>
                                 <td><input type="checkbox"></td>
                                 <td> Sakib Rahman</td>
-                                <td>Executive</td>
+                                <td>30</td>
                                 <td>Male</td>
                                 <td>sakib@gmail.com</td>
-                                <td>Dhaka</td>
+                                <td>2011/04/25</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
@@ -223,10 +233,10 @@
                             <tr>
                                 <td><input type="checkbox"></td>
                                 <td> Sakib Rahman</td>
-                                <td>Senior Executive</td>
+                                <td>30</td>
                                 <td>Male</td>
                                 <td>sakib@gmail.com</td>
-                                <td>Khulna</td>
+                                <td>2011/04/25</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
@@ -234,10 +244,10 @@
                             <tr>
                                 <td><input type="checkbox"></td>
                                 <td> Sakib Rahman</td>
-                                <td>Executive</td>
+                                <td>30</td>
                                 <td>Male</td>
                                 <td>sakib@gmail.com</td>
-                                <td>Dhaka</td>
+                                <td>2011/04/25</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
@@ -245,10 +255,10 @@
                             <tr>
                                 <td><input type="checkbox"></td>
                                 <td> Sakib Rahman</td>
-                                <td>Senior Executive</td>
+                                <td>30</td>
                                 <td>Male</td>
                                 <td>sakib@gmail.com</td>
-                                <td>Khulna</td>
+                                <td>2018/04/10</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
@@ -256,10 +266,10 @@
                             <tr>
                                 <td><input type="checkbox"></td>
                                 <td> Forhad Uddin</td>
-                                <td>Senior Executive</td>
+                                <td>40</td>
                                 <td>Male</td>
                                 <td>forhad@gmail.com</td>
-                                <td>Dhaka</td>
+                                <td>2018/06/12</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
@@ -267,10 +277,10 @@
                             <tr>
                                 <td><input type="checkbox"></td>
                                 <td> Farzad Rahman</td>
-                                <td>Executive</td>
+                                <td>25</td>
                                 <td>Male</td>
                                 <td>farzad@gmail.com</td>
-                                <td>Khulna</td>
+                                <td>2018/05/12</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
@@ -278,10 +288,10 @@
                             <tr>
                                 <td><input type="checkbox"></td>
                                 <td> Mujtaba Rumi</td>
-                                <td>Senior Executive</td>
+                                <td>24</td>
                                 <td>Male</td>
                                 <td>sakib@gmail.com</td>
-                                <td>Dhaka</td>
+                                <td>2018/02/15</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
@@ -289,10 +299,10 @@
                             <tr>
                                 <td><input type="checkbox"></td>
                                 <td> Sakib Rahman</td>
-                                <td>Executive</td>
+                                <td>30</td>
                                 <td>Male</td>
                                 <td>sakib@gmail.com</td>
-                                <td>Khulna</td>
+                                <td>2011/04/25</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
@@ -300,10 +310,10 @@
                             <tr>
                                 <td><input type="checkbox"></td>
                                 <td> Sakib Rahman</td>
-                                <td>Senior Executive</td>
+                                <td>30</td>
                                 <td>Male</td>
                                 <td>sakib@gmail.com</td>
-                                <td>Dhaka</td>
+                                <td>2018/04/10</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
@@ -311,10 +321,10 @@
                             <tr>
                                 <td><input type="checkbox"></td>
                                 <td> Forhad Uddin</td>
-                                <td>Executive</td>
+                                <td>40</td>
                                 <td>Male</td>
                                 <td>forhad@gmail.com</td>
-                                <td>Khulna</td>
+                                <td>2018/06/12</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
@@ -322,10 +332,10 @@
                             <tr>
                                 <td><input type="checkbox"></td>
                                 <td> Farzad Rahman</td>
-                                <td>Senior Executive</td>
+                                <td>25</td>
                                 <td>Male</td>
                                 <td>farzad@gmail.com</td>
-                                <td>Dhaka</td>
+                                <td>2018/05/12</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
@@ -333,10 +343,10 @@
                             <tr>
                                 <td><input type="checkbox"></td>
                                 <td> Mujtaba Rumi</td>
-                                <td>Executive</td>
+                                <td>24</td>
                                 <td>Male</td>
                                 <td>sakib@gmail.com</td>
-                                <td>Khulna</td>
+                                <td>2018/02/15</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
@@ -352,7 +362,6 @@
                         <button class="btn btn-danger">Export CV</button>
 
                     </div>
-
                 </div>
             </div> <!-- end col -->
         </div> <!-- end row -->

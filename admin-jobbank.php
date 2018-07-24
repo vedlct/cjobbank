@@ -46,7 +46,7 @@
                         </div>
 
                         <div align="right">
-                            <button class="btn btn-info">Add New</button>
+                            <a href="jobform.php"> <button class="btn btn-info">Add New</button></a>
                         </div>
                         <br>
                         <div class="row">

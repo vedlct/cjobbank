@@ -174,11 +174,11 @@
                         </li>
 
                         <li class="has-submenu">
-                            <a href="#"><i class="ti-lock"></i>Password</a>
+                            <a href="#"><i class="ti-user"></i>Application</a>
                         </li>
 
                         <li class="has-submenu">
-                            <a href="#"><i class="ti-user"></i>User Management</a>
+                            <a href="manageruser.php"><i class="ti-user"></i>User Management</a>
                         </li>
 
                         <li class="has-submenu">

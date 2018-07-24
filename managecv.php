@@ -50,7 +50,7 @@
                         </div>
                         <br>
                         <div class="row">
-                            <div class=" form-group col-lg-3">
+                            <div class=" form-group col-lg-2">
                                 <label>Zone</label>
                                 <select class="form-control">
                                     <option>Select a Zone</option>
@@ -81,6 +81,25 @@
                             <div class=" form-group col-lg-2">
                                 <label>Apply Date</label>
                                 <input class="form-control" type="date">
+                            </div>
+                            <div class=" form-group col-lg-2">
+                                <label>Religion</label>
+                                <select class="form-control">
+                                    <option>Select a Religion</option>
+                                    <option>Islam</option>
+                                    <option>Hindu</option>
+                                    <option>Christian</option>
+
+                                </select>
+                            </div>
+                            <div class=" form-group col-lg-2">
+                                <label>Ethnicity</label>
+                                <select class="form-control">
+                                    <option>Select a Ethnicity</option>
+                                    <option>Bangali</option>
+                                    <option>Adivashi</option>
+
+                                </select>
                             </div>
                         </div>
 

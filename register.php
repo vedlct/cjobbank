@@ -38,16 +38,16 @@
                     <h4 class="text-muted text-center font-18"><b>Register</b></h4>
 
                     <div class="p-3">
-                        <form class="form-horizontal m-t-20" action="http://themesdesign.in/upcube/layouts/horizontal/index.html">
+                        <form class="form-horizontal m-t-20" action="agreement.php">
 
                             <div class="form-group row">
                                 <div class="col-12">
-                                    <input class="form-control" type="email" required="" placeholder="Firstname">
+                                    <input class="form-control" type="text" required="" placeholder="Firstname">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="col-12">
-                                    <input class="form-control" type="email" required="" placeholder="Lastname">
+                                    <input class="form-control" type="text" required="" placeholder="Lastname">
                                 </div>
                             </div>
                             <div class="form-group row">
