@@ -293,10 +293,12 @@
 
                         </table>
                         <br>
-                        <label><input type="checkbox">Select All</label><br>
-                        <div class="row">
+                    
+                        <label class="checkbox-inline"> <input type="checkbox" value=""> </label> Select All 
+                        
+                        <div style="margin-top: 10px;" class="row">
 
-                        <div class="col-md-4">
+                        <div class="col-md-1">
                             <button class="btn btn-danger">Export CV</button>
                         </div>
                         <div class="col-md-4">
