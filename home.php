@@ -43,13 +43,13 @@
                         <div class="card-body">
 
                             <div class="row">
-                                <h2 style=" margin-bottom: 25px; margin-left: 13px; ">Todays Application</h2>
+                                <h2 style=" margin-bottom: 25px; margin-left: 13px; ">Todays Job Apply</h2>
                             </div>
 
                             <table id="managecv" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th width="4%">Select</th>
+
                                         <th>Name</th>
                                         <th>Degisnation</th>
                                         <th>Gender</th>
@@ -60,7 +60,7 @@
                                 <tbody>
 
                                     <tr>
-                                        <td><input type="checkbox"></td>
+
                                         <td> Sakib Rahman</td>
                                         <td>Executive</td>
                                         <td>Male</td>
@@ -68,7 +68,7 @@
                                         <td>Dhaka</td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+
                                         <td> Forhad Uddin</td>
                                         <td>Senior Executive</td>
                                         <td>Male</td>
@@ -76,7 +76,7 @@
                                         <td>Brisal</td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+
                                         <td> Farzad Rahman</td>
                                         <td>Executive</td>
                                         <td>Male</td>
@@ -84,7 +84,7 @@
                                         <td>Dhaka</td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+
                                         <td> Mujtaba Rumi</td>
                                         <td>Executive</td>
                                         <td>Male</td>
@@ -92,7 +92,7 @@
                                         <td>Dhaka</td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+
                                         <td> Sakib Rahman</td>
                                         <td>Executive</td>
                                         <td>Male</td>
@@ -100,7 +100,7 @@
                                         <td>Khulna</td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+
                                         <td> Forhad Uddin</td>
                                         <td>Executive</td>
                                         <td>Male</td>
@@ -108,7 +108,7 @@
                                         <td>Khulna</td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+
                                         <td> Farzad Rahman</td>
                                         <td>Senior Executive</td>
                                         <td>Male</td>
@@ -116,7 +116,7 @@
                                         <td>Dhaka</td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+
                                         <td> Mujtaba Rumi</td>
                                         <td>Senior Executive</td>
                                         <td>Male</td>
@@ -124,7 +124,7 @@
                                         <td>Dhaka</td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+
                                         <td> Sakib Rahman</td>
                                         <td>Senior Executive</td>
                                         <td>Male</td>
@@ -132,7 +132,7 @@
                                         <td>Khulna</td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+
                                         <td> Sakib Rahman</td>
                                         <td>Executive</td>
                                         <td>Male</td>
@@ -140,7 +140,7 @@
                                         <td>Dhaka</td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+
                                         <td> Sakib Rahman</td>
                                         <td>Senior Executive</td>
                                         <td>Male</td>
@@ -148,7 +148,7 @@
                                         <td>Khulna</td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+
                                         <td> Sakib Rahman</td>
                                         <td>Executive</td>
                                         <td>Male</td>
@@ -156,7 +156,7 @@
                                         <td>Dhaka</td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+
                                         <td> Sakib Rahman</td>
                                         <td>Senior Executive</td>
                                         <td>Male</td>
@@ -164,7 +164,7 @@
                                         <td>Khulna</td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+
                                         <td> Sakib Rahman</td>
                                         <td>Executive</td>
                                         <td>Male</td>
@@ -172,7 +172,7 @@
                                         <td>Dhaka</td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+
                                         <td> Sakib Rahman</td>
                                         <td>Senior Executive</td>
                                         <td>Male</td>
@@ -209,7 +209,7 @@
                             <table id="managecv" class="table table-striped table-bordered" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th width="4%">Select</th>
+
                                         <th>Name</th>
                                         <th>Degisnation</th>
                                         <th>Gender</th>
@@ -220,7 +220,7 @@
                                 <tbody>
 
                                     <tr>
-                                        <td><input type="checkbox"></td>
+
                                         <td> Sakib Rahman</td>
                                         <td>Executive</td>
                                         <td>Male</td>
@@ -228,7 +228,7 @@
                                         <td>Dhaka</td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+
                                         <td> Forhad Uddin</td>
                                         <td>Senior Executive</td>
                                         <td>Male</td>
@@ -236,7 +236,7 @@
                                         <td>Brisal</td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+
                                         <td> Farzad Rahman</td>
                                         <td>Executive</td>
                                         <td>Male</td>
@@ -244,7 +244,7 @@
                                         <td>Dhaka</td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+
                                         <td> Mujtaba Rumi</td>
                                         <td>Executive</td>
                                         <td>Male</td>
@@ -252,7 +252,7 @@
                                         <td>Dhaka</td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+
                                         <td> Sakib Rahman</td>
                                         <td>Executive</td>
                                         <td>Male</td>
@@ -260,7 +260,7 @@
                                         <td>Khulna</td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+
                                         <td> Forhad Uddin</td>
                                         <td>Executive</td>
                                         <td>Male</td>
@@ -268,7 +268,7 @@
                                         <td>Khulna</td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+
                                         <td> Farzad Rahman</td>
                                         <td>Senior Executive</td>
                                         <td>Male</td>
@@ -276,7 +276,7 @@
                                         <td>Dhaka</td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+
                                         <td> Mujtaba Rumi</td>
                                         <td>Senior Executive</td>
                                         <td>Male</td>
@@ -284,7 +284,7 @@
                                         <td>Dhaka</td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+
                                         <td> Sakib Rahman</td>
                                         <td>Senior Executive</td>
                                         <td>Male</td>
@@ -292,7 +292,7 @@
                                         <td>Khulna</td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+
                                         <td> Sakib Rahman</td>
                                         <td>Executive</td>
                                         <td>Male</td>
@@ -300,7 +300,7 @@
                                         <td>Dhaka</td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+
                                         <td> Sakib Rahman</td>
                                         <td>Senior Executive</td>
                                         <td>Male</td>
@@ -308,7 +308,7 @@
                                         <td>Khulna</td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+
                                         <td> Sakib Rahman</td>
                                         <td>Executive</td>
                                         <td>Male</td>
@@ -316,7 +316,7 @@
                                         <td>Dhaka</td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+
                                         <td> Sakib Rahman</td>
                                         <td>Senior Executive</td>
                                         <td>Male</td>
@@ -324,7 +324,7 @@
                                         <td>Khulna</td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+
                                         <td> Sakib Rahman</td>
                                         <td>Executive</td>
                                         <td>Male</td>
@@ -332,7 +332,7 @@
                                         <td>Dhaka</td>
                                     </tr>
                                     <tr>
-                                        <td><input type="checkbox"></td>
+
                                         <td> Sakib Rahman</td>
                                         <td>Senior Executive</td>
                                         <td>Male</td>

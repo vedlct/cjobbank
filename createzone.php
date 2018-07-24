@@ -1,13 +1,75 @@
-<!-- Footer -->
-<footer class="footer">
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from themesdesign.in/upcube/layouts/horizontal/form-elements.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 May 2018 07:46:42 GMT -->
+
+<?php include ('head.php')?>
+
+
+<body>
+
+
+
+<!-- Navigation Bar-->
+<?php include ('menu.php')?>
+<!-- End Navigation Bar-->
+
+
+<div class="wrapper">
     <div class="container-fluid">
+
+        <!-- Page-Title -->
         <div class="row">
-            <div class="col-12">
-                © 2018 Caritas Job Bank  by Techcloud Ltd.
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <div class="btn-group pull-right">
+                        <ol class="breadcrumb hide-phone p-0 m-0">
+                            <li class="breadcrumb-item"><a href="#">Upcube</a></li>
+                            <li class="breadcrumb-item"><a href="#">Forms</a></li>
+                            <li class="breadcrumb-item active">Form Elements</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">Create Zone</h4>
+                </div>
             </div>
         </div>
+        <!-- end page title end breadcrumb -->
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card m-b-30">
+                    <div class="card-body">
+
+                        <form id="regForm" action="/action_page.php">
+
+                            <h2 style="margin-bottom: 40px; text-align: center;">Create ZOne</h2>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="">Zone Name</label>
+                                    <input type="text" class="form-control" id="" placeholder="">
+                                </div>
+                            </div>
+
+
+                            <button type="button" class="btn btn-success">Submit</button>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <!-- end col -->
+        </div>
+        <!-- end row -->
+
     </div>
-</footer>
+    <!-- end container -->
+</div>
+<!-- end wrapper -->
+
+
+<!-- Footer -->
+<?php include ('footer.php') ?>
 <!-- End Footer -->
 
 
@@ -99,3 +161,9 @@
         x[n].className += " active";
     }
 </script>
+
+</body>
+
+<!-- Mirrored from themesdesign.in/upcube/layouts/horizontal/form-elements.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 May 2018 07:46:42 GMT -->
+
+</html>

@@ -37,43 +37,7 @@
                         </a>
                     </li>
                     <!-- Messages-->
-                    <li class="list-inline-item dropdown notification-list">
-                        <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
-                           aria-haspopup="false" aria-expanded="false">
-                            <i class="mdi mdi-email-outline noti-icon"></i>
-                            <span class="badge badge-danger noti-icon-badge">3</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-menu-lg">
-                            <!-- item-->
-                            <div class="dropdown-item noti-title">
-                                <h5><span class="badge badge-danger float-right">745</span>Messages</h5>
-                            </div>
 
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <div class="notify-icon"><img src="assets/images/users/avatar-2.jpg" alt="user-img" class="img-fluid rounded-circle" /> </div>
-                                <p class="notify-details"><b>Charles M. Jones</b><small class="text-muted">Dummy text of the printing and typesetting industry.</small></p>
-                            </a>
-
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <div class="notify-icon"><img src="assets/images/users/avatar-3.jpg" alt="user-img" class="img-fluid rounded-circle" /> </div>
-                                <p class="notify-details"><b>Thomas J. Mimms</b><small class="text-muted">You have 87 unread messages</small></p>
-                            </a>
-
-                            <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                <div class="notify-icon"><img src="assets/images/users/avatar-4.jpg" alt="user-img" class="img-fluid rounded-circle" /> </div>
-                                <p class="notify-details"><b>Luis M. Konrad</b><small class="text-muted">It is a long established fact that a reader will</small></p>
-                            </a>
-
-                            <!-- All-->
-                            <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                View All
-                            </a>
-
-                        </div>
-                    </li>
                     <!-- notification-->
                     <li class="list-inline-item dropdown notification-list">
                         <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
@@ -165,7 +129,7 @@
                         </li>
 
                         <li class="has-submenu">
-                            <a href="#"><i class="ti-user"></i>Application</a>
+                            <a href="admin-manageApplication.php"><i class="ti-user"></i>Application</a>
                         </li>
 
                         <li class="has-submenu">
@@ -175,8 +139,8 @@
                         <li class="has-submenu">
                             <a href="#"><i class="ti-settings"></i>Settings</a>
                             <ul class="submenu">
-                                <li><a href="#">Create Zone</a></li>
-                                <li><a href="#">Create Education</a></li>
+                                <li><a href="managezone.php">Manage Zone</a></li>
+                                <li><a href="manageeducation.php">Manage Education</a></li>
                             </ul>
                         </li>
                     </ul>

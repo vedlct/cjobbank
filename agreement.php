@@ -34,7 +34,7 @@
                     <h2 class="text-muted text-center font-18">Agreements</h2>
 
                     <div class="p-3">
-                        <form class="form-horizontal m-t-20" action="cvform.php">
+                        <form class="form-horizontal m-t-20" method="post" action="usercvform.php">
 
                             <div class="form-group row">
                                 <div class="col-8">

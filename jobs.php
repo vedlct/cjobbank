@@ -8,11 +8,11 @@
 <body>
 
     <!-- Loader -->
-    <div id="preloader">
-        <div id="status">
-            <div class="spinner"></div>
-        </div>
-    </div>
+<!--    <div id="preloader">-->
+<!--        <div id="status">-->
+<!--            <div class="spinner"></div>-->
+<!--        </div>-->
+<!--    </div>-->
 
     <!-- Navigation Bar-->
     <?php include ('usermenu.php') ?>
