@@ -357,8 +357,8 @@
                         </table>
                         <br>
 
-                            <div><label>Select All</label>
-                                <input type="checkbox"></div>
+                        <div><label>Select All</label>
+                            <input type="checkbox"></div>
                         <button class="btn btn-danger">Export CV</button>
 
                     </div>
