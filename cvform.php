@@ -334,21 +334,38 @@
                                         
                                         <button type="button" class="btn btn-success">Add More</button>
 
-                                    </div>
+                                    </div>                                    
                                     
-                    
+                                    
+                                    <div class="tab">
 
-                                    
-                                    <div class="tab">Birthday:
-                                        <p><input placeholder="dd" oninput="this.className = ''" name="dd"></p>
-                                        <p><input placeholder="mm" oninput="this.className = ''" name="nn"></p>
-                                        <p><input placeholder="yyyy" oninput="this.className = ''" name="yyyy"></p>
+                                        <h2 style="margin-bottom: 30px;">Reference</h2> 
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label for="inputEmail4">Full Name</label>
+                                                <input type="email" class="form-control" id="inputEmail4" placeholder="">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="inputEmail4">Relation</label>
+                                                <input type="email" class="form-control" id="inputEmail4" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-4">
+                                                <label for="inputEmail4">Designation</label>
+                                                <input type="email" class="form-control" id="inputEmail4" placeholder="">
+                                            </div>
+                                            <div class="form-group col-md-8">
+                                                <label for="inputPassword4">Address</label>
+                                                <input type="password" class="form-control" id="inputPassword4" placeholder="">
+                                            </div>
+                                        </div>
+                                        
+                                        <button type="button" class="btn btn-success">Add More</button>
+
                                     </div>
-                                    
-                                    <div class="tab">Login Info:
-                                        <p><input placeholder="Username..." oninput="this.className = ''" name="uname"></p>
-                                        <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password"></p>
-                                    </div>
+
+
                                     
                                     <div style="overflow:auto;">
                                         <div style="float:right;">
@@ -358,7 +375,6 @@
                                     </div>
                                     <!-- Circles which indicates the steps of the form: -->
                                     <div style="text-align:center;margin-top:40px;">
-                                        <span class="step"></span>
                                         <span class="step"></span>
                                         <span class="step"></span>
                                         <span class="step"></span>
