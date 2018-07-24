@@ -94,8 +94,8 @@
                             </tr>
                             <tr>
                                 <td>2</td>
+                                <td>Integration Specialist</td>
                                 <td>Rajshahi</td>
-                                <td>Dinajpur</td>
                                 <td>2011/04/25</td>
                                 <td>2011/07/25</td>
                                 <td><button class="btn btn-sm btn-success">Edit</button>

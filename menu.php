@@ -167,7 +167,7 @@
                         </li>
 
                         <li class="has-submenu">
-                            <a href="#"><i class="ti-layout-width-default"></i>View CV</a>
+                            <a href="managecv.php"><i class="ti-layout-width-default"></i>Manage CV</a>
                         </li>
 
                         <li class="has-submenu">
@@ -179,7 +179,7 @@
                         </li>
 
                         <li class="has-submenu">
-                            <a href="#"><i class="ti-user"></i>Applicant Info</a>
+                            <a href="#"><i class="ti-user"></i>User Management</a>
                         </li>
 
                         <li class="has-submenu">
