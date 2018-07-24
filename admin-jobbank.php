@@ -46,11 +46,11 @@
                         </div>
 
                         <div align="right">
-                            <button class="btn btn-info">Add New</button>
+                            <a href="jobform.php"> <button class="btn btn-info">Add New</button></a>
                         </div>
                         <br>
                         <div class="row">
-                        <div class=" form-group col-lg-4">
+                        <div class=" form-group col-lg-3">
                             <label>Zone</label>
                             <select class="form-control">
                                 <option>Select a Zone</option>
@@ -61,14 +61,23 @@
 
                             </select>
                         </div>
-                        <div class=" form-group col-lg-4">
+                        <div class=" form-group col-lg-3">
                             <label>Post Date</label>
                             <input class="form-control" type="date">
                         </div>
-                        <div class=" form-group col-lg-4">
+                        <div class=" form-group col-lg-3">
                             <label>Deadline</label>
                             <input class="form-control" type="date">
                         </div>
+                            <div class=" form-group col-lg-3">
+                                <label>Job Status</label>
+                                <select class="form-control">
+                                    <option>Select a Status</option>
+                                    <option>Post</option>
+                                    <option>DeActive</option>
+
+                                </select>
+                            </div>
                         </div>
                         <table id="adminjobbank" class="table table-striped table-bordered" style="width:100%" >
                             <thead>
@@ -78,7 +87,7 @@
                                 <th>Zone</th>
                                 <th>Post Date</th>
                                 <th>Deadline</th>
-                                <th width="10%">Action</th>
+                                <th width="12%">Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -88,17 +97,19 @@
                                 <td>Dhaka</td>
                                 <td>2009/09/15</td>
                                 <td>2011/04/25</td>
-                                <td><button class="btn btn-sm btn-success">Edit</button>
+                                <td><button class="btn btn-sm btn-secondary">Post</button>
+                                <button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
                             </tr>
                             <tr>
                                 <td>2</td>
+                                <td>Integration Specialist</td>
                                 <td>Rajshahi</td>
-                                <td>Dinajpur</td>
                                 <td>2011/04/25</td>
                                 <td>2011/07/25</td>
-                                <td><button class="btn btn-sm btn-success">Edit</button>
+                                <td><button class="btn btn-sm btn-secondary">Post</button>
+                                    <button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
                             </tr>
@@ -108,7 +119,8 @@
                                 <td>Khulna</td>
                                 <td>2009/09/15</td>
                                 <td>2009/01/12</td>
-                                <td><button class="btn btn-sm btn-success">Edit</button>
+                                <td><button class="btn btn-sm btn-secondary">Deavtive</button>
+                                    <button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
                             </tr>
@@ -118,7 +130,8 @@
                                 <td>Barisal</td>
                                 <td>2011/04/25</td>
                                 <td>2012/03/29</td>
-                                <td><button class="btn btn-sm btn-success">Edit</button>
+                                <td><button class="btn btn-sm btn-secondary">Post</button>
+                                    <button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
                             </tr>
@@ -128,7 +141,8 @@
                                 <td>Panchagare</td>
                                 <td>2011/04/25</td>
                                 <td>2008/11/28</td>
-                                <td><button class="btn btn-sm btn-success">Edit</button>
+                                <td><button class="btn btn-sm btn-secondary">Deavtive</button>
+                                    <button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
                             </tr>
@@ -138,7 +152,8 @@
                                 <td>Rangpur</td>
                                 <td>2011/04/25</td>
                                 <td>2012/12/02</td>
-                                <td><button class="btn btn-sm btn-success">Edit</button>
+                                <td><button class="btn btn-sm btn-secondary">Deavtive</button>
+                                    <button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
                             </tr>
@@ -148,7 +163,8 @@
                                 <td>Noyakhali</td>
                                 <td>2011/04/25</td>
                                 <td>2012/08/06</td>
-                                <td><button class="btn btn-sm btn-success">Edit</button>
+                                <td><button class="btn btn-sm btn-secondary">Post</button>
+                                    <button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
                             </tr>
@@ -158,7 +174,8 @@
                                 <td>Barisal</td>
                                 <td>2009/09/15</td>
                                 <td>2010/10/14</td>
-                                <td><button class="btn btn-sm btn-success">Edit</button>
+                                <td><button class="btn btn-sm btn-secondary">Deavtive</button>
+                                    <button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
                             </tr>
@@ -168,7 +185,8 @@
                                 <td>Barisal</td>
                                 <td>2009/09/15</td>
                                 <td>2009/09/15</td>
-                                <td><button class="btn btn-sm btn-success">Edit</button>
+                                <td><button class="btn btn-sm btn-secondary">Post</button>
+                                    <button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
                             </tr>
@@ -178,7 +196,8 @@
                                 <td>Barisal</td>
                                 <td>2009/09/15</td>
                                 <td>2008/12/13</td>
-                                <td><button class="btn btn-sm btn-success">Edit</button>
+                                <td><button class="btn btn-sm btn-secondary">Post</button>
+                                    <button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
                             </tr>
@@ -188,7 +207,8 @@
                                 <td>Barisal</td>
                                 <td>2009/09/15</td>
                                 <td>2008/12/19</td>
-                                <td><button class="btn btn-sm btn-success">Edit</button>
+                                <td><button class="btn btn-sm btn-secondary">Deavtive</button>
+                                    <button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
                             </tr>
@@ -198,7 +218,8 @@
                                 <td>Panchagare</td>
                                 <td>2009/09/15</td>
                                 <td>2013/03/03</td>
-                                <td><button class="btn btn-sm btn-success">Edit</button>
+                                <td><button class="btn btn-sm btn-secondary">Deavtive</button>
+                                    <button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
                             </tr>
@@ -208,7 +229,8 @@
                                 <td>San Francisco</td>
                                 <td>2009/09/15</td>
                                 <td>2008/10/16</td>
-                                <td><button class="btn btn-sm btn-success">Edit</button>
+                                <td><button class="btn btn-sm btn-secondary">Deavtive</button>
+                                    <button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
                             </tr>
@@ -218,7 +240,8 @@
                                 <td>Khulna</td>
                                 <td>2009/09/15</td>
                                 <td>2012/12/18</td>
-                                <td><button class="btn btn-sm btn-success">Edit</button>
+                                <td><button class="btn btn-sm btn-secondary">Deavtive</button>
+                                    <button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
                             </tr>
@@ -228,7 +251,8 @@
                                 <td>Khulna</td>
                                 <td>2009/04/10</td>
                                 <td>2010/03/17</td>
-                                <td><button class="btn btn-sm btn-success">Edit</button>
+                                <td><button class="btn btn-sm btn-secondary">Post</button>
+                                    <button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
                             </tr>
@@ -238,7 +262,8 @@
                                 <td>Rajshahi</td>
                                 <td>2009/04/10</td>
                                 <td>2012/11/27</td>
-                                <td><button class="btn btn-sm btn-success">Edit</button>
+                                <td><button class="btn btn-sm btn-secondary">Post</button>
+                                    <button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
                             </tr>
@@ -248,7 +273,8 @@
                                 <td>Rajshahi</td>
                                 <td>2009/04/10</td>
                                 <td>2010/06/09</td>
-                                <td><button class="btn btn-sm btn-success">Edit</button>
+                                <td><button class="btn btn-sm btn-secondary">Post</button>
+                                    <button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
                             </tr>
@@ -258,7 +284,8 @@
                                 <td>Dhaka</td>
                                 <td>2009/04/10</td>
                                 <td>2009/04/10</td>
-                                <td><button class="btn btn-sm btn-success">Edit</button>
+                                <td><button class="btn btn-sm btn-secondary">Deavtive</button>
+                                    <button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
                             </tr>
@@ -268,7 +295,8 @@
                                 <td>Panchagare</td>
                                 <td>2009/04/10</td>
                                 <td>2012/10/13</td>
-                                <td><button class="btn btn-sm btn-success">Edit</button>
+                                <td><button class="btn btn-sm btn-secondary">Deavtive</button>
+                                    <button class="btn btn-sm btn-success">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
                             </tr>

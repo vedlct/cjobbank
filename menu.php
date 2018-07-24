@@ -157,16 +157,11 @@
                     <ul class="navigation-menu">
 
                         <li class="has-submenu">
-                            <a href="index.html"><i class="ti-home"></i>Home</a>
-                        </li>
-
-
-                        <li class="has-submenu">
-                            <a href="#"> <i class="ti-plus"></i>Add CV</a>
+                            <a href="home.php"><i class="ti-home"></i>Home</a>
                         </li>
 
                         <li class="has-submenu">
-                            <a href="#"><i class="ti-layout-width-default"></i>View CV</a>
+                            <a href="managecv.php"><i class="ti-layout-width-default"></i>Manage CV</a>
                         </li>
 
                         <li class="has-submenu">
@@ -174,11 +169,11 @@
                         </li>
 
                         <li class="has-submenu">
-                            <a href="#"><i class="ti-lock"></i>Password</a>
+                            <a href="#"><i class="ti-user"></i>Application</a>
                         </li>
 
                         <li class="has-submenu">
-                            <a href="#"><i class="ti-user"></i>Applicant Info</a>
+                            <a href="manageruser.php"><i class="ti-user"></i>User Management</a>
                         </li>
 
                         <li class="has-submenu">
