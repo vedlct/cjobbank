@@ -157,12 +157,7 @@
                     <ul class="navigation-menu">
 
                         <li class="has-submenu">
-                            <a href="index.html"><i class="ti-home"></i>Home</a>
-                        </li>
-
-
-                        <li class="has-submenu">
-                            <a href="#"> <i class="ti-plus"></i>Add CV</a>
+                            <a href="home.php"><i class="ti-home"></i>Home</a>
                         </li>
 
                         <li class="has-submenu">
