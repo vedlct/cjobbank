@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                © 2018 Upcube - Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesdesign.
+                © 2018 Caritas Job Bank <i class="mdi mdi-heart text-danger"></i> by Techcloud Ltd.
             </div>
         </div>
     </div>

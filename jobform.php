@@ -454,20 +454,23 @@
  
                                        <h2 style="margin-bottom: 40px; text-align: center;">Post New Job</h2> 
                                         <div class="row">
-                                            <div class="form-group col-md-6">
-                                                <label for="">First Name</label>
-                                                <input type="text" class="form-control" id="" placeholder="">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="inputPassword4">Last Name</label>
+                                            <div class="form-group col-md-12">
+                                                <label for="">Job Title</label>
                                                 <input type="text" class="form-control" id="" placeholder="">
                                             </div>
                                         </div>
 
                                         <div class="row">
                                             <div class="form-group col-md-12">
-                                                <label for="">Current Address</label>
-                                                <input type="text" class="form-control" id="" placeholder="">
+                                                <label for="">Job Description</label>
+                                                <textarea class="form-control" rows="5" id=""></textarea>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <label for="">Job Location</label>
+                                                <textarea class="form-control" rows="3" id=""></textarea>
                                             </div>
 
                                         </div>
@@ -475,33 +478,32 @@
                                         <div class="row">
 
                                             <div class="form-group col-md-12">
-                                                <label for="">Permanent Address</label>
-                                                <input type="text" class="form-control" id="" placeholder="">
+                                                <label for="">Job Zone</label>
+                                                <select class="form-control" id="sel1">
+                                                    <option>Dhaka</option>
+                                                    <option>Chittagong</option>
+                                                    <option>Sylhet</option>
+                                                    <option>Pabna</option>
+                                                </select>
                                             </div>
 
                                         </div>
 
                                         <div class="row">
-                                            <div class="form-group col-md-6">
-                                                <label for="">Email</label>
-                                                <input type="text" class="form-control" id="" placeholder="">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="">Alternative Email</label>
-                                                <input type="text" class="form-control" id="" placeholder="">
+                                            <div class="form-group col-md-12">
+                                                <label for="">Job Deadline</label>
+                                                <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="example-datetime-local-input">
                                             </div>
                                         </div>
 
                                         <div class="row">
-                                            <div class="form-group col-md-6">
-                                                <label for="">Contact No.</label>
-                                                <input type="text" class="form-control" id="" placeholder="">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="">Skype</label>
-                                                <input type="text" class="form-control" id="" placeholder="">
+                                            <div class="form-group col-md-12">
+                                                <label for="">Attachments</label>
+                                                <input type="file" class="form-control-file" id="exampleFormControlFile1">
                                             </div>
                                         </div>
+                                        
+                                    <button type="button" class="btn btn-success">Submit</button>
 
                                 </form>
                                   
