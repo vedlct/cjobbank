@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55180781-1b77-42be-911b-1eaed5d44c7e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/usercvform.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/usermenu.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/menu.php" afterPath="$PROJECT_DIR$/menu.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/usermenu.php" afterPath="$PROJECT_DIR$/usermenu.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -97,8 +94,8 @@
       <file leaf-file-name="usermenu.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/usermenu.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="155" column="47" lean-forward="false" selection-start-line="155" selection-start-column="47" selection-end-line="155" selection-end-column="47" />
+            <state relative-caret-position="315">
+              <caret line="159" column="90" lean-forward="false" selection-start-line="159" selection-start-column="90" selection-end-line="159" selection-end-column="90" />
               <folding />
             </state>
           </provider>
@@ -302,12 +299,12 @@
       <option name="presentableId" value="Default" />
       <updated>1532333768387</updated>
       <workItem from="1532334102477" duration="10576000" />
-      <workItem from="1532408288672" duration="19697000" />
+      <workItem from="1532408288672" duration="19819000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30273000" />
+    <option name="totallyTimeSpent" value="30395000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -521,8 +518,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/usermenu.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="155" column="47" lean-forward="false" selection-start-line="155" selection-start-column="47" selection-end-line="155" selection-end-column="47" />
+        <state relative-caret-position="315">
+          <caret line="159" column="90" lean-forward="false" selection-start-line="159" selection-start-column="90" selection-end-line="159" selection-end-column="90" />
           <folding />
         </state>
       </provider>

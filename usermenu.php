@@ -157,29 +157,29 @@
                     </li>
 
                     <li class="has-submenu">
-                        <a href="managecv.php"><i class="ti-layout-width-default"></i>Manage CV</a>
+                        <a href="managecv.php"><i class="ti-layout-width-default"></i>Jobs</a>
                     </li>
 
-                    <li class="has-submenu">
-                        <a href="admin-jobbank.php"><i class="ti-archive"></i>Job Bank</a>
-                    </li>
-
-                    <li class="has-submenu">
-                        <a href="#"><i class="ti-user"></i>Application</a>
-                    </li>
-
-                    <li class="has-submenu">
-                        <a href="manageruser.php"><i class="ti-user"></i>User Management</a>
-                    </li>
-
-                    <li class="has-submenu">
-                        <a href="#"><i class="ti-settings"></i>Settings</a>
-                        <ul class="submenu">
-                            <li><a href="#">Create Zone</a></li>
-                            <li><a href="#">Create Education</a></li>
-
-                        </ul>
-                    </li>
+<!--                    <li class="has-submenu">-->
+<!--                        <a href="admin-jobbank.php"><i class="ti-archive"></i>Job Bank</a>-->
+<!--                    </li>-->
+<!---->
+<!--                    <li class="has-submenu">-->
+<!--                        <a href="#"><i class="ti-user"></i>Application</a>-->
+<!--                    </li>-->
+<!---->
+<!--                    <li class="has-submenu">-->
+<!--                        <a href="manageruser.php"><i class="ti-user"></i>User Management</a>-->
+<!--                    </li>-->
+<!---->
+<!--                    <li class="has-submenu">-->
+<!--                        <a href="#"><i class="ti-settings"></i>Settings</a>-->
+<!--                        <ul class="submenu">-->
+<!--                            <li><a href="#">Create Zone</a></li>-->
+<!--                            <li><a href="#">Create Education</a></li>-->
+<!---->
+<!--                        </ul>-->
+<!--                    </li>-->
                 </ul>
                 <!-- End navigation menu -->
             </div>
