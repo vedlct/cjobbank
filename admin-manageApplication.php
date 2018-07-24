@@ -45,9 +45,9 @@
                             <h4>Manage Application</h4>
                         </div>
 
-                        <div align="right">
-                            <a href="cvform.php"> <button class="btn btn-info">Add New</button></a>
-                        </div>
+<!--                        <div align="right">-->
+<!--                            <a href="cvform.php"> <button class="btn btn-info">Add New</button></a>-->
+<!--                        </div>-->
                         <br>
                         <div class="row">
                             <div class=" form-group col-lg-2">
