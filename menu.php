@@ -10,8 +10,7 @@
                 <!--</a>-->
                 <!-- Image Logo -->
                 <a href="index.html" class="logo">
-                    <img src="assets/images/logo-sm.png" alt="" height="22" class="logo-small">
-                    <img src="assets/images/logo.png" alt="" height="24" class="logo-large">
+                    <h2>CARITAS BANGLADESH</h2>
                 </a>
 
             </div>

@@ -465,6 +465,96 @@
                                                 <input type="text" class="form-control" id="" placeholder="">
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label for="">Fathers Name</label>
+                                                <input type="text" class="form-control" id="" placeholder="">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="inputPassword4">Mothers Name</label>
+                                                <input type="text" class="form-control" id="" placeholder="">
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label for="">Gender</label>
+                                                <select class="form-control" id="sel1">
+                                                    <option>Male</option>
+                                                    <option>Female</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="">Religion</label>
+                                                <select class="form-control" id="sel1">
+                                                    <option>Muslim</option>
+                                                    <option>Hindu</option>
+                                                    <option>Christian</option>
+                                                    <option>Buddhist</option>
+                                                </select>
+                                            </div>
+                                        </div>                                        
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label for="">Ethnicity</label>
+                                                <select class="form-control" id="sel1">
+                                                    <option>Bangali</option>
+                                                    <option>Adibashi</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="">Disability</label>
+                                                <select class="form-control" id="sel1">
+                                                    <option>Yes</option>
+                                                    <option>No</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label for="">Date of Birth</label>
+                                                <input type="text" class="form-control" id="" placeholder="">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="">Skype</label>
+                                                <input type="text" class="form-control" id="" placeholder="">
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label for="">Nationality</label>
+                                                <select class="form-control" id="sel1">
+                                                    <option>Bangladeshi</option>
+                                                    <option>Others</option>
+                                                </select>
+                                            </div>
+                                           
+                                            <div class="form-group col-md-6">
+                                                <label for="">NID </label>
+                                                <input type="text" class="form-control" id="" placeholder="">
+                                            </div>
+
+                                        </div>
+                                        
+
+
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label for="">Contact No.</label>
+                                                <input type="text" class="form-control" id="" placeholder="">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label for="">Email</label>
+                                                <input type="text" class="form-control" id="" placeholder="">
+                                            </div>
+                                        </div>
+
+
+                                        
 
                                         <div class="row">
                                             <div class="form-group col-md-12">
@@ -481,28 +571,6 @@
                                                 <input type="text" class="form-control" id="" placeholder="">
                                             </div>
 
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="form-group col-md-6">
-                                                <label for="">Email</label>
-                                                <input type="text" class="form-control" id="" placeholder="">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="">Alternative Email</label>
-                                                <input type="text" class="form-control" id="" placeholder="">
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="form-group col-md-6">
-                                                <label for="">Contact No.</label>
-                                                <input type="text" class="form-control" id="" placeholder="">
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label for="">Skype</label>
-                                                <input type="text" class="form-control" id="" placeholder="">
-                                            </div>
                                         </div>
 
                                     </div>
