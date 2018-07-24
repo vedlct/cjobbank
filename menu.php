@@ -174,7 +174,7 @@
                         </li>
 
                         <li class="has-submenu">
-                            <a href="#"><i class="ti-user"></i>Application</a>
+                            <a href="admin-manageApplication.php"><i class="ti-user"></i>Application</a>
                         </li>
 
                         <li class="has-submenu">
