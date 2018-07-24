@@ -77,7 +77,7 @@
                     <!-- notification-->
                     <li class="list-inline-item dropdown notification-list">
                         <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
-                                 aria-haspopup="false" aria-expanded="false">
+                           aria-haspopup="false" aria-expanded="false">
                             <i class="mdi mdi-bell-outline noti-icon"></i>
                             <span class="badge badge-danger noti-icon-badge">3</span>
                         </a>
@@ -146,44 +146,45 @@
     <!-- end topbar-main -->
 
     <!-- MENU Start -->
-        <div class="navbar-custom">
-            <div class="container-fluid">
-                <div id="navigation">
-                    <!-- Navigation Menu-->
-                    <ul class="navigation-menu">
+    <div class="navbar-custom">
+        <div class="container-fluid">
+            <div id="navigation">
+                <!-- Navigation Menu-->
+                <ul class="navigation-menu">
 
-                        <li class="has-submenu">
-                            <a href="home.php"><i class="ti-home"></i>Home</a>
-                        </li>
+                    <li class="has-submenu">
+                        <a href="usercvform.php"><i class="ti-home"></i>Apply CV</a>
+                    </li>
 
-                        <li class="has-submenu">
-                            <a href="managecv.php"><i class="ti-layout-width-default"></i>Manage CV</a>
-                        </li>
+                    <li class="has-submenu">
+                        <a href="managecv.php"><i class="ti-layout-width-default"></i>Manage CV</a>
+                    </li>
 
-                        <li class="has-submenu">
-                            <a href="admin-jobbank.php"><i class="ti-archive"></i>Job Bank</a>
-                        </li>
+                    <li class="has-submenu">
+                        <a href="admin-jobbank.php"><i class="ti-archive"></i>Job Bank</a>
+                    </li>
 
-                        <li class="has-submenu">
-                            <a href="#"><i class="ti-user"></i>Application</a>
-                        </li>
+                    <li class="has-submenu">
+                        <a href="#"><i class="ti-user"></i>Application</a>
+                    </li>
 
-                        <li class="has-submenu">
-                            <a href="manageruser.php"><i class="ti-user"></i>User Management</a>
-                        </li>
+                    <li class="has-submenu">
+                        <a href="manageruser.php"><i class="ti-user"></i>User Management</a>
+                    </li>
 
-                        <li class="has-submenu">
-                            <a href="#"><i class="ti-settings"></i>Settings</a>
-                            <ul class="submenu">
-                                <li><a href="#">Create Zone</a></li>
-                                <li><a href="#">Create Education</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <!-- End navigation menu -->
-                </div>
-                <!-- end #navigation -->
+                    <li class="has-submenu">
+                        <a href="#"><i class="ti-settings"></i>Settings</a>
+                        <ul class="submenu">
+                            <li><a href="#">Create Zone</a></li>
+                            <li><a href="#">Create Education</a></li>
+
+                        </ul>
+                    </li>
+                </ul>
+                <!-- End navigation menu -->
             </div>
-            <!-- end container -->
+            <!-- end #navigation -->
         </div>
+        <!-- end container -->
+    </div>
 </header>

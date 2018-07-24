@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55180781-1b77-42be-911b-1eaed5d44c7e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/home.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/usercvform.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/usermenu.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/menu.php" afterPath="$PROJECT_DIR$/menu.php" />
     </list>
@@ -53,16 +54,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jobform.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/jobform.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="register.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/register.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -77,7 +68,7 @@
         <entry file="file://$PROJECT_DIR$/cvform.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="234">
-              <caret line="13" column="29" lean-forward="true" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
+              <caret line="13" column="29" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="383" selection-end-column="7" />
               <folding>
                 <marker date="1532429112327" expanded="false" signature="9682:9722" ph="..." />
                 <marker date="1532429112327" expanded="false" signature="10397:10435" ph="..." />
@@ -93,26 +84,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="footer.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/footer.php">
+      <file leaf-file-name="menu.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/menu.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="16" column="50" lean-forward="false" selection-start-line="16" selection-start-column="50" selection-end-line="16" selection-end-column="50" />
-              <folding>
-                <marker date="1532426182305" expanded="true" signature="38:286" ph="..." />
-                <marker date="1532426182305" expanded="true" signature="72:276" ph="..." />
-                <marker date="1532426182305" expanded="true" signature="98:265" ph="..." />
-                <marker date="1532426182305" expanded="true" signature="131:250" ph="..." />
-              </folding>
+            <state relative-caret-position="175">
+              <caret line="155" column="74" lean-forward="false" selection-start-line="155" selection-start-column="70" selection-end-line="155" selection-end-column="74" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="menu.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/menu.php">
+      <file leaf-file-name="usermenu.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/usermenu.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="427">
-              <caret line="159" column="45" lean-forward="false" selection-start-line="159" selection-start-column="45" selection-end-line="159" selection-end-column="45" />
+            <state relative-caret-position="243">
+              <caret line="155" column="47" lean-forward="false" selection-start-line="155" selection-start-column="47" selection-end-line="155" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="usercvform.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/usercvform.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-846">
+              <caret line="13" column="33" lean-forward="true" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
               <folding />
             </state>
           </provider>
@@ -177,6 +173,8 @@
         <option value="$PROJECT_DIR$/manageruser.php" />
         <option value="$PROJECT_DIR$/home.php" />
         <option value="$PROJECT_DIR$/menu.php" />
+        <option value="$PROJECT_DIR$/usercvform.php" />
+        <option value="$PROJECT_DIR$/usermenu.php" />
       </list>
     </option>
   </component>
@@ -304,12 +302,12 @@
       <option name="presentableId" value="Default" />
       <updated>1532333768387</updated>
       <workItem from="1532334102477" duration="10576000" />
-      <workItem from="1532408288672" duration="17933000" />
+      <workItem from="1532408288672" duration="19697000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28509000" />
+    <option name="totallyTimeSpent" value="30273000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -457,24 +455,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cvform.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="29" lean-forward="true" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
-          <folding>
-            <marker date="1532429112327" expanded="false" signature="9682:9722" ph="..." />
-            <marker date="1532429112327" expanded="false" signature="10397:10435" ph="..." />
-            <marker date="1532429112327" expanded="false" signature="12637:12654" ph="..." />
-            <marker date="1532429112327" expanded="false" signature="14647:14664" ph="..." />
-            <marker date="1532429112327" expanded="false" signature="16670:16687" ph="..." />
-            <marker date="1532429112327" expanded="false" signature="18899:18919" ph="..." />
-            <marker date="1532429112327" expanded="false" signature="21434:21448" ph="..." />
-            <marker date="1532429112327" expanded="false" signature="21503:21515" ph="..." />
-            <marker date="1532429112327" expanded="false" signature="21983:22017" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/managecv.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
@@ -507,8 +487,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/menu.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="159" column="45" lean-forward="false" selection-start-line="159" selection-start-column="45" selection-end-line="159" selection-end-column="45" />
+        <state relative-caret-position="175">
+          <caret line="155" column="74" lean-forward="false" selection-start-line="155" selection-start-column="70" selection-end-line="155" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cvform.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" column="29" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="383" selection-end-column="7" />
+          <folding>
+            <marker date="1532429112327" expanded="false" signature="9682:9722" ph="..." />
+            <marker date="1532429112327" expanded="false" signature="10397:10435" ph="..." />
+            <marker date="1532429112327" expanded="false" signature="12637:12654" ph="..." />
+            <marker date="1532429112327" expanded="false" signature="14647:14664" ph="..." />
+            <marker date="1532429112327" expanded="false" signature="16670:16687" ph="..." />
+            <marker date="1532429112327" expanded="false" signature="18899:18919" ph="..." />
+            <marker date="1532429112327" expanded="false" signature="21434:21448" ph="..." />
+            <marker date="1532429112327" expanded="false" signature="21503:21515" ph="..." />
+            <marker date="1532429112327" expanded="false" signature="21983:22017" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/usercvform.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-846">
+          <caret line="13" column="33" lean-forward="true" selection-start-line="13" selection-start-column="33" selection-end-line="13" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/usermenu.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="155" column="47" lean-forward="false" selection-start-line="155" selection-start-column="47" selection-end-line="155" selection-end-column="47" />
           <folding />
         </state>
       </provider>
