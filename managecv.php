@@ -378,7 +378,7 @@
 
                         <br>
 
-                        <label class="checkbox-inline"> <input type="checkbox" value=""> </label> Select All  <br>
+                        <label class="checkbox-inline"> <input type="checkbox" value="true"> </label> Select All  <br>
                         <button style="margin-top: 10px;" class="btn btn-danger">Export CV</button>
 
                     </div>
