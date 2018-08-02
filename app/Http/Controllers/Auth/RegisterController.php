@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Mail;
+use Session;
 
 class RegisterController extends Controller
 {
@@ -67,5 +70,43 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+    public function createUserShowAggrement(Request $r)
+    {
+        $data=array(
+            'firstName'=>$r->firstName,
+            'lastName'=>$r->lastName,
+            'email'=>$r->email,
+            'password'=>$r->password,
+            );
+
+        return view('newUserAgreement',compact('data'));
+    }
+    public function newUserAgreement(Request $r)
+    {
+
+
+        $data = array('name'=>$r->firstName." ".$r->lastName,'email'=>$r->email,'pass'=>$r->password,'q1'=>$r->q1,'q2'=>$r->q2,'q3'=>$r->q3,'q4'=>$r->q4);
+
+
+        try {
+
+            Mail::send('mail.AccountCreate', $data, function ($message) use ($data) {
+                $message->to($data['email'], 'Caritas BD')->subject('New - Account');
+
+            });
+            Session::flash('success_msg', 'Account Activation Mail is sent to your mail');
+
+        }catch (\Exception $ex) {
+
+            Session::flash('error_msg', 'Account Activation Email Does not Sent.Please contact us');
+
+        }
+
+        return redirect()->route('register');
+
+
+
+
     }
 }

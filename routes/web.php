@@ -17,7 +17,18 @@ Route::get('/', function () {
 
 Auth::routes();
 
+//Registration
+Route::view('/Register', 'register')->name('register');
+
+Route::post('/Account-Active', 'Auth\RegisterController@AccountActive')->name('account.active');
+
+Route::post('/Register', 'Auth\RegisterController@createUserShowAggrement')->name('register.createUserShowAggrement');
+Route::post('/Register/userAgreement', 'Auth\RegisterController@newUserAgreement')->name('register.newUserAgreement');
+
+
+
 Route::get('/home', 'HomeController@index')->name('home');
+
 
 Route::view('apply','usercv')->name('cv.apply');
 Route::view('application','application')->name('application');
