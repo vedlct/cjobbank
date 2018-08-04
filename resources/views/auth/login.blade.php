@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-
+<!-- Mirrored from themesdesign.in/upcube/layouts/horizontal/pages-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 May 2018 07:47:39 GMT -->
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +10,9 @@
     <meta content="Admin Dashboard" name="description" />
     <meta content="Themesdesign" name="author" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App Icons -->
+    <link rel="shortcut icon" href="{{url('public/logo/TCL_logo.png')}}">
 
 
     <!-- App css -->
@@ -20,7 +23,6 @@
 </head>
 
 
-
 <body>
 
 <!-- Begin page -->
@@ -28,19 +30,31 @@
 <div class="wrapper-page">
 
     <div class="card">
+        <div class="card-header">
+            <h3 class="text-center">
+                <b class="waves-effect waves-light">caritas job bank</b>
+            </h3>
+
+        </div>
         <div class="card-body">
 
-            <h3 align="center">Caritas Job Bank</h3>
-            <h4 class="text-muted text-center font-18"><b>Sign In</b></h4>
+
+            <div align="center">
+                <img src="{{url('public/logo/TCL_logo.png')}}" height="150" width="200">
+            </div>
 
             <div class="p-3">
-                <form class="form-horizontal m-t-20" action="{{ route('login') }}">
+                <form method="POST" class="form-horizontal m-t-20" action="{{ route('login') }}">
                     {{csrf_field()}}
 
                     <div class="form-group row">
                         <div class="col-12">
-                            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+                            {{--<input class="form-control" name="loginId" type="text" placeholder="login id" required>--}}
+                            <input id="email" type="text" placeholder="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+
+
                             @if ($errors->has('email'))
+
                                 <span class="">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
@@ -50,9 +64,11 @@
 
                     <div class="form-group row">
                         <div class="col-12">
-                            <input id="password" type="password" class="form-control" name="password" required>
+                            {{--<input class="form-control" name="password" type="password" placeholder="Password" required>--}}
+                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
                             @if ($errors->has('password'))
+
                                 <span class="">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
@@ -63,8 +79,8 @@
                     <div class="form-group row">
                         <div class="col-12">
                             <div class="custom-control custom-checkbox">
-                                <input  type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }} class="custom-control-input" id="customCheck1">
-                                <label class="custom-control-label" for="customCheck1">Remember me</label>
+                                <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Remember Me') }}
+
                             </div>
                         </div>
                     </div>
@@ -72,28 +88,33 @@
                     <div class="form-group text-center row m-t-20">
                         <div class="col-12">
                             <button class="btn btn-info btn-block waves-effect waves-light" type="submit">Log In</button>
+
+
+                            {{--<button type="submit" class="btn btn-info btn-block waves-effect waves-light">--}}
+                            {{--{{ __('Login') }}--}}
+                            {{--</button>--}}
+
                         </div>
                     </div>
 
-                    <div class="form-group m-t-10 mb-0 row">
-                        <div class="col-sm-7 m-t-20">
-                            <a href="pages-recoverpw.html" class="text-muted"><i class="mdi mdi-lock    "></i> Forgot your password?</a>
-                        </div>
-                        <div class="col-sm-5 m-t-20">
-                            <a href="{{route('register')}}" class="text-muted"><i class="mdi mdi-account-circle"></i> Create an account</a>
-                        </div>
-                    </div>
+
                 </form>
             </div>
 
         </div>
+
+        <div class="card-footer">
+
+            <div style="text-align: center">
+                © {{date('Y')}} caritas job bank .
+            </div>
+
+
+        </div>
     </div>
 </div>
-</body>
 
 
-
-</html>
 
 <!-- jQuery  -->
 <script src="{{url('public/assets/js/jquery.min.js')}}"></script>
@@ -107,4 +128,9 @@
 <script src="{{url('public/assets/js/jquery.scrollTo.min.js')}}"></script>
 
 <!-- App js -->
-<script src="{{url('public/assets/js/app.js')}}"></script>
+<script src="{{url('public/')}}assets/js/app.js"></script>
+
+</body>
+
+<!-- Mirrored from themesdesign.in/upcube/layouts/horizontal/pages-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 May 2018 07:47:39 GMT -->
+</html>
