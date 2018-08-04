@@ -126,11 +126,11 @@ class RegisterController extends Controller
                 $message->to($data['email'], 'Caritas BD')->subject('New - Account');
 
             });
-            Session::flash('success_msg', 'Account Activation Mail is sent to your mail');
+            Session::flash('message', 'Account Activation Mail is sent to your mail');
 
         }catch (\Exception $ex) {
 
-            Session::flash('error_msg', 'Account Activation Email Does not Sent.Please contact us');
+            Session::flash('message', 'Account Activation Email Does not Sent.Please contact us');
 
         }
 
