@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Aggrement;
+use App\Aggrementqus;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -9,6 +11,9 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Mail;
 use Session;
+
+use Auth;
+
 
 class RegisterController extends Controller
 {
@@ -73,21 +78,47 @@ class RegisterController extends Controller
     }
     public function createUserShowAggrement(Request $r)
     {
-        $data=array(
-            'firstName'=>$r->firstName,
-            'lastName'=>$r->lastName,
-            'email'=>$r->email,
-            'password'=>$r->password,
-            );
+        $validatedData = $r->validate([
+            'firstName' => 'required|string|max:50',
+            'lastName' => 'required|string|max:48',
+            'email' => 'required|email|max:255|unique:user',
+            'password' => 'required|string|min:6',
 
-        return view('newUserAgreement',compact('data'));
+        ]);
+
+        $user=new User();
+        $user->name=$r->firstName." ".$r->lastName;
+        $user->email=$r->email;
+        $user->password=bcrypt($r->password);
+        $user->fkuserTypeId='user';
+        $user->register='N';
+        $user->save();
+
+        $userId=$user->userId;
+        $userEmail=$user->email;
+        $userPass=$r->password;
+
+
+        $aggrementsQues=Aggrementqus::get();
+
+
+        return view('newUserAgreement',compact('userId','userPass','userEmail','aggrementsQues'));
     }
     public function newUserAgreement(Request $r)
     {
 
 
-        $data = array('name'=>$r->firstName." ".$r->lastName,'email'=>$r->email,'pass'=>$r->password,'q1'=>$r->q1,'q2'=>$r->q2,'q3'=>$r->q3,'q4'=>$r->q4);
+        for ($i=0;$i<count($r->qesId);$i++){
 
+            $userAggrement=new Aggrement();
+            $userAggrement->fkuserId=$r->userId;
+            $userAggrement->fkaggrementQusId=$r->qesId[$i];
+            $userAggrement->ans=$r->qesans[$i];
+            $userAggrement->save();
+
+        }
+
+        $data = array('email'=>$r->userEmail,'pass'=>$r->userPass,'userId'=>$r->userId);
 
         try {
 
@@ -107,6 +138,18 @@ class RegisterController extends Controller
 
 
 
+
+    }
+
+    public function AccountActive(Request $r)
+    {
+
+        $userInfo=User::findOrFail($r->userId);
+        $userInfo->register='Y';
+        $userInfo->save();
+
+        Auth::loginUsingId($r->userId);
+        return redirect()->route('home');
 
     }
 }

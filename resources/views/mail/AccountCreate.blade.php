@@ -15,13 +15,8 @@ Password: {{$pass}}<br>
 <form class="form-horizontal" method="post" action="{{route('account.active')}}" >
     {{csrf_field()}}
     <div class="form-group">
-        <input type="hidden"  class="form-control" id="userEmail" name="userEmail" value="{{$email}}" placeholder="User Email" required />
-        <input type="hidden"  class="form-control" id="pass" name="pass" value="{{$pass}}" placeholder="User Pass" required />
-        <input type="hidden"  class="form-control" id="q1" name="q1" value="{{$q1}}" placeholder="User q1" required />
-        <input type="hidden"  class="form-control" id="q2" name="q2" value="{{$q2}}" placeholder="User q2" required />
-        <input type="hidden"  class="form-control" id="q3" name="q3" value="{{$q3}}" placeholder="User q1" required />
-        <input type="hidden"  class="form-control" id="q4" name="q4" value="{{$q4}}" placeholder="User q1" required />
-        <input type="hidden"  class="form-control" id="name" name="name" value="{{$name}}" placeholder="name" required />
+        <input type="hidden"  class="form-control" id="userId" name="userId" value="{{$userId}}" placeholder="User Email" required />
+
     </div>
 
 

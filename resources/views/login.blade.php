@@ -34,24 +34,36 @@
             <h4 class="text-muted text-center font-18"><b>Sign In</b></h4>
 
             <div class="p-3">
-                <form class="form-horizontal m-t-20" action="agreement.php">
+                <form class="form-horizontal m-t-20" action="{{ route('login') }}">
+                    {{csrf_field()}}
 
                     <div class="form-group row">
                         <div class="col-12">
-                            <input class="form-control" type="text" required="" placeholder="Username">
+                            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+                            @if ($errors->has('email'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                            @endif
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-12">
-                            <input class="form-control" type="password" required="" placeholder="Password">
+                            <input id="password" type="password" class="form-control" name="password" required>
+
+                            @if ($errors->has('password'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                            @endif
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-12">
                             <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                <input  type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }} class="custom-control-input" id="customCheck1">
                                 <label class="custom-control-label" for="customCheck1">Remember me</label>
                             </div>
                         </div>
