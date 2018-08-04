@@ -2,10 +2,18 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Aggrement;
+use App\Aggrementqus;
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Mail;
+use Session;
+
+use Auth;
+
 
 class RegisterController extends Controller
 {
@@ -67,5 +75,81 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+    public function createUserShowAggrement(Request $r)
+    {
+        $validatedData = $r->validate([
+            'firstName' => 'required|string|max:50',
+            'lastName' => 'required|string|max:48',
+            'email' => 'required|email|max:255|unique:user',
+            'password' => 'required|string|min:6',
+
+        ]);
+
+        $user=new User();
+        $user->name=$r->firstName." ".$r->lastName;
+        $user->email=$r->email;
+        $user->password=bcrypt($r->password);
+        $user->fkuserTypeId='user';
+        $user->register='N';
+        $user->save();
+
+        $userId=$user->userId;
+        $userEmail=$user->email;
+        $userPass=$r->password;
+
+
+        $aggrementsQues=Aggrementqus::get();
+
+
+        return view('newUserAgreement',compact('userId','userPass','userEmail','aggrementsQues'));
+    }
+    public function newUserAgreement(Request $r)
+    {
+
+
+        for ($i=0;$i<count($r->qesId);$i++){
+
+            $userAggrement=new Aggrement();
+            $userAggrement->fkuserId=$r->userId;
+            $userAggrement->fkaggrementQusId=$r->qesId[$i];
+            $userAggrement->ans=$r->qesans[$i];
+            $userAggrement->save();
+
+        }
+
+        $data = array('email'=>$r->userEmail,'pass'=>$r->userPass,'userId'=>$r->userId);
+
+        try {
+
+            Mail::send('mail.AccountCreate', $data, function ($message) use ($data) {
+                $message->to($data['email'], 'Caritas BD')->subject('New - Account');
+
+            });
+            Session::flash('success_msg', 'Account Activation Mail is sent to your mail');
+
+        }catch (\Exception $ex) {
+
+            Session::flash('error_msg', 'Account Activation Email Does not Sent.Please contact us');
+
+        }
+
+        return redirect()->route('register');
+
+
+
+
+    }
+
+    public function AccountActive(Request $r)
+    {
+
+        $userInfo=User::findOrFail($r->userId);
+        $userInfo->register='Y';
+        $userInfo->save();
+
+        Auth::loginUsingId($r->userId);
+        return redirect()->route('home');
+
     }
 }

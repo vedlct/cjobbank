@@ -7,6 +7,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    protected $table='user';
+    protected $primaryKey='userId';
+    public $timestamps=false;
+
     use Notifiable;
 
     /**
