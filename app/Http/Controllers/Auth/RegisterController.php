@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Mail;
 use Session;
 
 use Auth;
-
+use Hash;
 
 class RegisterController extends Controller
 {
@@ -78,23 +78,31 @@ class RegisterController extends Controller
     }
     public function createUserShowAggrement(Request $r)
     {
-        $validatedData = $r->validate([
+        $rules = [
             'firstName' => 'required|string|max:50',
             'lastName' => 'required|string|max:48',
             'email' => 'required|email|max:255|unique:user',
             'password' => 'required|string|min:6',
 
-        ]);
+        ];
+
+        $customMessages = [
+            'unique' => 'This User is already been registered.Please Login !'
+        ];
+
+        $this->validate($r, $rules, $customMessages);
+
 
         $user=new User();
         $user->name=$r->firstName." ".$r->lastName;
         $user->email=$r->email;
-        $user->password=bcrypt($r->password);
+        $user->password=Hash::make($r->password);
         $user->fkuserTypeId='user';
         $user->register='N';
+        $userToken=$user->token=Hash::make($r->email);
         $user->save();
 
-        $userId=$user->userId;
+
         $userEmail=$user->email;
         $userPass=$r->password;
 
@@ -102,7 +110,7 @@ class RegisterController extends Controller
         $aggrementsQues=Aggrementqus::get();
 
 
-        return view('newUserAgreement',compact('userId','userPass','userEmail','aggrementsQues'));
+        return view('newUserAgreement',compact('userToken','userPass','userEmail','aggrementsQues'));
     }
     public function newUserAgreement(Request $r)
     {
@@ -118,7 +126,7 @@ class RegisterController extends Controller
 
         }
 
-        $data = array('email'=>$r->userEmail,'pass'=>$r->userPass,'userId'=>$r->userId);
+        $data = array('email'=>$r->userEmail,'pass'=>$r->userPass,'userToken'=>$r->userToken);
 
         try {
 
@@ -141,14 +149,15 @@ class RegisterController extends Controller
 
     }
 
-    public function AccountActive(Request $r)
+    public function AccountActive($userToken)
     {
 
-        $userInfo=User::findOrFail($r->userId);
+        $userInfo=User::where('token', $userToken)->first();
         $userInfo->register='Y';
         $userInfo->save();
+        
 
-        Auth::loginUsingId($r->userId);
+        Auth::loginUsingId($userInfo->userId);
         return redirect()->route('home');
 
     }

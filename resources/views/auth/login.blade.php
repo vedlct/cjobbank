@@ -42,6 +42,11 @@
             <div align="center">
                 <img src="{{url('public/logo/TCL_logo.png')}}" height="150" width="200">
             </div>
+            <div>
+                @if(Session::has('notActive'))
+                    <p class="alert alert-info">{{ Session::get('notActive') }}</p>
+                @endif
+            </div>
 
             <div class="p-3">
                 <form method="POST" class="form-horizontal m-t-20" action="{{ route('login') }}">
@@ -94,6 +99,15 @@
                             {{--{{ __('Login') }}--}}
                             {{--</button>--}}
 
+                        </div>
+                    </div>
+
+                    <div class="form-group m-t-10 mb-0 row">
+                        <div class="col-sm-7 m-t-20">
+                            <a href="pages-recoverpw.html" class="text-muted"><i class="mdi mdi-lock    "></i> Forgot your password?</a>
+                        </div>
+                        <div class="col-sm-5 m-t-20">
+                            <a href="{{route('register')}}" class="text-muted"><i class="mdi mdi-account-circle"></i> Create an account</a>
                         </div>
                     </div>
 
