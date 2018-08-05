@@ -31,9 +31,9 @@
 
     <div class="card">
         <div class="card-header">
-            <h3 class="text-center">
+            <h4 class="text-center">
                 <b class="waves-effect waves-light">caritas job bank</b>
-            </h3>
+            </h4>
 
         </div>
         <div class="card-body">
@@ -94,21 +94,18 @@
                         <div class="col-12">
                             <button class="btn btn-info btn-block waves-effect waves-light" type="submit">Log In</button>
 
-
-                            {{--<button type="submit" class="btn btn-info btn-block waves-effect waves-light">--}}
-                            {{--{{ __('Login') }}--}}
-                            {{--</button>--}}
-
                         </div>
                     </div>
 
                     <div class="form-group m-t-10 mb-0 row">
                         <div class="col-sm-7 m-t-20">
-                            <a href="pages-recoverpw.html" class="text-muted"><i class="mdi mdi-lock    "></i> Forgot your password?</a>
-                        </div>
+                            <a href="{{route('account.forgetPass')}}" class="text-muted"><i class="mdi mdi-lock"></i> Forgot your password?</a></div>
                         <div class="col-sm-5 m-t-20">
                             <a href="{{route('register')}}" class="text-muted"><i class="mdi mdi-account-circle"></i> Create an account</a>
                         </div>
+                    </div>
+                    <div align="center" class="form-group m-t-10 mb-0">
+                        <a href="{{route('account.activationResend')}}" class="text-muted"><i class="mdi mdi-email"></i> Resend Activation Mail</a>
                     </div>
 
 

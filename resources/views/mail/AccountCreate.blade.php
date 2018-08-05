@@ -12,26 +12,8 @@ Password: {{$pass}}<br>
 
 
 
-{{--<form class="form-horizontal" method="post" action="{{route('account.active')}}" >--}}
-    {{--{{csrf_field()}}--}}
-    {{--<div class="form-group">--}}
-        {{--<input type="hidden"  class="form-control" id="userId" name="userId" value="{{$userId}}" placeholder="User Email" required />--}}
 
-    {{--</div>--}}
-
-
-
-    {{--<br>--}}
-
-    {{--<div class="form-group">--}}
-        {{--<div style="margin-left: 14%" class="col-md-8 custom-input-style">--}}
-            {{--<input type="submit" value="Please click this link to activate your account:" class="btn btn-primary">--}}
-        {{--</div>--}}
-    {{--</div>--}}
-
-{{--</form>--}}
-
-<a href="{{route('account.active',$userToken)}}">Please click this link to activate your account</a>
+<a href="{{route('account.active',['email'=>$email,'userToken'=>$userToken])}}">Please click this link to activate your account</a>
 
 
 </body>

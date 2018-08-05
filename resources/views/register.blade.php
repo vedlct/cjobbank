@@ -33,6 +33,11 @@
             <h3 align="center">Caritas Job Bank</h3>
 
             <h4 class="text-muted text-center font-18"><b>Register</b></h4>
+            <div>
+                @if(Session::has('notActive'))
+                    <p class="alert alert-info">{{ Session::get('notActive') }}</p>
+                @endif
+            </div>
 
             <div class="p-3">
                 <form class="form-horizontal m-t-20" method="post" action="{{route('register.createUserShowAggrement')}}">
@@ -41,7 +46,7 @@
 
                     <div class="form-group row">
                         <div class="col-12 {{ $errors->has('firstName') ? ' has-error' : '' }}">
-                            <input class="form-control" type="text" required="" name="firstName" placeholder="Firstname">
+                            <input class="form-control" type="text" required="" value="{{ old('firstName') }}" name="firstName" placeholder="Firstname">
                             @if ($errors->has('firstName'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('firstName') }}</strong>
@@ -51,7 +56,7 @@
                     </div>
                     <div class="form-group row ">
                         <div class="col-12 {{ $errors->has('lastName') ? ' has-error' : '' }}">
-                            <input class="form-control" type="text" required="" name="lastName" placeholder="Lastname">
+                            <input class="form-control" type="text" required="" value="{{ old('lastName') }}" name="lastName" placeholder="Lastname">
                             @if ($errors->has('lastName'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('lastName') }}</strong>
@@ -61,7 +66,7 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-12 {{ $errors->has('email') ? ' has-error' : '' }}">
-                            <input class="form-control" type="email" required="" name="email" placeholder="Email">
+                            <input class="form-control" type="email" required="" value="{{ old('email') }}" name="email" placeholder="Email">
                             @if ($errors->has('email'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -73,7 +78,7 @@
 
                     <div class="form-group row">
                         <div class="col-12 {{ $errors->has('password') ? ' has-error' : '' }}">
-                            <input class="form-control" type="password" required="" name="password" placeholder="Password">
+                            <input class="form-control" type="password" required="" value="{{ old('password') }}" name="password" placeholder="Password">
                             @if ($errors->has('password'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -97,11 +102,16 @@
                         </div>
                     </div>
 
-                    <div class="form-group m-t-10 mb-0 row">
+                    <div align="center" class="form-group m-t-10 mb-0">
+                        <a href="{{route('account.activationResend')}}" class="text-muted"><i class="mdi mdi-email"></i> Resend Activation Mail</a>
+                    </div>
+
+                    <div class="form-group m-t-10 mb-0">
                         <div class="col-12 m-t-20 text-center">
-                            <a href="index.php" class="text-muted">Already have account?</a>
+                            <a href="{{url('/')}}" class="text-muted"><i class="mdi mdi-account-key"></i>Sign In</a>
                         </div>
                     </div>
+
                 </form>
             </div>
 

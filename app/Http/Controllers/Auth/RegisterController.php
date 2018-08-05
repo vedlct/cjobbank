@@ -76,6 +76,7 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
     public function createUserShowAggrement(Request $r)
     {
         $rules = [
@@ -99,22 +100,22 @@ class RegisterController extends Controller
         $user->password=Hash::make($r->password);
         $user->fkuserTypeId='user';
         $user->register='N';
-        $userToken=$user->token=Hash::make($r->email);
+        $userToken=$user->token=str_random(64);
         $user->save();
 
 
         $userEmail=$user->email;
         $userPass=$r->password;
+        $userId=$user->userId;
 
 
         $aggrementsQues=Aggrementqus::get();
 
 
-        return view('newUserAgreement',compact('userToken','userPass','userEmail','aggrementsQues'));
+        return view('newUserAgreement',compact('userToken','userPass','userEmail','aggrementsQues','userId'));
     }
     public function newUserAgreement(Request $r)
     {
-
 
         for ($i=0;$i<count($r->qesId);$i++){
 
@@ -134,31 +135,201 @@ class RegisterController extends Controller
                 $message->to($data['email'], 'Caritas BD')->subject('New - Account');
 
             });
-            Session::flash('message', 'Account Activation Mail is sent to your mail');
+            Session::flash('notActive', 'Account Activation Mail is sent to your mail');
 
         }catch (\Exception $ex) {
 
-            Session::flash('message', 'Account Activation Email Does not Sent.Please contact us');
+            Session::flash('notActive', 'Account Activation Email Does not Sent.Please contact us');
 
         }
 
         return redirect()->route('register');
 
+    }
 
+    public function AccountActive($email,$userToken)
+    {
+
+        $userInfo=User::where('email', $email)->where('token', $userToken)->first();
+
+        if(!empty($userInfo)) {
+
+            if ($userInfo->register == 'Y') {
+
+                Session::flash('notActive', 'Your Account is already activated! please login');
+                return redirect('/');
+
+            } elseif ($userInfo->register == 'N') {
+
+                $userInfo->register = 'Y';
+                $userInfo->token = null;
+                $userInfo->save();
+
+                Session::flash('message', 'Your Account is activated Successfully');
+                Auth::loginUsingId($userInfo->userId);
+                return redirect()->route('home');
+            }
+        }
 
 
     }
 
-    public function AccountActive($userToken)
+    public function resendActivationMail(Request $r)
+    {
+        $rules = [
+
+            'email' => 'required|email|max:255',
+
+
+        ];
+
+        $customMessages = [
+//            'unique' => 'This User is already been registered.Please Login !'
+        ];
+
+        $this->validate($r, $rules, $customMessages);
+
+        $userInfo=User::where('email', $r->email)->first();
+
+        if(!empty($userInfo)) {
+
+            if ($userInfo->register == 'N') {
+
+                $userToken=$userInfo->token=str_random(64);
+                $userInfo->save();
+
+                $data = array('email'=>$r->email,'userToken'=>$userToken);
+
+                try {
+
+                    Mail::send('mail.AccountReActivate', $data, function ($message) use ($data) {
+                        $message->to($data['email'], 'Caritas BD')->subject('Account-Activation');
+
+                    });
+                    Session::flash('notActive', 'Account Activation Mail is sent to your mail');
+                    return redirect('/');
+
+                }catch (\Exception $ex) {
+
+                    Session::flash('notActive', 'Account Activation Email Does not Sent.Please contact us');
+
+                    return redirect()->route('account.activationResend');
+
+                }
+
+            }elseif ($userInfo->register == 'Y'){
+
+                Session::flash('notActive', 'Your Account is Already Activated');
+                return redirect()->route('account.activationResend');
+            }
+
+
+
+        }else{
+            Session::flash('notActive', 'Please Type Your Mail Correctly or Register First');
+            return redirect()->route('account.activationResend');
+        }
+
+    }
+
+    public function AccountReActive($email,$userToken)
     {
 
-        $userInfo=User::where('token', $userToken)->first();
-        $userInfo->register='Y';
-        $userInfo->save();
-        
+        $userInfo=User::where('email', $email)->where('token', $userToken)->first();
 
-        Auth::loginUsingId($userInfo->userId);
-        return redirect()->route('home');
+        if(!empty($userInfo)) {
+
+
+            $userInfo->register = 'Y';
+            $userInfo->token = null;
+            $userInfo->save();
+
+            Session::flash('message', 'Your Account is activated Successfully');
+            Auth::loginUsingId($userInfo->userId);
+            return redirect()->route('home');
+        }
+
+
+    }
+
+
+    public function ChangePass($email,$password,$userToken)
+    {
+
+        $userInfo=User::where('email', $email)->where('token', $userToken)->first();
+
+        if(!empty($userInfo)) {
+
+            $userInfo->password = $password;
+            $userInfo->token = null;
+            $userInfo->save();
+
+            Session::flash('message', 'Your Password has been changed Successfully');
+            Auth::loginUsingId($userInfo->userId);
+            return redirect()->route('home');
+        }
+
+
+    }
+
+
+
+    public function changeForgetPassword(Request $r)
+    {
+        $rules = [
+
+            'email' => 'required|email|max:255',
+            'password' => 'required|string|min:6',
+
+        ];
+
+        $customMessages = [
+//            'unique' => 'This User is already been registered.Please Login !'
+        ];
+
+        $this->validate($r, $rules, $customMessages);
+
+        $userInfo=User::where('email', $r->email)->first();
+
+        if(!empty($userInfo)) {
+
+            if ($userInfo->register == 'Y') {
+
+
+                $userToken=$userInfo->token=str_random(64);
+                $userInfo->save();
+
+                $data = array('email'=>$r->email,'pass'=>$r->password,'userToken'=>$userToken);
+
+                try {
+
+                    Mail::send('mail.ForgetPassword', $data, function ($message) use ($data) {
+                        $message->to($data['email'], 'Caritas BD')->subject('Account-Reset Password');
+
+                    });
+                    Session::flash('notActive', 'Reset Password Confirmation Mail is sent to your mail');
+                    return redirect('/');
+
+                }catch (\Exception $ex) {
+
+                    Session::flash('notActive', 'Reset Password Confirmation Mail Does not Sent.Please contact us');
+
+                    return redirect()->route('account.forgetPass');
+
+                }
+
+
+            }elseif ($userInfo->register == 'N'){
+
+                Session::flash('notActive', 'please acivate Your Account First. !!');
+                return redirect()->route('account.activationResend');
+
+            }
+
+        }else{
+            Session::flash('notActive', 'Please Type Your Mail Correctly or Register First');
+            return redirect()->route('account.forgetPass');
+        }
 
     }
 }
