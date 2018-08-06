@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-body">
 
-                    <form id="regForm" action="">
+                    <form style="margin-top: 20px;width: 70%" id="regForm" action="">
                         <!-- One "tab" for each step in the form: -->
                         <div class="tab">
 
@@ -16,35 +16,35 @@
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="">First Name</label>
-                                    <input type="text" class="form-control" id="" placeholder="">
+                                    <input type="text" name="firstName" class="form-control" id="" placeholder="">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputPassword4">Last Name</label>
-                                    <input type="text" class="form-control" id="" placeholder="">
+                                    <input type="text" name="lastName" class="form-control" id="" placeholder="">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="">Fathers Name</label>
-                                    <input type="text" class="form-control" id="" placeholder="">
+                                    <input type="text" name="fathersName" class="form-control" id="" placeholder="">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputPassword4">Mothers Name</label>
-                                    <input type="text" class="form-control" id="" placeholder="">
+                                    <input type="text" name="mothersName" class="form-control" id="" placeholder="">
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="">Gender</label>
-                                    <select class="form-control" id="sel1">
+                                    <select name="gender" class="form-control" id="sel1">
                                         <option>Male</option>
                                         <option>Female</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="">Religion</label>
-                                    <select class="form-control" id="sel1">
+                                    <select name="religion"class="form-control" id="sel1">
                                         <option>Muslim</option>
                                         <option>Hindu</option>
                                         <option>Christian</option>
@@ -55,14 +55,14 @@
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="">Ethnicity</label>
-                                    <select class="form-control" id="sel1">
+                                    <select name="ethnicity" class="form-control" id="sel1">
                                         <option>Bangali</option>
                                         <option>Adibashi</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="">Disability</label>
-                                    <select class="form-control" id="sel1">
+                                    <select name="disability" class="form-control" id="sel1">
                                         <option>Yes</option>
                                         <option>No</option>
                                     </select>
@@ -73,11 +73,11 @@
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="">Date of Birth</label>
-                                    <input type="text" class="form-control" id="" placeholder="">
+                                    <input type="text" name="dob" class="form-control" id="" placeholder="">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="">Skype</label>
-                                    <input type="text" class="form-control" id="" placeholder="">
+                                    <input type="text" name="skype" class="form-control" id="" placeholder="">
                                 </div>
                             </div>
 
@@ -85,7 +85,7 @@
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="">Nationality</label>
-                                    <select class="form-control" id="sel1">
+                                    <select name="nationality" class="form-control" id="sel1">
                                         <option>Bangladeshi</option>
                                         <option>Others</option>
                                     </select>
@@ -93,7 +93,7 @@
 
                                 <div class="form-group col-md-6">
                                     <label for="">NID </label>
-                                    <input type="text" class="form-control" id="" placeholder="">
+                                    <input type="text" name="nId" class="form-control" id="" placeholder="">
                                 </div>
 
                             </div>
@@ -102,12 +102,34 @@
 
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="">Contact No.</label>
-                                    <input type="text" class="form-control" id="" placeholder="">
+                                    <label for="">Email</label>
+                                    <input type="text" name="email" class="form-control" id="" placeholder="">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="">Email</label>
-                                    <input type="text" class="form-control" id="" placeholder="">
+                                    <label for="">Alternate Email</label>
+                                    <input type="text" name="alternateEmail" class="form-control" id="" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="">Home Telephone</label>
+                                    <input type="text" name="homeTelephone" class="form-control" id="" placeholder="">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="">office Telephone</label>
+                                    <input type="text" name="officeTelephone" class="form-control" id="" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="">Telephone No.</label>
+                                    <input type="text" name="telephone" class="form-control" id="" placeholder="">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="">Personal Mobile</label>
+                                    <input type="text" name="personalMobile" class="form-control" id="" placeholder="">
                                 </div>
                             </div>
 
@@ -117,7 +139,7 @@
                             <div class="row">
                                 <div class="form-group col-md-12">
                                     <label for="">Current Address</label>
-                                    <input type="text" class="form-control" id="" placeholder="">
+                                    <input type="text" name="currentAddress" class="form-control" id="" placeholder="">
                                 </div>
 
                             </div>
@@ -128,7 +150,16 @@
 
                                 <div class="form-group col-md-12">
                                     <label for="">Permanent Address</label>
-                                    <input type="text" class="form-control" id="" placeholder="">
+                                    <input type="text" name="permanentAddress" class="form-control" id="" placeholder="">
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="form-group col-md-12">
+                                    <label for="">Image</label>
+                                    <input type="file" class="form-control" name="image" id="" placeholder="">
                                 </div>
 
                             </div>
@@ -167,24 +198,7 @@
         var currentTab = 0; // Current tab is set to be the first tab (0)
         fixStepIndicator(currentTab); // Display the crurrent tab
 
-//        function showTab(n) {
-//            // This function will display the specified tab of the form...
-//            var x = document.getElementsByClassName("tab");
-//            x[n].style.display = "block";
-//            //... and fix the Previous/Next buttons:
-//            if (n == 0) {
-//                document.getElementById("prevBtn").style.display = "none";
-//            } else {
-//                document.getElementById("prevBtn").style.display = "inline";
-//            }
-//            if (n == (x.length - 1)) {
-//                document.getElementById("nextBtn").innerHTML = "Submit";
-//            } else {
-//                document.getElementById("nextBtn").innerHTML = "Next";
-//            }
-//            //... and run a function that will display the correct step indicator:
-//            fixStepIndicator(n)
-//        }
+
 
         function fixStepIndicator(n) {
             // This function removes the "active" class of all steps...

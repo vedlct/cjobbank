@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Employee;
 use Illuminate\Http\Request;
 
 use Session;
@@ -32,7 +33,15 @@ class EmployeeController extends Controller
     public function getEmployeeCv()
     {
         $userId=Auth::user()->userId;
-        return view('userCv.personalInfo');
+        $employeeCvPersonalInfo=Employee::where('fkuserId', '=',$userId)->get();
+        if (!empty($employeeCvPersonalInfo)){
+
+            return view('userCv.update.personalInfo');
+
+        }else{
+            return view('userCv.insert.personalInfo');
+        }
+
 
 
     }
