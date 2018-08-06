@@ -50,4 +50,11 @@ class EmployeeController extends Controller
 
 
     }
+    public function getEmployeeCvProfessionalCertificate()
+    {
+        $userId=Auth::user()->userId;
+        return view('userCv.professionalCertificate');
+
+
+    }
 }

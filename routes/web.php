@@ -49,6 +49,7 @@ Route::view('manage/education','manage.education')->name('manage.education');
 //user Cv
 Route::get('Candidate-CV','EmployeeController@getEmployeeCv')->name('candidate.cvPersonalInfo');
 Route::get('Candidate-CV-CareerObjective','EmployeeController@getEmployeeCvCareerObjective')->name('candidate.cvCareerObjective');
+Route::get('Candidate-CV-ProfessionalCertificate','EmployeeController@getEmployeeCvProfessionalCertificate')->name('candidate.cvProfessionalCertificate');
 
 Route::get('Candidate-CV-Education','EmployeeController@getEmployeeCvEducation')->name('candidate.cvEducation');
 
