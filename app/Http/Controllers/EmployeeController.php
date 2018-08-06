@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Employee;
+use App\Ethnicity;
+use App\Religion;
 use Illuminate\Http\Request;
 
 use Session;
@@ -30,18 +32,53 @@ class EmployeeController extends Controller
     {
         return view('home');
     }
+
     public function getEmployeeCv()
     {
         $userId=Auth::user()->userId;
         $employeeCvPersonalInfo=Employee::where('fkuserId', '=',$userId)->get();
-        if (!empty($employeeCvPersonalInfo)){
 
-            return view('userCv.update.personalInfo');
+        $religion=Religion::get();
+        $ethnicity=Ethnicity::get();
+
+        if (!$employeeCvPersonalInfo->isEmpty()){
+
+            return view('userCv.update.personalInfo',compact('religion','ethnicity'));
 
         }else{
-            return view('userCv.insert.personalInfo');
+            return view('userCv.insert.personalInfo',compact('religion','ethnicity'));
         }
 
+
+
+    }
+    public function insertPersonalInfo(Request $r)
+    {
+
+        $employee=new Employee();
+
+        $employee->firstName=$r->firstName;
+        $employee->lastName=$r->lastName;
+        $employee->fathersName=$r->fathersName;
+        $employee->mothersName=$r->mothersName;
+        $employee->dateOfBirth=$r->dob;
+        $employee->gender=$r->gender;
+        $employee->fkreligionId=$r->religion;
+        $employee->ethnicityId=$r->ethnicity;
+        $employee->disability=$r->disability;
+        $employee->fknationalityId=$r->nationality;
+        $employee->homeNumber=$r->homeTelephone;
+        $employee->officeNumber=$r->officeTelephone;
+        $employee->telephone=$r->telephone;
+        $employee->personalMobile=$r->personalMobile;
+        $employee->email=$r->email;
+        $employee->nationalId=$r->nId;
+        $employee->skype=$r->skype;
+        $employee->alternativeEmail=$r->alternateEmail;
+        $employee->presentAddress=$r->currentAddress;
+        $employee->parmanentAddress=$r->permanentAddress;
+
+        $employee->save();
 
 
     }
