@@ -53,5 +53,8 @@ Route::get('Candidate-CV-ProfessionalCertificate','EmployeeController@getEmploye
 
 Route::get('Candidate-CV-Education','EmployeeController@getEmployeeCvEducation')->name('candidate.cvEducation');
 
+//
+Route::post('/Candidate-CV-savePersonalInfo', 'EmployeeController@insertPersonalInfo')->name('cv.insertPersonalInfo');
+Route::post('/Candidate-CV-updatePersonalInfo', 'EmployeeController@updatePersonalInfo')->name('cv.updatePersonalInfo');
 
 
