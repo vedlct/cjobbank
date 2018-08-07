@@ -142,7 +142,7 @@
                             <div style="float:right;">
 
                                 <button type="button" id="submitBtn">Save</button>
-                                <button type="button" id="nextBtn" onclick="{{route('candidate.cvCareerObjective')}}">Next</button>
+                                <a href="{{route('candidate.cvProfessionalCertificate')}}"><button type="button" id="nextBtn">Next</button></a>
                             </div>
                         </div>
 
