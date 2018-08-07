@@ -37,54 +37,30 @@
 
                     {{csrf_field()}}
 
-                    <input type="hidden" name="firstName" value="{{$data['firstName']}}">
-                    <input type="hidden" name="lastName" value="{{$data['lastName']}}">
-                    <input type="hidden" name="email" value="{{$data['email']}}">
-                    <input type="hidden" name="password" value="{{$data['password']}}">
+                    <input type="hidden" name="userEmail" value="{{$userEmail}}">
+                    <input type="hidden" name="userPass" value="{{$userPass}}">
+                    <input type="hidden" name="userToken" value="{{$userToken}}">
+                    <input type="hidden" name="userId" value="{{$userId}}">
 
 
 
 
-                    <div class="form-group row">
-                        <div class="col-8">
-                            <p>It is a long established fact that a reader will be distracted ?</p>
+
+                    @foreach($aggrementsQues as $ques)
+                        <div class="form-group row">
+                            <div class="col-8">
+                                <p>{{$ques->qus}}</p>
+                            </div>
+                            <div class="col-4">
+                                <input type="hidden" name="qesId[]" value="{{$ques->aggrementQusId}}">
+                                <label class="checkbox-inline"><input type="checkbox" name="qesans[]" value="Y"> Yes</label>
+                                <label class="checkbox-inline"><input type="checkbox" name="qesans[]" value="N"> No</label>
+                                <label class="checkbox-inline"><input type="checkbox" name="qesans[]" value="NA"> Not Agree</label>
+                            </div>
                         </div>
-                        <div class="col-4">
-                            <label class="checkbox-inline"><input type="checkbox" name="q1" value="Y"> Yes</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="q1" value="N"> No</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="q1" value="NA"> Not Agree</label>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-8">
-                            <p>It is a long established fact that a reader will be distracted ?</p>
-                        </div>
-                        <div class="col-4">
-                            <label class="checkbox-inline"><input type="checkbox" name="q2" value="Y"> Yes</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="q2" value="N"> No</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="q2" value="NA"> Not Agree</label>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-8">
-                            <p>It is a long established fact that a reader will be distracted ?</p>
-                        </div>
-                        <div class="col-4">
-                            <label class="checkbox-inline"><input type="checkbox" name="q3" value="Y"> Yes</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="q3" value="N"> No</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="q3" value="NA"> Not Agree</label>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-8">
-                            <p>It is a long established fact that a reader will be distracted ?</p>
-                        </div>
-                        <div class="col-4">
-                            <label class="checkbox-inline"><input type="checkbox" name="q4" value="Y"> Yes</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="q4" value="N"> No</label>
-                            <label class="checkbox-inline"><input type="checkbox" name="q4" value="NA"> Not Agree</label>
-                        </div>
-                    </div>
+                    @endforeach
+
+
 
 
                     <div class="form-group text-center row m-t-20">

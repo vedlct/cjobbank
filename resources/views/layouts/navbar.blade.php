@@ -8,6 +8,9 @@
                 <li class="has-submenu">
                     <a href="{{route('cv.apply')}}"><i class="ti-home"></i>Apply CV</a>
                 </li>
+                <li class="has-submenu">
+                    <a href="{{route('candidate.cvPersonalInfo')}}"><i class="ti-home"></i>Candidate CV</a>
+                </li>
 
                 <li class="has-submenu">
                     <a href="{{route('job.all')}}"><i class="ti-layout-width-default"></i>Jobs</a>

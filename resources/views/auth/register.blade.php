@@ -8,6 +8,11 @@
                 <div class="panel-heading">Register</div>
 
                 <div class="panel-body">
+                    <div>
+                        @if(Session::has('notActive'))
+                            <p class="alert alert-info">{{ Session::get('notActive') }}</p>
+                        @endif
+                    </div>
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
