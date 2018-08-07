@@ -55,8 +55,6 @@ class EmployeeController extends Controller
             return view('userCv.insert.personalInfo',compact('religion','ethnicity','natinality'));
         }
 
-
-
     }
     public function insertPersonalInfo(Request $r)
     {
@@ -139,7 +137,7 @@ class EmployeeController extends Controller
 
         $employee->save();
 
-        return redirect()->route('candidate.cvCareerObjective');
+        return redirect()->route('candidate.cvEducation');
 
 
     }
@@ -224,7 +222,7 @@ class EmployeeController extends Controller
 
         $employee->save();
 
-        return redirect()->route('candidate.cvCareerObjective');
+        return redirect()->route('candidate.cvEducation');
 
 
     }
@@ -237,8 +235,22 @@ class EmployeeController extends Controller
     }
     public function getEmployeeCvEducation()
     {
+
         $userId=Auth::user()->userId;
-        return view('userCv.education');
+        $employeeCvPersonalInfo=Employee::where('fkuserId', '=',$userId)->get();
+
+
+
+        //return $employeeCvPersonalInfo;
+
+        if (!$employeeCvPersonalInfo->isEmpty()){
+
+            return view('userCv.insert.education');
+
+        }else{
+            return view('userCv.update.education');
+        }
+
 
 
     }

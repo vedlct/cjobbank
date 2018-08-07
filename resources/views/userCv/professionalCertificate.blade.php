@@ -6,7 +6,7 @@
 
         <div class="col-12 ">
             <div class="card">
-                <div class="card-body">
+                <div style="background-color: #F1F1F1" class="card-body">
 
                     <form id="regForm" action="">
                         <!-- One "tab" for each step in the form: -->
