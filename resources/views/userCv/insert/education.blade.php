@@ -17,15 +17,33 @@
                             <div id="TextBoxesGroup" class="row">
                                 <div class="form-group col-md-4">
 
+                                    <label for="">Education Level</label>
+                                    <select class="form-control" id="sel1">
+                                        <option>Select Education Level</option>
+                                        <option>SSC</option>
+                                        <option>HSC</option>
+                                        <option>BSc</option>
+                                        <option>MS</option>
+                                        <option>PhD</option>
+                                    </select>
+
+                                </div>
+                                <div class="form-group col-md-8">
+
                                     <label for="">Degree</label>
                                     <select class="form-control" id="sel1">
-                                        <option>Science</option>
+                                        <option>BSc in Software Engineer</option>
                                         <option>Arts</option>
                                         <option>Commerce</option>
                                     </select>
 
                                 </div>
-                                <div class="form-group col-md-3">
+
+                                <div class="form-group col-md-12">
+                                    <label for="">Institute Name</label>
+                                    <input type="text" class="form-control" id="" placeholder="">
+                                </div>
+                                <div class="form-group col-md-6">
                                     <label for="">Major</label>
                                     <select class="form-control" id="sel1">
                                         <option>Science</option>
@@ -33,24 +51,29 @@
                                         <option>Commerce</option>
                                     </select>
                                 </div>
-                                <div class="form-group col-md-5">
-                                    <label for="">Institute Name</label>
-                                    <input type="text" class="form-control" id="" placeholder="">
+
+                                <div class="form-group col-md-6">
+                                    <label for="">Country</label>
+                                    <select class="form-control" id="sel1">
+                                        <option>Science</option>
+                                        <option>Arts</option>
+                                        <option>Commerce</option>
+                                    </select>
                                 </div>
 
                                 <div class="form-group col-md-3">
                                     <label for="">Year</label>
                                     <input type="text" class="form-control" id="" placeholder="passing Year">
                                 </div>
-                                <div class="form-group col-md-2">
+                                <div class="form-group col-md-3">
                                     <label for="">CGPA</label>
                                     <input type="text" class="form-control" id="" placeholder="">
                                 </div>
-                                <div class="form-group col-md-2">
+                                <div class="form-group col-md-3">
                                     <label for="">Out of</label>
                                     <input type="text" class="form-control" id="" placeholder="CGPA Out of">
                                 </div>
-                                <div class="form-group col-md-2">
+                                <div class="form-group col-md-3">
                                     <label for="">Status</label>
                                     <select class="form-control" id="sel1">
                                         <option>Science</option>
@@ -59,14 +82,6 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group col-md-3">
-                                    <label for="">Country</label>
-                                    <select class="form-control" id="sel1">
-                                        <option>Science</option>
-                                        <option>Arts</option>
-                                        <option>Commerce</option>
-                                    </select>
-                                </div>
 
                             </div><br>
 
