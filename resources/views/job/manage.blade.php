@@ -10,9 +10,11 @@
                         <h4>Manage Application</h4>
                     </div>
 
-                    <!--                        <div align="right">-->
-                    <!--                            <a href="cvform.php"> <button class="btn btn-info">Add New</button></a>-->
-                    <!--                        </div>-->
+                    <div class="pull-right">
+                        <button class="btn btn-success">Post Job</button>
+                        <br>
+                    </div>
+
                     <br>
 
 

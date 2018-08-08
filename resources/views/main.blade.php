@@ -134,6 +134,9 @@
                             <a class="dropdown-item" href="#"><i class="dripicons-gear text-muted"></i>Change Password</a>
 
                             <div class="dropdown-divider"></div>
+                            {{--<a class="dropdown-item" href="{{ route('logout') }}"--}}
+                               {{--onclick="event.preventDefault();--}}
+                                                     {{--document.getElementById('logout-form').submit();"><i class="dripicons-gear text-muted"></i>Logout</a>--}}
 
 
                             {{--Logout Button--}}
