@@ -6,12 +6,10 @@ use App\Employee;
 use App\Ethnicity;
 use App\Nationality;
 use App\Religion;
+use App\ProfessionalQualification;
 use Illuminate\Http\Request;
-
 use Session;
-
 use Auth;
-
 use Image;
 
 class EmployeeController extends Controller
@@ -250,15 +248,7 @@ class EmployeeController extends Controller
         }else{
             return view('userCv.update.education');
         }
-
-
-
     }
-    public function getEmployeeCvProfessionalCertificate()
-    {
-        $userId=Auth::user()->userId;
-        return view('userCv.insert.professionalCertificate');
 
 
-    }
 }

@@ -35,6 +35,7 @@ Route::get('/changePass/{email}/{password}/{token}', 'Auth\RegisterController@Ch
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+//Route::view('apply','usercv')->name('home');
 
 
 Route::view('apply','usercv')->name('cv.apply');
@@ -49,7 +50,15 @@ Route::view('manage/education','manage.education')->name('manage.education');
 //user Cv
 Route::get('Candidate-CV','EmployeeController@getEmployeeCv')->name('candidate.cvPersonalInfo');
 Route::get('Candidate-CV-CareerObjective','EmployeeController@getEmployeeCvCareerObjective')->name('candidate.cvCareerObjective');
-Route::get('Candidate-CV-ProfessionalCertificate','EmployeeController@getEmployeeCvProfessionalCertificate')->name('candidate.cvProfessionalCertificate');
+
+//ProfessionalCertificate
+Route::get('Candidate-CV-ProfessionalCertificate','ProfessionalCertificateController@getEmployeeCvProfessionalCertificate')->name('candidate.cvProfessionalCertificate');
+Route::post('Candidate-CV-ProfessionalCertificate','ProfessionalCertificateController@submitEmployeeCvProfessionalCertificate')->name('submit.cvProfessionalCertificate');
+Route::post('Candidate-CV-ProfessionalCertificate/update','ProfessionalCertificateController@updateEmployeeCvProfessionalCertificate')->name('update.cvProfessionalCertificate');
+Route::post('edit/professionalQualificationId','ProfessionalCertificateController@editProfessionalQualification')->name('professionalQualificationId.edit');
+Route::post('delete/professionalQualificationId','ProfessionalCertificateController@deleteProfessionalQualification')->name('professionalQualificationId.delete');
+
+
 
 Route::get('Candidate-CV-Education','EmployeeController@getEmployeeCvEducation')->name('candidate.cvEducation');
 

@@ -68,7 +68,7 @@
                                     </select>
                                 </div>
 
-                            </div>
+                            </div><br>
 
 
                             <button type="button" id="addButton" class="btn btn-success">Add More</button>
@@ -140,7 +140,7 @@
 
 
                 var newTextBoxDiv = $(document.createElement('div'))
-                    .attr("id", 'TextBoxDiv' + counter);
+                    .attr("id", 'TextBoxDiv' + counter).attr("class", 'row');
                 newTextBoxDiv.after().html('<div class="form-group col-md-4">'+
 
                     '<label for="">Degree</label>'+
@@ -192,10 +192,10 @@
                     '<option>Arts</option>'+
                     '<option>Commerce</option>'+
                     '</select>'+
-                    '</div>'
+                    '</div>'+
+                    '</div>'+'<hr>'
                 );
                 newTextBoxDiv.appendTo("#TextBoxesGroup");
-
 
                 counter++;
             });
