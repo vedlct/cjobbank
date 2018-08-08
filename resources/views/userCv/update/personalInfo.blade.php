@@ -5,7 +5,7 @@
     <div class="row ">
 
         <div class="col-12 ">
-            <div class="card">
+            <div class="card m-b-30">
                 <div class="card-body">
 
                     @foreach($employeeCvPersonalInfo as $personalInfo)
@@ -303,8 +303,8 @@
         </div> <!-- end col -->
     </div> <!-- end row -->
 
-    </div> <!-- end container -->
-    </div>
+   <!-- end container -->
+
     <!-- end wrapper -->
 
     <script>
