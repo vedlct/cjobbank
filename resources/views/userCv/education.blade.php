@@ -5,7 +5,7 @@
     <div class="row ">
 
         <div class="col-12 ">
-            <div class="card">
+            <div style="background-color: #F1F1F1" class="card">
                 <div class="card-body">
 
                     <form id="regForm" action="">
@@ -142,7 +142,7 @@
                             <div style="float:right;">
 
                                 <button type="button" id="submitBtn">Save</button>
-                                <button type="button" id="nextBtn" onclick="{{route('candidate.cvCareerObjective')}}">Next</button>
+                                <a href="{{route('candidate.cvProfessionalCertificate')}}"><button type="button" id="nextBtn">Next</button></a>
                             </div>
                         </div>
 
