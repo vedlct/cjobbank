@@ -125,8 +125,8 @@
                 cache: false,
                 data: {_token: "{{csrf_token()}}",'traningId': x},
                 success: function (data) {
-                    console.log(data);
-//                    $('#edit'+x).html(data);
+//                    console.log(data);
+                    $('#edit'+x).html(data);
 
                 }
             });

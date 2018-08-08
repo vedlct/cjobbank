@@ -55,7 +55,8 @@ class TrainingController extends Controller
 
    public function editTrainingCertificate(Request $r){
        $training=Traning::findOrFail($r->traningId);
+       $countries=Country::get();
 
-       return $training;
+       return view('userCv.edit.editTrainingCertificate',compact('training','countries'));
    }
 }
