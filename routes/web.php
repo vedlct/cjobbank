@@ -70,4 +70,6 @@ Route::post('/Candidate-CV-updatePersonalInfo', 'EmployeeController@updatePerson
 Route::post('/Candidate-CV-educationDegree', 'EmployeeController@getDegreePerEducation')->name('cv.getDegreeForEducation');
 Route::post('/Candidate-CV-educationMajor', 'EmployeeController@getMajorPerEducation')->name('cv.getMajorForEducation');
 
+Route::post('/Candidate-CV-education-Save', 'EmployeeController@insertPersonalEducation')->name('cv.insertPersonalEducation');
+
 

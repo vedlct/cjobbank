@@ -291,6 +291,33 @@ class EmployeeController extends Controller
             }
         }
     }
+    public function insertPersonalEducation(Request $r)
+    {
+       // return $r;
+
+        $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
+
+        for($i=0;$i<count($r->degree);$i++){
+            $professional=new Education();
+            $professional->fkdegreeId=$r->degree[$i];
+            $professional->institutionName=$r->instituteName[$i];
+            $professional->fkMajorId=$r->major[$i];
+            $professional->passingYear=$r->passingYear[$i];
+            $professional->status=$r->status[$i];
+            $professional->resultSystem=$r->resultSystem[$i];
+            $professional->result=$r->result[$i];
+            $professional->resultOutOf=$r->resultOutOf;
+            $professional->fkcountryId=$r->country;
+            $professional->fkemployeeId=$employee->employeeId;
+            $professional->save();
+        }
+
+        Session::flash('message', 'Education Added Successfully');
+
+        return redirect()->route('candidate.cvProfessionalCertificate');
+
+
+    }
 
 
 }
