@@ -73,3 +73,9 @@ Route::post('/Candidate-CV-educationMajor', 'EmployeeController@getMajorPerEduca
 Route::post('/Candidate-CV-education-Save', 'EmployeeController@insertPersonalEducation')->name('cv.insertPersonalEducation');
 
 
+//Training
+Route::get('/Candidate-CV-TrainingCertificate','TrainingController@index')->name('candidate.cvTrainingCertificate');
+Route::post('/Candidate-CV-TrainingCertificate','TrainingController@insert')->name('insert.cvTrainingCertificate');
+Route::post('/editTrainingCertificate','TrainingController@editTrainingCertificate')->name('cvTrainingCertificate.edit');
+
+
