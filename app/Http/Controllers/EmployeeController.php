@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Country;
+use App\Degree;
+use App\Education;
+use App\Educationlevel;
+use App\Educationmajor;
 use App\Employee;
 use App\Ethnicity;
 use App\Nationality;
@@ -237,18 +242,55 @@ class EmployeeController extends Controller
     {
 
         $userId=Auth::user()->userId;
-        $employeeCvPersonalInfo=Employee::where('fkuserId', '=',$userId)->get();
 
+        $employee=Employee::where('fkuserId', '=',$userId)->first()->employeeId;
 
+        $employeeCvEducationInfo=Education::where('fkemployeeId', '=',$employee)->get();
+
+        //return $employeeCvEducationInfo;
+
+        $educationLevel=Educationlevel::get();
+        //$degree=Degree::get();
+        $country=Country::get();
 
         //return $employeeCvPersonalInfo;
 
-        if (!$employeeCvPersonalInfo->isEmpty()){
+        if ($employeeCvEducationInfo->isEmpty()){
 
-            return view('userCv.insert.education');
+            return view('userCv.insert.education',compact('educationLevel','degree','country'));
 
         }else{
-            return view('userCv.update.education');
+            return view('userCv.update.education',compact('educationLevel','degree','country','employeeCvEducationInfo'));
+        }
+
+    }
+    public function getDegreePerEducation(Request $r)
+    {
+        $degree=Degree::select('degreeId','degreeName')->where('educationLevelId', '=',$r->id)->get();
+
+        if ($degree == null) {
+            echo "<option value='' selected>Select Degree</option>";
+        } else {
+            echo "<option value='' selected>Select Degree</option>";
+            foreach ($degree as $deg) {
+                echo "<option value='$deg->degreeId'>$deg->degreeName</option>";
+            }
+        }
+
+
+
+    }
+    public function getMajorPerEducation(Request $r)
+    {
+        $major=Educationmajor::select('educationMajorId','educationMajorName')->where('fkDegreeId', '=',$r->id)->get();
+
+        if ($major == null) {
+            echo "<option value='' selected>Select Major</option>";
+        } else {
+            echo "<option value='' selected>Select Major</option>";
+            foreach ($major as $mejor) {
+                echo "<option value='$mejor->educationMajorId'>$mejor->educationMajorName</option>";
+            }
         }
 
 

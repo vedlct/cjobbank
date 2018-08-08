@@ -46,7 +46,7 @@
     <div style="position: relative;" class="row ">
         
         <div class="sidenav">
-            <a href="#">Personal details</a>
+            <a href="{{route('candidate.cvPersonalInfo')}}" class="active">Personal details</a>
             <a href="#">Education</a>
             <a href="#">Professional qualification</a>
             <a href="#">Training</a>

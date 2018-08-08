@@ -18,72 +18,69 @@
                                 <div class="form-group col-md-4">
 
                                     <label for="">Education Level</label>
-                                    <select class="form-control" id="sel1">
+                                    <select name="educationLevel[]" class="form-control" id="educationLevel">
                                         <option>Select Education Level</option>
-                                        <option>SSC</option>
-                                        <option>HSC</option>
-                                        <option>BSc</option>
-                                        <option>MS</option>
-                                        <option>PhD</option>
+                                        @foreach($educationLevel as $edulevel)
+                                            <option value="{{$edulevel->educationLevelId}}">{{$edulevel->educationLevelName}}</option>
+                                        @endforeach
                                     </select>
 
                                 </div>
                                 <div class="form-group col-md-8">
 
                                     <label for="">Degree</label>
-                                    <select class="form-control" id="sel1">
-                                        <option>BSc in Software Engineer</option>
-                                        <option>Arts</option>
-                                        <option>Commerce</option>
+                                    <select name="degree[]" class="form-control" id="degree">
+                                        <option>Select Degree</option>
+
                                     </select>
 
                                 </div>
 
                                 <div class="form-group col-md-12">
                                     <label for="">Institute Name</label>
-                                    <input type="text" class="form-control" id="" placeholder="">
+                                    <input type="text" name="instituteName[]" class="form-control" id="" placeholder="">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="">Major</label>
-                                    <select class="form-control" id="sel1">
-                                        <option>Science</option>
-                                        <option>Arts</option>
-                                        <option>Commerce</option>
+                                    <select name="major[]" class="form-control" id="major">
+                                        <option>Select Major</option>
                                     </select>
                                 </div>
 
                                 <div class="form-group col-md-6">
                                     <label for="">Country</label>
-                                    <select class="form-control" id="sel1">
-                                        <option>Science</option>
-                                        <option>Arts</option>
-                                        <option>Commerce</option>
+                                    <select name="country[]" class="form-control" id="sel1">
+                                        @foreach($country as $coun)
+                                            <option value="{{$coun->countryId}}">{{$coun->countryName}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 
                                 <div class="form-group col-md-3">
                                     <label for="">Year</label>
-                                    <input type="text" class="form-control" id="" placeholder="passing Year">
+                                    <input name="passingYear[]" type="text" class="form-control" id="" placeholder="passing Year">
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="">CGPA</label>
-                                    <input type="text" class="form-control" id="" placeholder="">
+                                    <input name="result[]" type="text" class="form-control" id="" placeholder="">
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="">Out of</label>
-                                    <input type="text" class="form-control" id="" placeholder="CGPA Out of">
+                                    <input type="text" name="resultOutOf[]" class="form-control" id="" placeholder="CGPA Out of">
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="">Status</label>
-                                    <select class="form-control" id="sel1">
-                                        <option>Science</option>
-                                        <option>Arts</option>
-                                        <option>Commerce</option>
+                                    <select name="status[]"class="form-control" id="sel1">
+                                        @foreach(COMPLETING_STATUS as $key=>$value)
+                                            <option value="{{$value}}">{{$key}}</option>
+                                        @endforeach
+
                                     </select>
                                 </div>
 
 
-                            </div><br>
+                            </div>
+                            <br>
 
 
                             <button type="button" id="addButton" class="btn btn-success">Add More</button>
@@ -121,12 +118,19 @@
 
 
 
-
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
 @endsection
 
 @section('foot-js')
     <script>
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         var currentTab = 0; // Current tab is set to be the first tab (0)
         fixStepIndicator(currentTab); // Display the crurrent tab
 
@@ -156,59 +160,68 @@
 
                 var newTextBoxDiv = $(document.createElement('div'))
                     .attr("id", 'TextBoxDiv' + counter).attr("class", 'row');
-                newTextBoxDiv.after().html('<div class="form-group col-md-4">'+
+                newTextBoxDiv.after().html('<hr style="">'+'<div class="form-group col-md-4">'+
+
+                '<label for="">Education Level</label>'+
+                '<select name="educationLevel[]" class="form-control" id="educationLevel">'+
+                    '<option>Select Education Level</option>'+
+                @foreach($educationLevel as $edulevel)
+                '<option value="{{$edulevel->educationLevelId}}">{{$edulevel->educationLevelName}}</option>'+
+                        @endforeach
+                    '</select>'+
+
+                    '</div>'+
+                    '<div class="form-group col-md-8">'+
 
                     '<label for="">Degree</label>'+
-                    '<select class="form-control" id="sel1">'+
-                    '<option>Science</option>'+
-                    '<option>Arts</option>'+
-                    '<option>Commerce</option>'+
-                    '</select>'+
+                    '<select name="degree[]" class="form-control" id="degree">'+
+                    '<option>Select Degree</option>'+
 
-                    '</div>'+
-                    '<div class="form-group col-md-3">'+
-                    '<label for="">Major</label>'+
-                    '<select class="form-control" id="sel1">'+
-                    '<option>Science</option>'+
-                    '<option>Arts</option>'+
-                    '<option>Commerce</option>'+
-                    '</select>'+
-                    '</div>'+
-                    '<div class="form-group col-md-5">'+
+                '</select>'+
+
+                '</div>'+
+
+                '<div class="form-group col-md-12">'+
                     '<label for="">Institute Name</label>'+
-                    '<input type="text" class="form-control" id="" placeholder="">'+
+                '<input type="text" name="instituteName[]" class="form-control" id="" placeholder="">'+
                     '</div>'+
+                    '<div class="form-group col-md-6">'+
+                    '<label for="">Major</label>'+
+                    '<select name="major[]" class="form-control" id="major">'+
+                    '<option>Select Major</option>'+
+                '</select>'+
+                '</div>'+
+
+                '<div class="form-group col-md-6">'+
+                    '<label for="">Country</label>'+
+                   ' <select name="country[]" class="form-control" id="sel1">'+
+                        @foreach($country as $coun)
+                    '<option value="{{$coun->countryId}}">{{$coun->countryName}}</option>'+
+                        @endforeach
+                    '</select>'+
+                   ' </div>'+
 
                     '<div class="form-group col-md-3">'+
                     '<label for="">Year</label>'+
-                    '<input type="text" class="form-control" id="" placeholder="passing Year">'+
-                    '</div>'+
-                    '<div class="form-group col-md-2">'+
+                   ' <input name="passingYear[]" type="text" class="form-control" id="" placeholder="passing Year">'+
+                   ' </div>'+
+                   ' <div class="form-group col-md-3">'+
                     '<label for="">CGPA</label>'+
-                    '<input type="text" class="form-control" id="" placeholder="">'+
+                    '<input name="result[]" type="text" class="form-control" id="" placeholder="">'+
                     '</div>'+
-                    '<div class="form-group col-md-2">'+
-                    '<label for="">Out of</label>'+
-                    '<input type="text" class="form-control" id="" placeholder="CGPA Out of">'+
-                    '</div>'+
-                    '<div class="form-group col-md-2">'+
-                    '<label for="">Status</label>'+
-                    '<select class="form-control" id="sel1">'+
-                    '<option>Science</option>'+
-                    '<option>Arts</option>'+
-                    '<option>Commerce</option>'+
-                    '</select>'+
-                    '</div>'+
-
                     '<div class="form-group col-md-3">'+
-                    '<label for="">Country</label>'+
-                    '<select class="form-control" id="sel1">'+
-                    '<option>Science</option>'+
-                    '<option>Arts</option>'+
-                    '<option>Commerce</option>'+
-                    '</select>'+
+                    '<label for="">Out of</label>'+
+                '<input type="text" name="resultOutOf[]" class="form-control" id="" placeholder="CGPA Out of">'+
                     '</div>'+
-                    '</div>'+'<hr>'
+                    '<div class="form-group col-md-3">'+
+                    '<label for="">Status</label>'+
+                    '<select name="status[]"class="form-control" id="sel1">'+
+                        @foreach(COMPLETING_STATUS as $key=>$value)
+                    '<option value="{{$value}}">{{$key}}</option>'+
+                        @endforeach
+
+                    '</select>'+
+                    '</div>'
                 );
                 newTextBoxDiv.appendTo("#TextBoxesGroup");
 
@@ -222,6 +235,35 @@
                 }
                 counter--;
                 $("#TextBoxDiv" + counter).remove();
+            });
+
+            $('#educationLevel').on('change', function() {
+
+                $.ajax({
+                    type:'POST',
+                    url:'{{route('cv.getDegreeForEducation')}}',
+                    data:{id:this.value},
+                    cache: false,
+                    success:function(data) {
+                        document.getElementById("degree").innerHTML = data;
+
+                    }
+                });
+
+            });
+            $('#degree').on('change', function() {
+
+                $.ajax({
+                    type:'POST',
+                    url:'{{route('cv.getMajorForEducation')}}',
+                    data:{id:this.value},
+                    cache: false,
+                    success:function(data) {
+                        document.getElementById("major").innerHTML = data;
+
+                    }
+                });
+
             });
 
         });
