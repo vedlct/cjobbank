@@ -8,59 +8,72 @@
             <div class="card">
                 <div style="background-color: #F1F1F1" class="card-body">
 
-                    <form id="regForm" action="{{route('insert.cvTrainingCertificate')}}" method="post">
-                        <!-- One "tab" for each step in the form: -->
-                        {{csrf_field()}}
+                    <div id="regForm" >
+
 
                         <div id="" class="tab">
 
                             <h2 style="margin-bottom: 30px;">Training Certification </h2>
+
+                            @foreach($trainings as $training)
+                                <div id="edit{{$training->traningId}}">
+                                    <div class="row">
+                                        <div class="form-group col-md-10">
+
+                                            <label for="inputEmail4">Name Of The Training :</label>
+                                            <label for="inputEmail4">{{$training->trainingName}}</label>
+                                        </div>
+
+                                        <div class="form-group col-md-2 ">
+                                            <button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$training->traningId}})"><i class="fa fa-edit"></i></button>
+                                            <button type="button" class="btn btn-danger btn-sm " onclick="deleteTraining({{$training->traningId}})"><i class="fa fa-trash"></i></button>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label for="inputEmail4">Vanue :</label>
+                                            <label for="inputEmail4">{{$training->vanue}} </label>
+                                            {{--<input type="text" class="form-control" name="vanue[]" id="inputEmail4" placeholder="vanue" required>--}}
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label for="inputPassword4">country :</label>
+                                            <label for="inputEmail4">{{$training->countryName}} </label>
+
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <label for="inputPassword4">Start Date :</label>
+                                            <label for="inputEmail4">{{$training->startDate}} </label>
+                                            {{--<input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" required>--}}
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="inputPassword4">End Date :</label>
+                                            <label for="inputEmail4">{{$training->endDate}} </label>
+                                            {{--<input type="text" class="form-control date" name="endDate[]" id="end" placeholder="date">--}}
+                                        </div>
+                                    </div>
+                                    @endforeach
+
+                                </div>
+                        </div>
+                            <form action="{{route('insert.cvTrainingCertificate')}}" method="post">
+                                <!-- One "tab" for each step in the form: -->
+                                {{csrf_field()}}
+
                             <div id="TextBoxesGroup">
-
-                                <div class="row">
-                                    <div class="form-group col-md-12">
-
-                                        <label for="inputEmail4">Name Of The Training</label>
-                                        <input type="text" class="form-control" name="trainingName[]" id="inputEmail4" placeholder="training name" required>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="form-group col-md-8">
-                                        <label for="inputEmail4">Vanue </label>
-                                        <input type="text" class="form-control" name="vanue[]" id="inputEmail4" placeholder="vanue" required>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="inputPassword4">country</label>
-                                        {{--<input type="text" class="form-control"  id="inputPassword4" placeholder="">--}}
-                                        <select class="form-control" name="countryId[]">
-                                            @foreach($countries as $country)
-                                                <option value="{{$country->countryId}}">{{$country->countryName}}</option>
-
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group col-md-4">
-                                        <label for="inputPassword4">Start Date</label>
-                                        <input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" required>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="inputPassword4">End Date</label>
-                                        <input type="text" class="form-control date" name="endDate[]" id="end" placeholder="date">
-                                    </div>
-
-
-
-                                </div>
 
 
                             </div>
 
+
                             <button type="button" id="addButton" class="btn btn-success">Add More</button>
                             <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
-                        </div>
+
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
@@ -69,6 +82,7 @@
                                 <a href="{{route('candidate.cvTrainingCertificate')}}"><button type="button" id="nextBtn" >Next</button></a>
                             </div>
                         </div>
+                        </form>
 
 
 
@@ -81,7 +95,8 @@
                             <span class="step"></span>
                         </div>
 
-                    </form>
+
+                    </div>
 
                 </div>
             </div>
@@ -101,6 +116,26 @@
     <script>
         var currentTab = 0; // Current tab is set to be the first tab (0)
         fixStepIndicator(currentTab); // Display the crurrent tab
+
+        function editInfo(x) {
+//            alert(x);
+            $.ajax({
+                type: 'POST',
+                url: "{!! route('cvTrainingCertificate.edit') !!}",
+                cache: false,
+                data: {_token: "{{csrf_token()}}",'traningId': x},
+                success: function (data) {
+                    console.log(data);
+//                    $('#edit'+x).html(data);
+
+                }
+            });
+        }
+        function deleteTraining(x) {
+            alert(x);
+        }
+
+
 
         function fixStepIndicator(n) {
             // This function removes the "active" class of all steps...
@@ -131,6 +166,7 @@
 
             var counter = 1;
             $("#removeButton").hide();
+            $("#submitBtn").hide();
 
 
             $("#addButton").click(function () {
@@ -180,6 +216,7 @@
                 if(counter>1){
 //                    document.getElementById("removeButton").style.display='block';
                     $("#removeButton").show();
+                    $("#submitBtn").show();
                 }
                 $('.date').datepicker({
                     format: 'yyyy-m-d'
@@ -196,6 +233,7 @@
                 counter--;
                 if(counter<2){
                     $("#removeButton").hide();
+                    $("#submitBtn").hide();
                 }
                 $("#TextBoxDiv" + counter).remove();
             });

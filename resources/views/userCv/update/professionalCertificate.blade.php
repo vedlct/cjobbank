@@ -126,8 +126,6 @@
     <!-- end wrapper -->
 
 
-
-
 @endsection
 
 @section('foot-js')

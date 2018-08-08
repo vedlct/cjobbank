@@ -59,10 +59,8 @@ class ProfessionalCertificateController extends Controller
     }
 
     public function updateEmployeeCvProfessionalCertificate(Request $r){
-//
 
         $professional=ProfessionalQualification::findOrFail($r->professionalQualificationId);
-
         $professional->certificateName=$r->certificateName;
         $professional->institutionName=$r->institutionName;
         $professional->startDate=$r->startDate;
