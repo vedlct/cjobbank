@@ -133,19 +133,22 @@
                             <a class="dropdown-item" href="#"><i class="dripicons-wallet text-muted"></i>Team</a>
                             <a class="dropdown-item" href="#"><i class="dripicons-gear text-muted"></i>Change Password</a>
                             <div class="dropdown-divider"></div>
+                            {{--<a class="dropdown-item" href="{{ route('logout') }}"--}}
+                               {{--onclick="event.preventDefault();--}}
+                                                     {{--document.getElementById('logout-form').submit();"><i class="dripicons-gear text-muted"></i>Logout</a>--}}
 
 
                             {{--Logout Button--}}
-                            {{--<a class="dropdown-item" href="{{ route('logout') }}"--}}
-                               {{--onclick="event.preventDefault();--}}
-                                                     {{--document.getElementById('logout-form').submit();">--}}
-                                {{--{{ __('Logout') }}--}}
-                            {{--</a>--}}
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
 
 
-                            {{--<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">--}}
-                                {{--{{csrf_field()}}--}}
-                            {{--</form>--}}
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                {{csrf_field()}}
+                            </form>
                         </div>
                     </li>
                     <li class="menu-item list-inline-item">
