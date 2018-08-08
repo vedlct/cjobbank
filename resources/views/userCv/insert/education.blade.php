@@ -151,6 +151,9 @@
             var counter = 2;
 
 
+
+
+
             $("#addButton").click(function () {
                 if(counter>10){
                     alert("Only 10 Section allow per Time!!");
@@ -160,10 +163,10 @@
 
                 var newTextBoxDiv = $(document.createElement('div'))
                     .attr("id", 'TextBoxDiv' + counter).attr("class", 'row');
-                newTextBoxDiv.after().html('<hr style="">'+'<div class="form-group col-md-4">'+
-
+                newTextBoxDiv.after().html('<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>'
+                    +'<div class="form-group col-md-4">'+
                 '<label for="">Education Level</label>'+
-                '<select name="educationLevel[]" class="form-control" id="educationLevel">'+
+                '<select name="educationLevel[]" class="form-control" data-panel-id="'+ counter+'" onchange="getDegree(this)"id="educationLevel'+counter+'">'+
                     '<option>Select Education Level</option>'+
                 @foreach($educationLevel as $edulevel)
                 '<option value="{{$edulevel->educationLevelId}}">{{$edulevel->educationLevelName}}</option>'+
@@ -174,7 +177,7 @@
                     '<div class="form-group col-md-8">'+
 
                     '<label for="">Degree</label>'+
-                    '<select name="degree[]" class="form-control" id="degree">'+
+                    '<select name="degree[]" class="form-control" data-panel-id="'+ counter+'" onchange="getMajor(this)" id="degree'+counter+'">'+
                     '<option>Select Degree</option>'+
 
                 '</select>'+
@@ -187,7 +190,7 @@
                     '</div>'+
                     '<div class="form-group col-md-6">'+
                     '<label for="">Major</label>'+
-                    '<select name="major[]" class="form-control" id="major">'+
+                    '<select name="major[]" class="form-control" id="major'+counter+'">'+
                     '<option>Select Major</option>'+
                 '</select>'+
                 '</div>'+
@@ -237,36 +240,77 @@
                 $("#TextBoxDiv" + counter).remove();
             });
 
-            $('#educationLevel').on('change', function() {
 
-                $.ajax({
-                    type:'POST',
-                    url:'{{route('cv.getDegreeForEducation')}}',
-                    data:{id:this.value},
-                    cache: false,
-                    success:function(data) {
-                        document.getElementById("degree").innerHTML = data;
 
-                    }
-                });
 
-            });
-            $('#degree').on('change', function() {
 
-                $.ajax({
-                    type:'POST',
-                    url:'{{route('cv.getMajorForEducation')}}',
-                    data:{id:this.value},
-                    cache: false,
-                    success:function(data) {
-                        document.getElementById("major").innerHTML = data;
+        });
 
-                    }
-                });
+        $('#educationLevel').on('change', function() {
 
+            alert(this.value);
+            $.ajax({
+                type:'POST',
+                url:'{{route('cv.getDegreeForEducation')}}',
+                data:{id:this.value},
+                cache: false,
+                success:function(data) {
+                    document.getElementById("degree").innerHTML = data;
+
+                }
             });
 
         });
+        $('#degree').on('change', function() {
+
+            $.ajax({
+                type:'POST',
+                url:'{{route('cv.getMajorForEducation')}}',
+                data:{id:this.value},
+                cache: false,
+                success:function(data) {
+                    document.getElementById("major").innerHTML = data;
+
+                }
+            });
+
+        });
+
+        function getDegree(x){
+
+            btn = $(x).data('panel-id');
+            var educationLavel=document.getElementById("educationLevel"+btn).value;
+            $.ajax({
+                type:'POST',
+                url:'{{route('cv.getDegreeForEducation')}}',
+                data:{id:educationLavel},
+                cache: false,
+                success:function(data) {
+                    document.getElementById("degree"+btn).innerHTML = data;
+
+                }
+            });
+
+        }
+        function getMajor(x){
+
+            btn = $(x).data('panel-id');
+            var degree=document.getElementById("degree"+btn).value;
+
+            $.ajax({
+                type:'POST',
+                url:'{{route('cv.getMajorForEducation')}}',
+                data:{id:degree},
+                cache: false,
+                success:function(data) {
+                    document.getElementById("major"+btn).innerHTML = data;
+
+                }
+            });
+
+        }
+
+
 
     </script>
     @endsection
