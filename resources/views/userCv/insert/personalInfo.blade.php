@@ -5,7 +5,7 @@
     <div class="row ">
 
         <div class="col-12 ">
-            <div class="card">
+            <div style="background-color: #F1F1F1" class="card">
                 <div class="card-body">
 
                     <form style="margin-top: 20px;width: 70%" id="regForm" enctype="multipart/form-data" method="post" action="{{route('cv.insertPersonalInfo')}}">
@@ -272,7 +272,7 @@
                             <div style="overflow:auto;">
                                 <div style="float:right;">
 
-                                    <button type="submit" id="submitBtn">Save</button>
+                                    <button type="submit" id="submitBtn">Next</button>
                                     {{--<a href="{{route('candidate.cvCareerObjective')}}"><button type="button" id="nextBtn">Next</button></a>--}}
                                 </div>
                             </div>

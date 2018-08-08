@@ -35,6 +35,7 @@ Route::get('/changePass/{email}/{password}/{token}', 'Auth\RegisterController@Ch
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+//Route::view('apply','usercv')->name('home');
 
 
 Route::view('apply','usercv')->name('cv.apply');
