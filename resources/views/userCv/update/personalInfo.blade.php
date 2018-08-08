@@ -1,8 +1,62 @@
 @extends('main')
 
 @section('content')
+    
+    
+<style>
 
-    <div class="row ">
+
+    .sidenav {
+        height: 700px;
+        width: 230px;
+        position: absolute;
+        z-index: 1;
+        top: 2%;
+        left: 13%;
+        background-color: #424858;
+        overflow-x: hidden;
+        padding-top: 20px;
+    }
+
+    .sidenav a {
+        padding: 15px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 18px;
+        color: #B9B9B9;
+        display: block;
+    }
+
+    .sidenav a:hover {
+        color: #f1f1f1;
+    }
+
+    .main {
+        margin-left: 160px; /* Same as the width of the sidenav */
+        font-size: 28px; /* Increased text to enable scrolling */
+        padding: 0px 10px;
+    }
+
+    @media screen and (max-height: 450px) {
+        .sidenav {padding-top: 15px;}
+        .sidenav a {font-size: 18px;}
+    }
+</style>
+    
+
+    <div style="position: relative;" class="row ">
+        
+        <div class="sidenav">
+            <a href="#">Personal details</a>
+            <a href="#">Education</a>
+            <a href="#">Professional qualification</a>
+            <a href="#">Training</a>
+            <a href="#">Experience</a>
+            <a href="#">Referee</a>
+        </div>
+
+        <div class="main">
+
+        </div>
 
         <div class="col-12 ">
             <div style="background-color: #F1F1F1" class="card">

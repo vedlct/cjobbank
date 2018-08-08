@@ -114,11 +114,14 @@
         #regForm {
             background-color: #ffffff;
             font-family: Raleway;
-            margin: 50px auto;
+            margin: 10px auto;
             min-width: 300px;
             padding: 40px;
-            width: 40%;
+            width: 50%;
         }
+        
+        
+        
 
 
 
