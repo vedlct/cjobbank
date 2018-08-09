@@ -75,5 +75,12 @@ Route::post('/Candidate-CV-educationMajor', 'EmployeeController@getMajorPerEduca
 Route::get('/Candidate-CV-TrainingCertificate','TrainingController@index')->name('candidate.cvTrainingCertificate');
 Route::post('/Candidate-CV-TrainingCertificate','TrainingController@insert')->name('insert.cvTrainingCertificate');
 Route::post('/editTrainingCertificate','TrainingController@editTrainingCertificate')->name('cvTrainingCertificate.edit');
+Route::post('/updateCvTraning','TrainingController@updateCvTraning')->name('update.cvtraning');
+Route::post('/deleteCvTraning','TrainingController@deleteCvTraning')->name('cvTrainingCertificate.delete');
 
-
+//Job Experience
+Route::get('/Candidate-CV-JobExperience','JobExperienceController@index')->name('JobExperience.index');
+Route::post('/Candidate-CV-JobExperience','JobExperienceController@submitJobExperience')->name('submit.jobExperience');
+Route::post('/editJobExperience','JobExperienceController@editJobExperience')->name('JobExperience.edit');
+Route::post('/updateJobExperience','JobExperienceController@updateJobExperience')->name('update.jobExperience');
+Route::post('/deleteJobExperience','JobExperienceController@deleteJobExperience')->name('JobExperience.delete');

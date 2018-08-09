@@ -1,3 +1,6 @@
+<form method="post" action="{{route('update.cvtraning')}}">
+    {{csrf_field()}}
+    <input type="hidden" name="traningId" value="{{$training->traningId}}">
 <div class="row">
     <div class="form-group col-md-10">
 
@@ -35,4 +38,10 @@
         <label for="inputPassword4">End Date</label>
         <input type="text" class="form-control date" name="endDate"  value="{{$training->endDate}}" id="end" placeholder="date">
     </div>
+    <div class="form-group col-md-12">
+        <button  class="btn btn-info pull-right">Update</button>
+    </div>
 
+
+</div>
+</form>

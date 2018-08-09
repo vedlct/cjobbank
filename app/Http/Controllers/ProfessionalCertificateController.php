@@ -15,6 +15,10 @@ use Auth;
 
 class ProfessionalCertificateController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function getEmployeeCvProfessionalCertificate()
     {
         $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();

@@ -41,7 +41,7 @@
             </select>
         </div>
         <div class="form-group col-md-12">
-            <button  class="btn btn-success pull-right">Update</button>
+            <button  class="btn btn-info pull-right">Update</button>
         </div>
 
     </div>

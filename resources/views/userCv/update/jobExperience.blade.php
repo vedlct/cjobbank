@@ -7,87 +7,78 @@
         <div class="col-12 ">
             <div class="card">
                 <div style="background-color: #F1F1F1" class="card-body">
-
-                    <div id="regForm" >
+                    <div id="regForm">
 
 
                         <div id="" class="tab">
 
-                            <h2 style="margin-bottom: 30px;">Training Certification </h2>
+                            <h2 style="margin-bottom: 30px;">Job Experience</h2>
                             @php($tempHr=0)
-                            @foreach($trainings as $training)
+                            @foreach($experiences as $experience)
                                 @if($tempHr>0)
                                     <div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>
                                 @endif
-                                <div id="edit{{$training->traningId}}">
-                                    <div class="row">
-                                        <div class="form-group col-md-10">
+                                    <div id="edit{{$experience->jobExperienceId}}">
+                                        <div class="row">
+                                            <div class="form-group col-md-10">
+                                                <label for="inputEmail4">Company Name :</label>
+                                              {{$experience->organization}}
+                                                {{--<input type="text" class="form-control" name="organization[]" id="inputEmail4" placeholder="organization" required>--}}
+                                            </div>
 
-                                            <label for="inputEmail4">Name Of The Training :</label>
-                                            <label for="inputEmail4">{{$training->trainingName}}</label>
-                                        </div>
+                                            <div class="form-group col-md-2 ">
+                                                <button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$experience->jobExperienceId}})"><i class="fa fa-edit"></i></button>
+                                                <button type="button" class="btn btn-danger btn-sm " onclick="deleteExperience({{$experience->jobExperienceId}})"><i class="fa fa-trash"></i></button>
 
-                                        <div class="form-group col-md-2 ">
-                                            <button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$training->traningId}})"><i class="fa fa-edit"></i></button>
-                                            <button type="button" class="btn btn-danger btn-sm " onclick="deleteTraining({{$training->traningId}})"><i class="fa fa-trash"></i></button>
-
-                                        </div>
-
-                                    </div>
+                                            </div>
 
 
-                                    <div class="row">
-                                        <div class="form-group col-md-6">
-                                            <label for="inputEmail4">Vanue :</label>
-                                            <label for="inputEmail4">{{$training->vanue}} </label>
-                                            {{--<input type="text" class="form-control" name="vanue[]" id="inputEmail4" placeholder="vanue" required>--}}
-                                        </div>
-                                        <div class="form-group col-md-3">
-                                            <label for="inputPassword4">country :</label>
-                                            <label for="inputEmail4">{{$training->countryName}} </label>
-
-                                        </div>
-
-                                        <div class="form-group col-md-3">
-                                            <label for="inputPassword4">Start Date :</label>
-                                            <label for="inputEmail4">{{$training->startDate}} </label>
-                                            {{--<input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" required>--}}
-                                        </div>
-                                        <div class="form-group col-md-4">
-                                            <label for="inputPassword4">End Date :</label>
-                                            <label for="inputEmail4">{{$training->endDate}} </label>
-                                            {{--<input type="text" class="form-control date" name="endDate[]" id="end" placeholder="date">--}}
+                                            <div class="form-group col-md-4">
+                                                <label for="inputEmail4">Designation :</label>
+                                                {{$experience->degisnation}}
+                                                {{--<input type="text" class="form-control" name="degisnation[]" id="inputEmail4" placeholder="designation" required>--}}
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="inputPassword4">Start Date :</label>
+                                                {{$experience->startDate}}
+                                                {{--<input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" required>--}}
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <label for="inputPassword4">End Date :</label>
+                                                {{$experience->endDate}}
+                                                {{--<input type="text" class="form-control date" name="endDate[]" id="end" placeholder="date">--}}
+                                            </div>
+                                            <div class="form-group col-md-8">
+                                                <label for="inputPassword4">Address :</label>
+                                                {{$experience->address}}
+                                                {{--<textarea class="form-control" name="address[]" placeholder="address"></textarea>--}}
+                                            </div>
                                         </div>
                                     </div>
                                     @php($tempHr++)
-                                    @endforeach
+                            @endforeach
 
-                                </div>
-                        </div>
-                            <form action="{{route('insert.cvTrainingCertificate')}}" method="post">
+                            <form  action="{{route('submit.jobExperience')}}" method="post">
                                 <!-- One "tab" for each step in the form: -->
                                 {{csrf_field()}}
+                                <div id="TextBoxesGroup">
+                                </div>
 
-                            <div id="TextBoxesGroup">
-
-
-                            </div>
 
 
                             <button type="button" id="addButton" class="btn btn-success">Add More</button>
                             <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
-
+                        </div>
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
 
                                 <button type="submit" id="submitBtn">Save</button>
-                                <a href="{{route('JobExperience.index')}}"><button type="button" id="nextBtn" >Next</button></a>
+                                <a href="{{route('candidate.cvTrainingCertificate')}}"><button type="button" id="nextBtn" >Next</button></a>
                             </div>
                         </div>
                         </form>
-
 
 
                         <!-- Circles which indicates the steps of the form: -->
@@ -99,8 +90,8 @@
                             <span class="step"></span>
                         </div>
 
-
                     </div>
+
 
                 </div>
             </div>
@@ -121,13 +112,13 @@
         var currentTab = 0; // Current tab is set to be the first tab (0)
         fixStepIndicator(currentTab); // Display the crurrent tab
 
-        function editInfo(x) {
+        function editInfo(x){
 
             $.ajax({
                 type: 'POST',
-                url: "{!! route('cvTrainingCertificate.edit') !!}",
+                url: "{!! route('JobExperience.edit') !!}",
                 cache: false,
-                data: {_token: "{{csrf_token()}}",'traningId': x},
+                data: {_token: "{{csrf_token()}}",'jobExperienceId': x},
                 success: function (data) {
 //                    console.log(data);
                     $('#edit'+x).html(data);
@@ -135,9 +126,7 @@
                 }
             });
         }
-        function deleteTraining(x) {
-
-
+        function deleteExperience(x){
             $.confirm({
                 title: 'Delete!',
                 content: 'Are you sure ?',
@@ -145,11 +134,14 @@
                     confirm: function () {
                         $.ajax({
                             type: 'POST',
-                            url: "{!! route('cvTrainingCertificate.delete') !!}",
+                            url: "{!! route('JobExperience.delete') !!}",
                             cache: false,
-                            data: {_token: "{{csrf_token()}}",'traningId': x},
+                            data: {_token: "{{csrf_token()}}",'jobExperienceId': x},
                             success: function (data) {
+//                                console.log(data);
                                 location.reload();
+
+
                             }
                         });
                     },
@@ -159,9 +151,8 @@
 
                 }
             });
+
         }
-
-
 
         function fixStepIndicator(n) {
             // This function removes the "active" class of all steps...
@@ -172,7 +163,7 @@
                 x[i].className = x[i].className.replace(" active", "");
             }
             //... and adds the "active" class on the current step:
-            x[(n+4)].className += " active";
+            x[(n+5)].className += " active";
         }
     </script>
 
@@ -183,9 +174,7 @@
             $('.date').datepicker({
                 format: 'yyyy-m-d'
             });
-//            $('#end').datepicker({
-//                format: 'yyyy-m-d'
-//            });
+
         });
 
         $(document).ready(function(){
@@ -207,24 +196,15 @@
                 var newTextBoxDiv = $(document.createElement('div'))
                     .attr("id", 'TextBoxDiv' + counter).attr("class", 'row');
                 newTextBoxDiv.after().html(
-                    '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>'+
-
+                    '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>' +
+                    '<div class="row"> ' +
                     '<div class="form-group col-md-12"> ' +
-                    '<label for="inputEmail4">Name Of The Training</label> ' +
-                    '<input type="text" class="form-control" name="trainingName[]" id="inputEmail4" placeholder="training name" required> ' +
-                    '</div> ' +
-
-                    '<div class="form-group col-md-8"> ' +
-                    '<label for="inputEmail4">Vanue </label> ' +
-                    '<input type="text" class="form-control" name="vanue[]" id="inputEmail4" placeholder="vanue" required> ' +
+                    '<label for="inputEmail4">Company Name</label> ' +
+                    '<input type="text" class="form-control" name="organization[]" id="inputEmail4" placeholder="organization" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
-                    '<label for="inputPassword4">country</label>' +
-                    '<select class="form-control" name="countryId[]">'+
-                    '@foreach($countries as $country)'+
-                    '<option value="{{$country->countryId}}">{{$country->countryName}}</option>'+
-                    '@endforeach'+
-                    '</select>'+
+                    '<label for="inputEmail4">Designation</label> ' +
+                    '<input type="text" class="form-control" name="degisnation[]" id="inputEmail4" placeholder="designation" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
                     '<label for="inputPassword4">Start Date</label> ' +
@@ -233,6 +213,11 @@
                     '<div class="form-group col-md-4"> ' +
                     '<label for="inputPassword4">End Date</label> ' +
                     '<input type="text" class="form-control date" name="endDate[]" id="end" placeholder="date"> ' +
+                    '</div> ' +
+                    '<div class="form-group col-md-8"> ' +
+                    '<label for="inputPassword4">Address</label> ' +
+                    '<textarea class="form-control" name="address[]" placeholder="address"></textarea> ' +
+                    '</div> ' +
                     '</div>'
 
                 );

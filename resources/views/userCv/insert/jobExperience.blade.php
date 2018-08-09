@@ -8,39 +8,25 @@
             <div class="card">
                 <div style="background-color: #F1F1F1" class="card-body">
 
-                    <form id="regForm" action="{{route('insert.cvTrainingCertificate')}}" method="post">
+                    <form id="regForm" action="{{route('submit.jobExperience')}}" method="post">
                         <!-- One "tab" for each step in the form: -->
                         {{csrf_field()}}
 
                         <div id="" class="tab">
 
-                            <h2 style="margin-bottom: 30px;">Training Certification </h2>
+                            <h2 style="margin-bottom: 30px;">Job Experience</h2>
                             <div id="TextBoxesGroup">
 
                                 <div class="row">
                                     <div class="form-group col-md-12">
-
-                                        <label for="inputEmail4">Name Of The Training</label>
-                                        <input type="text" class="form-control" name="trainingName[]" id="inputEmail4" placeholder="training name" required>
+                                        <label for="inputEmail4">Company Name</label>
+                                        <input type="text" class="form-control" name="organization[]" id="inputEmail4" placeholder="organization" required>
                                     </div>
-                                </div>
 
-                                <div class="row">
-                                    <div class="form-group col-md-8">
-                                        <label for="inputEmail4">Vanue </label>
-                                        <input type="text" class="form-control" name="vanue[]" id="inputEmail4" placeholder="vanue" required>
-                                    </div>
                                     <div class="form-group col-md-4">
-                                        <label for="inputPassword4">country</label>
-                                        {{--<input type="text" class="form-control"  id="inputPassword4" placeholder="">--}}
-                                        <select class="form-control" name="countryId[]">
-                                            @foreach($countries as $country)
-                                                <option value="{{$country->countryId}}">{{$country->countryName}}</option>
-
-                                            @endforeach
-                                        </select>
+                                        <label for="inputEmail4">Designation</label>
+                                        <input type="text" class="form-control" name="degisnation[]" id="inputEmail4" placeholder="designation" required>
                                     </div>
-
                                     <div class="form-group col-md-4">
                                         <label for="inputPassword4">Start Date</label>
                                         <input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" required>
@@ -49,9 +35,10 @@
                                         <label for="inputPassword4">End Date</label>
                                         <input type="text" class="form-control date" name="endDate[]" id="end" placeholder="date">
                                     </div>
-
-
-
+                                    <div class="form-group col-md-8">
+                                        <label for="inputPassword4">Address</label>
+                                        <textarea class="form-control" name="address[]" placeholder="address"></textarea>
+                                    </div>
                                 </div>
 
 
@@ -66,7 +53,7 @@
                             <div style="float:right;">
 
                                 <button type="submit" id="submitBtn">Save</button>
-                                <a href="{{route('JobExperience.index')}}"><button type="button" id="nextBtn" >Next</button></a>
+                                <a href="{{route('candidate.cvTrainingCertificate')}}"><button type="button" id="nextBtn" >Next</button></a>
                             </div>
                         </div>
 
@@ -111,7 +98,7 @@
                 x[i].className = x[i].className.replace(" active", "");
             }
             //... and adds the "active" class on the current step:
-            x[(n+4)].className += " active";
+            x[(n+5)].className += " active";
         }
     </script>
 
@@ -145,24 +132,15 @@
                 var newTextBoxDiv = $(document.createElement('div'))
                     .attr("id", 'TextBoxDiv' + counter).attr("class", 'row');
                 newTextBoxDiv.after().html(
-                    '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>'+
-
+                    '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>' +
+                    '<div class="row"> ' +
                     '<div class="form-group col-md-12"> ' +
-                    '<label for="inputEmail4">Name Of The Training</label> ' +
-                    '<input type="text" class="form-control" name="trainingName[]" id="inputEmail4" placeholder="training name" required> ' +
-                    '</div> ' +
-
-                    '<div class="form-group col-md-8"> ' +
-                    '<label for="inputEmail4">Vanue </label> ' +
-                    '<input type="text" class="form-control" name="vanue[]" id="inputEmail4" placeholder="vanue" required> ' +
+                    '<label for="inputEmail4">Company Name</label> ' +
+                    '<input type="text" class="form-control" name="organization[]" id="inputEmail4" placeholder="organization" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
-                    '<label for="inputPassword4">country</label>' +
-                    '<select class="form-control" name="countryId[]">'+
-                    '@foreach($countries as $country)'+
-                    '<option value="{{$country->countryId}}">{{$country->countryName}}</option>'+
-                    '@endforeach'+
-                    '</select>'+
+                    '<label for="inputEmail4">Designation</label> ' +
+                    '<input type="text" class="form-control" name="degisnation[]" id="inputEmail4" placeholder="designation" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
                     '<label for="inputPassword4">Start Date</label> ' +
@@ -171,6 +149,11 @@
                     '<div class="form-group col-md-4"> ' +
                     '<label for="inputPassword4">End Date</label> ' +
                     '<input type="text" class="form-control date" name="endDate[]" id="end" placeholder="date"> ' +
+                    '</div> ' +
+                    '<div class="form-group col-md-8"> ' +
+                    '<label for="inputPassword4">Address</label> ' +
+                    '<textarea class="form-control" name="address[]" placeholder="address"></textarea> ' +
+                    '</div> ' +
                     '</div>'
 
                 );

@@ -59,4 +59,24 @@ class TrainingController extends Controller
 
        return view('userCv.edit.editTrainingCertificate',compact('training','countries'));
    }
+
+   public function updateCvTraning(Request $r){
+       $training=Traning::findOrFail($r->traningId);
+       $training->trainingName=$r->trainingName;
+       $training->startDate=$r->startDate;
+       $training->endDate=$r->endDate;
+       $training->vanue=$r->vanue;
+       $training->countryId=$r->countryId;
+
+       $training->save();
+
+       Session::flash('message', 'Traning Updated Successfully');
+
+       return redirect()->route('candidate.cvTrainingCertificate');
+   }
+
+   public function deleteCvTraning(Request $r){
+       Traning::destroy($r->traningId);
+       Session::flash('message', 'Traning Deleted Successfully');
+   }
 }
