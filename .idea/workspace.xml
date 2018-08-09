@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1f77d9ce-12dd-4235-9fdf-83a8d8b900b5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/userCv/insert/education.blade.php" afterPath="$PROJECT_DIR$/resources/views/userCv/insert/education.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/userCv/update/personalInfo.blade.php" afterPath="$PROJECT_DIR$/resources/views/userCv/update/personalInfo.blade.php" />
-    </list>
+    <list default="true" id="1f77d9ce-12dd-4235-9fdf-83a8d8b900b5" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -393,7 +389,7 @@
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ictm-web" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
@@ -471,12 +467,12 @@
       <workItem from="1533201742428" duration="10291000" />
       <workItem from="1533364952037" duration="106000" />
       <workItem from="1533636309332" duration="1556000" />
-      <workItem from="1533711714538" duration="1203000" />
+      <workItem from="1533711714538" duration="1810000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18738000" />
+    <option name="totallyTimeSpent" value="19345000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
