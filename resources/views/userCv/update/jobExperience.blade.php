@@ -163,7 +163,7 @@
                 x[i].className = x[i].className.replace(" active", "");
             }
             //... and adds the "active" class on the current step:
-            x[(n+5)].className += " active";
+            x[(n+4)].className += " active";
         }
     </script>
 
