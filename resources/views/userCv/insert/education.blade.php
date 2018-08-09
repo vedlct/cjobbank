@@ -145,7 +145,9 @@
             }
         });
         $('.date').datepicker({
-            format: 'yyyy-m-d'
+            viewMode: "years",
+            minViewMode: "years",
+            format: 'yyyy'
         });
 
         var currentTab = 0; // Current tab is set to be the first tab (0)
@@ -252,7 +254,9 @@
                 );
                 newTextBoxDiv.appendTo("#TextBoxesGroup");
                 $('.date').datepicker({
-                    format: 'yyyy-m-d'
+                    viewMode: "years",
+                    minViewMode: "years",
+                    format: 'yyyy'
                 });
 
                 counter++;
