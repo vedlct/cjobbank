@@ -140,7 +140,7 @@ class EmployeeController extends Controller
 
         $employee->save();
 
-        return redirect()->route('candidate.cvEducation');
+        return redirect()->route('candidate.cvPersonalInfo');
 
 
     }
@@ -225,7 +225,7 @@ class EmployeeController extends Controller
 
         $employee->save();
 
-        return redirect()->route('candidate.cvEducation');
+        return redirect()->route('candidate.cvPersonalInfo');
 
 
     }
@@ -243,7 +243,10 @@ class EmployeeController extends Controller
 
         $employee=Employee::where('fkuserId', '=',$userId)->first()->employeeId;
 
-        $employeeCvEducationInfo=Education::where('fkemployeeId', '=',$employee)->get();
+        $employeeCvEducationInfo=Education::leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
+            ->leftJoin('educationmajor', 'educationmajor.educationMajorId', '=', 'education.fkMajorId')
+            ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
+            ->where('fkemployeeId', '=',$employee)->get();
 
         //return $employeeCvEducationInfo;
 
@@ -290,6 +293,83 @@ class EmployeeController extends Controller
                 echo "<option value='$mejor->educationMajorId'>$mejor->educationMajorName</option>";
             }
         }
+    }
+    public function insertPersonalEducation(Request $r)
+    {
+       // return $r;
+
+        $employee=Employee::where('fkuserId', '=',Auth::user()->userId)->first()->employeeId;
+
+        for($i=0;$i<count($r->degree);$i++){
+            $professional=new Education();
+            $professional->fkdegreeId=$r->degree[$i];
+            $professional->institutionName=$r->instituteName[$i];
+            $professional->fkMajorId=$r->major[$i];
+            $professional->passingYear=$r->passingYear[$i];
+            $professional->status=$r->status[$i];
+            $professional->resultSystem=$r->resultSystem[$i];
+            $professional->result=$r->result[$i];
+            $professional->resultOutOf=$r->resultOutOf[$i];
+            $professional->fkcountryId=$r->country[$i];
+            $professional->fkemployeeId=$employee;
+            $professional->save();
+        }
+
+        Session::flash('message', 'Education Added Successfully');
+
+        return redirect()->route('candidate.cvEducation');
+
+
+    }
+    public function getEducationEdit(Request $r)
+    {
+
+        $education=Education::leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
+            ->leftJoin('educationmajor', 'educationmajor.educationMajorId', '=', 'education.fkMajorId')
+            ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
+            ->findOrFail($r->id);
+
+        $educationLevel=Educationlevel::get();
+        $country=Country::get();
+
+        return view('userCv.edit.editEducation',compact('education','educationLevel','country'));
+
+
+    }
+    public function updatePersonalEducation(Request $r)
+    {
+
+        $personalEducation=Education::findOrFail($r->educationId);
+
+        $personalEducation->fkdegreeId=$r->degree;
+        $personalEducation->institutionName=$r->instituteName;
+        $personalEducation->fkMajorId=$r->major;
+        $personalEducation->passingYear=$r->passingYear;
+        $personalEducation->status=$r->status;
+        $personalEducation->resultSystem=$r->resultSystem;
+        $personalEducation->result=$r->result;
+        $personalEducation->resultOutOf=$r->resultOutOf;
+        $personalEducation->fkcountryId=$r->country;
+        $personalEducation->save();
+
+
+
+        Session::flash('message', 'Education Updated Successfully');
+
+        return redirect()->route('candidate.cvEducation');
+
+
+
+    }
+    public function deletePersonalEducation(Request $r)
+    {
+
+        $personalEducation=Education::destroy($r->id);
+
+       // Session::flash('message', 'Education Deleted Successfully');
+
+
+
     }
 
 
