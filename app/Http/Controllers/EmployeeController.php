@@ -140,7 +140,7 @@ class EmployeeController extends Controller
 
         $employee->save();
 
-        return redirect()->route('candidate.cvEducation');
+        return redirect()->route('candidate.cvPersonalInfo');
 
 
     }
@@ -225,7 +225,7 @@ class EmployeeController extends Controller
 
         $employee->save();
 
-        return redirect()->route('candidate.cvEducation');
+        return redirect()->route('candidate.cvPersonalInfo');
 
 
     }

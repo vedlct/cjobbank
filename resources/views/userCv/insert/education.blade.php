@@ -98,12 +98,15 @@
 
 
                             <button type="button" id="addButton" class="btn btn-success">Add More</button>
+                            <button type="button" id="removeButton" class="btn btn-success" >remove</button>
                         </div>
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
 
+                                <a href="{{route('candidate.cvPersonalInfo')}}"><button type="button" id="btnPevious">Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
+
                                 <a href="{{route('candidate.cvProfessionalCertificate')}}"><button type="button" id="nextBtn">Next</button></a>
                             </div>
                         </div>
@@ -167,7 +170,11 @@
 
         $(document).ready(function(){
 
-            var counter = 2;
+            $("#removeButton").hide();
+            $("#btnPevious").show();
+            $("#submitBtn").show();
+
+            var counter = 1;
 
 
             $("#addButton").click(function () {
@@ -259,13 +266,25 @@
                     format: 'yyyy'
                 });
 
+                if(counter>=1){
+//                    document.getElementById("removeButton").style.display='block';
+                    $("#removeButton").show();
+                    $("#submitBtn").show();
+                    $("#btnPevious").show();
+
+                }
+
                 counter++;
             });
 
             $("#removeButton").click(function () {
-                if(counter=='2'){
+                if(counter=='1'){
                     alert("Atleast One Course Section is needed!!");
                     return false;
+                }
+                if(counter<=2){
+                    $("#removeButton").hide();
+
                 }
                 counter--;
                 $("#TextBoxDiv" + counter).remove();

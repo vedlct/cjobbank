@@ -123,6 +123,7 @@
                             <div style="float:right;">
 
                                 <button type="submit" id="submitBtn">Save</button>
+                                <a href="{{route('candidate.cvPersonalInfo')}}"><button type="button" id="btnPevious">Back</button></a>
                                 <a href="{{route('candidate.cvProfessionalCertificate')}}"><button type="button" id="nextBtn" >Next</button></a>
                             </div>
                         </div>
@@ -176,6 +177,7 @@
                     $("#addButton").hide();
                     $("#submitBtn").hide();
                     $("#nextBtn").hide();
+                    $("#btnPevious").hide();
 
                     $('#edit'+x).html(data);
 
@@ -254,8 +256,10 @@
 
         $(document).ready(function(){
 
-            var counter = 1;
+            var counter = 2;
             $("#removeButton").hide();
+            $("#btnPevious").show();
+            $("#nextBtn").show();
             $("#submitBtn").hide();
 
 
@@ -347,11 +351,12 @@
                     format: 'yyyy'
                 });
 
-                if(counter>=1){
+                if(counter>=2){
 //                    document.getElementById("removeButton").style.display='block';
                     $("#removeButton").show();
                     $("#submitBtn").show();
-                    $("#nextBtn").hide();
+
+
 
                 }
 
@@ -369,8 +374,9 @@
                     return false;
                 }
                 counter--;
-                if(counter<2){
+                if(counter<=2){
                     $("#removeButton").hide();
+                    
                     $("#submitBtn").hide();
                 }
                 $("#TextBoxDiv" + counter).remove();
