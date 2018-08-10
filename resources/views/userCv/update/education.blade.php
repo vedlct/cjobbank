@@ -15,7 +15,12 @@
                         <div class="tab">
 
                             <h2 style="margin-bottom: 30px; text-align:center">Education </h2>
+                            @php $R=0;
+                                    @endphp
                             @foreach($employeeCvEducationInfo as $educationInfo)
+                                @if($R>0)
+                                    <div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>
+                                @endif
                             <div id="edit{{$educationInfo->educationId}}" class="row">
 
 
@@ -100,10 +105,12 @@
 
 
                                 </div>
-                                    <div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>
+
 
 
                             </div>
+                                    @php $R++;
+                                    @endphp
                             @endforeach
 
 
@@ -121,9 +128,8 @@
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
-
-                                <button type="submit" id="submitBtn">Save</button>
                                 <a href="{{route('candidate.cvPersonalInfo')}}"><button type="button" id="btnPevious">Back</button></a>
+                                <button type="submit" id="submitBtn">Save</button>
                                 <a href="{{route('candidate.cvProfessionalCertificate')}}"><button type="button" id="nextBtn" >Next</button></a>
                             </div>
                         </div>
@@ -376,7 +382,7 @@
                 counter--;
                 if(counter<=2){
                     $("#removeButton").hide();
-                    
+
                     $("#submitBtn").hide();
                 }
                 $("#TextBoxDiv" + counter).remove();

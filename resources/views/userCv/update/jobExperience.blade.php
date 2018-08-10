@@ -45,8 +45,11 @@
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="inputPassword4">End Date :</label>
+                                                @if($experience->endDate==null)
+                                                    Running
+                                                @else
                                                 {{$experience->endDate}}
-                                                {{--<input type="text" class="form-control date" name="endDate[]" id="end" placeholder="date">--}}
+                                                @endif
                                             </div>
                                             <div class="form-group col-md-8">
                                                 <label for="inputPassword4">Address :</label>
@@ -75,7 +78,7 @@
                             <div style="float:right;">
 
                                 <button type="submit" id="submitBtn">Save</button>
-                                <a href="{{route('candidate.cvTrainingCertificate')}}"><button type="button" id="nextBtn" >Next</button></a>
+                                <a href="{{route('refree.index')}}"><button type="button" id="nextBtn" >Next</button></a>
                             </div>
                         </div>
                         </form>
@@ -163,7 +166,7 @@
                 x[i].className = x[i].className.replace(" active", "");
             }
             //... and adds the "active" class on the current step:
-            x[(n+5)].className += " active";
+            x[(n+4)].className += " active";
         }
     </script>
 

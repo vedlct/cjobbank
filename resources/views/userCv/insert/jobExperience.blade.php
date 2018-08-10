@@ -53,7 +53,7 @@
                             <div style="float:right;">
 
                                 <button type="submit" id="submitBtn">Save</button>
-                                <a href="{{route('candidate.cvTrainingCertificate')}}"><button type="button" id="nextBtn" >Next</button></a>
+                                <a href="{{route('refree.index')}}"><button type="button" id="nextBtn" >Next</button></a>
                             </div>
                         </div>
 
@@ -98,7 +98,7 @@
                 x[i].className = x[i].className.replace(" active", "");
             }
             //... and adds the "active" class on the current step:
-            x[(n+5)].className += " active";
+            x[(n+4)].className += " active";
         }
     </script>
 
