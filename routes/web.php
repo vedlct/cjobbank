@@ -41,7 +41,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::view('apply','usercv')->name('cv.apply');
 
 Route::view('application','application')->name('application');
-Route::view('job/all','job.all')->name('job.all');
+
 Route::view('job/manage','job.manage')->name('job.manage');
 
 Route::view('manage/zone','manage.zone')->name('manage.zone');
@@ -92,10 +92,15 @@ Route::post('/Candidate-CV-JobExperience','JobExperienceController@submitJobExpe
 Route::post('/editJobExperience','JobExperienceController@editJobExperience')->name('JobExperience.edit');
 Route::post('/updateJobExperience','JobExperienceController@updateJobExperience')->name('update.jobExperience');
 Route::post('/deleteJobExperience','JobExperienceController@deleteJobExperience')->name('JobExperience.delete');
-
 //Refree
 Route::get('/Candidate-CV-Referee','RefreeController@index')->name('refree.index');
 Route::post('/Candidate-CV-Referee','RefreeController@submitRefree')->name('submit.refree');
 Route::post('/editRefree','RefreeController@editRefree')->name('refree.edit');
 Route::post('/updateRefree','RefreeController@updateRefree')->name('update.refree');
 Route::post('/deleteRefree','RefreeController@deleteRefree')->name('refree.delete');
+
+
+
+/*---------------------------Job----------------------*/
+Route::get('job/all','JobController@index')->name('job.all');
+Route::post('job/all','JobController@getJobData')->name('job.getJobData');
