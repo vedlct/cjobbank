@@ -24,20 +24,20 @@
 
 
 @endforeach
-{{--{{$jobs->currentPage()}}--}}
+
 
 <ul class="pagination">
-    {{--<li class="page-item"><a class="page-link" href="#">Previous</a></li>--}}
-    @if($jobs->currentPage()!= 1)
-        <li class="page-item"> <a data-id="{{$jobs->previousPageUrl()}}" href="javascript:void(0)" class="page-link pagiNextPrevBtn"><i class="ion-ios-arrow-left"></i>Prev</a></li>
-    @endif
+
+
+        <li class="page-item @if($jobs->currentPage()== 1) disabled @endif"> <a data-id="{{$jobs->previousPageUrl()}}" href="javascript:void(0)" class="page-link pagiNextPrevBtn"><i class="ion-ios-arrow-left"></i>Prev</a></li>
+
 
     @for($i=$jobs->perPage(); $i <= $jobs->total();$i=($i+$jobs->perPage()))
         <li  @if($jobs->currentPage() == $i) class="page-item active " @else class="page-item" @endif> <a class="page-link pagiNextPrevBtn" data-id="{{$jobs->url($i)}}" href="javascript:void(0)">{{$i}}</a></li>
     @endfor
-    @if($jobs->lastPage()!=$jobs->currentPage())
-        <li class="page-item"><a data-id="{{$jobs->nextPageUrl()}}" href="javascript:void(0)"  class="page-link pagiNextPrevBtn">Next<i class="ion-ios-arrow-right"></i></a></li>
-    @endif
+
+        <li  class="page-item @if($jobs->lastPage()==$jobs->currentPage()) disabled @endif"><a data-id="{{$jobs->nextPageUrl()}}" href="javascript:void(0)"  class="page-link pagiNextPrevBtn">Next<i class="ion-ios-arrow-right"></i></a></li>
+
 </ul>
 
 
