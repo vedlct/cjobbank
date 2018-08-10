@@ -87,6 +87,7 @@
                             <span class="step"></span>
                             <span class="step"></span>
                             <span class="step"></span>
+                            <span class="step"></span>
                         </div>
 
                     </form>
@@ -119,7 +120,7 @@
                 x[i].className = x[i].className.replace(" active", "");
             }
             //... and adds the "active" class on the current step:
-            x[(n+2)].className += " active";
+            x[(n+5)].className += " active";
         }
     </script>
 
