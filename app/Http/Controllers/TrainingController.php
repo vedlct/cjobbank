@@ -48,7 +48,6 @@ class TrainingController extends Controller
        }
 
        Session::flash('message', 'Traning Added Successfully');
-
        return redirect()->route('candidate.cvTrainingCertificate');
 
    }
@@ -56,7 +55,6 @@ class TrainingController extends Controller
    public function editTrainingCertificate(Request $r){
        $training=Traning::findOrFail($r->traningId);
        $countries=Country::get();
-
        return view('userCv.edit.editTrainingCertificate',compact('training','countries'));
    }
 
