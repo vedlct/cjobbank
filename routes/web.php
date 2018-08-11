@@ -60,22 +60,22 @@ Route::post('delete/professionalQualificationId','ProfessionalCertificateControl
 
 
 
-Route::get('Candidate-CV-Education','EmployeeController@getEmployeeCvEducation')->name('candidate.cvEducation');
 
 
 //
 Route::post('/Candidate-CV-savePersonalInfo', 'EmployeeController@insertPersonalInfo')->name('cv.insertPersonalInfo');
 Route::post('/Candidate-CV-updatePersonalInfo', 'EmployeeController@updatePersonalInfo')->name('cv.updatePersonalInfo');
 
-//
-Route::post('/Candidate-CV-educationDegree', 'EmployeeController@getDegreePerEducation')->name('cv.getDegreeForEducation');
-Route::post('/Candidate-CV-educationMajor', 'EmployeeController@getMajorPerEducation')->name('cv.getMajorForEducation');
+//Education
+Route::get('Candidate-CV-Education','EducationController@getEmployeeCvEducation')->name('candidate.cvEducation');
+Route::post('/Candidate-CV-educationDegree', 'EducationController@getDegreePerEducation')->name('cv.getDegreeForEducation');
+Route::post('/Candidate-CV-educationMajor', 'EducationController@getMajorPerEducation')->name('cv.getMajorForEducation');
 
-Route::post('/Candidate-CV-educationEdit', 'EmployeeController@getEducationEdit')->name('cv.educationEdit');
+Route::post('/Candidate-CV-educationEdit', 'EducationController@getEducationEdit')->name('cv.educationEdit');
 
-Route::post('/Candidate-CV-education-Save', 'EmployeeController@insertPersonalEducation')->name('cv.insertPersonalEducation');
-Route::post('/Candidate-CV-education-Update', 'EmployeeController@updatePersonalEducation')->name('cv.updatePersonalEducation');
-Route::post('/Candidate-CV-education-Delete', 'EmployeeController@deletePersonalEducation')->name('cv.PersonalEducationDelete');
+Route::post('/Candidate-CV-education-Save', 'EducationController@insertPersonalEducation')->name('cv.insertPersonalEducation');
+Route::post('/Candidate-CV-education-Update', 'EducationController@updatePersonalEducation')->name('cv.updatePersonalEducation');
+Route::post('/Candidate-CV-education-Delete', 'EducationController@deletePersonalEducation')->name('cv.PersonalEducationDelete');
 
 
 //Training
