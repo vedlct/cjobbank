@@ -14,7 +14,7 @@
                     </div>
 
                     <div style="float: right; position: absolute; bottom: 10%; right: 1%;" class="applynow">
-                        <button type="button" class="btn btn-primary">Apply Now</button>
+                        <a href="{{route('candidate.ApplyJob',$job->jobId)}}"><button type="button" class="btn btn-primary">Apply Now</button></a>
                     </div>
                 </div>
             </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Employee;
 use App\Ethnicity;
+use App\Jobapply;
 use App\Nationality;
 use App\Religion;
 use Illuminate\Http\Request;
@@ -12,7 +13,7 @@ use Session;
 use Auth;
 use Image;
 
-class EmployeeController extends Controller
+class EmployeeApplicationController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -36,8 +37,11 @@ class EmployeeController extends Controller
 
     public function getAllApplication()
     {
-        $userId=Auth::user()->userId;
-        return view('userCv.careerObjective');
+        $empId=Employee::where('fkuserId',Auth::user()->userId)->first()->employeeId;
+
+        $jobApplyList=Jobapply::select('job.title','zone.zoneName','jobapply.applydate')->leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')->leftJoin('zone', 'zone.zoneId', '=', 'job.fkzoneId')->where('fkemployeeId',$empId)->get();
+
+        return view('job.jobApplyList',compact('jobApplyList'));
 
 
     }

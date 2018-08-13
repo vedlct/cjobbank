@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Employee;
 use App\Ethnicity;
+use App\Jobapply;
 use App\Nationality;
 use App\Religion;
 
@@ -39,6 +40,23 @@ class EmployeeController extends Controller
     {
         $userId=Auth::user()->userId;
         return view('userCv.careerObjective');
+
+
+    }
+    public function applyJob($jobId)
+    {
+        $empId=Employee::where('fkuserId',Auth::user()->userId)->first()->employeeId;
+
+
+
+        $jobApply=new Jobapply();
+        $jobApply->applydate=date('Y-m-d');
+        $jobApply->fkjobId=$jobId;
+        $jobApply->fkemployeeId=$empId;
+        $jobApply->status=JOB_STATUS['Pending'];
+        $jobApply->save();
+
+        return redirect()->route('job.all');
 
 
     }
