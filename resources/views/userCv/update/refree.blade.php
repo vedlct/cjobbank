@@ -88,7 +88,7 @@
 
 
 
-                                   </div>
+                                   {{--</div>--}}
 
                             <button type="button" id="addButton" class="btn btn-success">Add More</button>
                             <button type="button" id="removeButton" class="btn btn-success" >remove</button>
@@ -97,9 +97,8 @@
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
-
+                                <a id="btnPevious" class="btn btn-success" href="{{route('JobExperience.index')}}">Back</a>
                                 <button type="submit" id="submitBtn">Save</button>
-                                <a href="{{route('candidate.cvTrainingCertificate')}}"><button type="button" id="nextBtn" >Next</button></a>
                             </div>
                         </div>
                         </form>
@@ -148,6 +147,7 @@
                 cache: false,
                 data: {_token: "{{csrf_token()}}",'refereeId': x},
                 success: function (data) {
+                    $("#btnPevious").hide();
                     $('#edit'+x).html(data);
 
                 }
@@ -211,6 +211,7 @@
 
 
             $("#addButton").click(function () {
+                $("#btnPevious").hide();
                 if(counter>10){
                     alert("Only 10 Section allow per Time!!");
                     return false;

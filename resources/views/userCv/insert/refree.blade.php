@@ -72,9 +72,9 @@
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
-
+                                <a id="btnPevious" class="btn btn-success" href="{{route('JobExperience.index')}}">Back</a>
                                 <button type="submit" id="submitBtn">Save</button>
-                                <a href="{{route('candidate.cvTrainingCertificate')}}"><button type="button" id="nextBtn" >Next</button></a>
+
                             </div>
                         </div>
 
@@ -147,7 +147,7 @@
                     alert("Only 10 Section allow per Time!!");
                     return false;
                 }
-
+                $("#btnPevious").hide();
 
                 if (counter == 1 ){
 
