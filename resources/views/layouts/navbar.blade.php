@@ -17,7 +17,8 @@
                 </li>
 
                 <li class="has-submenu">
-                    <a href="{{route('job.manage')}}"><i class="ti-archive"></i>Manage Job</a>
+                    {{--<a href="{{route('job.manage')}}"><i class="ti-archive"></i>Manage Job</a>--}}
+                    <a href="{{route('job.admin.manage')}}"><i class="ti-archive"></i>Manage Job</a>
                 </li>
 
                 <li class="has-submenu">

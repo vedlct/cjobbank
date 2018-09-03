@@ -10,7 +10,6 @@
                 <div class="card-body">
 
 
-
                     <table id="manageapplication" class="table table-striped table-bordered" style="width:100%" >
                         <thead>
                         <tr>
@@ -18,17 +17,18 @@
                             <th>Job Title</th>
                             <th>Zone</th>
                             <th>Apply Date</th>
+                            <th>Detailes</th>
 
                         </tr>
                         </thead>
                         <tbody>
-
                         @foreach($jobApplyList as $applyList)
                         <tr>
 
                             <td>{{$applyList->title}}</td>
                             <td>{{$applyList->zoneName}}</td>
                             <td>{{date('Y-m-d',strtotime($applyList->applydate))}}</td>
+                            <td><a target="_blank" href="{{$applyList->pdflink}}">Download</a></td>
 
                         </tr>
                         @endforeach
@@ -68,7 +68,7 @@
                 {
                     "columnDefs": [
                         {
-                            "targets": [0,1], //first column / numbering column
+                            "targets": [0,1,3], //first column / numbering column
                             "orderable": false, //set not orderable
 
                         },
