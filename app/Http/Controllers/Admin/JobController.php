@@ -42,7 +42,7 @@ class JobController extends Controller
 
        DB::table('job')
            ->where('jobId',$r->id)
-           ->update(['jobStatus' => $r->jobStatus]);
+           ->update(['status' => $r->status]);
 
 
 

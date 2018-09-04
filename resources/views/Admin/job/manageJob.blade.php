@@ -92,8 +92,8 @@
     <script>
         $(document).ready(function() {
             table=$('#manageapplication').DataTable(
-
                 {
+
                     "columnDefs": [
                         {
                             "targets": [0,1,3], //first column / numbering column
@@ -101,7 +101,8 @@
 
                         },
 
-                    ]
+                    ],
+
                 }
             );
         } );
@@ -132,8 +133,9 @@
                             $.ajax({
                                 type: "POST",
                                 url: '{{route('job.admin.changeJobStatus')}}',
-                                data: {id: x,jobStatus:job},
+                                data: {'id':btn,'status':job,'_token':"{{csrf_token()}}"},
                                 success: function (data) {
+
                                     $.alert({
                                         title: 'Success!',
                                         type: 'green',
@@ -143,18 +145,25 @@
                                                 text: 'Ok',
                                                 btnClass: 'btn-green',
                                                 action: function () {
-//                                                    table.ajax().reload();
+
+                                                   // location.reload();
+                                                    $('#manageapplication').DataTable().destroy();
+                                                    $('#manageapplication').DataTable().draw();
+
                                                 }
                                             }
                                         }
                                     });
 
-//                                    table.ajax().reload();
                                 },
                             });
                         }
                     },
                     No: function () {
+
+//                        location.reload();
+                        $('#manageapplication').DataTable().destroy();
+                        $('#manageapplication').DataTable().draw();
                     },
                 }
             });
