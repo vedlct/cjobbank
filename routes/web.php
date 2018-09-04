@@ -112,6 +112,7 @@ Route::get('Candidate-Applications','EmployeeApplicationController@getAllApplica
 
 /*-------------------------------Admin---------------------------------*/
 Route::get('Admin-Manage-Job','Admin\JobController@manageJob')->name('job.admin.manage');
+
 Route::get('Admin-Edit-Job/{jobId}','Admin\JobController@jobEdit')->name('job.admin.edit');
 
 Route::post('Admin-Update-Job','Admin\JobController@jobUpdate')->name('job.admin.update');
