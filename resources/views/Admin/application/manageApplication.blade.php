@@ -153,7 +153,8 @@
 
                     { "data": function(data){
                         return '<button class="btn btn-sm btn-success">Accept</button>'
-                            +'&nbsp;<button class="btn btn-sm btn-danger">Reject</button>'
+                            +'&nbsp;<button class="btn btn-sm btn-danger">Reject</button>'+
+                            '&nbsp;<button class="btn btn-smbtn-info">Show CV</button>'
                             ;},
                         "orderable": false, "searchable":false
                     },
