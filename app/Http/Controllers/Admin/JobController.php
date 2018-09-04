@@ -13,11 +13,16 @@ use Session;
 
 class JobController extends Controller
 {
-   public function index(Request $r){
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
+   public function index(){
 
 
    }
+
    public function addNewJob(){
 
        $allZone=DB::table('zone')->get();
@@ -69,6 +74,24 @@ class JobController extends Controller
 
    public function jobUpdate(Request $r){
 
+       $rules = [
+
+           'title' => 'required|max:255',
+           'position' => 'required|max:45',
+           'salary' => 'required|max:45',
+           'jobStatus' => 'required',
+           'deadline' => 'required|date',
+           'zone' => 'required',
+
+
+       ];
+
+       $customMessages = [
+//            'unique' => 'This User is already been registered.Please Login !'
+       ];
+
+       $this->validate($r, $rules, $customMessages);
+
        $jobInfo=Job::findOrFail($r->jobId);
        $jobInfo->title=$r->title;
        $jobInfo->position=$r->position;
@@ -102,6 +125,26 @@ class JobController extends Controller
 
    }
    public function jobInsert(Request $r){
+
+       $rules = [
+
+           'title' => 'required|max:255',
+           'position' => 'required|max:45',
+           'salary' => 'required|max:45',
+           'jobStatus' => 'required',
+           'deadline' => 'required|date',
+           'zone' => 'required',
+
+
+       ];
+
+       $customMessages = [
+//            'unique' => 'This User is already been registered.Please Login !'
+       ];
+
+       $this->validate($r, $rules, $customMessages);
+
+
 
        $jobInfo= new Job();
 

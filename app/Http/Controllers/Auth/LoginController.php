@@ -40,6 +40,18 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function redirectTo()
+    {
+
+        if (Auth::user()->fkuserTypeId == USER_TYPE['Admin']) {
+            return route('job.admin.manage');
+        }
+        elseif (Auth::user()->fkuserTypeId == USER_TYPE['User']) {
+            return route('candidate.cvPersonalInfo');
+        }
+
+    }
+
     public function loginForm(){
         return view('auth.login');
     }
@@ -65,6 +77,7 @@ class LoginController extends Controller
             if ($user->register=='Y' && $this->attemptLogin($request)) {
                 // Send the normal successful login response
                 return $this->sendLoginResponse($request);
+
             }
             else {
                 // Increment the failed login attempts and redirect back to the

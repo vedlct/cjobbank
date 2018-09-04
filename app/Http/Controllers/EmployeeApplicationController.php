@@ -37,6 +37,7 @@ class EmployeeApplicationController extends Controller
 
     public function getAllApplication()
     {
+
         $empId=Employee::where('fkuserId',Auth::user()->userId)->first()->employeeId;
 
         $jobApplyList=Jobapply::select('job.title','job.pdflink','zone.zoneName','jobapply.applydate')->leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')->leftJoin('zone', 'zone.zoneId', '=', 'job.fkzoneId')->where('fkemployeeId',$empId)->get();

@@ -23,6 +23,12 @@ define('RESULT_SYSTEM',array(
     "class"=>'3'
 ));
 
+define('USER_TYPE',array(
+    "Admin"=>'admin',
+    "User"=>'user',
+
+));
+
 
 
 
