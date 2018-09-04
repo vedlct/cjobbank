@@ -41,7 +41,7 @@
 
                                 <div class="form-group col-md-12">
                                     <label for="">Institute Name</label>
-                                    <input type="text" name="instituteName[]" required class="form-control" id="" placeholder="">
+                                    <input type="text" name="instituteName[]" required class="form-control" id="instituteName" placeholder="">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="">Major</label>
@@ -52,7 +52,8 @@
 
                                 <div class="form-group col-md-3">
                                     <label for="">Country</label>
-                                    <select name="country[]" class="form-control" required id="sel1">
+                                    <select name="country[]" class="form-control" required id="country">
+                                        <option value="">Select Country</option>
                                         @foreach($country as $coun)
                                             <option value="{{$coun->countryId}}">{{$coun->countryName}}</option>
                                         @endforeach
@@ -62,11 +63,11 @@
 
                                 <div class="form-group col-md-3">
                                     <label for="">Year</label>
-                                    <input name="passingYear[]" type="text" class="form-control date" id="" required placeholder="passing Year">
+                                    <input name="passingYear[]" type="text" class="form-control date" id="passingYear" required placeholder="passing Year">
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="">Result System</label>
-                                    <select name="resultSystem[]" class="form-control" required id="sel1">
+                                    <select name="resultSystem[]" class="form-control" required id="resultSydtem">
                                         <option value="">Select System</option>
                                         @foreach(RESULT_SYSTEM as $key=>$value)
                                             <option value="{{$value}}">{{$key}}</option>
@@ -76,15 +77,16 @@
 
                                 <div class="form-group col-md-3">
                                     <label for="">CGPA</label>
-                                    <input name="result[]" type="text" class="form-control" required id="" placeholder="">
+                                    <input name="result[]" type="text" class="form-control" required id="cgpa" placeholder="">
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="">Out of</label>
-                                    <input type="text" name="resultOutOf[]" class="form-control" id="" placeholder="CGPA Out of">
+                                    <input type="text" name="resultOutOf[]" class="form-control" id="resultOutOf" placeholder="CGPA Out of">
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="">Status</label>
-                                    <select name="status[]"class="form-control" required id="sel1">
+                                    <select name="status[]"class="form-control" required id="educationStatus">
+                                        <option value="">Select Status</option>
                                         @foreach(COMPLETING_STATUS as $key=>$value)
                                             <option value="{{$value}}">{{$key}}</option>
                                         @endforeach
@@ -178,11 +180,168 @@
             var counter = 1;
 
 
+
             $("#addButton").click(function () {
 
                 if(counter>10){
                     alert("Only 10 Section allow per Time!!");
                     return false;
+                }
+
+                if (counter == 1 ){
+                    var educationLevel=$('#educationLevel').val();
+                    var degree=$('#degree').val();
+                    var instituteName=$('#instituteName').val();
+//                    var major=$('#major').val();
+                    var country=$('#country').val();
+                    var year=$('#passingYear').val();
+                    var resultSydtem=$('#resultSydtem').val();
+                    var cgpa=$('#cgpa').val();
+//                    var resultOutOf=$('#resultOutOf').val();
+                    var status=$('#educationStatus').val();
+
+                    if(educationLevel==""){
+
+                        var errorMsg='Please Select a Education Level First!!'
+                       validationError(errorMsg)
+                        return false;
+                    }
+                    if(degree==""){
+
+                        var errorMsg='Please Select Degree First!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if(instituteName==""){
+
+                        var errorMsg='Please Type instituteName First!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if (instituteName.length > 255){
+
+                        var errorMsg='Institute Name Should not more than 255 Charecter Length!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if(country==""){
+
+                        var errorMsg='Please Select a Country First!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if(year==""){
+
+                        var errorMsg='Please Select a Year First!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if(resultSydtem==""){
+
+                        var errorMsg='Please Select a Result System First!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if(cgpa==""){
+
+                        var errorMsg='Please Type Your Result/CGPA First!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if(status==""){
+
+                        var errorMsg='Please Select a status First!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+
+
+
+                }
+                else {
+
+                    var educationLevel=$('#educationLevel'+(counter-1)).val();
+                    var degree=$('#degree'+(counter-1)).val();
+                    var instituteName=$('#instituteName'+(counter-1)).val();
+//                    var major=$('#major'+(counter-1)).val();
+                    var country=$('#country'+(counter-1)).val();
+                    var year=$('#passingYear'+(counter-1)).val();
+                    var resultSydtem=$('#resultSydtem'+(counter-1)).val();
+                    var cgpa=$('#cgpa'+(counter-1)).val();
+//                    var resultOutOf=$('#resultOutOf'+(counter-1)).val();
+                    var status=$('#educationStatus'+(counter-1)).val();
+
+                    if(educationLevel==""){
+
+                        var errorMsg='Please Select a Education Level First!!'
+                        validationError(errorMsg)
+                        return false;
+                    }
+                    if(degree==""){
+
+                        var errorMsg='Please Select Degree First!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if(instituteName==""){
+
+                        var errorMsg='Please Type instituteName First!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if (instituteName.length > 255){
+
+                        var errorMsg='Institute Name Should not more than 255 Charecter Length!!'
+                        validationError(errorMsg)
+                        return false;
+                    }
+                    if(country==""){
+
+                        var errorMsg='Please Select a Country First!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if(year==""){
+
+                        var errorMsg='Please Select a Year First!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if(resultSydtem==""){
+
+                        var errorMsg='Please Select a Result System First!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if(cgpa==""){
+
+                        var errorMsg='Please Type Your Result/CGPA First!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if(status==""){
+
+                        var errorMsg='Please Select a status First!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+
+
                 }
 
 
@@ -192,7 +351,7 @@
                     +'<div class="form-group col-md-4">'+
                 '<label for="">Education Level</label>'+
                 '<select name="educationLevel[]" class="form-control" data-panel-id="'+ counter+'" required onchange="getDegree(this)"id="educationLevel'+counter+'">'+
-                    '<option>Select Education Level</option>'+
+                    '<option value="">Select Education Level</option>'+
                 @foreach($educationLevel as $edulevel)
                 '<option value="{{$edulevel->educationLevelId}}">{{$edulevel->educationLevelName}}</option>'+
                         @endforeach
@@ -203,7 +362,7 @@
 
                     '<label for="">Degree</label>'+
                     '<select name="degree[]" class="form-control" data-panel-id="'+ counter+'" required onchange="getMajor(this)" id="degree'+counter+'">'+
-                    '<option>Select Degree</option>'+
+                    '<option value="">Select Degree</option>'+
 
                 '</select>'+
 
@@ -211,18 +370,19 @@
 
                 '<div class="form-group col-md-12">'+
                     '<label for="">Institute Name</label>'+
-                '<input type="text" name="instituteName[]" class="form-control" required id="" placeholder="">'+
+                '<input type="text" name="instituteName[]" class="form-control" required id="instituteName'+counter+'" placeholder="">'+
                     '</div>'+
                     '<div class="form-group col-md-6">'+
                     '<label for="">Major</label>'+
                     '<select name="major[]" class="form-control"  id="major'+counter+'">'+
-                    '<option>Select Major</option>'+
+                    '<option value="">Select Major</option>'+
                 '</select>'+
                 '</div>'+
 
                 '<div class="form-group col-md-3">'+
                     '<label for="">Country</label>'+
-                   ' <select name="country[]" class="form-control" required id="sel1">'+
+                   ' <select name="country[]" class="form-control" required id="country'+counter+'">'+
+                    '<option value="">Select Country</option>'+
                         @foreach($country as $coun)
                     '<option value="{{$coun->countryId}}">{{$coun->countryName}}</option>'+
                         @endforeach
@@ -231,12 +391,12 @@
 
                     '<div class="form-group col-md-3">'+
                     '<label for="">Year</label>'+
-                   ' <input name="passingYear[]" type="text" class="form-control date" required id="" placeholder="passing Year">'+
+                   ' <input name="passingYear[]" type="text" class="form-control date" required id="passingYear'+counter+'" placeholder="passing Year">'+
                    ' </div>'+
                     '<div class="form-group col-md-3">'+
                     '<label for="">Result System</label>'+
-                '<select name="resultSystem[]" class="form-control" required id="sel1">'+
-                    '<option>Select System</option>'+
+                '<select name="resultSystem[]" class="form-control" required id="resultSydtem'+counter+'">'+
+                    '<option value="">Select System</option>'+
                 @foreach(RESULT_SYSTEM as $key=>$value)
                 '<option value="{{$value}}">{{$key}}</option>'+
                         @endforeach
@@ -244,15 +404,16 @@
                     '</div>'+
                    ' <div class="form-group col-md-3">'+
                     '<label for="">CGPA</label>'+
-                    '<input name="result[]" type="text" class="form-control" id="" required  placeholder="">'+
+                    '<input name="result[]" type="text" class="form-control" id="cgpa'+counter+'" required  placeholder="">'+
                     '</div>'+
                     '<div class="form-group col-md-3">'+
                     '<label for="">Out of</label>'+
-                '<input type="text" name="resultOutOf[]" class="form-control" id="" placeholder="CGPA Out of">'+
+                '<input type="text" name="resultOutOf[]" class="form-control" id="resultOutOf'+counter+'" placeholder="CGPA Out of">'+
                     '</div>'+
                     '<div class="form-group col-md-3">'+
                     '<label for="">Status</label>'+
-                    '<select name="status[]"class="form-control" required id="sel1">'+
+                    '<select name="status[]"class="form-control" required id="educationStatus'+counter+'">'+
+                    '<option value="">Select Status</option>'+
                         @foreach(COMPLETING_STATUS as $key=>$value)
                     '<option value="{{$value}}">{{$key}}</option>'+
                         @endforeach
@@ -357,6 +518,24 @@
                 success:function(data) {
                     document.getElementById("major"+btn).innerHTML = data;
 
+                }
+            });
+
+        }
+        function validationError(errorMsg){
+
+            $.alert({
+                title: 'Error',
+                type: 'red',
+                content: errorMsg,
+                buttons: {
+                    tryAgain: {
+                        text: 'Ok',
+                        btnClass: 'btn-green',
+                        action: function () {
+
+                        }
+                    }
                 }
             });
 

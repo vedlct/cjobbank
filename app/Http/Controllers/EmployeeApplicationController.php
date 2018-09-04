@@ -8,13 +8,12 @@ use App\Ethnicity;
 use App\Jobapply;
 use App\Nationality;
 use App\Religion;
-
 use Illuminate\Http\Request;
 use Session;
 use Auth;
 use Image;
 
-class EmployeeController extends Controller
+class EmployeeApplicationController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -33,30 +32,16 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        return view('home');
+       // return view('home');
     }
 
-    public function getEmployeeCvCareerObjective()
-    {
-        $userId=Auth::user()->userId;
-        return view('userCv.careerObjective');
-
-
-    }
-    public function applyJob($jobId)
+    public function getAllApplication()
     {
         $empId=Employee::where('fkuserId',Auth::user()->userId)->first()->employeeId;
 
+        $jobApplyList=Jobapply::select('job.title','job.pdflink','zone.zoneName','jobapply.applydate')->leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')->leftJoin('zone', 'zone.zoneId', '=', 'job.fkzoneId')->where('fkemployeeId',$empId)->get();
 
-
-        $jobApply=new Jobapply();
-        $jobApply->applydate=date('Y-m-d');
-        $jobApply->fkjobId=$jobId;
-        $jobApply->fkemployeeId=$empId;
-        $jobApply->status=JOB_STATUS['Pending'];
-        $jobApply->save();
-
-        return redirect()->route('job.all');
+        return view('job.jobApplyList',compact('jobApplyList'));
 
 
     }

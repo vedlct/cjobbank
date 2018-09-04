@@ -1,0 +1,165 @@
+@extends('main')
+@section('content')
+
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card m-b-30">
+                <div class="card-header">
+                    <h4>Manage All Job</h4>
+                </div>
+                <div class="card-body">
+
+
+                    <table id="manageapplication" class="table table-striped table-bordered" style="width:100%" >
+                        <thead>
+                        <tr>
+
+                            <th>Job Title</th>
+                            <th>Position</th>
+                            <th>Deadline</th>
+                            <th>Zone</th>
+                            <th>Create by</th>
+                            <th>Create date</th>
+                            <th>update by</th>
+                            <th>update date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($allJobList as $jobList)
+                            <tr>
+
+                                <td>{{$jobList->jobTitle}}</td>
+                                <td>{{$jobList->jobPosition}}</td>
+                                <td>{{$jobList->deadline}}</td>
+                                <td>{{$jobList->zoneName}}</td>
+                                <td>{{$jobList->createBy}}</td>
+                                <td>{{date('Y-m-d',strtotime($jobList->createDate))}}</td>
+                                <td>{{$jobList->updateBy}}</td>
+                                <td>{{date('Y-m-d',strtotime($jobList->updateTime))}}</td>
+                                <td>
+                                    <select class="form-control" data-panel-id="{{$jobList->jobId}}" onchange="changeJobStatus(this)" id="jobStatus{{$jobList->jobId}}" name="status">
+                                        <option value="">Select Status</option>
+                                        <option @if($jobList->status =='1') selected @endif value="1">Posted</option>
+                                        <option @if($jobList->status =='2') selected @endif value="2">De-activate</option>
+
+                                    </select>
+
+                                </td>
+
+                                <td><a href="{{route('job.admin.edit',$jobList->jobId)}}" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>&nbsp;
+                                    <a class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></a>&nbsp;
+                                    <a target="_blank" href="{{$jobList->pdflink}}" class="btn btn-sm btn-info"><i class="fa fa-file-pdf-o"></i></a>&nbsp;
+                                </td>
+
+
+
+
+                            </tr>
+                        @endforeach
+
+
+                        </tbody>
+
+                    </table>
+
+
+
+                </div>
+
+            </div>
+        </div> <!-- end col -->
+    </div> <!-- end row -->
+
+
+
+
+
+
+@endsection
+@section('foot-js')
+
+    <script src="{{url('public/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{url('public/assets/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    <!-- Buttons examples -->
+    {{--<script src="{{url('public/assets/plugins/datatables/dataTables.buttons.min.js')}}"></script>--}}
+    {{--<script src="https://cdn.datatables.net/rowreorder/1.2.3/js/dataTables.rowReorder.min.js"></script>--}}
+    {{--<script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>--}}
+    <script src="{{url('public/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+            table=$('#manageapplication').DataTable(
+
+                {
+                    "columnDefs": [
+                        {
+                            "targets": [0,1,3], //first column / numbering column
+                            "orderable": false, //set not orderable
+
+                        },
+
+                    ]
+                }
+            );
+        } );
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        function changeJobStatus(x) {
+
+            btn = $(x).data('panel-id');
+            var job = document.getElementById('jobStatus'+btn).value;
+
+            $.confirm({
+                title: 'Confirm!',
+                content: 'Are you sure To change this Job Status?',
+                icon: 'fa fa-warning',
+                type: 'red',
+                typeAnimated: true,
+                buttons: {
+                    tryAgain: {
+                        text: 'Yes',
+                        btnClass: 'btn-red',
+                        action: function(){
+
+                            $.ajax({
+                                type: "POST",
+                                url: '{{route('job.admin.changeJobStatus')}}',
+                                data: {id: x,jobStatus:job},
+                                success: function (data) {
+                                    $.alert({
+                                        title: 'Success!',
+                                        type: 'green',
+                                        content: 'job Status change successfully',
+                                        buttons: {
+                                            tryAgain: {
+                                                text: 'Ok',
+                                                btnClass: 'btn-green',
+                                                action: function () {
+//                                                    table.ajax().reload();
+                                                }
+                                            }
+                                        }
+                                    });
+
+//                                    table.ajax().reload();
+                                },
+                            });
+                        }
+                    },
+                    No: function () {
+                    },
+                }
+            });
+
+        }
+    </script>
+
+@endsection

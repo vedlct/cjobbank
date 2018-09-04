@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobapply;
 use Illuminate\Http\Request;
 use App\Job;
 
@@ -11,6 +12,7 @@ class JobController extends Controller
 
 
        $jobs=Job::select('job.jobId','job.title','job.details','job.details','job.deadline');
+
        if($r->search !=""){
            $jobs=$jobs->where('job.title', 'like', '%' . $r->search . '%');
        }

@@ -1,4 +1,4 @@
-<form  method="post" action="{{route('cv.updatePersonalEducation')}}">
+<form  method="post" action="{{route('cv.updatePersonalEducation')}}" onsubmit="return checkEducation()" >
 
 {{csrf_field()}}
 
@@ -19,7 +19,8 @@
 
                 <label for="">Degree</label>
                 <select name="degree" class="form-control" required id="degree">
-                    <option value="{{$education->degreeId}}">{{$education->degreeName}}</option>
+                    <option value="">Select Degree</option>
+                    <option  selected value="{{$education->degreeId}}">{{$education->degreeName}}</option>
 
                 </select>
 
@@ -27,18 +28,20 @@
 
             <div class="form-group col-md-12">
                 <label for="">Institute Name</label>
-                <input type="text" name="instituteName" required class="form-control" id="" value="{{$education->institutionName}}" placeholder="">
+                <input type="text" name="instituteName" required class="form-control" id="instituteName" value="{{$education->institutionName}}" placeholder="">
             </div>
             <div class="form-group col-md-6">
                 <label for="">Major</label>
                 <select name="major" class="form-control" id="major">
+                    <option value="">Select Major</option>
                     <option value="{{$education->educationMajorId}}">{{$education->educationMajorName}}</option>
                 </select>
             </div>
 
             <div class="form-group col-md-3">
                 <label for="">Country</label>
-                <select name="country" class="form-control" required id="sel1">
+                <select name="country" class="form-control" required id="country">
+                    <option value="">Select Country</option>
                     @foreach($country as $coun)
                         <option @if($coun->countryId == $education->fkcountryId )selected @endif value="{{$coun->countryId}}">{{$coun->countryName}}</option>
                     @endforeach
@@ -48,11 +51,11 @@
 
             <div class="form-group col-md-3">
                 <label for="">Year</label>
-                <input name="passingYear" type="text" class="form-control date" value="{{$education->passingYear}}" id="" required placeholder="passing Year">
+                <input name="passingYear" type="text" class="form-control date" value="{{$education->passingYear}}" id="passingYear" required placeholder="passing Year">
             </div>
             <div class="form-group col-md-3">
                 <label for="">Result System</label>
-                <select name="resultSystem" class="form-control" required id="sel1">
+                <select name="resultSystem" class="form-control" required id="resultSydtem">
                     <option value="">Select System</option>
                     @foreach(RESULT_SYSTEM as $key=>$value)
                         <option @if($value==$education->resultSystem)selected @endif value="{{$value}}">{{$key}}</option>
@@ -62,15 +65,15 @@
 
             <div class="form-group col-md-3">
                 <label for="">CGPA</label>
-                <input name="result" type="text" class="form-control" value="{{$education->result}}" required id="" placeholder="">
+                <input name="result" type="text" class="form-control" value="{{$education->result}}" required id="cgpa" placeholder="">
             </div>
             <div class="form-group col-md-3">
                 <label for="">Out of</label>
-                <input type="text" name="resultOutOf" class="form-control" id=""  value="{{$education->resultOutOf}}"placeholder="CGPA Out of">
+                <input type="text" name="resultOutOf" class="form-control" id="resultOutOf"  value="{{$education->resultOutOf}}"placeholder="CGPA Out of">
             </div>
             <div class="form-group col-md-3">
                 <label for="">Status</label>
-                <select name="status"class="form-control" required id="sel1">
+                <select name="status"class="form-control" required id="educationStatus">
                     @foreach(COMPLETING_STATUS as $key=>$value)
                         <option @if($value == $education->status) selected @endif value="{{$value}}">{{$key}}</option>
                     @endforeach
@@ -81,14 +84,13 @@
 
         </div>
     <div class="form-group col-md-12">
-        <button  class="btn btn-success pull-left">Update</button>
-        <a href="{{route('candidate.cvEducation')}}"><button  class="btn btn-danger pull-left">Cancel</button></a>
+        <button class="btn btn-success pull-left">Update</button>
+        <a class="btn btn-danger pull-left" href="{{route('candidate.cvEducation')}}">Cancel</a>
     </div>
-        <br>
-    <div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>
-
 
 </form>
+
+
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 <script>
 
@@ -134,5 +136,103 @@
         });
 
     });
+
+    function checkEducation(){
+
+        var educationLevel=$('#educationLevel').val();
+        var degree=$('#degree').val();
+        var instituteName=$('#instituteName').val();
+
+        var country=$('#country').val();
+        var year=$('#passingYear').val();
+        var resultSydtem=$('#resultSydtem').val();
+        var cgpa=$('#cgpa').val();
+
+        var status=$('#educationStatus').val();
+
+        if(educationLevel==""){
+
+            var errorMsg='Please Select a Education Level First!!';
+            validationError(errorMsg);
+            return false;
+        }
+        if(degree==""){
+
+            var errorMsg='Please Select Degree First!!';
+            validationError(errorMsg);
+            return false;
+
+        }
+        if(instituteName==""){
+
+            var errorMsg='Please Type instituteName First!!';
+            validationError(errorMsg);
+            return false;
+
+        }
+        if (instituteName.length > 255){
+
+            var errorMsg='Institute Name Should not more than 255 Charecter Length!!';
+            validationError(errorMsg);
+            return false;
+
+        }
+        if(country==""){
+
+            var errorMsg='Please Select a Country First!!';
+            validationError(errorMsg);
+            return false;
+
+        }
+        if(year==""){
+
+            var errorMsg='Please Select a Year First!!';
+            validationError(errorMsg);
+            return false;
+
+        }
+        if(resultSydtem==""){
+
+            var errorMsg='Please Select a Result System First!!';
+            validationError(errorMsg);
+            return false;
+
+        }
+        if(cgpa==""){
+
+            var errorMsg='Please Type Your Result/CGPA First!!';
+            validationError(errorMsg);
+            return false;
+
+        }
+        if(status==""){
+
+            var errorMsg='Please Select a status First!!'
+            validationError(errorMsg);
+            return false;
+
+        }
+        //return false;
+
+    }
+
+    function validationError(errorMsg){
+
+        $.alert({
+            title: 'Error',
+            type: 'red',
+            content: errorMsg,
+            buttons: {
+                tryAgain: {
+                    text: 'Ok',
+                    btnClass: 'btn-green',
+                    action: function () {
+
+                    }
+                }
+            }
+        });
+
+    }
 
 </script>

@@ -202,9 +202,93 @@
 
 
             $("#addButton").click(function () {
+
                 if(counter>10){
                     alert("Only 10 Section allow per Time!!");
                     return false;
+                }
+
+                if (counter > 1)
+                {
+                    var certificateName=$('#certificateName'+(counter-1)).val();
+                    var institutionName=$('#institutionName'+(counter-1)).val();
+                    var result=$('#result'+(counter-1)).val();
+                    var start=$('#start'+(counter-1)).val();
+                    var end=$('#end'+(counter-1)).val();
+                    var status=$('#professinalCertificateStatus'+(counter-1)).val();
+
+
+                    if(certificateName==""){
+
+                        var errorMsg='Please Type certificateName First!!'
+                        validationError(errorMsg)
+                        return false;
+                    }
+                    if (certificateName.length > 100){
+
+                        var errorMsg='certificateName Should not more than 100 Charecter Length!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if(institutionName==""){
+
+                        var errorMsg='Please Type instituteName First!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if (institutionName.length > 255){
+
+                        var errorMsg='Institute Name Should not more than 255 Charecter Length!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if(result==""){
+
+                        var errorMsg='Please Type a Result First!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if (result.length > 10){
+
+                        var errorMsg='Result Should not more than 10 Charecter Length!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if(start==""){
+
+                        var errorMsg='Please Select a Strat Date First!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if(end==""){
+
+                        var errorMsg='Please Select a End Date First!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+
+                    if(Date.parse(end)<Date.parse(start)){
+
+                        var errorMsg='End date should after Start Date!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+
+                    if(status==""){
+
+                        var errorMsg='Please Select a status First!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
                 }
 
 
@@ -218,33 +302,35 @@
                     '<div class="row">'+
                     '<div class="form-group col-md-12">'+
                     '<label for="inputEmail4">Certificate Name</label>'+
-                    '<input type="text" class="form-control" name="certificateName[]" id="inputEmail4" placeholder="certificate" required>'+
+                    '<input type="text" class="form-control" name="certificateName[]" id="certificateName'+counter+'" placeholder="certificate" required>'+
                     '</div>'+
                     '</div>'+
                     '<div class="row">'+
                     '<div class="form-group col-md-8">'+
                     '<label for="inputEmail4">Institute Name</label>'+
-                    '<input type="text" class="form-control" name="institutionName[]" id="inputEmail4" placeholder="institution" required>'+
+                    '<input type="text" class="form-control" name="institutionName[]" id="institutionName'+counter+'" placeholder="institution" required>'+
                     '</div>'+
                     '<div class="form-group col-md-4">'+
                     '<label for="inputPassword4">Result</label>'+
-                    '<input type="text" class="form-control" name="result[]" id="inputPassword4" placeholder="">'+
+                    '<input type="text" class="form-control" name="result[]" id="result'+counter+'" placeholder="">'+
                     '</div>'+
 
                     '<div class="form-group col-md-4">'+
                     '<label for="inputPassword4">Start Date</label>'+
-                    '<input type="text" class="form-control date" name="startDate[]"  placeholder="date" required>'+
+                    '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date" required>'+
                     '</div>'+
                     '<div class="form-group col-md-4">'+
                     '<label for="inputPassword4">End Date</label>'+
-                    '<input type="text" class="form-control date" name="endDate[]"  placeholder="date">'+
+                    '<input type="text" class="form-control date" name="endDate[]" id="end'+counter+'"  placeholder="date">'+
                     '</div>'+
 
                     '<div class="form-group col-md-4">'+
                     '<label for="inputPassword4">Staus</label>'+
-                    '<select class="form-control" name="status[]">'+
-                    '<option value="1">On going</option>'+
-                    '<option value="2">Completed</option>'+
+                    '<select class="form-control" id="professinalCertificateStatus'+counter+'" name="status[]">'+
+                    '<option value="">Select Status</option>'+
+                    @foreach(COMPLETING_STATUS as $key=>$value)
+                        '<option value="{{$value}}">{{$key}}</option>'+
+                    @endforeach
                     '</select>'+
                     '</div>'+
                     '</div>'+
@@ -268,7 +354,7 @@
 
 
                 if(counter=='1'){
-                    alert("Atleast One Course Section is needed!!");
+                    alert("Atleast One Section is needed!!");
                     return false;
                 }
                 counter--;
@@ -281,6 +367,25 @@
 
 
         });
+
+        function validationError(errorMsg){
+
+            $.alert({
+                title: 'Error',
+                type: 'red',
+                content: errorMsg,
+                buttons: {
+                    tryAgain: {
+                        text: 'Ok',
+                        btnClass: 'btn-green',
+                        action: function () {
+
+                        }
+                    }
+                }
+            });
+
+        }
 
     </script>
 
