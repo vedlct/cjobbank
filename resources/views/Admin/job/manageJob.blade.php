@@ -6,7 +6,8 @@
         <div class="col-12">
             <div class="card m-b-30">
                 <div class="card-header">
-                    <h4>Manage All Job</h4>
+                    <h4 class="pull-left">Manage All Job</h4>
+                    <a href="{{route('job.admin.create')}}"><button class="btn btn-success pull-right">Post Job</button></a>
                 </div>
                 <div class="card-body">
 
@@ -51,8 +52,10 @@
                                 </td>
 
                                 <td><a href="{{route('job.admin.edit',$jobList->jobId)}}" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>&nbsp;
-                                    <a class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></a>&nbsp;
+                                    <a data-panel-id="{{$jobList->jobId}}" onclick="deleteJob(this)" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></a>&nbsp;
+                                    @if(!empty($jobList->pdflink))
                                     <a target="_blank" href="{{$jobList->pdflink}}" class="btn btn-sm btn-info"><i class="fa fa-file-pdf-o"></i></a>&nbsp;
+                                    @endif
                                 </td>
 
 
@@ -96,7 +99,7 @@
 
                     "columnDefs": [
                         {
-                            "targets": [0,1,3], //first column / numbering column
+                            "targets": [0,1,3,4,6,8,9], //first column / numbering column
                             "orderable": false, //set not orderable
 
                         },
@@ -117,7 +120,6 @@
 
             btn = $(x).data('panel-id');
             var job = document.getElementById('jobStatus'+btn).value;
-
 
             $.confirm({
                 title: 'Confirm!',
@@ -165,6 +167,60 @@
                     },
                 }
             });
+
+        }
+
+        function deleteJob(x) {
+
+            $.confirm({
+                title: 'Confirm!',
+                content: 'Are you sure To Delete this Job?',
+                icon: 'fa fa-warning',
+                type: 'red',
+                typeAnimated: true,
+                buttons: {
+                    tryAgain: {
+                        text: 'Yes',
+                        btnClass: 'btn-red',
+                        action: function(){
+
+                            btn = $(x).data('panel-id');
+
+                            $.ajax({
+                                type: "POST",
+                                url: '{{route('job.admin.delete')}}',
+                                data: {'id':btn,'_token':"{{csrf_token()}}"},
+                                success: function (data) {
+
+                                    $.alert({
+                                        title: 'Success!',
+                                        type: 'green',
+                                        content: 'job Deleted successfully',
+                                        buttons: {
+                                            tryAgain: {
+                                                text: 'Ok',
+                                                btnClass: 'btn-green',
+                                                action: function () {
+
+                                                    location.reload();
+
+                                                }
+                                            }
+                                        }
+                                    });
+
+                                },
+                            });
+                        }
+                    },
+                    No: function () {
+
+//                        location.reload();
+
+                    },
+                }
+            });
+
 
         }
     </script>
