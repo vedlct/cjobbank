@@ -15,7 +15,12 @@
                         <div class="tab">
 
                             <h2 style="margin-bottom: 30px; text-align:center">Education </h2>
+                            @php $R=0;
+                                    @endphp
                             @foreach($employeeCvEducationInfo as $educationInfo)
+                                @if($R>0)
+                                    <div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>
+                                @endif
                             <div id="edit{{$educationInfo->educationId}}" class="row">
 
 
@@ -100,10 +105,12 @@
 
 
                                 </div>
-                                    <div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>
+
 
 
                             </div>
+                                    @php $R++;
+                                    @endphp
                             @endforeach
 
 
@@ -121,9 +128,8 @@
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
-
-                                <button type="submit" id="submitBtn">Save</button>
                                 <a href="{{route('candidate.cvPersonalInfo')}}"><button type="button" id="btnPevious">Back</button></a>
+                                <button type="submit" id="submitBtn">Save</button>
                                 <a href="{{route('candidate.cvProfessionalCertificate')}}"><button type="button" id="nextBtn" >Next</button></a>
                             </div>
                         </div>
@@ -132,6 +138,7 @@
 
                     <!-- Circles which indicates the steps of the form: -->
                     <div style="text-align:center;margin-top:40px;">
+                        <span class="step"></span>
                         <span class="step"></span>
                         <span class="step"></span>
                         <span class="step"></span>
@@ -270,13 +277,90 @@
                     return false;
                 }
 
+                if (counter > 2 ){
+
+                    var educationLevel=$('#educationLevel'+(counter-1)).val();
+                    var degree=$('#degree'+(counter-1)).val();
+                    var instituteName=$('#instituteName'+(counter-1)).val();
+//                    var major=$('#major'+(counter-1)).val();
+                    var country=$('#country'+(counter-1)).val();
+                    var year=$('#passingYear'+(counter-1)).val();
+                    var resultSydtem=$('#resultSydtem'+(counter-1)).val();
+                    var cgpa=$('#cgpa'+(counter-1)).val();
+//                    var resultOutOf=$('#resultOutOf'+(counter-1)).val();
+                    var status=$('#educationStatus'+(counter-1)).val();
+
+                    if(educationLevel==""){
+
+                        var errorMsg='Please Select a Education Level First!!'
+                        validationError(errorMsg)
+                        return false;
+                    }
+                    if(degree==""){
+
+                        var errorMsg='Please Select Degree First!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if(instituteName==""){
+
+                        var errorMsg='Please Type instituteName First!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if (instituteName.length > 255){
+
+                        var errorMsg='Institute Name Should not more than 255 Charecter Length!!'
+                        validationError(errorMsg)
+                        return false;
+                    }
+                    if(country==""){
+
+                        var errorMsg='Please Select a Country First!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if(year==""){
+
+                        var errorMsg='Please Select a Year First!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if(resultSydtem==""){
+
+                        var errorMsg='Please Select a Result System First!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if(cgpa==""){
+
+                        var errorMsg='Please Type Your Result/CGPA First!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if(status==""){
+
+                        var errorMsg='Please Select a status First!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+
+                }
+
                 var newTextBoxDiv = $(document.createElement('div'))
                     .attr("id", 'TextBoxDiv' + counter).attr("class", 'row');
                 newTextBoxDiv.after().html('<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>'
                     +'<div class="form-group col-md-4">'+
                     '<label for="">Education Level</label>'+
                     '<select name="educationLevel[]" class="form-control" data-panel-id="'+ counter+'" required onchange="getDegree(this)"id="educationLevel'+counter+'">'+
-                    '<option>Select Education Level</option>'+
+                    '<option value="">Select Education Level</option>'+
                         @foreach($educationLevel as $edulevel)
                             '<option value="{{$edulevel->educationLevelId}}">{{$edulevel->educationLevelName}}</option>'+
                         @endforeach
@@ -287,7 +371,7 @@
 
                     '<label for="">Degree</label>'+
                     '<select name="degree[]" class="form-control" data-panel-id="'+ counter+'" required onchange="getMajor(this)" id="degree'+counter+'">'+
-                    '<option>Select Degree</option>'+
+                    '<option value="">Select Degree</option>'+
 
                     '</select>'+
 
@@ -295,18 +379,19 @@
 
                     '<div class="form-group col-md-12">'+
                     '<label for="">Institute Name</label>'+
-                    '<input type="text" name="instituteName[]" class="form-control" required id="" placeholder="">'+
+                    '<input type="text" name="instituteName[]" class="form-control" required id="instituteName'+counter+'" placeholder="">'+
                     '</div>'+
                     '<div class="form-group col-md-6">'+
                     '<label for="">Major</label>'+
                     '<select name="major[]" class="form-control"  id="major'+counter+'">'+
-                    '<option>Select Major</option>'+
+                    '<option value="">Select Major</option>'+
                     '</select>'+
                     '</div>'+
 
                     '<div class="form-group col-md-3">'+
                     '<label for="">Country</label>'+
-                    ' <select name="country[]" class="form-control" required id="sel1">'+
+                    ' <select name="country[]" class="form-control" required id="country'+counter+'">'+
+                    '<option value="">Select Country</option>'+
                         @foreach($country as $coun)
                             '<option value="{{$coun->countryId}}">{{$coun->countryName}}</option>'+
                         @endforeach
@@ -315,12 +400,12 @@
 
                     '<div class="form-group col-md-3">'+
                     '<label for="">Year</label>'+
-                    ' <input name="passingYear[]" type="text" class="form-control date" required id="" placeholder="passing Year">'+
+                    ' <input name="passingYear[]" type="text" class="form-control date" required id="passingYear'+counter+'" placeholder="passing Year">'+
                     ' </div>'+
                     '<div class="form-group col-md-3">'+
                     '<label for="">Result System</label>'+
-                    '<select name="resultSystem[]" class="form-control" required id="sel1">'+
-                    '<option>Select System</option>'+
+                    '<select name="resultSystem[]" class="form-control" required id="resultSydtem'+counter+'">'+
+                    '<option value="">Select System</option>'+
                         @foreach(RESULT_SYSTEM as $key=>$value)
                             '<option value="{{$value}}">{{$key}}</option>'+
                         @endforeach
@@ -328,15 +413,16 @@
                     '</div>'+
                     ' <div class="form-group col-md-3">'+
                     '<label for="">CGPA</label>'+
-                    '<input name="result[]" type="text" class="form-control" id="" required  placeholder="">'+
+                    '<input name="result[]" type="text" class="form-control" id="cgpa'+counter+'" required  placeholder="">'+
                     '</div>'+
                     '<div class="form-group col-md-3">'+
                     '<label for="">Out of</label>'+
-                    '<input type="text" name="resultOutOf[]" class="form-control" id="" placeholder="CGPA Out of">'+
+                    '<input type="text" name="resultOutOf[]" class="form-control" id="resultOutOf'+counter+'" placeholder="CGPA Out of">'+
                     '</div>'+
                     '<div class="form-group col-md-3">'+
                     '<label for="">Status</label>'+
-                    '<select name="status[]"class="form-control" required id="sel1">'+
+                    '<select name="status[]"class="form-control" required id="educationStatus'+counter+'">'+
+                    '<option value="">Select Status</option>'+
                         @foreach(COMPLETING_STATUS as $key=>$value)
                             '<option value="{{$value}}">{{$key}}</option>'+
                         @endforeach
@@ -369,14 +455,10 @@
             $("#removeButton").click(function () {
 
 
-                if(counter=='1'){
-                    alert("Atleast One Course Section is needed!!");
-                    return false;
-                }
                 counter--;
                 if(counter<=2){
                     $("#removeButton").hide();
-                    
+
                     $("#submitBtn").hide();
                 }
                 $("#TextBoxDiv" + counter).remove();
@@ -418,6 +500,26 @@
             });
 
         }
+
+        function validationError(errorMsg){
+
+            $.alert({
+                title: 'Error',
+                type: 'red',
+                content: errorMsg,
+                buttons: {
+                    tryAgain: {
+                        text: 'Ok',
+                        btnClass: 'btn-green',
+                        action: function () {
+
+                        }
+                    }
+                }
+            });
+
+        }
+
     </script>
 
 

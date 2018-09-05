@@ -41,14 +41,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::view('apply','usercv')->name('cv.apply');
 
 Route::view('application','application')->name('application');
-Route::view('job/all','job.all')->name('job.all');
+
 Route::view('job/manage','job.manage')->name('job.manage');
 
 Route::view('manage/zone','manage.zone')->name('manage.zone');
 Route::view('manage/education','manage.education')->name('manage.education');
 
 //user Cv
-Route::get('Candidate-CV','EmployeeController@getEmployeeCv')->name('candidate.cvPersonalInfo');
+
 Route::get('Candidate-CV-CareerObjective','EmployeeController@getEmployeeCvCareerObjective')->name('candidate.cvCareerObjective');
 
 //ProfessionalCertificate
@@ -60,22 +60,21 @@ Route::post('delete/professionalQualificationId','ProfessionalCertificateControl
 
 
 
-Route::get('Candidate-CV-Education','EmployeeController@getEmployeeCvEducation')->name('candidate.cvEducation');
 
 
-//
-Route::post('/Candidate-CV-savePersonalInfo', 'EmployeeController@insertPersonalInfo')->name('cv.insertPersonalInfo');
-Route::post('/Candidate-CV-updatePersonalInfo', 'EmployeeController@updatePersonalInfo')->name('cv.updatePersonalInfo');
+//PersonalInfo
+Route::get('Candidate-CV','PersonalInfoController@getEmployeeCv')->name('candidate.cvPersonalInfo');
+Route::post('/Candidate-CV-savePersonalInfo', 'PersonalInfoController@insertPersonalInfo')->name('cv.insertPersonalInfo');
+Route::post('/Candidate-CV-updatePersonalInfo', 'PersonalInfoController@updatePersonalInfo')->name('cv.updatePersonalInfo');
 
-//
-Route::post('/Candidate-CV-educationDegree', 'EmployeeController@getDegreePerEducation')->name('cv.getDegreeForEducation');
-Route::post('/Candidate-CV-educationMajor', 'EmployeeController@getMajorPerEducation')->name('cv.getMajorForEducation');
-
-Route::post('/Candidate-CV-educationEdit', 'EmployeeController@getEducationEdit')->name('cv.educationEdit');
-
-Route::post('/Candidate-CV-education-Save', 'EmployeeController@insertPersonalEducation')->name('cv.insertPersonalEducation');
-Route::post('/Candidate-CV-education-Update', 'EmployeeController@updatePersonalEducation')->name('cv.updatePersonalEducation');
-Route::post('/Candidate-CV-education-Delete', 'EmployeeController@deletePersonalEducation')->name('cv.PersonalEducationDelete');
+//Education
+Route::get('Candidate-CV-Education','EducationController@getEmployeeCvEducation')->name('candidate.cvEducation');
+Route::post('/Candidate-CV-educationDegree', 'EducationController@getDegreePerEducation')->name('cv.getDegreeForEducation');
+Route::post('/Candidate-CV-educationMajor', 'EducationController@getMajorPerEducation')->name('cv.getMajorForEducation');
+Route::post('/Candidate-CV-educationEdit', 'EducationController@getEducationEdit')->name('cv.educationEdit');
+Route::post('/Candidate-CV-education-Save', 'EducationController@insertPersonalEducation')->name('cv.insertPersonalEducation');
+Route::post('/Candidate-CV-education-Update', 'EducationController@updatePersonalEducation')->name('cv.updatePersonalEducation');
+Route::post('/Candidate-CV-education-Delete', 'EducationController@deletePersonalEducation')->name('cv.PersonalEducationDelete');
 
 
 //Training
@@ -85,9 +84,45 @@ Route::post('/editTrainingCertificate','TrainingController@editTrainingCertifica
 Route::post('/updateCvTraning','TrainingController@updateCvTraning')->name('update.cvtraning');
 Route::post('/deleteCvTraning','TrainingController@deleteCvTraning')->name('cvTrainingCertificate.delete');
 
+
 //Job Experience
 Route::get('/Candidate-CV-JobExperience','JobExperienceController@index')->name('JobExperience.index');
 Route::post('/Candidate-CV-JobExperience','JobExperienceController@submitJobExperience')->name('submit.jobExperience');
 Route::post('/editJobExperience','JobExperienceController@editJobExperience')->name('JobExperience.edit');
 Route::post('/updateJobExperience','JobExperienceController@updateJobExperience')->name('update.jobExperience');
 Route::post('/deleteJobExperience','JobExperienceController@deleteJobExperience')->name('JobExperience.delete');
+//Refree
+Route::get('/Candidate-CV-Referee','RefreeController@index')->name('refree.index');
+Route::post('/Candidate-CV-Referee','RefreeController@submitRefree')->name('submit.refree');
+Route::post('/editRefree','RefreeController@editRefree')->name('refree.edit');
+Route::post('/updateRefree','RefreeController@updateRefree')->name('update.refree');
+Route::post('/deleteRefree','RefreeController@deleteRefree')->name('refree.delete');
+
+
+
+/*---------------------------Job----------------------*/
+Route::get('job/all','JobController@index')->name('job.all');
+Route::post('job/all','JobController@getJobData')->name('job.getJobData');
+Route::get('Candidate-Job-Apply/{jobId}','EmployeeController@applyJob')->name('candidate.ApplyJob');
+
+
+//candidate Application
+Route::get('Candidate-Applications','EmployeeApplicationController@getAllApplication')->name('candidate.manageApplication');
+
+
+/*-------------------------------Admin---------------------------------*/
+
+//job
+Route::get('Admin-Add-New-Job','Admin\JobController@addNewJob')->name('job.admin.create');
+Route::get('Admin-Manage-Job','Admin\JobController@manageJob')->name('job.admin.manage');
+
+Route::get('Admin-Edit-Job/{jobId}','Admin\JobController@jobEdit')->name('job.admin.edit');
+Route::post('Admin-Delete-Job','Admin\JobController@jobDelete')->name('job.admin.delete');
+
+Route::post('Admin-Update-Job','Admin\JobController@jobUpdate')->name('job.admin.update');
+Route::post('Admin-Insert-Job','Admin\JobController@jobInsert')->name('job.admin.insert');
+Route::post('Admin-Change-Job-Status','Admin\JobController@jobStatusUpdate')->name('job.admin.changeJobStatus');
+
+//Application
+Route::get('Admin-Manage-Application','Admin\ApplicationController@manageApplication')->name('application.admin.manage');
+Route::post('Admin-Show-All-Application','Admin\ApplicationController@showAllApplication')->name('application.admin.showAll');

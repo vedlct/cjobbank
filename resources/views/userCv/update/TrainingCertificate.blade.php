@@ -97,6 +97,7 @@
                             <span class="step"></span>
                             <span class="step"></span>
                             <span class="step"></span>
+                            <span class="step"></span>
                         </div>
 
 
@@ -172,7 +173,7 @@
                 x[i].className = x[i].className.replace(" active", "");
             }
             //... and adds the "active" class on the current step:
-            x[(n+4)].className += " active";
+            x[(n+3)].className += " active";
         }
     </script>
 
@@ -201,6 +202,70 @@
                     return false;
                 }
 
+                if (counter >1)
+                {
+                    var trainingName=$('#trainingName'+(counter-1)).val();
+                    var vanue=$('#vanue'+(counter-1)).val();
+                    var country=$('#country'+(counter-1)).val();
+
+                    var start=$('#start'+(counter-1)).val();
+                    var end=$('#end'+(counter-1)).val();
+
+
+                    if(trainingName==""){
+
+                        var errorMsg='Please Type a Training Name First!!'
+                        validationError(errorMsg)
+                        return false;
+                    }
+                    if (trainingName.length > 100){
+
+                        var errorMsg='Training Name Should not more than 100 Charecter Length!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if(vanue==""){
+
+                        var errorMsg='Please Type a Vanue First!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if (vanue.length > 255){
+
+                        var errorMsg='value Should not more than 255 Charecter Length!!';
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if(country==""){
+
+                        var errorMsg='Please Select a Country First!!';
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+
+                    if(start==""){
+                        var errorMsg='Please Select a Strat Date First!!';
+                        validationError(errorMsg)
+                        return false;
+                    }
+                    if(end==""){
+                        var errorMsg='Please Select a End Date First!!';
+                        validationError(errorMsg)
+                        return false;
+                    }
+
+                    if(Date.parse(end)<Date.parse(start)){
+                        var errorMsg='End date should after Start Date!!';
+                        validationError(errorMsg);
+                        return false;
+                    }
+
+                }
+
 
 
 
@@ -211,16 +276,16 @@
 
                     '<div class="form-group col-md-12"> ' +
                     '<label for="inputEmail4">Name Of The Training</label> ' +
-                    '<input type="text" class="form-control" name="trainingName[]" id="inputEmail4" placeholder="training name" required> ' +
+                    '<input type="text" class="form-control" name="trainingName[]" id="trainingName'+counter+'" placeholder="training name" required> ' +
                     '</div> ' +
 
                     '<div class="form-group col-md-8"> ' +
                     '<label for="inputEmail4">Vanue </label> ' +
-                    '<input type="text" class="form-control" name="vanue[]" id="inputEmail4" placeholder="vanue" required> ' +
+                    '<input type="text" class="form-control" name="vanue[]" id="vanue'+counter+'" placeholder="vanue" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
                     '<label for="inputPassword4">country</label>' +
-                    '<select class="form-control" name="countryId[]">'+
+                    '<select class="form-control" id="country'+counter+'" name="countryId[]">'+
                     '@foreach($countries as $country)'+
                     '<option value="{{$country->countryId}}">{{$country->countryName}}</option>'+
                     '@endforeach'+
@@ -228,11 +293,11 @@
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
                     '<label for="inputPassword4">Start Date</label> ' +
-                    '<input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" required> ' +
+                    '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
                     '<label for="inputPassword4">End Date</label> ' +
-                    '<input type="text" class="form-control date" name="endDate[]" id="end" placeholder="date"> ' +
+                    '<input type="text" class="form-control date" name="endDate[]" id="end'+counter+'" placeholder="date"> ' +
                     '</div>'
 
                 );
@@ -266,6 +331,25 @@
 
 
         });
+
+        function validationError(errorMsg){
+
+            $.alert({
+                title: 'Error',
+                type: 'red',
+                content: errorMsg,
+                buttons: {
+                    tryAgain: {
+                        text: 'Ok',
+                        btnClass: 'btn-green',
+                        action: function () {
+
+                        }
+                    }
+                }
+            });
+
+        }
 
     </script>
 

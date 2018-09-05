@@ -56,7 +56,7 @@ class JobExperienceController extends Controller
    }
 
    public function updateJobExperience(Request $r){
-//
+
        $experience=JobExperience::findOrFail($r->jobExperienceId);
        $experience->organization=$r->organization;
        $experience->degisnation=$r->degisnation;
