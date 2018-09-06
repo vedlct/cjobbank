@@ -162,7 +162,7 @@
                     },
                     No: function () {
 
-//                        location.reload();
+                        location.reload();
 
                     },
                 }
