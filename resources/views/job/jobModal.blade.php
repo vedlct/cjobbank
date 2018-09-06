@@ -7,7 +7,7 @@
         </div>
         <div class="form-group col-md-6">
             <label>Expected Salary</label>
-            <input type="number" placeholder="expected salary" name="expectedSalary">
+            <input type="number" placeholder="expected salary" name="expectedSalary" required>
         </div>
         <div class="form-group col-md-6">
             <button class="btn btn-success">Apply</button>
