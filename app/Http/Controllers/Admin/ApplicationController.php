@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Educationlevel;
+use App\Educationmajor;
 use App\Ethnicity;
 use App\Http\Controllers\Controller;
 
+use App\Job;
 use App\Jobapply;
 use App\Nationality;
 use App\Religion;
@@ -45,26 +48,41 @@ class ApplicationController extends Controller
         $ethnicity=Ethnicity::get();
         $natinality=Nationality::get();
         $allZone=DB::table('zone')->get();
+        $allJobTitle=Job::select('title')->get();
+        $allEducationLevel=Educationlevel::get();
+        $allEducationMajor=Educationmajor::select('educationMajorId','educationMajorName')->get();
 
 //        $application = Jobapply::select('jobapply.jobapply as applyId', 'jobapply.applydate', 'zone.zoneName', 'employee.firstName', 'employee.lastName', 'job.title',
-//            DB::raw("TIMESTAMPDIFF(YEAR,'employee.dateOfBirth',CURDATE()) as Age"))
+//
+//            DB::raw("CONCAT((year(now()) - year(`employee`.`dateOfBirth`)),'.',(month(now()) - month(`employee`.`dateOfBirth`))) as Age"))
 //            ->leftJoin('employee', 'employee.employeeId', '=', 'jobapply.fkemployeeId')
 //            ->leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')
-//            ->leftJoin('zone', 'zone.zoneId', '=', 'job.fkzoneId')->toSql();
+//            ->leftJoin('zone', 'zone.zoneId', '=', 'job.fkzoneId');
 //
-//        return $application;
+//
+//            $application= $application->having('Age','>=',2);
+//
+//        return $application=$application->get();
 
 
 
-        return view('Admin.application.manageApplication',compact('religion','ethnicity','natinality','allZone'));
+
+        return view('Admin.application.manageApplication',compact('religion','ethnicity','natinality','allZone','allJobTitle','allEducationLevel','allEducationMajor'));
     }
     public function showAllApplication(Request $r)
     {
         $application = Jobapply::select('jobapply.jobapply as applyId', 'jobapply.applydate', 'zone.zoneName', 'employee.firstName', 'employee.lastName', 'job.title',
-                        DB::raw("TIMESTAMPDIFF(YEAR,`employee`.`dateOfBirth`,CURDATE()) as Age"))
+                        DB::raw("CONCAT((year(now()) - year(`employee`.`dateOfBirth`)),'.',(month(now()) - month(`employee`.`dateOfBirth`))) as Age"))
+
             ->leftJoin('employee', 'employee.employeeId', '=', 'jobapply.fkemployeeId')
             ->leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')
-            ->leftJoin('zone', 'zone.zoneId', '=', 'job.fkzoneId');
+            ->leftJoin('education', 'education.fkemployeeId', '=', 'employee.employeeId')
+            ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
+            ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
+//            ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'degree.degreeId')
+            ->leftJoin('zone', 'zone.zoneId', '=', 'job.fkzoneId')
+//            ->groupBy('educationmajor.fkDegreeId')
+        ;
 
         if ($r->genderFilter){
             $application= $application->where('employee.gender',$r->genderFilter);
@@ -84,12 +102,31 @@ class ApplicationController extends Controller
         if ($r->zonefilter){
             $application= $application->where('job.fkzoneId',$r->zonefilter);
         }
+        if ($r->educationLvlFilter){
+            $application= $application->where('educationlevel.educationLevelId',$r->educationLvlFilter);
+        }
+        if ($r->educationCompletingFilter){
+            $application= $application->where('education.status',$r->educationCompletingFilter);
+        }
+        if ($r->educationMajorFilter){
 
-//        if ($r->ageFromFilter){
-//            $application= $application->where('age','>',$r->ageFromFilter);
-//        }
+            $application= $application->where('educationmajor.educationMajorId',$r->educationMajorFilter);
+        }
 
-        $application=$application->get();
+        if ($r->ageFromFilter){
+            $application= $application->having('Age','>=',$r->ageFromFilter);
+        }
+        if ($r->ageToFilter){
+            $application= $application->having('Age','<=',$r->ageToFilter);
+        }
+        if ($r->jobTitle){
+            $application= $application->where('job.title', 'LIKE', '%' . $r->jobTitle . '%');;
+        }
+        if ($r->applyDate){
+            $application= $application->where('jobapply.applydate',$r->applyDate);;
+        }
+
+         $application=$application->get();
 
 
 
