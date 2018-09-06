@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Refree;
 use App\Employee;
@@ -20,6 +21,8 @@ class RefreeController extends Controller
         $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
         $refrees=Refree::where('fkemployeeId',$employee->employeeId)
             ->get();
+
+
 
         if($refrees->isEmpty()){
             return view('userCv.insert.refree');
@@ -46,6 +49,9 @@ class RefreeController extends Controller
             $refree->fkemployeeId=$employee->employeeId;
             $refree->save();
         }
+
+        Employee::where('fkuserId',Auth::user()->userId)
+            ->update(['cvStatus'=>1]);
 
         Session::flash('message', 'Reference Added Successfully');
 
@@ -76,6 +82,16 @@ class RefreeController extends Controller
 
     public function deleteRefree(Request $r){
         Refree::destroy($r->refereeId);
+
+        $count=Refree::where('employee.fkuserId',Auth::user()->userId)
+            ->leftJoin('employee','employee.employeeId','referee.fkemployeeId')
+            ->count();
+
+        if($count<2){
+            Employee::where('fkuserId',Auth::user()->userId)
+                ->update(['cvStatus'=>null]);
+        }
+
         Session::flash('message', 'Reference Deleted Successfully');
 
         return redirect()->route('refree.index');

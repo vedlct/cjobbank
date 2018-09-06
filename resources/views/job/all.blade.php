@@ -7,7 +7,7 @@
         <div class="col-lg-2">
             <h5>Job Search: </h5>
         </div>
-        <!-- end col -->
+
 
         <div class="col-lg-10">
             {{--<form class="navbar-form" role="search">--}}
@@ -72,7 +72,6 @@
 
  function getData(page){
      var search=$("#search-job").val();
-
 
      $.ajax(
          {
