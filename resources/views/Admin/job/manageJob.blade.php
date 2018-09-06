@@ -14,7 +14,6 @@
                     <table id="manageapplication" class="table table-striped table-bordered" style="width:100%" >
                         <thead>
                         <tr>
-
                             <th>Job Title</th>
                             <th>Position</th>
                             <th>Deadline</th>
@@ -118,6 +117,7 @@
             btn = $(x).data('panel-id');
             var job = document.getElementById('jobStatus'+btn).value;
 
+
             $.confirm({
                 title: 'Confirm!',
                 content: 'Are you sure To change this Job Status?',
@@ -146,9 +146,7 @@
                                                 btnClass: 'btn-green',
                                                 action: function () {
 
-                                                   // location.reload();
-                                                    $('#manageapplication').DataTable().destroy();
-                                                    $('#manageapplication').DataTable().draw();
+                                                    location.reload();
 
                                                 }
                                             }
@@ -161,9 +159,8 @@
                     },
                     No: function () {
 
-//                        location.reload();
-                        $('#manageapplication').DataTable().destroy();
-                        $('#manageapplication').DataTable().draw();
+                        location.reload();
+
                     },
                 }
             });
