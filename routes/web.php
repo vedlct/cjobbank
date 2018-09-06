@@ -104,7 +104,9 @@ Route::post('/deleteRefree','RefreeController@deleteRefree')->name('refree.delet
 /*---------------------------Job----------------------*/
 Route::get('job/all','JobController@index')->name('job.all');
 Route::post('job/all','JobController@getJobData')->name('job.getJobData');
-Route::get('Candidate-Job-Apply/{jobId}','EmployeeController@applyJob')->name('candidate.ApplyJob');
+Route::post('job/applyJobModal','JobController@applyJobModal')->name('job.applyJobModal');
+//Route::get('Candidate-Job-Apply/{jobId}','EmployeeController@applyJob')->name('candidate.ApplyJob');
+Route::post('Candidate-Job-Apply/{jobId}','EmployeeController@applyJob')->name('candidate.ApplyJob');
 
 
 //candidate Application

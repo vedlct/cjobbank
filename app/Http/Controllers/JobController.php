@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Employee;
 use App\Jobapply;
 use Illuminate\Http\Request;
 use App\Job;
-
+use Auth;
 class JobController extends Controller
 {
    public function index(Request $r){
@@ -18,9 +19,11 @@ class JobController extends Controller
        }
        $jobs=$jobs->paginate(10);
 
+       $cvStatus=Employee::where('fkuserId',Auth::user()->userId)->first()->cvStatus;
+
 
        if ($r->ajax()) {
-           return view('job.getAllJob',compact('jobs'));
+           return view('job.getAllJob',compact('jobs','cvStatus'));
        }
        return view('job.all');
 
@@ -34,6 +37,13 @@ class JobController extends Controller
        }
        $jobs=$jobs->paginate(10);
 
-       return view('job.getAllJob',compact('jobs'));
+       $cvStatus=Employee::where('fkuserId',Auth::user()->userId)->first()->cvStatus;
+
+       return view('job.getAllJob',compact('jobs','cvStatus'));
+   }
+
+   public function applyJobModal(Request $r){
+
+       return view('job.jobModal')->with('jobId',$r->jobId);
    }
 }
