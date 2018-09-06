@@ -28,7 +28,7 @@
                             <td>{{$applyList->title}}</td>
                             <td>{{$applyList->zoneName}}</td>
                             <td>{{date('Y-m-d',strtotime($applyList->applydate))}}</td>
-                            <td><a target="_blank" href="{{$applyList->pdflink}}">Download</a></td>
+                            <td><a target="_blank" href="{{url('public/jobPdf').'/'.$applyList->pdflink}}">Download</a></td>
 
                         </tr>
                         @endforeach

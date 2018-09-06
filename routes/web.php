@@ -112,9 +112,18 @@ Route::get('Candidate-Applications','EmployeeApplicationController@getAllApplica
 
 
 /*-------------------------------Admin---------------------------------*/
+
+//job
+Route::get('Admin-Add-New-Job','Admin\JobController@addNewJob')->name('job.admin.create');
 Route::get('Admin-Manage-Job','Admin\JobController@manageJob')->name('job.admin.manage');
 
 Route::get('Admin-Edit-Job/{jobId}','Admin\JobController@jobEdit')->name('job.admin.edit');
+Route::post('Admin-Delete-Job','Admin\JobController@jobDelete')->name('job.admin.delete');
 
 Route::post('Admin-Update-Job','Admin\JobController@jobUpdate')->name('job.admin.update');
+Route::post('Admin-Insert-Job','Admin\JobController@jobInsert')->name('job.admin.insert');
 Route::post('Admin-Change-Job-Status','Admin\JobController@jobStatusUpdate')->name('job.admin.changeJobStatus');
+
+//Application
+Route::get('Admin-Manage-Application','Admin\ApplicationController@manageApplication')->name('application.admin.manage');
+Route::post('Admin-Show-All-Application','Admin\ApplicationController@showAllApplication')->name('application.admin.showAll');
