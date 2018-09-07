@@ -135,10 +135,11 @@
                     </div>
                     <div class=" form-group ">
                         <label>Status of completion</label>
-                        <select class="form-control">
-                            <option>Select a Status</option>
-                            <option>Completed</option>
-                            <option>OnGoing</option>
+                        <select id="qualificationCompletingFilter" name="qualificationCompletingFilter" class="form-control">
+                            <option value="">Select a Status</option>
+                            @foreach(COMPLETING_STATUS as $key=>$value)
+                                <option value="{{$value}}">{{$key}}</option>
+                            @endforeach
 
                         </select>
                     </div>
@@ -152,10 +153,11 @@
                     </div>
                     <div class=" form-group ">
                         <label>Status of completion</label>
-                        <select class="form-control">
-                            <option>Select a Status</option>
-                            <option>Completed</option>
-                            <option>OnGoing</option>
+                        <select id="trainingCompletingFilter" name="trainingCompletingFilter" class="form-control">
+                            <option value="">Select a Status</option>
+                            @foreach(COMPLETING_STATUS as $key=>$value)
+                                <option value="{{$value}}">{{$key}}</option>
+                            @endforeach
 
                         </select>
                     </div>
@@ -166,11 +168,11 @@
 
                     <div class=" form-group ">
                         <label>From</label>
-                        <input class="form-control" type="number">
+                        <input id="jobExperienceFromFilter" name="jobExperienceFromFilter" class="form-control date" type="text">
                     </div>
                     <div class=" form-group ">
                         <label>to</label>
-                        <input class="form-control" type="number">
+                        <input id="jobExperienceToFilter" name="jobExperienceToFilter" class="form-control date" type="text">
                     </div>
 
                     <div class=" form-group ">
@@ -217,7 +219,7 @@
                     <div style="margin-top: 10px;" class="row">
 
                         <div class="col-md-1">
-                            <button class="btn btn-danger">Export CV</button>
+                            <a onclick="return myfunc()"><button class="btn btn-danger">Export CV</button></a>
                         </div>
                         <div class="col-md-4">
 
@@ -302,13 +304,25 @@
                         if ($('#educationMajorFilter').val()!=""){
                             d.educationMajorFilter=$('#educationMajorFilter').val();
                         }
+                        if ($('#qualificationCompletingFilter').val()!=""){
+                            d.qualificationCompletingFilter=$('#qualificationCompletingFilter').val();
+                        }
+                        if ($('#trainingCompletingFilter').val()!=""){
+                            d.trainingCompletingFilter=$('#trainingCompletingFilter').val();
+                        }
+                        if ($('#jobExperienceFromFilter').val()!=""){
+                            d.jobExperienceFromFilter=$('#jobExperienceFromFilter').val();
+                        }
+                        if ($('#jobExperienceToFilter').val()!=""){
+                            d.jobExperienceToFilter=$('#jobExperienceToFilter').val();
+                        }
 
                     },
                 },
                 columns: [
 
                     { "data": function(data){
-                        return '<input input type="checkbox" class="checkboxvar" name="checkboxvar[]" value="'+data.applyId+'">'
+                        return '<input  data-panel-id="'+data.applyId+'"onclick="selected_rows(this)" type="checkbox" class="chk" name="selected_rows[]" value="'+ data.applyId +'" />'
                             ;},
                         "orderable": false, "searchable":false
                     },
@@ -363,6 +377,14 @@
 //                table.search("").draw(); //just redraw myTableFilter
                 table.ajax.reload();  //just reload table
             });
+            $('#jobExperienceFromFilter').change(function(){ //button filter event click
+//                table.search("").draw(); //just redraw myTableFilter
+                table.ajax.reload();  //just reload table
+            });
+            $('#jobExperienceToFilter').change(function(){ //button filter event click
+//                table.search("").draw(); //just redraw myTableFilter
+                table.ajax.reload();  //just reload table
+            });
             $('#educationCompletingFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
                 table.ajax.reload();  //just reload table
@@ -372,6 +394,14 @@
                 table.ajax.reload();  //just reload table
             });
             $('#educationLvlFilter').change(function(){ //button filter event click
+//                table.search("").draw(); //just redraw myTableFilter
+                table.ajax.reload();  //just reload table
+            });
+            $('#qualificationCompletingFilter').change(function(){ //button filter event click
+//                table.search("").draw(); //just redraw myTableFilter
+                table.ajax.reload();  //just reload table
+            });
+            $('#trainingCompletingFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
                 table.ajax.reload();  //just reload table
             });
@@ -385,6 +415,115 @@
             });
 
             });
+
+        var selecteds = [];
+        function selected_rows(x) {
+
+            btn = $(x).data('panel-id');
+            var index = selecteds.indexOf(btn.toString())
+            if (index == "-1"){
+                selecteds.push(btn);
+            }else {
+
+                selecteds.splice(index, 1);
+            }
+
+
+        }
+
+        function myfunc() {
+
+
+            var products=selecteds;
+
+
+
+            if (products.length >0) {
+
+                $.ajax({
+                    type: 'POST',
+                    url: "{!! route('jobAppliedCadidate.admin.Exportxls') !!}",
+                    cache: false,
+                    data: {'jobApply': products},
+                    success: function (data) {
+
+                        $('#SessionMessage').load(document.URL +  ' #SessionMessage');
+                        table.ajax.reload();  //just reload table
+
+                        selecteds=[];
+
+                        $(':checkbox:checked').prop('checked',false);
+                        //alert(data);
+
+                        if (data.success=='1'){
+
+                            $.alert({
+                                title: 'Success!',
+                                type: 'green',
+                                content: data.message,
+                                buttons: {
+                                    tryAgain: {
+                                        text: 'Ok',
+                                        btnClass: 'btn-blue',
+                                        action: function () {
+
+
+                                        }
+                                    }
+
+                                }
+                            });
+
+
+                        }else if(data.success=='0'){
+
+                            $.alert({
+                                title: 'Alert!',
+                                type: 'Red',
+                                content: data.message,
+                                buttons: {
+                                    tryAgain: {
+                                        text: 'Ok',
+                                        btnClass: 'btn-red',
+                                        action: function () {
+
+
+                                        }
+                                    }
+
+                                }
+                            });
+
+
+                        }
+
+
+                    }
+
+                });
+            }
+            else {
+
+
+                $.alert({
+                    title: 'Alert!',
+                    type: 'Red',
+                    content: 'Please select Application for exporting CV',
+                    buttons: {
+                        tryAgain: {
+                            text: 'Ok',
+                            btnClass: 'btn-red',
+                            action: function () {
+
+
+                            }
+                        }
+
+                    }
+                });
+            }
+        }
+
     </script>
 
 

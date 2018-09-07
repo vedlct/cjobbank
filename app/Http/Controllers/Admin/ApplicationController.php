@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Educationlevel;
 use App\Educationmajor;
+use App\Employee;
 use App\Ethnicity;
 use App\Http\Controllers\Controller;
 
@@ -42,6 +43,7 @@ class ApplicationController extends Controller
 
     }
 
+
     public function manageApplication()
     {
         $religion=Religion::get();
@@ -53,15 +55,24 @@ class ApplicationController extends Controller
         $allEducationMajor=Educationmajor::select('educationMajorId','educationMajorName')->get();
 
 //        $application = Jobapply::select('jobapply.jobapply as applyId', 'jobapply.applydate', 'zone.zoneName', 'employee.firstName', 'employee.lastName', 'job.title',
-//
-//            DB::raw("CONCAT((year(now()) - year(`employee`.`dateOfBirth`)),'.',(month(now()) - month(`employee`.`dateOfBirth`))) as Age"))
+//                                    DB::raw("CONCAT((year(now()) - year(`employee`.`dateOfBirth`)),'.',(month(now()) - month(`employee`.`dateOfBirth`))) as Age"))
 //            ->leftJoin('employee', 'employee.employeeId', '=', 'jobapply.fkemployeeId')
 //            ->leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')
-//            ->leftJoin('zone', 'zone.zoneId', '=', 'job.fkzoneId');
+//            ->leftJoin('education', 'education.fkemployeeId', '=', 'employee.employeeId')
+//            ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
+//            ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
+//            ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'degree.degreeId')
+//            ->leftJoin('professionalqualification', 'professionalqualification.fkemployeeId', '=', 'employee.employeeId')
+//            ->leftJoin('jobexperience', 'jobexperience.fkemployeeId', '=', 'employee.employeeId')
+//            ->leftJoin('traning', 'traning.fkemployeeId', '=', 'employee.employeeId')
+//            ->leftJoin('zone', 'zone.zoneId', '=', 'job.fkzoneId')
+//            ->distinct('educationmajor.fkDegreeId')
+//        ;
 //
-//
-//            $application= $application->having('Age','>=',2);
-//
+//        $application= $application->where('jobexperience.startDate','>=','2018-08-24');
+
+
+
 //        return $application=$application->get();
 
 
@@ -72,16 +83,19 @@ class ApplicationController extends Controller
     public function showAllApplication(Request $r)
     {
         $application = Jobapply::select('jobapply.jobapply as applyId', 'jobapply.applydate', 'zone.zoneName', 'employee.firstName', 'employee.lastName', 'job.title',
-                        DB::raw("CONCAT((year(now()) - year(`employee`.`dateOfBirth`)),'.',(month(now()) - month(`employee`.`dateOfBirth`))) as Age"))
+            DB::raw("CONCAT((year(now()) - year(`employee`.`dateOfBirth`)),'.',(month(now()) - month(`employee`.`dateOfBirth`))) as Age"))
 
             ->leftJoin('employee', 'employee.employeeId', '=', 'jobapply.fkemployeeId')
             ->leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')
             ->leftJoin('education', 'education.fkemployeeId', '=', 'employee.employeeId')
             ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
             ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
-//            ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'degree.degreeId')
+            ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'degree.degreeId')
+            ->leftJoin('professionalqualification', 'professionalqualification.fkemployeeId', '=', 'employee.employeeId')
+            ->leftJoin('jobexperience', 'jobexperience.fkemployeeId', '=', 'employee.employeeId')
+            ->leftJoin('traning', 'traning.fkemployeeId', '=', 'employee.employeeId')
             ->leftJoin('zone', 'zone.zoneId', '=', 'job.fkzoneId')
-//            ->groupBy('educationmajor.fkDegreeId')
+            ->distinct('educationmajor.fkDegreeId')
         ;
 
         if ($r->genderFilter){
@@ -108,9 +122,15 @@ class ApplicationController extends Controller
         if ($r->educationCompletingFilter){
             $application= $application->where('education.status',$r->educationCompletingFilter);
         }
+        if ($r->qualificationCompletingFilter){
+            $application= $application->where('professionalqualification.status',$r->qualificationCompletingFilter);
+        }
+        if ($r->trainingCompletingFilter){
+            $application= $application->where('traning.status',$r->trainingCompletingFilter);
+        }
         if ($r->educationMajorFilter){
 
-            $application= $application->where('educationmajor.educationMajorId',$r->educationMajorFilter);
+            $application= $application->where('education.fkMajorId',$r->educationMajorFilter);
         }
 
         if ($r->ageFromFilter){
@@ -124,6 +144,12 @@ class ApplicationController extends Controller
         }
         if ($r->applyDate){
             $application= $application->where('jobapply.applydate',$r->applyDate);;
+        }
+        if ($r->jobExperienceFromFilter){
+            $application= $application->where('jobexperience.startDate','>=',$r->jobExperienceFromFilter);
+        }
+        if ($r->jobExperienceToFilter){
+            $application= $application->where('jobexperience.endDate','<=',$r->jobExperienceToFilter);
         }
 
          $application=$application->get();
@@ -145,6 +171,48 @@ class ApplicationController extends Controller
         })->make(true);
 
     }
+
+    public function exportAppliedCandidate(Request $r)
+    {
+
+        $appliedList=$r->jobApply;
+        $filePath=public_path ()."/excel";
+        $fileName="AppliedCandidateList".date("Y-m-d_H-i-s");
+
+        $fileInfo=array(
+            'fileName'=>$fileName,
+            'filePath'=>$fileName,
+        );
+
+
+
+        $list=array();
+        for ($i=0;$i<count($appliedList);$i++){
+            $appliedId=$appliedList[$i];
+            $empId=Jobapply::where('jobapply',$appliedId)->first()->fkemployeeId;
+
+            $newlist=Employee::select('*',DB::raw("CONCAT((year(now()) - year(`employee`.`dateOfBirth`)),'.',(month(now()) - month(`employee`.`dateOfBirth`))) as Age"),'education.institutionName',
+            'education.status','education.resultSystem','educationlevel.educationLevelName','educationmajor.educationMajorName')
+                ->leftJoin('education', 'education.fkemployeeId', '=', 'employee.employeeId')
+                ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
+                ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
+                ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'degree.degreeId')
+                ->where('employee.employeeId',$empId)->get()->toArray();
+            $list=array_merge($list,$newlist);
+
+        }
+        Excel::create($fileName,function($excel) use($list,$filePath) {
+            $excel->sheet('First sheet', function($sheet) use($list) {
+                $sheet->loadView('application.AppliedCandidateList')->with('AppliedCandidateList',$list);
+            });
+
+        })->store('xls',$filePath);
+
+        return $fileInfo;
+
+    }
+
+
 
 
 }
