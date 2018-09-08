@@ -101,7 +101,7 @@ Route::post('/deleteRefree','RefreeController@deleteRefree')->name('refree.delet
 
 //Relation in Caritas
 
-Route::get('/Candidate-CV-RelationInCaritas','RelationInCaritasController@getRelationInfo')->name('relationInCaritas.getRelationInfo');
+Route::get('/Candidate-CV-RelativeInCaritas','RelativeInCbController@getRelationInfo')->name('relativeInCaritas.getRelationInfo');
 
 
 

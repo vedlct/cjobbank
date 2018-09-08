@@ -18,11 +18,12 @@
                     <a href="{{route('job.all')}}"><i class="ti-layout-width-default"></i>Jobs</a>
                 </li>
                     <li class="has-submenu">
-                        <a href="#"><i class="ti-archive"></i>Application</a>
-                        <ul class="submenu">
-                            <li><a href="{{route('candidate.manageApplication')}}">Manage Application</a></li>
+                        {{--<a href="#"><i class="ti-archive"></i>Application</a>--}}
+                        <a href="{{route('candidate.manageApplication')}}">Manage Application</a>
+                        {{--<ul class="submenu">--}}
+                            {{--<li><a href="{{route('candidate.manageApplication')}}">Manage Application</a></li>--}}
                             {{--<li><a href="{{route('manage.education')}}">Manage Education</a></li>--}}
-                        </ul>
+                        {{--</ul>--}}
                     </li>
                     <li class="has-submenu">
                         <a href="#"><i class="ti-settings"></i>Settings</a>
