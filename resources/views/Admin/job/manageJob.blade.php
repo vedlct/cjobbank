@@ -15,7 +15,6 @@
                     <table id="manageapplication" class="table table-striped table-bordered" style="width:100%" >
                         <thead>
                         <tr>
-
                             <th>Job Title</th>
                             <th>Position</th>
                             <th>Deadline</th>
@@ -215,7 +214,8 @@
                     },
                     No: function () {
 
-//                        location.reload();
+                        location.reload();
+
 
                     },
                 }

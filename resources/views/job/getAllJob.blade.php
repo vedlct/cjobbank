@@ -1,4 +1,30 @@
+<!-- Modal -->
+<div class="modal" id="jobModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title" id="jobModalTitle"></h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body" id="jobModalBody">
+
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                {{--<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>--}}
+            </div>
+
+        </div>
+    </div>
+</div>
+
 @foreach($jobs as $job)
+
     <div class="row">
         <div class="col-lg-12">
             <div class="card m-b-30">
@@ -14,8 +40,22 @@
                     </div>
 
                     <div style="float: right; position: absolute; bottom: 10%; right: 1%;" class="applynow">
-                        <a href="{{route('candidate.ApplyJob',$job->jobId)}}"><button type="button" class="btn btn-primary">Apply Now</button></a>
+
+                        @foreach($applyjob as $aj)
+                        @if($job->jobId ==  $aj->fkjobId)
+
+                                {{"Allready Applied"}}
+                            @endif
+                                @endforeach
+                        @if($cvStatus == null)
+                            <label style="color: red">Please complete your cv to apply job</label>
+                        @else
+                        {{--<a href="{{route('candidate.ApplyJob',$job->jobId)}}"><button type="button" class="btn btn-primary">Apply Now</button></a>--}}
+                            <button type="button" class="btn btn-info btn-lg" data-job-title="{{$job->title}}" data-panel-id="{{$job->jobId}}" onclick="applyJob(this)">Apply Now</button>
+                        @endif
                     </div>
+
+
                 </div>
             </div>
         </div>
@@ -50,6 +90,28 @@
         var page=$(this).data('id').split('page=')[1];
         getData(page);
     });
+
+    function applyJob(x) {
+        var id=$(x).data('panel-id');
+        var title=$(x).data('job-title');
+
+        $.ajax({
+            type: 'POST',
+            url: "{!! route('job.applyJobModal') !!}",
+            cache: false,
+            data: {_token: "{{csrf_token()}}",jobId:id},
+            success: function (data) {
+//                console.log(data);
+                $('#jobModalTitle').html(title);
+                $('#jobModalBody').html(data);
+                $('#jobModal').modal();
+
+            }
+        });
+
+
+
+    }
 </script>
 
 

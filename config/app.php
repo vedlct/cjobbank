@@ -183,6 +183,9 @@ return [
         // datatable
         Yajra\DataTables\DataTablesServiceProvider::class,
 
+        //excel
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+
     ],
 
     /*
@@ -237,6 +240,9 @@ return [
 
         //datatable
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+
+        //excel
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

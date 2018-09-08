@@ -109,7 +109,7 @@
                                 <a href="{{route('candidate.cvPersonalInfo')}}"><button type="button" id="btnPevious">Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
 
-                                <a href="{{route('candidate.cvProfessionalCertificate')}}"><button type="button" id="nextBtn">Next</button></a>
+                                {{--<a href="{{route('candidate.cvProfessionalCertificate')}}"><button type="button" id="nextBtn">Next</button></a>--}}
                             </div>
                         </div>
 

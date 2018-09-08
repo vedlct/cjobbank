@@ -7,54 +7,181 @@
 
             <div style="background-color: white;margin-bottom: 20px;" class="card-body">
 
-                <div class=" form-group">
-                    <label>Zone</label>
-                    <select class="form-control">
-                        <option>Select a Zone</option>
-                        <option>Dhaka</option>
-                        <option>Khulna</option>
-                        <option>Barishal</option>
-                        <option>Rangpur</option>
-
-                    </select>
-                </div>
-
-                <div class=" form-group ">
-                    <label>Age to</label>
-                    <input class="form-control" type="number">
-                </div>
-                <div class=" form-group ">
-                    <label>Age From</label>
-                    <input class="form-control" type="number">
-                </div>
                 <div class=" form-group ">
                     <label>Gender</label>
-                    <select class="form-control">
-                        <option>Select a Gender</option>
-                        <option>Male</option>
-                        <option>Female</option>
+                    <select name="genderFilter" id="genderFilter" class="form-control">
+                        <option value="">Select a Gender</option>
+                        @foreach(GENDER as $key=>$value)
+                            <option value="{{$value}}">{{$key}}</option>
+                        @endforeach
 
                     </select>
+                </div>
+
+                <div class=" form-group ">
+                    <label>Age From</label>
+                    <input class="form-control" id="ageFromFilter" name="ageFromFilter" type="number">
+                </div>
+                <div class=" form-group ">
+                    <label>Age to</label>
+                    <input class="form-control" id="ageToFilter" name="ageToFilter" type="number">
                 </div>
                 <div class=" form-group ">
                     <label>Apply Date</label>
-                    <input class="form-control date" type="text">
+                    <input class="form-control date" id="applyDate" name="applyDate" type="text">
                 </div>
-                <div class=" form-group ">
-                    <label>Religion</label>
-                    <select class="form-control">
-                        <option>Select a Religion</option>
-                        <option>Islam</option>
-                        <option>Hindu</option>
-                        <option>Christian</option>
 
-                    </select>
-                </div>
 
                 <div class=" form-group ">
                     <label>Job Title</label>
-                    <input class="form-control" type="text">
+                    <select name="jobTitle" id="jobTitle" class="form-control">
+                        <option value="">Select a jobTitle</option>
+                        @foreach($allJobTitle as $jobTitle)
+                            <option value="{{$jobTitle->title}}">{{$jobTitle->title}}</option>
+                        @endforeach
+
+                    </select>
                 </div>
+                <div class=" form-group ">
+                    <label>Religion</label>
+                    <select name="religionFilter" id="religionFilter" class="form-control">
+                        <option value="">Select a Religion</option>
+                        @foreach($religion as $reli)
+                            <option value="{{$reli->religionId}}">{{$reli->religionName}}</option>
+                        @endforeach
+
+                    </select>
+                </div>
+                <div class=" form-group ">
+                    <label>Ethnicity</label>
+                    <select name="ethnicityFilter" id="ethnicityFilter" class="form-control">
+                        <option value="">Select a Ethnicity</option>
+                        @foreach($ethnicity as $ethi)
+                            <option value="{{$ethi->ethnicityId}}">{{$ethi->ethnicityName}}</option>
+                        @endforeach
+
+                    </select>
+                </div>
+                <div class=" form-group ">
+                    <label>Disability</label>
+                    <select name="disabilityFilter" id="disabilityFilter" class="form-control">
+                        <option value="">Select a Disability</option>
+                        @foreach(DISABILITY as $key=>$value)
+                            <option value="{{$value}}">{{$key}}</option>
+                        @endforeach
+
+                    </select>
+                </div>
+                <div class=" form-group ">
+                    <label>Nationality</label>
+                    <select name="nationalityFilter" id="nationalityFilter" class="form-control">
+                        <option  value="">Select a Nationality</option>
+                        @foreach($natinality as $natio)
+                            <option value="{{$natio->nationalityId}}">{{$natio->nationalityName}}</option>
+                        @endforeach
+
+                    </select>
+                </div>
+                <div class=" form-group">
+                    <label>Zone</label>
+                    <select name="zonefilter" id="zonefilter" class="form-control">
+                        <option value="">Select a Zone</option>
+                        @foreach($allZone as $zone)
+                            <option  value="{{$zone->zoneId}}">{{$zone->zoneName}}</option>
+                        @endforeach
+
+                    </select>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label style="text-align: center" class="col-12">Education</label>
+                <div class=" form-group ">
+                    <label>Educational Qualification</label>
+                    <select id="educationLvlFilter" name="educationLvlFilter" class="form-control">
+                        <option value="">Select a Qualification</option>
+                        @foreach($allEducationLevel as $eduLvl)
+                            <option  value="{{$eduLvl->educationLevelId}}">{{$eduLvl->educationLevelName}}</option>
+                        @endforeach
+
+                    </select>
+                </div>
+                <div class=" form-group ">
+                    <label>Status of completion</label>
+                    <select id="educationCompletingFilter" name="educationCompletingFilter" class="form-control">
+                        <option value="">Select a Status</option>
+                        @foreach(COMPLETING_STATUS as $key=>$value)
+                            <option value="{{$value}}">{{$key}}</option>
+                        @endforeach
+
+                    </select>
+                </div>
+                <div class=" form-group ">
+                    <label>Major</label>
+                    <select id="educationMajorFilter" name="educationMajorFilter" class="form-control">
+                        <option value="">Select a Major</option>
+                        @foreach($allEducationMajor as $eduMajor)
+                            <option value="{{$eduMajor->educationMajorId}}">{{$eduMajor->educationMajorName}}</option>
+                        @endforeach
+
+                    </select>
+                </div>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label style="text-align: center" class="col-12">Professional Qualification</label>
+                    <div class=" form-group ">
+                        <label>Qualification</label>
+                        <input class="form-control" type="text">
+                    </div>
+                    <div class=" form-group ">
+                        <label>Status of completion</label>
+                        <select id="qualificationCompletingFilter" name="qualificationCompletingFilter" class="form-control">
+                            <option value="">Select a Status</option>
+                            @foreach(COMPLETING_STATUS as $key=>$value)
+                                <option value="{{$value}}">{{$key}}</option>
+                            @endforeach
+
+                        </select>
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label style="text-align: center" class="col-12">Training information</label>
+                    <div class=" form-group ">
+                        <label>Name of Training</label>
+                        <input class="form-control" type="text">
+                    </div>
+                    <div class=" form-group ">
+                        <label>Status of completion</label>
+                        <select id="trainingCompletingFilter" name="trainingCompletingFilter" class="form-control">
+                            <option value="">Select a Status</option>
+                            @foreach(COMPLETING_STATUS as $key=>$value)
+                                <option value="{{$value}}">{{$key}}</option>
+                            @endforeach
+
+                        </select>
+                    </div>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label style="text-align: center" class="col-12">Job Experiences</label>
+
+                    <div class=" form-group ">
+                        <label>From</label>
+                        <input id="jobExperienceFromFilter" name="jobExperienceFromFilter" class="form-control date" type="text">
+                    </div>
+                    <div class=" form-group ">
+                        <label>to</label>
+                        <input id="jobExperienceToFilter" name="jobExperienceToFilter" class="form-control date" type="text">
+                    </div>
+
+                    <div class=" form-group ">
+                        <label>Experinces</label>
+                        <input class="form-control" type="text">
+                    </div>
+
+                </div>
+                <hr>
 
 
             </div>
@@ -77,6 +204,7 @@
                             <th>Job Title</th>
                             <th>Zone</th>
                             <th>Apply Date</th>
+
                             <th>Action</th>
 
 
@@ -91,7 +219,7 @@
                     <div style="margin-top: 10px;" class="row">
 
                         <div class="col-md-1">
-                            <button class="btn btn-danger">Export CV</button>
+                            <a onclick="return myfunc()"><button class="btn btn-danger">Export CV</button></a>
                         </div>
                         <div class="col-md-4">
 
@@ -125,6 +253,8 @@
                 format: 'yyyy-m-d'
             });
 
+
+
             table = $('#manageapplication').DataTable({
                 processing: true,
                 serverSide: true,
@@ -135,13 +265,64 @@
                     data:function (d){
 
                         d._token="{{csrf_token()}}";
+                        if ($('#genderFilter').val()!=""){
+                            d.genderFilter=$('#genderFilter').val();
+                        }
+                        if ($('#religionFilter').val()!=""){
+                            d.religionFilter=$('#religionFilter').val();
+                        }
+                        if ($('#ethnicityFilter').val()!=""){
+                            d.ethnicityFilter=$('#ethnicityFilter').val();
+                        }
+                        if ($('#disabilityFilter').val()!=""){
+                            d.disabilityFilter=$('#disabilityFilter').val();
+                        }
+                        if ($('#nationalityFilter').val()!=""){
+                            d.nationalityFilter=$('#nationalityFilter').val();
+                        }
+                        if ($('#zonefilter').val()!=""){
+                            d.zonefilter=$('#zonefilter').val();
+                        }
+                        if ($('#ageFromFilter').val()!=""){
+                            d.ageFromFilter=$('#ageFromFilter').val();
+                        }
+                        if ($('#ageToFilter').val()!=""){
+                            d.ageToFilter=$('#ageToFilter').val();
+                        }
+                        if ($('#jobTitle').val()!=""){
+                            d.jobTitle=$('#jobTitle').val();
+                        }
+                        if ($('#applyDate').val()!=""){
+                            d.applyDate=$('#applyDate').val();
+                        }
+                        if ($('#educationLvlFilter').val()!=""){
+                            d.educationLvlFilter=$('#educationLvlFilter').val();
+                        }
+                        if ($('#educationCompletingFilter').val()!=""){
+                            d.educationCompletingFilter=$('#educationCompletingFilter').val();
+                        }
+                        if ($('#educationMajorFilter').val()!=""){
+                            d.educationMajorFilter=$('#educationMajorFilter').val();
+                        }
+                        if ($('#qualificationCompletingFilter').val()!=""){
+                            d.qualificationCompletingFilter=$('#qualificationCompletingFilter').val();
+                        }
+                        if ($('#trainingCompletingFilter').val()!=""){
+                            d.trainingCompletingFilter=$('#trainingCompletingFilter').val();
+                        }
+                        if ($('#jobExperienceFromFilter').val()!=""){
+                            d.jobExperienceFromFilter=$('#jobExperienceFromFilter').val();
+                        }
+                        if ($('#jobExperienceToFilter').val()!=""){
+                            d.jobExperienceToFilter=$('#jobExperienceToFilter').val();
+                        }
 
                     },
                 },
                 columns: [
 
                     { "data": function(data){
-                        return '<input input type="checkbox" class="checkboxvar" name="checkboxvar[]" value="'+data.applyId+'">'
+                        return '<input  data-panel-id="'+data.applyId+'"onclick="selected_rows(this)" type="checkbox" class="chk" name="selected_rows[]" value="'+ data.applyId +'" />'
                             ;},
                         "orderable": false, "searchable":false
                     },
@@ -163,7 +344,186 @@
                 ],
             });
 
+            $('#genderFilter').change(function(){ //button filter event click
+//                table.search("").draw(); //just redraw myTableFilter
+                table.ajax.reload();  //just reload table
             });
+            $('#religionFilter').change(function(){ //button filter event click
+//                table.search("").draw(); //just redraw myTableFilter
+                table.ajax.reload();  //just reload table
+
+            });
+            $('#ethnicityFilter').change(function(){ //button filter event click
+//                table.search("").draw(); //just redraw myTableFilter
+                table.ajax.reload();  //just reload table
+            });
+            $('#disabilityFilter').change(function(){ //button filter event click
+//                table.search("").draw(); //just redraw myTableFilter
+                table.ajax.reload();  //just reload table
+            });
+            $('#nationalityFilter').change(function(){ //button filter event click
+//                table.search("").draw(); //just redraw myTableFilter
+                table.ajax.reload();  //just reload table
+            });
+            $('#zonefilter').change(function(){ //button filter event click
+//                table.search("").draw(); //just redraw myTableFilter
+                table.ajax.reload();  //just reload table
+            });
+            $('#jobTitle').change(function(){ //button filter event click
+//                table.search("").draw(); //just redraw myTableFilter
+                table.ajax.reload();  //just reload table
+            });
+            $('#applyDate').change(function(){ //button filter event click
+//                table.search("").draw(); //just redraw myTableFilter
+                table.ajax.reload();  //just reload table
+            });
+            $('#jobExperienceFromFilter').change(function(){ //button filter event click
+//                table.search("").draw(); //just redraw myTableFilter
+                table.ajax.reload();  //just reload table
+            });
+            $('#jobExperienceToFilter').change(function(){ //button filter event click
+//                table.search("").draw(); //just redraw myTableFilter
+                table.ajax.reload();  //just reload table
+            });
+            $('#educationCompletingFilter').change(function(){ //button filter event click
+//                table.search("").draw(); //just redraw myTableFilter
+                table.ajax.reload();  //just reload table
+            });
+            $('#educationMajorFilter').change(function(){ //button filter event click
+//                table.search("").draw(); //just redraw myTableFilter
+                table.ajax.reload();  //just reload table
+            });
+            $('#educationLvlFilter').change(function(){ //button filter event click
+//                table.search("").draw(); //just redraw myTableFilter
+                table.ajax.reload();  //just reload table
+            });
+            $('#qualificationCompletingFilter').change(function(){ //button filter event click
+//                table.search("").draw(); //just redraw myTableFilter
+                table.ajax.reload();  //just reload table
+            });
+            $('#trainingCompletingFilter').change(function(){ //button filter event click
+//                table.search("").draw(); //just redraw myTableFilter
+                table.ajax.reload();  //just reload table
+            });
+            $("#ageFromFilter").keyup(function(){
+                // table.search("").draw(); //just redraw myTableFilter
+                table.ajax.reload();  //just reload table
+            });
+            $("#ageToFilter").keyup(function(){
+                // table.search("").draw(); //just redraw myTableFilter
+                table.ajax.reload();  //just reload table
+            });
+
+            });
+
+        var selecteds = [];
+        function selected_rows(x) {
+
+            btn = $(x).data('panel-id');
+            var index = selecteds.indexOf(btn.toString())
+            if (index == "-1"){
+                selecteds.push(btn);
+            }else {
+
+                selecteds.splice(index, 1);
+            }
+
+
+        }
+
+        function myfunc() {
+
+
+            var products=selecteds;
+
+
+
+            if (products.length >0) {
+
+                $.ajax({
+                    type: 'POST',
+                    url: "{!! route('jobAppliedCadidate.admin.Exportxls') !!}",
+                    cache: false,
+                    data: {'jobApply': products},
+                    success: function (data) {
+
+                        $('#SessionMessage').load(document.URL +  ' #SessionMessage');
+                        table.ajax.reload();  //just reload table
+
+                        selecteds=[];
+
+                        $(':checkbox:checked').prop('checked',false);
+                        //alert(data);
+
+                        if (data.success=='1'){
+
+                            $.alert({
+                                title: 'Success!',
+                                type: 'green',
+                                content: data.message,
+                                buttons: {
+                                    tryAgain: {
+                                        text: 'Ok',
+                                        btnClass: 'btn-blue',
+                                        action: function () {
+
+
+                                        }
+                                    }
+
+                                }
+                            });
+
+
+                        }else if(data.success=='0'){
+
+                            $.alert({
+                                title: 'Alert!',
+                                type: 'Red',
+                                content: data.message,
+                                buttons: {
+                                    tryAgain: {
+                                        text: 'Ok',
+                                        btnClass: 'btn-red',
+                                        action: function () {
+
+
+                                        }
+                                    }
+
+                                }
+                            });
+
+
+                        }
+
+
+                    }
+
+                });
+            }
+            else {
+
+
+                $.alert({
+                    title: 'Alert!',
+                    type: 'Red',
+                    content: 'Please select Application for exporting CV',
+                    buttons: {
+                        tryAgain: {
+                            text: 'Ok',
+                            btnClass: 'btn-red',
+                            action: function () {
+
+
+                            }
+                        }
+
+                    }
+                });
+            }
+        }
+
     </script>
 
 

@@ -41,6 +41,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::view('apply','usercv')->name('cv.apply');
 
 Route::view('application','application')->name('application');
+//Route::get('application','JobController')->name('application');
 
 Route::view('job/manage','job.manage')->name('job.manage');
 
@@ -103,7 +104,9 @@ Route::post('/deleteRefree','RefreeController@deleteRefree')->name('refree.delet
 /*---------------------------Job----------------------*/
 Route::get('job/all','JobController@index')->name('job.all');
 Route::post('job/all','JobController@getJobData')->name('job.getJobData');
-Route::get('Candidate-Job-Apply/{jobId}','EmployeeController@applyJob')->name('candidate.ApplyJob');
+Route::post('job/applyJobModal','JobController@applyJobModal')->name('job.applyJobModal');
+//Route::get('Candidate-Job-Apply/{jobId}','EmployeeController@applyJob')->name('candidate.ApplyJob');
+Route::post('Candidate-Job-Apply/{jobId}','EmployeeController@applyJob')->name('candidate.ApplyJob');
 
 
 //candidate Application
@@ -126,3 +129,4 @@ Route::post('Admin-Change-Job-Status','Admin\JobController@jobStatusUpdate')->na
 //Application
 Route::get('Admin-Manage-Application','Admin\ApplicationController@manageApplication')->name('application.admin.manage');
 Route::post('Admin-Show-All-Application','Admin\ApplicationController@showAllApplication')->name('application.admin.showAll');
+Route::post('Admin-Export-All-AppliedCandidate','Admin\ApplicationController@exportAppliedCandidate')->name('jobAppliedCadidate.admin.Exportxls');

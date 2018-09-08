@@ -53,7 +53,7 @@
                             <div style="float:right;">
 
                                 <button type="submit" id="submitBtn">Save</button>
-                                <a href="{{route('refree.index')}}"><button type="button" id="nextBtn" >Next</button></a>
+{{--                                <a href="{{route('refree.index')}}"><button type="button" id="nextBtn" >Next</button></a>--}}
                             </div>
                         </div>
 
