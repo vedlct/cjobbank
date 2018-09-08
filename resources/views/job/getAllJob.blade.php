@@ -41,18 +41,31 @@
 
                     <div style="float: right; position: absolute; bottom: 10%; right: 1%;" class="applynow">
 
+                        @php
+                            $flag= "False"
+                        @endphp
                         @foreach($applyjob as $aj)
                         @if($job->jobId ==  $aj->fkjobId)
 
-                                {{"Allready Applied"}}
+                                <span style="color: red">{{ "Allready Applied"}}</span>
+
+                            @php
+                            $flag= "True"
+                            @endphp
                             @endif
-                                @endforeach
-                        @if($cvStatus == null)
-                            <label style="color: red">Please complete your cv to apply job</label>
+                        @endforeach
+
+                        @if($flag == "True")
                         @else
+                            @if($cvStatus == null)
+                                 <label style="color: red">Please complete your cv to apply job</label>
+                             @else
                         {{--<a href="{{route('candidate.ApplyJob',$job->jobId)}}"><button type="button" class="btn btn-primary">Apply Now</button></a>--}}
-                            <button type="button" class="btn btn-info btn-lg" data-job-title="{{$job->title}}" data-panel-id="{{$job->jobId}}" onclick="applyJob(this)">Apply Now</button>
+                                <button type="button" class="btn btn-info btn-lg" data-job-title="{{$job->title}}" data-panel-id="{{$job->jobId}}" onclick="applyJob(this)">Apply Now</button>
                         @endif
+
+                        @endif
+
                     </div>
 
 
