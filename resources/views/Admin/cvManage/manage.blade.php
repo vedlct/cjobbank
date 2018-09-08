@@ -19,13 +19,43 @@
 
                     </select>
                 </div>
-
                 <div class=" form-group">
-                    <label>Degisnation</label>
+                    <label>Age to</label>
+                    <input class="form-control" type="number">
+                </div>
+                <div class=" form-group ">
+                    <label>Age From</label>
+                    <input class="form-control" type="number">
+                </div>
+                <div class=" form-group ">
+                    <label>Gender</label>
                     <select class="form-control">
-                        <option>Select a Degisnation</option>
-                        <option>Excutive</option>
-                        <option>Senior Excutive</option>
+                        <option>Select a Gender</option>
+                        <option>Male</option>
+                        <option>Female</option>
+
+                    </select>
+                </div>
+                <div class=" form-group">
+                    <label>Apply Date</label>
+                    <input class="form-control" type="date">
+                </div>
+                <div class=" form-group">
+                    <label>Religion</label>
+                    <select class="form-control">
+                        <option>Select a Religion</option>
+                        <option>Islam</option>
+                        <option>Hindu</option>
+                        <option>Christian</option>
+
+                    </select>
+                </div>
+                <div class=" form-group">
+                    <label>Ethnicity</label>
+                    <select class="form-control">
+                        <option>Select a Ethnicity</option>
+                        <option>Bangali</option>
+                        <option>Adivashi</option>
 
                     </select>
                 </div>
@@ -38,21 +68,21 @@
         <div class="col-10">
             <div class="card m-b-30">
                 <div class="card-header">
-                <h4 class="pull-left">Manage User</h4>
-                <a href="#"><button class="btn btn-success pull-right">Add New</button></a>
+                    <h4 class="pull-left">Manage CV</h4>
+                    <a href="#"><button class="btn btn-success pull-right">Add New</button></a>
                 </div>
                 <div class="card-body">
 
 
-                    <table id="managecv" class="table table-striped table-bordered " style="width:100%" >
+                    <table id="managecv" class="table table-striped table-bordered" style="width:100%" >
                         <thead>
                         <tr>
                             <th width="4%">Select</th>
                             <th>Name</th>
-                            <th>Degisnation</th>
+                            <th>Age</th>
                             <th>Gender</th>
                             <th>Email</th>
-                            <th>Zone</th>
+                            <th>Apply Date</th>
                             <th width="10%">Action</th>
                         </tr>
                         </thead>
@@ -61,10 +91,10 @@
                         <tr>
                             <td><input type="checkbox"></td>
                             <td> Sakib Rahman</td>
-                            <td>Executive</td>
+                            <td>30</td>
                             <td>Male</td>
                             <td>sakib@gmail.com</td>
-                            <td>Dhaka</td>
+                            <td>2018/04/10</td>
                             <td><button class="btn btn-sm btn-success">Edit</button>
                                 <button class="btn btn-sm btn-danger">Delete</button>
                             </td>
@@ -72,10 +102,10 @@
                         <tr>
                             <td><input type="checkbox"></td>
                             <td> Forhad Uddin</td>
-                            <td>Senior Executive</td>
+                            <td>40</td>
                             <td>Male</td>
                             <td>forhad@gmail.com</td>
-                            <td>Brisal</td>
+                            <td>2018/06/12</td>
                             <td><button class="btn btn-sm btn-success">Edit</button>
                                 <button class="btn btn-sm btn-danger">Delete</button>
                             </td>
@@ -83,10 +113,10 @@
                         <tr>
                             <td><input type="checkbox"></td>
                             <td> Farzad Rahman</td>
-                            <td>Executive</td>
+                            <td>25</td>
                             <td>Male</td>
                             <td>farzad@gmail.com</td>
-                            <td>Dhaka</td>
+                            <td>2018/05/12</td>
                             <td><button class="btn btn-sm btn-success">Edit</button>
                                 <button class="btn btn-sm btn-danger">Delete</button>
                             </td>
@@ -94,10 +124,10 @@
                         <tr>
                             <td><input type="checkbox"></td>
                             <td> Mujtaba Rumi</td>
-                            <td>Executive</td>
+                            <td>24</td>
                             <td>Male</td>
                             <td>sakib@gmail.com</td>
-                            <td>Dhaka</td>
+                            <td>2018/02/15</td>
                             <td><button class="btn btn-sm btn-success">Edit</button>
                                 <button class="btn btn-sm btn-danger">Delete</button>
                             </td>
@@ -105,10 +135,10 @@
                         <tr>
                             <td><input type="checkbox"></td>
                             <td> Sakib Rahman</td>
-                            <td>Executive</td>
+                            <td>30</td>
                             <td>Male</td>
                             <td>sakib@gmail.com</td>
-                            <td>Khulna</td>
+                            <td>2018/04/10</td>
                             <td><button class="btn btn-sm btn-success">Edit</button>
                                 <button class="btn btn-sm btn-danger">Delete</button>
                             </td>
@@ -116,10 +146,10 @@
                         <tr>
                             <td><input type="checkbox"></td>
                             <td> Forhad Uddin</td>
-                            <td>Executive</td>
+                            <td>40</td>
                             <td>Male</td>
                             <td>forhad@gmail.com</td>
-                            <td>Khulna</td>
+                            <td>2018/06/12</td>
                             <td><button class="btn btn-sm btn-success">Edit</button>
                                 <button class="btn btn-sm btn-danger">Delete</button>
                             </td>
@@ -127,10 +157,10 @@
                         <tr>
                             <td><input type="checkbox"></td>
                             <td> Farzad Rahman</td>
-                            <td>Senior Executive</td>
+                            <td>25</td>
                             <td>Male</td>
                             <td>farzad@gmail.com</td>
-                            <td>Dhaka</td>
+                            <td>2018/05/12</td>
                             <td><button class="btn btn-sm btn-success">Edit</button>
                                 <button class="btn btn-sm btn-danger">Delete</button>
                             </td>
@@ -138,10 +168,10 @@
                         <tr>
                             <td><input type="checkbox"></td>
                             <td> Mujtaba Rumi</td>
-                            <td>Senior Executive</td>
+                            <td>24</td>
                             <td>Male</td>
                             <td>sakib@gmail.com</td>
-                            <td>Dhaka</td>
+                            <td>2018/02/15</td>
                             <td><button class="btn btn-sm btn-success">Edit</button>
                                 <button class="btn btn-sm btn-danger">Delete</button>
                             </td>
@@ -149,10 +179,10 @@
                         <tr>
                             <td><input type="checkbox"></td>
                             <td> Sakib Rahman</td>
-                            <td>Senior Executive</td>
+                            <td>30</td>
                             <td>Male</td>
                             <td>sakib@gmail.com</td>
-                            <td>Khulna</td>
+                            <td>2011/04/25</td>
                             <td><button class="btn btn-sm btn-success">Edit</button>
                                 <button class="btn btn-sm btn-danger">Delete</button>
                             </td>
@@ -160,10 +190,10 @@
                         <tr>
                             <td><input type="checkbox"></td>
                             <td> Sakib Rahman</td>
-                            <td>Executive</td>
+                            <td>30</td>
                             <td>Male</td>
                             <td>sakib@gmail.com</td>
-                            <td>Dhaka</td>
+                            <td>2018/04/25</td>
                             <td><button class="btn btn-sm btn-success">Edit</button>
                                 <button class="btn btn-sm btn-danger">Delete</button>
                             </td>
@@ -171,10 +201,10 @@
                         <tr>
                             <td><input type="checkbox"></td>
                             <td> Sakib Rahman</td>
-                            <td>Senior Executive</td>
+                            <td>30</td>
                             <td>Male</td>
                             <td>sakib@gmail.com</td>
-                            <td>Khulna</td>
+                            <td>2011/04/25</td>
                             <td><button class="btn btn-sm btn-success">Edit</button>
                                 <button class="btn btn-sm btn-danger">Delete</button>
                             </td>
@@ -182,10 +212,10 @@
                         <tr>
                             <td><input type="checkbox"></td>
                             <td> Sakib Rahman</td>
-                            <td>Executive</td>
+                            <td>30</td>
                             <td>Male</td>
                             <td>sakib@gmail.com</td>
-                            <td>Dhaka</td>
+                            <td>2011/04/25</td>
                             <td><button class="btn btn-sm btn-success">Edit</button>
                                 <button class="btn btn-sm btn-danger">Delete</button>
                             </td>
@@ -193,10 +223,10 @@
                         <tr>
                             <td><input type="checkbox"></td>
                             <td> Sakib Rahman</td>
-                            <td>Senior Executive</td>
+                            <td>30</td>
                             <td>Male</td>
                             <td>sakib@gmail.com</td>
-                            <td>Khulna</td>
+                            <td>2011/04/25</td>
                             <td><button class="btn btn-sm btn-success">Edit</button>
                                 <button class="btn btn-sm btn-danger">Delete</button>
                             </td>
@@ -204,10 +234,10 @@
                         <tr>
                             <td><input type="checkbox"></td>
                             <td> Sakib Rahman</td>
-                            <td>Executive</td>
+                            <td>30</td>
                             <td>Male</td>
                             <td>sakib@gmail.com</td>
-                            <td>Dhaka</td>
+                            <td>2011/04/25</td>
                             <td><button class="btn btn-sm btn-success">Edit</button>
                                 <button class="btn btn-sm btn-danger">Delete</button>
                             </td>
@@ -215,10 +245,10 @@
                         <tr>
                             <td><input type="checkbox"></td>
                             <td> Sakib Rahman</td>
-                            <td>Senior Executive</td>
+                            <td>30</td>
                             <td>Male</td>
                             <td>sakib@gmail.com</td>
-                            <td>Khulna</td>
+                            <td>2018/04/10</td>
                             <td><button class="btn btn-sm btn-success">Edit</button>
                                 <button class="btn btn-sm btn-danger">Delete</button>
                             </td>
@@ -226,10 +256,10 @@
                         <tr>
                             <td><input type="checkbox"></td>
                             <td> Forhad Uddin</td>
-                            <td>Senior Executive</td>
+                            <td>40</td>
                             <td>Male</td>
                             <td>forhad@gmail.com</td>
-                            <td>Dhaka</td>
+                            <td>2018/06/12</td>
                             <td><button class="btn btn-sm btn-success">Edit</button>
                                 <button class="btn btn-sm btn-danger">Delete</button>
                             </td>
@@ -237,10 +267,10 @@
                         <tr>
                             <td><input type="checkbox"></td>
                             <td> Farzad Rahman</td>
-                            <td>Executive</td>
+                            <td>25</td>
                             <td>Male</td>
                             <td>farzad@gmail.com</td>
-                            <td>Khulna</td>
+                            <td>2018/05/12</td>
                             <td><button class="btn btn-sm btn-success">Edit</button>
                                 <button class="btn btn-sm btn-danger">Delete</button>
                             </td>
@@ -248,10 +278,10 @@
                         <tr>
                             <td><input type="checkbox"></td>
                             <td> Mujtaba Rumi</td>
-                            <td>Senior Executive</td>
+                            <td>24</td>
                             <td>Male</td>
                             <td>sakib@gmail.com</td>
-                            <td>Dhaka</td>
+                            <td>2018/02/15</td>
                             <td><button class="btn btn-sm btn-success">Edit</button>
                                 <button class="btn btn-sm btn-danger">Delete</button>
                             </td>
@@ -259,10 +289,10 @@
                         <tr>
                             <td><input type="checkbox"></td>
                             <td> Sakib Rahman</td>
-                            <td>Executive</td>
+                            <td>30</td>
                             <td>Male</td>
                             <td>sakib@gmail.com</td>
-                            <td>Khulna</td>
+                            <td>2011/04/25</td>
                             <td><button class="btn btn-sm btn-success">Edit</button>
                                 <button class="btn btn-sm btn-danger">Delete</button>
                             </td>
@@ -270,10 +300,10 @@
                         <tr>
                             <td><input type="checkbox"></td>
                             <td> Sakib Rahman</td>
-                            <td>Senior Executive</td>
+                            <td>30</td>
                             <td>Male</td>
                             <td>sakib@gmail.com</td>
-                            <td>Dhaka</td>
+                            <td>2018/04/10</td>
                             <td><button class="btn btn-sm btn-success">Edit</button>
                                 <button class="btn btn-sm btn-danger">Delete</button>
                             </td>
@@ -281,10 +311,10 @@
                         <tr>
                             <td><input type="checkbox"></td>
                             <td> Forhad Uddin</td>
-                            <td>Executive</td>
+                            <td>40</td>
                             <td>Male</td>
                             <td>forhad@gmail.com</td>
-                            <td>Khulna</td>
+                            <td>2018/06/12</td>
                             <td><button class="btn btn-sm btn-success">Edit</button>
                                 <button class="btn btn-sm btn-danger">Delete</button>
                             </td>
@@ -292,10 +322,10 @@
                         <tr>
                             <td><input type="checkbox"></td>
                             <td> Farzad Rahman</td>
-                            <td>Senior Executive</td>
+                            <td>25</td>
                             <td>Male</td>
                             <td>farzad@gmail.com</td>
-                            <td>Dhaka</td>
+                            <td>2018/05/12</td>
                             <td><button class="btn btn-sm btn-success">Edit</button>
                                 <button class="btn btn-sm btn-danger">Delete</button>
                             </td>
@@ -303,10 +333,10 @@
                         <tr>
                             <td><input type="checkbox"></td>
                             <td> Mujtaba Rumi</td>
-                            <td>Executive</td>
+                            <td>24</td>
                             <td>Male</td>
                             <td>sakib@gmail.com</td>
-                            <td>Khulna</td>
+                            <td>2018/02/15</td>
                             <td><button class="btn btn-sm btn-success">Edit</button>
                                 <button class="btn btn-sm btn-danger">Delete</button>
                             </td>
@@ -316,20 +346,19 @@
 
                     </table>
                     <br>
+
                     <br>
 
-                    <label class="checkbox-inline"> <input type="checkbox" value=""> </label> Select All  <br>
+                    <label class="checkbox-inline"> <input type="checkbox" value="true"> </label> Select All  <br>
                     <button style="margin-top: 10px;" class="btn btn-danger">Export CV</button>
+
+
 
                 </div>
 
             </div>
-        </div>
-        <!-- end col -->
-    </div>
-    <!-- end row -->
-    <!-- end page title end breadcrumb -->
-
+        </div> <!-- end col -->
+    </div> <!-- end row -->
 
 
 
@@ -348,7 +377,7 @@
     <script src="{{url('public/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
     <script>
         $(document).ready(function() {
-            table=$('#managecv').DataTable(
+            table=$('#manageapplication').DataTable(
                 {
 
                     "columnDefs": [
@@ -370,8 +399,115 @@
             }
         });
 
+        function changeJobStatus(x) {
+
+            btn = $(x).data('panel-id');
+            var job = document.getElementById('jobStatus'+btn).value;
+
+            $.confirm({
+                title: 'Confirm!',
+                content: 'Are you sure To change this Job Status?',
+                icon: 'fa fa-warning',
+                type: 'red',
+                typeAnimated: true,
+                buttons: {
+                    tryAgain: {
+                        text: 'Yes',
+                        btnClass: 'btn-red',
+                        action: function(){
+
+                            $.ajax({
+                                type: "POST",
+                                url: '{{route('job.admin.changeJobStatus')}}',
+                                data: {'id':btn,'status':job,'_token':"{{csrf_token()}}"},
+                                success: function (data) {
+
+                                    $.alert({
+                                        title: 'Success!',
+                                        type: 'green',
+                                        content: 'job Status change successfully',
+                                        buttons: {
+                                            tryAgain: {
+                                                text: 'Ok',
+                                                btnClass: 'btn-green',
+                                                action: function () {
+
+                                                    location.reload();
+
+                                                }
+                                            }
+                                        }
+                                    });
+
+                                },
+                            });
+                        }
+                    },
+                    No: function () {
+
+                        location.reload();
+
+
+                    },
+                }
+            });
+
+        }
+
+        function deleteJob(x) {
+
+            $.confirm({
+                title: 'Confirm!',
+                content: 'Are you sure To Delete this Job?',
+                icon: 'fa fa-warning',
+                type: 'red',
+                typeAnimated: true,
+                buttons: {
+                    tryAgain: {
+                        text: 'Yes',
+                        btnClass: 'btn-red',
+                        action: function(){
+
+                            btn = $(x).data('panel-id');
+
+                            $.ajax({
+                                type: "POST",
+                                url: '{{route('job.admin.delete')}}',
+                                data: {'id':btn,'_token':"{{csrf_token()}}"},
+                                success: function (data) {
+
+                                    $.alert({
+                                        title: 'Success!',
+                                        type: 'green',
+                                        content: 'job Deleted successfully',
+                                        buttons: {
+                                            tryAgain: {
+                                                text: 'Ok',
+                                                btnClass: 'btn-green',
+                                                action: function () {
+
+                                                    location.reload();
+
+                                                }
+                                            }
+                                        }
+                                    });
+
+                                },
+                            });
+                        }
+                    },
+                    No: function () {
+
+                        location.reload();
+
+
+                    },
+                }
+            });
+
+
+        }
     </script>
-
-
 
 @endsection

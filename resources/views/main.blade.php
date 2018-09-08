@@ -19,7 +19,7 @@
             <div class="logo">
                 <!-- Image Logo -->
                 <a href="#" class="logo">
-                    <h3>Job Bank</h3>
+                    <h3>CARITAS BANGLADESH</h3>
                 </a>
 
             </div>
@@ -130,7 +130,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                             <a class="dropdown-item" href="#"><i class="dripicons-user text-muted"></i> Profile</a>
-                            <a class="dropdown-item" href="#"><i class="dripicons-wallet text-muted"></i>Team</a>
+                            {{--<a class="dropdown-item" href="#"><i class="dripicons-wallet text-muted"></i>Team</a>--}}
                             <a class="dropdown-item" href="#"><i class="dripicons-gear text-muted"></i>Change Password</a>
 
                             <div class="dropdown-divider"></div>
@@ -190,6 +190,8 @@
     </div> <!-- end container -->
 </div>
 <!-- end wrapper -->
+
+
 {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>--}}
 
 @include('layouts/footer')

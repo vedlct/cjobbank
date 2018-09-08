@@ -39,6 +39,9 @@
                         <a href="{{route('admin.dashboard')}}"><i class="ti-home"></i>DashBoard</a>
                     </li>
                     <li class="has-submenu">
+                        <a href="{{route('cv.admin.manage')}}"><i class="ti-layout-width-default"></i>Manage CV</a>
+                    </li>
+                    <li class="has-submenu">
                         <a href="{{route('job.admin.manage')}}"><i class="ti-archive"></i>Manage Job</a>
                     </li>
                     <li class="has-submenu">
@@ -51,7 +54,8 @@
                         <a href="#"><i class="ti-settings"></i>Settings</a>
                         <ul class="submenu">
                         <li><a href="{{route('manage.zone')}}">Manage Zone</a></li>
-                        <li><a href="{{route('manage.education')}}">Manage Education</a></li>
+                        <li><a href="{{route('manage.education')}}">Manage Education Level</a></li>
+                        <li><a href="{{route('manage.educationDegree')}}">Manage Education Degree</a></li>
                         </ul>
                     </li>
                 @endif
