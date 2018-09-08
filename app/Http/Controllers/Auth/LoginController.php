@@ -44,7 +44,7 @@ class LoginController extends Controller
     {
 
         if (Auth::user()->fkuserTypeId == USER_TYPE['Admin']) {
-            return route('job.admin.manage');
+            return route('admin.dashboard');
         }
         elseif (Auth::user()->fkuserTypeId == USER_TYPE['User']) {
             return route('candidate.cvPersonalInfo');

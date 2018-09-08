@@ -8,63 +8,13 @@
             <div class="card">
                 <div style="background-color: #F1F1F1" class="card-body">
 
-                    <form id="regForm" action="{{route('submit.refree')}}" method="post">
+                    <form id="regForm" action="#" method="post">
                         <!-- One "tab" for each step in the form: -->
                         {{csrf_field()}}
 
                         <div id="" class="tab">
 
                             <h2 style="margin-bottom: 30px;">Relative in CB</h2>
-                            <div id="TextBoxesGroup1">
-
-                                <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label for="inputEmail4">First Name<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" name="firstName[]" id="firstName" placeholder="first name" required>
-                                    </div>
-
-
-
-                                    <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Last Name<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" name="lastName[]" id="lastName" placeholder="last name" required>
-                                    </div>
-
-
-
-                                    <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Present position<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" name="presentposition[]" id="presentposition" placeholder="position" required>
-                                    </div>
-
-                                    <div class="form-group col-md-6">
-                                        <label for="inputPassword4">Organization<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" required>
-                                    </div>
-
-                                    <div class="form-group col-md-6">
-                                        <label for="inputPassword4">Email<span style="color: red">*</span></label>
-                                        <input type="email" class="form-control" name="email[]" id="email" placeholder="email" required>
-                                    </div>
-
-                                    <div class="form-group col-md-6">
-                                        <label for="inputPassword4">phone<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" name="phone[]" id="phone" placeholder="Phone" required>
-                                    </div>
-
-                                    <div class="form-group col-md-6">
-                                        <label for="inputPassword4">relation<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" name="relation[]" id="relation" placeholder="relation" required>
-                                    </div>
-
-
-
-
-                                </div>
-
-
-                            </div>
-                            <hr>
                             <div id="TextBoxesGroup">
 
                                 <div class="row">
@@ -87,10 +37,6 @@
                                         <input type="text" class="form-control" name="presentposition[]" id="presentposition" placeholder="position" required>
                                     </div>
 
-                                    <div class="form-group col-md-6">
-                                        <label for="inputPassword4">Organization<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" required>
-                                    </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="inputPassword4">Email<span style="color: red">*</span></label>
@@ -115,6 +61,57 @@
 
                             </div>
 
+
+                            {{--<div id="TextBoxesGroup">--}}
+
+                                {{--<div class="row">--}}
+                                    {{--<div class="form-group col-md-6">--}}
+                                        {{--<label for="inputEmail4">First Name<span style="color: red">*</span></label>--}}
+                                        {{--<input type="text" class="form-control" name="firstName[]" id="firstName" placeholder="first name" required>--}}
+                                    {{--</div>--}}
+
+
+
+                                    {{--<div class="form-group col-md-6">--}}
+                                        {{--<label for="inputEmail4">Last Name<span style="color: red">*</span></label>--}}
+                                        {{--<input type="text" class="form-control" name="lastName[]" id="lastName" placeholder="last name" required>--}}
+                                    {{--</div>--}}
+
+
+
+                                    {{--<div class="form-group col-md-6">--}}
+                                        {{--<label for="inputEmail4">Present position<span style="color: red">*</span></label>--}}
+                                        {{--<input type="text" class="form-control" name="presentposition[]" id="presentposition" placeholder="position" required>--}}
+                                    {{--</div>--}}
+
+                                    {{--<div class="form-group col-md-6">--}}
+                                        {{--<label for="inputPassword4">Organization<span style="color: red">*</span></label>--}}
+                                        {{--<input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" required>--}}
+                                    {{--</div>--}}
+
+                                    {{--<div class="form-group col-md-6">--}}
+                                        {{--<label for="inputPassword4">Email<span style="color: red">*</span></label>--}}
+                                        {{--<input type="email" class="form-control" name="email[]" id="email" placeholder="email" required>--}}
+                                    {{--</div>--}}
+
+                                    {{--<div class="form-group col-md-6">--}}
+                                        {{--<label for="inputPassword4">phone<span style="color: red">*</span></label>--}}
+                                        {{--<input type="text" class="form-control" name="phone[]" id="phone" placeholder="Phone" required>--}}
+                                    {{--</div>--}}
+
+                                    {{--<div class="form-group col-md-6">--}}
+                                        {{--<label for="inputPassword4">relation<span style="color: red">*</span></label>--}}
+                                        {{--<input type="text" class="form-control" name="relation[]" id="relation" placeholder="relation" required>--}}
+                                    {{--</div>--}}
+
+
+
+
+                                {{--</div>--}}
+
+
+                            {{--</div>--}}
+
                             <button type="button" id="addButton" class="btn btn-success">Add More</button>
                             <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
@@ -122,7 +119,7 @@
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
-                                <a href="{{route('JobExperience.index')}}"><button type="button" id="btnPevious" >Back</button></a>
+                                <a href="{{route('refree.index')}}"><button type="button" id="btnPevious" >Back</button></a>
                                 {{--<a id="btnPevious" class="btn btn-success" href="{{route('JobExperience.index')}}">Back</a>--}}
                                 <button type="submit" id="submitBtn">Save</button>
 
@@ -205,7 +202,7 @@
                     var firstName=$('#firstName').val();
                     var lastName=$('#lastName').val();
                     var presentposition=$('#presentposition').val();
-                    var organization=$('#organization').val();
+
                     var email=$('#email').val();
                     var phone=$('#phone').val();
                     var relation=$('#relation').val();
@@ -256,20 +253,7 @@
                         return false;
 
                     }
-                    if(organization==""){
 
-                        var errorMsg='Please Type Organization First!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
-                    if (organization.length > 100){
-
-                        var errorMsg='Organization Should not more than 100 Charecter Length!!';
-                        validationError(errorMsg);
-                        return false;
-
-                    }
                     if(relation==""){
 
                         var errorMsg='Please Type Relation First!!'
@@ -331,7 +315,6 @@
                     var firstName=$('#firstName'+(counter-1)).val();
                     var lastName=$('#lastName'+(counter-1)).val();
                     var presentposition=$('#presentposition'+(counter-1)).val();
-                    var organization=$('#organization'+(counter-1)).val();
                     var email=$('#email'+(counter-1)).val();
                     var phone=$('#phone'+(counter-1)).val();
                     var relation=$('#relation'+(counter-1)).val();
@@ -382,20 +365,7 @@
                         return false;
 
                     }
-                    if(organization==""){
 
-                        var errorMsg='Please Type Organization First!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
-                    if (organization.length > 100){
-
-                        var errorMsg='Organization Should not more than 100 Charecter Length!!';
-                        validationError(errorMsg);
-                        return false;
-
-                    }
                     if(relation==""){
 
                         var errorMsg='Please Type Relation First!!'
@@ -471,10 +441,6 @@
                         '<div class="form-group col-md-6"> ' +
                         '<label for="inputEmail4">Present position<span style="color: red">*</span></label> ' +
                         '<input type="text" class="form-control" name="presentposition[]" id="presentposition'+counter+'" placeholder="position" required> ' +
-                        '</div> ' +
-                        '<div class="form-group col-md-6"> ' +
-                        '<label for="inputPassword4">Organization<span style="color: red">*</span></label> ' +
-                        '<input type="text" class="form-control" name="organization[]" id="organization'+counter+'" placeholder="organization" required> ' +
                         '</div> ' +
                         '<div class="form-group col-md-6"> ' +
                         '<label for="inputPassword4">Email<span style="color: red">*</span></label> ' +

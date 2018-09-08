@@ -2,11 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1f77d9ce-12dd-4235-9fdf-83a8d8b900b5" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/DashboardController.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/UserManagementController.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/Admin/dashboard/home.blade.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/Admin/userMange/manage.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/job/getAllJob.blade.php" afterPath="$PROJECT_DIR$/resources/views/job/getAllJob.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/Admin/job/manageJob.blade.php" afterPath="$PROJECT_DIR$/resources/views/Admin/job/manageJob.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/navbar.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/navbar.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/main.blade.php" afterPath="$PROJECT_DIR$/resources/views/main.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/userCv/insert/relativeInCaritas.blade.php" afterPath="$PROJECT_DIR$/resources/views/userCv/insert/relativeInCaritas.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/userCv/update/refree.blade.php" afterPath="$PROJECT_DIR$/resources/views/userCv/update/refree.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/web.php" afterPath="$PROJECT_DIR$/routes/web.php" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
@@ -27,16 +32,6 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="education.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/userCv/education.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="40" selection-start-line="20" selection-start-column="40" selection-end-line="20" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="education.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/userCv/insert/education.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="918">
@@ -50,7 +45,7 @@
         <entry file="file://$PROJECT_DIR$/resources/views/Admin/job/manageJob.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-213">
-              <caret line="163" column="42" selection-start-line="163" selection-start-column="42" selection-end-line="163" selection-end-column="42" />
+              <caret line="202" column="42" selection-start-line="202" selection-start-column="42" selection-end-line="202" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -61,6 +56,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1768">
               <caret line="104" column="6" selection-start-line="104" selection-start-column="6" selection-end-line="104" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/web.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="535">
+              <caret line="95" column="80" selection-start-line="95" selection-start-column="68" selection-end-line="95" selection-end-column="80" />
               <folding />
             </state>
           </provider>
@@ -91,17 +96,23 @@
       <file leaf-file-name="relativeInCaritas.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/userCv/insert/relativeInCaritas.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="75" selection-start-line="16" selection-start-column="75" selection-end-line="16" selection-end-column="75" />
+            <state relative-caret-position="-315">
+              <caret line="443" column="35" selection-start-line="443" selection-start-column="35" selection-end-line="443" selection-end-column="35" />
               <folding>
-                <marker date="1536408473481" expanded="true" signature="17755:17782" ph="..." />
-                <marker date="1536408473481" expanded="true" signature="17978:17988" ph="..." />
-                <marker date="1536408473481" expanded="true" signature="18331:18341" ph="..." />
-                <marker date="1536408473481" expanded="true" signature="18688:18698" ph="..." />
-                <marker date="1536408473481" expanded="true" signature="19057:19067" ph="..." />
-                <marker date="1536408473481" expanded="true" signature="19417:19427" ph="..." />
-                <marker date="1536408473481" expanded="true" signature="19757:19767" ph="..." />
-                <marker date="1536408473481" expanded="true" signature="20099:20109" ph="..." />
+                <marker date="1536411070464" expanded="false" signature="3248:3258" ph="..." />
+                <marker date="1536411070464" expanded="false" signature="3661:3671" ph="..." />
+                <marker date="1536411070464" expanded="false" signature="4078:4088" ph="..." />
+                <marker date="1536411070464" expanded="false" signature="4505:4515" ph="..." />
+                <marker date="1536411070464" expanded="false" signature="4923:4933" ph="..." />
+                <marker date="1536411070464" expanded="false" signature="5321:5331" ph="..." />
+                <marker date="1536411070464" expanded="false" signature="5721:5731" ph="..." />
+                <marker date="1536411070464" expanded="true" signature="16444:16471" ph="..." />
+                <marker date="1536411070464" expanded="true" signature="16667:16677" ph="..." />
+                <marker date="1536411070464" expanded="true" signature="17020:17030" ph="..." />
+                <marker date="1536411070464" expanded="true" signature="17377:17387" ph="..." />
+                <marker date="1536411070464" expanded="true" signature="17739:17749" ph="..." />
+                <marker date="1536411070464" expanded="true" signature="18079:18089" ph="..." />
+                <marker date="1536411070464" expanded="true" signature="18421:18431" ph="..." />
               </folding>
             </state>
           </provider>
@@ -238,6 +249,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="cjobbank" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cjobbank" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="cjobbank" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="routes" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -455,15 +480,15 @@
       <workItem from="1536125239902" duration="816000" />
       <workItem from="1536312647923" duration="1223000" />
       <workItem from="1536388026395" duration="25000" />
-      <workItem from="1536391972431" duration="10883000" />
+      <workItem from="1536391972431" duration="13633000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33534000" />
+    <option name="totallyTimeSpent" value="36284000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25208333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -494,11 +519,11 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="NativeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25266525" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25208333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -794,14 +819,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/usercv.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -858,7 +875,7 @@
     <entry file="file://$PROJECT_DIR$/resources/views/Admin/job/manageJob.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-213">
-          <caret line="163" column="42" selection-start-line="163" selection-start-column="42" selection-end-line="163" selection-end-column="42" />
+          <caret line="202" column="42" selection-start-line="202" selection-start-column="42" selection-end-line="202" selection-end-column="42" />
           <folding />
         </state>
       </provider>
@@ -883,14 +900,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RelativeInCbController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/userCv/insert/refree.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -899,19 +908,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="535">
+          <caret line="95" column="80" selection-start-line="95" selection-start-column="68" selection-end-line="95" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/RelativeInCbController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/userCv/insert/relativeInCaritas.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="75" selection-start-line="16" selection-start-column="75" selection-end-line="16" selection-end-column="75" />
+        <state relative-caret-position="-315">
+          <caret line="443" column="35" selection-start-line="443" selection-start-column="35" selection-end-line="443" selection-end-column="35" />
           <folding>
-            <marker date="1536408473481" expanded="true" signature="17755:17782" ph="..." />
-            <marker date="1536408473481" expanded="true" signature="17978:17988" ph="..." />
-            <marker date="1536408473481" expanded="true" signature="18331:18341" ph="..." />
-            <marker date="1536408473481" expanded="true" signature="18688:18698" ph="..." />
-            <marker date="1536408473481" expanded="true" signature="19057:19067" ph="..." />
-            <marker date="1536408473481" expanded="true" signature="19417:19427" ph="..." />
-            <marker date="1536408473481" expanded="true" signature="19757:19767" ph="..." />
-            <marker date="1536408473481" expanded="true" signature="20099:20109" ph="..." />
+            <marker date="1536411070464" expanded="false" signature="3248:3258" ph="..." />
+            <marker date="1536411070464" expanded="false" signature="3661:3671" ph="..." />
+            <marker date="1536411070464" expanded="false" signature="4078:4088" ph="..." />
+            <marker date="1536411070464" expanded="false" signature="4505:4515" ph="..." />
+            <marker date="1536411070464" expanded="false" signature="4923:4933" ph="..." />
+            <marker date="1536411070464" expanded="false" signature="5321:5331" ph="..." />
+            <marker date="1536411070464" expanded="false" signature="5721:5731" ph="..." />
+            <marker date="1536411070464" expanded="true" signature="16444:16471" ph="..." />
+            <marker date="1536411070464" expanded="true" signature="16667:16677" ph="..." />
+            <marker date="1536411070464" expanded="true" signature="17020:17030" ph="..." />
+            <marker date="1536411070464" expanded="true" signature="17377:17387" ph="..." />
+            <marker date="1536411070464" expanded="true" signature="17739:17749" ph="..." />
+            <marker date="1536411070464" expanded="true" signature="18079:18089" ph="..." />
+            <marker date="1536411070464" expanded="true" signature="18421:18431" ph="..." />
           </folding>
         </state>
       </provider>

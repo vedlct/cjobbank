@@ -3,7 +3,46 @@
 
 
     <div class="row">
-        <div class="col-12">
+
+        <div class="col-2">
+
+            <div style="background-color: white;margin-bottom: 20px;" class="card-body">
+
+                <div class=" form-group">
+                    <label>Zone</label>
+                    <select class="form-control">
+                        <option>Select a Zone</option>
+                        <option>Dhaka</option>
+                        <option>Khulna</option>
+                        <option>Barishal</option>
+                        <option>Rangpur</option>
+
+                    </select>
+                </div>
+                <div class=" form-group">
+                    <label>Post Date</label>
+                    <input class="form-control" type="date">
+                </div>
+                <div class=" form-group">
+                    <label>Deadline</label>
+                    <input class="form-control" type="date">
+                </div>
+                <div class=" form-group">
+                    <label>Job Status</label>
+                    <select class="form-control">
+                        <option>Select a Status</option>
+                        <option>Posted</option>
+                        <option>De-activate</option>
+
+                    </select>
+                </div>
+                <hr>
+
+
+            </div>
+        </div>
+
+        <div class="col-10">
             <div class="card m-b-30">
                 <div class="card-header">
                     <h4 class="pull-left">Manage All Job</h4>

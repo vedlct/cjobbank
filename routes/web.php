@@ -118,8 +118,10 @@ Route::get('Candidate-Applications','EmployeeApplicationController@getAllApplica
 
 
 /*-------------------------------Admin---------------------------------*/
-
+Route::get('Admin-Dashboard','Admin\DashboardController@home')->name('admin.dashboard');
+Route::get('Admin-Manage-User','Admin\UserManagementController@home')->name('admin.manageUser');
 //job
+
 Route::get('Admin-Add-New-Job','Admin\JobController@addNewJob')->name('job.admin.create');
 Route::get('Admin-Manage-Job','Admin\JobController@manageJob')->name('job.admin.manage');
 

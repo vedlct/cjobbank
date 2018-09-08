@@ -36,10 +36,16 @@
 
                 @if(USER_TYPE['Admin']== Auth::user()->fkuserTypeId)
                     <li class="has-submenu">
+                        <a href="{{route('admin.dashboard')}}"><i class="ti-home"></i>DashBoard</a>
+                    </li>
+                    <li class="has-submenu">
                         <a href="{{route('job.admin.manage')}}"><i class="ti-archive"></i>Manage Job</a>
                     </li>
                     <li class="has-submenu">
                         <a href="{{route('application.admin.manage')}}"><i class="ti-archive"></i>Manage Application</a>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="{{route('admin.manageUser')}}"><i class="ti-user"></i>User Management</a>
                     </li>
                     <li class="has-submenu">
                         <a href="#"><i class="ti-settings"></i>Settings</a>
