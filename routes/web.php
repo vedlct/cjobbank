@@ -47,6 +47,7 @@ Route::view('job/manage','job.manage')->name('job.manage');
 
 Route::view('manage/zone','manage.zone')->name('manage.zone');
 Route::view('manage/education','manage.education')->name('manage.education');
+Route::view('manage/education-Degree','manage.educationDegree')->name('manage.educationDegree');
 
 //user Cv
 
@@ -120,6 +121,9 @@ Route::get('Candidate-Applications','EmployeeApplicationController@getAllApplica
 /*-------------------------------Admin---------------------------------*/
 Route::get('Admin-Dashboard','Admin\DashboardController@home')->name('admin.dashboard');
 Route::get('Admin-Manage-User','Admin\UserManagementController@home')->name('admin.manageUser');
+Route::get('Admin-Manage-CV','Admin\CvManagementController@manage')->name('cv.admin.manage');
+
+
 //job
 
 Route::get('Admin-Add-New-Job','Admin\JobController@addNewJob')->name('job.admin.create');
