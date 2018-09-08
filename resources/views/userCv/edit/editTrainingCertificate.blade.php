@@ -4,7 +4,7 @@
 <div class="row">
     <div class="form-group col-md-10">
 
-        <label for="inputEmail4">Name Of The Training</label>
+        <label for="inputEmail4">Name Of The Training<span style="color: red">*</span></label>
         <input type="text" class="form-control" name="trainingName" value="{{$training->trainingName}}" id="trainingName" placeholder="training name" required>
     </div>
     {{--<div class="form-group col-md-2 ">--}}
@@ -16,13 +16,14 @@
 
 <div class="row">
     <div class="form-group col-md-8">
-        <label for="inputEmail4">Vanue </label>
+        <label for="inputEmail4">Vanue <span style="color: red">*</span></label>
         <input type="text" class="form-control" name="vanue" value="{{$training->vanue}}" id="vanue" placeholder="vanue" required >
     </div>
     <div class="form-group col-md-4">
-        <label for="inputPassword4">country</label>
+        <label for="inputPassword4">country<span style="color: red">*</span></label>
         {{--<input type="text" class="form-control"  id="inputPassword4" placeholder="">--}}
-        <select class="form-control" id="country" name="countryId">
+        <option value="">Select country</option>
+        <select required class="form-control" id="country" name="countryId">
             @foreach($countries as $country)
                 <option value="{{$country->countryId}}" @if($training->countryId == $country->countryId) selected @endif>{{$country->countryName}}</option>
 
@@ -31,12 +32,22 @@
     </div>
 
     <div class="form-group col-md-4">
-        <label for="inputPassword4">Start Date</label>
+        <label for="inputPassword4">Start Date<span style="color: red">*</span></label>
         <input type="text" class="form-control date" name="startDate" value="{{$training->startDate}}" id="start" placeholder="date" required>
     </div>
     <div class="form-group col-md-4">
         <label for="inputPassword4">End Date</label>
         <input type="text" class="form-control date" name="endDate"  value="{{$training->endDate}}" id="end" placeholder="date">
+    </div>
+    <div class="form-group col-md-4">
+        <label for="inputPassword4">Staus<span style="color: red">*</span></label>
+        <select required class="form-control"id="trainingCertificateStatus" name="status">
+
+            <option value="">Select Status</option>
+            @foreach(COMPLETING_STATUS as $key=>$value)
+                <option @if($training->status == $value) selected @endif value="{{$value}}">{{$key}}</option>
+            @endforeach
+        </select>
     </div>
     <div class="form-group col-md-12">
         <button  class="btn btn-info pull-right">Update</button>
@@ -66,6 +77,7 @@
 
         var start=$('#start').val();
         var end=$('#end').val();
+        var trainingCertificateStatus=$('#trainingCertificateStatus').val();
 
 
 
@@ -109,16 +121,26 @@
             validationError(errorMsg)
             return false;
         }
-        if(end==""){
-            var errorMsg='Please Select a End Date First!!';
+//        if(end==""){
+//            var errorMsg='Please Select a End Date First!!';
+//            validationError(errorMsg)
+//            return false;
+//        }
+
+        if(trainingCertificateStatus==""){
+            var errorMsg='Please Select a Status First!!';
             validationError(errorMsg)
             return false;
         }
 
-        if(Date.parse(end)<Date.parse(start)){
-            var errorMsg='End date should after Start Date!!';
-            validationError(errorMsg);
-            return false;
+        if (end != "") {
+
+
+            if (Date.parse(end) < Date.parse(start)) {
+                var errorMsg = 'End date should after Start Date!!';
+                validationError(errorMsg);
+                return false;
+            }
         }
 
     }

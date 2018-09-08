@@ -19,14 +19,14 @@
 
                                 <div class="row">
                                 <div class="form-group col-md-12">
-                                    <label for="inputEmail4">Certificate Name</label>
+                                    <label for="inputEmail4">Certificate Name<span style="color: red">*</span></label>
                                     <input type="text" class="form-control" name="certificateName[]" id="certificateName" placeholder="certificate" required>
                                 </div>
                             </div>
 
                                 <div class="row">
                                 <div class="form-group col-md-8">
-                                    <label for="inputEmail4">Institute Name</label>
+                                    <label for="inputEmail4">Institute Name<span style="color: red">*</span></label>
                                     <input type="text" class="form-control" name="institutionName[]" id="institutionName" placeholder="institution" required>
                                 </div>
                                 <div class="form-group col-md-4">
@@ -35,7 +35,7 @@
                                 </div>
 
                                 <div class="form-group col-md-4">
-                                    <label for="inputPassword4">Start Date</label>
+                                    <label for="inputPassword4">Start Date<span style="color: red">*</span></label>
                                     <input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" required>
                                 </div>
                                 <div class="form-group col-md-4">
@@ -44,8 +44,8 @@
                                 </div>
 
                                 <div class="form-group col-md-4">
-                                    <label for="inputPassword4">Staus</label>
-                                    <select class="form-control"id="professinalCertificateStatus" name="status[]">
+                                    <label for="inputPassword4">Staus<span style="color: red">*</span></label>
+                                    <select required class="form-control"id="professinalCertificateStatus" name="status[]">
 
                                         <option value="">Select Status</option>
                                         @foreach(COMPLETING_STATUS as $key=>$value)
@@ -145,7 +145,7 @@
 
                     var certificateName=$('#certificateName').val();
                     var institutionName=$('#institutionName').val();
-                    var result=$('#result').val();
+//                    var result=$('#result').val();
                     var start=$('#start').val();
                     var end=$('#end').val();
                     var status=$('#professinalCertificateStatus').val();
@@ -178,20 +178,20 @@
                         return false;
 
                     }
-                    if(result==""){
-
-                        var errorMsg='Please Type a Result First!!';
-                        validationError(errorMsg);
-                        return false;
-
-                    }
-                    if (result.length > 10){
-
-                        var errorMsg='Result Should not more than 10 Charecter Length!!';
-                        validationError(errorMsg);
-                        return false;
-
-                    }
+//                    if(result==""){
+//
+//                        var errorMsg='Please Type a Result First!!';
+//                        validationError(errorMsg);
+//                        return false;
+//
+//                    }
+//                    if (result.length > 10){
+//
+//                        var errorMsg='Result Should not more than 10 Charecter Length!!';
+//                        validationError(errorMsg);
+//                        return false;
+//
+//                    }
                     if(start==""){
 
                         var errorMsg='Please Select a Strat Date First!!';
@@ -199,19 +199,23 @@
                         return false;
 
                     }
-                    if(end==""){
+//                    if(end==""){
+//
+//                        var errorMsg='Please Select a End Date First!!';
+//                        validationError(errorMsg);
+//                        return false;
+//
+//                    }
+                    if (end != "") {
 
-                        var errorMsg='Please Select a End Date First!!';
-                        validationError(errorMsg);
-                        return false;
 
-                    }
-                    if(Date.parse(end)<Date.parse(start)){
+                        if (Date.parse(end) < Date.parse(start)) {
 
-                        var errorMsg='End date should after Start Date!!';
-                        validationError(errorMsg);
-                        return false;
+                            var errorMsg = 'End date should after Start Date!!'
+                            validationError(errorMsg)
+                            return false;
 
+                        }
                     }
 
                     if(status==""){
@@ -229,7 +233,7 @@
 
                     var certificateName=$('#certificateName'+(counter-1)).val();
                     var institutionName=$('#institutionName'+(counter-1)).val();
-                    var result=$('#result'+(counter-1)).val();
+//                    var result=$('#result'+(counter-1)).val();
                     var start=$('#start'+(counter-1)).val();
                     var end=$('#end'+(counter-1)).val();
                     var status=$('#professinalCertificateStatus'+(counter-1)).val();
@@ -262,20 +266,20 @@
                         return false;
 
                     }
-                    if(result==""){
-
-                        var errorMsg='Please Type a Result First!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
-                    if (result.length > 10){
-
-                        var errorMsg='Result Should not more than 10 Charecter Length!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
+//                    if(result==""){
+//
+//                        var errorMsg='Please Type a Result First!!'
+//                        validationError(errorMsg)
+//                        return false;
+//
+//                    }
+//                    if (result.length > 10){
+//
+//                        var errorMsg='Result Should not more than 10 Charecter Length!!'
+//                        validationError(errorMsg)
+//                        return false;
+//
+//                    }
                     if(start==""){
 
                         var errorMsg='Please Select a Strat Date First!!'
@@ -283,20 +287,24 @@
                         return false;
 
                     }
-                    if(end==""){
+//                    if(end==""){
+//
+//                        var errorMsg='Please Select a End Date First!!'
+//                        validationError(errorMsg)
+//                        return false;
+//
+//                    }
 
-                        var errorMsg='Please Select a End Date First!!'
-                        validationError(errorMsg)
-                        return false;
+                    if (end != "") {
 
-                    }
 
-                    if(Date.parse(end)<Date.parse(start)){
+                        if (Date.parse(end) < Date.parse(start)) {
 
-                        var errorMsg='End date should after Start Date!!'
-                        validationError(errorMsg)
-                        return false;
+                            var errorMsg = 'End date should after Start Date!!'
+                            validationError(errorMsg)
+                            return false;
 
+                        }
                     }
 
                     if(status==""){
@@ -320,13 +328,13 @@
                     '<div id="TextBoxesGroup">'+
                     '<div class="row">'+
                     '<div class="form-group col-md-12">'+
-                    '<label for="inputEmail4">Certificate Name</label>'+
+                    '<label for="inputEmail4">Certificate Name<span style="color: red">*</span></label>'+
                 '<input type="text" class="form-control" name="certificateName[]" id="certificateName'+counter+'" placeholder="certificate" required>'+
                 '</div>'+
                 '</div>'+
                 '<div class="row">'+
                     '<div class="form-group col-md-8">'+
-                    '<label for="inputEmail4">Institute Name</label>'+
+                    '<label for="inputEmail4">Institute Name<span style="color: red">*</span></label>'+
                 '<input type="text" class="form-control" name="institutionName[]" id="institutionName'+counter+'" placeholder="institution" required>'+
                 '</div>'+
                 '<div class="form-group col-md-4">'+
@@ -335,7 +343,7 @@
                     '</div>'+
 
                     '<div class="form-group col-md-4">'+
-                    '<label for="inputPassword4">Start Date</label>'+
+                    '<label for="inputPassword4">Start Date<span style="color: red">*</span></label>'+
                 '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date" required>'+
                 '</div>'+
                 '<div class="form-group col-md-4">'+
@@ -344,8 +352,8 @@
                     '</div>'+
 
                     '<div class="form-group col-md-4">'+
-                    '<label for="inputPassword4">Staus</label>'+
-                    '<select class="form-control" id="professinalCertificateStatus'+counter+'" name="status[]">'+
+                    '<label for="inputPassword4">Staus<span style="color: red">*</span></label>'+
+                    '<select required class="form-control" id="professinalCertificateStatus'+counter+'" name="status[]">'+
                     '<option value="">Select Status</option>'+
                     @foreach(COMPLETING_STATUS as $key=>$value)
                     '<option value="{{$value}}">{{$key}}</option>'+

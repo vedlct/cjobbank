@@ -20,7 +20,7 @@
                             <div id="TextBoxesGroup" class="row">
                                 <div class="form-group col-md-4">
 
-                                    <label for="">Education Level</label>
+                                    <label for="">Education Level<span style="color: red">*</span></label>
                                     <select name="educationLevel[]" class="form-control" required="" id="educationLevel">
                                         <option value="">Select Education Level</option>
                                         @foreach($educationLevel as $edulevel)
@@ -31,8 +31,8 @@
                                 </div>
                                 <div class="form-group col-md-8">
 
-                                    <label for="">Degree</label>
-                                    <select name="degree[]" class="form-control" required id="degree">
+                                    <label for="">Degree<span style="color: red">*</span></label>
+                                    <select  name="degree[]" class="form-control" required id="degree">
                                         <option value="">Select Degree</option>
 
                                     </select>
@@ -40,7 +40,7 @@
                                 </div>
 
                                 <div class="form-group col-md-12">
-                                    <label for="">Institute Name</label>
+                                    <label for="">Institute Name<span style="color: red">*</span></label>
                                     <input type="text" name="instituteName[]" required class="form-control" id="instituteName" placeholder="">
                                 </div>
                                 <div class="form-group col-md-6">
@@ -51,7 +51,7 @@
                                 </div>
 
                                 <div class="form-group col-md-3">
-                                    <label for="">Country</label>
+                                    <label for="">Country<span style="color: red">*</span></label>
                                     <select name="country[]" class="form-control" required id="country">
                                         <option value="">Select Country</option>
                                         @foreach($country as $coun)
@@ -62,11 +62,11 @@
 
 
                                 <div class="form-group col-md-3">
-                                    <label for="">Year</label>
+                                    <label for="">Year<span style="color: red">*</span></label>
                                     <input name="passingYear[]" type="text" class="form-control date" id="passingYear" required placeholder="passing Year">
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label for="">Result System</label>
+                                    <label for="">Result System<span style="color: red">*</span></label>
                                     <select name="resultSystem[]" class="form-control" required id="resultSydtem">
                                         <option value="">Select System</option>
                                         @foreach(RESULT_SYSTEM as $key=>$value)
@@ -76,7 +76,7 @@
                                 </div>
 
                                 <div class="form-group col-md-3">
-                                    <label for="">CGPA</label>
+                                    <label for="">CGPA<span style="color: red">*</span></label>
                                     <input name="result[]" type="text" class="form-control" required id="cgpa" placeholder="">
                                 </div>
                                 <div class="form-group col-md-3">
@@ -84,7 +84,7 @@
                                     <input type="text" name="resultOutOf[]" class="form-control" id="resultOutOf" placeholder="CGPA Out of">
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label for="">Status</label>
+                                    <label for="">Status<span style="color: red">*</span></label>
                                     <select name="status[]"class="form-control" required id="educationStatus">
                                         <option value="">Select Status</option>
                                         @foreach(COMPLETING_STATUS as $key=>$value)
@@ -349,7 +349,7 @@
                     .attr("id", 'TextBoxDiv' + counter).attr("class", 'row');
                 newTextBoxDiv.after().html('<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>'
                     +'<div class="form-group col-md-4">'+
-                '<label for="">Education Level</label>'+
+                '<label for="">Education Level<span style="color: red">*</span></label>'+
                 '<select name="educationLevel[]" class="form-control" data-panel-id="'+ counter+'" required onchange="getDegree(this)"id="educationLevel'+counter+'">'+
                     '<option value="">Select Education Level</option>'+
                 @foreach($educationLevel as $edulevel)
@@ -360,7 +360,7 @@
                     '</div>'+
                     '<div class="form-group col-md-8">'+
 
-                    '<label for="">Degree</label>'+
+                    '<label for="">Degree<span style="color: red">*</span></label>'+
                     '<select name="degree[]" class="form-control" data-panel-id="'+ counter+'" required onchange="getMajor(this)" id="degree'+counter+'">'+
                     '<option value="">Select Degree</option>'+
 
@@ -369,7 +369,7 @@
                 '</div>'+
 
                 '<div class="form-group col-md-12">'+
-                    '<label for="">Institute Name</label>'+
+                    '<label for="">Institute Name<span style="color: red">*</span></label>'+
                 '<input type="text" name="instituteName[]" class="form-control" required id="instituteName'+counter+'" placeholder="">'+
                     '</div>'+
                     '<div class="form-group col-md-6">'+
@@ -380,7 +380,7 @@
                 '</div>'+
 
                 '<div class="form-group col-md-3">'+
-                    '<label for="">Country</label>'+
+                    '<label for="">Country<span style="color: red">*</span></label>'+
                    ' <select name="country[]" class="form-control" required id="country'+counter+'">'+
                     '<option value="">Select Country</option>'+
                         @foreach($country as $coun)
@@ -390,11 +390,11 @@
                    ' </div>'+
 
                     '<div class="form-group col-md-3">'+
-                    '<label for="">Year</label>'+
+                    '<label for="">Year<span style="color: red">*</span></label>'+
                    ' <input name="passingYear[]" type="text" class="form-control date" required id="passingYear'+counter+'" placeholder="passing Year">'+
                    ' </div>'+
                     '<div class="form-group col-md-3">'+
-                    '<label for="">Result System</label>'+
+                    '<label for="">Result System<span style="color: red">*</span></label>'+
                 '<select name="resultSystem[]" class="form-control" required id="resultSydtem'+counter+'">'+
                     '<option value="">Select System</option>'+
                 @foreach(RESULT_SYSTEM as $key=>$value)
@@ -403,15 +403,15 @@
                     '</select>'+
                     '</div>'+
                    ' <div class="form-group col-md-3">'+
-                    '<label for="">CGPA</label>'+
+                    '<label for="">CGPA<span style="color: red">*</span></label>'+
                     '<input name="result[]" type="text" class="form-control" id="cgpa'+counter+'" required  placeholder="">'+
                     '</div>'+
                     '<div class="form-group col-md-3">'+
-                    '<label for="">Out of</label>'+
+                    '<label for="">CGPA Out of</label>'+
                 '<input type="text" name="resultOutOf[]" class="form-control" id="resultOutOf'+counter+'" placeholder="CGPA Out of">'+
                     '</div>'+
                     '<div class="form-group col-md-3">'+
-                    '<label for="">Status</label>'+
+                    '<label for="">Status<span style="color: red">*</span></label>'+
                     '<select name="status[]"class="form-control" required id="educationStatus'+counter+'">'+
                     '<option value="">Select Status</option>'+
                         @foreach(COMPLETING_STATUS as $key=>$value)

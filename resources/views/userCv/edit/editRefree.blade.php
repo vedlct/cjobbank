@@ -3,41 +3,41 @@
     <input type="hidden" name="refereeId" value="{{$refree->refereeId}}">
 <div class="row">
     <div class="form-group col-md-6">
-        <label for="inputEmail4">First Name</label>
+        <label for="inputEmail4">First Name<span style="color: red">*</span></label>
         <input type="text" class="form-control" name="firstName" value="{{$refree->firstName}}" id="firstName" placeholder="first name" required>
     </div>
 
 
 
     <div class="form-group col-md-6">
-        <label for="inputEmail4">Last Name</label>
+        <label for="inputEmail4">Last Name<span style="color: red">*</span></label>
         <input type="text" class="form-control" name="lastName" value="{{$refree->lastName}}" id="lastName" placeholder="last name" required>
     </div>
 
 
 
     <div class="form-group col-md-6">
-        <label for="inputEmail4">Present position</label>
+        <label for="inputEmail4">Present position<span style="color: red">*</span></label>
         <input type="text" class="form-control" name="presentposition" value="{{$refree->presentposition}}" id="presentposition" placeholder="position" required>
     </div>
 
     <div class="form-group col-md-6">
-        <label for="inputPassword4">Organization</label>
+        <label for="inputPassword4">Organization<span style="color: red">*</span></label>
         <input type="text" class="form-control" name="organization" value="{{$refree->organization}}" id="organization" placeholder="organization" required>
     </div>
 
     <div class="form-group col-md-6">
-        <label for="inputPassword4">Email</label>
+        <label for="inputPassword4">Email<span style="color: red">*</span></label>
         <input type="email" class="form-control" name="email" value="{{$refree->email}}" id="email" placeholder="email" required>
     </div>
 
     <div class="form-group col-md-6">
-        <label for="inputPassword4">phone</label>
+        <label for="inputPassword4">phone<span style="color: red">*</span></label>
         <input type="text" class="form-control" name="phone" value="{{$refree->phone}}" id="phone" placeholder="email" required>
     </div>
 
     <div class="form-group col-md-6">
-        <label for="inputPassword4">relation</label>
+        <label for="inputPassword4">relation<span style="color: red">*</span></label>
         <input type="text" class="form-control" name="relation" value="{{$refree->relation}}" id="relation" placeholder="relation" required>
     </div>
 

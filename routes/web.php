@@ -99,6 +99,10 @@ Route::post('/editRefree','RefreeController@editRefree')->name('refree.edit');
 Route::post('/updateRefree','RefreeController@updateRefree')->name('update.refree');
 Route::post('/deleteRefree','RefreeController@deleteRefree')->name('refree.delete');
 
+//Relation in Caritas
+
+Route::get('/Candidate-CV-RelationInCaritas','RelationInCaritasController@getRelationInfo')->name('relationInCaritas.getRelationInfo');
+
 
 
 /*---------------------------Job----------------------*/

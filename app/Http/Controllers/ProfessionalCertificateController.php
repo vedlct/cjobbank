@@ -22,8 +22,7 @@ class ProfessionalCertificateController extends Controller
     public function getEmployeeCvProfessionalCertificate()
     {
         $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
-        $professional=ProfessionalQualification::where('fkemployeeId',$employee->employeeId)
-            ->get();
+        $professional=ProfessionalQualification::where('fkemployeeId',$employee->employeeId)->get();
 
 
         if($professional->isEmpty()){
