@@ -43,6 +43,7 @@ class TrainingController extends Controller
           $training->vanue=$r->vanue[$i];
           $training->countryId=$r->countryId[$i];
           $training->fkemployeeId=$employee->employeeId;
+          $training->status=$r->status[$i];
 
           $training->save();
        }
@@ -59,12 +60,14 @@ class TrainingController extends Controller
    }
 
    public function updateCvTraning(Request $r){
+
        $training=Traning::findOrFail($r->traningId);
        $training->trainingName=$r->trainingName;
        $training->startDate=$r->startDate;
        $training->endDate=$r->endDate;
        $training->vanue=$r->vanue;
        $training->countryId=$r->countryId;
+       $training->status=$r->status;
 
        $training->save();
 

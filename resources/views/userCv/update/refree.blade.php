@@ -97,8 +97,9 @@
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
-                                <a id="btnPevious" class="btn btn-success" href="{{route('JobExperience.index')}}">Back</a>
+                                <a href="{{route('JobExperience.index')}}"><button type="button" id="btnPevious" >Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
+                                <a href="{{route('relationInCaritas.getRelationInfo')}}"><button type="button" id="nextBtn" >Next</button></a>
                             </div>
                         </div>
                         </form>
@@ -147,7 +148,7 @@
                 cache: false,
                 data: {_token: "{{csrf_token()}}",'refereeId': x},
                 success: function (data) {
-                    $("#btnPevious").hide();
+//                    $("#btnPevious").hide();
                     $('#edit'+x).html(data);
 
                 }
@@ -211,7 +212,7 @@
 
 
             $("#addButton").click(function () {
-                $("#btnPevious").hide();
+//                $("#btnPevious").hide();
                 if(counter>10){
                     alert("Only 10 Section allow per Time!!");
                     return false;
@@ -351,31 +352,31 @@
                     '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>'+
                     '  <div class="row"> ' +
                     '<div class="form-group col-md-6"> ' +
-                    '<label for="inputEmail4">First Name</label> ' +
+                    '<label for="inputEmail4">First Name<span style="color: red">*</span></label> ' +
                     '<input type="text" class="form-control" name="firstName[]" id="firstName'+counter+'" placeholder="first name" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
-                    '<label for="inputEmail4">Last Name</label> ' +
+                    '<label for="inputEmail4">Last Name<span style="color: red">*</span></label> ' +
                     '<input type="text" class="form-control" name="lastName[]" id="lastName'+counter+'" placeholder="last name" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
-                    '<label for="inputEmail4">Present position</label> ' +
+                    '<label for="inputEmail4">Present position<span style="color: red">*</span></label> ' +
                     '<input type="text" class="form-control" name="presentposition[]" id="presentposition'+counter+'" placeholder="position" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
-                    '<label for="inputPassword4">Organization</label> ' +
+                    '<label for="inputPassword4">Organization<span style="color: red">*</span></label> ' +
                     '<input type="text" class="form-control" name="organization[]" id="organization'+counter+'" placeholder="organization" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
-                    '<label for="inputPassword4">Email</label> ' +
+                    '<label for="inputPassword4">Email<span style="color: red">*</span></label> ' +
                     '<input type="email" class="form-control" name="email[]" id="email'+counter+'" placeholder="email" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
-                    '<label for="inputPassword4">phone</label> ' +
+                    '<label for="inputPassword4">phone<span style="color: red">*</span></label> ' +
                     '<input type="text" class="form-control" name="phone[]" id="phone'+counter+'" placeholder="email" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
-                    '<label for="inputPassword4">relation</label> ' +
+                    '<label for="inputPassword4">relation<span style="color: red">*</span></label> ' +
                     '<input type="text" class="form-control" name="relation[]" id="relation'+counter+'" placeholder="relation" required> ' +
                     '</div>'
                 );

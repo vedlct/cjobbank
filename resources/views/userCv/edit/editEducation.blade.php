@@ -6,7 +6,7 @@
         <div  class="row">
             <div class="form-group col-md-4">
 
-                <label for="">Education Level</label>
+                <label for="">Education Level<span style="color: red">*</span></label>
                 <select name="educationLevel" class="form-control" required="" id="educationLevel">
                     <option value="">Select Education Level</option>
                     @foreach($educationLevel as $edulevel)
@@ -17,7 +17,7 @@
             </div>
             <div class="form-group col-md-8">
 
-                <label for="">Degree</label>
+                <label for="">Degree<span style="color: red">*</span></label>
                 <select name="degree" class="form-control" required id="degree">
                     <option value="">Select Degree</option>
                     <option  selected value="{{$education->degreeId}}">{{$education->degreeName}}</option>
@@ -27,7 +27,7 @@
             </div>
 
             <div class="form-group col-md-12">
-                <label for="">Institute Name</label>
+                <label for="">Institute Name<span style="color: red">*</span></label>
                 <input type="text" name="instituteName" required class="form-control" id="instituteName" value="{{$education->institutionName}}" placeholder="">
             </div>
             <div class="form-group col-md-6">
@@ -39,7 +39,7 @@
             </div>
 
             <div class="form-group col-md-3">
-                <label for="">Country</label>
+                <label for="">Country<span style="color: red">*</span></label>
                 <select name="country" class="form-control" required id="country">
                     <option value="">Select Country</option>
                     @foreach($country as $coun)
@@ -50,11 +50,11 @@
 
 
             <div class="form-group col-md-3">
-                <label for="">Year</label>
+                <label for="">Year<span style="color: red">*</span></label>
                 <input name="passingYear" type="text" class="form-control date" value="{{$education->passingYear}}" id="passingYear" required placeholder="passing Year">
             </div>
             <div class="form-group col-md-3">
-                <label for="">Result System</label>
+                <label for="">Result System<span style="color: red">*</span></label>
                 <select name="resultSystem" class="form-control" required id="resultSydtem">
                     <option value="">Select System</option>
                     @foreach(RESULT_SYSTEM as $key=>$value)
@@ -64,7 +64,7 @@
             </div>
 
             <div class="form-group col-md-3">
-                <label for="">CGPA</label>
+                <label for="">CGPA<span style="color: red">*</span></label>
                 <input name="result" type="text" class="form-control" value="{{$education->result}}" required id="cgpa" placeholder="">
             </div>
             <div class="form-group col-md-3">
@@ -72,7 +72,7 @@
                 <input type="text" name="resultOutOf" class="form-control" id="resultOutOf"  value="{{$education->resultOutOf}}"placeholder="CGPA Out of">
             </div>
             <div class="form-group col-md-3">
-                <label for="">Status</label>
+                <label for="">Status<span style="color: red">*</span></label>
                 <select name="status"class="form-control" required id="educationStatus">
                     @foreach(COMPLETING_STATUS as $key=>$value)
                         <option @if($value == $education->status) selected @endif value="{{$value}}">{{$key}}</option>
@@ -84,8 +84,9 @@
 
         </div>
     <div class="form-group col-md-12">
+        <a class="btn btn-danger pull-left" href="{{route('candidate.cvEducation')}}">Cancel</a>&nbsp;&nbsp;
         <button class="btn btn-success pull-left">Update</button>
-        <a class="btn btn-danger pull-left" href="{{route('candidate.cvEducation')}}">Cancel</a>
+
     </div>
 
 </form>

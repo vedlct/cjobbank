@@ -20,6 +20,20 @@
                                 @endif
                                     <div id="edit{{$experience->jobExperienceId}}">
                                         <div class="row">
+
+                                            <div class="form-group col-md-6">
+                                                <label for="inputEmail4">Company Type :</label>
+                                                {{$experience->organizationTypeName}}
+                                                {{--<select required name="organizationType[]" class="form-control" id="organizationType">--}}
+                                                    {{--<option selected value="">Select Company Type</option>--}}
+                                                    {{--@foreach($companyType as $natio)--}}
+                                                        {{--<option @if($experience->fkOrganizationType == $natio->organizationTypeId ) selected @endif value="{{$natio->organizationTypeId}}">{{$natio->organizationTypeName}}</option>--}}
+                                                    {{--@endforeach--}}
+                                                {{--</select>--}}
+
+                                                {{--<input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" required>--}}
+                                            </div>
+
                                             <div class="form-group col-md-10">
                                                 <label for="inputEmail4">Company Name :</label>
                                               {{$experience->organization}}
@@ -76,7 +90,7 @@
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
-
+                                <a href="{{route('candidate.cvTrainingCertificate')}}"><button type="button" id="btnPevious" >Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
                                 <a href="{{route('refree.index')}}"><button type="button" id="nextBtn" >Next</button></a>
                             </div>
@@ -196,11 +210,19 @@
 
                 if (counter > 1){
 
+                    var organizationType=$('#organizationType'+(counter-1)).val();
                     var organization=$('#organization'+(counter-1)).val();
                     var degisnation=$('#degisnation'+(counter-1)).val();
                     var start=$('#start'+(counter-1)).val();
                     var end=$('#end'+(counter-1)).val();
                     var address=$('#address'+(counter-1)).val();
+
+                    if(organizationType==""){
+
+                        var errorMsg='Please Select organizationType First!!'
+                        validationError(errorMsg)
+                        return false;
+                    }
 
 
 
@@ -268,16 +290,27 @@
                 newTextBoxDiv.after().html(
                     '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>' +
                     '<div class="row"> ' +
+                        '<div class="form-group col-md-6">'+
+                    '<label for="inputEmail4">Company Type<span style="color: red">*</span></label>'+
+                    '<select required name="organizationType[]" class="form-control" id="organizationType'+counter+'">'+
+                    '<option selected value="">Select Company Type</option>'+
+                @foreach($companyType as $natio)
+                '<option value="{{$natio->organizationTypeId}}">{{$natio->organizationTypeName}}</option>'+
+                        @endforeach
+                    '</select>'+
+
+                        {{--<input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" required>--}}
+                    '</div>'+
                     '<div class="form-group col-md-12"> ' +
-                    '<label for="inputEmail4">Company Name</label> ' +
+                    '<label for="inputEmail4">Company Name<span style="color: red">*</span></label> ' +
                     '<input type="text" class="form-control" name="organization[]" id="organization'+counter+'" placeholder="organization" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
-                    '<label for="inputEmail4">Designation</label> ' +
+                    '<label for="inputEmail4">Designation<span style="color: red">*</span></label> ' +
                     '<input type="text" class="form-control" name="degisnation[]" id="degisnation'+counter+'" placeholder="designation" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
-                    '<label for="inputPassword4">Start Date</label> ' +
+                    '<label for="inputPassword4">Start Date<span style="color: red">*</span></label> ' +
                     '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
@@ -285,8 +318,8 @@
                     '<input type="text" class="form-control date" name="endDate[]" id="end'+counter+'" placeholder="date"> ' +
                     '</div> ' +
                     '<div class="form-group col-md-8"> ' +
-                    '<label for="inputPassword4">Address</label> ' +
-                    '<textarea class="form-control" name="address[]" id="address'+counter+'" placeholder="address"></textarea> ' +
+                    '<label for="inputPassword4">Address<span style="color: red">*</span></label> ' +
+                    '<textarea required class="form-control" name="address[]" id="address'+counter+'" placeholder="address"></textarea> ' +
                     '</div> ' +
                     '</div>'
 

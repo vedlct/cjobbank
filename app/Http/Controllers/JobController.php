@@ -12,7 +12,8 @@ class JobController extends Controller
    public function index(Request $r){
 
 
-       $jobs=Job::select('job.jobId','job.title','job.details','job.details','job.deadline');
+       $jobs=Job::select('job.jobId','job.title','job.details','job.details','job.deadline')
+                    ->where('job.status',1);
 
        if($r->search !=""){
            $jobs=$jobs->where('job.title', 'like', '%' . $r->search . '%');
@@ -40,7 +41,8 @@ class JobController extends Controller
 
    public function getJobData(Request $r){
 
-       $jobs=Job::select('job.jobId','job.title','job.details','job.details','job.deadline');
+       $jobs=Job::select('job.jobId','job.title','job.details','job.details','job.deadline')
+           ->where('job.status',1);
        if($r->search !=""){
            $jobs=$jobs->where('job.title', 'like', '%' . $r->search . '%');
        }

@@ -6,8 +6,20 @@
 
 
             <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Company Type<span style="color: red">*</span></label>
+                    <select required name="organizationType" class="form-control" id="organizationType">
+                        <option selected value="">Select Company Type</option>
+                        @foreach($companyType as $natio)
+                            <option @if($experience->fkOrganizationType == $natio->organizationTypeId ) selected @endif value="{{$natio->organizationTypeId}}">{{$natio->organizationTypeName}}</option>
+                        @endforeach
+                    </select>
+
+                    {{--<input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" required>--}}
+                </div>
+
                 <div class="form-group col-md-10">
-                    <label for="inputEmail4">Company Name</label>
+                    <label for="inputEmail4">Company Name<span style="color: red">*</span></label>
                     <input type="text" class="form-control" name="organization" value="{{$experience->organization}}" id="organization" placeholder="organization" required>
                 </div>
                 {{--<div class="form-group col-md-2 ">--}}
@@ -15,11 +27,11 @@
                     {{--<button type="button" class="btn btn-danger btn-sm " onclick="deleteExperience({{$experience->jobExperienceId}})"><i class="fa fa-trash"></i></button>--}}
                 {{--</div>--}}
                     <div class="form-group col-md-4">
-                    <label for="inputEmail4">Designation</label>
+                    <label for="inputEmail4">Designation<span style="color: red">*</span></label>
                     <input type="text" class="form-control" name="degisnation" value="{{$experience->degisnation}}"  id="degisnation" placeholder="designation" required>
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="inputPassword4">Start Date</label>
+                    <label for="inputPassword4">Start Date<span style="color: red">*</span></label>
                     <input type="text" class="form-control date" name="startDate" value="{{$experience->startDate}}"  id="start" placeholder="date" required>
                 </div>
                 <div class="form-group col-md-4">
@@ -27,8 +39,8 @@
                     <input type="text" class="form-control date" name="endDate" value="{{$experience->endDate}}"  id="end" placeholder="date">
                 </div>
                 <div class="form-group col-md-8">
-                    <label for="inputPassword4">Address</label>
-                    <textarea class="form-control" name="address"id="address" placeholder="address">{{$experience->address}} </textarea>
+                    <label for="inputPassword4">Address<span style="color: red">*</span></label>
+                    <textarea required class="form-control" name="address"id="address" placeholder="address">{{$experience->address}} </textarea>
                 </div>
                 <div class="form-group col-md-12">
                     <button  class="btn btn-info pull-right">Update</button>
@@ -53,6 +65,7 @@
 
     function checkJobExperience(){
 
+        var organizationType=$('#organizationType').val();
         var organization=$('#organization').val();
         var degisnation=$('#degisnation').val();
         var start=$('#start').val();
@@ -60,6 +73,13 @@
         var address=$('#address').val();
 
 
+
+        if(organizationType==""){
+
+            var errorMsg='Please Select a Organization Type First!!'
+            validationError(errorMsg)
+            return false;
+        }
 
         if(organization==""){
 

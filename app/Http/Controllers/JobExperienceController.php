@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\DB;
 use Session;
 
 use App\JobExperience;
@@ -18,14 +19,16 @@ class JobExperienceController extends Controller
    public function index(){
        $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
        $experiences=JobExperience::where('fkemployeeId',$employee->employeeId)
+           ->leftJoin('organizationtype','organizationtype.organizationTypeId','jobexperience.fkOrganizationType')
            ->get();
+       $companyType=DB::table('organizationtype')->get();
 
        if($experiences->isEmpty()){
 
-           return view('userCv.insert.jobExperience');
+           return view('userCv.insert.jobExperience',compact('companyType'));
        }
 
-       return view('userCv.update.jobExperience',compact('experiences'));
+       return view('userCv.update.jobExperience',compact('experiences','companyType'));
 
    }
 
@@ -41,6 +44,7 @@ class JobExperienceController extends Controller
            $experience->endDate=$r->endDate[$i];
            $experience->address=$r->address[$i];
            $experience->fkemployeeId=$employee->employeeId;
+           $experience->fkOrganizationType=$r->organizationType[$i];
            $experience->save();
        }
        Session::flash('message', 'Experience Added Successfully');
@@ -49,9 +53,11 @@ class JobExperienceController extends Controller
    }
 
    public function editJobExperience(Request $r){
-       $experience=JobExperience::findOrFail($r->jobExperienceId);
 
-       return view('userCv.edit.editJobExperience',compact('experience'));
+       $experience=JobExperience::leftJoin('organizationtype','organizationtype.organizationTypeId','jobexperience.fkOrganizationType')->findOrFail($r->jobExperienceId);
+       $companyType=DB::table('organizationtype')->get();
+
+       return view('userCv.edit.editJobExperience',compact('experience','companyType'));
 //       return $r;
    }
 
@@ -63,6 +69,8 @@ class JobExperienceController extends Controller
        $experience->startDate=$r->startDate;
        $experience->endDate=$r->endDate;
        $experience->address=$r->address;
+       $experience->fkOrganizationType=$r->organizationType;
+
        $experience->save();
 
        Session::flash('message', 'Experience Edited Successfully');
