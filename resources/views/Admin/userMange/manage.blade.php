@@ -39,7 +39,7 @@
             <div class="card m-b-30">
                 <div class="card-header">
                 <h4 class="pull-left">Manage User</h4>
-                <a href="#"><button class="btn btn-success pull-right">Add New</button></a>
+                <a href="{{route('admin.manageUser.add')}}"><button class="btn btn-success pull-right">Add New</button></a>
                 </div>
                 <div class="card-body">
 

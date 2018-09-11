@@ -51,6 +51,10 @@ class UserManagementController extends Controller
         return view('Admin.userMange.manage');
     }
 
+    public function add(){
+        return view('Admin.userMange.addUser');
+    }
+
 
 
 

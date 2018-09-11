@@ -120,7 +120,7 @@ Route::get('Candidate-Applications','EmployeeApplicationController@getAllApplica
 
 /*-------------------------------Admin---------------------------------*/
 Route::get('Admin-Dashboard','Admin\DashboardController@home')->name('admin.dashboard');
-Route::get('Admin-Manage-User','Admin\UserManagementController@home')->name('admin.manageUser');
+
 Route::get('Admin-Manage-CV','Admin\CvManagementController@manage')->name('cv.admin.manage');
 Route::post('Admin-ManageData-CV','Admin\CvManagementController@manageCvData')->name('cv.admin.manageApplicationData');
 
@@ -141,3 +141,6 @@ Route::post('Admin-Change-Job-Status','Admin\JobController@jobStatusUpdate')->na
 Route::get('Admin-Manage-Application','Admin\ApplicationController@manageApplication')->name('application.admin.manage');
 Route::post('Admin-Show-All-Application','Admin\ApplicationController@showAllApplication')->name('application.admin.showAll');
 Route::post('Admin-Export-All-AppliedCandidate','Admin\ApplicationController@exportAppliedCandidate')->name('jobAppliedCadidate.admin.Exportxls');
+//Employee Management
+Route::get('Admin-Manage-User','Admin\UserManagementController@home')->name('admin.manageUser');
+Route::get('Admin-Manage-User/add','Admin\UserManagementController@add')->name('admin.manageUser.add');
