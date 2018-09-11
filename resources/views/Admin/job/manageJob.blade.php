@@ -10,29 +10,30 @@
 
                 <div class=" form-group">
                     <label>Zone</label>
-                    <select class="form-control">
-                        <option>Select a Zone</option>
-                        <option>Dhaka</option>
-                        <option>Khulna</option>
-                        <option>Barishal</option>
-                        <option>Rangpur</option>
+                    <select name="zonefilter" id="zonefilter" class="form-control">
+                        <option value="">Select a Zone</option>
+                        @foreach($allZone as $zone)
+                            <option  value="{{$zone->zoneId}}">{{$zone->zoneName}}</option>
+                        @endforeach
 
                     </select>
                 </div>
                 <div class=" form-group">
                     <label>Post Date</label>
-                    <input class="form-control" type="date">
+                    <input id="postDateFilter" name="postDateFilter" class="form-control date" type="text">
                 </div>
                 <div class=" form-group">
                     <label>Deadline</label>
-                    <input class="form-control" type="date">
+                    <input id="deadlineFilter" name="deadlineFilter" class="form-control date" type="text">
                 </div>
                 <div class=" form-group">
                     <label>Job Status</label>
-                    <select class="form-control">
-                        <option>Select a Status</option>
-                        <option>Posted</option>
-                        <option>De-activate</option>
+                    <select name="jobStatusFilter" id="jobStatusFilter" class="form-control">
+                        <option selected value="">Select a Status</option>
+                        @foreach(JOB_STATUS as $key=>$value)
+                            <option value="{{$value}}">{{$key}}</option>
+                        @endforeach
+
 
                     </select>
                 </div>
@@ -147,6 +148,12 @@
                 }
             );
         } );
+
+                $('#zonefilter').change(function(){ //button filter event click
+        //                table.search("").draw(); //just redraw myTableFilter
+                    table.draw();  //just reload table
+                });
+
 
         $.ajaxSetup({
             headers: {

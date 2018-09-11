@@ -74,6 +74,10 @@
                 </div>
                 <div class="card-body">
 
+                    <label> <input type="checkbox" class="chk" ></label> Select All &nbsp;
+                    <button  class="btn btn-danger btn-sm">Export CV</button>
+                    <br><br>
+
 
                     <table id="managecv" class="table table-striped table-bordered" style="width:100%" >
                         <thead>
@@ -92,12 +96,9 @@
 
 
                     </table>
-                    <br>
 
-                    <br>
 
-                    <label> <input type="checkbox" value="true"> </label> Select All  <br>
-                    <button style="margin-top: 10px;" class="btn btn-danger">Export CV</button>
+
 
 
 
