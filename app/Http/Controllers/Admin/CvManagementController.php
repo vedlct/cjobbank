@@ -46,20 +46,42 @@ class CvManagementController extends Controller
 
     public function manage()
     {
-        return view('Admin.cvManage.manage');
+//        $allZone=DB::table('zone')->get();
+        $religion=Religion::get();
+        $ethnicity=Ethnicity::get();
+
+        return view('Admin.cvManage.manage',compact('religion','ethnicity'));
     }
-    public function manageCvData()
+    public function manageCvData(Request $r)
     {
 
-        $cvData=Employee::select('employeeId',DB::raw("((DATEDIFF(CURRENT_DATE, STR_TO_DATE(`employee`.`dateOfBirth`, '%Y-%m-%d'))/365)) as Age"),'gender',
-            'email','image')
+        $cvData=Employee::select('employeeId','employee.dateOfBirth as birthDate','gender', 'email','image','firstName','lastName',DB::raw("TIMESTAMPDIFF(YEAR,`employee`.`dateOfBirth`,CURDATE()) as age1"))
+//            ->leftJoin('zone', 'zone.zoneId', '=', 'employee.fkzoneId')
             ->where('cvStatus',1);
+
+        if ($r->genderFilter){
+            $cvData= $cvData->where('employee.gender',$r->genderFilter);
+        }
+        if ($r->religionFilter){
+            $cvData= $cvData->where('employee.fkreligionId',$r->religionFilter);
+        }
+        if ($r->ethnicityFilter){
+            $cvData= $cvData->where('employee.ethnicityId',$r->ethnicityFilter);
+        }
+
+        if ($r->ageFromFilter){
+            $cvData= $cvData->having('age1','>=',$r->ageFromFilter);
+        }
+        if ($r->ageToFilter){
+            $cvData= $cvData->having('age1','<=',$r->ageToFilter);
+        }
+
 
         $cvData=$cvData->get();
 
         $datatables = DataTables::of($cvData);
 
-        return $datatables->addColumn('name', function ($application1) use ($cvData) {
+         $datatables->addColumn('name', function ($application1) use ($cvData) {
 
 
             foreach ($cvData as $size) {
@@ -69,7 +91,50 @@ class CvManagementController extends Controller
             }
             return $test;
 
-        })->make(true);
+        });
+         $datatables->addColumn('Age', function ($application1) use ($cvData,$r) {
+
+
+            foreach ($cvData as $date) {
+
+
+                $test1 = Carbon::parse($date->birthDate)->diff(Carbon::now())->format('%y.%m');
+
+            }
+
+
+            return $test1;
+
+
+
+        });
+
+
+
+
+
+
+        return $datatables->addColumn('gender', function ($application1) use ($cvData) {
+
+
+            foreach ($cvData as $age) {
+
+                foreach (GENDER as $key=>$value){
+
+                    if ($age->gender==$value){
+                        $test2=$key;
+                    }
+                }
+
+
+
+            }
+            return $test2;
+
+        }
+
+
+        )->make(true);
 
 
     }

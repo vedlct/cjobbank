@@ -8,54 +8,55 @@
 
             <div style="background-color: white;margin-bottom: 20px;" class="card-body">
 
-                <div class=" form-group">
-                    <label>Zone</label>
-                    <select class="form-control">
-                        <option>Select a Zone</option>
-                        <option>Dhaka</option>
-                        <option>Khulna</option>
-                        <option>Barishal</option>
-                        <option>Rangpur</option>
+                {{--<div class=" form-group">--}}
+                    {{--<label>Zone</label>--}}
+                    {{--<select name="zonefilter" id="zonefilter" class="form-control">--}}
+                        {{--<option value="">Select a Zone</option>--}}
+                        {{--@foreach($allZone as $zone)--}}
+                            {{--<option  value="{{$zone->zoneId}}">{{$zone->zoneName}}</option>--}}
+                        {{--@endforeach--}}
 
-                    </select>
-                </div>
-                <div class=" form-group">
-                    <label>Age to</label>
-                    <input class="form-control" type="number">
-                </div>
+                    {{--</select>--}}
+                {{--</div>--}}
                 <div class=" form-group ">
                     <label>Age From</label>
-                    <input class="form-control" type="number">
+                    <input class="form-control" id="ageFromFilter" name="ageFromFilter" type="number">
+                </div>
+                <div class=" form-group ">
+                    <label>Age to</label>
+                    <input class="form-control" id="ageToFilter" name="ageToFilter" type="number">
                 </div>
                 <div class=" form-group ">
                     <label>Gender</label>
-                    <select class="form-control">
-                        <option>Select a Gender</option>
-                        <option>Male</option>
-                        <option>Female</option>
+                    <select name="genderFilter" id="genderFilter" class="form-control">
+                        <option value="">Select a Gender</option>
+                        @foreach(GENDER as $key=>$value)
+                            <option value="{{$value}}">{{$key}}</option>
+                        @endforeach
 
                     </select>
                 </div>
-                <div class=" form-group">
-                    <label>Apply Date</label>
-                    <input class="form-control" type="date">
-                </div>
+                {{--<div class=" form-group">--}}
+                    {{--<label>Apply Date</label>--}}
+                    {{--<input class="form-control date" type="text">--}}
+                {{--</div>--}}
                 <div class=" form-group">
                     <label>Religion</label>
-                    <select class="form-control">
-                        <option>Select a Religion</option>
-                        <option>Islam</option>
-                        <option>Hindu</option>
-                        <option>Christian</option>
+                    <select name="religionFilter" id="religionFilter" class="form-control">
+                        <option value="">Select a Religion</option>
+                        @foreach($religion as $reli)
+                            <option value="{{$reli->religionId}}">{{$reli->religionName}}</option>
+                        @endforeach
 
                     </select>
                 </div>
                 <div class=" form-group">
                     <label>Ethnicity</label>
-                    <select class="form-control">
-                        <option>Select a Ethnicity</option>
-                        <option>Bangali</option>
-                        <option>Adivashi</option>
+                    <select name="ethnicityFilter" id="ethnicityFilter" class="form-control">
+                        <option value="">Select a Ethnicity</option>
+                        @foreach($ethnicity as $ethi)
+                            <option value="{{$ethi->ethnicityId}}">{{$ethi->ethnicityName}}</option>
+                        @endforeach
 
                     </select>
                 </div>
@@ -69,7 +70,7 @@
             <div class="card m-b-30">
                 <div class="card-header">
                     <h4 class="pull-left">Manage CV</h4>
-                    <a href="#"><button class="btn btn-success pull-right">Add New</button></a>
+                    {{--<a href="#"><button class="btn btn-success pull-right">Add New</button></a>--}}
                 </div>
                 <div class="card-body">
 
@@ -79,6 +80,7 @@
                         <tr>
                             <th width="4%">Select</th>
                             <th>Image</th>
+
                             <th>Name</th>
                             <th>Age</th>
                             <th>Gender</th>
@@ -94,7 +96,7 @@
 
                     <br>
 
-                    <label class="checkbox-inline"> <input type="checkbox" value="true"> </label> Select All  <br>
+                    <label> <input type="checkbox" value="true"> </label> Select All  <br>
                     <button style="margin-top: 10px;" class="btn btn-danger">Export CV</button>
 
 
@@ -104,8 +106,6 @@
             </div>
         </div> <!-- end col -->
     </div> <!-- end row -->
-
-
 
 
 
@@ -122,6 +122,10 @@
     <script src="{{url('public/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
     <script>
 
+        $('.date').datepicker({
+            format: 'yyyy-m-d'
+        });
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -135,12 +139,31 @@
                 processing: true,
                 serverSide: true,
                 stateSave: true,
+                "ordering": false,
                 "ajax":{
                     "url": "{!! route('cv.admin.manageApplicationData')!!}",
                     "type": "POST",
                     data:function (d){
 
                         d._token="{{csrf_token()}}";
+                        if ($('#genderFilter').val()!=""){
+                            d.genderFilter=$('#genderFilter').val();
+                        }
+                        if ($('#religionFilter').val()!=""){
+                            d.religionFilter=$('#religionFilter').val();
+                        }
+                        if ($('#ethnicityFilter').val()!=""){
+                            d.ethnicityFilter=$('#ethnicityFilter').val();
+                        }
+                        if ($('#ageFromFilter').val()!=""){
+                            d.ageFromFilter=$('#ageFromFilter').val();
+                        }
+                        if ($('#ageToFilter').val()!=""){
+                            d.ageToFilter=$('#ageToFilter').val();
+                        }
+//                        if ($('#zonefilter').val()!=""){
+//                            d.zonefilter=$('#zonefilter').val();
+//                        }
 
 
                     },
@@ -152,25 +175,69 @@
                             ;},
                         "orderable": false, "searchable":false
                     },
+                    {
+                        "name": "image",
+                        "data": "image",
+                        "render": function (data, type, full, meta) {
+                            return "<img src=\"{{url('public/candidateImages/thumb')}}"+"/"+ data + "\" height=\"50\"/>";
+                        },
+                        "title": "Image",
+                        "orderable": false,
+                        "searchable": false,
+                    },
+
                     { data: 'name', name: 'name',"orderable": false, "searchable":true },
-                    { data: 'name', name: 'name',"orderable": false, "searchable":true },
+
+
                     { data: 'Age', name: 'Age', "orderable": false, "searchable":true },
                     { data: 'gender', name: 'gender', "orderable": false, "searchable":true },
-                    { data: 'email', name: 'email', "orderable": true, "searchable":true },
 
+                    { data: 'email', name: 'email', "orderable": false, "searchable":true },
 
                     { "data": function(data){
-                        return '<button class="btn btn-sm btn-danger"><i class="fa fa-envelope"></i></button>'+
-                            '&nbsp;<button class="btn btn-smbtn-info"><i class="fa fa-file-pdf-o"></i></button>'
+                        return '&nbsp;<button class="btn btn-smbtn-info"><i class="fa fa-file-pdf-o"></i></button>'
                             ;},
                         "orderable": false, "searchable":false
                     },
 
 
+
+
+
                 ],
+
             });
 
         } );
+
+        $('#genderFilter').change(function(){ //button filter event click
+//                table.search("").draw(); //just redraw myTableFilter
+            table.ajax.reload();  //just reload table
+        });
+        $('#religionFilter').change(function(){ //button filter event click
+//                table.search("").draw(); //just redraw myTableFilter
+            table.ajax.reload();  //just reload table
+
+        });
+        $('#ethnicityFilter').change(function(){ //button filter event click
+//                table.search("").draw(); //just redraw myTableFilter
+            table.ajax.reload();  //just reload table
+        });
+
+        $("#ageFromFilter").keyup(function(){
+            // table.search("").draw(); //just redraw myTableFilter
+            table.ajax.reload();  //just reload table
+        });
+        $("#ageToFilter").keyup(function(){
+            // table.search("").draw(); //just redraw myTableFilter
+            table.ajax.reload();  //just reload table
+        });
+
+//        $('#zonefilter').change(function(){ //button filter event click
+////                table.search("").draw(); //just redraw myTableFilter
+//            table.ajax.reload();  //just reload table
+//        });
+
     </script>
 
 @endsection

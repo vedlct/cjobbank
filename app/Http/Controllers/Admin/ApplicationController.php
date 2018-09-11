@@ -83,7 +83,7 @@ class ApplicationController extends Controller
     public function showAllApplication(Request $r)
     {
         $application = Jobapply::select('jobapply.jobapply as applyId', 'jobapply.applydate', 'zone.zoneName', 'employee.firstName', 'employee.lastName', 'job.title',
-            DB::raw("CONCAT((year(now()) - year(`employee`.`dateOfBirth`)),'.',(month(now()) - month(`employee`.`dateOfBirth`))) as Age"))
+            'employee.dateOfBirth as birthDate')
 
             ->leftJoin('employee', 'employee.employeeId', '=', 'jobapply.fkemployeeId')
             ->leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')
@@ -158,7 +158,7 @@ class ApplicationController extends Controller
 
         $datatables = DataTables::of($application);
 
-        return $datatables->addColumn('name', function ($application1) use ($application) {
+         $datatables->addColumn('name', function ($application1) use ($application) {
 
 
             foreach ($application as $size) {
@@ -168,7 +168,20 @@ class ApplicationController extends Controller
             }
             return $test;
 
-        })->make(true);
+        });
+        return $datatables->addColumn('Age', function ($application1) use ($application) {
+
+
+            foreach ($application as $date) {
+
+
+                $test1 = Carbon::parse($date->birthDate)->diff(Carbon::now())->format('%y.%m');
+
+            }
+            return $test1;
+
+        }
+        )->make(true);
 
     }
 
