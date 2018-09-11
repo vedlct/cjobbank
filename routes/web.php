@@ -122,6 +122,7 @@ Route::get('Candidate-Applications','EmployeeApplicationController@getAllApplica
 Route::get('Admin-Dashboard','Admin\DashboardController@home')->name('admin.dashboard');
 Route::get('Admin-Manage-User','Admin\UserManagementController@home')->name('admin.manageUser');
 Route::get('Admin-Manage-CV','Admin\CvManagementController@manage')->name('cv.admin.manage');
+Route::post('Admin-ManageData-CV','Admin\CvManagementController@manageCvData')->name('cv.admin.manageApplicationData');
 
 
 //job

@@ -41,7 +41,7 @@ class JobController extends Controller
            ->get();
 
 
-       return view('Admin.job.managejob',compact('allJobList'));
+       return view('Admin.job.manageJob',compact('allJobList'));
    }
    public function jobEdit($jobId){
 
