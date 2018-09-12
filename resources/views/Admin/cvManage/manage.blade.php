@@ -18,6 +18,7 @@
 
                     {{--</select>--}}
                 {{--</div>--}}
+
                 <div class=" form-group ">
                     <label>Age From</label>
                     <input class="form-control" id="ageFromFilter" name="ageFromFilter" type="number">
@@ -74,7 +75,7 @@
                 </div>
                 <div class="card-body">
 
-                    <label> <input type="checkbox" class="chk" ></label> Select All &nbsp;
+                    <label class="checkbox-inline"><input style="width: auto;" type="checkbox" value=""> Select All</label>&nbsp;
                     <button  class="btn btn-danger btn-sm">Export CV</button>
                     <br><br>
 

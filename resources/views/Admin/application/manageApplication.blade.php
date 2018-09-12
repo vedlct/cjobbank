@@ -333,6 +333,7 @@
                         "orderable": false, "searchable":false
                     },
                     { data: 'name', name: 'name',"orderable": false, "searchable":true },
+
                     { data: 'title', name: 'title', "orderable": false, "searchable":true },
                     { data: 'zoneName', name: 'zoneName', "orderable": false, "searchable":true },
                     { data: 'applydate', name: 'applydate', "orderable": true, "searchable":true },
