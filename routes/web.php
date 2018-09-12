@@ -45,7 +45,7 @@ Route::view('application','application')->name('application');
 
 Route::view('job/manage','job.manage')->name('job.manage');
 
-Route::view('manage/zone','manage.zone')->name('manage.zone');
+
 Route::view('manage/education','manage.education')->name('manage.education');
 Route::view('manage/education-Degree','manage.educationDegree')->name('manage.educationDegree');
 
@@ -150,3 +150,13 @@ Route::post('admin/Admin-Manage-User','Admin\UserManagementController@getUserDat
 Route::get('Admin-Manage-User/add','Admin\UserManagementController@add')->name('admin.manageUser.add');
 Route::get('Admin-Manage-User/edit/{id}','Admin\UserManagementController@edit')->name('admin.editmanageUserData');
 Route::post('Admin-Manage-User/add','Admin\UserManagementController@insert')->name('admin.manageUser.insert');
+Route::post('Admin-Manage-User/changeUserStatus','Admin\UserManagementController@changeUserStatus')->name('admin.changeUserStatus');
+Route::post('Admin-Manage-User/update/{id}','Admin\UserManagementController@update')->name('admin.manageUser.update');
+
+/*---------------Settings-------------*/
+//Zone
+Route::get('manage/zone','Admin\SettingsController@zone')->name('manage.zone');
+Route::post('manage/zone/insert','Admin\SettingsController@insertZone')->name('admin.zone.insert');
+Route::post('manage/zone/updateZone/{id}','Admin\SettingsController@updateZone')->name('admin.zone.update');
+Route::post('manage/zone/editZone','Admin\SettingsController@editZone')->name('admin.editZone');
+

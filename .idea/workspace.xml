@@ -2,14 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1f77d9ce-12dd-4235-9fdf-83a8d8b900b5" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/SettingsController.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/manage/editZone.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/CvManagementController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CvManagementController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/JobController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/JobController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/RelativeInCbController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/RelativeInCbController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/Admin/application/manageApplication.blade.php" afterPath="$PROJECT_DIR$/resources/views/Admin/application/manageApplication.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/Admin/cvManage/manage.blade.php" afterPath="$PROJECT_DIR$/resources/views/Admin/cvManage/manage.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/userCv/insert/relativeInCaritas.blade.php" afterPath="$PROJECT_DIR$/resources/views/userCv/insert/relativeInCaritas.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/userCv/update/relativeInCaritas.blade.php" afterPath="$PROJECT_DIR$/resources/views/userCv/update/relativeInCaritas.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/UserManagementController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/UserManagementController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/Admin/userMange/addUser.blade.php" afterPath="$PROJECT_DIR$/resources/views/Admin/userMange/addUser.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/Admin/userMange/editUser.blade.php" afterPath="$PROJECT_DIR$/resources/views/Admin/userMange/editUser.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/Admin/userMange/manage.blade.php" afterPath="$PROJECT_DIR$/resources/views/Admin/userMange/manage.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/main.blade.php" afterPath="$PROJECT_DIR$/resources/views/main.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/manage/zone.blade.php" afterPath="$PROJECT_DIR$/resources/views/manage/zone.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/web.php" afterPath="$PROJECT_DIR$/routes/web.php" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
@@ -32,8 +33,8 @@
       <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="104" column="127" selection-start-line="104" selection-start-column="94" selection-end-line="104" selection-end-column="127" />
+            <state relative-caret-position="637">
+              <caret line="121" column="0" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -69,10 +70,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="refree.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="refree.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/userCv/update/refree.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
+            <state relative-caret-position="-1989">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <marker date="1536405042017" expanded="true" signature="13715:13742" ph="..." />
@@ -107,10 +108,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="relativeInCaritas.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="relativeInCaritas.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/userCv/insert/relativeInCaritas.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
+            <state relative-caret-position="-238">
               <caret line="10" column="72" selection-start-line="10" selection-start-column="72" selection-end-line="10" selection-end-column="72" />
               <folding>
                 <marker date="1536742716187" expanded="true" signature="8588:8615" ph="..." />
@@ -145,11 +146,9 @@
       <file leaf-file-name="manage.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/Admin/cvManage/manage.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="952">
-              <caret line="65" column="14" selection-start-line="65" selection-start-column="14" selection-end-line="65" selection-end-column="14" />
-              <folding>
-                <marker date="1536655321039" expanded="true" signature="5918:5924" ph=" " />
-              </folding>
+            <state relative-caret-position="1020">
+              <caret line="69" column="14" selection-start-line="69" selection-start-column="14" selection-end-line="69" selection-end-column="14" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -612,12 +611,12 @@
       <workItem from="1536566703732" duration="606000" />
       <workItem from="1536645889825" duration="53000" />
       <workItem from="1536650615427" duration="1912000" />
-      <workItem from="1536736422259" duration="6520000" />
+      <workItem from="1536736422259" duration="7110000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46360000" />
+    <option name="totallyTimeSpent" value="46950000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
@@ -972,38 +971,23 @@
         <state relative-caret-position="646">
           <caret line="53" column="143" selection-start-line="53" selection-start-column="55" selection-end-line="53" selection-end-column="143" />
           <folding>
-            <marker date="1536655296284" expanded="true" signature="927:1015" ph="SELECT TIMES... " />
+            <marker date="1536747485963" expanded="true" signature="927:1015" ph="SELECT TIMES... " />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/Admin/cvManage/manage.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="952">
-          <caret line="65" column="14" selection-start-line="65" selection-start-column="14" selection-end-line="65" selection-end-column="14" />
-          <folding>
-            <marker date="1536655321039" expanded="true" signature="5918:5924" ph=" " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/userCv/insert/relativeInCaritas.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="72" selection-start-line="10" selection-start-column="72" selection-end-line="10" selection-end-column="72" />
-          <folding>
-            <marker date="1536742716187" expanded="true" signature="8588:8615" ph="..." />
-            <marker date="1536742716187" expanded="true" signature="8811:8821" ph="..." />
-            <marker date="1536742716187" expanded="true" signature="9164:9174" ph="..." />
-            <marker date="1536742716187" expanded="true" signature="9521:9531" ph="..." />
-          </folding>
+        <state relative-caret-position="1020">
+          <caret line="69" column="14" selection-start-line="69" selection-start-column="14" selection-end-line="69" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="104" column="127" selection-start-line="104" selection-start-column="94" selection-end-line="104" selection-end-column="127" />
+        <state relative-caret-position="637">
+          <caret line="121" column="0" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1067,7 +1051,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/userCv/update/refree.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="-1989">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <marker date="1536405042017" expanded="true" signature="13715:13742" ph="..." />
@@ -1078,6 +1062,19 @@
             <marker date="1536405042017" expanded="true" signature="15301:15311" ph="..." />
             <marker date="1536405042017" expanded="true" signature="15625:15635" ph="..." />
             <marker date="1536405042017" expanded="true" signature="15951:15961" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/userCv/insert/relativeInCaritas.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-238">
+          <caret line="10" column="72" selection-start-line="10" selection-start-column="72" selection-end-line="10" selection-end-column="72" />
+          <folding>
+            <marker date="1536742716187" expanded="true" signature="8588:8615" ph="..." />
+            <marker date="1536742716187" expanded="true" signature="8811:8821" ph="..." />
+            <marker date="1536742716187" expanded="true" signature="9164:9174" ph="..." />
+            <marker date="1536742716187" expanded="true" signature="9521:9531" ph="..." />
           </folding>
         </state>
       </provider>
