@@ -13,16 +13,15 @@
 
                 <div class="modal-body">
 
-                    <form action="">
-
-
+                    <form method="post" action="{{route('admin.zone.insert')}}">
+                        {{csrf_field()}}
                             <div class="form-group">
                                 <label for="">Zone Name</label>
-                                <input type="text" class="form-control" id="" placeholder="">
+                                <input type="text" class="form-control" id="" placeholder="zone" name="zone">
                             </div>
                         <div class="form-group">
 
-                        <button type="button" class="btn btn-success">Submit</button>
+                        <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                     </form>
 
@@ -34,9 +33,43 @@
         </div>
     </div>
 
+    <div class="modal" id="editModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Zone</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                   <div  id="editModalBody">
+
+                   </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-12">
-            <div class="card m-b-30">
+            <div class="card container">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
 
                 <div class="card-body">
@@ -56,92 +89,17 @@
 
 
                             <th>Zone Name</th>
-                            <th width="8%">Action</th>
+                            <th width="30%">Action</th>
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($zones as $zone)
+                            <tr>
+                                <td>{{$zone->zoneName}}</td>
+                                <td><button class="btn btn-info btn-sm" data-panel-id="{{$zone->zoneId}}" onclick="editZone(this)">Edit</button></td>
 
-                        <tr>
-
-
-                            <td>Dhaka</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-
-
-                            <td>Brisal</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-
-
-                            <td>Dhaka</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-
-
-                            <td>Dhaka</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-
-
-                            <td>Khulna</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-
-
-                            <td>Khulna</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-
-
-                            <td>Dhaka</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-
-
-                            <td>Dhaka</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-
-
-                            <td>Khulna</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-
-
-                            <td>Dhaka</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-
+                            </tr>
+                        @endforeach
 
                         </tbody>
 
@@ -162,9 +120,24 @@
 @section('foot-js')
 
     <script>
+        function editZone(x) {
+            var id=$(x).data('panel-id');
+
+            $.ajax({
+                type: 'POST',
+                url: "{!! route('admin.editZone') !!}",
+                cache: false,
+                data: {_token: "{{csrf_token()}}",'id': id},
+                success: function (data) {
+//                    console.log(data);
+                    $('#editModalBody').html(data);
+                    $('#editModal').modal();
+                }
+            });
+
+
+        }
         function addZone() {
-
-
             $('#NewZoneModal').modal({show:true});
 
         }

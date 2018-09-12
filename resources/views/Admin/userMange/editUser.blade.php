@@ -13,7 +13,7 @@
                     </ul>
                 </div>
             @endif
-            <form method="post" action="{{route('admin.manageUser.insert')}}">
+            <form method="post" action="{{route('admin.manageUser.update',['id'=>$hr->hrId])}}">
                 {{csrf_field()}}
                 <div class="row">
                     <div class="form-group col-md-6">
