@@ -69,40 +69,6 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($allJobList as $jobList)
-                            <tr>
-
-                                <td>{{$jobList->jobTitle}}</td>
-                                <td>{{$jobList->jobPosition}}</td>
-                                <td>{{$jobList->deadline}}</td>
-                                <td>{{$jobList->zoneName}}</td>
-                                <td>{{$jobList->createBy}}</td>
-                                <td>{{date('Y-m-d',strtotime($jobList->createDate))}}</td>
-                                <td>{{$jobList->updateBy}}</td>
-                                <td>{{date('Y-m-d',strtotime($jobList->updateTime))}}</td>
-                                <td>
-                                    <select class="form-control" data-panel-id="{{$jobList->jobId}}" onchange="changeJobStatus(this)" id="jobStatus{{$jobList->jobId}}" name="status">
-                                        <option value="">Select Status</option>
-                                        <option @if($jobList->status =='1') selected @endif value="1">Posted</option>
-                                        <option @if($jobList->status =='2') selected @endif value="2">De-activate</option>
-
-                                    </select>
-
-                                </td>
-
-                                <td><a href="{{route('job.admin.edit',$jobList->jobId)}}" class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>&nbsp;
-                                    <a data-panel-id="{{$jobList->jobId}}" onclick="deleteJob(this)" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></a>&nbsp;
-                                    @if(!empty($jobList->pdflink))
-                                    <a target="_blank" href="{{$jobList->pdflink}}" class="btn btn-sm btn-info"><i class="fa fa-file-pdf-o"></i></a>&nbsp;
-                                    @endif
-                                </td>
-
-
-
-
-                            </tr>
-                        @endforeach
-
 
                         </tbody>
 
@@ -133,20 +99,72 @@
     <script src="{{url('public/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
     <script>
         $(document).ready(function() {
-            table=$('#manageapplication').DataTable(
-                {
+//            table=$('#manageapplication').DataTable(
+//                {
+//
+//                    "columnDefs": [
+//                        {
+//                            "targets": [0,1,3,4,6,8,9], //first column / numbering column
+//                            "orderable": false, //set not orderable
+//
+//                        },
+//
+//                    ],
+//
+//                }
+//            );
 
-                    "columnDefs": [
-                        {
-                            "targets": [0,1,3,4,6,8,9], //first column / numbering column
-                            "orderable": false, //set not orderable
+            table = $('#manageapplication').DataTable({
+                processing: true,
+                serverSide: true,
+                stateSave: true,
+                "ordering": false,
+                "ajax":{
+                    "url": "{!! route('job.admin.getManageJobData')!!}",
+                    "type": "POST",
+                    data:function (d){
 
-                        },
+                        d._token="{{csrf_token()}}";
 
-                    ],
+                    },
+                },
+                columns: [
 
-                }
-            );
+
+                    { data: 'jobTitle', name: 'jobTitle',"orderable": false, "searchable":true },
+
+
+                    { data: 'jobPosition', name: 'jobPosition', "orderable": false, "searchable":true },
+                    { data: 'deadline', name: 'deadline', "orderable": false, "searchable":true },
+                    { data: 'zoneName', name: 'zoneName', "orderable": false, "searchable":true },
+
+                    { data: 'createBy', name: 'createBy', "orderable": false, "searchable":true },
+                    { data: 'createDate', name: 'createDate', "orderable": false, "searchable":true },
+                    { data: 'updateBy', name: 'updateBy', "orderable": false, "searchable":true },
+                    { data: 'updateTime', name: 'updateTime', "orderable": false, "searchable":true },
+
+                    { "data": function(data){
+                            return "<select class='form-control'>" +
+                                    "<option>select 1</option>"+
+                                "</select>";
+                                                ;},
+                        "orderable": false, "searchable":false
+                    },
+                    { "data": function(data){
+                        return "<button>Action</button>";
+                        ;},
+                        "orderable": false, "searchable":false
+                    },
+
+
+
+
+
+
+                ],
+
+            });
+
         } );
 
                 $('#zonefilter').change(function(){ //button filter event click

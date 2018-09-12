@@ -120,7 +120,7 @@ Route::get('Candidate-Applications','EmployeeApplicationController@getAllApplica
 
 /*-------------------------------Admin---------------------------------*/
 Route::get('Admin-Dashboard','Admin\DashboardController@home')->name('admin.dashboard');
-Route::get('Admin-Manage-User','Admin\UserManagementController@home')->name('admin.manageUser');
+
 Route::get('Admin-Manage-CV','Admin\CvManagementController@manage')->name('cv.admin.manage');
 Route::post('Admin-ManageData-CV','Admin\CvManagementController@manageCvData')->name('cv.admin.manageApplicationData');
 
@@ -129,6 +129,7 @@ Route::post('Admin-ManageData-CV','Admin\CvManagementController@manageCvData')->
 
 Route::get('Admin-Add-New-Job','Admin\JobController@addNewJob')->name('job.admin.create');
 Route::get('Admin-Manage-Job','Admin\JobController@manageJob')->name('job.admin.manage');
+Route::post('Admin-Manage-Job','Admin\JobController@getManageJobData')->name('job.admin.getManageJobData');
 
 Route::get('Admin-Edit-Job/{jobId}','Admin\JobController@jobEdit')->name('job.admin.edit');
 Route::post('Admin-Delete-Job','Admin\JobController@jobDelete')->name('job.admin.delete');
@@ -141,3 +142,9 @@ Route::post('Admin-Change-Job-Status','Admin\JobController@jobStatusUpdate')->na
 Route::get('Admin-Manage-Application','Admin\ApplicationController@manageApplication')->name('application.admin.manage');
 Route::post('Admin-Show-All-Application','Admin\ApplicationController@showAllApplication')->name('application.admin.showAll');
 Route::post('Admin-Export-All-AppliedCandidate','Admin\ApplicationController@exportAppliedCandidate')->name('jobAppliedCadidate.admin.Exportxls');
+//Employee Management
+Route::get('Admin-Manage-User','Admin\UserManagementController@home')->name('admin.manageUser');
+Route::post('admin/Admin-Manage-User','Admin\UserManagementController@getUserData')->name('admin.getmanageUserData');
+Route::get('Admin-Manage-User/add','Admin\UserManagementController@add')->name('admin.manageUser.add');
+Route::get('Admin-Manage-User/edit/{id}','Admin\UserManagementController@edit')->name('admin.editmanageUserData');
+Route::post('Admin-Manage-User/add','Admin\UserManagementController@insert')->name('admin.manageUser.insert');
