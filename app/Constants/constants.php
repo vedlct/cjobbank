@@ -13,8 +13,8 @@ define('COMPLETING_STATUS',array(
     "Completed"=>'2'
 ));
 define('JOB_STATUS',array(
-    "Pending"=>'1',
-    "Rejected"=>'2'
+    "Posted"=>'1',
+    "De-activate"=>'2'
 ));
 
 define('RESULT_SYSTEM',array(
