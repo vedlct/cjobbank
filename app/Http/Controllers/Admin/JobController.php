@@ -9,7 +9,7 @@ use App\Job;
 use Illuminate\Support\Facades\DB;
 use Auth;
 use Session;
-
+use Yajra\DataTables\DataTables;
 
 class JobController extends Controller
 {
@@ -33,6 +33,8 @@ class JobController extends Controller
 
    public function manageJob(){
 
+       $allZone=DB::table('zone')->get();
+
        $allJobList=Job::select('job.jobId','job.title as jobTitle','job.position as jobPosition','job.deadline','u1.name as createBy','job.createDate','u2.name as updateBy','job.updateTime','job.status','job.pdflink','zone.zoneName')
            ->leftJoin('zone', 'zone.zoneId', '=', 'job.fkzoneId')
            ->leftJoin('user as u1', 'u1.userId', '=', 'job.createBy')
@@ -41,7 +43,20 @@ class JobController extends Controller
            ->get();
 
 
-       return view('Admin.job.manageJob',compact('allJobList'));
+       return view('Admin.job.manageJob',compact('allJobList','allZone'));
+   }
+
+   public function getManageJobData(Request $r){
+       $allJobList=Job::select('job.jobId','job.title as jobTitle','job.position as jobPosition','job.deadline','u1.name as createBy','job.createDate','u2.name as updateBy','job.updateTime','job.status','job.pdflink','zone.zoneName')
+           ->leftJoin('zone', 'zone.zoneId', '=', 'job.fkzoneId')
+           ->leftJoin('user as u1', 'u1.userId', '=', 'job.createBy')
+           ->leftJoin('user as u2', 'u2.userId', '=', 'job.updateBy')
+           ->where('job.status', '!=',0)
+           ->get();
+       $datatables = DataTables::of($allJobList);
+
+       return $datatables->make(true);
+
    }
    public function jobEdit($jobId){
 
