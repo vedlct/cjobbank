@@ -214,7 +214,13 @@
 
                     <br>
 
-                    <label class="checkbox-inline"> <input type="checkbox" > </label> Select All
+
+                   
+                    
+                   <label class="checkbox-inline"><input style="width: auto;" type="checkbox" value=""> Select All</label>
+                    
+                    
+        
 
                     <div style="margin-top: 10px;" class="row">
 
