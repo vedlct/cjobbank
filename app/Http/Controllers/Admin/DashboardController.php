@@ -46,9 +46,14 @@ class DashboardController extends Controller
 
     public function home()
     {
+        $todaysJobApply=Jobapply::select('employee.firstName','employee.lastName','job.position','employee.gender','employee.email','job.fkzoneId')
+            ->leftJoin('employee', 'employee.employeeId', '=', 'jobapply.fkemployeeId')
+            ->leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')
+            ->where('applydate',date('Y-m-d'))->get();
+        $allZone=DB::table('zone')->get();
 
 
-        return view('Admin.dashboard.home');
+        return view('Admin.dashboard.home',compact('todaysJobApply','allZone'));
     }
 
 

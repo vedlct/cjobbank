@@ -50,6 +50,7 @@ class ApplicationController extends Controller
         $ethnicity=Ethnicity::get();
         $natinality=Nationality::get();
         $allZone=DB::table('zone')->get();
+        $organizationType=DB::table('organizationtype')->get();
         $allJobTitle=Job::select('title')->get();
         $allEducationLevel=Educationlevel::get();
         $allEducationMajor=Educationmajor::select('educationMajorId','educationMajorName')->get();
@@ -78,7 +79,7 @@ class ApplicationController extends Controller
 
 
 
-        return view('Admin.application.manageApplication',compact('religion','ethnicity','natinality','allZone','allJobTitle','allEducationLevel','allEducationMajor'));
+        return view('Admin.application.manageApplication',compact('religion','ethnicity','natinality','allZone','allJobTitle','allEducationLevel','allEducationMajor','organizationType'));
     }
     public function showAllApplication(Request $r)
     {
@@ -145,10 +146,19 @@ class ApplicationController extends Controller
             $application= $application->where('jobapply.applydate',$r->applyDate);;
         }
         if ($r->jobExperienceFromFilter){
-            $application= $application->where('jobexperience.startDate','>=',$r->jobExperienceFromFilter);
+            $application= $application->where(DB::raw("TIMESTAMPDIFF(YEAR,`jobexperience`.`startDate`,CURDATE())"),'>=',$r->jobExperienceFromFilter);
         }
         if ($r->jobExperienceToFilter){
-            $application= $application->where('jobexperience.endDate','<=',$r->jobExperienceToFilter);
+            $application= $application->where(DB::raw("TIMESTAMPDIFF(YEAR,`jobexperience`.`endDate`,CURDATE())"),'<=',$r->jobExperienceToFilter);
+        }
+        if ($r->professionalQualificationFilter){
+            $application= $application->where('professionalqualification.certificateName','LIKE', '%' . $r->professionalQualificationFilter . '%');
+        }
+        if ($r->TrainingNameFilter){
+            $application= $application->where('traning.trainingName','LIKE', '%' .$r->TrainingNameFilter . '%');
+        }
+        if ($r->jobExperienceFilter){
+            $application= $application->where('jobexperience.fkOrganizationType',$r->jobExperienceFilter);
         }
 
          $application=$application->get();
