@@ -46,9 +46,32 @@ class CvManagementController extends Controller
 
     public function manage()
     {
-
-
         return view('Admin.cvManage.manage');
+    }
+    public function manageCvData()
+    {
+
+        $cvData=Employee::select('employeeId',DB::raw("((DATEDIFF(CURRENT_DATE, STR_TO_DATE(`employee`.`dateOfBirth`, '%Y-%m-%d'))/365)) as Age"),'gender',
+            'email','image')
+            ->where('cvStatus',1);
+
+        $cvData=$cvData->get();
+
+        $datatables = DataTables::of($cvData);
+
+        return $datatables->addColumn('name', function ($application1) use ($cvData) {
+
+
+            foreach ($cvData as $size) {
+
+                $test = $size->firstName." ".$size->lastName;
+
+            }
+            return $test;
+
+        })->make(true);
+
+
     }
 
 

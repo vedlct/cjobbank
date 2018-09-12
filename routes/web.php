@@ -101,10 +101,12 @@ Route::post('/updateRefree','RefreeController@updateRefree')->name('update.refre
 Route::post('/deleteRefree','RefreeController@deleteRefree')->name('refree.delete');
 
 //Relation in Caritas
-
+Route::get('/Candidate-CV-RelativeInCaritas','RelativeInCbController@index')->name('relativeInCaritas.index');
 Route::get('/Candidate-CV-RelativeInCaritas','RelativeInCbController@getRelationInfo')->name('relativeInCaritas.getRelationInfo');
-
-
+Route::post('/Candidate-CV-RelativeInCaritasSubmit','RelativeInCbController@submitRelativeInCb')->name('submit.relatiive');
+Route::post('/editRefree','RefreeController@editRefree')->name('refree.edit');
+Route::post('/updateRefree','RefreeController@updateRefree')->name('update.refree');
+Route::post('/deleteRefree','RefreeController@deleteRefree')->name('refree.delete');
 
 /*---------------------------Job----------------------*/
 Route::get('job/all','JobController@index')->name('job.all');
@@ -122,6 +124,7 @@ Route::get('Candidate-Applications','EmployeeApplicationController@getAllApplica
 Route::get('Admin-Dashboard','Admin\DashboardController@home')->name('admin.dashboard');
 Route::get('Admin-Manage-User','Admin\UserManagementController@home')->name('admin.manageUser');
 Route::get('Admin-Manage-CV','Admin\CvManagementController@manage')->name('cv.admin.manage');
+Route::post('Admin-ManageData-CV','Admin\CvManagementController@manageCvData')->name('cv.admin.manageApplicationData');
 
 
 //job

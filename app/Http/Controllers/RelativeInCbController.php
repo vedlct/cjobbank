@@ -20,7 +20,7 @@ class RelativeInCbController extends Controller
 
     public function index(){
 
-
+        $this->getRelationInfo();
 
     }
     public function getRelationInfo(){
@@ -40,6 +40,29 @@ class RelativeInCbController extends Controller
         }
 
 
+    }
+
+    public function submitRelativeInCb(Request $r){
+
+
+        $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
+
+
+
+        for($i=0;$i<count($r->firstName);$i++){
+            $relative=new RelativeInCb();
+            $relative->firstName=$r->firstName[$i];
+            $relative->lastName=$r->lastName[$i];
+            $relative->degisnation=$r->degisnation[$i];
+            $relative->fkemployeeId=$employee->employeeId;
+            $relative->save();
+        }
+
+
+
+        Session::flash('message', 'Realative Added Successfully');
+
+        return redirect()->route('relativeInCaritas.getRelationInfo');
     }
 
 }

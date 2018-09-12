@@ -78,271 +78,16 @@
                         <thead>
                         <tr>
                             <th width="4%">Select</th>
+                            <th>Image</th>
                             <th>Name</th>
                             <th>Age</th>
                             <th>Gender</th>
                             <th>Email</th>
-                            <th>Apply Date</th>
+
                             <th width="10%">Action</th>
                         </tr>
                         </thead>
-                        <tbody>
 
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Sakib Rahman</td>
-                            <td>30</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>2018/04/10</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Forhad Uddin</td>
-                            <td>40</td>
-                            <td>Male</td>
-                            <td>forhad@gmail.com</td>
-                            <td>2018/06/12</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Farzad Rahman</td>
-                            <td>25</td>
-                            <td>Male</td>
-                            <td>farzad@gmail.com</td>
-                            <td>2018/05/12</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Mujtaba Rumi</td>
-                            <td>24</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>2018/02/15</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Sakib Rahman</td>
-                            <td>30</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>2018/04/10</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Forhad Uddin</td>
-                            <td>40</td>
-                            <td>Male</td>
-                            <td>forhad@gmail.com</td>
-                            <td>2018/06/12</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Farzad Rahman</td>
-                            <td>25</td>
-                            <td>Male</td>
-                            <td>farzad@gmail.com</td>
-                            <td>2018/05/12</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Mujtaba Rumi</td>
-                            <td>24</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>2018/02/15</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Sakib Rahman</td>
-                            <td>30</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>2011/04/25</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Sakib Rahman</td>
-                            <td>30</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>2018/04/25</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Sakib Rahman</td>
-                            <td>30</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>2011/04/25</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Sakib Rahman</td>
-                            <td>30</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>2011/04/25</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Sakib Rahman</td>
-                            <td>30</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>2011/04/25</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Sakib Rahman</td>
-                            <td>30</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>2011/04/25</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Sakib Rahman</td>
-                            <td>30</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>2018/04/10</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Forhad Uddin</td>
-                            <td>40</td>
-                            <td>Male</td>
-                            <td>forhad@gmail.com</td>
-                            <td>2018/06/12</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Farzad Rahman</td>
-                            <td>25</td>
-                            <td>Male</td>
-                            <td>farzad@gmail.com</td>
-                            <td>2018/05/12</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Mujtaba Rumi</td>
-                            <td>24</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>2018/02/15</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Sakib Rahman</td>
-                            <td>30</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>2011/04/25</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Sakib Rahman</td>
-                            <td>30</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>2018/04/10</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Forhad Uddin</td>
-                            <td>40</td>
-                            <td>Male</td>
-                            <td>forhad@gmail.com</td>
-                            <td>2018/06/12</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Farzad Rahman</td>
-                            <td>25</td>
-                            <td>Male</td>
-                            <td>farzad@gmail.com</td>
-                            <td>2018/05/12</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Mujtaba Rumi</td>
-                            <td>24</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>2018/02/15</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-
-                        </tbody>
 
                     </table>
                     <br>
@@ -376,22 +121,6 @@
     {{--<script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>--}}
     <script src="{{url('public/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
     <script>
-        $(document).ready(function() {
-            table=$('#manageapplication').DataTable(
-                {
-
-                    "columnDefs": [
-                        {
-                            "targets": [0,1,3,4,6,8,9], //first column / numbering column
-                            "orderable": false, //set not orderable
-
-                        },
-
-                    ],
-
-                }
-            );
-        } );
 
         $.ajaxSetup({
             headers: {
@@ -399,115 +128,49 @@
             }
         });
 
-        function changeJobStatus(x) {
+        $(document).ready(function() {
 
-            btn = $(x).data('panel-id');
-            var job = document.getElementById('jobStatus'+btn).value;
 
-            $.confirm({
-                title: 'Confirm!',
-                content: 'Are you sure To change this Job Status?',
-                icon: 'fa fa-warning',
-                type: 'red',
-                typeAnimated: true,
-                buttons: {
-                    tryAgain: {
-                        text: 'Yes',
-                        btnClass: 'btn-red',
-                        action: function(){
+            table = $('#managecv').DataTable({
+                processing: true,
+                serverSide: true,
+                stateSave: true,
+                "ajax":{
+                    "url": "{!! route('cv.admin.manageApplicationData')!!}",
+                    "type": "POST",
+                    data:function (d){
 
-                            $.ajax({
-                                type: "POST",
-                                url: '{{route('job.admin.changeJobStatus')}}',
-                                data: {'id':btn,'status':job,'_token':"{{csrf_token()}}"},
-                                success: function (data) {
-
-                                    $.alert({
-                                        title: 'Success!',
-                                        type: 'green',
-                                        content: 'job Status change successfully',
-                                        buttons: {
-                                            tryAgain: {
-                                                text: 'Ok',
-                                                btnClass: 'btn-green',
-                                                action: function () {
-
-                                                    location.reload();
-
-                                                }
-                                            }
-                                        }
-                                    });
-
-                                },
-                            });
-                        }
-                    },
-                    No: function () {
-
-                        location.reload();
+                        d._token="{{csrf_token()}}";
 
 
                     },
-                }
+                },
+                columns: [
+
+                    { "data": function(data){
+                        return '<input  data-panel-id="'+data.employeeId+'"onclick="selected_rows(this)" type="checkbox" class="chk" name="selected_rows[]" value="'+ data.employeeId +'" />'
+                            ;},
+                        "orderable": false, "searchable":false
+                    },
+                    { data: 'name', name: 'name',"orderable": false, "searchable":true },
+                    { data: 'name', name: 'name',"orderable": false, "searchable":true },
+                    { data: 'Age', name: 'Age', "orderable": false, "searchable":true },
+                    { data: 'gender', name: 'gender', "orderable": false, "searchable":true },
+                    { data: 'email', name: 'email', "orderable": true, "searchable":true },
+
+
+                    { "data": function(data){
+                        return '<button class="btn btn-sm btn-danger"><i class="fa fa-envelope"></i></button>'+
+                            '&nbsp;<button class="btn btn-smbtn-info"><i class="fa fa-file-pdf-o"></i></button>'
+                            ;},
+                        "orderable": false, "searchable":false
+                    },
+
+
+                ],
             });
 
-        }
-
-        function deleteJob(x) {
-
-            $.confirm({
-                title: 'Confirm!',
-                content: 'Are you sure To Delete this Job?',
-                icon: 'fa fa-warning',
-                type: 'red',
-                typeAnimated: true,
-                buttons: {
-                    tryAgain: {
-                        text: 'Yes',
-                        btnClass: 'btn-red',
-                        action: function(){
-
-                            btn = $(x).data('panel-id');
-
-                            $.ajax({
-                                type: "POST",
-                                url: '{{route('job.admin.delete')}}',
-                                data: {'id':btn,'_token':"{{csrf_token()}}"},
-                                success: function (data) {
-
-                                    $.alert({
-                                        title: 'Success!',
-                                        type: 'green',
-                                        content: 'job Deleted successfully',
-                                        buttons: {
-                                            tryAgain: {
-                                                text: 'Ok',
-                                                btnClass: 'btn-green',
-                                                action: function () {
-
-                                                    location.reload();
-
-                                                }
-                                            }
-                                        }
-                                    });
-
-                                },
-                            });
-                        }
-                    },
-                    No: function () {
-
-                        location.reload();
-
-
-                    },
-                }
-            });
-
-
-        }
+        } );
     </script>
 
 @endsection
