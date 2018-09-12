@@ -77,10 +77,14 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="jobStatus">Status</label>
-                            <select class="form-control" id="activestatus" name="status" >
+                            <select required class="form-control" id="activestatus" name="status" >
                                 <option value="">select Status</option>
-                                <option @if($info->status == '1') selected @endif value="1">Posted</option>
-                                <option @if($info->status == '2') selected @endif value="2">De-activate</option>
+
+                                @foreach(JOB_STATUS as $key=>$value)
+                                    <option @if($info->status == $value ) selected @endif value="{{$value}}">{{$key}}</option>
+                                @endforeach
+
+
 
                             </select>
 
