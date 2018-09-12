@@ -61,7 +61,15 @@
                         <option value="f">Female</option>
                     </select>
                 </div>
-                <div class="form-group col-md-8">
+                <div class="form-group col-md-4">
+                    <label>Password</label>
+                    <input type="password" class="form-control" name="password" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Confirm Password</label>
+                    <input type="password" class="form-control" required>
+                </div>
+                <div class="form-group col-md-12">
                     <label>Address</label>
                     <textarea name="address" placeholder="address" class="form-control" required>{{old('address')}}</textarea>
                 </div>

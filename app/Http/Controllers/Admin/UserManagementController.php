@@ -20,6 +20,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
 use Session;
+use Hash;
 use Yajra\DataTables\DataTables;
 
 
@@ -58,10 +59,18 @@ class UserManagementController extends Controller
     }
 
     public function getUserData(Request $r){
-        $hr=HR::select('hrId','firstName','lastName','email','gender','zoneName','designationName')
+        $hr=HR::select('hrId','hr.status','firstName','lastName','email','gender','zoneName','designationName')
             ->leftJoin('designation','designation.designationId','hr.fkdesignationId')
-            ->leftJoin('zone','zone.zoneId','hr.fkzoneId')
-            ->get();
+            ->leftJoin('zone','zone.zoneId','hr.fkzoneId');
+        if($r->zoneId){
+            $hr=$hr->where('hr.fkzoneId',$r->zoneId);
+        }
+        if($r->designationId){
+            $hr=$hr->where('hr.fkdesignationId',$r->designationId);
+        }
+
+
+        $hr=$hr->get();
 
         $datatables = DataTables::of($hr);
 
@@ -85,14 +94,17 @@ class UserManagementController extends Controller
             'zoneId' => 'required',
             'address' => 'required|max:255',
             'gender' => 'required',
+            'password' => 'required',
         ]);
 
         $user=new User();
         $user->name=$r->firstName;
         $user->email=$r->email;
-        $user->password='';
-        $user->fkuserTypeId='employee';
-//        $user->fkuserTypeId='employee';
+        $user->password=Hash::make($r->password);
+        $user->fkuserTypeId='cbEmp';
+        $user->register='Y';
+        $user->save();
+
 
         $hr=new HR();
         $hr->firstName=$r->firstName;
@@ -103,11 +115,38 @@ class UserManagementController extends Controller
         $hr->fkzoneId=$r->zoneId;
         $hr->fkdesignationId=$r->designationId;
         $hr->gender=$r->gender;
+        $hr->fkuserId=$user->userId;
+        $hr->status=1;
         $hr->save();
+
         Session::flash('message', 'User Added Successfully!');
         return redirect()->route('admin.manageUser.add');
     }
 
+    public function update($id,Request $r){
+        $r->validate([
+            'firstName' => 'required|max:45',
+            'lastName' => 'required|max:45',
+            'email' => 'email|required|max:45',
+            'phone' => 'required|max:25',
+            'designationId' => 'required',
+            'zoneId' => 'required',
+            'address' => 'required|max:255',
+            'gender' => 'required',
+        ]);
+        $hr=HR::findOrFail($id);
+        $hr->firstName=$r->firstName;
+        $hr->lastName=$r->lastName;
+        $hr->email=$r->email;
+        $hr->phone=$r->phone;
+        $hr->address=$r->address;
+        $hr->fkzoneId=$r->zoneId;
+        $hr->fkdesignationId=$r->designationId;
+        $hr->gender=$r->gender;
+        $hr->save();
+        Session::flash('message', 'User Updated Successfully!');
+        return back();
+    }
     public function edit($id){
         $hr=HR::findOrFail($id);
 //        return $hr;
@@ -115,6 +154,19 @@ class UserManagementController extends Controller
         $designations=Designation::get();
 
         return view('Admin.userMange.editUser',compact('zones','designations','hr'));
+    }
+
+    public function changeUserStatus(Request $r){
+        $hr=HR::findOrFail($r->id);
+        $status=$hr->status;
+        if($status == 0){
+            $hr->status=1;
+        }
+        else{
+            $hr->status=0;
+        }
+        $hr->save();
+//        return $r;
     }
 
 
