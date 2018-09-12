@@ -11,12 +11,10 @@
                 <div class=" form-group">
                     <label>Zone</label>
                     <select class="form-control">
-                        <option>Select a Zone</option>
-                        <option>Dhaka</option>
-                        <option>Khulna</option>
-                        <option>Barishal</option>
-                        <option>Rangpur</option>
-
+                        <option value="">Select a Zone</option>
+                        @foreach($zones as $zone)
+                            <option value="{{$zone->zoneId}}">{{$zone->zoneName}}</option>
+                        @endforeach
                     </select>
                 </div>
 
@@ -24,8 +22,9 @@
                     <label>Degisnation</label>
                     <select class="form-control">
                         <option>Select a Degisnation</option>
-                        <option>Excutive</option>
-                        <option>Senior Excutive</option>
+                        @foreach($designations as $designation)
+                            <option value="{{$designation->designationId}}">{{$designation->designationName}}</option>
+                        @endforeach
 
                     </select>
                 </div>
@@ -58,259 +57,6 @@
                         </thead>
                         <tbody>
 
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Sakib Rahman</td>
-                            <td>Executive</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>Dhaka</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Forhad Uddin</td>
-                            <td>Senior Executive</td>
-                            <td>Male</td>
-                            <td>forhad@gmail.com</td>
-                            <td>Brisal</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Farzad Rahman</td>
-                            <td>Executive</td>
-                            <td>Male</td>
-                            <td>farzad@gmail.com</td>
-                            <td>Dhaka</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Mujtaba Rumi</td>
-                            <td>Executive</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>Dhaka</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Sakib Rahman</td>
-                            <td>Executive</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>Khulna</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Forhad Uddin</td>
-                            <td>Executive</td>
-                            <td>Male</td>
-                            <td>forhad@gmail.com</td>
-                            <td>Khulna</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Farzad Rahman</td>
-                            <td>Senior Executive</td>
-                            <td>Male</td>
-                            <td>farzad@gmail.com</td>
-                            <td>Dhaka</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Mujtaba Rumi</td>
-                            <td>Senior Executive</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>Dhaka</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Sakib Rahman</td>
-                            <td>Senior Executive</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>Khulna</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Sakib Rahman</td>
-                            <td>Executive</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>Dhaka</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Sakib Rahman</td>
-                            <td>Senior Executive</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>Khulna</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Sakib Rahman</td>
-                            <td>Executive</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>Dhaka</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Sakib Rahman</td>
-                            <td>Senior Executive</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>Khulna</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Sakib Rahman</td>
-                            <td>Executive</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>Dhaka</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Sakib Rahman</td>
-                            <td>Senior Executive</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>Khulna</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Forhad Uddin</td>
-                            <td>Senior Executive</td>
-                            <td>Male</td>
-                            <td>forhad@gmail.com</td>
-                            <td>Dhaka</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Farzad Rahman</td>
-                            <td>Executive</td>
-                            <td>Male</td>
-                            <td>farzad@gmail.com</td>
-                            <td>Khulna</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Mujtaba Rumi</td>
-                            <td>Senior Executive</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>Dhaka</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Sakib Rahman</td>
-                            <td>Executive</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>Khulna</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Sakib Rahman</td>
-                            <td>Senior Executive</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>Dhaka</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Forhad Uddin</td>
-                            <td>Executive</td>
-                            <td>Male</td>
-                            <td>forhad@gmail.com</td>
-                            <td>Khulna</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Farzad Rahman</td>
-                            <td>Senior Executive</td>
-                            <td>Male</td>
-                            <td>farzad@gmail.com</td>
-                            <td>Dhaka</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><input type="checkbox"></td>
-                            <td> Mujtaba Rumi</td>
-                            <td>Executive</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>Khulna</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
 
                         </tbody>
 
@@ -348,22 +94,79 @@
     <script src="{{url('public/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
     <script>
         $(document).ready(function() {
-            table=$('#managecv').DataTable(
-                {
+//            table=$('#managecv').DataTable(
+//                {
+//
+//                    "columnDefs": [
+//                        {
+//                            "targets": [0,1,3,4,6,8,9], //first column / numbering column
+//                            "orderable": false, //set not orderable
+//
+//                        },
+//
+//                    ],
+//
+//                }
+//            );
+            table = $('#managecv').DataTable({
+                processing: true,
+                serverSide: true,
+                stateSave: true,
+                "ordering": false,
+                "ajax":{
+                    "url": "{!! route('admin.getmanageUserData')!!}",
+                    "type": "POST",
+                    data:function (d){
+                        d._token="{{csrf_token()}}";
 
-                    "columnDefs": [
-                        {
-                            "targets": [0,1,3,4,6,8,9], //first column / numbering column
-                            "orderable": false, //set not orderable
+                    },
+                },
+                columns: [
 
-                        },
 
-                    ],
+                    { "data": function(data){
+                        return "<input type='checkbox'>";
+                        ;},
+                        "orderable": false, "searchable":false
+                    },
 
-                }
-            );
+                    { data: 'firstName', name: 'firstName', "orderable": false, "searchable":true },
+                    { data: 'designationName', name: 'designationName', "orderable": false, "searchable":true },
+
+                    { data: 'gender', name: 'gender', "orderable": false, "searchable":true },
+                    { data: 'email', name: 'email', "orderable": false, "searchable":true },
+                    { data: 'zoneName', name: 'zoneName', "orderable": false, "searchable":true },
+
+
+                    { "data": function(data){
+                        return "<button class='btn btn-success btn-sm' data-panel-id='"+data.hrId+"' onclick='editUser(this)'>Edit</button>"+
+                                "<button class='btn btn-danger btn-sm' data-panel-id='"+data.hrId+"' onclick='deleteUser(this)'>Delete</button>"
+                            ;
+                        ;},
+                        "orderable": false, "searchable":false
+                    },
+
+
+
+
+
+
+                ],
+
+            });
+
         } );
 
+        function editUser(x) {
+            var id=$(x).data('panel-id');
+            var url = "{{ route('admin.editmanageUserData', ':id') }}";
+            url = url.replace(':id', id);
+            document.location.href=url;
+        }
+        function deleteUser(x) {
+            var id=$(x).data('panel-id');
+            alert(id);
+        }
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

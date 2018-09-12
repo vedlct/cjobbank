@@ -129,6 +129,7 @@ Route::post('Admin-ManageData-CV','Admin\CvManagementController@manageCvData')->
 
 Route::get('Admin-Add-New-Job','Admin\JobController@addNewJob')->name('job.admin.create');
 Route::get('Admin-Manage-Job','Admin\JobController@manageJob')->name('job.admin.manage');
+Route::post('Admin-Manage-Job','Admin\JobController@getManageJobData')->name('job.admin.getManageJobData');
 
 Route::get('Admin-Edit-Job/{jobId}','Admin\JobController@jobEdit')->name('job.admin.edit');
 Route::post('Admin-Delete-Job','Admin\JobController@jobDelete')->name('job.admin.delete');
@@ -143,4 +144,7 @@ Route::post('Admin-Show-All-Application','Admin\ApplicationController@showAllApp
 Route::post('Admin-Export-All-AppliedCandidate','Admin\ApplicationController@exportAppliedCandidate')->name('jobAppliedCadidate.admin.Exportxls');
 //Employee Management
 Route::get('Admin-Manage-User','Admin\UserManagementController@home')->name('admin.manageUser');
+Route::post('admin/Admin-Manage-User','Admin\UserManagementController@getUserData')->name('admin.getmanageUserData');
 Route::get('Admin-Manage-User/add','Admin\UserManagementController@add')->name('admin.manageUser.add');
+Route::get('Admin-Manage-User/edit/{id}','Admin\UserManagementController@edit')->name('admin.editmanageUserData');
+Route::post('Admin-Manage-User/add','Admin\UserManagementController@insert')->name('admin.manageUser.insert');
