@@ -62,7 +62,7 @@
                             <th>Create by</th>
                             <th>Create date</th>
                             <th>update by</th>
-                            <th>update date</th>
+                            <th>Post date</th>
                             <th>Status</th>
                             <th>Action</th>
 
@@ -98,21 +98,11 @@
     {{--<script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>--}}
     <script src="{{url('public/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
     <script>
+
+        $('.date').datepicker({
+            format: 'yyyy-mm-dd'
+        });
         $(document).ready(function() {
-//            table=$('#manageapplication').DataTable(
-//                {
-//
-//                    "columnDefs": [
-//                        {
-//                            "targets": [0,1,3,4,6,8,9], //first column / numbering column
-//                            "orderable": false, //set not orderable
-//
-//                        },
-//
-//                    ],
-//
-//                }
-//            );
 
             table = $('#manageapplication').DataTable({
                 processing: true,
@@ -125,6 +115,18 @@
                     data:function (d){
 
                         d._token="{{csrf_token()}}";
+                        if ($('#zonefilter').val()!=""){
+                            d.zonefilter=$('#zonefilter').val();
+                        }
+                        if ($('#postDateFilter').val()!=""){
+                            d.postDateFilter=$('#postDateFilter').val();
+                        }
+                        if ($('#deadlineFilter').val()!=""){
+                            d.deadlineFilter=$('#deadlineFilter').val();
+                        }
+                        if ($('#jobStatusFilter').val()!=""){
+                            d.jobStatusFilter=$('#jobStatusFilter').val();
+                        }
 
                     },
                 },
@@ -133,7 +135,6 @@
 
                     { data: 'jobTitle', name: 'jobTitle',"orderable": false, "searchable":true },
 
-
                     { data: 'jobPosition', name: 'jobPosition', "orderable": false, "searchable":true },
                     { data: 'deadline', name: 'deadline', "orderable": false, "searchable":true },
                     { data: 'zoneName', name: 'zoneName', "orderable": false, "searchable":true },
@@ -141,17 +142,44 @@
                     { data: 'createBy', name: 'createBy', "orderable": false, "searchable":true },
                     { data: 'createDate', name: 'createDate', "orderable": false, "searchable":true },
                     { data: 'updateBy', name: 'updateBy', "orderable": false, "searchable":true },
-                    { data: 'updateTime', name: 'updateTime', "orderable": false, "searchable":true },
+                    { data: 'postDate', name: 'postDate',"orderable": false, "searchable":true },
 
                     { "data": function(data){
-                            return "<select class='form-control'>" +
-                                    "<option>select 1</option>"+
-                                "</select>";
-                                                ;},
+                    if (data.status=='1') {
+
+
+                        return '<select class="form-control" data-panel-id="' + data.jobId + '" onchange="changeJobStatus(this)" id="jobStatus' + data.jobId + '" name="status">' +
+                            '<option value="">Select Status</option>' +
+                            '<option selected value="1">Posted</option>' +
+                            '<option  value="2">De-activate</option>' +
+
+                            '</select>'
+                    }else if(data.status == '2'){
+
+                        return '<select class="form-control" data-panel-id="' + data.jobId + '" onchange="changeJobStatus(this)" id="jobStatus' + data.jobId + '" name="status">' +
+                            '<option value="">Select Status</option>' +
+                            '<option  value="1">Posted</option>' +
+                            '<option selected value="2">De-activate</option>' +
+
+                            '</select>'
+
+
+                    }
+                                ;},
                         "orderable": false, "searchable":false
                     },
                     { "data": function(data){
-                        return "<button>Action</button>";
+                        if(data.pdflink !=null) {
+
+
+                            return '<a data-panel-id="' + data.jobId + '" onclick="jobEdit(this)"  class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>&nbsp;' +
+                                '<a data-panel-id="' + data.jobId + '" onclick="deleteJob(this)" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></a>&nbsp;' +
+                                '<a data-panel-id="' + data.pdflink + '" onclick="showPdf(this)" target="_blank" class="btn btn-sm btn-info"><i class="fa fa-file-pdf-o"></i></a>&nbsp;'
+                        }else {
+                            return '<a data-panel-id="' + data.jobId + '" onclick="jobEdit(this)"  class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>&nbsp;' +
+                                '<a data-panel-id="' + data.jobId + '" onclick="deleteJob(this)" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></a>&nbsp;'
+
+                        }
                         ;},
                         "orderable": false, "searchable":false
                     },
@@ -169,8 +197,20 @@
 
                 $('#zonefilter').change(function(){ //button filter event click
         //                table.search("").draw(); //just redraw myTableFilter
-                    table.draw();  //just reload table
+                    table.ajax.reload();  //just reload table
                 });
+                $('#jobStatusFilter').change(function(){ //button filter event click
+        //                table.search("").draw(); //just redraw myTableFilter
+                    table.ajax.reload();  //just reload table
+                });
+        $("#postDateFilter").change(function(){
+            // table.search("").draw(); //just redraw myTableFilter
+            table.ajax.reload();  //just reload table
+        });
+        $("#deadlineFilter").change(function(){
+            // table.search("").draw(); //just redraw myTableFilter
+            table.ajax.reload();  //just reload table
+        });
 
 
         $.ajaxSetup({
@@ -287,6 +327,23 @@
 
 
         }
+
+        function jobEdit(x) {
+
+            var id=$(x).data('panel-id');
+            var url = "{{ route('job.admin.edit', ':id') }}";
+            url = url.replace(':id', id);
+            document.location.href=url;
+
+        }
+        function showPdf(x) {
+
+            var id=$(x).data('panel-id');
+            window.open("public/jobPdf"+"/"+id,'_blank');
+
+
+        }
+
     </script>
 
 @endsection

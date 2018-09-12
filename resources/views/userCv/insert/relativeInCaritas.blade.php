@@ -8,7 +8,7 @@
             <div class="card">
                 <div style="background-color: #F1F1F1" class="card-body">
 
-                    <form id="regForm" action="{{route('submit.relatiive')}}" method="post">
+                    <form id="regForm" action="{{route('submit.relative')}}" method="post">
                         <!-- One "tab" for each step in the form: -->
                         {{csrf_field()}}
 

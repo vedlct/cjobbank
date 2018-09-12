@@ -35,24 +35,44 @@ class JobController extends Controller
 
        $allZone=DB::table('zone')->get();
 
-       $allJobList=Job::select('job.jobId','job.title as jobTitle','job.position as jobPosition','job.deadline','u1.name as createBy','job.createDate','u2.name as updateBy','job.updateTime','job.status','job.pdflink','zone.zoneName')
-           ->leftJoin('zone', 'zone.zoneId', '=', 'job.fkzoneId')
-           ->leftJoin('user as u1', 'u1.userId', '=', 'job.createBy')
-           ->leftJoin('user as u2', 'u2.userId', '=', 'job.updateBy')
-           ->where('job.status', '!=',0)
-           ->get();
+//       $allJobList=Job::select('job.jobId','job.title as jobTitle','job.position as jobPosition','job.deadline','u1.name as createBy','job.createDate','u2.name as updateBy','job.updateTime','job.status','job.pdflink','zone.zoneName')
+//           ->leftJoin('zone', 'zone.zoneId', '=', 'job.fkzoneId')
+//           ->leftJoin('user as u1', 'u1.userId', '=', 'job.createBy')
+//           ->leftJoin('user as u2', 'u2.userId', '=', 'job.updateBy')
+//           ->where('job.status', '!=',0)
+//           ->get();
 
 
-       return view('Admin.job.manageJob',compact('allJobList','allZone'));
+       return view('Admin.job.manageJob',compact('allZone'));
    }
 
    public function getManageJobData(Request $r){
-       $allJobList=Job::select('job.jobId','job.title as jobTitle','job.position as jobPosition','job.deadline','u1.name as createBy','job.createDate','u2.name as updateBy','job.updateTime','job.status','job.pdflink','zone.zoneName')
+
+
+
+       $allJobList=Job::select('job.jobId','job.title as jobTitle','job.position as jobPosition','job.deadline','u1.name as createBy','job.createDate','u2.name as updateBy',
+           'job.updateTime','job.status','job.pdflink','zone.zoneName',DB::raw("DATE(job.postDate) as postDate"))
            ->leftJoin('zone', 'zone.zoneId', '=', 'job.fkzoneId')
            ->leftJoin('user as u1', 'u1.userId', '=', 'job.createBy')
            ->leftJoin('user as u2', 'u2.userId', '=', 'job.updateBy')
-           ->where('job.status', '!=',0)
-           ->get();
+           ->where('job.status', '!=',0);
+
+
+       if ($r->zonefilter){
+           $allJobList= $allJobList->where('job.fkzoneId',$r->zonefilter);
+       }
+       if ($r->jobStatusFilter){
+           $allJobList= $allJobList->where('job.status',$r->jobStatusFilter);
+       }
+       if ($r->postDateFilter){
+           $allJobList= $allJobList->where(DB::raw("DATE(job.postDate)"),$r->postDateFilter);
+       }
+       if ($r->deadlineFilter){
+           $allJobList= $allJobList->where('job.deadline',$r->deadlineFilter);
+       }
+
+       $allJobList=$allJobList->get();
+
        $datatables = DataTables::of($allJobList);
 
        return $datatables->make(true);
@@ -97,6 +117,7 @@ class JobController extends Controller
            'jobStatus' => 'required',
            'deadline' => 'required|date',
            'zone' => 'required',
+           'status' => 'required',
 
 
        ];
@@ -120,10 +141,6 @@ class JobController extends Controller
        $jobInfo->updateBy=Auth::user()->userId;
        $jobInfo->updateTime=Carbon::now();
 
-       if ($r->status == '1'){
-           $jobInfo->postBy=Auth::user()->userId;
-           $jobInfo->postDate=Carbon::now();
-       }
 
        if($r->hasFile('jobPdf')){
            $img = $r->file('jobPdf');
@@ -149,6 +166,7 @@ class JobController extends Controller
            'jobStatus' => 'required',
            'deadline' => 'required|date',
            'zone' => 'required',
+           'status' => 'required',
 
 
        ];

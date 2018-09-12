@@ -82,8 +82,7 @@ class ApplicationController extends Controller
     }
     public function showAllApplication(Request $r)
     {
-        $application = Jobapply::select('jobapply.jobapply as applyId', 'jobapply.applydate', 'zone.zoneName', 'employee.firstName', 'employee.lastName', 'job.title',
-            'employee.dateOfBirth as birthDate')
+        $application = Jobapply::select('jobapply.jobapply as applyId', 'jobapply.applydate', 'zone.zoneName', 'employee.firstName', 'employee.lastName', 'job.title')
 
             ->leftJoin('employee', 'employee.employeeId', '=', 'jobapply.fkemployeeId')
             ->leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')
@@ -134,10 +133,10 @@ class ApplicationController extends Controller
         }
 
         if ($r->ageFromFilter){
-            $application= $application->having('Age','>=',$r->ageFromFilter);
+            $application= $application->where(DB::raw("TIMESTAMPDIFF(YEAR,`employee`.`dateOfBirth`,CURDATE())"),'>=',$r->ageFromFilter);
         }
         if ($r->ageToFilter){
-            $application= $application->having('Age','<=',$r->ageToFilter);
+            $application= $application->where(DB::raw("TIMESTAMPDIFF(YEAR,`employee`.`dateOfBirth`,CURDATE())"),'<=',$r->ageToFilter);
         }
         if ($r->jobTitle){
             $application= $application->where('job.title', 'LIKE', '%' . $r->jobTitle . '%');;
