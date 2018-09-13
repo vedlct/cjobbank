@@ -36,12 +36,7 @@
                                         <label for="inputEmail4">Degisnation<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" name="degisnation[]" id="degisnation" placeholder="degisnation" required>
                                     </div>
-
-
-
-
-
-
+                                    
 
                                 </div>
 
