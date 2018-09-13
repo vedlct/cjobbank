@@ -203,6 +203,25 @@
                 </div>
                 <div class="card-body">
 
+
+
+
+                    <label class="checkbox-inline"><input style="width: auto;" type="checkbox" id="selectall2" value=""> Select All</label>
+
+                    <div style="margin-top: 10px;" class="row">
+
+
+
+                        <div class="col-md-1">
+                            <a onclick="return myfunc()"><button class="btn btn-danger btn-sm">Export CV</button></a>
+                        </div>
+                        <div class="col-md-4">
+
+                            <button class="btn btn-info btn-sm">Download CV</button>
+                        </div>
+                    </div>
+                    <br>
+
                     <table id="manageapplication" class="table table-striped table-bordered" style="width:100%" >
                         <thead>
                         <tr>
@@ -219,27 +238,6 @@
                         </tr>
                         </thead>
                     </table>
-
-                    <br>
-
-
-                   
-                    
-                   <label class="checkbox-inline"><input style="width: auto;" type="checkbox" value=""> Select All</label>
-                    
-                    
-        
-
-                    <div style="margin-top: 10px;" class="row">
-
-                        <div class="col-md-1">
-                            <a onclick="return myfunc()"><button class="btn btn-danger">Export CV</button></a>
-                        </div>
-                        <div class="col-md-4">
-
-                            <button class="btn btn-info">Download CV</button>
-                        </div>
-                    </div>
 
 
 
@@ -471,15 +469,13 @@
 
             var products=selecteds;
 
-
-
             if (products.length >0) {
 
                 $.ajax({
                     type: 'POST',
                     url: "{!! route('jobAppliedCadidate.admin.Exportxls') !!}",
                     cache: false,
-                    data: {'jobApply': products},
+                    data: {'jobApply': products,_token:"{{csrf_token()}}"},
                     success: function (data) {
 
                         $('#SessionMessage').load(document.URL +  ' #SessionMessage');
@@ -501,6 +497,20 @@
                                         text: 'Ok',
                                         btnClass: 'btn-blue',
                                         action: function () {
+
+                                            {{--var link = document.createElement("a");--}}
+                                            {{--link.download = data.fileName+".xls";--}}
+                                            {{--var uri = '{{url("public/exportedExcel")}}'+"/"+data.fileName+".xls";--}}
+                                            {{--link.href = uri;--}}
+                                            {{--document.body.appendChild(link);--}}
+                                            {{--link.click();--}}
+                                            {{--document.body.removeChild(link);--}}
+                                            {{--delete link;--}}
+
+                                            {{--selecteds=[];--}}
+                                            {{--$(':checkbox:checked').prop('checked',false);--}}
+
+
 
 
                                         }
@@ -558,6 +568,32 @@
                 });
             }
         }
+
+        // add multiple select / deselect functionality
+        $("#selectall2").click(function () {
+
+            if($('#selectall2').is(":checked")) {
+                selecteds=[];
+                //$('#selectall1').prop('checked',true);
+                checkboxes = document.getElementsByName('selected_rows[]');
+                for(var i in checkboxes) {
+                    checkboxes[i].checked = 'TRUE';
+                }
+
+                /* look for all checkboes that have a class 'chk' attached to it and check if it was checked */
+                $(".chk:checked").each(function () {
+                    selecteds.push($(this).val());
+                });
+                //  alert(selecteds);
+
+
+            }
+            else {
+                selecteds=[];
+                $(':checkbox:checked').prop('checked',false);
+            }
+
+        });
 
     </script>
 
