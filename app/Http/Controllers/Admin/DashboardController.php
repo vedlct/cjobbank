@@ -8,6 +8,7 @@ use App\Ethnicity;
 use App\Http\Controllers\Controller;
 
 use App\Job;
+use App\HR;
 use App\Jobapply;
 use App\Nationality;
 use App\Religion;
@@ -49,7 +50,16 @@ class DashboardController extends Controller
         $todaysJobApply=Jobapply::select('employee.firstName','employee.lastName','job.position','employee.gender','employee.email','job.fkzoneId')
             ->leftJoin('employee', 'employee.employeeId', '=', 'jobapply.fkemployeeId')
             ->leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')
-            ->where('applydate',date('Y-m-d'))->get();
+            ->where('applydate',date('Y-m-d'));
+
+        if(Auth::user()->fkuserTypeId=="cbEmp"){
+            $myZone=HR::where('fkuserId',Auth::user()->userId)
+                ->first();
+            $todaysJobApply= $todaysJobApply->where('job.fkzoneId',$myZone->fkzoneId);
+
+        }
+
+        $todaysJobApply=$todaysJobApply->get();
 
         $todaysRegisterCv=Employee::select('employee.firstName','employee.lastName','employee.gender','employee.email','employee.personalMobile','employee.fkreligionId','employee.ethnicityId')
             ->where('cvStatus',1)

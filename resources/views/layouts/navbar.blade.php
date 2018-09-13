@@ -51,9 +51,11 @@
     <li class="has-submenu">
         <a href="{{route('application.admin.manage')}}"><i class="ti-archive"></i>Manage Application</a>
     </li>
+    @if(USER_TYPE['Admin']== Auth::user()->fkuserTypeId)
     <li class="has-submenu">
         <a href="{{route('admin.manageUser')}}"><i class="ti-user"></i>User Management</a>
     </li>
+    @endif
     @if(USER_TYPE['Admin']== Auth::user()->fkuserTypeId)
     <li class="has-submenu">
         <a href="#"><i class="ti-settings"></i>Settings</a>

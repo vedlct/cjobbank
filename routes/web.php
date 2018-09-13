@@ -17,6 +17,7 @@
 Route::get('/','Auth\LoginController@loginForm');
 Auth::routes();
 
+Route::view('test','test');
 //Registration
 Route::view('/Register', 'register')->name('register');
 Route::post('/Register', 'Auth\RegisterController@createUserShowAggrement')->name('register.createUserShowAggrement');
