@@ -76,12 +76,21 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="jobStatus">Status</label>
-                            <select class="form-control" id="activestatus" name="status" >
+                            <select required class="form-control {{ $errors->has('status') ? ' is-invalid' : '' }}" id="activestatus" name="status" >
                                 <option value="">select Status</option>
-                                <option value="1">Posted</option>
-                                <option value="2">De-activate</option>
+                                @foreach(JOB_STATUS as $key=>$value)
+                                    <option @if(old('status')== $value ) selected @endif value="{{$value}}">{{$key}}</option>
+                                @endforeach
+                                
 
                             </select>
+
+                            @if ($errors->has('status'))
+
+                                <span class="">
+                                        <strong>{{ $errors->first('status') }}</strong>
+                                    </span>
+                            @endif
 
                         </div>
                     </div>

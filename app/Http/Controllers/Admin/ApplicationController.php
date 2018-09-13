@@ -50,6 +50,7 @@ class ApplicationController extends Controller
         $ethnicity=Ethnicity::get();
         $natinality=Nationality::get();
         $allZone=DB::table('zone')->get();
+        $organizationType=DB::table('organizationtype')->get();
         $allJobTitle=Job::select('title')->get();
         $allEducationLevel=Educationlevel::get();
         $allEducationMajor=Educationmajor::select('educationMajorId','educationMajorName')->get();
@@ -78,12 +79,11 @@ class ApplicationController extends Controller
 
 
 
-        return view('Admin.application.manageApplication',compact('religion','ethnicity','natinality','allZone','allJobTitle','allEducationLevel','allEducationMajor'));
+        return view('Admin.application.manageApplication',compact('religion','ethnicity','natinality','allZone','allJobTitle','allEducationLevel','allEducationMajor','organizationType'));
     }
     public function showAllApplication(Request $r)
     {
-        $application = Jobapply::select('jobapply.jobapply as applyId', 'jobapply.applydate', 'zone.zoneName', 'employee.firstName', 'employee.lastName', 'job.title',
-            'employee.dateOfBirth as birthDate')
+        $application = Jobapply::select('jobapply.jobapply as applyId', 'jobapply.applydate', 'zone.zoneName', 'employee.firstName', 'employee.lastName', 'job.title')
 
             ->leftJoin('employee', 'employee.employeeId', '=', 'jobapply.fkemployeeId')
             ->leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')
@@ -134,10 +134,10 @@ class ApplicationController extends Controller
         }
 
         if ($r->ageFromFilter){
-            $application= $application->having('Age','>=',$r->ageFromFilter);
+            $application= $application->where(DB::raw("TIMESTAMPDIFF(YEAR,`employee`.`dateOfBirth`,CURDATE())"),'>=',$r->ageFromFilter);
         }
         if ($r->ageToFilter){
-            $application= $application->having('Age','<=',$r->ageToFilter);
+            $application= $application->where(DB::raw("TIMESTAMPDIFF(YEAR,`employee`.`dateOfBirth`,CURDATE())"),'<=',$r->ageToFilter);
         }
         if ($r->jobTitle){
             $application= $application->where('job.title', 'LIKE', '%' . $r->jobTitle . '%');;
@@ -146,10 +146,19 @@ class ApplicationController extends Controller
             $application= $application->where('jobapply.applydate',$r->applyDate);;
         }
         if ($r->jobExperienceFromFilter){
-            $application= $application->where('jobexperience.startDate','>=',$r->jobExperienceFromFilter);
+            $application= $application->where(DB::raw("TIMESTAMPDIFF(YEAR,`jobexperience`.`startDate`,CURDATE())"),'>=',$r->jobExperienceFromFilter);
         }
         if ($r->jobExperienceToFilter){
-            $application= $application->where('jobexperience.endDate','<=',$r->jobExperienceToFilter);
+            $application= $application->where(DB::raw("TIMESTAMPDIFF(YEAR,`jobexperience`.`endDate`,CURDATE())"),'<=',$r->jobExperienceToFilter);
+        }
+        if ($r->professionalQualificationFilter){
+            $application= $application->where('professionalqualification.certificateName','LIKE', '%' . $r->professionalQualificationFilter . '%');
+        }
+        if ($r->TrainingNameFilter){
+            $application= $application->where('traning.trainingName','LIKE', '%' .$r->TrainingNameFilter . '%');
+        }
+        if ($r->jobExperienceFilter){
+            $application= $application->where('jobexperience.fkOrganizationType',$r->jobExperienceFilter);
         }
 
          $application=$application->get();

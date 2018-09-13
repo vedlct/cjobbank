@@ -92,6 +92,7 @@ Route::post('/Candidate-CV-JobExperience','JobExperienceController@submitJobExpe
 Route::post('/editJobExperience','JobExperienceController@editJobExperience')->name('JobExperience.edit');
 Route::post('/updateJobExperience','JobExperienceController@updateJobExperience')->name('update.jobExperience');
 Route::post('/deleteJobExperience','JobExperienceController@deleteJobExperience')->name('JobExperience.delete');
+
 //Refree
 Route::get('/Candidate-CV-Referee','RefreeController@index')->name('refree.index');
 Route::post('/Candidate-CV-Referee','RefreeController@submitRefree')->name('submit.refree');
@@ -100,10 +101,12 @@ Route::post('/updateRefree','RefreeController@updateRefree')->name('update.refre
 Route::post('/deleteRefree','RefreeController@deleteRefree')->name('refree.delete');
 
 //Relation in Caritas
-
+Route::get('/Candidate-CV-RelativeInCaritas','RelativeInCbController@index')->name('relativeInCaritas.index');
 Route::get('/Candidate-CV-RelativeInCaritas','RelativeInCbController@getRelationInfo')->name('relativeInCaritas.getRelationInfo');
-
-
+Route::post('/Candidate-CV-RelativeInCaritasSubmit','RelativeInCbController@submitRelativeInCb')->name('submit.relative');
+Route::post('/editRelative','RelativeInCbController@editRelative')->name('relative.edit');
+Route::post('/updateRelative','RelativeInCbController@updateRelative')->name('update.relative');
+Route::post('/deleteRelative','RelativeInCbController@deleteRelative')->name('relative.delete');
 
 /*---------------------------Job----------------------*/
 Route::get('job/all','JobController@index')->name('job.all');

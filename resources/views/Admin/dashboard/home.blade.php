@@ -16,10 +16,11 @@
                     </div>
 
 
-                    <table id="managecv" class="table table-striped table-bordered" style="width:100%">
+                    <table id="todayJobApply" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                         <tr>
 
+                            <th>No</th>
                             <th>Name</th>
                             <th>Degisnation</th>
                             <th>Gender</th>
@@ -29,126 +30,40 @@
                         </thead>
                         <tbody>
 
-                        <tr>
+                        @php
+                            $sl=1;
+                                @endphp
 
-                            <td> Sakib Rahman</td>
-                            <td>Executive</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>Dhaka</td>
-                        </tr>
-                        <tr>
+                        @foreach($todaysJobApply as $TodayJobApply)
 
-                            <td> Forhad Uddin</td>
-                            <td>Senior Executive</td>
-                            <td>Male</td>
-                            <td>forhad@gmail.com</td>
-                            <td>Brisal</td>
-                        </tr>
                         <tr>
+                            <td>{{$sl}}</td>
 
-                            <td> Farzad Rahman</td>
-                            <td>Executive</td>
-                            <td>Male</td>
-                            <td>farzad@gmail.com</td>
-                            <td>Dhaka</td>
-                        </tr>
-                        <tr>
+                            <td>{{$TodayJobApply->firstName." ".$TodayJobApply->lastName}}</td>
 
-                            <td> Mujtaba Rumi</td>
-                            <td>Executive</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>Dhaka</td>
-                        </tr>
-                        <tr>
+                            <td>{{$TodayJobApply->position}}</td>
+                            <td>
+                                @foreach(GENDER as $key=>$value)
+                                    @if($TodayJobApply->gender == $value){{$key}} @endif
+                                @endforeach
 
-                            <td> Sakib Rahman</td>
-                            <td>Executive</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>Khulna</td>
-                        </tr>
-                        <tr>
+                            </td>
+                            <td>{{$TodayJobApply->email}}</td>
+                            <td>
+                                @foreach($allZone as $zone)
+                                    @if($TodayJobApply->fkzoneId == $zone->zoneId){{$zone->zoneName}} @endif
+                                @endforeach
 
-                            <td> Forhad Uddin</td>
-                            <td>Executive</td>
-                            <td>Male</td>
-                            <td>forhad@gmail.com</td>
-                            <td>Khulna</td>
+                            </td>
                         </tr>
-                        <tr>
 
-                            <td> Farzad Rahman</td>
-                            <td>Senior Executive</td>
-                            <td>Male</td>
-                            <td>farzad@gmail.com</td>
-                            <td>Dhaka</td>
-                        </tr>
-                        <tr>
+                        @php
+                            $sl++;
+                        @endphp
 
-                            <td> Mujtaba Rumi</td>
-                            <td>Senior Executive</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>Dhaka</td>
-                        </tr>
-                        <tr>
 
-                            <td> Sakib Rahman</td>
-                            <td>Senior Executive</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>Khulna</td>
-                        </tr>
-                        <tr>
+                        @endforeach
 
-                            <td> Sakib Rahman</td>
-                            <td>Executive</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>Dhaka</td>
-                        </tr>
-                        <tr>
-
-                            <td> Sakib Rahman</td>
-                            <td>Senior Executive</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>Khulna</td>
-                        </tr>
-                        <tr>
-
-                            <td> Sakib Rahman</td>
-                            <td>Executive</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>Dhaka</td>
-                        </tr>
-                        <tr>
-
-                            <td> Sakib Rahman</td>
-                            <td>Senior Executive</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>Khulna</td>
-                        </tr>
-                        <tr>
-
-                            <td> Sakib Rahman</td>
-                            <td>Executive</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>Dhaka</td>
-                        </tr>
-                        <tr>
-
-                            <td> Sakib Rahman</td>
-                            <td>Senior Executive</td>
-                            <td>Male</td>
-                            <td>sakib@gmail.com</td>
-                            <td>Khulna</td>
-                        </tr>
 
 
                         </tbody>
@@ -180,6 +95,7 @@
                         <thead>
                         <tr>
 
+                            <th>No</th>
                             <th>Name</th>
                             <th>Degisnation</th>
                             <th>Gender</th>
@@ -340,17 +256,18 @@
     <script src="{{url('public/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
     <script>
         $(document).ready(function() {
-            table=$('#managecv').DataTable(
+            table=$('#todayJobApply').DataTable(
                 {
 
                     "columnDefs": [
                         {
-                            "targets": [0,1,3,4,6,8,9], //first column / numbering column
+                            "targets": [0], //first column / numbering column
                             "orderable": false, //set not orderable
 
                         },
 
                     ],
+                    "ordering": false,
 
                 }
             );

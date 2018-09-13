@@ -131,7 +131,7 @@
                     <label style="text-align: center" class="col-12">Professional Qualification</label>
                     <div class=" form-group ">
                         <label>Qualification</label>
-                        <input class="form-control" type="text">
+                        <input id="professionalQualificationFilter" name="professionalQualificationFilter" class="form-control" type="text">
                     </div>
                     <div class=" form-group ">
                         <label>Status of completion</label>
@@ -149,7 +149,7 @@
                     <label style="text-align: center" class="col-12">Training information</label>
                     <div class=" form-group ">
                         <label>Name of Training</label>
-                        <input class="form-control" type="text">
+                        <input id="TrainingNameFilter" name="TrainingNameFilter" class="form-control" type="text">
                     </div>
                     <div class=" form-group ">
                         <label>Status of completion</label>
@@ -168,16 +168,24 @@
 
                     <div class=" form-group ">
                         <label>From</label>
-                        <input id="jobExperienceFromFilter" name="jobExperienceFromFilter" class="form-control date" type="text">
+                        <input id="jobExperienceFromFilter" name="jobExperienceFromFilter" class="form-control" type="number">
                     </div>
                     <div class=" form-group ">
                         <label>to</label>
-                        <input id="jobExperienceToFilter" name="jobExperienceToFilter" class="form-control date" type="text">
+                        <input id="jobExperienceToFilter" name="jobExperienceToFilter" class="form-control" type="number">
                     </div>
 
                     <div class=" form-group ">
                         <label>Experinces</label>
-                        <input class="form-control" type="text">
+                        <select id="jobExperienceFilter" name="jobExperienceFilter" class="form-control">
+                            <option value="">Select a Type</option>
+                            @foreach($organizationType as $type)
+                                <option value="{{$type->organizationTypeId}}">{{$type->organizationTypeName}}</option>
+                            @endforeach
+
+                        </select>
+
+
                     </div>
 
                 </div>
@@ -322,6 +330,15 @@
                         if ($('#jobExperienceToFilter').val()!=""){
                             d.jobExperienceToFilter=$('#jobExperienceToFilter').val();
                         }
+                        if ($('#professionalQualificationFilter').val()!=""){
+                            d.professionalQualificationFilter=$('#professionalQualificationFilter').val();
+                        }
+                        if ($('#TrainingNameFilter').val()!=""){
+                            d.TrainingNameFilter=$('#TrainingNameFilter').val();
+                        }
+                        if ($('#jobExperienceFilter').val()!=""){
+                            d.jobExperienceFilter=$('#jobExperienceFilter').val();
+                        }
 
                     },
                 },
@@ -333,6 +350,7 @@
                         "orderable": false, "searchable":false
                     },
                     { data: 'name', name: 'name',"orderable": false, "searchable":true },
+
                     { data: 'title', name: 'title', "orderable": false, "searchable":true },
                     { data: 'zoneName', name: 'zoneName', "orderable": false, "searchable":true },
                     { data: 'applydate', name: 'applydate', "orderable": true, "searchable":true },
@@ -382,11 +400,11 @@
 //                table.search("").draw(); //just redraw myTableFilter
                 table.ajax.reload();  //just reload table
             });
-            $('#jobExperienceFromFilter').change(function(){ //button filter event click
+            $('#jobExperienceFromFilter').keyup(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
                 table.ajax.reload();  //just reload table
             });
-            $('#jobExperienceToFilter').change(function(){ //button filter event click
+            $('#jobExperienceToFilter').keyup(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
                 table.ajax.reload();  //just reload table
             });
@@ -415,6 +433,18 @@
                 table.ajax.reload();  //just reload table
             });
             $("#ageToFilter").keyup(function(){
+                // table.search("").draw(); //just redraw myTableFilter
+                table.ajax.reload();  //just reload table
+            });
+            $("#professionalQualificationFilter").keyup(function(){
+                // table.search("").draw(); //just redraw myTableFilter
+                table.ajax.reload();  //just reload table
+            });
+            $("#TrainingNameFilter").keyup(function(){
+                // table.search("").draw(); //just redraw myTableFilter
+                table.ajax.reload();  //just reload table
+            });
+            $("#jobExperienceFilter").change(function(){
                 // table.search("").draw(); //just redraw myTableFilter
                 table.ajax.reload();  //just reload table
             });

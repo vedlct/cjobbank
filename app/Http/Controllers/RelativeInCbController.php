@@ -18,28 +18,91 @@ class RelativeInCbController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(){
+    public function index()
+    {
 
-
+        $this->getRelationInfo();
 
     }
-    public function getRelationInfo(){
 
-        $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
+    public function getRelationInfo()
+    {
 
-        $relativeInCaritas=RelativeInCb::where('fkemployeeId',$employee->employeeId)->get();
+        $employee = Employee::select('employeeId')->where('fkuserId', Auth::user()->userId)->first();
+
+        $relativeInCaritas = RelativeInCb::where('fkemployeeId', $employee->employeeId)->get();
 
 
-
-        if($relativeInCaritas->isEmpty()){
+        if ($relativeInCaritas->isEmpty()) {
             return view('userCv.insert.relativeInCaritas');
-        }
-
-        else{
-            return view('userCv.update.relativeInCaritas',compact('relativeInCaritas'));
+        } else {
+            return view('userCv.update.relativeInCaritas', compact('relativeInCaritas'));
         }
 
 
     }
 
+    public function submitRelativeInCb(Request $r)
+    {
+
+
+        $employee = Employee::select('employeeId')->where('fkuserId', Auth::user()->userId)->first();
+
+
+        for ($i = 0; $i < count($r->firstName); $i++) {
+            $relative = new RelativeInCb();
+            $relative->firstName = $r->firstName[$i];
+            $relative->lastName = $r->lastName[$i];
+            $relative->degisnation = $r->degisnation[$i];
+            $relative->fkemployeeId = $employee->employeeId;
+            $relative->save();
+        }
+
+        Employee::where('fkuserId',Auth::user()->userId)
+            ->update(['cvStatus'=>1]);
+
+
+        Session::flash('message', 'Relative Added Successfully');
+
+        return redirect()->route('relativeInCaritas.getRelationInfo');
+    }
+
+    public function editRelative(Request $r)
+    {
+        $relative = RelativeInCb::findOrFail($r->relativeId);
+
+        return view('userCv.edit.editRelativeInCB', compact('relative'));
+    }
+
+    public function updateRelative(Request $r)
+    {
+        $relative = RelativeInCb::findOrFail($r->relativeId);
+        $relative->firstName = $r->firstName;
+        $relative->lastName = $r->lastName;
+        $relative->degisnation = $r->degisnation;
+        $relative->save();
+
+        Session::flash('message', 'Relative In CB Updated Successfully');
+
+        return redirect()->route('relativeInCaritas.getRelationInfo');
+
+    }
+
+    public function deleteRelative(Request $r){
+        RelativeInCb::destroy($r->relativeId);
+
+        $count=RelativeInCb::where('employee.fkuserId',Auth::user()->userId)
+            ->leftJoin('employee','employee.employeeId','relativeincb.fkemployeeId')
+            ->count();
+
+        if($count<2){
+            Employee::where('fkuserId',Auth::user()->userId)
+                ->update(['cvStatus'=>null]);
+        }
+
+        Session::flash('message', 'Relative In CB Deleted Successfully');
+
+        return redirect()->route('relativeInCaritas.getRelationInfo');
+    }
 }
+
