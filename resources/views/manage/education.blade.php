@@ -13,16 +13,16 @@
 
                 <div class="modal-body">
 
-                    <form action="">
-
+                    <form action="{{route('manage.education.insert')}}" method="post">
+                    {{csrf_field()}}
 
                         <div class="form-group">
                             <label for="">Education Level Name</label>
-                            <input type="text" class="form-control" id="" placeholder="">
+                            <input type="text" class="form-control" name="education" placeholder="">
                         </div>
                         <div class="form-group">
 
-                            <button type="button" class="btn btn-success">Submit</button>
+                            <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                     </form>
 
@@ -34,12 +34,47 @@
         </div>
     </div>
 
+
+    <div class="modal" id="editModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Education</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div  id="editModalBody">
+
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-12">
-            <div class="card m-b-30">
+            <div class="card container">
 
 
                 <div class="card-body">
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="card-header-tabs">
                         <h4>Manage Education</h4>
                     </div>
@@ -56,60 +91,17 @@
 
 
                             <th>Education Level Name</th>
-                            <th width="8%">Action</th>
+                            <th width="30%">Action</th>
                         </tr>
                         </thead>
                         <tbody>
-
-                        <tr>
-
-
-                            <td>HSC</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-
-
-                            <td>SSC</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-
-
-                            <td>BSc in CSE</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-
-
-                            <td>BSC in EEE</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-
-
-                            <td>MSc in CSE</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-
-
-                            <td>PhD</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-
+                        @foreach($educations as $education)
+                            <tr>
+                                <td>{{$education->educationLevelName}}</td>
+                                <td><button class="btn btn-sm btn-success" data-panel-id="{{$education->educationLevelId}}" onclick="editEducation(this)">Edit</button>
+                                </td>
+                            </tr>
+                        @endforeach
 
 
                         </tbody>
@@ -130,6 +122,23 @@
 @section('foot-js')
 
     <script>
+        function editEducation(x) {
+            var id=$(x).data('panel-id');
+
+            $.ajax({
+                type: 'POST',
+                url: "{!! route('admin.editEducation') !!}",
+                cache: false,
+                data: {_token: "{{csrf_token()}}",'id': id},
+                success: function (data) {
+//                    console.log(data);
+                    $('#editModalBody').html(data);
+                    $('#editModal').modal();
+                }
+            });
+
+
+        }
         function addnewEducation() {
 
 
