@@ -46,8 +46,7 @@ Route::view('application','application')->name('application');
 Route::view('job/manage','job.manage')->name('job.manage');
 
 
-Route::view('manage/education','manage.education')->name('manage.education');
-Route::view('manage/education-Degree','manage.educationDegree')->name('manage.educationDegree');
+
 
 //user Cv
 
@@ -157,4 +156,20 @@ Route::get('manage/zone','Admin\SettingsController@zone')->name('manage.zone');
 Route::post('manage/zone/insert','Admin\SettingsController@insertZone')->name('admin.zone.insert');
 Route::post('manage/zone/updateZone/{id}','Admin\SettingsController@updateZone')->name('admin.zone.update');
 Route::post('manage/zone/editZone','Admin\SettingsController@editZone')->name('admin.editZone');
+
+
+//Education
+Route::get('manage/education','Admin\SettingsController@education')->name('manage.education');
+Route::post('manage/insertEducation','Admin\SettingsController@insertEducation')->name('manage.education.insert');
+Route::post('manage/updateEducation/{id}','Admin\SettingsController@updateEducation')->name('manage.education.update');
+Route::post('manage/education/editEducation','Admin\SettingsController@editEducation')->name('admin.editEducation');
+
+
+//Education Degree
+Route::get('manage/education-Degree','Admin\SettingsController@educationDegree')->name('manage.educationDegree');
+Route::post('manage/education-Degree/insert','Admin\SettingsController@insertEducationDegree')->name('manage.educationDegree.insert');
+Route::post('manage/education-Degree/editDegree','Admin\SettingsController@editEducationDegree')->name('admin.editDegree');
+Route::post('manage/education-Degree/updateDegree/{id}','Admin\SettingsController@updateDegree')->name('manage.degree.update');
+
+
 
