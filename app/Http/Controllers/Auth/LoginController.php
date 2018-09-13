@@ -43,7 +43,7 @@ class LoginController extends Controller
     public function redirectTo()
     {
 
-        if (Auth::user()->fkuserTypeId == USER_TYPE['Admin']) {
+        if (Auth::user()->fkuserTypeId == USER_TYPE['Admin'] || Auth::user()->fkuserTypeId == USER_TYPE['Emp']) {
             return route('admin.dashboard');
         }
         elseif (Auth::user()->fkuserTypeId == USER_TYPE['User']) {
