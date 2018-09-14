@@ -5,17 +5,56 @@
     <div class="row ">
 
         <div class="col-12 ">
-            <div class="card">
-                <div style="background-color: #F1F1F1" class="card-body">
 
-                    <form id="regForm" action="{{route('submit.relative')}}" method="post">
-                        <!-- One "tab" for each step in the form: -->
-                        {{csrf_field()}}
+            <div class="card" style="display: block">
 
-                        <div id="" class="tab">
+
+                <div style="background-color: #F1F1F1;" class="card-body" >
+
+
+
+                        <div id="regForm" class="tab">
 
                             <h2 style="margin-bottom: 30px;">Relative in CB</h2>
-                            <div id="TextBoxesGroup">
+
+
+
+                            <div >
+
+
+                                <form action="{{route('submit.relativeYesOrNo')}}" method="post">
+                                    {{csrf_field()}}
+                                <div class="row form-group">
+                                <label>Do You Have Relative in Caritas BD ?</label>
+                                <input onclick="myradio()" class="form-control" type="radio" value="1" name="relativeincb"> YES
+                                <input onclick="myradio()" class="form-control" type="radio" value="0" name="relativeincb"> NO
+                                </div>
+
+
+                                <div style="overflow:auto;" id="ques">
+                                    <div style="float:right;">
+                                        <a href="{{route('refree.index')}}"><button type="button" id="btnPevious" >Back</button></a>
+                                        {{--<a id="btnPevious" class="btn btn-success" href="{{route('JobExperience.index')}}">Back</a>--}}
+                                        <button type="submit" >Save</button>
+
+                                    </div>
+                                </div>
+
+
+                                </form>
+
+                            </div>
+
+
+
+                            <div id="insertfull" style="display: none">
+                            <form  action="{{route('submit.relative')}}" method="post">
+                                <!-- One "tab" for each step in the form: -->
+                                {{csrf_field()}}
+
+
+
+                                <div id="TextBoxesGroup">
 
                                 <div class="row">
                                     <div class="form-group col-md-6">
@@ -36,7 +75,7 @@
                                         <label for="inputEmail4">Degisnation<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" name="degisnation[]" id="degisnation" placeholder="degisnation" required>
                                     </div>
-                                    
+
 
                                 </div>
 
@@ -48,7 +87,7 @@
                             <button type="button" id="addButton" class="btn btn-success">Add More</button>
                             <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
-                        </div>
+
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
@@ -59,6 +98,8 @@
                             </div>
                         </div>
 
+                            </form>
+                        </div>
 
 
                         <!-- Circles which indicates the steps of the form: -->
@@ -71,10 +112,15 @@
                             <span class="step"></span>
                         </div>
 
-                    </form>
+                        </div>
+
+
+
+
 
                 </div>
             </div>
+
         </div> <!-- end col -->
     </div> <!-- end row -->
 
@@ -314,6 +360,19 @@
 
         }
 
+       function myradio()
+        {
+            x = document.querySelector('input[name="relativeincb"]:checked').value;
+
+            if (x==1){
+            document.getElementById('ques').style.display= "none";
+            document.getElementById('insertfull').style.display= "block";
+
+            }else {
+                document.getElementById('ques').style.display= "block";
+                document.getElementById('insertfull').style.display= "none";
+            }
+        }
     </script>
 
 

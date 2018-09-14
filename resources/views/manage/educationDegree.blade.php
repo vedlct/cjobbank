@@ -13,20 +13,17 @@
 
                 <div class="modal-body">
 
-                    <form action="">
-
+                    <form action="{{route('manage.educationDegree.insert')}}" method="post">
+                        {{csrf_field()}}
 
                         <div class="form-group">
 
                             <label for="">Education Level<span style="color: red">*</span></label>
-                            <select name="educationLevel" class="form-control" required="" id="educationLevel">
+                            <select name="educationLevel" class="form-control" required id="educationLevel">
                                 <option value="">Select Education Level</option>
-
-                                    <option >HSC</option>
-                                    <option >BSC</option>
-                                    <option >MSC</option>
-                                    <option >PHD</option>
-
+                                    @foreach($educations as $education)
+                                    <option value="{{$education->educationLevelId}}">{{$education->educationLevelName}}</option>
+                                    @endforeach
                             </select>
 
                         </div>
@@ -34,12 +31,12 @@
 
                             <label for="">Degree<span style="color: red">*</span></label>
 
-                            <input class="form-control" required="" type="text">
+                            <input class="form-control" name="degree" required type="text">
 
                         </div>
                         <div class="form-group">
 
-                            <button type="button" class="btn btn-success">Submit</button>
+                            <button type="submit" class="btn btn-success">Submit</button>
                         </div>
 
                     </form>
@@ -52,10 +49,45 @@
         </div>
     </div>
 
+
+
+    <div class="modal" id="editModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Degree</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div  id="editModalBody">
+
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-12">
-            <div class="card m-b-30">
-
+            <div class="card container">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
                 <div class="card-body">
                     <div class="card-header-tabs">
@@ -75,64 +107,21 @@
 
                             <th>Education Level Name</th>
                             <th>Education Degree Name</th>
-                            <th width="8%">Action</th>
+                            <th width="30%">Action</th>
                         </tr>
                         </thead>
                         <tbody>
 
-                        <tr>
+                       @foreach($degree as $d)
+                           <tr>
+                               <td>{{$d->educationLevelName}}</td>
+                               <td>{{$d->degreeName}}</td>
+                               <td><button class="btn btn-sm btn-success" data-panel-id="{{$d->degreeId}}" onclick="editDegree(this)">Edit</button>
+                               </td>
 
+                           </tr>
 
-                            <td>HSC</td>
-                            <td></td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-
-
-                            <td>SSC</td>
-                            <td></td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-
-
-                            <td>BSc</td>
-                            <td>BSc in CSE</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-
-                            <td>BSc</td>
-                            <td>BSC in EEE</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-
-                            <td>MSc</td>
-                            <td>MSc in CSE</td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-
-
-                            <td>PhD</td>
-                            <td></td>
-                            <td><button class="btn btn-sm btn-success">Edit</button>
-                                <button class="btn btn-sm btn-danger">Delete</button>
-                            </td>
-                        </tr>
-
+                       @endforeach
 
 
                         </tbody>
@@ -151,12 +140,39 @@
 
 @endsection
 @section('foot-js')
+    <script src="{{url('public/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{url('public/assets/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    <!-- Buttons examples -->
+    {{--<script src="{{url('public/assets/plugins/datatables/dataTables.buttons.min.js')}}"></script>--}}
+    {{--<script src="https://cdn.datatables.net/rowreorder/1.2.3/js/dataTables.rowReorder.min.js"></script>--}}
+    {{--<script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>--}}
+    <script src="{{url('public/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
 
     <script>
+        $(function () {
+           $('#managecv').DataTable();
+        });
         function addnewEducation() {
 
 
             $('#NewEducationDegreeModal').modal({show:true});
+
+        }
+        function editDegree(x) {
+            var id=$(x).data('panel-id');
+
+            $.ajax({
+                type: 'POST',
+                url: "{!! route('admin.editDegree') !!}",
+                cache: false,
+                data: {_token: "{{csrf_token()}}",'id': id},
+                success: function (data) {
+//                    console.log(data);
+                    $('#editModalBody').html(data);
+                    $('#editModal').modal();
+                }
+            });
+
 
         }
     </script>

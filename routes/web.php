@@ -46,8 +46,7 @@ Route::view('application','application')->name('application');
 Route::view('job/manage','job.manage')->name('job.manage');
 
 
-Route::view('manage/education','manage.education')->name('manage.education');
-Route::view('manage/education-Degree','manage.educationDegree')->name('manage.educationDegree');
+
 
 //user Cv
 
@@ -105,9 +104,12 @@ Route::post('/deleteRefree','RefreeController@deleteRefree')->name('refree.delet
 Route::get('/Candidate-CV-RelativeInCaritas','RelativeInCbController@index')->name('relativeInCaritas.index');
 Route::get('/Candidate-CV-RelativeInCaritas','RelativeInCbController@getRelationInfo')->name('relativeInCaritas.getRelationInfo');
 Route::post('/Candidate-CV-RelativeInCaritasSubmit','RelativeInCbController@submitRelativeInCb')->name('submit.relative');
+Route::post('/Candidate-CV-RelativeInCaritasSubmitYesOrNo','RelativeInCbController@submitRelativeInCbYesOrNo')->name('submit.relativeYesOrNo');
 Route::post('/editRelative','RelativeInCbController@editRelative')->name('relative.edit');
 Route::post('/updateRelative','RelativeInCbController@updateRelative')->name('update.relative');
 Route::post('/deleteRelative','RelativeInCbController@deleteRelative')->name('relative.delete');
+
+
 
 /*---------------------------Job----------------------*/
 Route::get('job/all','JobController@index')->name('job.all');
@@ -160,4 +162,20 @@ Route::get('manage/zone','Admin\SettingsController@zone')->name('manage.zone');
 Route::post('manage/zone/insert','Admin\SettingsController@insertZone')->name('admin.zone.insert');
 Route::post('manage/zone/updateZone/{id}','Admin\SettingsController@updateZone')->name('admin.zone.update');
 Route::post('manage/zone/editZone','Admin\SettingsController@editZone')->name('admin.editZone');
+
+
+//Education
+Route::get('manage/education','Admin\SettingsController@education')->name('manage.education');
+Route::post('manage/insertEducation','Admin\SettingsController@insertEducation')->name('manage.education.insert');
+Route::post('manage/updateEducation/{id}','Admin\SettingsController@updateEducation')->name('manage.education.update');
+Route::post('manage/education/editEducation','Admin\SettingsController@editEducation')->name('admin.editEducation');
+
+
+//Education Degree
+Route::get('manage/education-Degree','Admin\SettingsController@educationDegree')->name('manage.educationDegree');
+Route::post('manage/education-Degree/insert','Admin\SettingsController@insertEducationDegree')->name('manage.educationDegree.insert');
+Route::post('manage/education-Degree/editDegree','Admin\SettingsController@editEducationDegree')->name('admin.editDegree');
+Route::post('manage/education-Degree/updateDegree/{id}','Admin\SettingsController@updateDegree')->name('manage.degree.update');
+
+
 
