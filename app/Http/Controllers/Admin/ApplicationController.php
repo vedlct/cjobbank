@@ -6,6 +6,7 @@ use App\Educationlevel;
 use App\Educationmajor;
 use App\Employee;
 use App\Ethnicity;
+use App\HR;
 use App\Http\Controllers\Controller;
 
 use App\Job;
@@ -162,6 +163,15 @@ class ApplicationController extends Controller
         }
         if ($r->jobExperienceFilter){
             $application= $application->where('jobexperience.fkOrganizationType',$r->jobExperienceFilter);
+        }
+
+        if(Auth::user()->fkuserTypeId=="cbEmp"){
+            $myZone=HR::where('fkuserId',Auth::user()->userId)
+                ->first();
+            $application= $application->where('job.fkzoneId',$myZone->fkzoneId);
+
+
+
         }
 
          $application=$application->get();

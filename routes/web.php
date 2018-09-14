@@ -104,9 +104,12 @@ Route::post('/deleteRefree','RefreeController@deleteRefree')->name('refree.delet
 Route::get('/Candidate-CV-RelativeInCaritas','RelativeInCbController@index')->name('relativeInCaritas.index');
 Route::get('/Candidate-CV-RelativeInCaritas','RelativeInCbController@getRelationInfo')->name('relativeInCaritas.getRelationInfo');
 Route::post('/Candidate-CV-RelativeInCaritasSubmit','RelativeInCbController@submitRelativeInCb')->name('submit.relative');
+Route::post('/Candidate-CV-RelativeInCaritasSubmitYesOrNo','RelativeInCbController@submitRelativeInCbYesOrNo')->name('submit.relativeYesOrNo');
 Route::post('/editRelative','RelativeInCbController@editRelative')->name('relative.edit');
 Route::post('/updateRelative','RelativeInCbController@updateRelative')->name('update.relative');
 Route::post('/deleteRelative','RelativeInCbController@deleteRelative')->name('relative.delete');
+
+
 
 /*---------------------------Job----------------------*/
 Route::get('job/all','JobController@index')->name('job.all');
