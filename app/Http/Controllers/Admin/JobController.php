@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Job;
+use App\HR;
 use Illuminate\Support\Facades\DB;
 use Auth;
 use Session;
@@ -69,6 +70,13 @@ class JobController extends Controller
        }
        if ($r->deadlineFilter){
            $allJobList= $allJobList->where('job.deadline',$r->deadlineFilter);
+       }
+
+       if(Auth::user()->fkuserTypeId=="cbEmp"){
+           $myZone=HR::where('fkuserId',Auth::user()->userId)
+               ->first();
+           $allJobList= $allJobList->where('job.fkzoneId',$myZone->fkzoneId);
+
        }
 
        $allJobList=$allJobList->get();

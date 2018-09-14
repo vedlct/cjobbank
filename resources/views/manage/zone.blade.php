@@ -96,7 +96,7 @@
                         @foreach($zones as $zone)
                             <tr>
                                 <td>{{$zone->zoneName}}</td>
-                                <td><button class="btn btn-info btn-sm" data-panel-id="{{$zone->zoneId}}" onclick="editZone(this)">Edit</button></td>
+                                <td><button class="btn btn-success btn-sm" data-panel-id="{{$zone->zoneId}}" onclick="editZone(this)">Edit</button></td>
 
                             </tr>
                         @endforeach

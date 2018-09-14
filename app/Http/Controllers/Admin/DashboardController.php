@@ -50,10 +50,17 @@ class DashboardController extends Controller
             ->leftJoin('employee', 'employee.employeeId', '=', 'jobapply.fkemployeeId')
             ->leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')
             ->where('applydate',date('Y-m-d'))->get();
+
+        $todaysRegisterCv=Employee::select('employee.firstName','employee.lastName','employee.gender','employee.email','employee.personalMobile','employee.fkreligionId','employee.ethnicityId')
+            ->where('cvStatus',1)
+            ->where('cvCompletedDate',date('Y-m-d'))
+            ->get();
         $allZone=DB::table('zone')->get();
+        $religion=Religion::get();
+        $ethnicity=Ethnicity::get();
 
 
-        return view('Admin.dashboard.home',compact('todaysJobApply','allZone'));
+        return view('Admin.dashboard.home',compact('todaysJobApply','allZone','todaysRegisterCv','religion','ethnicity'));
     }
 
 

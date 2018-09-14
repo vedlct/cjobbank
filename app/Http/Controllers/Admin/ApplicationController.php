@@ -5,6 +5,7 @@ use App\Educationlevel;
 use App\Educationmajor;
 use App\Employee;
 use App\Ethnicity;
+use App\HR;
 use App\Http\Controllers\Controller;
 
 use App\Job;
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\DB;
 use Auth;
 use Session;
 use Yajra\DataTables\DataTables;
+
+use Excel;
 
 
 
@@ -161,6 +164,15 @@ class ApplicationController extends Controller
             $application= $application->where('jobexperience.fkOrganizationType',$r->jobExperienceFilter);
         }
 
+        if(Auth::user()->fkuserTypeId=="cbEmp"){
+            $myZone=HR::where('fkuserId',Auth::user()->userId)
+                ->first();
+            $application= $application->where('job.fkzoneId',$myZone->fkzoneId);
+
+
+
+        }
+
          $application=$application->get();
 
 
@@ -198,7 +210,7 @@ class ApplicationController extends Controller
     {
 
         $appliedList=$r->jobApply;
-        $filePath=public_path ()."/excel";
+        $filePath=public_path ()."/exportedExcel";
         $fileName="AppliedCandidateList".date("Y-m-d_H-i-s");
 
         $fileInfo=array(
@@ -206,29 +218,45 @@ class ApplicationController extends Controller
             'filePath'=>$fileName,
         );
 
-
-
         $list=array();
         for ($i=0;$i<count($appliedList);$i++){
             $appliedId=$appliedList[$i];
+
             $empId=Jobapply::where('jobapply',$appliedId)->first()->fkemployeeId;
 
-            $newlist=Employee::select('*',DB::raw("CONCAT((year(now()) - year(`employee`.`dateOfBirth`)),'.',(month(now()) - month(`employee`.`dateOfBirth`))) as Age"),'education.institutionName',
+            $newlist=Employee::select('employee.*',DB::raw("TIMESTAMPDIFF(YEAR,`employee`.`dateOfBirth`,CURDATE()) as AgeYear"),DB::raw("TIMESTAMPDIFF(MONTH,`employee`.`dateOfBirth`,CURDATE()) as AgeMonth"),'education.institutionName',
             'education.status','education.resultSystem','educationlevel.educationLevelName','educationmajor.educationMajorName')
                 ->leftJoin('education', 'education.fkemployeeId', '=', 'employee.employeeId')
+
                 ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
                 ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
                 ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'degree.degreeId')
-                ->where('employee.employeeId',$empId)->get()->toArray();
+                ->where('employee.employeeId',$empId)
+                ->get()
+                ->toArray();
             $list=array_merge($list,$newlist);
 
         }
-        Excel::create($fileName,function($excel) use($list,$filePath) {
+
+        $check=Excel::create($fileName,function($excel) use($list,$filePath) {
             $excel->sheet('First sheet', function($sheet) use($list) {
-                $sheet->loadView('application.AppliedCandidateList')->with('AppliedCandidateList',$list);
+                $sheet->loadView('Admin.application.AppliedCandidateList')->with('AppliedCandidateList',$list);
             });
 
         })->store('xls',$filePath);
+
+        if ($check){
+            $message=array('message'=>$fileName .'.csv <br><div align="center">ProductList.csv and</div> OfferList.csv'. ' has been sent to server',
+                'success'=>'1');
+            $fileInfo=array_merge($fileInfo,$message);
+        }else{
+
+            $message=array('message'=>'Someting went wrong',
+                'success'=>'0');
+            $fileInfo=array_merge($fileInfo,$message);
+
+
+        }
 
         return $fileInfo;
 

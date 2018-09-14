@@ -25,6 +25,7 @@ define('RESULT_SYSTEM',array(
 
 define('USER_TYPE',array(
     "Admin"=>'admin',
+    "Emp"=>'cbEmp',
     "User"=>'user',
 
 ));

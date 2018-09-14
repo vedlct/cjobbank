@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Job;
 use App\Jobapply;
 use App\Nationality;
+use App\HR;
 use App\Religion;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -47,10 +48,13 @@ class CvManagementController extends Controller
     public function manage()
     {
 //        $allZone=DB::table('zone')->get();
-        $religion=Religion::get();
-        $ethnicity=Ethnicity::get();
+        if(Auth::user()->fkuserTypeId==USER_TYPE['Admin']){
+            $religion=Religion::get();
+            $ethnicity=Ethnicity::get();
 
-        return view('Admin.cvManage.manage',compact('religion','ethnicity'));
+            return view('Admin.cvManage.manage',compact('religion','ethnicity'));
+        }
+
     }
     public function manageCvData(Request $r)
     {
@@ -75,7 +79,6 @@ class CvManagementController extends Controller
         if ($r->ageToFilter){
             $cvData= $cvData->having('age1','<=',$r->ageToFilter);
         }
-
 
         $cvData=$cvData->get();
 
