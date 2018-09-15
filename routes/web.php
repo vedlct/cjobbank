@@ -110,9 +110,12 @@ Route::post('/deleteRefree','RefreeController@deleteRefree')->name('refree.delet
 Route::get('/Candidate-CV-RelativeInCaritas','RelativeInCbController@index')->name('relativeInCaritas.index');
 Route::get('/Candidate-CV-RelativeInCaritas','RelativeInCbController@getRelationInfo')->name('relativeInCaritas.getRelationInfo');
 Route::post('/Candidate-CV-RelativeInCaritasSubmit','RelativeInCbController@submitRelativeInCb')->name('submit.relative');
+Route::post('/Candidate-CV-RelativeInCaritasSubmitYesOrNo','RelativeInCbController@submitRelativeInCbYesOrNo')->name('submit.relativeYesOrNo');
 Route::post('/editRelative','RelativeInCbController@editRelative')->name('relative.edit');
 Route::post('/updateRelative','RelativeInCbController@updateRelative')->name('update.relative');
 Route::post('/deleteRelative','RelativeInCbController@deleteRelative')->name('relative.delete');
+
+
 
 /*---------------------------Job----------------------*/
 Route::get('job/all','JobController@index')->name('job.all');
@@ -150,6 +153,8 @@ Route::post('Admin-Change-Job-Status','Admin\JobController@jobStatusUpdate')->na
 Route::get('Admin-Manage-Application','Admin\ApplicationController@manageApplication')->name('application.admin.manage');
 Route::post('Admin-Show-All-Application','Admin\ApplicationController@showAllApplication')->name('application.admin.showAll');
 Route::post('Admin-Export-All-AppliedCandidate','Admin\ApplicationController@exportAppliedCandidate')->name('jobAppliedCadidate.admin.Exportxls');
+
+Route::get('Admin-Export-All-AppliedCandidate1','Admin\ApplicationController@export')->name('jobAppliedCadidate.admin.Exportxls1');
 //Employee Management
 Route::get('Admin-Manage-User','Admin\UserManagementController@home')->name('admin.manageUser');
 Route::post('admin/Admin-Manage-User','Admin\UserManagementController@getUserData')->name('admin.getmanageUserData');
