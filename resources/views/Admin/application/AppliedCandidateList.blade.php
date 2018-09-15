@@ -97,6 +97,14 @@
                 {{--{{$list['educationLevelName']}}--}}
                 {{--@if($list['fkMajorId'] != null)({{$list['educationMajorName']}})@endif--}}
                 {{--={{$list['result']}}--}}
+                {{--@foreach($educationList as $edu)--}}
+
+                    {{--@if($edu['fkMajorId'] != null)({{$edu['educationMajorName']}})@endif<hr>--}}
+
+                    {{--Name Of Institution:{{$edu['institutionName']}}--}}
+
+                {{--@endforeach--}}
+
             </td>
         </tr>
 
@@ -104,12 +112,6 @@
         <tr>
 
             <td></td>
-            @foreach($educationList as $edu)
-
-             <td>Name Of Institution:</td>
-
-            @endforeach
-
 
         </tr>
         <tr>
