@@ -250,12 +250,6 @@ class ApplicationController extends Controller
 
         }
 
-<<<<<<< HEAD
-        $check=Excel::create($fileName,function($excel) use($list,$filePath) {
-            $excel->sheet('First sheet', function($sheet) use($list) {
-//                $sheet->loadView('Admin.application.AppliedCandidateList')->with('AppliedCandidateList',$list);
-                $sheet->loadView('test')->with('AppliedCandidateList',$list);
-=======
 
 
         $check=Excel::create($fileName,function($excel) use($list,$filePath,$ethnicity,$educationList) {
@@ -267,7 +261,7 @@ class ApplicationController extends Controller
                     ->with('AppliedCandidateList',$list)
                     ->with('ethnicity',$ethnicity)
                     ->with('educationList',$educationList);
->>>>>>> 59c3a52e148a16705568e4d2b18b84d0f102abaa
+
             });
 
         })->store('xls',$filePath);

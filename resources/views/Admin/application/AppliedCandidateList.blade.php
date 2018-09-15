@@ -38,15 +38,7 @@
         <th>Ethnicity</th>
         <th>AGE </th>
         <th>Educational Qualification and name of Institution</th>
-        {{--<th>Professional Qualification</th>--}}
-        {{--<th>Training</th>--}}
-        {{--<th>Job Experiences/ Employment History</th>--}}
-        {{--<th>Salary</th>--}}
-        {{--<th>National ID Card</th>--}}
-        {{--<th>Photo(2)</th>--}}
-        {{--<th>Relative in CB</th>--}}
-        {{--<th>Name of  two Referees (2)</th>--}}
-        {{--<th>Remarks</th>--}}
+
     </tr>
     </thead>
     @php $sl=1;
@@ -101,38 +93,186 @@
         </tr>
 
 
-        <tr>
+        @for($i=0 ;$i<14;$i++)
+            <tr>
 
-            <td></td>
-            @foreach($educationList as $edu)
+                <td>
+                    @if($i==0) @endif
+                    @if($i==1) Cell-{{$list['personalMobile']}}, {{$list['homeNumber']}}  @endif
+                    @if($i==2) @endif
+                    @if($i==3) Skype address: {{$list['skype']}} @endif
+                    @if($i==4)  Email-{{$list['email']}} @endif
+                    @if($i==5)Alternative Mail:{{$list['alternativeEmail']}} @endif
+                    @if($i==6) @endif
+                    @if($i==7) @endif
+                    @if($i==8) Present Address : @endif
+                    @if($i==9){{$list['presentAddress']}}  @endif
+                    @if($i==10) @endif
+                    @if($i==11) Parmanent Address : @endif
+                    @if($i==12){{$list['parmanentAddress']}} @endif
+                    @if($i==13) @endif
 
-             <td>Name Of Institution:</td>
 
-            @endforeach
+                </td>
+                <td>
+                    @if($i==0) @endif
+                    @if($i==1)  @endif
+                    @if($i==2) @endif
+                    @if($i==3) @endif
+                    @if($i==4) @endif
+                    @if($i==5) @endif
+                    @if($i==6) @endif
+                    @if($i==7) @endif
+                    @if($i==8) @endif
+                    @if($i==9) @endif
+                    @if($i==10) @endif
+                    @if($i==11) @endif
+                    @if($i==12) @endif
+                    @if($i==13) @endif
+                </td>
+                <td>
+                    @if($i==0) @endif
+                    @if($i==1)  @endif
+                    @if($i==2) @endif
+                    @if($i==3) @endif
+                    @if($i==4) @endif
+                    @if($i==5) @endif
+                    @if($i==6) @endif
+                    @if($i==7) @endif
+                    @if($i==8) @endif
+                    @if($i==9) @endif
+                    @if($i==10) @endif
+                    @if($i==11) @endif
+                    @if($i==12) @endif
+                    @if($i==13) @endif
+                </td>
+                <td>
+                    @if($i==0 && count($educationList)>0)
+                        {{$educationList[0]['educationLevelName']}}
+                        {{$educationList[0]['institutionName']}}
 
 
-        </tr>
-        <tr>
-        <td>Cell-{{$list['personalMobile']}}, {{$list['homeNumber']}}</td>
+                    @endif
+                    @if($i==1 && count($educationList)>1) {{$educationList[1]['institutionName']}} @endif
+                    @if($i==2)  @endif
+                    @if($i==3) Name Of Institution: @endif
+                    @if($i==4) Name Of Institution: @endif
+                    @if($i==5) Name Of Institution: @endif
+                    @if($i==6) @endif
+                    @if($i==7) @endif
+                    @if($i==8) Name Of Institution: @endif
+                    @if($i==9) Name Of Institution: @endif
+                    @if($i==10) @endif
+                    @if($i==11) Name Of Institution: @endif
+                    @if($i==12) Name Of Institution: @endif
+                    @if($i==13) @endif
+                </td>
 
-        </tr>
 
-        <tr><td></td></tr>
 
-        <tr><td>Skype adress: {{$list['skype']}}</td></tr>
 
-        <tr><td>
-                Email-{{$list['email']}}
-            </td>
-        </tr>
-        <tr><td>Alternative Mail:{{$list['alternativeEmail']}}</td></tr>
-        <tr><td></td></tr>
-        <tr><td></td></tr>
-        <tr><td><b>Present Address :</b></td></tr>
-        <tr><td>{{$list['presentAddress']}}</td></tr>
-        <tr><td></td></tr>
-        <tr><td>Parmanent Address :</td></tr>
-        <tr><td>{{$list['parmanentAddress']}}</td></tr>
+            </tr>
+
+
+        @endfor
+
+
+        {{--<tr>--}}
+
+            {{--<td></td>--}}
+            {{--<td></td>--}}
+            {{--<td></td>--}}
+            {{--<td></td>--}}
+
+
+
+
+        {{--</tr>--}}
+        {{--<tr>--}}
+        {{--<td>Cell-{{$list['personalMobile']}}, {{$list['homeNumber']}}</td>--}}
+            {{--<td></td>--}}
+            {{--<td></td>--}}
+            {{--<td>Name Of Institution:</td>--}}
+
+        {{--</tr>--}}
+
+        {{--<tr>--}}
+            {{--<td></td>--}}
+            {{--<td></td>--}}
+            {{--<td></td>--}}
+            {{--<td></td>--}}
+        {{--</tr>--}}
+
+        {{--<tr>--}}
+            {{--<td>Skype address: {{$list['skype']}}</td>--}}
+            {{--<td></td>--}}
+            {{--<td></td>--}}
+            {{--<td>Name Of Institution:</td>--}}
+
+        {{--</tr>--}}
+
+        {{--<tr>--}}
+            {{--<td>--}}
+                {{--Email-{{$list['email']}}--}}
+            {{--</td>--}}
+            {{--<td></td>--}}
+            {{--<td></td>--}}
+            {{--<td>Name Of Institution:</td>--}}
+        {{--</tr>--}}
+        {{--<tr>--}}
+            {{--<td>Alternative Mail:{{$list['alternativeEmail']}}</td>--}}
+            {{--<td></td>--}}
+            {{--<td></td>--}}
+            {{--<td>Name Of Institution:</td>--}}
+
+        {{--</tr>--}}
+        {{--<tr>--}}
+            {{--<td></td>--}}
+            {{--<td></td>--}}
+            {{--<td></td>--}}
+            {{--<td></td>--}}
+        {{--</tr>--}}
+        {{--<tr>--}}
+            {{--<td></td>--}}
+            {{--<td></td>--}}
+            {{--<td></td>--}}
+            {{--<td></td>--}}
+
+        {{--</tr>--}}
+
+        {{--<tr>--}}
+            {{--<td><b>Present Address :</b></td>--}}
+            {{--<td></td>--}}
+            {{--<td></td>--}}
+            {{--<td>Name Of Institution:</td>--}}
+        {{--</tr>--}}
+        {{--<tr>--}}
+            {{--<td>{{$list['presentAddress']}}</td>--}}
+            {{--<td></td>--}}
+            {{--<td></td>--}}
+            {{--<td>Name Of Institution:</td>--}}
+        {{--</tr>--}}
+        {{--<tr>--}}
+            {{--<td></td>--}}
+        {{--</tr>--}}
+        {{--<tr>--}}
+            {{--<td>Parmanent Address :</td>--}}
+            {{--<td></td>--}}
+            {{--<td></td>--}}
+            {{--<td>Name Of Institution:</td>--}}
+
+        {{--</tr>--}}
+        {{--<tr>--}}
+            {{--<td>{{$list['parmanentAddress']}}</td>--}}
+            {{--<td></td>--}}
+            {{--<td></td>--}}
+            {{--<td>Name Of Institution:</td>--}}
+
+        {{--</tr>--}}
+
+
+
+
 
 
 
