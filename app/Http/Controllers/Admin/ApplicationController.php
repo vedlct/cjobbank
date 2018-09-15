@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Education;
 use App\Educationlevel;
 use App\Educationmajor;
 use App\Employee;
@@ -208,6 +209,7 @@ class ApplicationController extends Controller
 
     public function exportAppliedCandidate(Request $r)
     {
+        $ethnicity=Ethnicity::get();
 
         $appliedList=$r->jobApply;
         $filePath=public_path ()."/exportedExcel";
@@ -219,28 +221,42 @@ class ApplicationController extends Controller
         );
 
         $list=array();
+        $eduList=array();
         for ($i=0;$i<count($appliedList);$i++){
             $appliedId=$appliedList[$i];
 
             $empId=Jobapply::where('jobapply',$appliedId)->first()->fkemployeeId;
 
-            $newlist=Employee::select('employee.*',DB::raw("TIMESTAMPDIFF(YEAR,`employee`.`dateOfBirth`,CURDATE()) as AgeYear"),DB::raw("TIMESTAMPDIFF(MONTH,`employee`.`dateOfBirth`,CURDATE()) as AgeMonth"),'education.institutionName',
-            'education.status','education.resultSystem','educationlevel.educationLevelName','educationmajor.educationMajorName')
-                ->leftJoin('education', 'education.fkemployeeId', '=', 'employee.employeeId')
+            $newlist=Employee::select('employee.*',DB::raw("TIMESTAMPDIFF(YEAR,`employee`.`dateOfBirth`,CURDATE()) as AgeYear"),DB::raw("TIMESTAMPDIFF(MONTH,`employee`.`dateOfBirth`,CURDATE()) as AgeMonth"))
+//                ->leftJoin('education', 'education.fkemployeeId', '=', 'employee.employeeId')
 
-                ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
-                ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
-                ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'degree.degreeId')
+
                 ->where('employee.employeeId',$empId)
                 ->get()
                 ->toArray();
+            $education=Education::select('education.institutionName','education.status','education.resultSystem','education.result','educationlevel.educationLevelName',
+                'educationmajor.educationMajorName','education.fkMajorId')
+                ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
+                ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
+                ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
+                ->where('fkemployeeId',$empId)->get()->toArray();
+
             $list=array_merge($list,$newlist);
+            $educationList=array_merge($eduList,$education);
 
         }
 
-        $check=Excel::create($fileName,function($excel) use($list,$filePath) {
-            $excel->sheet('First sheet', function($sheet) use($list) {
-                $sheet->loadView('Admin.application.AppliedCandidateList')->with('AppliedCandidateList',$list);
+
+
+        $check=Excel::create($fileName,function($excel) use($list,$filePath,$ethnicity,$educationList) {
+            $excel->sheet('First sheet', function($sheet) use($list,$ethnicity,$educationList) {
+
+
+
+                $sheet->loadView('Admin.application.AppliedCandidateList')
+                    ->with('AppliedCandidateList',$list)
+                    ->with('ethnicity',$ethnicity)
+                    ->with('educationList',$educationList);
             });
 
         })->store('xls',$filePath);
@@ -259,6 +275,50 @@ class ApplicationController extends Controller
         }
 
         return $fileInfo;
+
+    }
+    public function export()
+    {
+
+        $appliedList=array(1);
+        $filePath=public_path ()."/exportedExcel";
+        $fileName="AppliedCandidateList".date("Y-m-d_H-i-s");
+
+        $fileInfo=array(
+            'fileName'=>$fileName,
+            'filePath'=>$fileName,
+        );
+
+        $list=array();
+        $eduList=array();
+        for ($i=0;$i<count($appliedList);$i++) {
+            $appliedId = $appliedList[$i];
+
+            $empId = Jobapply::where('jobapply', $appliedId)->first()->fkemployeeId;
+
+            $newlist = Employee::select('employee.*', DB::raw("TIMESTAMPDIFF(YEAR,`employee`.`dateOfBirth`,CURDATE()) as AgeYear"), DB::raw("TIMESTAMPDIFF(MONTH,`employee`.`dateOfBirth`,CURDATE()) as AgeMonth"))
+//                ->leftJoin('education', 'education.fkemployeeId', '=', 'employee.employeeId')
+
+                ->where('employee.employeeId', $empId)
+                ->get()
+                ->toArray();
+
+            $education = Education::select('education.institutionName', 'education.status', 'education.resultSystem', 'education.result', 'educationlevel.educationLevelName',
+                'educationmajor.educationMajorName', 'education.fkMajorId')
+                ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
+                ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
+                ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
+                ->where('fkemployeeId', $empId)->get()->toArray();
+
+            $list = array_merge($list, $newlist);
+            $educationList = array_merge($eduList, $education);
+        }
+
+        $ethnicity=Ethnicity::get();
+
+        return view('Admin.application.AppliedCandidateList')->with('AppliedCandidateList',$list)->with('ethnicity',$ethnicity)->with('educationList',$educationList);
+
+
 
     }
 
