@@ -51,9 +51,11 @@
     <li class="has-submenu">
         <a href="{{route('application.admin.manage')}}"><i class="ti-archive"></i>Manage Application</a>
     </li>
+    @if(USER_TYPE['Admin']== Auth::user()->fkuserTypeId)
     <li class="has-submenu">
         <a href="{{route('admin.manageUser')}}"><i class="ti-user"></i>User Management</a>
     </li>
+    @endif
     @if(USER_TYPE['Admin']== Auth::user()->fkuserTypeId)
     <li class="has-submenu">
         <a href="#"><i class="ti-settings"></i>Settings</a>
@@ -61,6 +63,11 @@
         <li><a href="{{route('manage.zone')}}">Manage Zone</a></li>
         <li><a href="{{route('manage.education')}}">Manage Education Level</a></li>
         <li><a href="{{route('manage.educationDegree')}}">Manage Education Degree</a></li>
+        <li><a href="{{route('manage.nationality')}}">Manage Nationality</a></li>
+        <li><a href="#">Manage Religion</a></li>
+        <li><a href="#">Manage Ethnicity</a></li>
+        <li><a href="#">Manage Organization type</a></li>
+        <li><a href="#">Manage Agreement</a></li>
         </ul>
     </li>
     @endif

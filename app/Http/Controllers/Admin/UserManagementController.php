@@ -51,11 +51,14 @@ class UserManagementController extends Controller
 
     public function home()
     {
-        $zones=Zone::get();
-        $designations=Designation::get();
+        if(Auth::user()->fkuserTypeId==USER_TYPE['Admin']){
+            $zones=Zone::get();
+            $designations=Designation::get();
 
 
-        return view('Admin.userMange.manage',compact('zones','designations'));
+            return view('Admin.userMange.manage',compact('zones','designations'));
+        }
+
     }
 
     public function getUserData(Request $r){
@@ -78,10 +81,12 @@ class UserManagementController extends Controller
 
     }
     public function add(){
-        $zones=Zone::get();
-        $designations=Designation::get();
+        if(Auth::user()->fkuserTypeId==USER_TYPE['Admin']) {
+            $zones = Zone::get();
+            $designations = Designation::get();
 
-        return view('Admin.userMange.addUser',compact('zones','designations'));
+            return view('Admin.userMange.addUser', compact('zones', 'designations'));
+        }
     }
 
     public function insert(Request $r){
@@ -148,12 +153,14 @@ class UserManagementController extends Controller
         return back();
     }
     public function edit($id){
-        $hr=HR::findOrFail($id);
-//        return $hr;
-        $zones=Zone::get();
-        $designations=Designation::get();
+        if(Auth::user()->fkuserTypeId==USER_TYPE['Admin']){
+            $hr=HR::findOrFail($id);
+            $zones=Zone::get();
+            $designations=Designation::get();
 
-        return view('Admin.userMange.editUser',compact('zones','designations','hr'));
+            return view('Admin.userMange.editUser',compact('zones','designations','hr'));
+        }
+
     }
 
     public function changeUserStatus(Request $r){

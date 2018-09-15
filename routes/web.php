@@ -17,6 +17,12 @@
 Route::get('/','Auth\LoginController@loginForm');
 Auth::routes();
 
+//Change password
+Route::get('password','HomeController@password')->name('password');
+Route::post('password','HomeController@changePassword')->name('password.change');
+
+
+Route::view('test','test');
 //Registration
 Route::view('/Register', 'register')->name('register');
 Route::post('/Register', 'Auth\RegisterController@createUserShowAggrement')->name('register.createUserShowAggrement');
@@ -178,6 +184,13 @@ Route::get('manage/education-Degree','Admin\SettingsController@educationDegree')
 Route::post('manage/education-Degree/insert','Admin\SettingsController@insertEducationDegree')->name('manage.educationDegree.insert');
 Route::post('manage/education-Degree/editDegree','Admin\SettingsController@editEducationDegree')->name('admin.editDegree');
 Route::post('manage/education-Degree/updateDegree/{id}','Admin\SettingsController@updateDegree')->name('manage.degree.update');
+
+
+//Nationality
+Route::get('manage/Nationality','Admin\SettingsController@nationality')->name('manage.nationality');
+Route::post('manage/Nationality/insert','Admin\SettingsController@insertNationality')->name('manage.nationality.insert');
+Route::post('manage/Nationality/editNationality','Admin\SettingsController@editNationality')->name('admin.editNationality');
+Route::post('manage/Nationality/updateNationality/{id}','Admin\SettingsController@updateNationality')->name('manage.nationality.update');
 
 
 

@@ -211,6 +211,10 @@ class ApplicationController extends Controller
     {
         $ethnicity=Ethnicity::get();
 
+
+
+
+
         $appliedList=$r->jobApply;
         $filePath=public_path ()."/exportedExcel";
         $fileName="AppliedCandidateList".date("Y-m-d_H-i-s");
@@ -257,6 +261,7 @@ class ApplicationController extends Controller
                     ->with('AppliedCandidateList',$list)
                     ->with('ethnicity',$ethnicity)
                     ->with('educationList',$educationList);
+
             });
 
         })->store('xls',$filePath);

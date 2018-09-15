@@ -56,7 +56,7 @@ class EmployeeController extends Controller
         $jobApply->fkemployeeId=$empId;
         $jobApply->currentSalary=$r->currentSalary;
         $jobApply->expectedSalary=$r->expectedSalary;
-        $jobApply->status=JOB_STATUS['Pending'];
+//        $jobApply->status=JOB_STATUS['Pending'];
         $jobApply->save();
 
         return redirect()->route('job.all');
