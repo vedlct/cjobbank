@@ -26,8 +26,8 @@
                                     {{csrf_field()}}
                                 <div class="row form-group">
                                 <label>Do You Have Relative in Caritas BD ?</label>
-                                <input onclick="myradio()" class="form-control" type="radio" value="1" name="relativeincb"> YES
-                                <input onclick="myradio()" class="form-control" type="radio" value="0" name="relativeincb"> NO
+                                <input onclick="myradio()" class="form-control" type="radio" value="1" name="relativeincb" required> YES
+                                <input onclick="myradio()" class="form-control" type="radio" value="0" name="relativeincb" required> NO
                                 </div>
 
 
