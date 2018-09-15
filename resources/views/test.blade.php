@@ -14,51 +14,77 @@
 </head>
 <body>
 
-<table >
+<table class="table">
     <thead>
-        <th>SI NO</th>
+    <tr>
+
+        <th>Sl No.</th>
         <th>NAME</th>
         <th>Gender</th>
+        <th>Disability</th>
+        <th>Ethnicity</th>
+        <th>AGE </th>
+        <th>Educational Qualification and name of Institution</th>
+
+    </tr>
 
     </thead>
+
+
     <tbody>
+    @php $sl=1;
+    @endphp
+    @foreach($AppliedCandidateList as $list)
         <tr>
-            <td rowspan="11" valign="middle" style="text-align: center">1</td>
-            <td>Elvis Johan costa</td>
-            <td rowspan="11" valign="middle" style="text-align: center">Man</td>
-        </tr>
-        <tr>
-            <td>-</td>
-        </tr>
-        <tr>
-            <td>Cell-019-12528491, 0167376676</td>
-        </tr>
-        <tr>
-            <td>Skype adress: elvis1</td>
-        </tr>
-        <tr>
-            <td>Email adress: test@gmail.com</td>
-        </tr>
-        <tr>
-            <td>-</td>
-        </tr>
-        <tr>
-            <td>Present Address: </td>
-        </tr>
-        <tr>
-            <td>10,E/3A Modubagh Moghbazar Dhaka-1217 </td>
-        </tr>
-        <tr>
-            <td>-</td>
-        </tr>
-        <tr>
-            <td>Permanent Address: </td>
-        </tr>
-        <tr>
-            <td>10,E/3A Modubagh Moghbazar Dhaka-1217 </td>
+            <td valign="middle" rowspan="16">
+                <span style="text-align: center">{{$sl}}</span>
+            </td>
+            <td>
+
+
+
+                <b>{{$list['firstName']." ".$list['lastName']}}</b><hr>
+                Cell-{{$list['personalMobile']}}, {{$list['homeNumber']}}<hr>
+                Skype adress: {{$list['skype']}}<hr>
+                Email-{{$list['email']}}<hr>
+                Alternative Mail:{{$list['alternativeEmail']}}<hr><hr>
+                <b>Present Address :</b><hr>
+                {{$list['presentAddress']}}<hr>
+                <b>Parmanent Address :</b><hr>
+                {{$list['parmanentAddress']}}
+
+
+
+            </td>
+            <td valign="middle" rowspan="16"><span style="text-align: center">{{$list['disability']}}</span></td>
+            <td valign="middle" rowspan="16"><span style="text-align: center">{{$list['ethnicityId']}}</span></td>
+            <td valign="middle" rowspan="16">
+                {{$list['AgeYear']}}.{{$list['AgeMonth']}}yrs
+            </td>
+            <td>
+
+                @foreach($educationList as $edu)
+
+                    {{$edu['educationLevelName']}}
+
+                    @if($edu['fkMajorId'] != null)({{$edu['educationMajorName']}})@endif ={{$edu['result']}}<hr>
+
+                    Name Of Institution:{{$edu['institutionName']}}<hr>
+
+                @endforeach
+
+            </td>
         </tr>
 
+
+        @php $sl++;
+        @endphp
+    @endforeach
+
+
     </tbody>
+
+
 
 </table>
 

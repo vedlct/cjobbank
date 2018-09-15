@@ -26,8 +26,15 @@ class JobController extends Controller
 
    public function addNewJob(){
 
-       $allZone=DB::table('zone')->get();
+       if(Auth::user()->fkuserTypeId==USER_TYPE['Emp']){
+           $myZone=HR::where('fkuserId',Auth::user()->userId)->first();
+           $allZone=DB::table('zone')->where('zoneId',$myZone->fkzoneId)->get();
 
+
+       }elseif(Auth::user()->fkuserTypeId==USER_TYPE['Admin']){
+           $allZone=DB::table('zone')->get();
+       }
+       
        return view('Admin.job.addJob',compact('allZone'));
 
    }
@@ -91,7 +98,16 @@ class JobController extends Controller
        $jobInfo=Job::leftJoin('zone', 'zone.zoneId', '=', 'job.fkzoneId')->where('jobId',$jobId)
            ->get();
 
-       $allZone=DB::table('zone')->get();
+       if(Auth::user()->fkuserTypeId==USER_TYPE['Emp']){
+           $myZone=HR::where('fkuserId',Auth::user()->userId)->first();
+           $allZone=DB::table('zone')->where('zoneId',$myZone->fkzoneId)->get();
+
+
+       }elseif(Auth::user()->fkuserTypeId==USER_TYPE['Admin']){
+           $allZone=DB::table('zone')->get();
+       }
+
+      // $allZone=DB::table('zone')->get();
 
        return view('Admin.job.editJob',compact('jobInfo','allZone'));
 

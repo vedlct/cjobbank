@@ -44,6 +44,8 @@ class PersonalInfoController extends Controller
         $ethnicity=Ethnicity::get();
         $natinality=Nationality::get();
 
+       // return $employeeCvPersonalInfo;
+
 
 
         if (!$employeeCvPersonalInfo->isEmpty()){
@@ -115,6 +117,7 @@ class PersonalInfoController extends Controller
         $employee->parmanentAddress=$r->permanentAddress;
         $employee->fkuserId=Auth::user()->userId;
 
+
         $employee->save();
 
 
@@ -132,9 +135,21 @@ class PersonalInfoController extends Controller
                 $constraint->aspectRatio();
             })->save($location2);
         }
+        if($r->hasFile('sign')){
+            $sign = $r->file('sign');
+            $filename= $employee->employeeId.'cvSign'.'.'.$sign->getClientOriginalExtension();
+            $employee->sign=$filename;
+            $location = public_path('candidateSigns/'.$filename);
+            Image::make($sign)->save($location);
+            $location2 = public_path('candidateSigns/thumb/'.$filename);
+            Image::make($sign)->resize(100, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($location2);
+        }
 
 
         $employee->save();
+        Session::flash('message', 'Personal Info Added Successfully');
 
         return redirect()->route('candidate.cvPersonalInfo');
 
@@ -176,7 +191,7 @@ class PersonalInfoController extends Controller
         $this->validate($r, $rules, $customMessages);
 
 
-        $employee=Employee::findOrFail(Auth::user()->userId);
+        $employee=Employee::where('fkuserId',Auth::user()->userId)->first();
 
         $employee->firstName=$r->firstName;
         $employee->lastName=$r->lastName;
@@ -218,8 +233,22 @@ class PersonalInfoController extends Controller
             })->save($location2);
         }
 
+        if($r->hasFile('sign')){
+            $sign = $r->file('sign');
+            $filename= $employee->employeeId.'cvSign'.'.'.$sign->getClientOriginalExtension();
+            $employee->sign=$filename;
+            $location = public_path('candidateSigns/'.$filename);
+            Image::make($sign)->save($location);
+            $location2 = public_path('candidateSigns/thumb/'.$filename);
+            Image::make($sign)->resize(100, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($location2);
+        }
+
 
         $employee->save();
+
+        Session::flash('message', 'Personal Info Updated Successfully');
 
         return redirect()->route('candidate.cvPersonalInfo');
 

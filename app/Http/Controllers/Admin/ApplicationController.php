@@ -12,7 +12,9 @@ use App\Http\Controllers\Controller;
 use App\Job;
 use App\Jobapply;
 use App\Nationality;
+use App\ProfessionalQualification;
 use App\Religion;
+use App\Traning;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -226,6 +228,9 @@ class ApplicationController extends Controller
 
         $list=array();
         $eduList=array();
+        $qualificationList=array();
+        $trainingList=array();
+
         for ($i=0;$i<count($appliedList);$i++){
             $appliedId=$appliedList[$i];
 
@@ -238,29 +243,48 @@ class ApplicationController extends Controller
                 ->where('employee.employeeId',$empId)
                 ->get()
                 ->toArray();
-            $education=Education::select('education.institutionName','education.status','education.resultSystem','education.result','educationlevel.educationLevelName',
+            $education=Education::select('education.institutionName','education.fkemployeeId','education.status','education.resultSystem','education.result','educationlevel.educationLevelName',
                 'educationmajor.educationMajorName','education.fkMajorId')
                 ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
                 ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
                 ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
-                ->where('fkemployeeId',$empId)->get()->toArray();
+                ->where('fkemployeeId',$empId)
+                ->get()
+                ->toArray();
+
+            $pQualification=ProfessionalQualification::where('professionalqualification.fkemployeeId',$empId)
+                ->get()
+                ->toArray();
+
+            $training=Traning::where('fkemployeeId',$empId)
+                ->get()
+                ->toArray();
+
+
 
             $list=array_merge($list,$newlist);
-            $educationList=array_merge($eduList,$education);
+            $eduList=array_merge($eduList,$education);
+            $trainingList=array_merge($trainingList,$training);
+            $qualificationList=array_merge($qualificationList,$pQualification);
 
         }
 
+       // return $eduList;
 
 
-        $check=Excel::create($fileName,function($excel) use($list,$filePath,$ethnicity,$educationList) {
-            $excel->sheet('First sheet', function($sheet) use($list,$ethnicity,$educationList) {
 
+
+        $check=Excel::create($fileName,function($excel) use($list,$filePath,$ethnicity,$eduList,$qualificationList,$trainingList) {
+            $excel->sheet('First sheet', function($sheet) use($list,$ethnicity,$eduList,$qualificationList,$trainingList) {
 
 
                 $sheet->loadView('Admin.application.AppliedCandidateList')
+//                $sheet->loadView('test')
                     ->with('AppliedCandidateList',$list)
                     ->with('ethnicity',$ethnicity)
-                    ->with('educationList',$educationList);
+                    ->with('educationList',$eduList)
+                    ->with('qualificationList',$qualificationList)
+                    ->with('trainingList',$trainingList);
 
             });
 
