@@ -477,6 +477,7 @@
                     cache: false,
                     data: {'jobApply': products,_token:"{{csrf_token()}}"},
                     success: function (data) {
+                            console.log(data);
 
                         $('#SessionMessage').load(document.URL +  ' #SessionMessage');
                         table.ajax.reload();  //just reload table
