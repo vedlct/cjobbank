@@ -17,6 +17,11 @@
 Route::get('/','Auth\LoginController@loginForm');
 Auth::routes();
 
+//Change password
+Route::get('password','HomeController@password')->name('password');
+Route::post('password','HomeController@changePassword')->name('password.change');
+
+
 Route::view('test','test');
 //Registration
 Route::view('/Register', 'register')->name('register');

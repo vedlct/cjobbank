@@ -209,6 +209,10 @@ class ApplicationController extends Controller
     public function exportAppliedCandidate(Request $r)
     {
 
+
+
+
+
         $appliedList=$r->jobApply;
         $filePath=public_path ()."/exportedExcel";
         $fileName="AppliedCandidateList".date("Y-m-d_H-i-s");
@@ -240,7 +244,8 @@ class ApplicationController extends Controller
 
         $check=Excel::create($fileName,function($excel) use($list,$filePath) {
             $excel->sheet('First sheet', function($sheet) use($list) {
-                $sheet->loadView('Admin.application.AppliedCandidateList')->with('AppliedCandidateList',$list);
+//                $sheet->loadView('Admin.application.AppliedCandidateList')->with('AppliedCandidateList',$list);
+                $sheet->loadView('test')->with('AppliedCandidateList',$list);
             });
 
         })->store('xls',$filePath);

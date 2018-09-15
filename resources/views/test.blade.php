@@ -14,7 +14,7 @@
 </head>
 <body>
 
-<table style="width: 100%">
+<table >
     <thead>
         <th>SI NO</th>
         <th>NAME</th>
@@ -23,9 +23,9 @@
     </thead>
     <tbody>
         <tr>
-            <td rowspan="11" style="text-align: center">1</td>
+            <td rowspan="11" valign="middle" style="text-align: center">1</td>
             <td>Elvis Johan costa</td>
-            <td rowspan="11" style="text-align: center">Man</td>
+            <td rowspan="11" valign="middle" style="text-align: center">Man</td>
         </tr>
         <tr>
             <td>-</td>
@@ -59,9 +59,7 @@
         </tr>
 
     </tbody>
-    <tbody>
 
-    </tbody>
 </table>
 
 </body>
