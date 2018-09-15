@@ -26,8 +26,15 @@ class JobController extends Controller
 
    public function addNewJob(){
 
-       $allZone=DB::table('zone')->get();
+       if(Auth::user()->fkuserTypeId=="cbEmp"){
+           $myZone=HR::where('fkuserId',Auth::user()->userId)->first();
+           $allZone=DB::table('zone')->where('zoneId',$myZone)->get();
 
+
+       }elseif(Auth::user()->fkuserTypeId=="Admin"){
+           $allZone=DB::table('zone')->get();
+       }
+       
        return view('Admin.job.addJob',compact('allZone'));
 
    }

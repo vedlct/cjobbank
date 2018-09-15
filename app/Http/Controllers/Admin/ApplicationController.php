@@ -279,6 +279,7 @@ class ApplicationController extends Controller
 
 
                 $sheet->loadView('Admin.application.AppliedCandidateList')
+//                $sheet->loadView('test')
                     ->with('AppliedCandidateList',$list)
                     ->with('ethnicity',$ethnicity)
                     ->with('educationList',$eduList)
