@@ -14,7 +14,7 @@ define('COMPLETING_STATUS',array(
 ));
 define('JOB_STATUS',array(
     "Posted"=>'1',
-    "De-activate"=>'2'
+    "De-activate"=>'2',
 ));
 
 define('RESULT_SYSTEM',array(

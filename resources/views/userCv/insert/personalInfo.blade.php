@@ -262,13 +262,23 @@
 
                             <div class="row">
 
-                                <div class="form-group col-md-12">
+                                <div class="form-group col-md-6">
                                     <label for="">Image</label>
                                     <input type="file" class="form-control" name="image" id="" placeholder="">
                                     @if ($errors->has('image'))
 
                                         <span class="">
                                         <strong>{{ $errors->first('image') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="">Image</label>
+                                    <input type="file" class="form-control" name="sign" id="" placeholder="">
+                                    @if ($errors->has('sign'))
+
+                                        <span class="">
+                                        <strong>{{ $errors->first('sign') }}</strong>
                                     </span>
                                     @endif
                                 </div>

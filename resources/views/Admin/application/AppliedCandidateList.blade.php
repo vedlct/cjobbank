@@ -1,12 +1,9 @@
-
 <html>
 
 <style>
-
     td{
         border: solid black 2px;
     }
-
 </style>
 
 <table class="table">
@@ -52,12 +49,14 @@
     @php $sl=1;
     @endphp
     @foreach($AppliedCandidateList as $list)
-    <tbody>
+        <tbody>
 
 
         <tr>
-            <td rowspan="14" style="text-align: center">1</td>
-            <td><b>{{$list['firstName']." ".$list['lastName']}}</b></td>
+            <td valign="middle" rowspan="14">{{$sl}}</td>
+            <td>
+                <b>{{$list['firstName']." ".$list['lastName']}}</b>
+            </td>
 
             <td valign="middle" rowspan="14">
                             <span style="text-align: center">
@@ -72,7 +71,7 @@
 
                 <span style="text-align: center">
 
-                                @foreach(DISABILITY as $key=>$value)
+                    @foreach(DISABILITY as $key=>$value)
                         @if($value==$list['disability']) {{$key}} @endif
                     @endforeach
 
@@ -93,32 +92,23 @@
             <td valign="middle" rowspan="14">
                 {{$list['AgeYear']}}.{{$list['AgeMonth']}}yrs
             </td>
-            <td>
-                {{--{{$list['educationLevelName']}}--}}
-                {{--@if($list['fkMajorId'] != null)({{$list['educationMajorName']}})@endif--}}
-                {{--={{$list['result']}}--}}
-                {{--@foreach($educationList as $edu)--}}
+            <td valign="middle" rowspan="14">
+                <table>
+                @foreach($educationList as $edu)
 
-                    {{--@if($edu['fkMajorId'] != null)({{$edu['educationMajorName']}})@endif<hr>--}}
+                    {{$edu['educationLevelName']}}
+                    @if($edu['fkMajorId'] != null)({{$edu['educationMajorName']}})@endif ={{$edu['result']}}<br>
 
-                    {{--Name Of Institution:{{$edu['institutionName']}}--}}
+                    Name Of Institution:{{$edu['institutionName']}}<br>
 
-                {{--@endforeach--}}
-
+                @endforeach
+                </table>
             </td>
         </tr>
-
-
+        <tr><td></td></tr>
         <tr>
-
-            <td></td>
-
+            <td>Cell-{{$list['personalMobile']}}, {{$list['homeNumber']}}</td>
         </tr>
-        <tr>
-        <td>Cell-{{$list['personalMobile']}}, {{$list['homeNumber']}}</td>
-
-        </tr>
-
         <tr><td></td></tr>
 
         <tr><td>Skype adress: {{$list['skype']}}</td></tr>
@@ -138,91 +128,7 @@
 
 
 
-
-            {{--<td rowspan="16">--}}
-
-                   {{--<b>{{$list['firstName']." ".$list['lastName']}}</b>--}}
-                {{--<br>--}}
-
-                {{----}}
-
-
-            {{--</td>--}}
-
-
-                        {{--<td>Skype adress: {{$list['skype']}}</td>--}}
-
-
-                        {{--<td>--}}
-                            {{--Email-{{$list['email']}}--}}
-                            {{--Alternative Mail:{{$list['alternativeEmail']}}--}}
-                        {{--</td>--}}
-
-                {{--<td></td>--}}
-                {{--<td></td>--}}
-
-
-                    {{--<td>--}}
-                        {{--<b>Present Address: </b>--}}
-                    {{--</td>--}}
-
-
-
-                    {{--<td>--}}
-                        {{--{{$list['presentAddress']}}--}}
-                    {{--</td>--}}
-
-                {{--<td></td>--}}
-
-
-                    {{--<td>--}}
-                        {{--<b>Parmanent Address :</b>--}}
-                    {{--</td>--}}
-
-
-
-                    {{--<td>--}}
-                        {{--{{$list['parmanentAddress']}}--}}
-                    {{--</td>--}}
-
-                    {{--<td></td>--}}
-                    {{--<td></td>--}}
-
-
-
-
-            {{--<td style="border: solid black 2px" >--}}
-
-
-
-
-
-
-
-
-            {{--</td>--}}
-
-            {{--<td valign="middle" rowspan="16"><span style="text-align: center">{{$list['disability']}}</span></td>--}}
-            {{--<td valign="middle" rowspan="16"><span style="text-align: center">{{$list['ethnicityId']}}</span></td>--}}
-
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-
-
-
-    </tbody>
+        </tbody>
         @php $sl++;
         @endphp
     @endforeach
