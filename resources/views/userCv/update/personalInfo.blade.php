@@ -1,6 +1,12 @@
 @extends('main')
 
 @section('content')
+
+    <style>
+        strong{
+            color: red;
+        }
+    </style>
     
     
 {{--<style>--}}
@@ -320,13 +326,14 @@
 
                                     <div class="form-group col-md-6">
                                         <label for="">Image</label>
-                                        <input type="file" class="form-control" name="image" id="" placeholder="">
                                         @if ($errors->has('image'))
 
                                             <span class="">
                                         <strong>{{ $errors->first('image') }}</strong>
-                                    </span>
+                                            </span>
                                         @endif
+                                        <input type="file" class="form-control" name="image" id="" placeholder="">
+
                                         @if($personalInfo->image != null)
                                             <div>
                                                 <img style="width: 150px;height: 150px" src="{{url('public/candidateImages/thumb'."/".$personalInfo->image)}}">
