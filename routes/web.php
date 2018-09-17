@@ -192,5 +192,21 @@ Route::post('manage/Nationality/insert','Admin\SettingsController@insertNational
 Route::post('manage/Nationality/editNationality','Admin\SettingsController@editNationality')->name('admin.editNationality');
 Route::post('manage/Nationality/updateNationality/{id}','Admin\SettingsController@updateNationality')->name('manage.nationality.update');
 
+//Ethnicity
+
+Route::get('manage/Ethnicity','Admin\SettingsController@manageEthnicity')->name('manage.ethnicity');
+
+Route::post('manage/Ethnicity/insert','Admin\SettingsController@insertEthnicity')->name('manage.ethnicity.insert');
+
+Route::post('manage/Ethnicity/editEthnicity','Admin\SettingsController@editEthnicity')->name('admin.editEthnicity');
+
+Route::post('manage/Ethnicity/updateEthnicity/{id}','Admin\SettingsController@updateEthnicity')->name('manage.ethnicity.update');
+
+
+// organization Type
+Route::get('manage/Organization-Type','Admin\SettingsController@manageorganizationType')->name('manage.organizationType');
+Route::post('manage/Organization-Type/insert','Admin\SettingsController@insertorganizationType')->name('manage.organizationType.insert');
+Route::post('manage/Organization-Type/editOrganizationType','Admin\SettingsController@editOrganizationType')->name('admin.editOrganizationType');
+Route::post('manage/Organization-Type/updateOrganizationType/{id}','Admin\SettingsController@updateOrganizationType')->name('manage.organizationType.update');
 
 

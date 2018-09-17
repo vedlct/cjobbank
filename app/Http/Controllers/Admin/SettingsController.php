@@ -5,12 +5,15 @@ namespace App\Http\Controllers\Admin;
 use App\Degree;
 use App\Education;
 use App\Educationlevel;
+use App\Ethnicity;
 use App\Nationality;
+use App\OrganizationType;
 use App\Zone;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Session;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\DB;
 
 
 class SettingsController extends Controller
@@ -143,13 +146,10 @@ class SettingsController extends Controller
     public function nationality(){
 
         $nationality=Nationality::get();
-//        $datatables = DataTables::of($degree);
-//
-//        return $datatables->make(true);
-//        return $degree;
 
         return view('manage.nationality',compact('nationality'));
     }
+
 
     public function insertNationality(Request $r){
         $r->validate([
@@ -167,10 +167,13 @@ class SettingsController extends Controller
 
     }
 
+
+
     public function editNationality(Request $r){
         $editNationality=Nationality::findOrFail($r->id);
         return view('manage.editNationality',compact('editNationality'));
     }
+
 
     public function updateNationality($id,Request $r){
         $nationality =Nationality::findOrFail($id);
@@ -181,6 +184,131 @@ class SettingsController extends Controller
 
         Session::flash('message', 'Nationality Updated Successfully!');
         return redirect()->route('manage.nationality');
+
+    }
+
+    /* ================== Ethnicity =====================*/
+    public function manageEthnicity(){
+
+        $ethnicity=Ethnicity::get();
+
+        return view('manage.ethnicity',compact('ethnicity'));
+    }
+
+
+    public function insertEthnicity(Request $r){
+
+        $r->validate([
+            'ethnicityName' => 'required|max:50',
+
+
+        ]);
+
+        $ethnicity =new Ethnicity();
+
+        $ethnicity->ethnicityName=$r->ethnicityName;
+
+        if ($r->status ==""){
+            $ethnicity->status='1';
+        }else{
+            $ethnicity->status=$r->status;
+        }
+
+        $ethnicity->save();
+
+        Session::flash('message', 'Ethnicity Added Successfully!');
+        return redirect()->route('manage.ethnicity');
+
+    }
+
+    public function editEthnicity(Request $r){
+        $editEthnicity=Ethnicity::findOrFail($r->id);
+        return view('manage.editEthnicity',compact('editEthnicity'));
+    }
+
+
+    public function updateEthnicity($id,Request $r){
+
+        $r->validate([
+            'ethnicityName' => 'required|max:50|unique:ethnicity,ethnicityName,'.$id.',ethnicityId',
+
+        ]);
+
+        $ethnicity =Ethnicity::findOrFail($id);
+
+        $ethnicity->ethnicityName=$r->ethnicityName;
+        if ($r->status ==""){
+            $ethnicity->status='1';
+        }else{
+            $ethnicity->status=$r->status;
+        }
+
+        $ethnicity->save();
+
+        Session::flash('message', 'Ethnicity Updated Successfully!');
+        return redirect()->route('manage.ethnicity');
+
+    }
+
+
+    /* ================ organization Type ================= */
+    public function manageorganizationType(){
+
+        $organizationType=DB::table('organizationtype')->get();
+
+        return view('manage.organizationType',compact('organizationType'));
+    }
+
+    public function insertorganizationType(Request $r){
+
+        $r->validate([
+            'typeName' => 'required|max:50',
+
+        ]);
+
+        $organizationType =new OrganizationType();
+        $organizationType->organizationTypeName=$r->typeName;
+
+        if ($r->status ==""){
+            $organizationType->status='1';
+        }else{
+            $organizationType->status=$r->status;
+        }
+
+
+        $organizationType->save();
+
+        Session::flash('message', 'Organization Type Added Successfully!');
+        return redirect()->route('manage.organizationType');
+
+    }
+
+    public function editOrganizationType(Request $r){
+        $organizationType=OrganizationType::findOrFail($r->id);
+        return view('manage.editOrganizationType',compact('organizationType'));
+    }
+
+    public function updateOrganizationType($id,Request $r){
+
+        $r->validate([
+            'typeName' => 'required|max:50|unique:organizationtype,organizationTypeName,'.$id.',organizationTypeId',
+
+        ]);
+
+        $orgType =OrganizationType::findOrFail($id);
+
+        $orgType->organizationTypeName=$r->typeName;
+
+        if ($r->status ==""){
+            $orgType->status='1';
+        }else{
+            $orgType->status=$r->status;
+        }
+
+        $orgType->save();
+
+        Session::flash('message', 'Organization Type Updated Successfully!');
+        return redirect()->route('manage.organizationType');
 
     }
 
