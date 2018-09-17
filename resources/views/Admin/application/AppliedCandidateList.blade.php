@@ -45,11 +45,13 @@
         <th>National ID Card</th>
         <th>Photo</th>
         <th>Name of  two Referees (2)</th>
+        <th>Relative in CB</th>
         <th>Remarks</th>
 
     </tr>
     </thead>
-    @php $sl=1;
+    @php
+        $sl=1;
     @endphp
     @foreach($AppliedCandidateList as $list)
         <?php
@@ -59,6 +61,7 @@
         $jobList=array();
         $salList=array();
         $refList=array();
+        $relList=array();
 
     
         ?>
@@ -110,13 +113,20 @@
                     ?>
                 @endif
         @endforeach
+        @foreach($relativeList as $reList)
+                @if($reList['fkemployeeId'] == $list['employeeId'])
+                    <?php
+                    array_push($relList,$reList);
+                    ?>
+                @endif
+        @endforeach
 
 
     <tbody>
 
 
         <tr>
-            <td rowspan="14" style="text-align: center" valign="middle">1</td>
+            <td rowspan="14" style="text-align: center" valign="middle">{{$sl}}</td>
             <td><b>{{$list['firstName']." ".$list['lastName']}}</b></td>
 
             <td valign="middle" rowspan="14">
@@ -150,11 +160,11 @@
                 </span>
 
             </td>
-            <td valign="middle" rowspan="14">
-                {{$list['AgeYear']}}.{{$list['AgeMonth']}}yrs
+            <td valign="middle" rowspan="14" style="text-align: center">
+                {{$list['AgeYear'].".".$list['AgeMonth']}}yrs
             </td>
             <td>
-               
+
             </td>
             <td></td>
             <td></td>
@@ -173,9 +183,8 @@
 
             </td>
 
-            <td>
-
-            </td>
+            <td></td>
+            <td></td>
 
             <td valign="middle" align="center" rowspan="14" style="text-align: center">
 
@@ -535,6 +544,40 @@
                             Email : {{$refList[4]['email']}}<br>&nbsp;&nbsp;
                             Phone : {{$refList[4]['phone']}}
 
+                    @endif
+
+
+                </td>
+                <td></td>
+                <td></td>
+
+                <td>
+                    @if($i==0 && count($relList) >0)
+                        {{$relList[0]['firstName']}}  {{$relList[0]['lastName']}}<br>&nbsp;&nbsp;
+                        Designation : {{$relList[0]['degisnation']}}<br>&nbsp;&nbsp;
+
+                    @endif
+                    @if($i==2 && count($relList) >1)
+                        {{$relList[1]['firstName']}}  {{$relList[1]['lastName']}}<br>;&nbsp;&nbsp;
+                        Designation : {{$relList[1]['degisnation']}}<br>&nbsp;&nbsp;
+
+
+                    @endif
+                    @if($i==4 && count($relList) >2)
+                        {{$relList[2]['firstName']}}  {{$relList[2]['lastName']}}<br>&nbsp;&nbsp;
+                        Designation : {{$relList[2]['degisnation']}}<br>&nbsp;&nbsp;
+
+
+                    @endif
+                    @if($i==6 && count($relList) >3)
+                        {{$relList[3]['firstName']}}  {{$relList[3]['lastName']}}<br>&nbsp;&nbsp;
+                        Designation : {{$relList[3]['degisnation']}}<br>&nbsp;&nbsp;
+
+
+                    @endif
+                    @if($i==8 && count($relList) >4)
+                        {{$relList[4]['firstName']}}  {{$relList[1]['lastName']}}<br>&nbsp;&nbsp;
+                        Designation : {{$relList[4]['degisnation']}}<br>&nbsp;&nbsp;
                     @endif
 
 
