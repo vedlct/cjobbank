@@ -64,7 +64,7 @@
 
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Edit Degree</h4>
+                <h4 class="modal-title">Edit Nationality</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 

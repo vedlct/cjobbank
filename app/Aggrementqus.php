@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Aggrementqus extends Model
 {
     //
-    protected $table = 'aggrementqus';
+    protected $table = 'agreementqus';
     public $timestamps = false;
-    public $primaryKey = 'aggrementQusId';
+    public $primaryKey = 'agreementQusId';
 }
