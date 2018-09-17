@@ -6,6 +6,7 @@ use App\Degree;
 use App\Education;
 use App\Educationlevel;
 use App\Nationality;
+use App\Religion;
 use App\Zone;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -184,4 +185,43 @@ class SettingsController extends Controller
 
     }
 
+
+
+    /*====================== Nationality ============================*/
+
+    public function religion(){
+
+        $religion=Religion::get();
+        return view('manage.religion',compact('religion'));
+    }
+
+    public function insertReligion(Request $r){
+        $r->validate([
+            'religionName' => 'required',
+
+        ]);
+        $religion =new Religion();
+        $religion->religionName=$r->religionName;
+        $religion->save();
+
+        Session::flash('message', 'Religion Added Successfully!');
+        return redirect()->route('manage.religion');
+
+    }
+
+    public function editReligion(Request $r){
+        $editReligion=Religion::findOrFail($r->id);
+        return view('manage.editReligion',compact('editReligion'));
+    }
+
+    public function updateReligion($id,Request $r){
+        $nationality =Religion::findOrFail($id);
+        $nationality->religionName=$r->religionName;
+        $nationality->status = $r->status;
+        $nationality->save();
+
+        Session::flash('message', 'Religion Updated Successfully!');
+        return redirect()->route('manage.religion');
+
+    }
 }

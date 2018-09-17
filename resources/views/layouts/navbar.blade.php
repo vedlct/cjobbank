@@ -64,7 +64,7 @@
         <li><a href="{{route('manage.education')}}">Manage Education Level</a></li>
         <li><a href="{{route('manage.educationDegree')}}">Manage Education Degree</a></li>
         <li><a href="{{route('manage.nationality')}}">Manage Nationality</a></li>
-        <li><a href="#">Manage Religion</a></li>
+        <li><a href="{{route('manage.religion')}}">Manage Religion</a></li>
         <li><a href="#">Manage Ethnicity</a></li>
         <li><a href="#">Manage Organization type</a></li>
         <li><a href="#">Manage Agreement</a></li>

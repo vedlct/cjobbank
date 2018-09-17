@@ -192,5 +192,11 @@ Route::post('manage/Nationality/insert','Admin\SettingsController@insertNational
 Route::post('manage/Nationality/editNationality','Admin\SettingsController@editNationality')->name('admin.editNationality');
 Route::post('manage/Nationality/updateNationality/{id}','Admin\SettingsController@updateNationality')->name('manage.nationality.update');
 
+//Religion
+Route::get('manage/Religion','Admin\SettingsController@religion')->name('manage.religion');
+Route::post('manage/Religion/insert','Admin\SettingsController@insertReligion')->name('manage.religion.insert');
+Route::post('manage/Religion/editReligion','Admin\SettingsController@editReligion')->name('admin.editReligion');
+Route::post('manage/Religion/updateReligion/{id}','Admin\SettingsController@updateReligion')->name('manage.religion.update');
+
 
 
