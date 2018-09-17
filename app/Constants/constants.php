@@ -29,6 +29,13 @@ define('USER_TYPE',array(
     "User"=>'user',
 
 ));
+define('STATUS',array(
+    "1"=>'Active',
+    "0"=>'Inactive',
+
+
+));
+
 
 
 

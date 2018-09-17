@@ -186,4 +186,11 @@ Route::post('manage/education-Degree/editDegree','Admin\SettingsController@editE
 Route::post('manage/education-Degree/updateDegree/{id}','Admin\SettingsController@updateDegree')->name('manage.degree.update');
 
 
+//Nationality
+Route::get('manage/Nationality','Admin\SettingsController@nationality')->name('manage.nationality');
+Route::post('manage/Nationality/insert','Admin\SettingsController@insertNationality')->name('manage.nationality.insert');
+Route::post('manage/Nationality/editNationality','Admin\SettingsController@editNationality')->name('admin.editNationality');
+Route::post('manage/Nationality/updateNationality/{id}','Admin\SettingsController@updateNationality')->name('manage.nationality.update');
+
+
 

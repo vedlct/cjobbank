@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Degree;
 use App\Education;
 use App\Educationlevel;
+use App\Nationality;
 use App\Zone;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -137,7 +138,50 @@ class SettingsController extends Controller
 
     }
 
+    /*====================== Nationality ============================*/
 
+    public function nationality(){
 
+        $nationality=Nationality::get();
+//        $datatables = DataTables::of($degree);
+//
+//        return $datatables->make(true);
+//        return $degree;
+
+        return view('manage.nationality',compact('nationality'));
+    }
+
+    public function insertNationality(Request $r){
+        $r->validate([
+            'nationality' => 'required',
+            'country' => 'required',
+
+        ]);
+        $nationality =new Nationality();
+        $nationality->nationalityName=$r->nationality;
+        $nationality->countryName=$r->country;
+        $nationality->save();
+
+        Session::flash('message', 'Nationality Added Successfully!');
+        return redirect()->route('manage.nationality');
+
+    }
+
+    public function editNationality(Request $r){
+        $editNationality=Nationality::findOrFail($r->id);
+        return view('manage.editNationality',compact('editNationality'));
+    }
+
+    public function updateNationality($id,Request $r){
+        $nationality =Nationality::findOrFail($id);
+        $nationality->nationalityName=$r->nationality;
+        $nationality->countryName=$r->country;
+        $nationality->status = $r->status;
+        $nationality->save();
+
+        Session::flash('message', 'Nationality Updated Successfully!');
+        return redirect()->route('manage.nationality');
+
+    }
 
 }
