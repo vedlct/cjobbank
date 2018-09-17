@@ -3,6 +3,9 @@
     .alert-feedback{
         color: red;
     }
+    th{
+        font-family: bold;
+    }
 
 </style>
 <body>

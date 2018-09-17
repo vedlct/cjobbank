@@ -15,6 +15,7 @@ use App\JobExperience;
 use App\Nationality;
 use App\ProfessionalQualification;
 use App\Refree;
+use App\RelativeInCb;
 use App\Religion;
 use App\Traning;
 use Carbon\Carbon;
@@ -234,6 +235,7 @@ class ApplicationController extends Controller
         $jobExperienceList=array();
         $salaryList=array();
         $refreeList=array();
+        $relativeList=array();
 
         for ($i=0;$i<count($appliedList);$i++){
             $appliedId=$appliedList[$i];
@@ -273,6 +275,9 @@ class ApplicationController extends Controller
             $refree=Refree::where('fkemployeeId',$empId)
                 ->get()
                 ->toArray();
+            $relList=RelativeInCb::where('fkemployeeId',$empId)
+                ->get()
+                ->toArray();
 
 
             $list=array_merge($list,$newlist);
@@ -282,6 +287,7 @@ class ApplicationController extends Controller
             $jobExperienceList=array_merge($jobExperienceList,$jobExperience);
             $salaryList=array_merge($salaryList,$jobApply);
             $refreeList=array_merge($refreeList,$refree);
+            $relativeList=array_merge($relativeList,$relList);
 
         }
 
@@ -290,8 +296,9 @@ class ApplicationController extends Controller
 
 
 
-        $check=Excel::create($fileName,function($excel) use($list,$filePath,$ethnicity,$eduList,$qualificationList,$trainingList,$jobExperienceList,$salaryList,$refreeList) {
-            $excel->sheet('First sheet', function($sheet) use($list,$ethnicity,$eduList,$qualificationList,$trainingList,$jobExperienceList,$salaryList,$refreeList) {
+
+        $check=Excel::create($fileName,function($excel) use($list,$filePath,$ethnicity,$eduList,$qualificationList,$trainingList,$jobExperienceList,$salaryList,$refreeList,$relativeList) {
+            $excel->sheet('First sheet', function($sheet) use($list,$ethnicity,$eduList,$qualificationList,$trainingList,$jobExperienceList,$salaryList,$refreeList,$relativeList) {
 
 
                 $sheet->loadView('Admin.application.AppliedCandidateList')
@@ -302,7 +309,8 @@ class ApplicationController extends Controller
                     ->with('trainingList',$trainingList)
                     ->with('jobExperienceList',$jobExperienceList)
                     ->with('salaryList',$salaryList)
-                    ->with('refreeList',$refreeList);
+                    ->with('refreeList',$refreeList)
+                    ->with('relativeList',$relativeList);
             });
 
         })->store('xls',$filePath);

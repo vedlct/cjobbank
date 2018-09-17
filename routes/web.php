@@ -199,6 +199,13 @@ Route::post('manage/Religion/editReligion','Admin\SettingsController@editReligio
 Route::post('manage/Religion/updateReligion/{id}','Admin\SettingsController@updateReligion')->name('manage.religion.update');
 
 
+//Agreement
+Route::get('manage/Agreement','Admin\SettingsController@agreement')->name('manage.agreement');
+Route::post('manage/Agreement/insert','Admin\SettingsController@insertAgreement')->name('manage.agreement.insert');
+Route::post('manage/Agreement/editAgreement','Admin\SettingsController@editAgreement')->name('admin.editAgreement');
+Route::post('manage/Agreement/updateAgreement/{id}','Admin\SettingsController@updateAgreement')->name('manage.agreement.update');
+
+
 //Ethnicity
 
 Route::get('manage/Ethnicity','Admin\SettingsController@manageEthnicity')->name('manage.ethnicity');

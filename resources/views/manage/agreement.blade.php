@@ -16,17 +16,7 @@
                     <form action="{{route('manage.agreement.insert')}}" method="post">
                         {{csrf_field()}}
 
-                        {{--<div class="form-group">--}}
 
-                        {{--<label for="">Nationality<span style="color: red">*</span></label>--}}
-                        {{--<select name="educationLevel" class="form-control" required id="educationLevel">--}}
-                        {{--<option value="">Select Education Level</option>--}}
-                        {{--@foreach($nationality as $n)--}}
-                        {{--<option value="{{$education->educationLevelId}}">{{$education->educationLevelName}}</option>--}}
-                        {{--@endforeach--}}
-                        {{--</select>--}}
-
-                        {{--</div>--}}
                         <div class="form-group">
 
                             <label for="">Agreement Question<span style="color: red">*</span></label>
@@ -36,7 +26,7 @@
                         </div>
                         <div class="form-group">
 
-                            <label for="">Serial<span style="color: red">*</span></label>
+                            <label for="">Serial<span style="color: red">*</span></label><label>(last serial number: <span style="color: red">{{$lastserialnumber->serial}}</span>)</label>
 
                             <input class="form-control" name="serial" required type="number">
 
@@ -59,19 +49,19 @@
 
 
 
-    <div class="modal" id="editModalReligion">
+    <div class="modal" id="editModalAgreement">
         <div class="modal-dialog">
             <div class="modal-content">
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Edit Religion</h4>
+                    <h4 class="modal-title">Edit Agreement Question</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <div  id="editModalBodyReligion">
+                    <div  id="editModalBodyAgreement">
 
                     </div>
                 </div>
@@ -108,7 +98,7 @@
                     <br>
 
 
-                    <table id="religiontable" class="table table-striped table-bordered" style="width:100%" >
+                    <table id="agreementtable" class="table table-striped table-bordered" style="width:100%" >
                         <thead>
                         <tr>
 
@@ -121,17 +111,18 @@
                         </thead>
                         <tbody>
 
-                        @foreach($religion as $r)
+                        @foreach($agreement as $a)
                             <tr>
-                                <td>{{$r->religionName}}</td>
-                                <td>
+                                <td width="60%">{{$a->qus}}</td>
+                                <td width="10">{{$a->serial}}</td>
+                                <td width="20">
                                     @foreach(STATUS as $key=>$value)
-                                        @if($r->status == $key)
+                                        @if($a->status == $key)
                                             {{$value}}
                                         @endif
                                     @endforeach
                                 </td>
-                                <td width="10%"><button class="btn btn-sm btn-success" data-panel-id="{{$r->religionId}}" onclick="editReligion(this)">Edit</button>
+                                <td width="10%"><button class="btn btn-sm btn-success" data-panel-id="{{$a->agreementQusId}}" onclick="editAgreement(this)">Edit</button>
                                 </td>
 
                             </tr>
@@ -165,26 +156,26 @@
 
     <script>
         $(function () {
-            $('#religiontable').DataTable();
+            $('#agreementtable').DataTable();
         });
-        function addnewReligion() {
+        function addnewAgreement() {
 
 
-            $('#NewReligionModal').modal({show:true});
+            $('#NewAgreementModal').modal({show:true});
 
         }
-        function editReligion(x) {
+        function editAgreement(x) {
             var id=$(x).data('panel-id');
 
             $.ajax({
                 type: 'POST',
-                url: "{!! route('admin.editReligion') !!}",
+                url: "{!! route('admin.editAgreement') !!}",
                 cache: false,
                 data: {_token: "{{csrf_token()}}",'id': id},
                 success: function (data) {
 //                    console.log(data);
-                    $('#editModalBodyReligion').html(data);
-                    $('#editModalReligion').modal();
+                    $('#editModalBodyAgreement').html(data);
+                    $('#editModalAgreement').modal();
                 }
             });
 

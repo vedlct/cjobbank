@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Aggrementqus;
 use App\Degree;
 use App\Education;
 use App\Educationlevel;
@@ -354,6 +355,60 @@ class SettingsController extends Controller
 
         Session::flash('message', 'Organization Type Updated Successfully!');
         return redirect()->route('manage.organizationType');
+
+    }
+
+
+    /*====================== Agreement Question ============================*/
+
+    public function agreement(){
+
+        $agreement=Aggrementqus::get();
+        $lastserialnumber = Aggrementqus::select('serial')
+            ->orderBy('serial', 'DESC')
+            ->first();
+        return view('manage.agreement',compact('agreement', 'lastserialnumber'));
+    }
+
+    public function insertAgreement(Request $r){
+        $r->validate([
+            'qus' => 'required',
+            'serial' => 'required|unique:agreementqus,serial',
+
+        ]);
+        $agreement =new Aggrementqus();
+        $agreement->qus=$r->qus;
+        $agreement->serial=$r->serial;
+        $agreement->save();
+
+        Session::flash('message', 'Agreement Question Added Successfully!');
+        return redirect()->route('manage.agreement');
+
+    }
+
+    public function editAgreement(Request $r){
+        $editAgreement=Aggrementqus::findOrFail($r->id);
+        $lastserialnumber = Aggrementqus::select('serial')
+            ->orderBy('serial', 'DESC')
+            ->first();
+        return view('manage.editAgreement',compact('editAgreement', 'lastserialnumber'));
+    }
+
+    public function updateAgreement($id,Request $r){
+
+        $r->validate([
+            'qus' => 'required',
+            'serial' => 'required|unique:agreementqus,serial,'.$id.',agreementQusId',
+
+        ]);
+        $agreement =Aggrementqus::findOrFail($id);
+        $agreement->qus=$r->qus;
+        $agreement->serial=$r->serial;
+        $agreement->status = $r->status;
+        $agreement->save();
+
+        Session::flash('message', 'Agreement Updated Successfully!');
+        return redirect()->route('manage.agreement');
 
     }
 
