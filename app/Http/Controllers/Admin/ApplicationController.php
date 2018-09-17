@@ -184,17 +184,17 @@ class ApplicationController extends Controller
 
         $datatables = DataTables::of($application);
 
-         $datatables->addColumn('name', function ($application1) use ($application) {
-
-
-            foreach ($application as $size) {
-
-                $test = $size->firstName." ".$size->lastName;
-
-            }
-            return $test;
-
-        });
+//         $datatables->addColumn('name', function ($application1) use ($application) {
+//
+//
+//            foreach ($application as $size) {
+//
+//                $test = $size->firstName." ".$size->lastName;
+//
+//            }
+//            return $test;
+//
+//        });
         return $datatables->addColumn('Age', function ($application1) use ($application) {
 
 

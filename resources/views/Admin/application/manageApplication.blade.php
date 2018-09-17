@@ -227,7 +227,8 @@
                         <tr>
 
                             <th style="width: 4%">Select</th>
-                            <th>Name</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
                             <th>Job Title</th>
                             <th>Zone</th>
                             <th>Apply Date</th>
@@ -347,7 +348,9 @@
                             ;},
                         "orderable": false, "searchable":false
                     },
-                    { data: 'name', name: 'name',"orderable": false, "searchable":true },
+                    { data: 'firstName', name: 'firstName',"orderable": false, "searchable":true },
+                    { data: 'lastName', name: 'lastName',"orderable": false, "searchable":true },
+
 
                     { data: 'title', name: 'title', "orderable": false, "searchable":true },
                     { data: 'zoneName', name: 'zoneName', "orderable": false, "searchable":true },
@@ -355,7 +358,7 @@
 
 
                     { "data": function(data){
-                        return '<button class="btn btn-sm btn-danger"><i class="fa fa-envelope"></i></button>'+
+                        return '<!--<button class="btn btn-sm btn-danger"><i class="fa fa-envelope"></i></button>-->'+
                             '&nbsp;<button class="btn btn-smbtn-info"><i class="fa fa-file-pdf-o"></i></button>'
                             ;},
                         "orderable": false, "searchable":false
