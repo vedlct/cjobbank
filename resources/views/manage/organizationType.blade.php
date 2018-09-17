@@ -50,7 +50,7 @@
 
 
 
-    <div class="modal" id="editModalEthnicity">
+    <div class="modal" id="editModalOrganizationType">
         <div class="modal-dialog">
             <div class="modal-content">
 
@@ -90,7 +90,7 @@
 
                 <div class="card-body">
                     <div class="card-header-tabs">
-                        <h4>Manage Ethnicity</h4>
+                        <h4>Manage Organization Type</h4>
                     </div>
 
                     <div align="right">
@@ -172,7 +172,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: "{!! route('admin.editEthnicity') !!}",
+                url: "{!! route('admin.editOrganizationType') !!}",
                 cache: false,
                 data: {_token: "{{csrf_token()}}",'id': id},
                 success: function (data) {

@@ -226,6 +226,7 @@ class SettingsController extends Controller
         return view('manage.editEthnicity',compact('editEthnicity'));
     }
 
+
     public function updateEthnicity($id,Request $r){
 
         $r->validate([
@@ -248,6 +249,7 @@ class SettingsController extends Controller
         return redirect()->route('manage.ethnicity');
 
     }
+
 
     /* ================ organization Type ================= */
     public function manageorganizationType(){
@@ -277,6 +279,35 @@ class SettingsController extends Controller
         $organizationType->save();
 
         Session::flash('message', 'Organization Type Added Successfully!');
+        return redirect()->route('manage.organizationType');
+
+    }
+
+    public function editOrganizationType(Request $r){
+        $organizationType=OrganizationType::findOrFail($r->id);
+        return view('manage.editOrganizationType',compact('organizationType'));
+    }
+
+    public function updateOrganizationType($id,Request $r){
+
+        $r->validate([
+            'typeName' => 'required|max:50|unique:organizationtype,organizationTypeName,'.$id.',organizationTypeId',
+
+        ]);
+
+        $orgType =OrganizationType::findOrFail($id);
+
+        $orgType->organizationTypeName=$r->typeName;
+
+        if ($r->status ==""){
+            $orgType->status='1';
+        }else{
+            $orgType->status=$r->status;
+        }
+
+        $orgType->save();
+
+        Session::flash('message', 'Organization Type Updated Successfully!');
         return redirect()->route('manage.organizationType');
 
     }
