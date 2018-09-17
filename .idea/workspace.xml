@@ -2,43 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1f77d9ce-12dd-4235-9fdf-83a8d8b900b5" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/public/exportedExcel/AppliedCandidateList2018-09-15_06-35-25.xls" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/exportedExcel/AppliedCandidateList2018-09-15_06-44-50.xls" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/exportedExcel/AppliedCandidateList2018-09-15_06-56-18.xls" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/manage/editNationality.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/manage/nationality.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/password.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/test.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Constants/constants.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Constants/constants.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ApplicationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ApplicationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/DashboardController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/DashboardController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/SettingsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/SettingsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/UserManagementController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/UserManagementController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/EmployeeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/EmployeeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/RedirectIfAuthenticated.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/exportedExcel/AppliedCandidateList2018-09-14_05-38-37.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/exportedExcel/AppliedCandidateList2018-09-14_05-47-51.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/exportedExcel/AppliedCandidateList2018-09-14_05-50-42.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/exportedExcel/AppliedCandidateList2018-09-14_06-20-47.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/exportedExcel/AppliedCandidateList2018-09-14_06-29-15.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/exportedExcel/AppliedCandidateList2018-09-14_06-31-19.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/exportedExcel/AppliedCandidateList2018-09-14_06-57-55.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/exportedExcel/AppliedCandidateList2018-09-14_08-01-43.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/exportedExcel/AppliedCandidateList2018-09-14_08-39-30.xls" beforeDir="false" afterPath="$PROJECT_DIR$/public/exportedExcel/AppliedCandidateList2018-09-15_06-34-00.xls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/exportedExcel/AppliedCandidateList2018-09-14_09-10-55.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/exportedExcel/AppliedCandidateList2018-09-14_09-11-53.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/exportedExcel/AppliedCandidateList2018-09-14_09-12-39.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/exportedExcel/AppliedCandidateList2018-09-14_09-13-41.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/exportedExcel/AppliedCandidateList2018-09-14_09-13-49.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/exportedExcel/AppliedCandidateList2018-09-14_09-14-42.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/exportedExcel/AppliedCandidateList2018-09-14_09-17-33.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/Admin/application/AppliedCandidateList.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/Admin/application/AppliedCandidateList.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/navbar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/main.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/main.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -47,7 +11,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
   </component>
   <component name="CreatePatchCommitExecutor">
@@ -57,8 +21,10 @@
     <session id="-1294857804">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.14" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.open.time.15" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -82,8 +48,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="652">
-              <caret line="192" column="134" lean-forward="true" selection-start-line="192" selection-start-column="109" selection-end-line="192" selection-end-column="134" />
+            <state relative-caret-position="4026">
+              <caret line="192" column="134" selection-start-line="192" selection-start-column="109" selection-end-line="192" selection-end-column="134" />
             </state>
           </provider>
         </entry>
@@ -91,7 +57,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/SettingsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="542">
+            <state relative-caret-position="3740">
               <caret line="178" column="36" selection-start-line="178" selection-start-column="36" selection-end-line="178" selection-end-column="36" />
             </state>
           </provider>
@@ -100,8 +66,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/manage/editNationality.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="18" column="10" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
+            <state relative-caret-position="484">
+              <caret line="22" column="7" lean-forward="true" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -110,7 +76,7 @@
         <entry file="file://$PROJECT_DIR$/resources/views/manage/editDegree.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="220">
-              <caret line="10" column="28" lean-forward="true" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+              <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -118,7 +84,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/manage/nationality.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
+            <state relative-caret-position="4004">
               <caret line="182" column="49" selection-start-line="182" selection-start-column="47" selection-end-line="182" selection-end-column="49" />
               <folding>
                 <marker date="1537015816323" expanded="false" signature="829:839" ph="..." />
@@ -130,7 +96,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Constants/constants.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="726">
               <caret line="33" column="18" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
             </state>
           </provider>
@@ -139,7 +105,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/layouts/navbar.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="1452">
               <caret line="66" column="47" selection-start-line="66" selection-start-column="47" selection-end-line="66" selection-end-column="47" />
             </state>
           </provider>
@@ -148,7 +114,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/manage/educationDegree.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-506">
+            <state relative-caret-position="1760">
               <caret line="80" column="12" selection-start-line="80" selection-start-column="12" selection-end-line="80" selection-end-column="12" />
             </state>
           </provider>
@@ -319,6 +285,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -374,7 +341,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -438,23 +404,22 @@
       <workItem from="1536842004270" duration="727000" />
       <workItem from="1536908690579" duration="3589000" />
       <workItem from="1536993076652" duration="12637000" />
-      <workItem from="1537011693778" duration="4323000" />
+      <workItem from="1537011693778" duration="4917000" />
+      <workItem from="1537163688607" duration="603000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89751000" />
+    <option name="totallyTimeSpent" value="90948000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19349681" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.195629" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -466,6 +431,8 @@
       <window_info anchor="bottom" id="NativeScript" order="8" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -770,47 +737,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Constants/constants.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="33" column="18" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/navbar.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="66" column="47" selection-start-line="66" selection-start-column="47" selection-end-line="66" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/manage/educationDegree.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-506">
-          <caret line="80" column="12" selection-start-line="80" selection-start-column="12" selection-end-line="80" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/manage/nationality.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="182" column="49" selection-start-line="182" selection-start-column="47" selection-end-line="182" selection-end-column="49" />
-          <folding>
-            <marker date="1537015816323" expanded="false" signature="829:839" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="652">
-          <caret line="192" column="134" lean-forward="true" selection-start-line="192" selection-start-column="109" selection-end-line="192" selection-end-column="134" />
+        <state relative-caret-position="4026">
+          <caret line="192" column="134" selection-start-line="192" selection-start-column="109" selection-end-line="192" selection-end-column="134" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/SettingsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="542">
+        <state relative-caret-position="3740">
           <caret line="178" column="36" selection-start-line="178" selection-start-column="36" selection-end-line="178" selection-end-column="36" />
         </state>
       </provider>
@@ -818,14 +754,45 @@
     <entry file="file://$PROJECT_DIR$/resources/views/manage/editDegree.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
-          <caret line="10" column="28" lean-forward="true" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+          <caret line="10" column="28" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/manage/nationality.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4004">
+          <caret line="182" column="49" selection-start-line="182" selection-start-column="47" selection-end-line="182" selection-end-column="49" />
+          <folding>
+            <marker date="1537015816323" expanded="false" signature="829:839" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Constants/constants.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="726">
+          <caret line="33" column="18" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/navbar.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1452">
+          <caret line="66" column="47" selection-start-line="66" selection-start-column="47" selection-end-line="66" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/manage/educationDegree.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1760">
+          <caret line="80" column="12" selection-start-line="80" selection-start-column="12" selection-end-line="80" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/manage/editNationality.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="18" column="10" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
+        <state relative-caret-position="484">
+          <caret line="22" column="7" lean-forward="true" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
         </state>
       </provider>
     </entry>
