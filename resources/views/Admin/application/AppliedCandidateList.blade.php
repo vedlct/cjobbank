@@ -43,6 +43,9 @@
         <th>Job Experiences/ Employment History </th>
         <th>Salary</th>
         <th>National ID Card</th>
+        <th>Photo</th>
+        <th>Name of  two Referees (2)</th>
+        <th>Remarks</th>
 
     </tr>
     </thead>
@@ -53,6 +56,9 @@
         $eduList=array();
         $qList=array();
         $trainList=array();
+        $jobList=array();
+        $salList=array();
+        $refList=array();
 
     
         ?>
@@ -63,7 +69,8 @@
                     array_push($eduList,$education);
                     ?>
             @endif
-         @endforeach
+        @endforeach
+
         @foreach($qualificationList as $q)
                 @if($q['fkemployeeId'] == $list['employeeId'])
                     <?php
@@ -79,6 +86,32 @@
                     ?>
                 @endif
         @endforeach
+
+        @foreach($jobExperienceList as $jList)
+                @if($jList['fkemployeeId'] == $list['employeeId'])
+                    <?php
+                    array_push($jobList,$jList);
+                    ?>
+                @endif
+        @endforeach
+
+        @foreach($salaryList as $sList)
+                @if($sList['fkemployeeId'] == $list['employeeId'])
+                    <?php
+                    array_push($salList,$sList);
+                    ?>
+                @endif
+        @endforeach
+
+        @foreach($refreeList as $rList)
+                @if($rList['fkemployeeId'] == $list['employeeId'])
+                    <?php
+                    array_push($refList,$rList);
+                    ?>
+                @endif
+        @endforeach
+
+
     <tbody>
 
 
@@ -121,18 +154,33 @@
                 {{$list['AgeYear']}}.{{$list['AgeMonth']}}yrs
             </td>
             <td>
-                {{--{{$list['educationLevelName']}}--}}
-                {{--@if($list['fkMajorId'] != null)({{$list['educationMajorName']}})@endif--}}
-                {{--={{$list['result']}}--}}
+               
             </td>
             <td></td>
             <td></td>
             <td></td>
             <td ></td>
-            <td valign="middle" rowspan="14">
+            <td valign="middle" rowspan="14" style="text-align: center">
                 {{$list['nationalId']}}
 
             </td>
+            <td valign="middle" align="center" rowspan="14" style="text-align: center">
+                @if($list['image'])
+                    Yes
+                @else
+                    No
+                @endif
+
+            </td>
+
+            <td>
+
+            </td>
+
+            <td valign="middle" align="center" rowspan="14" style="text-align: center">
+
+            </td>
+
         </tr>
 
 
@@ -174,81 +222,69 @@
                     @if($i==13) @endif
                 </td>
                 <td>
-                    @if($i==0) @endif
-                    @if($i==1)  @endif
-                    @if($i==2) @endif
-                    @if($i==3) @endif
-                    @if($i==4) @endif
-                    @if($i==5) @endif
-                    @if($i==6) @endif
-                    @if($i==7) @endif
-                    @if($i==8) @endif
-                    @if($i==9) @endif
-                    @if($i==10) @endif
-                    @if($i==11) @endif
-                    @if($i==12) @endif
-                    @if($i==13) @endif
+
                 </td>
+                {{--Education--}}
                 <td>
                     @if($i==0 && count($eduList)>0)
-                        {{$eduList[0]['educationLevelName']}}<br>
-                        {{$eduList[0]['institutionName']}}<br>
-                        Result:{{$eduList[0]['result']}}<br>
+                        {{$eduList[0]['educationLevelName']}}<br>&nbsp;&nbsp;
+                        {{$eduList[0]['institutionName']}}<br>&nbsp;&nbsp;
+                        Result:{{$eduList[0]['result']}}<br>&nbsp;&nbsp;
                         Major:{{$eduList[0]['educationMajorName']}}
 
 
                     @endif
                     @if($i==2 && count($eduList)>1)
-                            {{$eduList[1]['institutionName']}}<br>
-                            {{$eduList[1]['institutionName']}}<br>
-                            Result:{{$eduList[1]['result']}}<br>
+                            {{$eduList[1]['institutionName']}}<br>&nbsp;&nbsp;
+                            {{$eduList[1]['institutionName']}}<br>&nbsp;&nbsp;
+                            Result:{{$eduList[1]['result']}}<br>&nbsp;&nbsp;
                             Major:{{$eduList[1]['educationMajorName']}}
 
                         @endif
 
                     @if($i==4 && count($eduList)>2)
-                            {{$eduList[2]['institutionName']}}<br>
-                            {{$eduList[2]['institutionName']}}<br>
-                            Result:{{$eduList[2]['result']}}<br>
+                            {{$eduList[2]['institutionName']}}<br>&nbsp;&nbsp;
+                            {{$eduList[2]['institutionName']}}<br>&nbsp;&nbsp;
+                            Result:{{$eduList[2]['result']}}<br>&nbsp;&nbsp;
                             Major:{{$eduList[2]['educationMajorName']}}
 
                         @endif
                     @if($i==5) @endif
                     @if($i==6 && count($eduList)>3)
-                            {{$eduList[3]['institutionName']}}<br>
-                            {{$eduList[3]['institutionName']}}<br>
-                            Result:{{$eduList[3]['result']}}<br>
+                            {{$eduList[3]['institutionName']}}<br>&nbsp;&nbsp;
+                            {{$eduList[3]['institutionName']}}<br>&nbsp;&nbsp;
+                            Result:{{$eduList[3]['result']}}<br>&nbsp;&nbsp;
                             Major:{{$eduList[3]['educationMajorName']}}
 
 
                         @endif
                     @if($i==7) @endif
                     @if($i==8 && count($eduList)>4)
-                            {{$eduList[4]['institutionName']}}<br>
-                            {{$eduList[4]['institutionName']}}<br>
-                            Result:{{$eduList[4]['result']}}<br>
+                            {{$eduList[4]['institutionName']}}<br>&nbsp;&nbsp;
+                            {{$eduList[4]['institutionName']}}<br>&nbsp;&nbsp;
+                            Result:{{$eduList[4]['result']}}<br>&nbsp;&nbsp;
                             Major:{{$eduList[4]['educationMajorName']}}
                         @endif
                     @if($i==9) @endif
                     @if($i==10 && count($eduList)>5)
-                            {{$eduList[5]['institutionName']}}<br>
-                            {{$eduList[5]['institutionName']}}<br>
-                            Result:{{$eduList[5]['result']}}<br>
+                            {{$eduList[5]['institutionName']}}<br>&nbsp;&nbsp;
+                            {{$eduList[5]['institutionName']}}<br>&nbsp;&nbsp;
+                            Result:{{$eduList[5]['result']}}<br>&nbsp;&nbsp;
                             Major:{{$eduList[5]['educationMajorName']}}
 
                         @endif
                     @if($i==11) @endif
                     @if($i==12 && count($eduList)>6)
-                            {{$eduList[6]['institutionName']}}<br>
-                            {{$eduList[6]['institutionName']}}<br>
-                            Result:{{$eduList[6]['result']}}<br>
+                            {{$eduList[6]['institutionName']}}<br>&nbsp;&nbsp;
+                            {{$eduList[6]['institutionName']}}<br>&nbsp;&nbsp;
+                            Result:{{$eduList[6]['result']}}<br>&nbsp;&nbsp;
                             Major:{{$eduList[6]['educationMajorName']}}
                         @endif
 
                     @if($i==14 && count($eduList)>7)
-                            {{$eduList[7]['institutionName']}}<br>
-                            {{$eduList[7]['institutionName']}}<br>
-                            Result:{{$eduList[7]['result']}}<br>
+                            {{$eduList[7]['institutionName']}}<br>&nbsp;&nbsp;
+                            {{$eduList[7]['institutionName']}}<br>&nbsp;&nbsp;
+                            Result:{{$eduList[7]['result']}}<br>&nbsp;&nbsp;
                             Major:{{$eduList[7]['educationMajorName']}}
                         @endif
                 </td>
@@ -257,123 +293,253 @@
                 <td></td>
                 <td> </td>
                 <td></td>
+                {{--Qualifications--}}
                 <td>
 
                     @if($i==0 && count($qList) >0)
-                        {{$qList[0]['certificateName']}}<br>
-                        {{$qList[0]['institutionName']}}<br>
-                        {{$qList[0]['startDate']}}<br>
-                        {{$qList[0]['endDate']}}<br>
+                        {{$qList[0]['certificateName']}}<br>&nbsp;&nbsp;
+                        {{$qList[0]['institutionName']}}<br>&nbsp;&nbsp;
+                        {{$qList[0]['startDate']}}<br>&nbsp;&nbsp;
+                        {{$qList[0]['endDate']}}<br>&nbsp;&nbsp;
 
 
                     @endif
 
                     @if($i==2 && count($qList) >1)
-                        {{$qList[1]['certificateName']}}<br>
-                        {{$qList[1]['institutionName']}}<br>
-                        {{$qList[1]['startDate']}}<br>
-                        {{$qList[1]['endDate']}}<br>
+                        {{$qList[1]['certificateName']}}<br>&nbsp;&nbsp;
+                        {{$qList[1]['institutionName']}}<br>&nbsp;&nbsp;
+                        {{$qList[1]['startDate']}}<br>&nbsp;&nbsp;
+                        {{$qList[1]['endDate']}}<br>&nbsp;&nbsp;
                     @endif
 
                     @if($i==4 && count($qList) >2)
-                        {{$qList[2]['certificateName']}}<br>
-                        {{$qList[2]['institutionName']}}<br>
-                        {{$qList[2]['startDate']}}<br>
-                        {{$qList[2]['endDate']}}<br>
+                        {{$qList[2]['certificateName']}}<br>&nbsp;&nbsp;
+                        {{$qList[2]['institutionName']}}<br>&nbsp;&nbsp;
+                        {{$qList[2]['startDate']}}<br>&nbsp;&nbsp;
+                        {{$qList[2]['endDate']}}<br>&nbsp;&nbsp;
 
                     @endif
 
                     @if($i==6 && count($qList) >3)
-                        {{$qList[3]['certificateName']}}<br>
-                        {{$qList[3]['institutionName']}}<br>
-                        {{$qList[3]['startDate']}}<br>
-                        {{$qList[3]['endDate']}}<br>
+                        {{$qList[3]['certificateName']}}<br>&nbsp;&nbsp;
+                        {{$qList[3]['institutionName']}}<br>&nbsp;&nbsp;
+                        {{$qList[3]['startDate']}}<br>&nbsp;&nbsp;
+                        {{$qList[3]['endDate']}}<br>&nbsp;&nbsp;
 
                     @endif
                     @if($i==8 && count($qList) >4)
-                        {{$qList[4]['certificateName']}}<br>
-                        {{$qList[4]['institutionName']}}<br>
-                        {{$qList[4]['startDate']}}<br>
-                        {{$qList[4]['endDate']}}<br>
+                        {{$qList[4]['certificateName']}}<br>&nbsp;&nbsp;
+                        {{$qList[4]['institutionName']}}<br>&nbsp;&nbsp;
+                        {{$qList[4]['startDate']}}<br>&nbsp;&nbsp;
+                        {{$qList[4]['endDate']}}<br>&nbsp;&nbsp;
 
                     @endif
 
                     @if($i==10 && count($qList) >5)
-                        {{$qList[5]['certificateName']}}<br>
-                        {{$qList[5]['institutionName']}}<br>
-                        {{$qList[5]['startDate']}}<br>
-                        {{$qList[5]['endDate']}}<br>
+                        {{$qList[5]['certificateName']}}<br>&nbsp;&nbsp;
+                        {{$qList[5]['institutionName']}}<br>&nbsp;&nbsp;
+                        {{$qList[5]['startDate']}}<br>&nbsp;&nbsp;
+                        {{$qList[5]['endDate']}}<br>&nbsp;&nbsp;
                     @endif
 
                     @if($i==12 && count($qList) >6)
-                        {{$qList[6]['certificateName']}}<br>
-                        {{$qList[6]['institutionName']}}<br>
-                        {{$qList[6]['startDate']}}<br>
-                        {{$qList[6]['endDate']}}<br>
+                        {{$qList[6]['certificateName']}}<br>&nbsp;&nbsp;
+                        {{$qList[6]['institutionName']}}<br>&nbsp;&nbsp;
+                        {{$qList[6]['startDate']}}<br>&nbsp;&nbsp;
+                        {{$qList[6]['endDate']}}<br>&nbsp;&nbsp;
                     @endif
 
 
                 </td>
+                {{--Training--}}
                 <td>
 
                     @if($i==0 && count($trainList) >0)
-                        {{$trainList[0]['trainingName']}}<br>
-                        {{$trainList[0]['vanue']}}<br>
-                        {{$trainList[0]['startDate']}}<br>
-                        {{$trainList[0]['endDate']}}<br>
+                        {{$trainList[0]['trainingName']}}<br>&nbsp;&nbsp;
+                        {{$trainList[0]['vanue']}}<br>&nbsp;&nbsp;
+                        {{$trainList[0]['startDate']}}<br>&nbsp;&nbsp;
+                        {{$trainList[0]['endDate']}}<br>&nbsp;&nbsp;
                         
                     @endif
 
                     @if($i==2 && count($trainList) >1)
-                        {{$trainList[1]['trainingName']}}<br>
-                        {{$trainList[1]['vanue']}}<br>
-                        {{$trainList[1]['startDate']}}<br>
-                        {{$trainList[1]['endDate']}}<br>
+                        {{$trainList[1]['trainingName']}}<br>&nbsp;&nbsp;
+                        {{$trainList[1]['vanue']}}<br>&nbsp;&nbsp;
+                        {{$trainList[1]['startDate']}}<br>&nbsp;&nbsp;
+                        {{$trainList[1]['endDate']}}<br>&nbsp;&nbsp;
                     @endif
 
                     @if($i==4 && count($trainList) >2)
-                        {{$trainList[2]['trainingName']}}<br>
-                        {{$trainList[2]['vanue']}}<br>
-                        {{$trainList[2]['startDate']}}<br>
-                        {{$trainList[2]['endDate']}}<br>
+                        {{$trainList[2]['trainingName']}}<br>&nbsp;&nbsp;
+                        {{$trainList[2]['vanue']}}<br>&nbsp;&nbsp;
+                        {{$trainList[2]['startDate']}}<br>&nbsp;&nbsp;
+                        {{$trainList[2]['endDate']}}<br>&nbsp;&nbsp;
 
                     @endif
 
                     @if($i==6 && count($trainList) >3)
-                        {{$trainList[3]['trainingName']}}<br>
-                        {{$trainList[3]['vanue']}}<br>
-                        {{$trainList[3]['startDate']}}<br>
-                        {{$trainList[3]['endDate']}}<br>
+                        {{$trainList[3]['trainingName']}}<br>&nbsp;&nbsp;
+                        {{$trainList[3]['vanue']}}<br>&nbsp;&nbsp;
+                        {{$trainList[3]['startDate']}}<br>&nbsp;&nbsp;
+                        {{$trainList[3]['endDate']}}<br>&nbsp;&nbsp;
 
                     @endif
                     @if($i==8 && count($trainList) >4)
-                        {{$trainList[4]['trainingName']}}<br>
-                        {{$trainList[4]['vanue']}}<br>
-                        {{$trainList[4]['startDate']}}<br>
-                        {{$trainList[4]['endDate']}}<br>
+                        {{$trainList[4]['trainingName']}}<br>&nbsp;&nbsp;
+                        {{$trainList[4]['vanue']}}<br>&nbsp;&nbsp;
+                        {{$trainList[4]['startDate']}}<br>&nbsp;&nbsp;
+                        {{$trainList[4]['endDate']}}<br>&nbsp;&nbsp;
 
                     @endif
 
                     @if($i==10 && count($trainList) >5)
-                        {{$trainList[5]['trainingName']}}<br>
-                        {{$trainList[5]['vanue']}}<br>
-                        {{$trainList[5]['startDate']}}<br>
-                        {{$trainList[5]['endDate']}}<br>
+                        {{$trainList[5]['trainingName']}}<br>&nbsp;&nbsp;
+                        {{$trainList[5]['vanue']}}<br>&nbsp;&nbsp;
+                        {{$trainList[5]['startDate']}}<br>&nbsp;&nbsp;
+                        {{$trainList[5]['endDate']}}<br>&nbsp;&nbsp;
                     @endif
 
                     @if($i==12 && count($trainList) >6)
-                        {{$trainList[6]['trainingName']}}<br>
-                        {{$trainList[6]['vanue']}}<br>
-                        {{$trainList[6]['startDate']}}<br>
-                        {{$trainList[6]['endDate']}}<br>
+                        {{$trainList[6]['trainingName']}}<br>&nbsp;&nbsp;
+                        {{$trainList[6]['vanue']}}<br>&nbsp;&nbsp;
+                        {{$trainList[6]['startDate']}}<br>&nbsp;&nbsp;
+                        {{$trainList[6]['endDate']}}<br>&nbsp;&nbsp;
                     @endif
 
 
                 </td>
-                <td>Job experience</td>
+                {{--Job Experience--}}
                 <td>
-                    @if($i==0) Current Salary @endif
-                    @if($i==1) Expected Salary @endif
+                    @if($i==0 && count($jobList) >0)
+                            {{$jobList[0]['organization']}}<br>&nbsp;&nbsp;
+                            {{$jobList[0]['degisnation']}}<br>&nbsp;&nbsp;
+                           From {{$jobList[0]['startDate']}} To
+                            @if($jobList[0]['endDate'])
+                            {{$jobList[0]['endDate']}}
+                            @else
+                                Running
+                            @endif
+
+
+                    @endif
+
+                    @if($i==2 && count($jobList) >1)
+                        {{$jobList[1]['organization']}}<br>&nbsp;&nbsp;
+                        {{$jobList[1]['degisnation']}}<br>&nbsp;&nbsp;
+                        From {{$jobList[1]['startDate']}} To
+                        @if($jobList[1]['endDate'])
+                            {{$jobList[1]['endDate']}}
+                        @else
+                            Running
+                        @endif
+
+                    @endif
+
+                    @if($i==4 && count($jobList) >2)
+                        {{$jobList[2]['organization']}}<br>&nbsp;&nbsp;
+                        {{$jobList[2]['degisnation']}}<br>&nbsp;&nbsp;
+                        From {{$jobList[2]['startDate']}} To
+                        @if($jobList[2]['endDate'])
+                            {{$jobList[2]['endDate']}}
+                        @else
+                            Running
+                        @endif
+
+                    @endif
+
+                    @if($i==6 && count($jobList) >3)
+                        {{$jobList[3]['organization']}}<br>&nbsp;&nbsp;
+                        {{$jobList[3]['degisnation']}}<br>&nbsp;&nbsp;
+                        From {{$jobList[3]['startDate']}} To
+                        @if($jobList[3]['endDate'])
+                            {{$jobList[3]['endDate']}}
+                        @else
+                            Running
+                        @endif
+
+                    @endif
+
+                    @if($i==8 && count($jobList) >4)
+                        {{$jobList[4]['organization']}}<br>&nbsp;&nbsp;
+                        {{$jobList[4]['degisnation']}}<br>&nbsp;&nbsp;
+                        From {{$jobList[4]['startDate']}} To
+                        @if($jobList[4]['endDate'])
+                            {{$jobList[4]['endDate']}}
+                        @else
+                            Running
+                        @endif
+
+
+                    @endif
+
+                    @if($i==10 && count($jobList) >5)
+                        {{$jobList[5]['organization']}}<br>&nbsp;&nbsp;
+                        {{$jobList[5]['degisnation']}}<br>&nbsp;&nbsp;
+                        From {{$jobList[5]['startDate']}} To
+                        @if($jobList[5]['endDate'])
+                            {{$jobList[5]['endDate']}}
+                        @else
+                            Running
+                        @endif
+
+
+                    @endif
+
+                    @if($i==12 && count($jobList) >6)
+                        {{$jobList[6]['organization']}}<br>&nbsp;&nbsp;
+                        {{$jobList[6]['degisnation']}}<br>&nbsp;&nbsp;
+                        From {{$jobList[6]['startDate']}} To
+                        @if($jobList[6]['endDate'])
+                            {{$jobList[6]['endDate']}}
+                        @else
+                            Running
+                        @endif
+
+                    @endif
+
+
+
+                </td>
+                {{--Salary--}}
+                <td>
+                    @if($i==0) Current Salary : {{$salList[0]['currentSalary']}}  @endif
+                    @if($i==1) Expected Salary : {{$salList[0]['expectedSalary']}}@endif
+                </td>
+                {{--Refrence--}}
+                <td>
+                    @if($i==0 && count($refList) >0)
+                        {{$refList[0]['firstName']}}  {{$refList[0]['lastName']}}<br>&nbsp;&nbsp;
+                       Email : {{$refList[0]['email']}}<br>&nbsp;&nbsp;
+                       Phone : {{$refList[0]['phone']}}
+                    @endif
+                    @if($i==2 && count($refList) >1)
+                            {{$refList[1]['firstName']}}  {{$refList[1]['lastName']}}<br>;&nbsp;&nbsp;
+                            Email : {{$refList[1]['email']}}<br>&nbsp;&nbsp;
+                            Phone : {{$refList[1]['phone']}}
+
+                        @endif
+                    @if($i==4 && count($refList) >2)
+                            {{$refList[2]['firstName']}}  {{$refList[2]['lastName']}}<br>&nbsp;&nbsp;
+                            Email : {{$refList[2]['email']}}<br>&nbsp;&nbsp;
+                            Phone : {{$refList[2]['phone']}}
+
+                        @endif
+                    @if($i==6 && count($refList) >3)
+                            {{$refList[3]['firstName']}}  {{$refList[3]['lastName']}}<br>&nbsp;&nbsp;
+                            Email : {{$refList[3]['email']}}<br>&nbsp;&nbsp;
+                            Phone : {{$refList[3]['phone']}}
+
+                        @endif
+                    @if($i==8 && count($refList) >4)
+                            {{$refList[4]['firstName']}}  {{$refList[1]['lastName']}}<br>&nbsp;&nbsp;
+                            Email : {{$refList[4]['email']}}<br>&nbsp;&nbsp;
+                            Phone : {{$refList[4]['phone']}}
+
+                    @endif
+
+
+
+
                 </td>
 
 
@@ -488,7 +654,7 @@
             {{--<td rowspan="16">--}}
 
                    {{--<b>{{$list['firstName']." ".$list['lastName']}}</b>--}}
-                {{--<br>--}}
+                {{--<br>&nbsp;&nbsp;--}}
 
                 {{----}}
 

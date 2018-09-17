@@ -453,7 +453,8 @@
         function selected_rows(x) {
 
             btn = $(x).data('panel-id');
-            var index = selecteds.indexOf(btn.toString())
+            var index = selecteds.indexOf(btn);
+
             if (index == "-1"){
                 selecteds.push(btn);
             }else {
@@ -462,12 +463,15 @@
             }
 
 
+
         }
 
         function myfunc() {
 
 
             var products=selecteds;
+
+
 
             if (products.length >0) {
 
@@ -585,13 +589,14 @@
                 $(".chk:checked").each(function () {
                     selecteds.push($(this).val());
                 });
-                //  alert(selecteds);
+
 
 
             }
             else {
                 selecteds=[];
                 $(':checkbox:checked').prop('checked',false);
+
             }
 
         });

@@ -11,8 +11,10 @@ use App\Http\Controllers\Controller;
 
 use App\Job;
 use App\Jobapply;
+use App\JobExperience;
 use App\Nationality;
 use App\ProfessionalQualification;
+use App\Refree;
 use App\Religion;
 use App\Traning;
 use Carbon\Carbon;
@@ -216,7 +218,6 @@ class ApplicationController extends Controller
 
 
 
-
         $appliedList=$r->jobApply;
         $filePath=public_path ()."/exportedExcel";
         $fileName="AppliedCandidateList".date("Y-m-d_H-i-s");
@@ -230,6 +231,9 @@ class ApplicationController extends Controller
         $eduList=array();
         $qualificationList=array();
         $trainingList=array();
+        $jobExperienceList=array();
+        $salaryList=array();
+        $refreeList=array();
 
         for ($i=0;$i<count($appliedList);$i++){
             $appliedId=$appliedList[$i];
@@ -238,8 +242,6 @@ class ApplicationController extends Controller
 
             $newlist=Employee::select('employee.*',DB::raw("TIMESTAMPDIFF(YEAR,`employee`.`dateOfBirth`,CURDATE()) as AgeYear"),DB::raw("TIMESTAMPDIFF(MONTH,`employee`.`dateOfBirth`,CURDATE()) as AgeMonth"))
 //                ->leftJoin('education', 'education.fkemployeeId', '=', 'employee.employeeId')
-
-
                 ->where('employee.employeeId',$empId)
                 ->get()
                 ->toArray();
@@ -260,32 +262,47 @@ class ApplicationController extends Controller
                 ->get()
                 ->toArray();
 
+            $jobExperience=JobExperience::where('fkemployeeId',$empId)
+                ->get()
+                ->toArray();
+
+            $jobApply=Jobapply::where('jobapply',$appliedId)
+                ->get()
+                ->toArray();
+
+            $refree=Refree::where('fkemployeeId',$empId)
+                ->get()
+                ->toArray();
 
 
             $list=array_merge($list,$newlist);
             $eduList=array_merge($eduList,$education);
             $trainingList=array_merge($trainingList,$training);
             $qualificationList=array_merge($qualificationList,$pQualification);
+            $jobExperienceList=array_merge($jobExperienceList,$jobExperience);
+            $salaryList=array_merge($salaryList,$jobApply);
+            $refreeList=array_merge($refreeList,$refree);
 
         }
 
-       // return $eduList;
 
 
 
 
-        $check=Excel::create($fileName,function($excel) use($list,$filePath,$ethnicity,$eduList,$qualificationList,$trainingList) {
-            $excel->sheet('First sheet', function($sheet) use($list,$ethnicity,$eduList,$qualificationList,$trainingList) {
+
+        $check=Excel::create($fileName,function($excel) use($list,$filePath,$ethnicity,$eduList,$qualificationList,$trainingList,$jobExperienceList,$salaryList,$refreeList) {
+            $excel->sheet('First sheet', function($sheet) use($list,$ethnicity,$eduList,$qualificationList,$trainingList,$jobExperienceList,$salaryList,$refreeList) {
 
 
                 $sheet->loadView('Admin.application.AppliedCandidateList')
-//                $sheet->loadView('test')
                     ->with('AppliedCandidateList',$list)
                     ->with('ethnicity',$ethnicity)
                     ->with('educationList',$eduList)
                     ->with('qualificationList',$qualificationList)
-                    ->with('trainingList',$trainingList);
-
+                    ->with('trainingList',$trainingList)
+                    ->with('jobExperienceList',$jobExperienceList)
+                    ->with('salaryList',$salaryList)
+                    ->with('refreeList',$refreeList);
             });
 
         })->store('xls',$filePath);

@@ -2,46 +2,37 @@
 @section('content')
 
     <!-- Modal -->
-    <div class="modal fade" id="NewAgreementModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="NewOrganizationTypeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <b><h4 class="modal-title dark profile-title" id="myModalLabel">Create Agreement Questiones</h4></b>
+                    <b><h4 class="modal-title dark profile-title" id="myModalLabel">Create OrganizationType</h4></b>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
 
                 </div>
 
                 <div class="modal-body">
 
-                    <form action="{{route('manage.agreement.insert')}}" method="post">
+                    <form action="{{route('manage.organizationType.insert')}}" method="post">
                         {{csrf_field()}}
 
-                        {{--<div class="form-group">--}}
 
-                        {{--<label for="">Nationality<span style="color: red">*</span></label>--}}
-                        {{--<select name="educationLevel" class="form-control" required id="educationLevel">--}}
-                        {{--<option value="">Select Education Level</option>--}}
-                        {{--@foreach($nationality as $n)--}}
-                        {{--<option value="{{$education->educationLevelId}}">{{$education->educationLevelName}}</option>--}}
-                        {{--@endforeach--}}
-                        {{--</select>--}}
-
-                        {{--</div>--}}
                         <div class="form-group">
 
-                            <label for="">Agreement Question<span style="color: red">*</span></label>
+                            <label for="">OrganizationType<span style="color: red">*</span></label>
 
-                            <input class="form-control" name="qus" required type="text">
+                            <input class="form-control" name="typeName" required type="text">
 
                         </div>
                         <div class="form-group">
-
-                            <label for="">Serial<span style="color: red">*</span></label>
-
-                            <input class="form-control" name="serial" required type="number">
-
+                            <label for="">Status</label>
+                            <select class="form-control" name="status">
+                                <option value="">select Status</option>
+                                @foreach(STATUS as $key=>$value)
+                                    <option value="{{$key}}">{{$value}}</option>
+                                @endforeach
+                            </select>
                         </div>
-
                         <div class="form-group">
 
                             <button type="submit" class="btn btn-success">Submit</button>
@@ -59,19 +50,19 @@
 
 
 
-    <div class="modal" id="editModalReligion">
+    <div class="modal" id="editModalOrganizationType">
         <div class="modal-dialog">
             <div class="modal-content">
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Edit Religion</h4>
+                    <h4 class="modal-title">Edit OrganizationType</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <div  id="editModalBodyReligion">
+                    <div  id="editModalBodyOrganizationType">
 
                     </div>
                 </div>
@@ -99,39 +90,40 @@
 
                 <div class="card-body">
                     <div class="card-header-tabs">
-                        <h4>Manage Agreement Question</h4>
+                        <h4>Manage Organization Type</h4>
                     </div>
 
                     <div align="right">
-                        <a onclick="addnewAgreement()" href="#"> <button class="btn btn-info">Add New</button></a>
+                        <a onclick="addnewOrganizationType()" href="#"> <button class="btn btn-info">Add New</button></a>
                     </div>
                     <br>
 
 
-                    <table id="religiontable" class="table table-striped table-bordered" style="width:100%" >
+                    <table id="OrganizationTypetable" class="table table-striped table-bordered" style="width:100%" >
                         <thead>
                         <tr>
 
 
-                            <th>Agreement Question</th>
-                            <th>Serial</th>
+                            <th>OrganizationType</th>
+
                             <th>Status</th>
                             <th width="30%">Action</th>
                         </tr>
                         </thead>
                         <tbody>
 
-                        @foreach($religion as $r)
+                        @foreach($organizationType as $type)
                             <tr>
-                                <td>{{$r->religionName}}</td>
+                                <td>{{$type->organizationTypeName}}</td>
+
                                 <td>
                                     @foreach(STATUS as $key=>$value)
-                                        @if($r->status == $key)
+                                        @if($type->status == $key)
                                             {{$value}}
                                         @endif
                                     @endforeach
                                 </td>
-                                <td width="10%"><button class="btn btn-sm btn-success" data-panel-id="{{$r->religionId}}" onclick="editReligion(this)">Edit</button>
+                                <td width="10%"><button class="btn btn-sm btn-success" data-panel-id="{{$type->	organizationTypeId}}" onclick="editOrganizationType(this)">Edit</button>
                                 </td>
 
                             </tr>
@@ -165,26 +157,28 @@
 
     <script>
         $(function () {
-            $('#religiontable').DataTable();
+            $('#OrganizationTypetable').DataTable({
+                "ordering": false,
+            });
         });
-        function addnewReligion() {
+        function addnewOrganizationType() {
 
 
-            $('#NewReligionModal').modal({show:true});
+            $('#NewOrganizationTypeModal').modal({show:true});
 
         }
-        function editReligion(x) {
+        function editOrganizationType(x) {
             var id=$(x).data('panel-id');
 
             $.ajax({
                 type: 'POST',
-                url: "{!! route('admin.editReligion') !!}",
+                url: "{!! route('admin.editOrganizationType') !!}",
                 cache: false,
                 data: {_token: "{{csrf_token()}}",'id': id},
                 success: function (data) {
 //                    console.log(data);
-                    $('#editModalBodyReligion').html(data);
-                    $('#editModalReligion').modal();
+                    $('#editModalBodyOrganizationType').html(data);
+                    $('#editModalOrganizationType').modal();
                 }
             });
 
