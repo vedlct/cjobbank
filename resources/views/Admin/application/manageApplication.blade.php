@@ -589,7 +589,7 @@
                 $(".chk:checked").each(function () {
                     selecteds.push($(this).val());
                 });
-                 
+
 
 
             }
