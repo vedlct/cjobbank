@@ -7,9 +7,13 @@ use App\Jobapply;
 use Illuminate\Http\Request;
 use App\Job;
 use Auth;
+use Illuminate\Support\Facades\DB;
+
 class JobController extends Controller
 {
    public function index(Request $r){
+
+       $allZone=DB::table('zone')->get();
 
 
        $jobs=Job::select('job.jobId','job.title','job.details','job.details','job.deadline')
@@ -18,6 +22,9 @@ class JobController extends Controller
 
        if($r->search !=""){
            $jobs=$jobs->where('job.title', 'like', '%' . $r->search . '%');
+       }
+       if ($r->zonefilter){
+           $jobs= $jobs->where('job.fkzoneId',$r->zonefilter);
        }
        $jobs=$jobs->paginate(10);
 
@@ -33,20 +40,25 @@ class JobController extends Controller
 
 
        if ($r->ajax()) {
-           return view('job.getAllJob',compact('jobs','cvStatus', 'applyjob'));
+           return view('job.getAllJob',compact('jobs','cvStatus', 'applyjob','allZone'));
        }
 
-       return view('job.all');
+       return view('job.all',compact('allZone'));
 
    }
 
    public function getJobData(Request $r){
+
+       $allZone=DB::table('zone')->get();
 
        $jobs=Job::select('job.jobId','job.title','job.details','job.details','job.deadline')
            ->where('job.status',1)
            ->where('job.deadline','>=',date('Y-m-d'));
        if($r->search !=""){
            $jobs=$jobs->where('job.title', 'like', '%' . $r->search . '%');
+       }
+       if ($r->zonefilter){
+           $jobs= $jobs->where('job.fkzoneId',$r->zonefilter);
        }
        $empId=Employee::where('fkuserId',Auth::user()->userId)->first()->employeeId;
 
@@ -59,7 +71,7 @@ class JobController extends Controller
 
        $cvStatus=Employee::where('fkuserId',Auth::user()->userId)->first()->cvStatus;
 
-       return view('job.getAllJob',compact('jobs','cvStatus','applyjob'));
+       return view('job.getAllJob',compact('jobs','cvStatus','applyjob','allZone'));
    }
 
    public function applyJobModal(Request $r){
