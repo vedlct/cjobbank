@@ -86,7 +86,8 @@
                             <th width="4%">Select</th>
                             <th>Image</th>
 
-                            <th>Name</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
                             <th>Age</th>
                             <th>Gender</th>
                             <th>Email</th>
@@ -188,11 +189,56 @@
                         "searchable": false,
                     },
 
-                    { data: 'name', name: 'name',"orderable": false, "searchable":true },
+//                    { data: 'name', name: 'name',"orderable": false, "searchable":true },
+
+                    { data: 'firstName', name: 'firstName',"orderable": false, "searchable":true },
+                    { data: 'lastName', name: 'lastName',"orderable": false, "searchable":true },
+
+                    { "data": function(data){
+                        return data.age1+"."+data.age2 ;},
+                        "orderable": true, "searchable":true,
+                    },
 
 
-                    { data: 'Age', name: 'Age', "orderable": false, "searchable":true },
-                    { data: 'gender', name: 'gender', "orderable": false, "searchable":true },
+//                    { data: 'age1', name: 'age', "orderable": false, "searchable":true },
+//                    { data: 'gender', name: 'gender', "orderable": false, "searchable":true },
+
+                    { "data": function(data){
+
+                        var words = '<?php echo json_encode(GENDER) ?>';// don't use quotes
+//                        $.each(words, function(key, value) {
+//
+//                            if (value==data.gender){
+//                                return key;
+//                            }
+//
+//                        });
+
+//                        for (var k in words){
+//                            if (words.hasOwnProperty(k)) {
+//
+//                                if (words[k] == data.gender){
+//                                return words[k];
+//                            }
+//                            }
+//                        }
+//
+//                        Object.keys(obj).forEach(function (key) {
+//                            // do something with obj[key]
+//                        });
+
+//                        for(key in words){
+//                            if (words[key]==data.gender){
+//                                return key;
+//                            }
+//                        }
+                        return words;
+
+
+
+                        },
+                        "orderable": true, "searchable":true,
+                    },
 
                     { data: 'email', name: 'email', "orderable": false, "searchable":true },
 
