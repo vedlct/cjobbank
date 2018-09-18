@@ -82,6 +82,8 @@ class PersonalInfoController extends Controller
             'alternateEmail' => 'required|email|max:255',
             'currentAddress' => 'required',
             'permanentAddress' => 'required',
+            'image' => 'image|mimes:jpeg,jpg,png|max:100',
+            'sign' => 'image|mimes:jpeg,jpg,png|max:50',
 
 
         ];
@@ -180,6 +182,8 @@ class PersonalInfoController extends Controller
             'alternateEmail' => 'required|email|max:255',
             'currentAddress' => 'required',
             'permanentAddress' => 'required',
+            'image' => 'image|mimes:jpeg,jpg,png|max:100',
+            'sign' => 'image|mimes:jpeg,jpg,png|max:50',
 
 
         ];
