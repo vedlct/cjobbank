@@ -22,7 +22,8 @@ Route::get('password','HomeController@password')->name('password');
 Route::post('password','HomeController@changePassword')->name('password.change');
 
 
-Route::view('test','test');
+//Route::view('test','test');
+Route::get('test','UserCvController@index');
 //Registration
 Route::view('/Register', 'register')->name('register');
 Route::post('/Register', 'Auth\RegisterController@createUserShowAggrement')->name('register.createUserShowAggrement');
