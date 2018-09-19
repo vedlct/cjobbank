@@ -65,9 +65,9 @@ class DashboardController extends Controller
             ->where('cvStatus',1)
             ->where('cvCompletedDate',date('Y-m-d'))
             ->get();
-        $allZone=DB::table('zone')->get();
-        $religion=Religion::get();
-        $ethnicity=Ethnicity::get();
+        $allZone=DB::table('zone')->where('status',1)->get();
+        $religion=Religion::where('status',1)->get();
+        $ethnicity=Ethnicity::where('status',1)->get();
 
 
         return view('Admin.dashboard.home',compact('todaysJobApply','allZone','todaysRegisterCv','religion','ethnicity'));

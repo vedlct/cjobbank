@@ -40,9 +40,9 @@ class PersonalInfoController extends Controller
         $userId=Auth::user()->userId;
         $employeeCvPersonalInfo=Employee::where('fkuserId', '=',$userId)->get();
 
-        $religion=Religion::get();
-        $ethnicity=Ethnicity::get();
-        $natinality=Nationality::get();
+        $religion=Religion::where('status',1)->get();
+        $ethnicity=Ethnicity::where('status',1)->get();
+        $natinality=Nationality::where('status',1)->get();
 
        // return $employeeCvPersonalInfo;
 

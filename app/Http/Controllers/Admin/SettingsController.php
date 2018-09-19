@@ -42,6 +42,13 @@ class SettingsController extends Controller
         ]);
         $zone=new Zone();
         $zone->zoneName=$r->zone;
+
+        if ($r->status ==""){
+            $zone->status='1';
+        }else{
+            $zone->status=$r->status;
+        }
+
         $zone->save();
 
         Session::flash('message', 'Zone Added Successfully!');
@@ -56,6 +63,11 @@ class SettingsController extends Controller
     public function updateZone($id,Request $r){
         $zone=Zone::findOrFail($r->id);
         $zone->zoneName=$r->zone;
+        if ($r->status ==""){
+            $zone->status='1';
+        }else{
+            $zone->status=$r->status;
+        }
         $zone->save();
         Session::flash('message', 'Zone Updated Successfully!');
         return redirect()->route('manage.zone');
@@ -121,6 +133,13 @@ class SettingsController extends Controller
         $degree =new Degree();
         $degree->degreeName=$r->degree;
         $degree->educationLevelId=$r->educationLevel;
+
+        if ($r->status ==""){
+            $degree->status='1';
+        }else{
+            $degree->status=$r->status;
+        }
+
         $degree->save();
 
         Session::flash('message', 'Degree Added Successfully!');
@@ -139,6 +158,13 @@ class SettingsController extends Controller
         $degree =Degree::findOrFail($id);
         $degree->degreeName=$r->degree;
         $degree->educationLevelId=$r->educationLevel;
+
+        if ($r->status ==""){
+            $degree->status='1';
+        }else{
+            $degree->status=$r->status;
+        }
+
         $degree->save();
 
         Session::flash('message', 'Degree Updated Successfully!');

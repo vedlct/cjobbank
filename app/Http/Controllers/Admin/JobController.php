@@ -28,11 +28,11 @@ class JobController extends Controller
 
        if(Auth::user()->fkuserTypeId==USER_TYPE['Emp']){
            $myZone=HR::where('fkuserId',Auth::user()->userId)->first();
-           $allZone=DB::table('zone')->where('zoneId',$myZone->fkzoneId)->get();
+           $allZone=DB::table('zone')->where('zoneId',$myZone->fkzoneId)->where('status',1)->get();
 
 
        }elseif(Auth::user()->fkuserTypeId==USER_TYPE['Admin']){
-           $allZone=DB::table('zone')->get();
+           $allZone=DB::table('zone')->where('status',1)->get();
        }
        
        return view('Admin.job.addJob',compact('allZone'));
@@ -93,11 +93,11 @@ class JobController extends Controller
 
        if(Auth::user()->fkuserTypeId==USER_TYPE['Emp']){
            $myZone=HR::where('fkuserId',Auth::user()->userId)->first();
-           $allZone=DB::table('zone')->where('zoneId',$myZone->fkzoneId)->get();
+           $allZone=DB::table('zone')->where('zoneId',$myZone->fkzoneId)->where('status',1)->get();
 
 
        }elseif(Auth::user()->fkuserTypeId==USER_TYPE['Admin']){
-           $allZone=DB::table('zone')->get();
+           $allZone=DB::table('zone')->where('status',1)->get();
        }
 
       // $allZone=DB::table('zone')->get();

@@ -21,7 +21,7 @@ class JobExperienceController extends Controller
        $experiences=JobExperience::where('fkemployeeId',$employee->employeeId)
            ->leftJoin('organizationtype','organizationtype.organizationTypeId','jobexperience.fkOrganizationType')
            ->get();
-       $companyType=DB::table('organizationtype')->get();
+       $companyType=DB::table('organizationtype')->where('status',1)->get();
 
        if($experiences->isEmpty()){
 
@@ -55,7 +55,7 @@ class JobExperienceController extends Controller
    public function editJobExperience(Request $r){
 
        $experience=JobExperience::leftJoin('organizationtype','organizationtype.organizationTypeId','jobexperience.fkOrganizationType')->findOrFail($r->jobExperienceId);
-       $companyType=DB::table('organizationtype')->get();
+       $companyType=DB::table('organizationtype')->where('status',1)->get();
 
        return view('userCv.edit.editJobExperience',compact('experience','companyType'));
 //       return $r;
