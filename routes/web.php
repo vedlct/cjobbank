@@ -192,14 +192,25 @@ Route::post('manage/Nationality/insert','Admin\SettingsController@insertNational
 Route::post('manage/Nationality/editNationality','Admin\SettingsController@editNationality')->name('admin.editNationality');
 Route::post('manage/Nationality/updateNationality/{id}','Admin\SettingsController@updateNationality')->name('manage.nationality.update');
 
+//Religion
+Route::get('manage/Religion','Admin\SettingsController@religion')->name('manage.religion');
+Route::post('manage/Religion/insert','Admin\SettingsController@insertReligion')->name('manage.religion.insert');
+Route::post('manage/Religion/editReligion','Admin\SettingsController@editReligion')->name('admin.editReligion');
+Route::post('manage/Religion/updateReligion/{id}','Admin\SettingsController@updateReligion')->name('manage.religion.update');
+
+
+//Agreement
+Route::get('manage/Agreement','Admin\SettingsController@agreement')->name('manage.agreement');
+Route::post('manage/Agreement/insert','Admin\SettingsController@insertAgreement')->name('manage.agreement.insert');
+Route::post('manage/Agreement/editAgreement','Admin\SettingsController@editAgreement')->name('admin.editAgreement');
+Route::post('manage/Agreement/updateAgreement/{id}','Admin\SettingsController@updateAgreement')->name('manage.agreement.update');
+
+
 //Ethnicity
 
 Route::get('manage/Ethnicity','Admin\SettingsController@manageEthnicity')->name('manage.ethnicity');
-
 Route::post('manage/Ethnicity/insert','Admin\SettingsController@insertEthnicity')->name('manage.ethnicity.insert');
-
 Route::post('manage/Ethnicity/editEthnicity','Admin\SettingsController@editEthnicity')->name('admin.editEthnicity');
-
 Route::post('manage/Ethnicity/updateEthnicity/{id}','Admin\SettingsController@updateEthnicity')->name('manage.ethnicity.update');
 
 
@@ -208,5 +219,6 @@ Route::get('manage/Organization-Type','Admin\SettingsController@manageorganizati
 Route::post('manage/Organization-Type/insert','Admin\SettingsController@insertorganizationType')->name('manage.organizationType.insert');
 Route::post('manage/Organization-Type/editOrganizationType','Admin\SettingsController@editOrganizationType')->name('admin.editOrganizationType');
 Route::post('manage/Organization-Type/updateOrganizationType/{id}','Admin\SettingsController@updateOrganizationType')->name('manage.organizationType.update');
+
 
 

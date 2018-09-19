@@ -274,13 +274,14 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="">Image</label>
-                                    <input type="file" class="form-control" name="sign" id="" placeholder="">
                                     @if ($errors->has('sign'))
 
                                         <span class="">
                                         <strong>{{ $errors->first('sign') }}</strong>
                                     </span>
                                     @endif
+                                    <input type="file" class="form-control" name="sign" id="" placeholder="">
+
                                 </div>
 
                             </div>

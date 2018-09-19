@@ -86,7 +86,8 @@
                             <th width="4%">Select</th>
                             <th>Image</th>
 
-                            <th>Name</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
                             <th>Age</th>
                             <th>Gender</th>
                             <th>Email</th>
@@ -112,6 +113,7 @@
 
 
 
+
 @endsection
 @section('foot-js')
 
@@ -122,7 +124,8 @@
     {{--<script src="https://cdn.datatables.net/rowreorder/1.2.3/js/dataTables.rowReorder.min.js"></script>--}}
     {{--<script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>--}}
     <script src="{{url('public/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
-    <script>
+    <script type="text/javascript">
+        var gend=[];
 
         $('.date').datepicker({
             format: 'yyyy-m-d'
@@ -135,6 +138,11 @@
         });
 
         $(document).ready(function() {
+
+            @foreach(GENDER as $key=>$value)
+            gend.push('{{$value}}');
+
+            @endforeach
 
 
             table = $('#managecv').DataTable({
@@ -188,11 +196,67 @@
                         "searchable": false,
                     },
 
-                    { data: 'name', name: 'name',"orderable": false, "searchable":true },
+//                    { data: 'name', name: 'name',"orderable": false, "searchable":true },
+
+                    { data: 'firstName', name: 'firstName',"orderable": false, "searchable":true },
+                    { data: 'lastName', name: 'lastName',"orderable": false, "searchable":true },
+
+                    { "data": function(data){
+                        return data.age1+"."+data.age2 ;},
+                        "orderable": true, "searchable":true,
+                    },
 
 
-                    { data: 'Age', name: 'Age', "orderable": false, "searchable":true },
-                    { data: 'gender', name: 'gender', "orderable": false, "searchable":true },
+//                    { data: 'age1', name: 'age', "orderable": false, "searchable":true },
+//                    { data: 'gender', name: 'gender', "orderable": false, "searchable":true },
+
+                    { "data": function(data){
+
+                        var words = '<?php echo json_encode(GENDER) ?>';// don't use quotes
+
+                        if( data.gender == "M"){
+                            return "Male"
+                        }else if (data.gender == "F") {
+                            return "Female"
+                        }
+                       // $.each(words, function(key, value) {
+                       //
+                       //     if (value==data.gender){
+                       //         return key;
+                       //     }
+                       //
+                       // });
+
+//                        for (var k in words){
+//                            if (words.hasOwnProperty(k)) {
+//
+//                                if (words[k] == data.gender){
+//                                return words[k];
+//                            }
+//                            }
+//                        }
+//
+//                        Object.keys(obj).forEach(function (key) {
+//                            // do something with obj[key]
+//                        });
+
+                       // for(key in words){
+                       //     if (words[key]==data.gender){
+                       //         return key;
+                       //     }
+                       // }
+                       //      for (var x in words){
+                       //          return ( words[x]);
+                       //
+                       //
+                       //      }
+                       // return words;
+
+
+
+                        },
+                        "orderable": true, "searchable":true,
+                    },
 
                     { data: 'email', name: 'email', "orderable": false, "searchable":true },
 

@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Aggrementqus;
 use App\Degree;
 use App\Education;
 use App\Educationlevel;
 use App\Ethnicity;
 use App\Nationality;
+
+use App\Religion;
+
 use App\OrganizationType;
+
 use App\Zone;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -187,6 +192,47 @@ class SettingsController extends Controller
 
     }
 
+
+
+
+    /*====================== Religion ============================*/
+
+    public function religion(){
+
+        $religion=Religion::get();
+        return view('manage.religion',compact('religion'));
+    }
+
+    public function insertReligion(Request $r){
+        $r->validate([
+            'religionName' => 'required',
+
+        ]);
+        $religion =new Religion();
+        $religion->religionName=$r->religionName;
+        $religion->save();
+
+        Session::flash('message', 'Religion Added Successfully!');
+        return redirect()->route('manage.religion');
+
+    }
+
+    public function editReligion(Request $r){
+        $editReligion=Religion::findOrFail($r->id);
+        return view('manage.editReligion',compact('editReligion'));
+    }
+
+    public function updateReligion($id,Request $r){
+        $nationality =Religion::findOrFail($id);
+        $nationality->religionName=$r->religionName;
+        $nationality->status = $r->status;
+        $nationality->save();
+
+        Session::flash('message', 'Religion Updated Successfully!');
+        return redirect()->route('manage.religion');
+
+    }
+
     /* ================== Ethnicity =====================*/
     public function manageEthnicity(){
 
@@ -311,5 +357,60 @@ class SettingsController extends Controller
         return redirect()->route('manage.organizationType');
 
     }
+
+
+    /*====================== Agreement Question ============================*/
+
+    public function agreement(){
+
+        $agreement=Aggrementqus::get();
+        $lastserialnumber = Aggrementqus::select('serial')
+            ->orderBy('serial', 'DESC')
+            ->first();
+        return view('manage.agreement',compact('agreement', 'lastserialnumber'));
+    }
+
+    public function insertAgreement(Request $r){
+        $r->validate([
+            'qus' => 'required',
+            'serial' => 'required|unique:agreementqus,serial',
+
+        ]);
+        $agreement =new Aggrementqus();
+        $agreement->qus=$r->qus;
+        $agreement->serial=$r->serial;
+        $agreement->save();
+
+        Session::flash('message', 'Agreement Question Added Successfully!');
+        return redirect()->route('manage.agreement');
+
+    }
+
+    public function editAgreement(Request $r){
+        $editAgreement=Aggrementqus::findOrFail($r->id);
+        $lastserialnumber = Aggrementqus::select('serial')
+            ->orderBy('serial', 'DESC')
+            ->first();
+        return view('manage.editAgreement',compact('editAgreement', 'lastserialnumber'));
+    }
+
+    public function updateAgreement($id,Request $r){
+
+        $r->validate([
+            'qus' => 'required',
+            'serial' => 'required|unique:agreementqus,serial,'.$id.',agreementQusId',
+
+        ]);
+        $agreement =Aggrementqus::findOrFail($id);
+        $agreement->qus=$r->qus;
+        $agreement->serial=$r->serial;
+        $agreement->status = $r->status;
+        $agreement->save();
+
+        Session::flash('message', 'Agreement Updated Successfully!');
+        return redirect()->route('manage.agreement');
+
+    }
+
 
 }

@@ -3,13 +3,26 @@
 
 
 <div class="container">
-    <div style="margin-bottom: 20px;" class="row">
-        <div class="col-lg-2">
-            <h5>Job Search: </h5>
+    <div style="margin-bottom: 20px;margin-top: 40px;" class="row">
+
+        <div class="col-md-1">
+            <h5 >Zone</h5>
+        </div>
+        <div class="col-md-2">
+            <select name="zonefilter" id="zonefilter" class="form-control">
+                <option value="">Select a Zone</option>
+                @foreach($allZone as $zone)
+                <option  value="{{$zone->zoneId}}">{{$zone->zoneName}}</option>
+                @endforeach
+
+            </select>
+
         </div>
 
-
-        <div class="col-lg-10">
+        <div class="col-md-2">
+            <h5>Job Search: </h5>
+        </div>
+        <div class="col-md-7">
             {{--<form class="navbar-form" role="search">--}}
                 <div class="input-group add-on">
                     <input class="form-control" placeholder="Search" name="srch-term" id="search-job" type="text">
@@ -56,13 +69,18 @@
      }
  });
 
+ $('#zonefilter').change(function(){ //button filter event click
+     getAllJob();
+ });
+
  function getAllJob() {
      var search=$("#search-job").val();
+     var zone=$("#zonefilter").val();
      $.ajax({
          type: 'POST',
          url: "{!! route('job.getJobData') !!}",
          cache: false,
-         data: {_token: "{{csrf_token()}}",search:search},
+         data: {_token: "{{csrf_token()}}",search:search,zonefilter:zone},
          success: function (data) {
              $('#allJob').html(data);
 
