@@ -113,6 +113,7 @@
 
 
 
+
 @endsection
 @section('foot-js')
 
@@ -123,7 +124,8 @@
     {{--<script src="https://cdn.datatables.net/rowreorder/1.2.3/js/dataTables.rowReorder.min.js"></script>--}}
     {{--<script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>--}}
     <script src="{{url('public/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
-    <script>
+    <script type="text/javascript">
+        var gend=[];
 
         $('.date').datepicker({
             format: 'yyyy-m-d'
@@ -136,6 +138,11 @@
         });
 
         $(document).ready(function() {
+
+            @foreach(GENDER as $key=>$value)
+            gend.push('{{$value}}');
+
+            @endforeach
 
 
             table = $('#managecv').DataTable({
@@ -206,13 +213,19 @@
                     { "data": function(data){
 
                         var words = '<?php echo json_encode(GENDER) ?>';// don't use quotes
-//                        $.each(words, function(key, value) {
-//
-//                            if (value==data.gender){
-//                                return key;
-//                            }
-//
-//                        });
+
+                        if( data.gender == "M"){
+                            return "Male"
+                        }else if (data.gender == "F") {
+                            return "Female"
+                        }
+                       // $.each(words, function(key, value) {
+                       //
+                       //     if (value==data.gender){
+                       //         return key;
+                       //     }
+                       //
+                       // });
 
 //                        for (var k in words){
 //                            if (words.hasOwnProperty(k)) {
@@ -227,12 +240,17 @@
 //                            // do something with obj[key]
 //                        });
 
-//                        for(key in words){
-//                            if (words[key]==data.gender){
-//                                return key;
-//                            }
-//                        }
-                        return words;
+                       // for(key in words){
+                       //     if (words[key]==data.gender){
+                       //         return key;
+                       //     }
+                       // }
+                       //      for (var x in words){
+                       //          return ( words[x]);
+                       //
+                       //
+                       //      }
+                       // return words;
 
 
 
