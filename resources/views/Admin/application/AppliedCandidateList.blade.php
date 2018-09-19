@@ -122,14 +122,32 @@
         @endforeach
 
 
+            <?php
+            $count=8;
+
+
+
+            if(count($eduList) >$count){
+                $count=count($eduList)*2;
+            }
+            if(count($trainList) >$count){
+                $count=count($trainList)*2;
+            }
+            if(count($jobList) >$count){
+                $count=count($jobList)*2;
+            }
+
+            ?>
+
+
     <tbody>
 
 
         <tr>
-            <td rowspan="14" style="text-align: center" valign="middle">{{$sl}}</td>
+            <td rowspan="{{$count}}" style="text-align: center" valign="middle">{{$sl}}</td>
             <td><b>{{$list['firstName']." ".$list['lastName']}}</b></td>
 
-            <td valign="middle" rowspan="14">
+            <td valign="middle" rowspan="{{$count}}">
                             <span style="text-align: center">
 
                                 @foreach(GENDER as $key=>$value)
@@ -138,7 +156,7 @@
                             </span>
             </td>
 
-            <td valign="middle" rowspan="14">
+            <td valign="middle" rowspan="{{$count}}">
 
                 <span style="text-align: center">
 
@@ -149,7 +167,7 @@
                 </span>
 
             </td>
-            <td valign="middle" rowspan="14">
+            <td valign="middle" rowspan="{{$count}}">
 
                 <span style="text-align: center">
 
@@ -160,7 +178,7 @@
                 </span>
 
             </td>
-            <td valign="middle" rowspan="14" style="text-align: center">
+            <td valign="middle" rowspan="{{$count}}" style="text-align: center">
                 {{$list['AgeYear'].".".$list['AgeMonth']}}yrs
             </td>
             <td>
@@ -170,11 +188,11 @@
             <td></td>
             <td></td>
             <td ></td>
-            <td valign="middle" rowspan="14" style="text-align: center">
+            <td valign="middle" rowspan="{{$count}}" style="text-align: center">
                 {{$list['nationalId']}}
 
             </td>
-            <td valign="middle" align="center" rowspan="14" style="text-align: center">
+            <td valign="middle" align="center" rowspan="{{$count}}" style="text-align: center">
                 @if($list['image'])
                     Yes
                 @else
@@ -186,14 +204,16 @@
             <td></td>
             <td></td>
 
-            <td valign="middle" align="center" rowspan="14" style="text-align: center">
+            <td valign="middle" align="center" rowspan="{{$count}}" style="text-align: center">
 
             </td>
 
         </tr>
 
 
-        @for($i=0 ;$i<14;$i++)
+
+
+        @for($i=0 ;$i<$count;$i++)
             <tr>
 
                 <td>
