@@ -65,7 +65,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/Admin/cvManage/manage.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
+            <state relative-caret-position="2838">
               <caret line="214" column="20" selection-start-line="214" selection-start-column="20" selection-end-line="214" selection-end-column="20" />
               <folding>
                 <element signature="e#0#6#0" expanded="true" />
@@ -359,15 +359,15 @@
       <workItem from="1536992991261" duration="9853000" />
       <workItem from="1537164919243" duration="16636000" />
       <workItem from="1537249839131" duration="6426000" />
-      <workItem from="1537337730667" duration="334000" />
+      <workItem from="1537337730667" duration="729000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39618000" />
+    <option name="totallyTimeSpent" value="40013000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25799572" />
@@ -653,7 +653,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/Admin/cvManage/manage.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
+        <state relative-caret-position="2838">
           <caret line="214" column="20" selection-start-line="214" selection-start-column="20" selection-end-line="214" selection-end-column="20" />
           <folding>
             <element signature="e#0#6#0" expanded="true" />
