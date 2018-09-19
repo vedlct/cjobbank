@@ -52,7 +52,7 @@ class UserManagementController extends Controller
     public function home()
     {
         if(Auth::user()->fkuserTypeId==USER_TYPE['Admin']){
-            $zones=Zone::get();
+            $zones=Zone::where('status',1)->get();
             $designations=Designation::get();
 
 
@@ -82,7 +82,7 @@ class UserManagementController extends Controller
     }
     public function add(){
         if(Auth::user()->fkuserTypeId==USER_TYPE['Admin']) {
-            $zones = Zone::get();
+            $zones = Zone::where('status',1)->get();
             $designations = Designation::get();
 
             return view('Admin.userMange.addUser', compact('zones', 'designations'));
@@ -155,7 +155,7 @@ class UserManagementController extends Controller
     public function edit($id){
         if(Auth::user()->fkuserTypeId==USER_TYPE['Admin']){
             $hr=HR::findOrFail($id);
-            $zones=Zone::get();
+            $zones=Zone::where('status',1)->get();
             $designations=Designation::get();
 
             return view('Admin.userMange.editUser',compact('zones','designations','hr'));
@@ -168,9 +168,16 @@ class UserManagementController extends Controller
         $status=$hr->status;
         if($status == 0){
             $hr->status=1;
+
+            DB::table('user')
+                ->where('userId', $hr->fkuserId)
+                ->update(['register' => 'Y']);
         }
         else{
             $hr->status=0;
+            DB::table('user')
+                ->where('userId', $hr->fkuserId)
+                ->update(['register' => 'N']);
         }
         $hr->save();
 //        return $r;

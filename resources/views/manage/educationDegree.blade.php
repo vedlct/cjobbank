@@ -35,6 +35,15 @@
 
                         </div>
                         <div class="form-group">
+                            <label for="">Status</label>
+                            <select class="form-control" name="status">
+                                <option value="">select Status</option>
+                                @foreach(STATUS as $key=>$value)
+                                    <option value="{{$key}}">{{$value}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
 
                             <button type="submit" class="btn btn-success">Submit</button>
                         </div>
@@ -107,6 +116,7 @@
 
                             <th>Education Level Name</th>
                             <th>Education Degree Name</th>
+                            <th>Status</th>
                             <th width="30%">Action</th>
                         </tr>
                         </thead>
@@ -116,6 +126,13 @@
                            <tr>
                                <td>{{$d->educationLevelName}}</td>
                                <td>{{$d->degreeName}}</td>
+                               <td>
+                                   @foreach(STATUS as $key=>$value)
+                                       @if($d->status == $key)
+                                           {{$value}}
+                                       @endif
+                                   @endforeach
+                               </td>
                                <td><button class="btn btn-sm btn-success" data-panel-id="{{$d->degreeId}}" onclick="editDegree(this)">Edit</button>
                                </td>
 

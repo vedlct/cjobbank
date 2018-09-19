@@ -56,7 +56,7 @@ class EducationController extends Controller
     }
     public function getDegreePerEducation(Request $r)
     {
-        $degree=Degree::select('degreeId','degreeName')->where('educationLevelId', '=',$r->id)->get();
+        $degree=Degree::select('degreeId','degreeName')->where('educationLevelId', '=',$r->id)->where('status',1)->get();
 
         if ($degree == null) {
             echo "<option value='' selected>Select Degree</option>";

@@ -109,7 +109,7 @@ class RegisterController extends Controller
         $userId=$user->userId;
 
 
-        $aggrementsQues=Aggrementqus::get();
+        $aggrementsQues=Aggrementqus::where('status',1)->orderBy('serial', 'ASC')->get();
 
 
         return view('newUserAgreement',compact('userToken','userPass','userEmail','aggrementsQues','userId'));
@@ -122,7 +122,7 @@ class RegisterController extends Controller
             $userAggrement=new Aggrement();
             $userAggrement->fkuserId=$r->userId;
             $userAggrement->fkaggrementQusId=$r->qesId[$i];
-            $userAggrement->ans=$r->qesans[$i];
+            $userAggrement->ans=$r->qesans[$i].$r->qesId[$i];
             $userAggrement->save();
 
         }
