@@ -20,6 +20,15 @@
                                 <input type="text" class="form-control" id="" placeholder="zone" name="zone">
                             </div>
                         <div class="form-group">
+                            <label for="">Status</label>
+                            <select class="form-control" name="status">
+                                <option value="">select Status</option>
+                                @foreach(STATUS as $key=>$value)
+                                    <option value="{{$key}}">{{$value}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
 
                         <button type="submit" class="btn btn-success">Submit</button>
                         </div>
@@ -89,6 +98,7 @@
 
 
                             <th>Zone Name</th>
+                            <th>Zone status</th>
                             <th width="30%">Action</th>
                         </tr>
                         </thead>
@@ -96,6 +106,14 @@
                         @foreach($zones as $zone)
                             <tr>
                                 <td>{{$zone->zoneName}}</td>
+                                <td>
+                                    @foreach(STATUS as $key=>$value)
+                                        @if($zone->status == $key)
+                                            {{$value}}
+                                        @endif
+                                    @endforeach
+
+                                </td>
                                 <td><button class="btn btn-success btn-sm" data-panel-id="{{$zone->zoneId}}" onclick="editZone(this)">Edit</button></td>
 
                             </tr>

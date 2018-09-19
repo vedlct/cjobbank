@@ -49,8 +49,9 @@ class CvManagementController extends Controller
     {
 //        $allZone=DB::table('zone')->get();
         if(Auth::user()->fkuserTypeId==USER_TYPE['Admin']){
-            $religion=Religion::get();
-            $ethnicity=Ethnicity::get();
+
+            $religion=Religion::where('status',1)->get();
+            $ethnicity=Ethnicity::where('status',1)->get();
 
             return view('Admin.cvManage.manage',compact('religion','ethnicity'));
         }

@@ -16,6 +16,17 @@
     <link href="{{url('public/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{url('public/assets/css/icons.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{url('public/assets/css/style.css')}}" rel="stylesheet" type="text/css" />
+    <style>
+
+        .wrapper-page{
+            width: 50%;
+            max-width:90% !important;
+        }
+        .card-body{
+            max-height: 600px;
+            overflow-y: scroll;
+        }
+    </style>
 
 </head>
 
@@ -52,10 +63,10 @@
                                 <p>{{$ques->qus}}</p>
                             </div>
                             <div class="col-4">
-                                <input type="hidden" name="qesId[]" value="{{$ques->aggrementQusId}}">
-                                <label class="checkbox-inline"><input type="checkbox" name="qesans[]" value="Y"> Yes</label>
-                                <label class="checkbox-inline"><input type="checkbox" name="qesans[]" value="N"> No</label>
-                                <label class="checkbox-inline"><input type="checkbox" name="qesans[]" value="NA"> Not Agree</label>
+                                <input type="hidden" name="qesId[]" value="{{$ques->agreementQusId}}">
+                                <label class="checkbox-inline"><input type="radio" name="qesans[]{{$ques->agreementQusId}}" required value="Y"> Yes</label>
+                                <label class="checkbox-inline"><input type="radio" name="qesans[]{{$ques->agreementQusId}}"  required value="N"> No</label>
+                                <label class="checkbox-inline"><input type="radio" name="qesans[]{{$ques->agreementQusId}}"  required value="NA"> Not Agree</label>
                             </div>
                         </div>
                     @endforeach

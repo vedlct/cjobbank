@@ -55,11 +55,11 @@ class ApplicationController extends Controller
 
     public function manageApplication()
     {
-        $religion=Religion::get();
-        $ethnicity=Ethnicity::get();
-        $natinality=Nationality::get();
-        $allZone=DB::table('zone')->get();
-        $organizationType=DB::table('organizationtype')->get();
+        $religion=Religion::where('status',1)->get();
+        $ethnicity=Ethnicity::where('status',1)->get();
+        $natinality=Nationality::where('status',1)->get();
+        $allZone=DB::table('zone')->where('status',1)->get();
+        $organizationType=DB::table('organizationtype')->where('status',1)->get();
         $allJobTitle=Job::select('title')->get();
         $allEducationLevel=Educationlevel::get();
         $allEducationMajor=Educationmajor::select('educationMajorId','educationMajorName')->get();
