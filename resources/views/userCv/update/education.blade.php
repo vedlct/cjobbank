@@ -95,11 +95,12 @@
 
                                 </div>
                                 <div class="form-group col-md-3">
+
                                     <label for="">Status :</label>
 
                                         @foreach(COMPLETING_STATUS as $key=>$value)
                                         @if($educationInfo->status ==$value)
-                                            <label for="">{{$key}}</label>
+                                            {{$key}}
                                         @endif
                                         @endforeach
 

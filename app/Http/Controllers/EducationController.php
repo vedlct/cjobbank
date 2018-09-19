@@ -32,7 +32,8 @@ class EducationController extends Controller
 
         $employee=Employee::where('fkuserId', '=',$userId)->first()->employeeId;
 
-        $employeeCvEducationInfo=Education::leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
+        $employeeCvEducationInfo=Education::select('education.*','educationmajor.educationMajorName','educationLevelName','degreeName')
+            ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
             ->leftJoin('educationmajor', 'educationmajor.educationMajorId', '=', 'education.fkMajorId')
             ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
             ->where('fkemployeeId', '=',$employee)->get();

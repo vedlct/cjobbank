@@ -93,15 +93,14 @@
         <table border="0" style="width:100%; margin-top: 30px; border: none; border-bottom: 1px solid #000">
             <tr>
                 <td style="text-align: left; border: none;">
-                    <h3 style="">Nahid Hasan</h3>
-                    <p>Cell No: 01711902299 <br>
-                        email: tushar@techcloudltd.com <br>
-                        address: house# 379, lane#6, 3rd Floor <br>
-                        Baridhara Dohs; Dhaka 1207
+                    <h3 style="">{{$personalInfo->firstName}} {{$personalInfo->lastName}}</h3>
+                    <p style="max-width: 300px">Cell No: {{$personalInfo->personalMobile}} <br>
+                        email: {{$personalInfo->email}} <br>
+                        address: {{$personalInfo->presentAddress}}
                     </p>
 
                 </td>
-                <td style="width: 13%; border: none; "><img height="150px" src="{{url('public/images/users/pp.jpg')}}" alt=""></td>
+                <td style="width: 13%; border: none; "><img height="150px" width="150px" src="{{url('public/candidateImages/thumb').'/'.$personalInfo->image}}" alt=""></td>
             </tr>
 
         </table>
@@ -114,89 +113,55 @@
         </table>
 
 
+    {{--Education--}}
+        @foreach($education as $edu)
+            <table border="0" style="width:100%; margin-top: 25px; border: none;">
+                <tr>
 
-        <table border="0" style="width:100%; margin-top: 25px; border: none;">
-            <tr>
+                    <td style="border: none; width: 10%">Exam </td>
+                    <td style="border: none; width: 5%">:</td>
 
-                <td style="border: none; width: 10%">Exam </td>
-                <td style="border: none; width: 5%">:</td>
+                    <td style="border: none;"><b>{{$edu->educationLevelName}} in {{$edu->degreeName}}</b> </td>
+                </tr>
+                <tr>
 
-                <td style="border: none;"><b>B.Sc in Computer Science & Engineering</b> </td>
-            </tr>
-            <tr>
+                    <td style="border: none; width: 10%">Institution</td>
+                    <td style="border: none; width: 5%">:</td>
+                    <td style="border: none;">{{$edu->institutionName}}</td>
+                </tr>
+                <tr>
 
-                <td style="border: none; width: 10%">Session</td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none;">2016-2017 </td>
-            </tr>
-            <tr>
+                    <td style="border: none; width: 10%">Passing Year</td>
+                    <td style="border: none; width: 5%">:</td>
+                    <td style="border: none;">{{$edu->passingYear}} </td>
+                </tr>
+                {{--<tr>--}}
 
-                <td style="border: none; width: 10%">Board</td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none;">Dhaka</td>
-            </tr>
-            <tr>
+                    {{--<td style="border: none; width: 10%">Board</td>--}}
+                    {{--<td style="border: none; width: 5%">:</td>--}}
+                    {{--<td style="border: none;">Dhaka</td>--}}
+                {{--</tr>--}}
 
-                <td style="border: none; width: 10%">Cgpa</td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none; margin-bottom: 30px;"> 4.00</td>
-            </tr>
+                <tr>
 
-        </table >
+                    <td style="border: none; width: 10%">Result</td>
+                    <td style="border: none; width: 5%">:</td>
+                    <td style="border: none; margin-bottom: 30px;"> {{$edu->result}}</td>
+                </tr>
 
-        <table border="0" style="width:100%; margin-top: 30px; border: none;">
-            <tr style="">
+            </table >
 
-                <td style="border: none; width: 10%">Exam </td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none;"><b>B.Sc in Computer Science & Engineering</b> </td>
-            </tr>
-            <tr>
 
-                <td style="border: none; width: 10%">Session</td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none;">2016-2017 </td>
-            </tr>
-            <tr>
 
-                <td style="border: none; width: 10%">Board</td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none;">Dhaka</td>
-            </tr>
-            <tr>
 
-                <td style="border: none; width: 10%">Cgpa</td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none;"> 4.00</td>
-            </tr>
-        </table>
+        @endforeach
 
-        <table border="0" style="width:100%; margin-top: 30px; border: none;">
-            <tr style="">
 
-                <td style="border: none; width: 10%">Exam</td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none;"><b>B.Sc in Computer Science & Engineering</b> </td>
-            </tr>
-            <tr>
 
-                <td style="border: none; width: 10%">Session</td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none;">2016-2017 </td>
-            </tr>
-            <tr>
 
-                <td style="border: none; width: 10%">Board</td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none;">Dhaka</td>
-            </tr>
-            <tr>
 
-                <td style="border: none; width: 10%">Cgpa</td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none;"> 4.00</td>
-            </tr>
-        </table>
+
+        
 
 
         <table border="0" style="width:100%; margin-top: 20px; border: none;">
