@@ -185,6 +185,8 @@ return [
 
         //excel
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        //DomPdf
+        Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 
@@ -240,9 +242,10 @@ return [
 
         //datatable
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
-
         //excel
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        //DomPdf
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 
