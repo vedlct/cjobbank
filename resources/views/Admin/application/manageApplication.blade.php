@@ -229,6 +229,7 @@
                             <th style="width: 4%">Select</th>
                             <th>First Name</th>
                             <th>Last Name</th>
+
                             <th>Job Title</th>
                             <th>Zone</th>
                             <th>Apply Date</th>
@@ -350,6 +351,7 @@
                     },
                     { data: 'firstName', name: 'firstName',"orderable": false, "searchable":true },
                     { data: 'lastName', name: 'lastName',"orderable": false, "searchable":true },
+
 
 
                     { data: 'title', name: 'title', "orderable": false, "searchable":true },

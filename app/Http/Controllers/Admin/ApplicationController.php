@@ -244,7 +244,7 @@ class ApplicationController extends Controller
 
             $empId=Jobapply::where('jobapply',$appliedId)->first()->fkemployeeId;
 
-            $newlist=Employee::select('employee.*',DB::raw("TIMESTAMPDIFF(YEAR,`employee`.`dateOfBirth`,CURDATE()) as AgeYear"),DB::raw("TIMESTAMPDIFF(MONTH,`employee`.`dateOfBirth`,CURDATE()) as AgeMonth"))
+            $newlist=Employee::select('employee.*',DB::raw("TIMESTAMPDIFF(YEAR,`employee`.`dateOfBirth`,CURDATE()) as AgeYear"),DB::raw("MONTH(`employee`.`dateOfBirth`)-MONTH(CURDATE()) as AgeMonth"))
 //                ->leftJoin('education', 'education.fkemployeeId', '=', 'employee.employeeId')
                 ->where('employee.employeeId',$empId)
                 ->get()

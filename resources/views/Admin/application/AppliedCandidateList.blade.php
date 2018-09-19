@@ -36,7 +36,7 @@
         <th>Gender</th>
         <th>Disability</th>
         <th>Ethnicity</th>
-        <th>AGE </th>
+        <th width="10">  AGE  </th>
         <th>Educational Qualification and name of Institution</th>
         <th>Professional Qualification</th>
         <th>Training</th>
@@ -179,7 +179,7 @@
 
             </td>
             <td valign="middle" rowspan="{{$count}}" style="text-align: center">
-                {{$list['AgeYear'].".".$list['AgeMonth']}}yrs
+                {{$list['AgeYear']}}.{{substr($list['AgeMonth'],0,1)}}yrs
             </td>
             <td>
 
