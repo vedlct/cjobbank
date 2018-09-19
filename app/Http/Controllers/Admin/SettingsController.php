@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Aggrementqus;
 use App\Degree;
+use App\Designation;
 use App\Education;
 use App\Educationlevel;
 use App\Ethnicity;
@@ -435,6 +436,46 @@ class SettingsController extends Controller
 
         Session::flash('message', 'Agreement Updated Successfully!');
         return redirect()->route('manage.agreement');
+
+    }
+
+
+    /*====================== Degisnation ============================*/
+
+    public function degisnation(){
+
+        $degisnation=Designation::get();
+
+        return view('manage.degisnation',compact('degisnation'));
+    }
+
+    public function insertDegisnation(Request $r){
+        $r->validate([
+            'designationName' => 'required',
+
+        ]);
+        $degisnation =new Designation();
+        $degisnation->designationName=$r->designationName;
+        $degisnation->save();
+
+        Session::flash('message', 'Degisnation Added Successfully!');
+        return redirect()->route('manage.degisnation');
+
+    }
+
+    public function editDegisnation(Request $r){
+        $editDesignation=Designation::findOrFail($r->id);
+        return view('manage.editDegisnation',compact('editDesignation'));
+    }
+
+    public function updateDesignation($id,Request $r){
+        $nationality =Designation::findOrFail($id);
+        $nationality->designationName=$r->designationName;
+        $nationality->status = $r->status;
+        $nationality->save();
+
+        Session::flash('message', 'Designation Updated Successfully!');
+        return redirect()->route('manage.religion');
 
     }
 
