@@ -25,13 +25,13 @@
                             {{--<li><a href="{{route('manage.education')}}">Manage Education</a></li>--}}
                         {{--</ul>--}}
                     </li>
-                    {{--<li class="has-submenu">--}}
-                        {{--<a href="#"><i class="ti-settings"></i>Settings</a>--}}
+                    <li class="has-submenu">
+                        <a onclick="viewUserCv()" href="#"><i class="ti-settings"></i>View Cv</a>
                         {{--<ul class="submenu">--}}
                             {{--<li><a href="{{route('manage.zone')}}">Manage Zone</a></li>--}}
                             {{--<li><a href="{{route('manage.education')}}">Manage Education</a></li>--}}
                         {{--</ul>--}}
-                    {{--</li>--}}
+                    </li>
                 @endif
 
                 @if(USER_TYPE['Admin']== Auth::user()->fkuserTypeId || USER_TYPE['Emp']== Auth::user()->fkuserTypeId)
@@ -82,3 +82,40 @@
 </div>
 <!-- end container -->
 </div>
+
+<script>
+    function viewUserCv() {
+
+        $.ajax({
+            type: "get",
+            url: '{{route('viewUserCv')}}',
+            data: {},
+            success: function (data) {
+
+                if (data==1){
+
+                    window.open("public/jobPdf"+"/"+id,'_blank');
+                }
+
+                $.alert({
+                    title: 'Success!',
+                    type: 'green',
+                    content: 'job Status change successfully',
+                    buttons: {
+                        tryAgain: {
+                            text: 'Ok',
+                            btnClass: 'btn-green',
+                            action: function () {
+
+                                location.reload();
+
+                            }
+                        }
+                    }
+                });
+
+            },
+        });
+
+    }
+</script>

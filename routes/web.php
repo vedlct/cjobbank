@@ -58,6 +58,7 @@ Route::view('job/manage','job.manage')->name('job.manage');
 //user Cv
 
 Route::get('Candidate-CV-CareerObjective','EmployeeController@getEmployeeCvCareerObjective')->name('candidate.cvCareerObjective');
+Route::get('Candidate-CV-Show','EmployeeController@getEmployeeshowFullCv')->name('candidate.viewUserCv');
 
 //ProfessionalCertificate
 Route::get('Candidate-CV-ProfessionalCertificate','ProfessionalCertificateController@getEmployeeCvProfessionalCertificate')->name('candidate.cvProfessionalCertificate');
