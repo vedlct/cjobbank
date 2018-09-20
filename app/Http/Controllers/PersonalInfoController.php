@@ -38,7 +38,7 @@ class PersonalInfoController extends Controller
     public function getEmployeeCv()
     {
         $userId=Auth::user()->userId;
-        $employeeCvPersonalInfo=Employee::where('fkuserId', '=',$userId)->get();
+        $employeeCvPersonalInfo=Employee::where('fkuserId','=',$userId)->get();
 
         $religion=Religion::where('status',1)->get();
         $ethnicity=Ethnicity::where('status',1)->get();
@@ -194,6 +194,7 @@ class PersonalInfoController extends Controller
 
         $this->validate($r, $rules, $customMessages);
 
+//        $empId=Employee::where('fkuserId',Auth::user()->userId)->first()->employeeId;
 
         $employee=Employee::where('fkuserId',Auth::user()->userId)->first();
 

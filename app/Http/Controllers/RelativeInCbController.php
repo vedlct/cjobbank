@@ -29,7 +29,7 @@ class RelativeInCbController extends Controller
     {
 
         $employee = Employee::select('employeeId')->where('fkuserId', Auth::user()->userId)->first();
-        $relativeInCB = Employee::select('relativeInCB')->where('fkuserId', Auth::user()->userId)->first();
+        $relativeInCB = Employee::select('relativeInCB')->where('employeeId',$employee->employeeId)->first();
         $relativeInCaritas = RelativeInCb::where('fkemployeeId', $employee->employeeId)->get();
 
 
@@ -76,7 +76,12 @@ class RelativeInCbController extends Controller
 
     public function  submitRelativeInCbYesOrNo(Request $r){
 
+        $empId=Employee::where('fkuserId',Auth::user()->userId)->first()->employeeId;
+
         if ($r->relativeincb == "1") {
+
+            Employee::where('employeeId',$empId)
+                ->update(['cvStatus'=>1,'cvCompletedDate' =>date('Y-m-d'),'relativeInCB'=>1]);
 
             Employee::where('fkuserId', Auth::user()->userId)
                 ->update(['relativeInCB' => 1]);
@@ -84,11 +89,14 @@ class RelativeInCbController extends Controller
             return redirect()->route('relativeInCaritas.getRelationInfo');
         }else{
 
-            Employee::where('fkuserId',Auth::user()->userId)
-                ->update(['cvStatus'=>1]);
+            Employee::where('employeeId',$empId)
+                ->update(['cvStatus'=>1,'cvCompletedDate' =>date('Y-m-d'),'relativeInCB'=>0]);
 
-            Employee::where('fkuserId',Auth::user()->userId)
-                ->update(['cvCompletedDate'=>date('Y-m-d')]);
+//            Employee::where('fkuserId',Auth::user()->userId)
+//                ->update(['cvStatus'=>1]);
+//
+//            Employee::where('fkuserId',Auth::user()->userId)
+//                ->update(['cvCompletedDate'=>date('Y-m-d')]);
 
             Session::flash('message', 'Relative Information Added Successfully');
             return redirect()->route('relativeInCaritas.getRelationInfo');
@@ -117,14 +125,17 @@ class RelativeInCbController extends Controller
     }
 
     public function deleteRelative(Request $r){
+
+        $empId=Employee::where('fkuserId',Auth::user()->userId)->first()->employeeId;
+
         RelativeInCb::destroy($r->relativeId);
 
-        $count=RelativeInCb::where('employee.fkuserId',Auth::user()->userId)
-            ->leftJoin('employee','employee.employeeId','relativeincb.fkemployeeId')
+        $count=RelativeInCb::where('relativeincb.fkemployeeId',$empId)
+//            ->leftJoin('employee','employee.employeeId','relativeincb.fkemployeeId')
             ->count();
 
-        if($count<2){
-            Employee::where('fkuserId',Auth::user()->userId)
+        if($count<1){
+            Employee::where('employeeId',$empId)
                 ->update(['cvStatus'=>null,'cvCompletedDate' =>null,'relativeInCB'=>0]);
 
 //            Employee::where('fkuserId',Auth::user()->userId)

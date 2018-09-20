@@ -10,12 +10,12 @@
                 {{--</li>--}}
                 @if(USER_TYPE['User']== Auth::user()->fkuserTypeId)
                 <li class="has-submenu">
-                    <a href="{{route('candidate.cvPersonalInfo')}}"><i class="ti-home"></i>Candidate CV</a>
+                    <a href="{{route('candidate.cvPersonalInfo')}}"><i class="ti-home"></i>User CV</a>
                 </li>
 
 
                 <li class="has-submenu">
-                    <a href="{{route('job.all')}}"><i class="ti-layout-width-default"></i>Jobs</a>
+                    <a href="{{route('job.all')}}"><i class="ti-layout-width-default"></i>Job Bank</a>
                 </li>
                     <li class="has-submenu">
                         {{--<a href="#"><i class="ti-archive"></i>Application</a>--}}

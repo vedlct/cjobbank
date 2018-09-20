@@ -18,6 +18,7 @@ class RefreeController extends Controller
     }
 
     public function index(){
+
         $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
         $refrees=Refree::where('fkemployeeId',$employee->employeeId)
             ->get();
@@ -35,6 +36,7 @@ class RefreeController extends Controller
 
     }
     public function submitRefree(Request $r){
+
         $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
 
         for($i=0;$i<count($r->firstName);$i++){
@@ -50,8 +52,8 @@ class RefreeController extends Controller
             $refree->save();
         }
 
-        Employee::where('fkuserId',Auth::user()->userId)
-            ->update(['cvStatus'=>1]);
+//        Employee::where('fkuserId',Auth::user()->userId)
+//            ->update(['cvStatus'=>1]);
 
         Session::flash('message', 'Reference Added Successfully');
 
@@ -87,10 +89,10 @@ class RefreeController extends Controller
             ->leftJoin('employee','employee.employeeId','referee.fkemployeeId')
             ->count();
 
-        if($count<2){
-            Employee::where('fkuserId',Auth::user()->userId)
-                ->update(['cvStatus'=>null]);
-        }
+//        if($count<2){
+//            Employee::where('fkuserId',Auth::user()->userId)
+//                ->update(['cvStatus'=>null]);
+//        }
 
         Session::flash('message', 'Reference Deleted Successfully');
 
