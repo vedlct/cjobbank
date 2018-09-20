@@ -229,8 +229,8 @@
                                         @endif
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="">Alternate Email<span style="color: red">*</span></label>
-                                        <input required type="text" name="alternateEmail" class="form-control {{ $errors->has('alternateEmail') ? ' is-invalid' : '' }}" value="{{$personalInfo->alternativeEmail }}" id="" placeholder="">
+                                        <label for="">Alternate Email</label>
+                                        <input  type="text" name="alternateEmail" class="form-control {{ $errors->has('alternateEmail') ? ' is-invalid' : '' }}" value="{{$personalInfo->alternativeEmail }}" id="" placeholder="">
                                         @if ($errors->has('alternateEmail'))
 
                                             <span class="">
@@ -242,8 +242,8 @@
 
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="">Home Telephone<span style="color: red">*</span></label>
-                                        <input required type="text" name="homeTelephone" class="form-control {{ $errors->has('homeTelephone') ? ' is-invalid' : '' }}" value="{{ $personalInfo->homeNumber }}" id="" placeholder="">
+                                        <label for="">Home Telephone</label>
+                                        <input  type="text" name="homeTelephone" class="form-control {{ $errors->has('homeTelephone') ? ' is-invalid' : '' }}" value="{{ $personalInfo->homeNumber }}" id="" placeholder="">
                                         @if ($errors->has('homeTelephone'))
 
                                             <span class="">
@@ -252,8 +252,8 @@
                                         @endif
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="">office Telephone<span style="color: red">*</span></label>
-                                        <input required type="text" name="officeTelephone" class="form-control {{ $errors->has('officeTelephone') ? ' is-invalid' : '' }}" value="{{$personalInfo->officeNumber }}" id="" placeholder="">
+                                        <label for="">office Telephone</label>
+                                        <input  type="text" name="officeTelephone" class="form-control {{ $errors->has('officeTelephone') ? ' is-invalid' : '' }}" value="{{$personalInfo->officeNumber }}" id="" placeholder="">
                                         @if ($errors->has('officeTelephone'))
 
                                             <span class="">
@@ -265,8 +265,8 @@
 
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="">Telephone No.<span style="color: red">*</span></label>
-                                        <input required type="text" name="telephone" class="form-control {{ $errors->has('telephone') ? ' is-invalid' : '' }}" value="{{ $personalInfo->telephone }}" id="" placeholder="">
+                                        <label for="">Telephone No.</label>
+                                        <input  type="text" name="telephone" class="form-control {{ $errors->has('telephone') ? ' is-invalid' : '' }}" value="{{ $personalInfo->telephone }}" id="" placeholder="">
                                         @if ($errors->has('telephone'))
 
                                             <span class="">

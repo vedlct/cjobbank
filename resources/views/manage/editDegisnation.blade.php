@@ -13,6 +13,7 @@
     <div class="form-group">
         <label for="">Status</label>
         <select class="form-control" name="status">
+            <option value="">Select Status</option>
             @foreach(STATUS as $key=>$value)
             <option value="{{$key}}" {{ $editDesignation->status == $key ? 'selected' : '' }}>{{$value}}</option>
             @endforeach

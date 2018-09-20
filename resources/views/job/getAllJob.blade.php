@@ -35,7 +35,9 @@
                             <h4 style="margin-bottom: 5px;" class="mt-0 font-20 mb-1">{{$job->title}}</h4>
                             <p class="text-muted font-14">{{$job->details}} </p>
                             <p class="text-muted font-14"><b>Deadline: {{$job->deadline}}</b></p>
-                            <p class="text-muted font-14"> <a style="color: #707083;" href="#"><b> Download Details..</b></a> </p>
+                            @if($job->pdflink != null )
+                            <p class="text-muted font-14"> <a style="color: #707083;" target="_blank" href="{{url('public/jobPdf').'/'.$job->pdflink}}"><b> Download Details..</b></a> </p>
+                            @endif
                         </div>
                     </div>
 

@@ -16,7 +16,7 @@ class JobController extends Controller
        $allZone=DB::table('zone')->get();
 
 
-       $jobs=Job::select('job.jobId','job.title','job.details','job.details','job.deadline')
+       $jobs=Job::select('job.jobId','job.title','job.details','job.details','job.deadline','job.pdflink')
                     ->where('job.status',1)
                     ->where('job.deadline','>=',date('Y-m-d'));
 
@@ -51,7 +51,7 @@ class JobController extends Controller
 
        $allZone=DB::table('zone')->get();
 
-       $jobs=Job::select('job.jobId','job.title','job.details','job.details','job.deadline')
+       $jobs=Job::select('job.jobId','job.title','job.details','job.details','job.deadline','job.pdflink')
            ->where('job.status',1)
            ->where('job.deadline','>=',date('Y-m-d'));
        if($r->search !=""){

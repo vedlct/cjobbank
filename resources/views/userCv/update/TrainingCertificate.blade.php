@@ -65,16 +65,11 @@
                                         <div class="form-group col-md-6">
                                             <label for="inputPassword4">Staus :</label>
                                             <label for="inputPassword4">
+
                                                 @foreach(COMPLETING_STATUS as $key=>$values)
 
                                                     @if($training->status == $values) {{$key}} @endif
                                                 @endforeach
-                                                {{--@if($value->status == 1)--}}
-                                                {{--Completed--}}
-                                                {{--@endif--}}
-                                                {{--@if($value->status == 2)--}}
-                                                {{--On going--}}
-                                                {{--@endif--}}
 
                                             </label>
                                             {{--<select class="form-control" name="status[]">--}}

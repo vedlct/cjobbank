@@ -37,7 +37,7 @@
                                             <div class="form-group col-md-10">
                                                 <label for="inputEmail4">Company Name :</label>
                                               {{$experience->organization}}
-                                                {{--<input type="text" class="form-control" name="organization[]" id="inputEmail4" placeholder="organization" required>--}}
+
                                             </div>
 
                                             <div class="form-group col-md-2 ">
@@ -50,25 +50,27 @@
                                             <div class="form-group col-md-4">
                                                 <label for="inputEmail4">Designation :</label>
                                                 {{$experience->degisnation}}
-                                                {{--<input type="text" class="form-control" name="degisnation[]" id="inputEmail4" placeholder="designation" required>--}}
+
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="inputPassword4">Start Date :</label>
                                                 {{$experience->startDate}}
-                                                {{--<input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" required>--}}
+
                                             </div>
                                             <div class="form-group col-md-4">
-                                                <label for="inputPassword4">End Date :</label>
+
                                                 @if($experience->endDate==null)
+                                                    <label for="inputPassword4">Status :</label>
                                                     Running
                                                 @else
+                                                    <label for="inputPassword4">End Date :</label>
                                                 {{$experience->endDate}}
                                                 @endif
                                             </div>
                                             <div class="form-group col-md-8">
                                                 <label for="inputPassword4">Address :</label>
                                                 {{$experience->address}}
-                                                {{--<textarea class="form-control" name="address[]" placeholder="address"></textarea>--}}
+
                                             </div>
                                         </div>
                                     </div>
