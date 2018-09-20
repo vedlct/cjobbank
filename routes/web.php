@@ -165,6 +165,8 @@ Route::get('Admin-Manage-User/edit/{id}','Admin\UserManagementController@edit')-
 Route::post('Admin-Manage-User/add','Admin\UserManagementController@insert')->name('admin.manageUser.insert');
 Route::post('Admin-Manage-User/changeUserStatus','Admin\UserManagementController@changeUserStatus')->name('admin.changeUserStatus');
 Route::post('Admin-Manage-User/update/{id}','Admin\UserManagementController@update')->name('admin.manageUser.update');
+/*----------------------Get CV ------------------------ */
+Route::get('user/cv/{empId}','UserCvController@getFullCv')->name('userCv.get');
 
 /*---------------Settings-------------*/
 //Zone

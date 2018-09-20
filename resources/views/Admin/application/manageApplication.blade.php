@@ -361,7 +361,7 @@
 
                     { "data": function(data){
                         return '<!--<button class="btn btn-sm btn-danger"><i class="fa fa-envelope"></i></button>-->'+
-                            '&nbsp;<button class="btn btn-smbtn-info"><i class="fa fa-file-pdf-o"></i></button>'
+                            '&nbsp;<button class="btn btn-smbtn-info" onclick="getEmpCv('+data.employeeId+')"><i class="fa fa-file-pdf-o"></i></button>'
                             ;},
                         "orderable": false, "searchable":false
                     },
@@ -369,6 +369,7 @@
 
                 ],
             });
+
 
             $('#genderFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
@@ -596,7 +597,6 @@
                 });
 
 
-
             }
             else {
                 selecteds=[];
@@ -605,6 +605,15 @@
             }
 
         });
+
+        function getEmpCv(id) {
+//            alert(id);
+
+            var url = "{{ route('userCv.get', ':empId') }}";
+            url = url.replace(':empId', id);
+//            document.location.href=url;
+            window.open(url,'_blank');
+        }
 
     </script>
 
