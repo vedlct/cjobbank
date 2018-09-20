@@ -92,7 +92,7 @@ class ApplicationController extends Controller
     }
     public function showAllApplication(Request $r)
     {
-        $application = Jobapply::select('jobapply.jobapply as applyId', 'jobapply.applydate', 'zone.zoneName', 'employee.firstName', 'employee.lastName', 'job.title')
+        $application = Jobapply::select('jobapply.jobapply as applyId', 'jobapply.applydate', 'zone.zoneName','employee.employeeId', 'employee.firstName', 'employee.lastName', 'job.title')
 
             ->leftJoin('employee', 'employee.employeeId', '=', 'jobapply.fkemployeeId')
             ->leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')
