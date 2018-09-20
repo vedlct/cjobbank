@@ -187,30 +187,7 @@ class ApplicationController extends Controller
 
         return $datatables->make(true);
 
-//         $datatables->addColumn('name', function ($application1) use ($application) {
-//
-//
-//            foreach ($application as $size) {
-//
-//                $test = $size->firstName." ".$size->lastName;
-//
-//            }
-//            return $test;
-//
-//        });
-//        return $datatables->addColumn('Age', function ($application1) use ($application) {
-//
-//
-//            foreach ($application as $date) {
-//
-//
-//                $test1 = Carbon::parse($date->birthDate)->diff(Carbon::now())->format('%y.%m');
-//
-//            }
-//            return $test1;
-//
-//        }
-//        )->make(true);
+
 
     }
 
