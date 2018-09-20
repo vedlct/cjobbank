@@ -16,23 +16,22 @@
                     <form action="{{route('manage.degisnation.insert')}}" method="post">
                         {{csrf_field()}}
 
-                        {{--<div class="form-group">--}}
-
-                        {{--<label for="">Nationality<span style="color: red">*</span></label>--}}
-                        {{--<select name="educationLevel" class="form-control" required id="educationLevel">--}}
-                        {{--<option value="">Select Education Level</option>--}}
-                        {{--@foreach($nationality as $n)--}}
-                        {{--<option value="{{$education->educationLevelId}}">{{$education->educationLevelName}}</option>--}}
-                        {{--@endforeach--}}
-                        {{--</select>--}}
-
-                        {{--</div>--}}
                         <div class="form-group">
 
                             <label for="">Degisnation<span style="color: red">*</span></label>
 
                             <input class="form-control" name="designationName" required type="text">
 
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Status</label>
+                            <select class="form-control" name="status">
+                                <option value="">select Status</option>
+                                @foreach(STATUS as $key=>$value)
+                                    <option value="{{$key}}">{{$value}}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group">

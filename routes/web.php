@@ -226,7 +226,7 @@ Route::post('manage/Organization-Type/updateOrganizationType/{id}','Admin\Settin
 Route::get('manage/Degisnation','Admin\SettingsController@degisnation')->name('manage.degisnation');
 Route::post('manage/Degisnation/insert','Admin\SettingsController@insertDegisnation')->name('manage.degisnation.insert');
 Route::post('manage/Degisnation/editDegisnation','Admin\SettingsController@editDegisnation')->name('admin.editDegisnation');
-Route::post('manage/Degisnation/updateDegisnation/{id}','Admin\SettingsController@updateDegisnation')->name('manage.degisnation.update');
+Route::post('manage/Degisnation/updateDegisnation/{id}','Admin\SettingsController@updateDesignation')->name('manage.degisnation.update');
 
 
 

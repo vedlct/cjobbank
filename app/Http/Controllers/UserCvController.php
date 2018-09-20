@@ -42,11 +42,9 @@ class UserCvController extends Controller
            ->get();
        $relativeCb=RelativeInCb::where('fkemployeeId',$empId)
            ->get();
-//       return $relativeCb;
-//
-//       return view('test',compact('personalInfo'));
+
        $pdf = PDF::loadView('test',compact('personalInfo','education','professionalCertificate','jobExperience','trainingCertificate','refree','relativeCb'));
-       return $pdf->stream('invoice.pdf',array('Attachment'=>0));
+       return $pdf->stream('Curriculam Vitae of '.$personalInfo->firstName." ".$personalInfo->lastName.'.pdf',array('Attachment'=>0));
    }
 
     public function getFullInfo($id){

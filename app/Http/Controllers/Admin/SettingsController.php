@@ -455,7 +455,15 @@ class SettingsController extends Controller
 
         ]);
         $degisnation =new Designation();
+
         $degisnation->designationName=$r->designationName;
+
+        if ($r->status ==""){
+            $degisnation->status='1';
+        }else{
+            $degisnation->status=$r->status;
+        }
+
         $degisnation->save();
 
         Session::flash('message', 'Degisnation Added Successfully!');
@@ -471,11 +479,18 @@ class SettingsController extends Controller
     public function updateDesignation($id,Request $r){
         $nationality =Designation::findOrFail($id);
         $nationality->designationName=$r->designationName;
-        $nationality->status = $r->status;
+
+        if ($r->status ==""){
+            $nationality->status='1';
+        }else{
+            $nationality->status=$r->status;
+        }
+
+       // $nationality->status = $r->status;
         $nationality->save();
 
         Session::flash('message', 'Designation Updated Successfully!');
-        return redirect()->route('manage.religion');
+        return redirect()->route('manage.degisnation');
 
     }
 

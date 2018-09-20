@@ -43,6 +43,7 @@ class TrainingController extends Controller
           $training->vanue=$r->vanue[$i];
           $training->countryId=$r->countryId[$i];
           $training->fkemployeeId=$employee->employeeId;
+
           $training->status=$r->status[$i];
 
           $training->save();
