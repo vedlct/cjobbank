@@ -73,6 +73,9 @@
 
            padding: 0;
        }
+       .label{
+           background-color: #eff0f1;
+       }
    </style>
 
 </head>
@@ -106,9 +109,9 @@
         </table>
 
 
-        <table border="0" style="width:100%; margin-top: 20px; border: none;">
+        <table border="0" style="width:100%; margin-top: 5px; border: none;">
             <tr>
-                <td style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Education</b> </td>
+                <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Education</b> </td>
             </tr>
         </table>
 
@@ -118,33 +121,33 @@
             <table border="0" style="width:100%; margin-top: 25px; border: none;">
                 <tr>
 
-                    <td style="border: none; width: 10%">Exam </td>
+                    <td style="border: none; width: 20%">Degree </td>
                     <td style="border: none; width: 5%">:</td>
 
                     <td style="border: none;"><b>{{$edu->educationLevelName}} in {{$edu->degreeName}}</b> </td>
                 </tr>
                 <tr>
 
-                    <td style="border: none; width: 10%">Institution</td>
+                    <td style="border: none; width: 20%">Institution</td>
                     <td style="border: none; width: 5%">:</td>
                     <td style="border: none;">{{$edu->institutionName}}</td>
                 </tr>
                 <tr>
 
-                    <td style="border: none; width: 10%">Passing Year</td>
+                    <td style="border: none; width: 20%">Passing Year</td>
                     <td style="border: none; width: 5%">:</td>
                     <td style="border: none;">{{$edu->passingYear}} </td>
                 </tr>
                 {{--<tr>--}}
 
-                    {{--<td style="border: none; width: 10%">Board</td>--}}
+                    {{--<td style="border: none; width: 20%">Board</td>--}}
                     {{--<td style="border: none; width: 5%">:</td>--}}
                     {{--<td style="border: none;">Dhaka</td>--}}
                 {{--</tr>--}}
 
                 <tr>
 
-                    <td style="border: none; width: 10%">Result</td>
+                    <td style="border: none; width: 20%">Result</td>
                     <td style="border: none; width: 5%">:</td>
                     <td style="border: none; margin-bottom: 30px;"> {{$edu->result}}</td>
                 </tr>
@@ -161,255 +164,163 @@
 
 
 
-        
 
-
-        <table border="0" style="width:100%; margin-top: 20px; border: none;">
+        <table border="0" style="width:100%; margin-top: 5px; border: none;">
             <tr>
-                <td style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Professional Certificate</b> </td>
+                <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Professional Certificate</b> </td>
             </tr>
         </table>
 
+        @foreach($professionalCertificate as $certificate)
+            <table border="0" style="width:100%; margin-top: 25px; border: none;">
+                <tr>
 
+                    <td style="border: none; width: 20%">Certificate Name</td>
+                    <td style="border: none; width: 5%">:</td>
+                    <td style="border: none;"><b>{{$certificate->certificateName}}</b> </td>
+                </tr>
+                <tr>
+
+                    <td style="border: none; width: 20%">Institution Name</td>
+                    <td style="border: none; width: 5%">:</td>
+                    <td style="border: none;">{{$certificate->institutionName}} </td>
+                </tr>
+                <tr>
+
+                    <td style="border: none; width: 20%">Session</td>
+                    <td style="border: none; width: 5%">:</td>
+                    <td style="border: none;">{{$certificate->startDate}} - {{$certificate->endDate}}</td>
+                </tr>
+                <tr>
+
+                    <td style="border: none; width: 20%">Status</td>
+                    <td style="border: none; width: 5%">:</td>
+                    <td style="border: none; margin-bottom: 30px;">
+                        @if($certificate->status == 1) On Going @else
+                            Completed
+                        @endif
+                    
+                    </td>
+                </tr>
+                <tr>
+
+                    <td style="border: none; width: 20%">Result</td>
+                    <td style="border: none; width: 5%">:</td>
+                    <td style="border: none; margin-bottom: 30px;">{{$certificate->result}}</td>
+                </tr>
+
+            </table >
+
+
+
+        @endforeach
+
+
+
+
+
+        <table border="0" style="width:100%; margin-top: 5px; border: none;">
+            <tr>
+                <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Job Experience</b> </td>
+            </tr>
+        </table>
+
+        @foreach($jobExperience as $exp)
+            <table border="0" style="width:100%; margin-top: 5px; border: none;">
+
+                <td style="border: none;">
+                        <p>Company Name : {{$exp->organization}} <br>
+                            Position: {{$exp->degisnation}} <br>
+                            Address: {{$exp->address}} <br>
+                            Duration: {{$exp->startDate}} -  @if($exp->endDate) {{$exp->endDate}} @else
+                                Continuing
+                            @endif
+                            .
+
+                        </p>
+
+                    </td>
+
+            </table>
+
+        @endforeach
+
+
+
+
+        <table border="0" style="width:100%; margin-top: 5px; border: none;">
+            <tr>
+                <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000; background-color: #eff0f1;" ><b>Training Certificate</b> </td>
+            </tr>
+        </table>
+
+        @foreach($trainingCertificate as $certificate)
 
         <table border="0" style="width:100%; margin-top: 25px; border: none;">
-            <tr>
+            <td style="border: none;">
+                <p>Training Name : {{$certificate->trainingName}} <br>
+                    Vanue: {{$certificate->vanue}} <br>
+                    Duration: {{$certificate->startDate}} -  @if($certificate->endDate) {{$certificate->endDate}} @else
+                        Continuing
+                    @endif
+                    .
 
-                <td style="border: none; width: 10%">Exam</td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none;"><b>B.Sc in Computer Science & Engineering</b> </td>
+                </p>
+
+            </td>
+
+        </table>
+        @endforeach
+
+
+
+        <table border="0" style="width:100%; margin-top: 5px; border: none;">
+            <tr>
+                <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Referee</b> </td>
             </tr>
+        </table>
+
+        <table border="0" style="width:100%; margin-top: 5px; border: none;">
+
+                <tr style="">
+                    @foreach($refree as $ref)
+
+                    <td style="border: none;">
+                        <p> Name : {{$ref->firstName}} {{$ref->lastName}} <br>
+                            Contact: {{$ref->phone}} <br>
+                            Position: {{$ref->presentposition}} <br>
+                            email: {{$ref->email}}
+                        </p>
+                    </td>
+                    @endforeach
+
+                </tr>
+
+
+        </table>
+
+
+
+        <table border="0" style="width:100%; margin-top: 5px; border: none;">
             <tr>
-
-                <td style="border: none; width: 10%">Session</td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none;">2016-2017 </td>
-            </tr>
-            <tr>
-
-                <td style="border: none; width: 10%">Board</td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none;">Dhaka</td>
-            </tr>
-            <tr>
-
-                <td style="border: none; width: 10%">Cgpa</td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none; margin-bottom: 30px;"> 4.00</td>
-            </tr>
-
-        </table >
-
-
-
-        <table border="0" style="width:100%; margin-top: 20px; border: none;">
-            <tr>
-                <td style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Job Experience</b> </td>
+                <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Relative in Caritaas</b> </td>
             </tr>
         </table>
 
 
 
-        <table border="0" style="width:100%; margin-top: 20px; border: none;">
+        <table border="0" style="width:100%; margin-top: 5px; border: none;">
 
             <tr style="">
+                @foreach($relativeCb as $ref)
 
-                <td style="border: none;">
-                    <p>Company Name : TechCloud Ltd <br>
-                        Position: Web Developer <br>
-                        Duration: 2017 - present.
+                    <td style="border: none;">
+                        <p> Name : {{$ref->firstName}} {{$ref->lastName}} <br>
+                            Position: {{$ref->degisnation}} <br>
+                        </p>
+                    </td>
+                @endforeach
 
-                    </p>
-
-                </td>
-                <td style="border: none;">
-                    <p>Company Name : TechCloud Ltd <br>
-                        Position: Web Developer <br>
-                        Duration: 2017 - present.
-
-                    </p>
-
-                </td>
-
-
-            </tr>
-
-        </table>
-
-
-
-
-        <table border="0" style="width:100%; margin-top: 20px; border: none;">
-            <tr>
-                <td style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Training Certificate</b> </td>
-            </tr>
-        </table>
-
-
-
-        <table border="0" style="width:100%; margin-top: 25px; border: none;">
-            <tr>
-
-                <td style="border: none; width: 10%">Exam</td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none;"><b>B.Sc in Computer Science & Engineering</b> </td>
-            </tr>
-            <tr>
-
-                <td style="border: none; width: 10%">Session</td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none;">2016-2017 </td>
-            </tr>
-            <tr>
-
-                <td style="border: none; width: 10%">Board</td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none;">Dhaka</td>
-            </tr>
-            <tr>
-
-                <td style="border: none; width: 10%">Cgpa</td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none; margin-bottom: 30px;"> 4.00</td>
-            </tr>
-
-        </table>
-
-
-
-        <table border="0" style="width:100%; margin-top: 20px; border: none;">
-            <tr>
-                <td style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Personal Information</b> </td>
-            </tr>
-        </table>
-
-        <table border="0" style="width:100%; margin-top: 25px; border: none;">
-            <tr>
-
-                <td style="border: none; width: 10%">Name</td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none;">Nahid Hasan </td>
-            </tr>
-            <tr>
-
-                <td style="border: none; width: 10%">Fathers Name</td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none;">Habibur Rahman </td>
-            </tr>
-            <tr>
-
-                <td style="border: none; width: 10%">Mothers Name</td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none;">Nurun Nahar</td>
-            </tr>
-            <tr>
-
-                <td style="border: none; width: 10%">DOB</td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none; margin-bottom: 30px;">28-04-1993</td>
-            </tr>
-            <tr>
-
-                <td style="border: none; width: 10%">Nationality</td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none; margin-bottom: 30px;">Bangladeshi</td>
-            </tr>
-            <tr>
-
-                <td style="border: none; width: 10%">Religion</td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none; margin-bottom: 30px;">Islam</td>
-            </tr>
-            <tr>
-
-                <td style="border: none; width: 10%">National ID</td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none; margin-bottom: 30px;">1993481451000006</td>
-            </tr>
-            <tr>
-
-                <td style="border: none; width: 10%">Address</td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none; margin-bottom: 30px;">Katiadi, Kishoreganj</td>
-            </tr>
-
-        </table>
-
-
-
-
-        <table border="0" style="width:100%; margin-top: 20px; border: none;">
-            <tr>
-                <td style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Referee</b> </td>
-            </tr>
-        </table>
-
-
-
-        <table border="0" style="width:100%; margin-top: 20px; border: none;">
-
-            <tr style="">
-
-                <td style="border: none;">
-                    <p> Name : Sakib Rahman <br>
-                        Contace: 01711902299 <br>
-                        Position: Software Engineer <br>
-                        email: sakib@tcl.com
-
-
-                    </p>
-
-                </td>
-                <td style="border: none;">
-                    <p> Name : Sakib Rahman <br>
-                        Contace: 01711902299 <br>
-                        Position: Software Engineer <br>
-                        email: sakib@tcl.com
-
-
-                    </p>
-
-                </td>
-
-
-            </tr>
-
-        </table>
-
-
-
-        <table border="0" style="width:100%; margin-top: 20px; border: none;">
-            <tr>
-                <td style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Relative in Caritaas</b> </td>
-            </tr>
-        </table>
-
-
-
-        <table border="0" style="width:100%; margin-top: 25px; border: none;">
-            <tr>
-
-                <td style="border: none; width: 10%">Name</td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none;">Nahid Hasan </td>
-            </tr>
-            <tr>
-
-                <td style="border: none; width: 10%">Position</td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none;">Marketing Manager </td>
-            </tr>
-            <tr>
-
-                <td style="border: none; width: 10%">Contact</td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none;">01711902299 </td>
-            </tr>
-            <tr>
-
-                <td style="border: none; width: 10%">Email</td>
-                <td style="border: none; width: 5%">:</td>
-                <td style="border: none;">tushar@tcl.com </td>
             </tr>
 
 
