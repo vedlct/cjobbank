@@ -58,6 +58,7 @@ Route::view('job/manage','job.manage')->name('job.manage');
 //user Cv
 
 Route::get('Candidate-CV-CareerObjective','EmployeeController@getEmployeeCvCareerObjective')->name('candidate.cvCareerObjective');
+Route::get('Candidate-CV-Show','EmployeeController@getEmployeeshowFullCv')->name('candidate.viewUserCv');
 
 //ProfessionalCertificate
 Route::get('Candidate-CV-ProfessionalCertificate','ProfessionalCertificateController@getEmployeeCvProfessionalCertificate')->name('candidate.cvProfessionalCertificate');
@@ -166,9 +167,10 @@ Route::post('Admin-Manage-User/changeUserStatus','Admin\UserManagementController
 Route::post('Admin-Manage-User/update/{id}','Admin\UserManagementController@update')->name('admin.manageUser.update');
 /*----------------------Get CV ------------------------ */
 Route::get('user/cv/{empId}','UserCvController@getFullCv')->name('userCv.get');
+
 Route::post('user/cv/select','UserCvController@getSelectedCv')->name('userCv.select');
 
-
+Route::get('user-cv','UserCvController@getUserFullCv')->name('userCv.post');
 
 
 /*---------------Settings-------------*/

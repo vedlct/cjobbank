@@ -63,6 +63,17 @@ class EmployeeController extends Controller
 
 
     }
+    public function getEmployeeshowFullCv()
+    {
+
+        $empId=Employee::select('employeeId','cvStatus')->where('fkuserId',Auth::user()->userId)->first();
+
+        return $empId;
+
+
+
+
+    }
 
 
 
