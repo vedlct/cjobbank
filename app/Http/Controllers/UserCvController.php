@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Employee;
 use App\Education;
+use App\JobExperience;
+use App\ProfessionalQualification;
+use App\Refree;
+use App\RelativeInCb;
+use App\Traning;
 use Illuminate\Http\Request;
 use PDF;
 class UserCvController extends Controller
@@ -22,10 +27,25 @@ class UserCvController extends Controller
            ->where('fkemployeeId',$empId)
            ->orderBy('passingYear','desc')
            ->get();
-//       return $education;
+
+       $professionalCertificate=ProfessionalQualification::where('fkemployeeId',$empId)
+           ->get();
+
+       $jobExperience=JobExperience::where('fkemployeeId',$empId)
+           ->orderBy('startDate','desc')
+           ->get();
+
+       $trainingCertificate=Traning::where('fkemployeeId',$empId)
+           ->orderBy('startDate','desc')
+           ->get();
+       $refree=Refree::where('fkemployeeId',$empId)
+           ->get();
+       $relativeCb=RelativeInCb::where('fkemployeeId',$empId)
+           ->get();
+//       return $relativeCb;
 //
 //       return view('test',compact('personalInfo'));
-       $pdf = PDF::loadView('test',compact('personalInfo','education'));
+       $pdf = PDF::loadView('test',compact('personalInfo','education','professionalCertificate','jobExperience','trainingCertificate','refree','relativeCb'));
        return $pdf->stream('invoice.pdf',array('Attachment'=>0));
    }
 
