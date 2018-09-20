@@ -4,26 +4,26 @@
     <title>Curriculam Vitae of {{$personalInfo->firstName}} {{$personalInfo->lastName}}</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   <style>
+    <style>
 
-       table, th, td {
-           border: 1px solid black;
-           border-collapse: collapse;
-       }
-       th, td {
-           padding: 5px;
-           text-align: left;
-       }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+            text-align: left;
+        }
 
-       input {
-           border: medium none;
-           padding: 0;
-       }
-       .label{
-           background-color: #eff0f1;
-       }
-       @page { margin-bottom: 0; }
-   </style>
+        input {
+            border: medium none;
+            padding: 0;
+        }
+        .label{
+            background-color: #eff0f1;
+        }
+        @page { margin-bottom: 0; }
+    </style>
 
 </head>
 <body>
@@ -59,33 +59,33 @@
         </table>
 
 
-    {{--Education--}}
+        {{--Education--}}
 
-            <table border="0" style="width:100%; margin-top: 10px; ">
-                <thead>
+        <table border="0" style="width:100%; margin-top: 10px; ">
+            <thead>
+            <tr>
+                <th style="text-align: center" >Degree</th>
+                <th style="text-align: center" >Institution</th>
+                <th style="text-align: center" >Passing Year</th>
+                <th style="text-align: center" >Result</th>
+            </tr>
+            </thead>
+            <tbody >
+            @foreach($education as $edu)
                 <tr>
-                    <th style="text-align: center" >Degree</th>
-                    <th style="text-align: center" >Institution</th>
-                    <th style="text-align: center" >Passing Year</th>
-                    <th style="text-align: center" >Result</th>
+                    <td style="text-align: center"><b>{{$edu->educationLevelName}} in {{$edu->degreeName}}</b> </td>
+                    <td style="text-align: center">{{$edu->institutionName}}</td>
+
+                    <td style="text-align: center">{{$edu->passingYear}} </td>
+
+                    <td style="text-align: center"> {{$edu->result}}</td>
                 </tr>
-                </thead>
-                <tbody >
-                @foreach($education as $edu)
-                    <tr>
-                        <td style="text-align: center"><b>{{$edu->educationLevelName}} in {{$edu->degreeName}}</b> </td>
-                        <td style="text-align: center">{{$edu->institutionName}}</td>
+            @endforeach
 
-                        <td style="text-align: center">{{$edu->passingYear}} </td>
-
-                        <td style="text-align: center"> {{$edu->result}}</td>
-                    </tr>
-                @endforeach
-
-                </tbody>
+            </tbody>
 
 
-            </table >
+        </table >
 
 
         <table border="0" style="width:100%; margin-top: 15px; border: none;">
@@ -95,35 +95,35 @@
         </table>
 
 
-            <table border="0" style="width:100%; margin-top: 10px; border: none;">
+        <table border="0" style="width:100%; margin-top: 10px; border: none;">
 
-                @php $count=1;@endphp
-                @foreach($jobExperience as $exp)
+            @php $count=1;@endphp
+            @foreach($jobExperience as $exp)
 
-                    <tr>
-                        <td width="2%" style="border: none; vertical-align: top">
-                            <span>{{$count++}}.</span>
-                        </td>
+                <tr>
+                    <td width="2%" style="border: none; vertical-align: top">
+                        <span>{{$count++}}.</span>
+                    </td>
 
 
-                <td style="border: none;">
+                    <td style="border: none;">
 
-                      Company Name : {{$exp->organization}} <br>
-                            Position: {{$exp->degisnation}} <br>
-                            Address: {{$exp->address}} <br>
-                            Duration: {{$exp->startDate}} -  @if($exp->endDate) {{$exp->endDate}} @else
-                                Continuing
-                            @endif
-                            .
+                        Company Name : {{$exp->organization}} <br>
+                        Position: {{$exp->degisnation}} <br>
+                        Address: {{$exp->address}} <br>
+                        Duration: {{$exp->startDate}} -  @if($exp->endDate) {{$exp->endDate}} @else
+                            Continuing
+                        @endif
+                        .
 
 
 
                     </td>
-                    </tr>
+                </tr>
 
-                @endforeach
+            @endforeach
 
-            </table>
+        </table>
 
 
         <table border="0" style="width:100%; margin-top: 15px; border: none;">
@@ -139,20 +139,20 @@
 
             @foreach($trainingCertificate as $certificate)
                 <tr>
-                <td width="2%" style="border: none; vertical-align: top">
-                    <span>{{$count++}}.</span>
-                </td>
-            <td style="border: none;">
-                Training Name : {{$certificate->trainingName}} <br>
-                    Vanue: {{$certificate->vanue}} <br>
-                    Duration: {{$certificate->startDate}} -  @if($certificate->endDate) {{$certificate->endDate}} @else
-                        Continuing
-                    @endif
-                    .
+                    <td width="2%" style="border: none; vertical-align: top">
+                        <span>{{$count++}}.</span>
+                    </td>
+                    <td style="border: none;">
+                        Training Name : {{$certificate->trainingName}} <br>
+                        Vanue: {{$certificate->vanue}} <br>
+                        Duration: {{$certificate->startDate}} -  @if($certificate->endDate) {{$certificate->endDate}} @else
+                            Continuing
+                        @endif
+                        .
 
 
 
-            </td>
+                    </td>
                 </tr>
             @endforeach
 
@@ -231,9 +231,9 @@
 
                     <td style="border: none;">
                         Name : {{$ref->firstName}} {{$ref->lastName}} <br>
-                            Contact: {{$ref->phone}} <br>
-                            Position: {{$ref->presentposition}} <br>
-                            email: {{$ref->email}}
+                        Contact: {{$ref->phone}} <br>
+                        Position: {{$ref->presentposition}} <br>
+                        email: {{$ref->email}}
 
                     </td>
                 </tr>

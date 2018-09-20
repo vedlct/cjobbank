@@ -125,10 +125,12 @@ class RelativeInCbController extends Controller
 
         if($count<2){
             Employee::where('fkuserId',Auth::user()->userId)
-                ->update(['cvStatus'=>null]);
+                ->update(['cvStatus'=>null,'cvCompletedDate' =>null,'relativeInCB'=>0]);
 
-            Employee::where('fkuserId',Auth::user()->userId)
-                ->update(['cvCompletedDate'=>null]);
+//            Employee::where('fkuserId',Auth::user()->userId)
+//                ->update(['cvCompletedDate'=>null]);
+
+
         }
 
         Session::flash('message', 'Relative In CB Deleted Successfully');
