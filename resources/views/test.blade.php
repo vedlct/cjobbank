@@ -264,9 +264,7 @@
                         Continuing
                     @endif
                     .
-
                 </p>
-
             </td>
 
         </table>
