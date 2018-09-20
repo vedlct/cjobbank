@@ -83,36 +83,88 @@
 <!-- end container -->
 </div>
 
+<div id="display_dialog"></div>
+
 <script>
     function viewUserCv() {
 
         $.ajax({
             type: "get",
-            url: '{{route('viewUserCv')}}',
+            url: '{{route('candidate.viewUserCv')}}',
             data: {},
             success: function (data) {
 
-                if (data==1){
 
-                    window.open("public/jobPdf"+"/"+id,'_blank');
-                }
+                if ( data.cvStatus == 1){
 
-                $.alert({
-                    title: 'Success!',
-                    type: 'green',
-                    content: 'job Status change successfully',
-                    buttons: {
-                        tryAgain: {
-                            text: 'Ok',
-                            btnClass: 'btn-green',
-                            action: function () {
 
-                                location.reload();
+                    $.ajax({
+                        type: "get",
+                        url: '{{route('userCv.post')}}',
+                        data: {_token:"{{csrf_token()}}",id:data.employeeId},
+                        success: function (data) {
 
+//                            $.alert({
+//                                title: 'Success!',
+//                                type: 'green',
+//                                content: 'Download Complted',
+//                                buttons: {
+//                                    tryAgain: {
+//                                        text: 'Ok',
+//                                        btnClass: 'btn-greed',
+//                                        action: function () {
+//
+//                                            // location.reload();
+//
+//                                        }
+//                                    }
+//                                }
+//                            });
+
+//                            var pdfWin= window.open("data:application/pdf;base64, " + data, '','_blank');
+
+//                            window.open("data:application/pdf;base64, " + encodeURI(data), '','_blank');
+//                            window.open(escape(data), "Title", "");
+
+
+//                            window.open("data:application/pdf" + decodeURI(data), '','_blank');
+
+
+
+
+
+                        },
+                    });
+
+
+
+                    {{--var url = "{{route('userCv.get', ':empId') }}";--}}
+                    {{--url = url.replace(':empId', data.employeeId);--}}
+                    {{--window.open(url,'_blank');--}}
+
+
+                }else if(data.cvStatus == 0) {
+
+                    $.alert({
+                        title: 'Alert!',
+                        type: 'red',
+                        content: 'Your CV is not Completed yet,Please Complete First',
+                        buttons: {
+                            tryAgain: {
+                                text: 'Ok',
+                                btnClass: 'btn-red',
+                                action: function () {
+
+                                   // location.reload();
+
+                                }
                             }
                         }
-                    }
-                });
+                    });
+
+                }
+
+
 
             },
         });
