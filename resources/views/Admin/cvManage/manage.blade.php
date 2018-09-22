@@ -75,8 +75,8 @@
                 </div>
                 <div class="card-body">
 
-                    <label class="checkbox-inline"><input style="width: auto;" type="checkbox" value=""> Select All</label>&nbsp;
-                    <button  class="btn btn-danger btn-sm">Export CV</button>
+                    <label class="checkbox-inline"><input style="width: auto;" type="checkbox" id="selectall2" value=""> Select All</label>&nbsp;
+                    <button  class="btn btn-danger btn-sm" onclick="exportSelectedCv()">Export CV</button>
                     <br><br>
 
 
@@ -219,38 +219,6 @@
                         }else if (data.gender == "F") {
                             return "Female"
                         }
-                       // $.each(words, function(key, value) {
-                       //
-                       //     if (value==data.gender){
-                       //         return key;
-                       //     }
-                       //
-                       // });
-
-//                        for (var k in words){
-//                            if (words.hasOwnProperty(k)) {
-//
-//                                if (words[k] == data.gender){
-//                                return words[k];
-//                            }
-//                            }
-//                        }
-//
-//                        Object.keys(obj).forEach(function (key) {
-//                            // do something with obj[key]
-//                        });
-
-                       // for(key in words){
-                       //     if (words[key]==data.gender){
-                       //         return key;
-                       //     }
-                       // }
-                       //      for (var x in words){
-                       //          return ( words[x]);
-                       //
-                       //
-                       //      }
-                       // return words;
 
 
 
@@ -261,7 +229,7 @@
                     { data: 'email', name: 'email', "orderable": false, "searchable":true },
 
                     { "data": function(data){
-                        return '&nbsp;<button class="btn btn-smbtn-info"><i class="fa fa-file-pdf-o"></i></button>'
+                        return '&nbsp;<button class="btn btn-smbtn-info" onclick="getEmpCv('+data.employeeId+')"><i class="fa fa-file-pdf-o"></i></button>'
                             ;},
                         "orderable": false, "searchable":false
                     },
@@ -275,7 +243,71 @@
             });
 
         } );
+        var selecteds = [];
+        function selected_rows(x) {
 
+            btn = $(x).data('panel-id');
+            var index = selecteds.indexOf(btn.toString());
+
+            if (index == "-1"){
+                selecteds.push(btn.toString());
+            }else {
+
+                selecteds.splice(index, 1);
+            }
+
+
+
+        }
+        $("#selectall2").click(function () {
+
+            if($('#selectall2').is(":checked")) {
+                selecteds=[];
+                //$('#selectall1').prop('checked',true);
+                checkboxes = document.getElementsByName('selected_rows[]');
+                for(var i in checkboxes) {
+                    checkboxes[i].checked = 'TRUE';
+                }
+
+                /* look for all checkboes that have a class 'chk' attached to it and check if it was checked */
+                $(".chk:checked").each(function () {
+                    selecteds.push($(this).val());
+                });
+
+
+            }
+            else {
+                selecteds=[];
+                $(':checkbox:checked').prop('checked',false);
+
+            }
+
+        });
+
+        function exportSelectedCv() {
+            console.log(selecteds);
+            if(selecteds.length >0 ){
+                $.ajax({
+                    type: 'POST',
+                    url: "{!! route('userCv.select') !!}",
+                    cache: false,
+                    data: {_token: "{{csrf_token()}}",'ids': selecteds},
+                    success: function (data) {
+
+                       // console.log(data);
+
+                    }
+                });
+            }
+            else {
+                alert('Please select user');
+            }
+
+
+
+
+
+        }
         $('#genderFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
             table.ajax.reload();  //just reload table
@@ -299,10 +331,14 @@
             table.ajax.reload();  //just reload table
         });
 
-//        $('#zonefilter').change(function(){ //button filter event click
-////                table.search("").draw(); //just redraw myTableFilter
-//            table.ajax.reload();  //just reload table
-//        });
+
+
+        function getEmpCv(id) {
+
+            var url = "{{ route('userCv.get', ':empId') }}";
+            url = url.replace(':empId', id);
+            window.open(url,'_blank');
+        }
 
     </script>
 
