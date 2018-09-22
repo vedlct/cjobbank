@@ -49,6 +49,8 @@ class UserCvController extends Controller
 
    public function getFullCv($empId){
 
+
+
        $personalInfo = Employee::select('firstName','lastName','personalMobile','email','presentAddress','image')
            ->findOrFail($empId);
 

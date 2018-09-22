@@ -27,7 +27,6 @@ class EducationController extends Controller
 
     public function getEmployeeCvEducation()
     {
-
         $userId=Auth::user()->userId;
 
         $employee=Employee::where('fkuserId', '=',$userId)->first()->employeeId;
