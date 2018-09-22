@@ -26,7 +26,8 @@
                         {{--</ul>--}}
                     </li>
                     <li class="has-submenu">
-                        <a onclick="viewUserCv()" href="#"><i class="ti-settings"></i>View Cv</a>
+                        {{--<a  onclick="viewUserCv()" href="#"><i class="ti-settings"></i>View Cv</a>--}}
+                        <a target="_blank"  href="{{route('candidate.viewUserCv')}}"><i class="ti-file"></i>View Cv</a>
                         {{--<ul class="submenu">--}}
                             {{--<li><a href="{{route('manage.zone')}}">Manage Zone</a></li>--}}
                             {{--<li><a href="{{route('manage.education')}}">Manage Education</a></li>--}}

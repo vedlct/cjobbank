@@ -3,16 +3,23 @@
 namespace App\Http\Controllers;
 
 
+use App\Education;
 use App\Employee;
 use App\Ethnicity;
 use App\Jobapply;
+use App\JobExperience;
 use App\Nationality;
+use App\ProfessionalQualification;
+use App\Refree;
+use App\RelativeInCb;
 use App\Religion;
 
+use App\Traning;
 use Illuminate\Http\Request;
 use Session;
 use Auth;
 use Image;
+use PDF;
 
 class EmployeeController extends Controller
 {
@@ -68,7 +75,50 @@ class EmployeeController extends Controller
 
         $empId=Employee::select('employeeId','cvStatus')->where('fkuserId',Auth::user()->userId)->first();
 
-        return $empId;
+        if ($empId->cvStatus==0){
+
+            Session::flash('message', 'Education Added Successfully');
+
+            return redirect()->back();
+
+        }else{
+
+            $empId=$empId->employeeId;
+
+            $personalInfo = Employee::select('firstName','lastName','personalMobile','email','presentAddress','image')
+                ->findOrFail($empId);
+
+            $education=Education::select('degreeName','education.institutionName','education.fkemployeeId','education.status','education.resultSystem','education.result','educationlevel.educationLevelName',
+                'educationmajor.educationMajorName','education.fkMajorId','passingYear')
+                ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
+                ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
+                ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
+                ->where('fkemployeeId',$empId)
+                ->orderBy('passingYear','desc')
+                ->get();
+
+            $professionalCertificate=ProfessionalQualification::where('fkemployeeId',$empId)
+                ->get();
+
+            $jobExperience=JobExperience::where('fkemployeeId',$empId)
+                ->orderBy('startDate','desc')
+                ->get();
+
+            $trainingCertificate=Traning::where('fkemployeeId',$empId)
+                ->orderBy('startDate','desc')
+                ->get();
+            $refree=Refree::where('fkemployeeId',$empId)
+                ->get();
+            $relativeCb=RelativeInCb::where('fkemployeeId',$empId)
+                ->get();
+
+            $pdf = PDF::loadView('test',compact('personalInfo','education','professionalCertificate','jobExperience','trainingCertificate','refree','relativeCb'));
+//       return base64_encode($pdf->stream());
+            return $pdf->stream('Curriculam Vitae of '.$personalInfo->firstName." ".$personalInfo->lastName.'.pdf',array('Attachment'=>0));
+
+        }
+
+        //return $empId;
 
 
 
