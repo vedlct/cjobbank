@@ -115,7 +115,7 @@ class UserCvController extends Controller
            ->get();
 
         $pdf = PDF::loadView('test',compact('personalInfo','education','professionalCertificate','jobExperience','trainingCertificate','refree','relativeCb'));
-//       return base64_encode($pdf->stream());
+
        return $pdf->stream('Curriculam Vitae of '.$personalInfo->firstName." ".$personalInfo->lastName.'.pdf',array('Attachment'=>false));
 
 

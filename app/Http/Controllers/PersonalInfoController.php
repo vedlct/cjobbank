@@ -44,10 +44,6 @@ class PersonalInfoController extends Controller
         $ethnicity=Ethnicity::where('status',1)->get();
         $natinality=Nationality::where('status',1)->get();
 
-       // return $employeeCvPersonalInfo;
-
-
-
         if (!$employeeCvPersonalInfo->isEmpty()){
 
             return view('userCv.update.personalInfo',compact('religion','ethnicity','natinality','employeeCvPersonalInfo'));
