@@ -15,36 +15,36 @@ class UserCvController extends Controller
 {
 
    public function index(){
-       $empId=6;
-       $personalInfo = Employee::select('firstName','lastName','personalMobile','email','presentAddress','image')
-           ->findOrFail($empId);
-
-       $education=Education::select('degreeName','education.institutionName','education.fkemployeeId','education.status','education.resultSystem','education.result','educationlevel.educationLevelName',
-           'educationmajor.educationMajorName','education.fkMajorId','passingYear')
-           ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
-           ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
-           ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
-           ->where('fkemployeeId',$empId)
-           ->orderBy('passingYear','desc')
-           ->get();
-
-       $professionalCertificate=ProfessionalQualification::where('fkemployeeId',$empId)
-           ->get();
-
-       $jobExperience=JobExperience::where('fkemployeeId',$empId)
-           ->orderBy('startDate','desc')
-           ->get();
-
-       $trainingCertificate=Traning::where('fkemployeeId',$empId)
-           ->orderBy('startDate','desc')
-           ->get();
-       $refree=Refree::where('fkemployeeId',$empId)
-           ->get();
-       $relativeCb=RelativeInCb::where('fkemployeeId',$empId)
-           ->get();
-
-       $pdf = PDF::loadView('test',compact('personalInfo','education','professionalCertificate','jobExperience','trainingCertificate','refree','relativeCb'));
-       return $pdf->stream('Curriculam Vitae of '.$personalInfo->firstName." ".$personalInfo->lastName.'.pdf',array('Attachment'=>0));
+//       $empId=6;
+//       $personalInfo = Employee::select('firstName','lastName','personalMobile','email','presentAddress','image')
+//           ->findOrFail($empId);
+//
+//       $education=Education::select('degreeName','education.institutionName','education.fkemployeeId','education.status','education.resultSystem','education.result','educationlevel.educationLevelName',
+//           'educationmajor.educationMajorName','education.fkMajorId','passingYear')
+//           ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
+//           ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
+//           ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
+//           ->where('fkemployeeId',$empId)
+//           ->orderBy('passingYear','desc')
+//           ->get();
+//
+//       $professionalCertificate=ProfessionalQualification::where('fkemployeeId',$empId)
+//           ->get();
+//
+//       $jobExperience=JobExperience::where('fkemployeeId',$empId)
+//           ->orderBy('startDate','desc')
+//           ->get();
+//
+//       $trainingCertificate=Traning::where('fkemployeeId',$empId)
+//           ->orderBy('startDate','desc')
+//           ->get();
+//       $refree=Refree::where('fkemployeeId',$empId)
+//           ->get();
+//       $relativeCb=RelativeInCb::where('fkemployeeId',$empId)
+//           ->get();
+//
+//       $pdf = PDF::loadView('test',compact('personalInfo','education','professionalCertificate','jobExperience','trainingCertificate','refree','relativeCb'));
+//       return $pdf->stream('Curriculam Vitae of '.$personalInfo->firstName." ".$personalInfo->lastName.'.pdf',array('Attachment'=>0));
    }
 
    public function getFullCv($empId){
@@ -120,9 +120,46 @@ class UserCvController extends Controller
    }
 
     public function getSelectedCv(Request $r){
-        foreach ($r->ids as $id){
-            $this->downloadCv($id);
+
+//        foreach ($r->ids as $id){
+//            $this->downloadCv($id);
+//        }
+
+        /*------------*/
+        foreach ($r->ids as $id) {
+            $empId = $id;
+
+            $personalInfo = Employee::select('firstName', 'lastName', 'personalMobile', 'email', 'presentAddress', 'image')
+                ->findOrFail($empId);
+
+            $education = Education::select('degreeName', 'education.institutionName', 'education.fkemployeeId', 'education.status', 'education.resultSystem', 'education.result', 'educationlevel.educationLevelName',
+                'educationmajor.educationMajorName', 'education.fkMajorId', 'passingYear')
+                ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
+                ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
+                ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
+                ->where('fkemployeeId', $empId)
+                ->orderBy('passingYear', 'desc')
+                ->get();
+
+            $professionalCertificate = ProfessionalQualification::where('fkemployeeId', $empId)
+                ->get();
+
+            $jobExperience = JobExperience::where('fkemployeeId', $empId)
+                ->orderBy('startDate', 'desc')
+                ->get();
+
+            $trainingCertificate = Traning::where('fkemployeeId', $empId)
+                ->orderBy('startDate', 'desc')
+                ->get();
+            $refree = Refree::where('fkemployeeId', $empId)
+                ->get();
+            $relativeCb = RelativeInCb::where('fkemployeeId', $empId)
+                ->get();
+
+            $pdf = PDF::loadView('test', compact('personalInfo', 'education', 'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree', 'relativeCb'));
+            return $pdf->stream('Curriculam Vitae of ' . $personalInfo->firstName . " " . $personalInfo->lastName . '.pdf', array('Attachment' => 0));
         }
+
     }
 
     public function downloadCv($empId){
@@ -155,7 +192,7 @@ class UserCvController extends Controller
             ->get();
 
         $pdf = PDF::loadView('test',compact('personalInfo','education','professionalCertificate','jobExperience','trainingCertificate','refree','relativeCb'));
-        return $pdf->stream('Curriculam Vitae of '.$personalInfo->firstName." ".$personalInfo->lastName.'.pdf',array('Attachment'=>false));
+        return $pdf->stream('Curriculam Vitae of '.$personalInfo->firstName." ".$personalInfo->lastName.'.pdf',array('Attachment'=>0));
 
 
 

@@ -285,7 +285,7 @@
         });
 
         function exportSelectedCv() {
-            console.log(selecteds);
+
             if(selecteds.length >0 ){
                 $.ajax({
                     type: 'POST',

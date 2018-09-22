@@ -35,7 +35,20 @@ class UserManagementController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(function ($request, $next) {
+
+
+            if(Auth::check() && Auth::user()->fkuserTypeId==USER_TYPE['Admin'] || Auth::user()->fkuserTypeId==USER_TYPE['Emp'] ){
+
+                return $next($request);
+
+            }else{
+                // Session::flash('message', 'please Login to Account Again .');
+                return redirect('/');
+            }
+
+
+        });
     }
 
     /**
@@ -62,9 +75,11 @@ class UserManagementController extends Controller
     }
 
     public function getUserData(Request $r){
-        $hr=HR::select('hrId','hr.status','firstName','lastName','email','gender','zoneName','designationName')
+
+        $hr=HR::select('hrId','hr.status','hr.firstName','hr.lastName','hr.email','hr.gender','zoneName','designationName','employee.cvStatus','employee.employeeId')
             ->leftJoin('designation','designation.designationId','hr.fkdesignationId')
-            ->leftJoin('zone','zone.zoneId','hr.fkzoneId');
+            ->leftJoin('zone','zone.zoneId','hr.fkzoneId')
+            ->leftJoin('employee','employee.fkuserId','hr.fkuserId');
         if($r->zoneId){
             $hr=$hr->where('hr.fkzoneId',$r->zoneId);
         }
