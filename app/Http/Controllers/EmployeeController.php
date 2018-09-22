@@ -77,11 +77,16 @@ class EmployeeController extends Controller
 
         if ($empId->cvStatus==0){
 
-            Session::flash('message', 'Education Added Successfully');
+            $allEmp=$empId;
 
-            return redirect()->back();
+            Session::flash('message', 'Your CV is not Completed yet,Please Complete First');
+
+            return view('userCv.cvPdf.userCvPdf',compact('allEmp'));
 
         }else{
+
+            $allEmp=$empId;
+
 
             $empId=$empId->employeeId;
 
@@ -112,13 +117,12 @@ class EmployeeController extends Controller
             $relativeCb=RelativeInCb::where('fkemployeeId',$empId)
                 ->get();
 
-            $pdf = PDF::loadView('test',compact('personalInfo','education','professionalCertificate','jobExperience','trainingCertificate','refree','relativeCb'));
-//       return base64_encode($pdf->stream());
-            return $pdf->stream('Curriculam Vitae of '.$personalInfo->firstName." ".$personalInfo->lastName.'.pdf',array('Attachment'=>0));
+            return view('userCv.cvPdf.userCvPdf',compact('allEmp','personalInfo','education','professionalCertificate','jobExperience','trainingCertificate','refree','relativeCb'));
+
 
         }
 
-        //return $empId;
+
 
 
 
