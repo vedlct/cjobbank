@@ -285,19 +285,34 @@
         });
 
         function exportSelectedCv() {
-            console.log(selecteds);
+//            console.log(selecteds);
             if(selecteds.length >0 ){
-                $.ajax({
-                    type: 'POST',
-                    url: "{!! route('userCv.select') !!}",
+                for (var i=0;i<selecteds.length;i++){
+//                    console.log(selecteds[i]);
+
+                    $.ajax({
+                    type: 'GET',
+                    url: "{!! route('userCv.post') !!}",
                     cache: false,
-                    data: {_token: "{{csrf_token()}}",'ids': selecteds},
+                    data: {'id': selecteds[i]},
                     success: function (data) {
 
-                       // console.log(data);
+                     console.log(data);
 
                     }
-                });
+                    });
+                }
+                {{--$.ajax({--}}
+                    {{--type: 'POST',--}}
+                    {{--url: "{!! route('userCv.select') !!}",--}}
+                    {{--cache: false,--}}
+                    {{--data: {_token: "{{csrf_token()}}",'ids': selecteds},--}}
+                    {{--success: function (data) {--}}
+
+                       {{--// console.log(data);--}}
+
+                    {{--}--}}
+                {{--});--}}
             }
             else {
                 alert('Please select user');
