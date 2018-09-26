@@ -94,28 +94,48 @@ class RegisterController extends Controller
         $this->validate($r, $rules, $customMessages);
 
 
+//        $user=new User();
+//        $user->name=$r->firstName." ".$r->lastName;
+//        $user->email=$r->email;
+//        $user->password=Hash::make($r->password);
+//        $user->fkuserTypeId='user';
+//        $user->register='N';
+//        $userToken=$user->token=str_random(64);
+//        $user->save();
+//
+//
+//        $userEmail=$user->email;
+//        $userPass=$r->password;
+//        $userId=$user->userId;
+
+
+        $userEmail=$r->email;
+        $userPass=$r->password;
+        $userFirstName=$r->firstName;
+        $userLastName=$r->lastName;
+        $userToken=str_random(64);
+
+
+        $aggrementsQues=Aggrementqus::where('status',1)->orderBy('serial', 'ASC')->get();
+
+
+//        return view('newUserAgreement',compact('userToken','userPass','userEmail','aggrementsQues','userId'));
+        return view('newUserAgreement',compact('userToken','userPass','userEmail','aggrementsQues','userFirstName','userLastName'));
+    }
+    public function newUserAgreement(Request $r)
+    {
+
         $user=new User();
         $user->name=$r->firstName." ".$r->lastName;
         $user->email=$r->email;
         $user->password=Hash::make($r->password);
         $user->fkuserTypeId='user';
         $user->register='N';
-        $userToken=$user->token=str_random(64);
+        $userToken=$user->token=$r->userToken;
         $user->save();
 
 
-        $userEmail=$user->email;
-        $userPass=$r->password;
-        $userId=$user->userId;
 
-
-        $aggrementsQues=Aggrementqus::where('status',1)->orderBy('serial', 'ASC')->get();
-
-
-        return view('newUserAgreement',compact('userToken','userPass','userEmail','aggrementsQues','userId'));
-    }
-    public function newUserAgreement(Request $r)
-    {
 
         for ($i=0;$i<count($r->qesId);$i++){
 

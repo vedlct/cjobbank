@@ -119,9 +119,9 @@
                     <label>Major</label>
                     <select id="educationMajorFilter" name="educationMajorFilter" class="form-control">
                         <option value="">Select a Major</option>
-                        @foreach($allEducationMajor as $eduMajor)
-                            <option value="{{$eduMajor->educationMajorId}}">{{$eduMajor->educationMajorName}}</option>
-                        @endforeach
+                        {{--@foreach($allEducationMajor as $eduMajor)--}}
+                            {{--<option value="{{$eduMajor->educationMajorId}}">{{$eduMajor->educationMajorName}}</option>--}}
+                        {{--@endforeach--}}
 
                     </select>
                 </div>
@@ -414,7 +414,14 @@
             });
             $('#educationCompletingFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
-                table.ajax.reload();  //just reload table
+                if ($('#educationLvlFilter').val()!="") {
+                    table.ajax.reload();  //just reload table
+                }else {
+                    var errorMsg='Please Select Education Lavel First!!'
+                    validationError(errorMsg);
+                    $("#educationCompletingFilter").prop("selectedIndex", 0);
+
+                }
             });
             $('#educationMajorFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
@@ -641,6 +648,40 @@
 //            document.location.href=url;
             window.open(url,'_blank');
         }
+
+        function validationError(errorMsg){
+
+            $.alert({
+                title: 'Error',
+                type: 'red',
+                content: errorMsg,
+                buttons: {
+                    tryAgain: {
+                        text: 'Ok',
+                        btnClass: 'btn-green',
+                        action: function () {
+
+                        }
+                    }
+                }
+            });
+
+        }
+
+        $('#educationLvlFilter').on('change', function() {
+
+            $.ajax({
+                type:'POST',
+                url:'{{route('application.admin.getMajorFromEducationlvl')}}',
+                data:{_token:"{{csrf_token()}}",id:this.value},
+                cache: false,
+                success:function(data) {
+                    document.getElementById("degree").innerHTML = data;
+
+                }
+            });
+
+        });
 
     </script>
 

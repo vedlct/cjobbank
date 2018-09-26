@@ -17,6 +17,21 @@
             {{csrf_field()}}
             <div class="row">
                 <div class="form-group col-md-6">
+                    <label>User Type<span style="color: red">*</span></label>
+                    <select class="form-control" name="userType" required>
+                        <option value="">Select</option>
+                        @foreach(USER_TYPE as $key=>$value)
+                            @if($value != 'user' )
+                            <option @if(old('userType') == $value) selected @endif value="{{$value}}">{{$key}}</option>
+                            @endif
+                        @endforeach
+
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                </div>
+
+                <div class="form-group col-md-6">
                     <label>First Name<span style="color: red">*</span></label>
                     <input required type="text" class="form-control" placeholder="first name" value="{{old('firstName')}}" name="firstName">
                 </div>
@@ -57,8 +72,10 @@
                     <label>Gender<span style="color: red">*</span></label>
                     <select class="form-control" name="gender" required>
                         <option value="">Select</option>
-                        <option value="m">Male</option>
-                        <option value="f">Female</option>
+                        @foreach(GENDER as $key=>$value)
+                            <option @if(old('gender')==$value) selected @endif value="{{$value}}">{{$key}}</option>
+                        @endforeach
+
                     </select>
                 </div>
                 <div class="form-group col-md-4">
@@ -67,7 +84,7 @@
                 </div>
                 <div class="form-group col-md-4">
                     <label>Confirm Password<span style="color: red">*</span></label>
-                    <input type="password" class="form-control" required>
+                    <input type="password" id="password_confirmation" name="password_confirmation" class="form-control" required>
                 </div>
                 <div class="form-group col-md-12">
                     <label>Address<span style="color: red">*</span></label>

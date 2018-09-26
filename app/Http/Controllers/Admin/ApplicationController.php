@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Degree;
 use App\Education;
 use App\Educationlevel;
 use App\Educationmajor;
@@ -85,8 +86,8 @@ class ApplicationController extends Controller
         $allZone=DB::table('zone')->where('status',1)->get();
         $organizationType=DB::table('organizationtype')->where('status',1)->get();
         $allJobTitle=Job::select('title')->get();
-        $allEducationLevel=Educationlevel::get();
-        $allEducationMajor=Educationmajor::select('educationMajorId','educationMajorName')->get();
+        $allEducationLevel=Educationlevel::where('status',1)->get();
+//        $allEducationMajor=Educationmajor::select('educationMajorId','educationMajorName')->get();
 
 //        $application = Jobapply::select('jobapply.jobapply as applyId', 'jobapply.applydate', 'zone.zoneName', 'employee.firstName', 'employee.lastName', 'job.title',
 //                                    DB::raw("CONCAT((year(now()) - year(`employee`.`dateOfBirth`)),'.',(month(now()) - month(`employee`.`dateOfBirth`))) as Age"))
@@ -377,6 +378,22 @@ class ApplicationController extends Controller
 
 
 
+    }
+
+    public function showAllMajorForEducation(Request $r)
+    {
+        $major=Degree::select('educationMajorId','educationMajorName')
+            ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'degree.educationLevelId')
+            ->where('degree.educationLevelId', '=',$r->id)->where('degree.status',1)->where('educationmajor.status',1)->get();
+
+        if ($major == null) {
+            echo "<option value='' selected>Select Major</option>";
+        } else {
+            echo "<option value='' selected>Select Major</option>";
+            foreach ($major as $mejor) {
+                echo "<option value='$mejor->educationMajorId'>$mejor->educationMajorName</option>";
+            }
+        }
     }
 
 

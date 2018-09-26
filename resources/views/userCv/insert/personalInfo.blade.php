@@ -39,7 +39,7 @@
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="">Father's Name<span style="color: red">*</span></label>
+                                    <label for="">Father Name<span style="color: red">*</span></label>
                                     <input type="text" name="fathersName" class="form-control {{ $errors->has('fathersName') ? ' is-invalid' : '' }}" value="{{ old('fathersName') }}" id="" required placeholder="Father's Name">
                                     @if ($errors->has('fathersName'))
 
@@ -49,7 +49,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="inputPassword4">Mother's Name<span style="color: red">*</span></label>
+                                    <label for="inputPassword4">Mother Name<span style="color: red">*</span></label>
                                     <input type="text" name="mothersName" class="form-control {{ $errors->has('mothersName') ? ' is-invalid' : '' }}" value="{{ old('mothersName') }}" required id="" placeholder="Mother's Name">
                                     @if ($errors->has('mothersName'))
 
