@@ -38,14 +38,14 @@
 
                                     <div class="row">
                                         <div class="form-group col-md-12">
-                                            <label for="inputEmail4">Vanue :</label>
+                                            <label for="inputEmail4">Venue :</label>
                                             <label for="inputEmail4">{{$training->vanue}} </label>
                                             {{--<input type="text" class="form-control" name="vanue[]" id="inputEmail4" placeholder="vanue" required>--}}
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-6">
-                                            <label for="inputPassword4">country :</label>
+                                            <label for="inputPassword4">Country :</label>
                                             <label for="inputEmail4">{{$training->countryName}} </label>
 
                                         </div>
@@ -79,9 +79,10 @@
                                         </div>
                                     </div>
                                     @php($tempHr++)
-                                    @endforeach
+
 
                                 </div>
+                            @endforeach
                         </div>
                             <form action="{{route('insert.cvTrainingCertificate')}}" method="post">
                                 <!-- One "tab" for each step in the form: -->
@@ -248,7 +249,7 @@
                     }
                     if(vanue==""){
 
-                        var errorMsg='Please Type a Vanue First!!'
+                        var errorMsg='Please Type a Venue First!!'
                         validationError(errorMsg)
                         return false;
 
@@ -310,13 +311,13 @@
                     '</div> ' +
 
                     '<div class="form-group col-md-8"> ' +
-                    '<label for="inputEmail4">Vanue <span style="color: red">*</span></label> ' +
+                    '<label for="inputEmail4">Venue <span style="color: red">*</span></label> ' +
                     '<input type="text" class="form-control" name="vanue[]" id="vanue'+counter+'" placeholder="vanue" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
-                    '<label for="inputPassword4">country<span style="color: red">*</span></label>' +
+                    '<label for="inputPassword4">Country<span style="color: red">*</span></label>' +
                     '<select required class="form-control" id="country'+counter+'" name="countryId[]">'+
-                    '<option value="">Select country</option>'+
+                    '<option value="">Select Country</option>'+
                     '@foreach($countries as $country)'+
                     '<option value="{{$country->countryId}}">{{$country->countryName}}</option>'+
                     '@endforeach'+

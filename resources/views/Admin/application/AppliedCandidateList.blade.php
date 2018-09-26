@@ -13,12 +13,12 @@
 
 
     <tr>
-        <td colspan="18"><span style="text-align: center"><h4>LIST OF CANDIDATES FOR THE POSITION OF  JUNIOR HUMAN RESOURCES (HR) OFFICER FOR CARITAS CENTRAL OFFICE</h4></span></td>
+        <td colspan="18"><span style="text-align: center"><h4>LIST OF CANDIDATES FOR THE POSITION OF  {{strtoupper($jobTitle['title'])}} FOR CARITAS CENTRAL OFFICE</h4></span></td>
     </tr>
 
     <tr>
         <td colspan="7"></td>
-        <td colspan="3"><span style="text-align: center"><h4>Last date: 10/06/2018</h4> </span></td>
+        <td colspan="3"><span style="text-align: center"><h4>Last date: {{$jobTitle['deadline']}}</h4> </span></td>
         <td colspan="8"> </td>
     </tr>
 

@@ -30,7 +30,21 @@ class EmployeeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+//        $this->middleware('auth');
+        $this->middleware(function ($request, $next) {
+
+            if (Auth::check()){
+
+                return $next($request);
+
+
+            }else{
+
+                return redirect('/');
+            }
+
+
+        });
     }
 
     /**

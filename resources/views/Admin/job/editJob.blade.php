@@ -15,7 +15,7 @@
                       <input type="hidden" required id="jobId" name="jobId" value="{{$info->jobId}}">
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label for="">Title</label>
+                            <label for="">Title<span style="color: red">*</span></label>
                             <input type="text" class="form-control {{ $errors->has('title') ? ' is-invalid' : '' }}" name="title" id="title" value="{{$info->title}}" placeholder="job Title" required>
                             @if ($errors->has('title'))
 
@@ -25,7 +25,7 @@
                             @endif
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputPassword4">Position</label>
+                            <label for="inputPassword4">Position<span style="color: red">*</span></label>
                             <input type="text" class="form-control {{ $errors->has('position') ? ' is-invalid' : '' }}" id="position" name="position" value="{{$info->position}}" placeholder="position" required>
                             @if ($errors->has('position'))
 
@@ -37,7 +37,7 @@
                     </div>
                       <div class="row">
                         <div class="form-group col-md-6">
-                            <label for="">Salary</label>
+                            <label for="">Salary<span style="color: red">*</span></label>
                             <input type="text" class="form-control {{ $errors->has('salary') ? ' is-invalid' : '' }}" name="salary" id="salary" value="{{$info->salary}}" placeholder="salary" required>
                             @if ($errors->has('salary'))
 
@@ -47,7 +47,7 @@
                             @endif
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="jobStatus">job Status</label>
+                            <label for="jobStatus">job Status<span style="color: red">*</span></label>
                             <select class="form-control {{ $errors->has('jobStatus') ? ' is-invalid' : '' }}" id="jobStatus" name="jobStatus" required >
                                 <option value="">select Job Status</option>
                                 <option @if($info->jobstatus =='1') selected @endif value="1">Part Time</option>
@@ -66,7 +66,7 @@
                     </div>
                       <div class="row">
                         <div class="form-group col-md-6">
-                            <label for="">Deadline</label>
+                            <label for="">Deadline<span style="color: red">*</span></label>
                             <input type="text" class="form-control date {{ $errors->has('deadline') ? ' is-invalid' : '' }}" name="deadline" id="deadline" value="{{$info->deadline}}" required>
                             @if ($errors->has('deadline'))
 
@@ -76,7 +76,7 @@
                             @endif
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="jobStatus">Status</label>
+                            <label for="jobStatus">Status<span style="color: red">*</span></label>
                             <select required class="form-control" id="activestatus" name="status" >
                                 <option value="">select Status</option>
 
@@ -93,7 +93,7 @@
                       <div class="row">
 
                         <div class="form-group col-md-6">
-                            <label for="jobStatus">Zone</label>
+                            <label for="jobStatus">Zone<span style="color: red">*</span></label>
                             <select class="form-control" id="zone" name="zone" required>
                                 <option value="">select zone</option>
                                 @foreach($allZone as $zone)

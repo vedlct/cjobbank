@@ -18,7 +18,21 @@ class EducationController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+//        $this->middleware('auth');
+        $this->middleware(function ($request, $next) {
+
+            if (Auth::check()){
+
+                return $next($request);
+
+
+            }else{
+
+                return redirect('/');
+            }
+
+
+        });
     }
    public function index(){
 
@@ -42,6 +56,8 @@ class EducationController extends Controller
         $educationLevel=Educationlevel::get();
 
         $country=Country::get();
+
+//        return $employeeCvEducationInfo;
 
 
 
@@ -113,13 +129,16 @@ class EducationController extends Controller
     public function getEducationEdit(Request $r)
     {
 
-        $education=Education::leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
+        $education=Education::select('education.*','educationmajor.educationMajorName','educationLevelName','degree.educationLevelId','degree.degreeName','degree.degreeId')
+            ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
             ->leftJoin('educationmajor', 'educationmajor.educationMajorId', '=', 'education.fkMajorId')
             ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
             ->findOrFail($r->id);
 
         $educationLevel=Educationlevel::get();
         $country=Country::get();
+
+//        return $r->id;
 
         return view('userCv.edit.editEducation',compact('education','educationLevel','country'));
 

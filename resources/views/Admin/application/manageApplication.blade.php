@@ -170,7 +170,7 @@
                         <label>From</label>
                         <input id="jobExperienceFromFilter" name="jobExperienceFromFilter" class="form-control" type="number">
                     </div>
-                    <div class=" form-group ">
+                    <div class="form-group ">
                         <label>to</label>
                         <input id="jobExperienceToFilter" name="jobExperienceToFilter" class="form-control" type="number">
                     </div>
@@ -349,14 +349,14 @@
                             ;},
                         "orderable": false, "searchable":false
                     },
-                    { data: 'firstName', name: 'firstName',"orderable": false, "searchable":true },
-                    { data: 'lastName', name: 'lastName',"orderable": false, "searchable":true },
+                    { data: 'firstName', name: 'employee.firstName',"orderable": false, "searchable":true },
+                    { data: 'lastName', name: 'employee.lastName',"orderable": false, "searchable":true },
 
 
 
-                    { data: 'title', name: 'title', "orderable": false, "searchable":true },
-                    { data: 'zoneName', name: 'zoneName', "orderable": false, "searchable":true },
-                    { data: 'applydate', name: 'applydate', "orderable": true, "searchable":true },
+                    { data: 'title', name: 'job.title', "orderable": false, "searchable":true },
+                    { data: 'zoneName', name: 'zone.zoneName', "orderable": false, "searchable":true },
+                    { data: 'applydate', name: 'jobapply.applydate', "orderable": true, "searchable":true },
 
 
                     { "data": function(data){
@@ -474,101 +474,126 @@
 
         function myfunc() {
 
-
-            var products=selecteds;
-
+            if ($('#jobTitle').val()!=""){
 
 
-            if (products.length >0) {
-
-                $.ajax({
-                    type: 'POST',
-                    url: "{!! route('jobAppliedCadidate.admin.Exportxls') !!}",
-                    cache: false,
-                    data: {'jobApply': products,_token:"{{csrf_token()}}"},
-                    success: function (data) {
-                            console.log(data);
-
-                        $('#SessionMessage').load(document.URL +  ' #SessionMessage');
-                        table.ajax.reload();  //just reload table
-
-                        selecteds=[];
-
-                        $(':checkbox:checked').prop('checked',false);
-                        //alert(data);
-
-                        if (data.success=='1'){
-
-                            $.alert({
-                                title: 'Success!',
-                                type: 'green',
-                                content: data.message,
-                                buttons: {
-                                    tryAgain: {
-                                        text: 'Ok',
-                                        btnClass: 'btn-blue',
-                                        action: function () {
-
-                                            {{--var link = document.createElement("a");--}}
-                                            {{--link.download = data.fileName+".xls";--}}
-                                            {{--var uri = '{{url("public/exportedExcel")}}'+"/"+data.fileName+".xls";--}}
-                                            {{--link.href = uri;--}}
-                                            {{--document.body.appendChild(link);--}}
-                                            {{--link.click();--}}
-                                            {{--document.body.removeChild(link);--}}
-                                            {{--delete link;--}}
-
-                                            {{--selecteds=[];--}}
-                                            {{--$(':checkbox:checked').prop('checked',false);--}}
+                var products=selecteds;
 
 
 
+                if (products.length >0) {
 
+                    $.ajax({
+                        type: 'POST',
+                        url: "{!! route('jobAppliedCadidate.admin.Exportxls') !!}",
+                        cache: false,
+                        data: {'jobApply': products,_token:"{{csrf_token()}}"},
+                        success: function (data) {
+//                            console.log(data);
+
+                            $('#SessionMessage').load(document.URL +  ' #SessionMessage');
+                            table.ajax.reload();  //just reload table
+
+                            selecteds=[];
+
+                            $(':checkbox:checked').prop('checked',false);
+                            //alert(data);
+
+//                            location.reload();
+
+                            if (data.success=='1'){
+
+                                $.alert({
+                                    title: 'Success!',
+                                    type: 'green',
+                                    content: data.message,
+                                    buttons: {
+                                        tryAgain: {
+                                            text: 'Ok',
+                                            btnClass: 'btn-blue',
+                                            action: function () {
+
+                                                var link = document.createElement("a");
+                                                link.download = data.fileName+".xls";
+                                                var uri = '{{url("public/exportedExcel")}}'+"/"+data.fileName+".xls";
+                                                link.href = uri;
+                                                document.body.appendChild(link);
+                                                link.click();
+                                                document.body.removeChild(link);
+                                                delete link;
+
+                                                location.reload();
+
+
+
+
+                                            }
                                         }
+
                                     }
-
-                                }
-                            });
+                                });
 
 
-                        }else if(data.success=='0'){
+                            }else if(data.success=='0'){
 
-                            $.alert({
-                                title: 'Alert!',
-                                type: 'Red',
-                                content: data.message,
-                                buttons: {
-                                    tryAgain: {
-                                        text: 'Ok',
-                                        btnClass: 'btn-red',
-                                        action: function () {
+                                $.alert({
+                                    title: 'Alert!',
+                                    type: 'Red',
+                                    content: data.message,
+                                    buttons: {
+                                        tryAgain: {
+                                            text: 'Ok',
+                                            btnClass: 'btn-red',
+                                            action: function () {
+                                                location.reload();
 
-
+                                            }
                                         }
-                                    }
 
-                                }
-                            });
+                                    }
+                                });
+
+
+                            }
 
 
                         }
 
+                    });
+                }
+                else {
 
-                    }
 
-                });
-            }
-            else {
+                    $.alert({
+                        title: 'Alert!',
+                        type: 'Red',
+                        content: 'Please select Application for exporting CV',
+                        buttons: {
+                            tryAgain: {
+                                text: 'Ok',
+                                btnClass: 'btn-red',
+                                action: function () {
 
+
+                                }
+                            }
+
+                        }
+                    });
+                }
+
+
+
+            }else {
 
                 $.alert({
                     title: 'Alert!',
-                    type: 'Red',
-                    content: 'Please select Application for exporting CV',
+                    type: 'red',
+                    content: 'Please Filter With Job Title First',
                     buttons: {
                         tryAgain: {
                             text: 'Ok',
-                            btnClass: 'btn-red',
+                            btnClass: 'btn-blue',
                             action: function () {
 
 
@@ -577,7 +602,9 @@
 
                     }
                 });
+
             }
+
         }
 
         // add multiple select / deselect functionality

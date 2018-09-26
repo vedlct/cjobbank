@@ -43,15 +43,24 @@ class ApplicationController extends Controller
 
         $this->middleware(function ($request, $next) {
 
+            if (Auth::check()){
 
-            if(Auth::check() && Auth::user()->fkuserTypeId==USER_TYPE['Admin'] || Auth::user()->fkuserTypeId==USER_TYPE['Emp'] ){
+                if(Auth::user()->fkuserTypeId==USER_TYPE['Admin'] || Auth::user()->fkuserTypeId==USER_TYPE['Emp'] ){
 
-                return $next($request);
+                    return $next($request);
+
+                }else{
+
+                    return redirect('/');
+                }
 
             }else{
-               // Session::flash('message', 'please Login to Account Again .');
+
                 return redirect('/');
             }
+
+
+
 
 
         });
@@ -164,7 +173,7 @@ class ApplicationController extends Controller
             $application= $application->where(DB::raw("TIMESTAMPDIFF(YEAR,`employee`.`dateOfBirth`,CURDATE())"),'<=',$r->ageToFilter);
         }
         if ($r->jobTitle){
-            $application= $application->where('job.title', 'LIKE', '%' . $r->jobTitle . '%');;
+            $application= $application->where('job.title',$r->jobTitle);;
         }
         if ($r->applyDate){
             $application= $application->where('jobapply.applydate',$r->applyDate);;
@@ -194,7 +203,7 @@ class ApplicationController extends Controller
 
         }
 
-         $application=$application->get();
+//         $application=$application->get();
 
 
 
@@ -210,9 +219,6 @@ class ApplicationController extends Controller
     {
         $ethnicity=Ethnicity::get();
 
-
-
-
         $appliedList=$r->jobApply;
         $filePath=public_path ()."/exportedExcel";
         $fileName="AppliedCandidateList".date("Y-m-d_H-i-s");
@@ -221,6 +227,8 @@ class ApplicationController extends Controller
             'fileName'=>$fileName,
             'filePath'=>$fileName,
         );
+
+
 
         $list=array();
         $eduList=array();
@@ -273,6 +281,9 @@ class ApplicationController extends Controller
                 ->get()
                 ->toArray();
 
+            $jobTitle=Jobapply::select('job.title','job.deadline')
+                ->leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')->where('jobapply',$appliedId)->first();
+
 
             $list=array_merge($list,$newlist);
             $eduList=array_merge($eduList,$education);
@@ -284,15 +295,11 @@ class ApplicationController extends Controller
             $relativeList=array_merge($relativeList,$relList);
 
         }
+//        return $jobTitle;
 
 
-
-
-
-
-
-        $check=Excel::create($fileName,function($excel) use($list,$filePath,$ethnicity,$eduList,$qualificationList,$trainingList,$jobExperienceList,$salaryList,$refreeList,$relativeList) {
-            $excel->sheet('First sheet', function($sheet) use($list,$ethnicity,$eduList,$qualificationList,$trainingList,$jobExperienceList,$salaryList,$refreeList,$relativeList) {
+        $check=Excel::create($fileName,function($excel) use($list,$filePath,$ethnicity,$eduList,$qualificationList,$trainingList,$jobExperienceList,$salaryList,$refreeList,$relativeList,$jobTitle) {
+            $excel->sheet('First sheet', function($sheet) use($list,$ethnicity,$eduList,$qualificationList,$trainingList,$jobExperienceList,$salaryList,$refreeList,$relativeList,$jobTitle) {
 
 
                 $sheet->loadView('Admin.application.AppliedCandidateList')
@@ -304,13 +311,14 @@ class ApplicationController extends Controller
                     ->with('jobExperienceList',$jobExperienceList)
                     ->with('salaryList',$salaryList)
                     ->with('refreeList',$refreeList)
+                    ->with('jobTitle',$jobTitle)
                     ->with('relativeList',$relativeList);
             });
 
         })->store('xls',$filePath);
 
         if ($check){
-            $message=array('message'=>$fileName .'.csv <br><div align="center">ProductList.csv and</div> OfferList.csv'. ' has been sent to server',
+            $message=array('message'=>$fileName .'.xls has been downloaded',
                 'success'=>'1');
             $fileInfo=array_merge($fileInfo,$message);
         }else{
@@ -321,8 +329,9 @@ class ApplicationController extends Controller
 
 
         }
-
         return $fileInfo;
+
+
 
     }
     public function export()

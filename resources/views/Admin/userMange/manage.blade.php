@@ -47,7 +47,8 @@
                         <thead>
                         <tr>
                             <th width="4%">Select</th>
-                            <th>Name</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
                             <th>Degisnation</th>
                             <th>Gender</th>
                             <th>Email</th>
@@ -135,6 +136,7 @@
                     },
 
                     { data: 'firstName', name: 'firstName', "orderable": false, "searchable":true },
+                    { data: 'lastName', name: 'lastName', "orderable": false, "searchable":true },
                     { data: 'designationName', name: 'designationName', "orderable": false, "searchable":true },
 
                     { data: 'gender', name: 'gender', "orderable": false, "searchable":true },
