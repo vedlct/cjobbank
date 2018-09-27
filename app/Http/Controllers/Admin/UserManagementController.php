@@ -26,6 +26,7 @@ use Yajra\DataTables\DataTables;
 
 
 
+
 class UserManagementController extends Controller
 {
     /**
@@ -37,15 +38,24 @@ class UserManagementController extends Controller
     {
         $this->middleware(function ($request, $next) {
 
+            if (Auth::check()){
 
-            if(Auth::check() && Auth::user()->fkuserTypeId==USER_TYPE['Admin'] || Auth::user()->fkuserTypeId==USER_TYPE['Emp'] ){
+                if(Auth::user()->fkuserTypeId==USER_TYPE['Admin'] || Auth::user()->fkuserTypeId==USER_TYPE['Emp'] ){
 
-                return $next($request);
+                    return $next($request);
+
+                }else{
+
+                    return redirect('/');
+                }
 
             }else{
-                // Session::flash('message', 'please Login to Account Again .');
+
                 return redirect('/');
             }
+
+
+
 
 
         });
@@ -66,7 +76,7 @@ class UserManagementController extends Controller
     {
         if(Auth::user()->fkuserTypeId==USER_TYPE['Admin']){
             $zones=Zone::where('status',1)->get();
-            $designations=Designation::get();
+            $designations=Designation::where('status',1)->get();
 
 
             return view('Admin.userMange.manage',compact('zones','designations'));
@@ -96,15 +106,19 @@ class UserManagementController extends Controller
 
     }
     public function add(){
+
         if(Auth::user()->fkuserTypeId==USER_TYPE['Admin']) {
+
             $zones = Zone::where('status',1)->get();
-            $designations = Designation::get();
+            $designations = Designation::where('status',1)->get();
 
             return view('Admin.userMange.addUser', compact('zones', 'designations'));
         }
+
     }
 
     public function insert(Request $r){
+
         $r->validate([
             'firstName' => 'required|max:45',
             'lastName' => 'required|max:45',
@@ -114,14 +128,15 @@ class UserManagementController extends Controller
             'zoneId' => 'required',
             'address' => 'required|max:255',
             'gender' => 'required',
-            'password' => 'required',
+            'password' => 'required|confirmed|min:6',
+
         ]);
 
         $user=new User();
         $user->name=$r->firstName;
         $user->email=$r->email;
         $user->password=Hash::make($r->password);
-        $user->fkuserTypeId='cbEmp';
+        $user->fkuserTypeId=$r->userType;
         $user->register='Y';
         $user->save();
 
@@ -153,6 +168,7 @@ class UserManagementController extends Controller
             'zoneId' => 'required',
             'address' => 'required|max:255',
             'gender' => 'required',
+            'password' => 'nullable|confirmed|min:6',
         ]);
         $hr=HR::findOrFail($id);
         $hr->firstName=$r->firstName;
@@ -164,14 +180,23 @@ class UserManagementController extends Controller
         $hr->fkdesignationId=$r->designationId;
         $hr->gender=$r->gender;
         $hr->save();
+
+        $user=User::findOrFail($hr->fkuserId);
+        $user->fkuserTypeId=$r->userType;
+        if ($r->password !=""){
+            $user->password=Hash::make($r->password);
+        }
+        $user->save();
+
+
         Session::flash('message', 'User Updated Successfully!');
         return back();
     }
     public function edit($id){
         if(Auth::user()->fkuserTypeId==USER_TYPE['Admin']){
-            $hr=HR::findOrFail($id);
+            $hr=HR::select('hr.*','user.fkuserTypeId')->leftJoin('user','user.userId','hr.fkuserId')->findOrFail($id);
             $zones=Zone::where('status',1)->get();
-            $designations=Designation::get();
+            $designations=Designation::where('status',1)->get();
 
             return view('Admin.userMange.editUser',compact('zones','designations','hr'));
         }

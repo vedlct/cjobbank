@@ -20,6 +20,7 @@ use App\Http\Controllers\Controller;
 use Session;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 
 class SettingsController extends Controller
@@ -29,15 +30,24 @@ class SettingsController extends Controller
 //        $this->middleware('auth');
         $this->middleware(function ($request, $next) {
 
+            if (Auth::check()){
 
-            if(Auth::check() && Auth::user()->fkuserTypeId==USER_TYPE['Admin'] || Auth::user()->fkuserTypeId==USER_TYPE['Emp'] ){
+                if(Auth::user()->fkuserTypeId==USER_TYPE['Admin'] || Auth::user()->fkuserTypeId==USER_TYPE['Emp'] ){
 
-                return $next($request);
+                    return $next($request);
+
+                }else{
+
+                    return redirect('/');
+                }
 
             }else{
-                // Session::flash('message', 'please Login to Account Again .');
+
                 return redirect('/');
             }
+
+
+
 
 
         });

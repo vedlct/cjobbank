@@ -22,7 +22,22 @@ class PersonalInfoController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+//        $this->middleware('auth');
+
+        $this->middleware(function ($request, $next) {
+
+            if (Auth::check()){
+
+                return $next($request);
+
+
+            }else{
+
+                return redirect('/');
+            }
+
+
+        });
     }
 
     /**
@@ -74,7 +89,7 @@ class PersonalInfoController extends Controller
             'personalMobile' => 'required|max:20',
             'email' => 'required|max:255|email',
             'nationality' => 'required|max:25',
-            'skype' => 'required|max:255',
+            'skype' => 'nullable|max:255',
             'alternateEmail' => 'nullable|email|max:255',
             'currentAddress' => 'required',
             'permanentAddress' => 'required',
@@ -174,7 +189,7 @@ class PersonalInfoController extends Controller
             'personalMobile' => 'required|max:20',
             'email' => 'required|max:255|email',
             'nationality' => 'required|max:25',
-            'skype' => 'required|max:255',
+            'skype' => 'nullable|max:255',
             'alternateEmail' => 'nullable|email|max:255',
             'currentAddress' => 'required',
             'permanentAddress' => 'required',

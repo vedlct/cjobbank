@@ -26,13 +26,13 @@
 
                                     <div class="form-group col-md-4">
 
-                                        <label for="">Education Level :</label>
+                                        <label for="">Education Degree :</label>
                                         {{$educationInfo->educationLevelName}}
                                     </div>
 
                                 <div class="form-group col-md-6">
 
-                                    <label for="">Degree :</label>
+                                    <label for="">Subject/Group :</label>
                                     {{$educationInfo->degreeName}}
 
                                 </div>
@@ -189,6 +189,8 @@
                     $("#btnPevious").hide();
 
                     $('#edit'+x).html(data);
+
+                 //   console.log(data);
 
                 }
             });

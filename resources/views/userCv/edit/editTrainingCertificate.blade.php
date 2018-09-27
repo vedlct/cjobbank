@@ -16,14 +16,15 @@
 
 <div class="row">
     <div class="form-group col-md-8">
-        <label for="inputEmail4">Vanue <span style="color: red">*</span></label>
+        <label for="inputEmail4">Venue <span style="color: red">*</span></label>
         <input type="text" class="form-control" name="vanue" value="{{$training->vanue}}" id="vanue" placeholder="vanue" required >
     </div>
     <div class="form-group col-md-4">
-        <label for="inputPassword4">country<span style="color: red">*</span></label>
+        <label for="inputPassword4">Country<span style="color: red">*</span></label>
         {{--<input type="text" class="form-control"  id="inputPassword4" placeholder="">--}}
-        <option value="">Select country</option>
+
         <select required class="form-control" id="country" name="countryId">
+            <option value="">Select Country</option>
             @foreach($countries as $country)
                 <option value="{{$country->countryId}}" @if($training->countryId == $country->countryId) selected @endif>{{$country->countryName}}</option>
 
@@ -96,7 +97,7 @@
         }
         if(vanue==""){
 
-            var errorMsg='Please Type a Vanue First!!'
+            var errorMsg='Please Type a Venue First!!'
             validationError(errorMsg)
             return false;
 

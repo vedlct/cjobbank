@@ -11,8 +11,28 @@ use App\RelativeInCb;
 use App\Traning;
 use Illuminate\Http\Request;
 use PDF;
+use Auth;
 class UserCvController extends Controller
 {
+
+    public function __construct()
+    {
+//        $this->middleware('auth');
+        $this->middleware(function ($request, $next) {
+
+            if (Auth::check()){
+
+                return $next($request);
+
+
+            }else{
+
+                return redirect('/');
+            }
+
+
+        });
+    }
 
    public function index(){
 //       $empId=6;

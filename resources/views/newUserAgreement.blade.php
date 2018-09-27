@@ -48,10 +48,16 @@
 
                     {{csrf_field()}}
 
+                    {{--<input type="hidden" name="userEmail" value="{{$userEmail}}">--}}
+                    {{--<input type="hidden" name="userPass" value="{{$userPass}}">--}}
+                    {{--<input type="hidden" name="userToken" value="{{$userToken}}">--}}
+                    {{--<input type="hidden" name="userId" value="{{$userId}}">--}}
+
                     <input type="hidden" name="userEmail" value="{{$userEmail}}">
                     <input type="hidden" name="userPass" value="{{$userPass}}">
                     <input type="hidden" name="userToken" value="{{$userToken}}">
-                    <input type="hidden" name="userId" value="{{$userId}}">
+                    <input type="hidden" name="userFirstName" value="{{$userFirstName}}">
+                    <input type="hidden" name="userLastName" value="{{$userLastName}}">
 
 
 

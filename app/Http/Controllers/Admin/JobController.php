@@ -12,6 +12,7 @@ use Auth;
 use Session;
 use Yajra\DataTables\DataTables;
 
+
 class JobController extends Controller
 {
     public function __construct()
@@ -19,15 +20,24 @@ class JobController extends Controller
 //        $this->middleware('auth');
         $this->middleware(function ($request, $next) {
 
+            if (Auth::check()){
 
-            if(Auth::check() && Auth::user()->fkuserTypeId==USER_TYPE['Admin'] || Auth::user()->fkuserTypeId==USER_TYPE['Emp'] ){
+                if(Auth::user()->fkuserTypeId==USER_TYPE['Admin'] || Auth::user()->fkuserTypeId==USER_TYPE['Emp'] ){
 
-                return $next($request);
+                    return $next($request);
+
+                }else{
+
+                    return redirect('/');
+                }
 
             }else{
-                // Session::flash('message', 'please Login to Account Again .');
+
                 return redirect('/');
             }
+
+
+
 
 
         });

@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="">Fathers Name<span style="color: red">*</span></label>
+                                        <label for="">Father Name<span style="color: red">*</span></label>
                                         <input type="text" required name="fathersName" class="form-control {{ $errors->has('fathersName') ? ' is-invalid' : '' }}" value="{{ $personalInfo->fathersName }}" id="" placeholder="">
                                         @if ($errors->has('fathersName'))
 
@@ -110,7 +110,7 @@
                                         @endif
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="inputPassword4">Mothers Name<span style="color: red">*</span></label>
+                                        <label for="inputPassword4">Mother Name<span style="color: red">*</span></label>
                                         <input type="text" name="mothersName" required class="form-control {{ $errors->has('mothersName') ? ' is-invalid' : '' }}" value="{{ $personalInfo->mothersName }}" id="" placeholder="">
                                         @if ($errors->has('mothersName'))
 
@@ -179,8 +179,8 @@
                                         @endif
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="">Skype<span style="color: red">*</span></label>
-                                        <input type="text" required name="skype" class="form-control {{ $errors->has('skype') ? ' is-invalid' : '' }}" value="{{$personalInfo->skype }}" id="" placeholder="">
+                                        <label for="">Skype</label>
+                                        <input type="text"  name="skype" class="form-control {{ $errors->has('skype') ? ' is-invalid' : '' }}" value="{{$personalInfo->skype }}" id="" placeholder="">
                                         @if ($errors->has('skype'))
 
                                             <span class="">
@@ -242,6 +242,30 @@
 
                                 <div class="row">
                                     <div class="form-group col-md-6">
+                                        <label for="">Personal Mobile<span style="color: red">*</span></label>
+                                        <input required type="text" name="personalMobile" class="form-control {{ $errors->has('personalMobile') ? ' is-invalid' : '' }}" value="{{ $personalInfo->personalMobile }}" id="" placeholder="">
+                                        @if ($errors->has('personalMobile'))
+
+                                            <span class="">
+                                        <strong>{{ $errors->first('personalMobile') }}</strong>
+                                    </span>
+                                        @endif
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="">Telephone No.</label>
+                                        <input  type="text" name="telephone" class="form-control {{ $errors->has('telephone') ? ' is-invalid' : '' }}" value="{{ $personalInfo->telephone }}" id="" placeholder="">
+                                        @if ($errors->has('telephone'))
+
+                                            <span class="">
+                                        <strong>{{ $errors->first('telephone') }}</strong>
+                                    </span>
+                                        @endif
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
                                         <label for="">Home Telephone</label>
                                         <input  type="text" name="homeTelephone" class="form-control {{ $errors->has('homeTelephone') ? ' is-invalid' : '' }}" value="{{ $personalInfo->homeNumber }}" id="" placeholder="">
                                         @if ($errors->has('homeTelephone'))
@@ -263,28 +287,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label for="">Telephone No.</label>
-                                        <input  type="text" name="telephone" class="form-control {{ $errors->has('telephone') ? ' is-invalid' : '' }}" value="{{ $personalInfo->telephone }}" id="" placeholder="">
-                                        @if ($errors->has('telephone'))
 
-                                            <span class="">
-                                        <strong>{{ $errors->first('telephone') }}</strong>
-                                    </span>
-                                        @endif
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="">Personal Mobile<span style="color: red">*</span></label>
-                                        <input required type="text" name="personalMobile" class="form-control {{ $errors->has('personalMobile') ? ' is-invalid' : '' }}" value="{{ $personalInfo->personalMobile }}" id="" placeholder="">
-                                        @if ($errors->has('personalMobile'))
-
-                                            <span class="">
-                                        <strong>{{ $errors->first('personalMobile') }}</strong>
-                                    </span>
-                                        @endif
-                                    </div>
-                                </div>
 
 
 
@@ -325,7 +328,7 @@
                                 <div class="row">
 
                                     <div class="form-group col-md-6">
-                                        <label for="">Image</label>
+                                        <label for="">Image</label>&nbsp;<strong>(Maximum Image Size 100Kb)</strong>
                                         @if ($errors->has('image'))
 
                                             <span class="">
@@ -333,7 +336,7 @@
                                             </span>
                                         @endif
                                         <input type="file" class="form-control" name="image" id="" placeholder="">
-
+<br>
                                         @if($personalInfo->image != null)
                                             <div>
                                                 <img style="width: 150px;height: 150px" src="{{url('public/candidateImages/thumb'."/".$personalInfo->image)}}">
@@ -342,17 +345,19 @@
                                         @endif
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="">Sign</label>
-                                        <input type="file" class="form-control" name="sign" id="" placeholder="">
+                                        <label for="">Signature</label>&nbsp;<strong>(Maximum Signature Size 50Kb)</strong>
                                         @if ($errors->has('sign'))
 
                                             <span class="">
                                         <strong>{{ $errors->first('sign') }}</strong>
                                     </span>
                                         @endif
+                                        <input type="file" class="form-control" name="sign" id="" placeholder="">
+
+                                        <br>
                                         @if($personalInfo->sign != null)
                                             <div>
-                                                <img style="width: 150px;height: 150px" src="{{url('public/candidateSigns/thumb'."/".$personalInfo->sign)}}">
+                                                <img style="width: 150px;height: 100px" src="{{url('public/candidateSigns/thumb'."/".$personalInfo->sign)}}">
 
                                             </div>
                                         @endif
@@ -393,9 +398,17 @@
     </div>
     <!-- end wrapper -->
 
+
+@endsection
+
+@section('foot-js')
+
     <script>
         var currentTab = 0; // Current tab is set to be the first tab (0)
         fixStepIndicator(currentTab); // Display the crurrent tab
+
+
+
         function fixStepIndicator(n) {
             // This function removes the "active" class of all steps...
             var x1 = document.getElementsByClassName("tab");
@@ -409,6 +422,17 @@
         }
     </script>
 
+
+    <script type="text/javascript">
+        $(function () {
+            $('#dob').datepicker({
+                format: 'yyyy-m-d'
+            });
+        });
+
+
+
+    </script>
 
 
 @endsection
