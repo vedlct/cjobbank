@@ -119,13 +119,15 @@
             padding: 40px;
             width: 50%;
         }
-        
-        
-        
+
+
+
 
 
 
     </style>
+
+
 
     @yield('header')
 

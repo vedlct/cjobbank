@@ -8,7 +8,15 @@
     }
 
 </style>
-<body>
+<noscript>
+<div  align="center" class="alert alert-danger">
+
+    <span style="color: #f45e41"><strong style="color: red">Notice: </strong> &nbsp; JavaScript is not enabled. !! <br> <a style="color: green" target="_blank" href="http://enable-javascript.com/" class="alert-link">Please Enable JavaScript Safley.</a></span>
+</div>
+<style>form,header,section,.card,.card-body,footer { display:none; }</style>
+</noscript>
+
+<body oncontextmenu="return false;">
 
 <!-- Loader -->
 {{--<div id="preloader"><div id="status"><div class="spinner"></div></div></div>--}}
@@ -183,6 +191,7 @@
 
 
 <div class="wrapper">
+
     <div class="container-fluid">
         @if(Session::has('message'))
             <p class="alert alert-info">{{ Session::get('message') }}</p>
@@ -191,6 +200,7 @@
         @yield('content')
 
     </div> <!-- end container -->
+
 </div>
 <!-- end wrapper -->
 

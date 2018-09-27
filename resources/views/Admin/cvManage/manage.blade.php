@@ -212,7 +212,7 @@
 
                     { "data": function(data){
 
-                        var words = '<?php echo json_encode(GENDER) ?>';// don't use quotes
+                        {{--var words = '<?php echo json_encode(GENDER) ?>';// don't use quotes--}}
 
                         if( data.gender == "M"){
                             return "Male"

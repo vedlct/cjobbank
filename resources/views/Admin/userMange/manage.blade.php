@@ -139,7 +139,21 @@
                     { data: 'lastName', name: 'lastName', "orderable": false, "searchable":true },
                     { data: 'designationName', name: 'designationName', "orderable": false, "searchable":true },
 
-                    { data: 'gender', name: 'gender', "orderable": false, "searchable":true },
+//                    { data: 'gender', name: 'gender', "orderable": false, "searchable":true },
+                    { "data": function(data){
+
+
+                        if( data.gender == "M"){
+                            return "Male"
+                        }else if (data.gender == "F") {
+                            return "Female"
+                        }
+
+                        //return btn;
+                    },
+                        "orderable": false, "searchable":true
+                    },
+
                     { data: 'email', name: 'email', "orderable": false, "searchable":true },
                     { data: 'zoneName', name: 'zoneName', "orderable": false, "searchable":true },
                     { "data": function(data){
@@ -184,9 +198,30 @@
 
         } );
 
-        function refreshTable() {
-            table.ajax.reload();
-        }
+        $('#zoneId').change(function(){ //button filter event click
+//                table.search("").draw(); //just redraw myTableFilter
+            table.ajax.reload();  //just reload table
+            if ($('#zoneId').val()!=""){
+
+                $('#zoneId').css("background-color", "#7c9").css('color', 'white');
+            }else {
+                $('#zoneId').css("background-color", "#FFF").css('color', 'black');
+            }
+        });
+        $('#designationId').change(function(){ //button filter event click
+//                table.search("").draw(); //just redraw myTableFilter
+            table.ajax.reload();  //just reload table
+            if ($('#designationId').val()!=""){
+
+                $('#designationId').css("background-color", "#7c9").css('color', 'white');
+            }else {
+                $('#designationId').css("background-color", "#FFF").css('color', 'black');
+            }
+        });
+
+//        function refreshTable() {
+//            table.ajax.reload();
+//        }
         function editUser(x) {
             var id=$(x).data('panel-id');
             var url = "{{ route('admin.editmanageUserData', ':id') }}";
@@ -218,6 +253,25 @@
             var url = "{{ route('userCv.get', ':empId') }}";
             url = url.replace(':empId', id);
             window.open(url,'_blank');
+        }
+
+        function validationError(errorMsg){
+
+            $.alert({
+                title: 'Error',
+                type: 'red',
+                content: errorMsg,
+                buttons: {
+                    tryAgain: {
+                        text: 'Ok',
+                        btnClass: 'btn-green',
+                        action: function () {
+
+                        }
+                    }
+                }
+            });
+
         }
 
     </script>
