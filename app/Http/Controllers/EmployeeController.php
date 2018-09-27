@@ -104,7 +104,11 @@ class EmployeeController extends Controller
 
             $empId=$empId->employeeId;
 
-            $personalInfo = Employee::select('firstName','lastName','personalMobile','email','presentAddress','image')
+            $personalInfo = Employee::select('firstName','lastName',
+                'fathersName','mothersName','gender','personalMobile',
+                'dateOfBirth','email','presentAddress','image','religionName','nationalityName','nationalId','parmanentAddress')
+                ->leftJoin('religion','religion.religionId','fkreligionId')
+                ->leftJoin('nationality','nationality.nationalityId','fknationalityId')
                 ->findOrFail($empId);
 
             $education=Education::select('degreeName','education.institutionName','education.fkemployeeId','education.status','education.resultSystem','education.result','educationlevel.educationLevelName',
