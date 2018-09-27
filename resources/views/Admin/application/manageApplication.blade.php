@@ -167,16 +167,16 @@
                     <label style="text-align: center" class="col-12">Job Experiences</label>
 
                     <div class=" form-group ">
-                        <label>From</label>
+                        <label>From</label>&nbsp;<span style="color: red">(Year)</span>
                         <input id="jobExperienceFromFilter" name="jobExperienceFromFilter" class="form-control" type="number">
                     </div>
                     <div class="form-group ">
-                        <label>to</label>
+                        <label>to</label>&nbsp;<span style="color: red">(Year)</span>
                         <input id="jobExperienceToFilter" name="jobExperienceToFilter" class="form-control" type="number">
                     </div>
 
                     <div class=" form-group ">
-                        <label>Experinces</label>
+                        <label>Organization Type</label>
                         <select id="jobExperienceFilter" name="jobExperienceFilter" class="form-control">
                             <option value="">Select a Type</option>
                             @foreach($organizationType as $type)
@@ -264,7 +264,8 @@
         $(document).ready(function() {
 
             $('.date').datepicker({
-                format: 'yyyy-m-d'
+                format: 'yyyy-m-d',
+                todayHighlight: true
             });
 
 
@@ -374,90 +375,343 @@
             $('#genderFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
                 table.ajax.reload();  //just reload table
+                if ($('#genderFilter').val()!=""){
+
+                    $('#genderFilter').css("background-color", "#7c9").css('color', 'white');
+                }else {
+                    $('#genderFilter').css("background-color", "#FFF").css('color', 'black');
+                }
             });
             $('#religionFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
+
                 table.ajax.reload();  //just reload table
+                if ($('#religionFilter').val()!=""){
+
+                    $('#religionFilter').css("background-color", "#7c9").css('color', 'white');
+                }else {
+                    $('#religionFilter').css("background-color", "#FFF").css('color', 'black');
+                }
+
 
             });
             $('#ethnicityFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
+
                 table.ajax.reload();  //just reload table
+                if ($('#ethnicityFilter').val()!=""){
+
+                    $('#ethnicityFilter').css("background-color", "#7c9").css('color', 'white');
+                }else {
+                    $('#ethnicityFilter').css("background-color", "#FFF").css('color', 'black');
+                }
+
             });
             $('#disabilityFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
+
                 table.ajax.reload();  //just reload table
+                if ($('#disabilityFilter').val()!=""){
+
+                    $('#disabilityFilter').css("background-color", "#7c9").css('color', 'white');
+                }else {
+                    $('#disabilityFilter').css("background-color", "#FFF").css('color', 'black');
+                }
+
             });
             $('#nationalityFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
                 table.ajax.reload();  //just reload table
+                if ($('#nationalityFilter').val()!=""){
+
+                    $('#nationalityFilter').css("background-color", "#7c9").css('color', 'white');
+                }else {
+                    $('#nationalityFilter').css("background-color", "#FFF").css('color', 'black');
+                }
             });
             $('#zonefilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
                 table.ajax.reload();  //just reload table
+                if ($('#zonefilter').val()!=""){
+
+                    $('#zonefilter').css("background-color", "#7c9").css('color', 'white');
+                }else {
+                    $('#zonefilter').css("background-color", "#FFF").css('color', 'black');
+                }
             });
             $('#jobTitle').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
                 table.ajax.reload();  //just reload table
+                if ($('#jobTitle').val()!=""){
+
+                    $('#jobTitle').css("background-color", "#7c9").css('color', 'white');
+                }else {
+                    $('#jobTitle').css("background-color", "#FFF").css('color', 'black');
+                }
+
             });
             $('#applyDate').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
                 table.ajax.reload();  //just reload table
+                if ($('#applyDate').val()!=""){
+
+                    $('#applyDate').css("background-color", "#7c9").css('color', 'white');
+                }else {
+                    $('#applyDate').css("background-color", "#FFF").css('color', 'black');
+                }
             });
             $('#jobExperienceFromFilter').keyup(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
-                table.ajax.reload();  //just reload table
+                if ($('#jobExperienceFromFilter').val()!="") {
+
+
+                    if ($('#jobExperienceToFilter').val() != "") {
+
+                        if (Date.parse($('#jobExperienceToFilter').val()) < Date.parse($('#jobExperienceFromFilter').val())) {
+
+                            var errorMsg = 'Job Experience From should not after Job Experience To!!';
+                            validationError(errorMsg);
+                            $('#jobExperienceFromFilter').val("");
+                            $('#jobExperienceFromFilter').css("background-color", "#FFF").css('color', 'black');
+
+                        } else {
+                            $('#jobExperienceFromFilter').css("background-color", "#7c9").css('color', 'white');
+                            table.ajax.reload();
+                        }
+
+
+                    } else {
+                        $('#jobExperienceFromFilter').css("background-color", "#7c9").css('color', 'white');
+                        table.ajax.reload();
+
+
+                    }
+                }else {
+                    table.ajax.reload();  //just reload table
+                    $('#jobExperienceFromFilter').css("background-color", "#FFF").css('color', 'black');
+                }
             });
             $('#jobExperienceToFilter').keyup(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
-                table.ajax.reload();  //just reload table
+                if ($('#jobExperienceToFilter').val()!="") {
+
+                    if ($('#jobExperienceFromFilter').val() != "") {
+
+                        if (Date.parse($('#jobExperienceToFilter').val()) < Date.parse($('#jobExperienceFromFilter').val())) {
+
+                            var errorMsg = 'Job Experience To should not less than Job Experience From!!';
+                            validationError(errorMsg);
+                            $('#jobExperienceToFilter').val("");
+                            $('#jobExperienceToFilter').css("background-color", "#FFF").css('color', 'black');
+
+                        } else {
+                            $('#jobExperienceToFilter').css("background-color", "#7c9").css('color', 'white');
+                            table.ajax.reload();
+
+                        }
+
+
+                    } else {
+                        // $("#age").css('background-color', 'green');
+                        $('#jobExperienceToFilter').css("background-color", "#7c9").css('color', 'white');
+                        table.ajax.reload();
+
+                    }
+                }else {
+                    table.ajax.reload();  //just reload table
+                    $('#jobExperienceToFilter').css("background-color", "#FFF").css('color', 'black');
+                }
             });
             $('#educationCompletingFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
-                if ($('#educationLvlFilter').val()!="") {
-                    table.ajax.reload();  //just reload table
-                }else {
-                    var errorMsg='Please Select Education Lavel First!!'
-                    validationError(errorMsg);
-                    $("#educationCompletingFilter").prop("selectedIndex", 0);
+                if ($('#educationCompletingFilter').val()!=""){
 
+                    if ($('#educationLvlFilter').val()!="") {
+                        table.ajax.reload();  //just reload table
+                        $('#educationCompletingFilter').css("background-color", "#7c9").css('color', 'white');
+                    }else {
+                        var errorMsg='Please Select Education Lavel First!!'
+                        validationError(errorMsg);
+                        $("#educationCompletingFilter").prop("selectedIndex", 0);
+                        $('#educationCompletingFilter').css("background-color", "#FFF").css('color', 'black');
+
+                    }
+
+                }else {
+                    table.ajax.reload();  //just reload table
+                    $('#educationCompletingFilter').css("background-color", "#FFF").css('color', 'black');
                 }
+
             });
             $('#educationMajorFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
                 table.ajax.reload();  //just reload table
+                if ($('#educationMajorFilter').val()!=""){
+
+                    $('#educationMajorFilter').css("background-color", "#7c9").css('color', 'white');
+                }else {
+                    $('#educationMajorFilter').css("background-color", "#FFF").css('color', 'black');
+                }
             });
             $('#educationLvlFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
                 table.ajax.reload();  //just reload table
+                if ($('#educationLvlFilter').val()!=""){
+
+                    $('#educationLvlFilter').css("background-color", "#7c9").css('color', 'white');
+                }else {
+                    $('#educationLvlFilter').css("background-color", "#FFF").css('color', 'black');
+                }
+
             });
             $('#qualificationCompletingFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
-                table.ajax.reload();  //just reload table
+
+                if($('#qualificationCompletingFilter').val()!=""){
+
+                    if($('#professionalQualificationFilter').val()==""){
+
+                        var errorMsg = 'Please Type Qualification First!!';
+                        validationError(errorMsg);
+                        $("#qualificationCompletingFilter").prop("selectedIndex", 0);
+                        $('#qualificationCompletingFilter').css("background-color", "#FFF").css('color', 'black');
+                    }else {
+                        table.ajax.reload();  //just reload table
+                        $('#qualificationCompletingFilter').css("background-color", "#7c9").css('color', 'white');
+                    }
+
+                }else {
+                    table.ajax.reload();  //just reload table
+                    $('#qualificationCompletingFilter').css("background-color", "#FFF").css('color', 'black');
+                }
+
             });
             $('#trainingCompletingFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
-                table.ajax.reload();  //just reload table
+//                table.ajax.reload();  //just reload table
+                if($('#trainingCompletingFilter').val()!=""){
+
+                    if($('#TrainingNameFilter').val()==""){
+
+                        var errorMsg = 'Please Type Training First!!';
+                        validationError(errorMsg);
+                        $("#trainingCompletingFilter").prop("selectedIndex", 0);
+                        $('#trainingCompletingFilter').css("background-color", "#FFF").css('color', 'black');
+                    }else {
+                        table.ajax.reload();  //just reload table
+                        $('#trainingCompletingFilter').css("background-color", "#7c9").css('color', 'white');
+                    }
+
+                }else {
+                    table.ajax.reload();  //just reload table
+                    $('#trainingCompletingFilter').css("background-color", "#FFF").css('color', 'black');
+                }
+
             });
             $("#ageFromFilter").keyup(function(){
                 // table.search("").draw(); //just redraw myTableFilter
-                table.ajax.reload();  //just reload table
+
+                if ($('#ageFromFilter').val()!="") {
+
+
+                    if ($('#ageToFilter').val() != "") {
+
+                        if (Date.parse($('#ageToFilter').val()) < Date.parse($('#ageFromFilter').val())) {
+
+                            var errorMsg = 'Age From should not after Age To!!';
+                            validationError(errorMsg);
+                            $('#ageFromFilter').val("");
+                            $('#ageFromFilter').css("background-color", "#FFF").css('color', 'black');
+
+                        } else {
+                            $('#ageFromFilter').css("background-color", "#7c9").css('color', 'white');
+                            table.ajax.reload();
+                        }
+
+
+                    } else {
+                        $('#ageFromFilter').css("background-color", "#7c9").css('color', 'white');
+                        table.ajax.reload();
+
+
+                    }
+                }else {
+                    table.ajax.reload();  //just reload table
+                    $('#ageFromFilter').css("background-color", "#FFF").css('color', 'black');
+                }
+
+
             });
             $("#ageToFilter").keyup(function(){
                 // table.search("").draw(); //just redraw myTableFilter
-                table.ajax.reload();  //just reload table
+               // table.ajax.reload();  //just reload table
+
+                if ($('#ageToFilter').val()!="") {
+
+                    if ($('#ageFromFilter').val() != "") {
+
+                        if (Date.parse($('#ageToFilter').val()) < Date.parse($('#ageFromFilter').val())) {
+
+                            var errorMsg = 'Age To should not less than Age From!!';
+                            validationError(errorMsg);
+                            $('#ageToFilter').val("");
+                            $('#ageToFilter').css("background-color", "#FFF").css('color', 'black');
+
+                        } else {
+                            $('#ageToFilter').css("background-color", "#7c9").css('color', 'white');
+                            table.ajax.reload();
+
+                        }
+
+
+                    } else {
+                        // $("#age").css('background-color', 'green');
+                        $('#ageToFilter').css("background-color", "#7c9").css('color', 'white');
+                        table.ajax.reload();
+
+                    }
+                }else {
+                    table.ajax.reload();  //just reload table
+                    $('#ageToFilter').css("background-color", "#FFF").css('color', 'black');
+                }
+
             });
             $("#professionalQualificationFilter").keyup(function(){
                 // table.search("").draw(); //just redraw myTableFilter
                 table.ajax.reload();  //just reload table
+                if ($('#professionalQualificationFilter').val()!=""){
+
+                    $('#professionalQualificationFilter').css("background-color", "#7c9").css('color', 'white');
+                }else {
+
+                    $("#qualificationCompletingFilter").prop("selectedIndex", 0);
+                    $('#qualificationCompletingFilter').css("background-color", "#FFF").css('color', 'black');
+                    $('#professionalQualificationFilter').css("background-color", "#FFF").css('color', 'black');
+                }
             });
             $("#TrainingNameFilter").keyup(function(){
                 // table.search("").draw(); //just redraw myTableFilter
+
                 table.ajax.reload();  //just reload table
+                if ($('#TrainingNameFilter').val()!=""){
+
+                    $('#TrainingNameFilter').css("background-color", "#7c9").css('color', 'white');
+                }else {
+
+                    $("#trainingCompletingFilter").prop("selectedIndex", 0);
+                    $('#trainingCompletingFilter').css("background-color", "#FFF").css('color', 'black');
+                    $('#TrainingNameFilter').css("background-color", "#FFF").css('color', 'black');
+                }
             });
             $("#jobExperienceFilter").change(function(){
                 // table.search("").draw(); //just redraw myTableFilter
                 table.ajax.reload();  //just reload table
+                if ($('#jobExperienceFilter').val()!=""){
+
+                    $('#jobExperienceFilter').css("background-color", "#7c9").css('color', 'white');
+                }else {
+                    $('#jobExperienceFilter').css("background-color", "#FFF").css('color', 'black');
+                }
             });
 
             });
@@ -641,7 +895,7 @@
         });
 
         function getEmpCv(id) {
-//            alert(id);
+
 
             var url = "{{ route('userCv.get', ':empId') }}";
             url = url.replace(':empId', id);
@@ -676,7 +930,8 @@
                 data:{_token:"{{csrf_token()}}",id:this.value},
                 cache: false,
                 success:function(data) {
-                    document.getElementById("degree").innerHTML = data;
+                    document.getElementById("educationMajorFilter").innerHTML = data;
+                    $('#educationMajorFilter').css("background-color", "#FFF").css('color', 'black');
 
                 }
             });
