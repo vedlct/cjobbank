@@ -7,9 +7,9 @@
 
             <div class="row">
                 <div class="form-group col-md-6">
-                    <label for="inputEmail4">Company Type<span style="color: red">*</span></label>
+                    <label for="inputEmail4">Organization Type<span style="color: red">*</span></label>
                     <select required name="organizationType" class="form-control" id="organizationType">
-                        <option selected value="">Select Company Type</option>
+                        <option selected value="">Select Organization Type</option>
                         @foreach($companyType as $natio)
                             <option @if($experience->fkOrganizationType == $natio->organizationTypeId ) selected @endif value="{{$natio->organizationTypeId}}">{{$natio->organizationTypeName}}</option>
                         @endforeach
@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="form-group col-md-10">
-                    <label for="inputEmail4">Company Name<span style="color: red">*</span></label>
+                    <label for="inputEmail4">Organization Name<span style="color: red">*</span></label>
                     <input type="text" class="form-control" name="organization" value="{{$experience->organization}}" id="organization" placeholder="organization" required>
                 </div>
                 {{--<div class="form-group col-md-2 ">--}}

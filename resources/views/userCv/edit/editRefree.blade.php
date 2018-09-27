@@ -17,7 +17,7 @@
 
 
     <div class="form-group col-md-6">
-        <label for="inputEmail4">Present position<span style="color: red">*</span></label>
+        <label for="inputEmail4">Present Position<span style="color: red">*</span></label>
         <input type="text" class="form-control" name="presentposition" value="{{$refree->presentposition}}" id="presentposition" placeholder="position" required>
     </div>
 
@@ -37,7 +37,7 @@
     </div>
 
     <div class="form-group col-md-6">
-        <label for="inputPassword4">relation<span style="color: red">*</span></label>
+        <label for="inputPassword4">Relation<span style="color: red">*</span></label>
         <input type="text" class="form-control" name="relation" value="{{$refree->relation}}" id="relation" placeholder="relation" required>
     </div>
 

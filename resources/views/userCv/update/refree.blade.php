@@ -13,7 +13,6 @@
 
                         <div id="" class="tab">
 
-                            <h2 style="margin-bottom: 30px;">Refree </h2>
                             @php($tempHr=0)
 
                                     @foreach($refrees as $refree)
@@ -21,6 +20,7 @@
                                             <div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>
                                         @endif
                                 <div id="edit{{$refree->refereeId}}">
+                                    <h2 style="margin-bottom: 30px;">Referee - {{++$tempHr}} </h2>
                                         <div class="row">
                                             <div class="form-group col-md-5">
                                                 <label for="inputEmail4">First Name</label>
@@ -44,7 +44,7 @@
 
 
                                             <div class="form-group col-md-6">
-                                                <label for="inputEmail4">Present position</label>
+                                                <label for="inputEmail4">Present Position</label>
                                                 {{$refree->presentposition}}
                                                 {{--<input type="text" class="form-control" name="presentposition[]" id="inputEmail4" placeholder="position" required>--}}
                                             </div>
@@ -62,7 +62,7 @@
                                             </div>
 
                                             <div class="form-group col-md-6">
-                                                <label for="inputPassword4">phone</label>
+                                                <label for="inputPassword4">Phone</label>
                                                 {{$refree->phone}}
                                                 {{--<input type="text" class="form-control" name="phone[]" id="inputPassword4" placeholder="email" required>--}}
                                             </div>
@@ -74,7 +74,7 @@
                                             </div>
                                         </div>
                                 </div>
-                                            @php($tempHr++)
+                                            {{--@php($tempHr++)--}}
                                     @endforeach
 
 
@@ -361,7 +361,7 @@
                     '<input type="text" class="form-control" name="lastName[]" id="lastName'+counter+'" placeholder="last name" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
-                    '<label for="inputEmail4">Present position<span style="color: red">*</span></label> ' +
+                    '<label for="inputEmail4">Present Position<span style="color: red">*</span></label> ' +
                     '<input type="text" class="form-control" name="presentposition[]" id="presentposition'+counter+'" placeholder="position" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
@@ -373,7 +373,7 @@
                     '<input type="email" class="form-control" name="email[]" id="email'+counter+'" placeholder="email" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
-                    '<label for="inputPassword4">phone<span style="color: red">*</span></label> ' +
+                    '<label for="inputPassword4">Phone<span style="color: red">*</span></label> ' +
                     '<input type="text" class="form-control" name="phone[]" id="phone'+counter+'" placeholder="email" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +

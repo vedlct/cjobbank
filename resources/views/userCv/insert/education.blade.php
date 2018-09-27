@@ -475,6 +475,7 @@
             });
 
         });
+
         $('#degree').on('change', function() {
 
             $.ajax({

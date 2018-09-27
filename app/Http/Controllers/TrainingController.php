@@ -13,6 +13,24 @@ use App\Employee;
 
 class TrainingController extends Controller
 {
+    public function __construct()
+    {
+//        $this->middleware('auth');
+        $this->middleware(function ($request, $next) {
+
+            if (Auth::check()){
+
+                return $next($request);
+
+
+            }else{
+
+                return redirect('/');
+            }
+
+
+        });
+    }
    public function index(){
        $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
        $trainings=Traning::where('fkemployeeId',$employee->employeeId)

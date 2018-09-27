@@ -190,6 +190,8 @@
 
                     $('#edit'+x).html(data);
 
+                 //   console.log(data);
+
                 }
             });
         }

@@ -22,6 +22,7 @@ use Yajra\DataTables\DataTables;
 
 
 
+
 class DashboardController extends Controller
 {
     /**
@@ -31,7 +32,30 @@ class DashboardController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+//        $this->middleware('auth');
+        $this->middleware(function ($request, $next) {
+
+            if (Auth::check()){
+
+                if(Auth::user()->fkuserTypeId==USER_TYPE['Admin'] || Auth::user()->fkuserTypeId==USER_TYPE['Emp'] ){
+
+                    return $next($request);
+
+                }else{
+
+                    return redirect('/');
+                }
+
+            }else{
+
+                return redirect('/');
+            }
+
+
+
+
+
+        });
     }
 
     /**

@@ -285,7 +285,7 @@
         });
 
         function exportSelectedCv() {
-//            console.log(selecteds);
+
             if(selecteds.length >0 ){
                 for (var i=0;i<selecteds.length;i++){
 //                    console.log(selecteds[i]);

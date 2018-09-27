@@ -47,7 +47,8 @@
                         <thead>
                         <tr>
                             <th width="4%">Select</th>
-                            <th>Name</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
                             <th>Degisnation</th>
                             <th>Gender</th>
                             <th>Email</th>
@@ -65,8 +66,9 @@
                     <br>
                     <br>
 
-                    <label class="checkbox-inline"> <input type="checkbox" value=""> </label> Select All  <br>
-                    <button style="margin-top: 10px;" class="btn btn-danger">Export CV</button>
+                    <label class="checkbox-inline"><input style="width: auto;" type="checkbox" id="selectall2" value=""> Select All</label>&nbsp;
+                    <button  class="btn btn-danger btn-sm" >Export CV</button>
+                    <br><br>
 
                 </div>
 
@@ -134,6 +136,7 @@
                     },
 
                     { data: 'firstName', name: 'firstName', "orderable": false, "searchable":true },
+                    { data: 'lastName', name: 'lastName', "orderable": false, "searchable":true },
                     { data: 'designationName', name: 'designationName', "orderable": false, "searchable":true },
 
                     { data: 'gender', name: 'gender', "orderable": false, "searchable":true },
@@ -158,13 +161,22 @@
                     },
 
                     { "data": function(data){
-//                        status
-                        var btn="<button class='btn btn-success btn-sm' data-panel-id='"+data.hrId+"' onclick='editUser(this)'>Edit</button>";
+
+
+                        if (data.cvStatus == 1){
+
+                            var btn="<button class='btn btn-success btn-sm' data-panel-id='"+data.hrId+"' onclick='editUser(this)'>Edit</button>&nbsp;"+
+                                '<button class="btn btn-smbtn-info" onclick="getEmpCv('+data.employeeId+')" ><i class="fa fa-file-pdf-o"></i></button>';
+                        }else {
+                            var btn="<button class='btn btn-success btn-sm' data-panel-id='"+data.hrId+"' onclick='editUser(this)'>Edit</button>"
+
+                        }
 
                         return btn;
                         },
                         "orderable": false, "searchable":false
                     },
+
 
                 ],
 
@@ -200,6 +212,13 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+        function getEmpCv(id) {
+
+            var url = "{{ route('userCv.get', ':empId') }}";
+            url = url.replace(':empId', id);
+            window.open(url,'_blank');
+        }
 
     </script>
 

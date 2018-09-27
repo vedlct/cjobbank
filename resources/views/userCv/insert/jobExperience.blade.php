@@ -19,9 +19,9 @@
 
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Company Type<span style="color: red">*</span></label>
+                                        <label for="inputEmail4">Organization Type<span style="color: red">*</span></label>
                                         <select required name="organizationType[]" class="form-control" id="organizationType">
-                                            <option selected value="">Select Company Type</option>
+                                            <option selected value="">Select Organization Type</option>
                                             @foreach($companyType as $natio)
                                                 <option value="{{$natio->organizationTypeId}}">{{$natio->organizationTypeName}}</option>
                                             @endforeach
@@ -30,7 +30,7 @@
                                         {{--<input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" required>--}}
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <label for="inputEmail4">Company Name<span style="color: red">*</span></label>
+                                        <label for="inputEmail4">Organization Name<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" required>
                                     </div>
 
@@ -299,9 +299,9 @@
                     '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>' +
                     '<div class="row"> ' +
                         '<div class="form-group col-md-6">'+
-                    '<label for="inputEmail4">Company Type<span style="color: red">*</span></label>'+
+                    '<label for="inputEmail4">Organization Type<span style="color: red">*</span></label>'+
                     '<select required name="organizationType[]" class="form-control" id="sel1">'+
-                    '<option selected value="">Select Company Type</option>'+
+                    '<option selected value="">Select Organization Type</option>'+
                 @foreach($companyType as $natio)
                 '<option value="{{$natio->organizationTypeId}}">{{$natio->organizationTypeName}}</option>'+
                         @endforeach
@@ -310,7 +310,7 @@
                         {{--<input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" required>--}}
                     '</div>'+
                     '<div class="form-group col-md-12"> ' +
-                    '<label for="inputEmail4">Company Name</label> ' +
+                    '<label for="inputEmail4">Organization Name</label> ' +
                     '<input type="text" class="form-control" name="organization[]" id="organization'+counter+'" placeholder="organization" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
