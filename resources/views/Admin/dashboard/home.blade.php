@@ -12,7 +12,7 @@
                 <div class="card-body">
 
                     <div class="row">
-                        <h2 style=" margin-bottom: 25px; margin-left: 13px; ">Todays Job Apply</h2>
+                        <h2 style=" margin-bottom: 25px; margin-left: 13px; ">Today's Job Apply</h2>
                     </div>
 
 
@@ -88,7 +88,7 @@
                 <div class="card-body">
 
                     <div class="row">
-                        <h2 style=" margin-bottom: 25px; margin-left: 13px; ">Todays Register CV</h2>
+                        <h2 style=" margin-bottom: 25px; margin-left: 13px; ">Today's Register CV</h2>
                     </div>
 
                     <table id="todayRegisterCV" class="table table-striped table-bordered" style="width:100%">

@@ -2,38 +2,43 @@
 @section('content')
 
 
-<div class="container">
-    <div style="margin-bottom: 20px;margin-top: 40px;" class="row">
+<div class="container" >
+    <div class="card">
+        <div class="card-header">
+            <div style="margin-bottom: 20px;" class="row">
 
-        <div class="col-md-1">
-            <h5 >Zone</h5>
-        </div>
-        <div class="col-md-2">
-            <select name="zonefilter" id="zonefilter" class="form-control">
-                <option value="">Select a Zone</option>
-                @foreach($allZone as $zone)
-                <option  value="{{$zone->zoneId}}">{{$zone->zoneName}}</option>
-                @endforeach
-
-            </select>
-
-        </div>
-
-        <div class="col-md-2">
-            <h5>Job Search: </h5>
-        </div>
-        <div class="col-md-7">
-            {{--<form class="navbar-form" role="search">--}}
-                <div class="input-group add-on">
-                    <input class="form-control" placeholder="Search" name="srch-term" id="search-job" type="text">
-                    <div style="color: black;" class="input-group-btn">
-                        <button style="background: #a3a3a4; color: white;" class="btn btn-default" onclick="getAllJob()"><i style="font-size: 18px;" class="ti-arrow-circle-right"></i></button>
-                    </div>
+                <div class="col-md-1">
+                    <h5 >Zone</h5>
                 </div>
-            {{--</form>--}}
+                <div class="col-md-2">
+                    <select name="zonefilter" id="zonefilter" class="form-control">
+                        <option value="">Select a Zone</option>
+                        @foreach($allZone as $zone)
+                            <option  value="{{$zone->zoneId}}">{{$zone->zoneName}}</option>
+                        @endforeach
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-2">
+                    <h5>Job Search: </h5>
+                </div>
+                <div class="col-md-7">
+                    {{--<form class="navbar-form" role="search">--}}
+                    <div class="input-group add-on">
+                        <input class="form-control" placeholder="Search" name="srch-term" id="search-job" type="text">
+                        <div style="color: black;" class="input-group-btn">
+                            <button style="background: #a3a3a4; color: white;" class="btn btn-default" onclick="getAllJob()"><i style="font-size: 18px;" class="ti-arrow-circle-right"></i></button>
+                        </div>
+                    </div>
+                    {{--</form>--}}
+                </div>
+                <!-- end col -->
+            </div>
         </div>
-        <!-- end col -->
     </div>
+
     <!-- end row -->
 
      <div id="allJob">
