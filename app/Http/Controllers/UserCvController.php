@@ -71,7 +71,11 @@ class UserCvController extends Controller
 
 
 
-       $personalInfo = Employee::select('firstName','lastName','personalMobile','email','presentAddress','image')
+       $personalInfo = Employee::select('firstName','lastName',
+           'fathersName','mothersName','gender','personalMobile',
+           'dateOfBirth','email','presentAddress','image','religionName','nationalityName','nationalId','parmanentAddress')
+           ->leftJoin('religion','religion.religionId','fkreligionId')
+           ->leftJoin('nationality','nationality.nationalityId','fknationalityId')
            ->findOrFail($empId);
 
        $education=Education::select('degreeName','education.institutionName','education.fkemployeeId','education.status','education.resultSystem','education.result','educationlevel.educationLevelName',
@@ -107,7 +111,11 @@ class UserCvController extends Controller
 
        $empId=$r->id;
 
-       $personalInfo = Employee::select('firstName','lastName','personalMobile','email','presentAddress','image')
+       $personalInfo = Employee::select('firstName','lastName',
+           'fathersName','mothersName','gender','personalMobile',
+           'dateOfBirth','email','presentAddress','image','religionName','nationalityName','nationalId','parmanentAddress')
+           ->leftJoin('religion','religion.religionId','fkreligionId')
+           ->leftJoin('nationality','nationality.nationalityId','fknationalityId')
            ->findOrFail($empId);
 
        $education=Education::select('degreeName','education.institutionName','education.fkemployeeId','education.status','education.resultSystem','education.result','educationlevel.educationLevelName',
@@ -151,7 +159,11 @@ class UserCvController extends Controller
         foreach ($r->ids as $id) {
             $empId = $id;
 
-            $personalInfo = Employee::select('firstName', 'lastName', 'personalMobile', 'email', 'presentAddress', 'image')
+            $personalInfo = Employee::select('firstName','lastName',
+                'fathersName','mothersName','gender','personalMobile',
+                'dateOfBirth','email','presentAddress','image','religionName','nationalityName','nationalId','parmanentAddress')
+                ->leftJoin('religion','religion.religionId','fkreligionId')
+                ->leftJoin('nationality','nationality.nationalityId','fknationalityId')
                 ->findOrFail($empId);
 
             $education = Education::select('degreeName', 'education.institutionName', 'education.fkemployeeId', 'education.status', 'education.resultSystem', 'education.result', 'educationlevel.educationLevelName',
@@ -186,7 +198,11 @@ class UserCvController extends Controller
 
     public function downloadCv($empId){
 
-        $personalInfo = Employee::select('firstName','lastName','personalMobile','email','presentAddress','image')
+        $personalInfo = Employee::select('firstName','lastName',
+            'fathersName','mothersName','gender','personalMobile',
+            'dateOfBirth','email','presentAddress','image','religionName','nationalityName','nationalId','parmanentAddress')
+            ->leftJoin('religion','religion.religionId','fkreligionId')
+            ->leftJoin('nationality','nationality.nationalityId','fknationalityId')
             ->findOrFail($empId);
 
         $education=Education::select('degreeName','education.institutionName','education.fkemployeeId','education.status','education.resultSystem','education.result','educationlevel.educationLevelName',

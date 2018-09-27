@@ -52,6 +52,7 @@
         </table>
 
 
+
         <table border="0" style="width:100%; margin-top: 25px; border: none;">
             <tr>
                 <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Education</b> </td>
@@ -270,6 +271,59 @@
 
 
         </table>
+
+        <table border="0" style="width:100%; margin-top: 25px; border: none;">
+            <tr>
+                <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Personal Info</b> </td>
+            </tr>
+        </table>
+        <table border="0" style="width:100%; margin-top: 10px; border: none;">
+
+            <tr>
+                <td  style="border: none;">
+                    Father Name : {{$personalInfo->fathersName}}
+                </td>
+
+
+                <td style="border: none;">
+                    Mother Name : {{$personalInfo->mothersName}}
+                </td>
+            </tr>
+            <tr>
+                <td  style="border: none;">
+                    Gender : {{$personalInfo->gender}}
+                </td>
+
+
+                <td style="border: none;">
+                    Date Of Birth : {{$personalInfo->dateOfBirth}}
+                </td>
+            </tr>
+            <tr>
+                <td  style="border: none;">
+                    Religion : {{$personalInfo->religionName}}
+                </td>
+
+
+                <td style="border: none;">
+                    Nationality : {{$personalInfo->nationalityName}}
+                </td>
+            </tr>
+            <tr>
+                <td  style="border: none;">
+                    Permanent Address : {{$personalInfo->parmanentAddress}}
+                </td>
+
+
+                <td style="border: none;">
+                    National Id : {{$personalInfo->nationalId}}
+                </td>
+            </tr>
+
+
+
+        </table>
+
 
 
 
