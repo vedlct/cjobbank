@@ -215,10 +215,7 @@
                         <div class="col-md-1">
                             <a onclick="return myfunc()"><button class="btn btn-danger btn-sm">Export CV</button></a>
                         </div>
-                        <div class="col-md-4">
-
-                            <button class="btn btn-info btn-sm">Download CV</button>
-                        </div>
+                        
                     </div>
                     <br>
 
