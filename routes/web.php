@@ -238,6 +238,24 @@ Route::post('manage/Degisnation/insert','Admin\SettingsController@insertDegisnat
 Route::post('manage/Degisnation/editDegisnation','Admin\SettingsController@editDegisnation')->name('admin.editDegisnation');
 Route::post('manage/Degisnation/updateDegisnation/{id}','Admin\SettingsController@updateDesignation')->name('manage.degisnation.update');
 
+//Major
+Route::get('manage/Major','Admin\SettingsController@major')->name('manage.major');
+Route::post('manage/Major/insert','Admin\SettingsController@insertMajor')->name('manage.major.insert');
+Route::post('manage/Major/editMajor','Admin\SettingsController@editMajor')->name('admin.editMajor');
+Route::post('manage/Major/updateMajor/{id}','Admin\SettingsController@updateMajor')->name('manage.major.update');
+
+//Major
+Route::get('manage/Board','Admin\SettingsController@board')->name('manage.board');
+Route::post('manage/Board/insert','Admin\SettingsController@insertBoard')->name('manage.board.insert');
+Route::post('manage/Board/editBoard','Admin\SettingsController@editBoard')->name('admin.editBoard');
+Route::post('manage/Board/updateBoard/{id}','Admin\SettingsController@updateBoard')->name('manage.board.update');
+
+
+
+
+Route::get('/testloop','testController@testloop')->name('test');
+
+
 
 
 

@@ -58,12 +58,15 @@
         <li><a href="{{route('manage.zone')}}">Manage Zone</a></li>
         <li><a href="{{route('manage.education')}}">Manage Education Level</a></li>
         <li><a href="{{route('manage.educationDegree')}}">Manage Education Degree</a></li>
+        <li><a href="{{route('manage.major')}}">Manage Major</a></li>
+        <li><a href="{{route('manage.board')}}">Manage Board</a></li>
         <li><a href="{{route('manage.nationality')}}">Manage Nationality</a></li>
         <li><a href="{{route('manage.religion')}}">Manage Religion</a></li>
         <li><a href="{{route('manage.ethnicity')}}">Manage Ethnicity</a></li>
         <li><a href="{{route('manage.organizationType')}}">Manage Organization type</a></li>
         <li><a href="{{route('manage.agreement')}}">Manage Agreement</a></li>
         <li><a href="{{route('manage.degisnation')}}">Manage Degisnation</a></li>
+
         </ul>
     </li>
     @endif

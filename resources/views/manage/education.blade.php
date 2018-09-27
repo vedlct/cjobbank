@@ -91,6 +91,7 @@
 
 
                             <th>Education Level Name</th>
+                            <th>Status</th>
                             <th width="30%">Action</th>
                         </tr>
                         </thead>
@@ -98,6 +99,13 @@
                         @foreach($educations as $education)
                             <tr>
                                 <td>{{$education->educationLevelName}}</td>
+                                <td>
+                                    @foreach(STATUS as $key=>$value)
+                                        @if($education->status == $key)
+                                            {{$value}}
+                                        @endif
+                                    @endforeach
+                                </td>
                                 <td><button class="btn btn-sm btn-success" data-panel-id="{{$education->educationLevelId}}" onclick="editEducation(this)">Edit</button>
                                 </td>
                             </tr>
