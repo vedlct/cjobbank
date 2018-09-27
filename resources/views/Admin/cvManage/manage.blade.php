@@ -20,11 +20,11 @@
                 {{--</div>--}}
 
                 <div class=" form-group ">
-                    <label>Age From</label>
+                    <label>Age From</label>&nbsp;<span style="color: red">(Year)</span>
                     <input class="form-control" id="ageFromFilter" name="ageFromFilter" type="number">
                 </div>
                 <div class=" form-group ">
-                    <label>Age to</label>
+                    <label>Age to</label>&nbsp;<span style="color: red">(Year)</span>
                     <input class="form-control" id="ageToFilter" name="ageToFilter" type="number">
                 </div>
                 <div class=" form-group ">
@@ -323,28 +323,135 @@
 
 
         }
+//        $('#genderFilter').change(function(){ //button filter event click
+////                table.search("").draw(); //just redraw myTableFilter
+//            table.ajax.reload();  //just reload table
+//        });
+//        $('#religionFilter').change(function(){ //button filter event click
+////                table.search("").draw(); //just redraw myTableFilter
+//            table.ajax.reload();  //just reload table
+//
+//        });
+//        $('#ethnicityFilter').change(function(){ //button filter event click
+////                table.search("").draw(); //just redraw myTableFilter
+//            table.ajax.reload();  //just reload table
+//        });
+
+//        $("#ageFromFilter").keyup(function(){
+//            // table.search("").draw(); //just redraw myTableFilter
+//            table.ajax.reload();  //just reload table
+//        });
+//        $("#ageToFilter").keyup(function(){
+//            // table.search("").draw(); //just redraw myTableFilter
+//            table.ajax.reload();  //just reload table
+//        });
+
+        $("#ageFromFilter").keyup(function(){
+            // table.search("").draw(); //just redraw myTableFilter
+
+            if ($('#ageFromFilter').val()!="") {
+
+
+                if ($('#ageToFilter').val() != "") {
+
+                    if (Date.parse($('#ageToFilter').val()) < Date.parse($('#ageFromFilter').val())) {
+
+                        var errorMsg = 'Age From should not after Age To!!';
+                        validationError(errorMsg);
+                        $('#ageFromFilter').val("");
+                        $('#ageFromFilter').css("background-color", "#FFF").css('color', 'black');
+
+                    } else {
+                        $('#ageFromFilter').css("background-color", "#7c9").css('color', 'white');
+                        table.ajax.reload();
+                    }
+
+
+                } else {
+                    $('#ageFromFilter').css("background-color", "#7c9").css('color', 'white');
+                    table.ajax.reload();
+
+
+                }
+            }else {
+                table.ajax.reload();  //just reload table
+                $('#ageFromFilter').css("background-color", "#FFF").css('color', 'black');
+            }
+
+
+        });
+        $("#ageToFilter").keyup(function(){
+            // table.search("").draw(); //just redraw myTableFilter
+            // table.ajax.reload();  //just reload table
+
+            if ($('#ageToFilter').val()!="") {
+
+                if ($('#ageFromFilter').val() != "") {
+
+                    if (Date.parse($('#ageToFilter').val()) < Date.parse($('#ageFromFilter').val())) {
+
+                        var errorMsg = 'Age To should not less than Age From!!';
+                        validationError(errorMsg);
+                        $('#ageToFilter').val("");
+                        $('#ageToFilter').css("background-color", "#FFF").css('color', 'black');
+
+                    } else {
+                        $('#ageToFilter').css("background-color", "#7c9").css('color', 'white');
+                        table.ajax.reload();
+
+                    }
+
+
+                } else {
+                    // $("#age").css('background-color', 'green');
+                    $('#ageToFilter').css("background-color", "#7c9").css('color', 'white');
+                    table.ajax.reload();
+
+                }
+            }else {
+                table.ajax.reload();  //just reload table
+                $('#ageToFilter').css("background-color", "#FFF").css('color', 'black');
+            }
+
+        });
+
+
         $('#genderFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
             table.ajax.reload();  //just reload table
+            if ($('#genderFilter').val()!=""){
+
+                $('#genderFilter').css("background-color", "#7c9").css('color', 'white');
+            }else {
+                $('#genderFilter').css("background-color", "#FFF").css('color', 'black');
+            }
         });
         $('#religionFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
+
             table.ajax.reload();  //just reload table
+            if ($('#religionFilter').val()!=""){
+
+                $('#religionFilter').css("background-color", "#7c9").css('color', 'white');
+            }else {
+                $('#religionFilter').css("background-color", "#FFF").css('color', 'black');
+            }
+
 
         });
         $('#ethnicityFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
+
             table.ajax.reload();  //just reload table
+            if ($('#ethnicityFilter').val()!=""){
+
+                $('#ethnicityFilter').css("background-color", "#7c9").css('color', 'white');
+            }else {
+                $('#ethnicityFilter').css("background-color", "#FFF").css('color', 'black');
+            }
+
         });
 
-        $("#ageFromFilter").keyup(function(){
-            // table.search("").draw(); //just redraw myTableFilter
-            table.ajax.reload();  //just reload table
-        });
-        $("#ageToFilter").keyup(function(){
-            // table.search("").draw(); //just redraw myTableFilter
-            table.ajax.reload();  //just reload table
-        });
 
 
 
@@ -355,6 +462,24 @@
             window.open(url,'_blank');
         }
 
+        function validationError(errorMsg){
+
+            $.alert({
+                title: 'Error',
+                type: 'red',
+                content: errorMsg,
+                buttons: {
+                    tryAgain: {
+                        text: 'Ok',
+                        btnClass: 'btn-green',
+                        action: function () {
+
+                        }
+                    }
+                }
+            });
+
+        }
     </script>
 
 @endsection

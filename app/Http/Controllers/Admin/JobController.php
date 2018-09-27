@@ -65,7 +65,7 @@ class JobController extends Controller
 
    public function manageJob(){
 
-       $allZone=DB::table('zone')->get();
+       $allZone=DB::table('zone')->where('status',1)->get();
 
 
        return view('Admin.job.manageJob',compact('allZone'));
@@ -131,9 +131,27 @@ class JobController extends Controller
    }
    public function jobStatusUpdate(Request $r){
 
+       if ($r->status==JOB_STATUS['Posted']){
+           $data=array(
+               'status'=>JOB_STATUS['Posted'],
+               'postBy'=>Auth::user()->userId,
+               'postDate'=>date('Y-m-d'),
+
+               );
+       }elseif($r->status==JOB_STATUS['De-activate']){
+
+           $data=array(
+               'status'=>JOB_STATUS['De-activate'],
+               'postBy'=>null,
+               'postDate'=>null,
+
+           );
+
+       }
+
        DB::table('job')
            ->where('jobId',$r->id)
-           ->update(['status' => $r->status]);
+           ->update($data);
 
 
 
