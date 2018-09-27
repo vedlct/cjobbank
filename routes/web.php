@@ -240,3 +240,9 @@ Route::post('manage/Degisnation/updateDegisnation/{id}','Admin\SettingsControlle
 
 
 
+Route::get('/testloop','testController@testloop')->name('test');
+
+
+
+
+
