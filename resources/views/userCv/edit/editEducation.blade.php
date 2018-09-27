@@ -6,7 +6,7 @@
         <div  class="row">
             <div class="form-group col-md-4">
 
-                <label for="">Education Level<span style="color: red">*</span></label>
+                <label for="">Education Degree<span style="color: red">*</span></label>
                 <select name="educationLevel" class="form-control" required="" id="educationLevel">
                     <option value="">Select Education Level</option>
                     @foreach($educationLevel as $edulevel)
@@ -17,7 +17,7 @@
             </div>
             <div class="form-group col-md-8">
 
-                <label for="">Degree<span style="color: red">*</span></label>
+                <label for="">Subject/Group<span style="color: red">*</span></label>
                 <select name="degree" class="form-control" required id="degree">
                     <option value="">Select Degree</option>
                     <option  selected value="{{$education->degreeId}}">{{$education->degreeName}}</option>

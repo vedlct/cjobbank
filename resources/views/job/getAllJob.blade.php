@@ -27,16 +27,16 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <div class="card m-b-30">
+            <div class="card m-b-10">
                 <div class="card-body">
 
-                    <div style="width: 60%" class="media">
+                    <div  class="media">
                         <div class="media-body">
                             <h4 style="margin-bottom: 5px;" class="mt-0 font-20 mb-1">{{$job->title}}</h4>
                             <p class="text-muted font-14">{{$job->details}} </p>
-                            <p class="text-muted font-14"><b>Deadline: {{$job->deadline}}</b></p>
+                            <p class="font-14" ><b>Deadline: <span style="color: red">{{$job->deadline}}</span></b></p>
                             @if($job->pdflink != null )
-                            <p class="text-muted font-14"> <a style="color: #707083;" target="_blank" href="{{url('public/jobPdf').'/'.$job->pdflink}}"><b> Download Details..</b></a> </p>
+                            <p class=""> <a class="btn btn-info btn-sm" target="_blank" href="{{url('public/jobPdf').'/'.$job->pdflink}}"><b>Details</b></a> </p>
                             @endif
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                         @foreach($applyjob as $aj)
                         @if($job->jobId ==  $aj->fkjobId)
 
-                                <span style="color: red">{{ "Allready Applied"}}</span>
+                                <h5><span class="badge badge-success">Applied</span></h5>
 
                             @php
                             $flag= "True"
@@ -81,7 +81,7 @@
 @endforeach
 
 
-<ul class="pagination">
+<ul class="pagination pull-right">
 
 
         <li class="page-item @if($jobs->currentPage()== 1) disabled @endif"> <a data-id="{{$jobs->previousPageUrl()}}" href="javascript:void(0)" class="page-link pagiNextPrevBtn"><i class="ion-ios-arrow-left"></i>Prev</a></li>
