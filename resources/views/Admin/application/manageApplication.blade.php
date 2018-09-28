@@ -19,11 +19,11 @@
                 </div>
 
                 <div class=" form-group ">
-                    <label>Age From</label>
+                    <label>Age From</label><span style="color: red">(Year)</span>
                     <input class="form-control" id="ageFromFilter" name="ageFromFilter" type="number">
                 </div>
                 <div class=" form-group ">
-                    <label>Age to</label>
+                    <label>Age to</label><span style="color: red">(Year)</span>
                     <input class="form-control" id="ageToFilter" name="ageToFilter" type="number">
                 </div>
                 <div class=" form-group ">
@@ -206,11 +206,10 @@
 
 
 
-                    <label class="checkbox-inline"><input style="width: auto;" type="checkbox" id="selectall2" value=""> Select All</label>
+
 
                     <div style="margin-top: 10px;" class="row">
-
-
+                        <label class="checkbox-inline"><input style="width: auto;" type="checkbox" id="selectall2" value="">Select All</label>
 
                         <div class="col-md-1">
                             <a onclick="return myfunc()"><button class="btn btn-danger btn-sm">Export CV</button></a>
@@ -752,11 +751,7 @@
         }
 
         function myfunc() {
-
-            var products=selecteds;
-
-            console.log(products);
-            return false;
+            
 
             if ($('#jobTitle').val()!=""){
 

@@ -10,7 +10,7 @@
 
                 <div class=" form-group">
                     <label>Zone</label>
-                    <select class="form-control" id="zoneId" onchange="refreshTable()">
+                    <select class="form-control" id="zoneId">
                         <option value="">Select a Zone</option>
                         @foreach($zones as $zone)
                             <option value="{{$zone->zoneId}}">{{$zone->zoneName}}</option>
@@ -20,7 +20,7 @@
 
                 <div class=" form-group">
                     <label>Degisnation</label>
-                    <select class="form-control" id="designationId" onchange="refreshTable()">
+                    <select class="form-control" id="designationId" >
                         <option value="">Select a Degisnation</option>
                         @foreach($designations as $designation)
                             <option value="{{$designation->designationId}}">{{$designation->designationName}}</option>
@@ -139,7 +139,21 @@
                     { data: 'lastName', name: 'lastName', "orderable": false, "searchable":true },
                     { data: 'designationName', name: 'designationName', "orderable": false, "searchable":true },
 
-                    { data: 'gender', name: 'gender', "orderable": false, "searchable":true },
+//                    { data: 'gender', name: 'gender', "orderable": false, "searchable":true },
+                    { "data": function(data){
+
+
+                        if( data.gender == "M"){
+                            return "Male"
+                        }else if (data.gender == "F") {
+                            return "Female"
+                        }
+
+                        //return btn;
+                    },
+                        "orderable": false, "searchable":true
+                    },
+
                     { data: 'email', name: 'email', "orderable": false, "searchable":true },
                     { data: 'zoneName', name: 'zoneName', "orderable": false, "searchable":true },
                     { "data": function(data){
@@ -184,9 +198,32 @@
 
         } );
 
-        function refreshTable() {
-            table.ajax.reload();
-        }
+        $('#zoneId').change(function(){ //button filter event click
+//                table.search("").draw(); //just redraw myTableFilter
+            table.ajax.reload();  //just reload table
+            emptySelect();
+            if ($('#zoneId').val()!=""){
+
+                $('#zoneId').css("background-color", "#7c9").css('color', 'white');
+            }else {
+                $('#zoneId').css("background-color", "#FFF").css('color', 'black');
+            }
+        });
+        $('#designationId').change(function(){ //button filter event click
+//                table.search("").draw(); //just redraw myTableFilter
+            table.ajax.reload();  //just reload table
+            emptySelect();
+            if ($('#designationId').val()!=""){
+
+                $('#designationId').css("background-color", "#7c9").css('color', 'white');
+            }else {
+                $('#designationId').css("background-color", "#FFF").css('color', 'black');
+            }
+        });
+
+//        function refreshTable() {
+//            table.ajax.reload();
+//        }
         function editUser(x) {
             var id=$(x).data('panel-id');
             var url = "{{ route('admin.editmanageUserData', ':id') }}";
@@ -203,7 +240,7 @@
             data: {_token: "{{csrf_token()}}",'id': id},
             success: function (data) {
 //                console.log(data);
-                refreshTable();
+                table.ajax.reload();
             }
             });
         }
@@ -223,6 +260,25 @@
 
             selecteds=[];
             $(':checkbox:checked').prop('checked',false);
+
+        }
+
+        function validationError(errorMsg){
+
+            $.alert({
+                title: 'Error',
+                type: 'red',
+                content: errorMsg,
+                buttons: {
+                    tryAgain: {
+                        text: 'Ok',
+                        btnClass: 'btn-green',
+                        action: function () {
+
+                        }
+                    }
+                }
+            });
 
         }
 

@@ -100,7 +100,8 @@
     <script>
 
         $('.date').datepicker({
-            format: 'yyyy-mm-dd'
+            format: 'yyyy-mm-dd',
+            todayHighlight: true
         });
         $(document).ready(function() {
 
@@ -196,20 +197,49 @@
         } );
 
                 $('#zonefilter').change(function(){ //button filter event click
-        //                table.search("").draw(); //just redraw myTableFilter
+                    // table.search("").draw(); //just redraw myTableFilter
+
                     table.ajax.reload();  //just reload table
+
+                    if ($('#zonefilter').val()!=""){
+
+                        $('#zonefilter').css("background-color", "#7c9").css('color', 'white');
+                    }else {
+                        $('#zonefilter').css("background-color", "#FFF").css('color', 'black');
+                    }
+
                 });
                 $('#jobStatusFilter').change(function(){ //button filter event click
         //                table.search("").draw(); //just redraw myTableFilter
                     table.ajax.reload();  //just reload table
+
+                    if ($('#jobStatusFilter').val()!=""){
+
+                        $('#jobStatusFilter').css("background-color", "#7c9").css('color', 'white');
+                    }else {
+                        $('#jobStatusFilter').css("background-color", "#FFF").css('color', 'black');
+                    }
+
                 });
         $("#postDateFilter").change(function(){
             // table.search("").draw(); //just redraw myTableFilter
             table.ajax.reload();  //just reload table
+            if ($('#postDateFilter').val()!=""){
+
+                $('#postDateFilter').css("background-color", "#7c9").css('color', 'white');
+            }else {
+                $('#postDateFilter').css("background-color", "#FFF").css('color', 'black');
+            }
         });
         $("#deadlineFilter").change(function(){
             // table.search("").draw(); //just redraw myTableFilter
             table.ajax.reload();  //just reload table
+            if ($('#deadlineFilter').val()!=""){
+
+                $('#deadlineFilter').css("background-color", "#7c9").css('color', 'white');
+            }else {
+                $('#deadlineFilter').css("background-color", "#FFF").css('color', 'black');
+            }
         });
 
 
@@ -341,6 +371,25 @@
             var id=$(x).data('panel-id');
             window.open("public/jobPdf"+"/"+id,'_blank');
 
+
+        }
+
+        function validationError(errorMsg){
+
+            $.alert({
+                title: 'Error',
+                type: 'red',
+                content: errorMsg,
+                buttons: {
+                    tryAgain: {
+                        text: 'Ok',
+                        btnClass: 'btn-green',
+                        action: function () {
+
+                        }
+                    }
+                }
+            });
 
         }
 
