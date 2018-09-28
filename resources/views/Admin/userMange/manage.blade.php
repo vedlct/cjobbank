@@ -219,6 +219,12 @@
             url = url.replace(':empId', id);
             window.open(url,'_blank');
         }
+        function emptySelect(){
+
+            selecteds=[];
+            $(':checkbox:checked').prop('checked',false);
+
+        }
 
     </script>
 

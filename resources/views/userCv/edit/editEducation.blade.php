@@ -30,11 +30,21 @@
                 <label for="">Institute Name<span style="color: red">*</span></label>
                 <input type="text" name="instituteName" required class="form-control" id="instituteName" value="{{$education->institutionName}}" placeholder="">
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-3">
                 <label for="">Major</label>
                 <select name="major" class="form-control" id="major">
                     <option value="">Select Major</option>
                     <option value="{{$education->educationMajorId}}">{{$education->educationMajorName}}</option>
+                </select>
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="">Board</label>
+                <select name="board" class="form-control" id="board">
+                    <option value="" >Select Board</option>
+                    @foreach($boards as $board)
+                        <option value="{{$board->boardId}}" @if($board->boardId == $education->fkboardId) selected @endif>{{$board->boardName}}</option>
+                    @endforeach
                 </select>
             </div>
 

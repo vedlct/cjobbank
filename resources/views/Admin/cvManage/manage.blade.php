@@ -326,24 +326,29 @@
         $('#genderFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
             table.ajax.reload();  //just reload table
+            emptySelect();
         });
         $('#religionFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
             table.ajax.reload();  //just reload table
+            emptySelect();
 
         });
         $('#ethnicityFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
             table.ajax.reload();  //just reload table
+            emptySelect();
         });
 
         $("#ageFromFilter").keyup(function(){
             // table.search("").draw(); //just redraw myTableFilter
             table.ajax.reload();  //just reload table
+            emptySelect();
         });
         $("#ageToFilter").keyup(function(){
             // table.search("").draw(); //just redraw myTableFilter
             table.ajax.reload();  //just reload table
+            emptySelect();
         });
 
 
@@ -353,6 +358,13 @@
             var url = "{{ route('userCv.get', ':empId') }}";
             url = url.replace(':empId', id);
             window.open(url,'_blank');
+        }
+
+        function emptySelect(){
+
+            selecteds=[];
+            $(':checkbox:checked').prop('checked',false);
+
         }
 
     </script>
