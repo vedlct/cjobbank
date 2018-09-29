@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Employee;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
@@ -40,7 +41,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('usercv');
+
+        $cvStatus1=Employee::where('fkuserId',Auth::user()->userId)->first();
+
+        if ($cvStatus1 != null && $cvStatus1->cvStatus == 1){
+
+            return redirect()->route('job.all');
+
+        }else {
+            return redirect()->route('candidate.cvPersonalInfo');
+        }
+//        return view('usercv');
     }
 
     public function password(){

@@ -36,7 +36,7 @@
     <div class="col-12">
         <div style="background-color: #F1F1F1" class="card">
             <div class="card-body">
-                @if($allEmp->cvStatus == 1)
+                @if($allEmp != null && $allEmp->cvStatus == 1)
 
                 <div id="regForm">
                     {{--<div class="pull-right"><a class="btn btn-sm btn-success"  onclick="viewUserCv()">Download</a></div>--}}
@@ -363,7 +363,7 @@
 
 <script>
 
-    @if(Session::has('message') && $allEmp->cvStatus == null)
+    @if(Session::has('message') && $allEmp != null &&  $allEmp->cvStatus == null)
 
     $.alert({
         title: 'Error',
@@ -399,21 +399,21 @@
     });
 
     @endif
-    function viewUserCv() {
+    {{--function viewUserCv() {--}}
 
 
-        $.ajax({
-            type: "get",
-            url: '{{route('userCv.post')}}',
-            data: {_token:"{{csrf_token()}}",id:"{{$allEmp->employeeId}}"},
-            success: function (data) {
+        {{--$.ajax({--}}
+            {{--type: "get",--}}
+            {{--url: '{{route('userCv.post')}}',--}}
+            {{--data: {_token:"{{csrf_token()}}",id:"{{$allEmp->employeeId}}"},--}}
+            {{--success: function (data) {--}}
 
 
-            },
-        });
+            {{--},--}}
+        {{--});--}}
 
 
-    }
+    {{--}--}}
 </script>
 
 @endsection

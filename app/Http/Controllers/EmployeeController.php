@@ -144,10 +144,11 @@ class EmployeeController extends Controller
 
             }
         }else{
+            $allEmp= null;
             Session::flash('message', 'Your CV information is not found ,please make your CV first');
             $msg='Your CV information is not found ,please make your CV first';
 
-            return view('userCv.cvPdf.userCvPdf', compact('msg'));
+            return view('userCv.cvPdf.userCvPdf', compact('msg','allEmp'));
 
         }
 

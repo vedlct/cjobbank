@@ -300,10 +300,11 @@
                     data: {'id': selecteds[i]},
                     success: function (data) {
 
-                     console.log(data);
+                    // console.log(data);
 
                     }
                     });
+
                 }
                 {{--$.ajax({--}}
                     {{--type: 'POST',--}}
@@ -318,7 +319,21 @@
                 {{--});--}}
             }
             else {
-                alert('Please select user');
+
+                $.alert({
+                    title: 'Alert',
+                    type: 'red',
+                    content: 'Please Select First',
+                    buttons: {
+                        tryAgain: {
+                            text: 'Ok',
+                            btnClass: 'btn-green',
+                            action: function () {
+
+                            }
+                        }
+                    }
+                });
             }
 
 

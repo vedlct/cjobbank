@@ -221,7 +221,7 @@ class UserManagementController extends Controller
                 ->update(['register' => 'N']);
         }
         $hr->save();
-//        return $r;
+
     }
 
 
