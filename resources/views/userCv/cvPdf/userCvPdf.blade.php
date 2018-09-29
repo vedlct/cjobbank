@@ -361,7 +361,7 @@
     $.alert({
         title: 'Error',
         type: 'red',
-        content: 'sdf',
+        content: 'Your CV is not Completed yet,Please Complete First',
         buttons: {
             tryAgain: {
                 text: 'Ok',

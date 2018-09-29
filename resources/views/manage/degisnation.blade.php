@@ -157,7 +157,9 @@
 
     <script>
         $(function () {
-            $('#designationtable').DataTable();
+            $('#designationtable').DataTable({
+                "ordering": false,
+            });
         });
         function addnewDegisnation() {
 

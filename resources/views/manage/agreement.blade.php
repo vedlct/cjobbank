@@ -157,8 +157,21 @@
 
     <script>
         $(function () {
-            $('#agreementtable').DataTable();
+            $('#agreementtable').DataTable(
+                {
+                    "columnDefs": [
+                        {
+                            "targets": [0,2,3], //first column / numbering column
+                            "orderable": false, //set not orderable
+
+                        },
+
+                    ],
+
+                }
+            );
         });
+
         function addnewAgreement() {
 
 

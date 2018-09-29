@@ -166,7 +166,9 @@
 
 <script>
     $(function () {
-        $('#nationalitytable').DataTable();
+        $('#nationalitytable').DataTable({
+            "ordering": false,
+        });
     });
     function addnewNationality() {
 

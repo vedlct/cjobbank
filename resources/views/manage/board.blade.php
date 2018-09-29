@@ -158,7 +158,9 @@
 
     <script>
         $(function () {
-            $('#boardtable').DataTable();
+            $('#boardtable').DataTable({
+                "ordering": false,
+            });
         });
         function addnewBoard() {
 

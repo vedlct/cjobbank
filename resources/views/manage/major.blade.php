@@ -160,7 +160,9 @@
 
     <script>
         $(function () {
-            $('#majortable').DataTable();
+            $('#majortable').DataTable({
+                "ordering": false,
+            });
         });
 
         function addnewMajor() {

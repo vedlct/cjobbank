@@ -92,7 +92,7 @@
                     <br>
 
                     <div class="table table-responsive">
-                    <table id="managecv" class="table table-striped table-bordered" style="width:100%" >
+                    <table id="manageZone" class="table table-striped table-bordered" style="width:100%" >
                         <thead>
                         <tr>
 
@@ -137,6 +137,20 @@
 
 @endsection
 @section('foot-js')
+
+    <script src="{{url('public/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{url('public/assets/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
+
+    <script>
+        $(function () {
+            $('#manageZone').DataTable(
+                {
+                    "ordering": false,
+
+                }
+            );
+        });
+    </script>
 
     <script>
         function editZone(x) {

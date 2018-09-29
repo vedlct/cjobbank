@@ -158,7 +158,9 @@
 
     <script>
         $(function () {
-            $('#religiontable').DataTable();
+            $('#religiontable').DataTable({
+                "ordering": false,
+            });
         });
         function addnewReligion() {
 

@@ -4,7 +4,7 @@
 
     <div class="row">
 
-        <div class="col-2">
+        <div class="col-md-2">
 
             <div style="background-color: white;margin-bottom: 20px;" class="card-body">
 
@@ -34,7 +34,7 @@
             </div>
         </div>
 
-        <div class="col-10">
+        <div class="col-md-10">
             <div class="card m-b-30">
                 <div class="card-header">
                 <h4 class="pull-left">Manage User</h4>
