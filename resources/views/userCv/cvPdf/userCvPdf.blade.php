@@ -39,7 +39,8 @@
                 @if($allEmp->cvStatus == 1)
 
                 <div id="regForm">
-                    <div class="pull-right"><a class="btn btn-sm btn-success" onclick="viewUserCv()">Download</a></div>
+                    {{--<div class="pull-right"><a class="btn btn-sm btn-success"  onclick="viewUserCv()">Download</a></div>--}}
+                    <div class="pull-right"><a class="btn btn-sm btn-success" href="{{route('userCv.post1',$allEmp->employeeId)}}" >Download</a></div>
 
 
 

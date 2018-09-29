@@ -104,7 +104,7 @@ class JobController extends Controller
 //       $cvStatus=Employee::where('fkuserId',Auth::user()->userId)->first()->cvStatus;
 
        $empId1=Employee::where('fkuserId',Auth::user()->userId)->first();
-       
+
 
 
        if ($empId1 != null ){
