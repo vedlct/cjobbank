@@ -71,10 +71,6 @@ class JobController extends Controller
 
 
 
-
-
-
-
        if ($r->ajax()) {
            return view('job.getAllJob',compact('jobs','cvStatus', 'applyjob','allZone'));
        }
@@ -108,6 +104,8 @@ class JobController extends Controller
 //       $cvStatus=Employee::where('fkuserId',Auth::user()->userId)->first()->cvStatus;
 
        $empId1=Employee::where('fkuserId',Auth::user()->userId)->first();
+       
+
 
        if ($empId1 != null ){
 
