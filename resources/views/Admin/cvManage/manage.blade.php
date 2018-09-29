@@ -212,7 +212,7 @@
 
                     { "data": function(data){
 
-                        var words = '<?php echo json_encode(GENDER) ?>';// don't use quotes
+                        {{--var words = '<?php echo json_encode(GENDER) ?>';// don't use quotes--}}
 
                         if( data.gender == "M"){
                             return "Male"
@@ -419,17 +419,24 @@
         $('#genderFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
             table.ajax.reload();  //just reload table
+<<<<<<< HEAD
+            emptySelect();
+=======
             if ($('#genderFilter').val()!=""){
 
                 $('#genderFilter').css("background-color", "#7c9").css('color', 'white');
             }else {
                 $('#genderFilter').css("background-color", "#FFF").css('color', 'black');
             }
+>>>>>>> fc87720f53088101c96fedf10fe4b881436aee18
         });
         $('#religionFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
 
             table.ajax.reload();  //just reload table
+<<<<<<< HEAD
+            emptySelect();
+=======
             if ($('#religionFilter').val()!=""){
 
                 $('#religionFilter').css("background-color", "#7c9").css('color', 'white');
@@ -437,10 +444,26 @@
                 $('#religionFilter').css("background-color", "#FFF").css('color', 'black');
             }
 
+>>>>>>> fc87720f53088101c96fedf10fe4b881436aee18
 
         });
         $('#ethnicityFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
+<<<<<<< HEAD
+            table.ajax.reload();  //just reload table
+            emptySelect();
+        });
+
+        $("#ageFromFilter").keyup(function(){
+            // table.search("").draw(); //just redraw myTableFilter
+            table.ajax.reload();  //just reload table
+            emptySelect();
+        });
+        $("#ageToFilter").keyup(function(){
+            // table.search("").draw(); //just redraw myTableFilter
+            table.ajax.reload();  //just reload table
+            emptySelect();
+=======
 
             table.ajax.reload();  //just reload table
             if ($('#ethnicityFilter').val()!=""){
@@ -450,6 +473,7 @@
                 $('#ethnicityFilter').css("background-color", "#FFF").css('color', 'black');
             }
 
+>>>>>>> fc87720f53088101c96fedf10fe4b881436aee18
         });
 
 
@@ -462,6 +486,15 @@
             window.open(url,'_blank');
         }
 
+<<<<<<< HEAD
+        function emptySelect(){
+
+            selecteds=[];
+            $(':checkbox:checked').prop('checked',false);
+
+        }
+
+=======
         function validationError(errorMsg){
 
             $.alert({
@@ -480,6 +513,7 @@
             });
 
         }
+>>>>>>> fc87720f53088101c96fedf10fe4b881436aee18
     </script>
 
 @endsection

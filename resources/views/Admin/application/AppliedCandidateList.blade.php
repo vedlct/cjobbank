@@ -3,8 +3,8 @@
 
 <style>
 
-    td{
-        border: solid black 2px;
+    table, th, td {
+        border: 2px solid ;
     }
 
 </style>
@@ -259,63 +259,115 @@
                         {{$eduList[0]['educationLevelName']}}<br>&nbsp;&nbsp;
                         {{$eduList[0]['institutionName']}}<br>&nbsp;&nbsp;
                         Result:{{$eduList[0]['result']}}<br>&nbsp;&nbsp;
-                        Major:{{$eduList[0]['educationMajorName']}}
+                        @if($eduList[0]['educationMajorName'])
+                        Major:{{$eduList[0]['educationMajorName']}}<br>
+                        @endif
+                        @if($eduList[0]['boardName'])
+                        Board:{{$eduList[0]['boardName']}}<br>
+                        @endif
 
 
                     @endif
-                    @if($i==2 && count($eduList)>1)
-                            {{$eduList[1]['institutionName']}}<br>&nbsp;&nbsp;
-                            {{$eduList[1]['institutionName']}}<br>&nbsp;&nbsp;
-                            Result:{{$eduList[1]['result']}}<br>&nbsp;&nbsp;
-                            Major:{{$eduList[1]['educationMajorName']}}
-
+                        @if($i%2==0 && count($eduList)>$i/2)
+                        {{$eduList[$i/2]['institutionName']}}<br>&nbsp;&nbsp;
+                        {{$eduList[$i/2]['institutionName']}}<br>&nbsp;&nbsp;
+                        Result:{{$eduList[$i/2]['result']}}<br>&nbsp;&nbsp;
+                        @if($eduList[$i/2]['educationMajorName'])
+                        Major:{{$eduList[$i/2]['educationMajorName']}}<br>
+                        @endif
+                        @if($eduList[$i/2]['boardName'])
+                        Board:{{$eduList[$i/2]['boardName']}}<br>
                         @endif
 
-                    @if($i==4 && count($eduList)>2)
-                            {{$eduList[2]['institutionName']}}<br>&nbsp;&nbsp;
-                            {{$eduList[2]['institutionName']}}<br>&nbsp;&nbsp;
-                            Result:{{$eduList[2]['result']}}<br>&nbsp;&nbsp;
-                            Major:{{$eduList[2]['educationMajorName']}}
+                        @endif
+                    {{--@if($i==2 && count($eduList)>1)--}}
+                            {{--{{$eduList[1]['institutionName']}}<br>&nbsp;&nbsp;--}}
+                            {{--{{$eduList[1]['institutionName']}}<br>&nbsp;&nbsp;--}}
+                            {{--Result:{{$eduList[1]['result']}}<br>&nbsp;&nbsp;--}}
+                            {{--@if($eduList[1]['educationMajorName'])--}}
+                                {{--Major:{{$eduList[1]['educationMajorName']}}<br>--}}
+                            {{--@endif--}}
+                            {{--@if($eduList[1]['boardName'])--}}
+                                {{--Board:{{$eduList[1]['boardName']}}<br>--}}
+                            {{--@endif--}}
 
-                        @endif
-                    @if($i==5) @endif
-                    @if($i==6 && count($eduList)>3)
-                            {{$eduList[3]['institutionName']}}<br>&nbsp;&nbsp;
-                            {{$eduList[3]['institutionName']}}<br>&nbsp;&nbsp;
-                            Result:{{$eduList[3]['result']}}<br>&nbsp;&nbsp;
-                            Major:{{$eduList[3]['educationMajorName']}}
+                        {{--@endif--}}
+
+                    {{--@if($i==4 && count($eduList)>2)--}}
+                            {{--{{$eduList[2]['institutionName']}}<br>&nbsp;&nbsp;--}}
+                            {{--{{$eduList[2]['institutionName']}}<br>&nbsp;&nbsp;--}}
+                            {{--Result:{{$eduList[2]['result']}}<br>&nbsp;&nbsp;--}}
+                            {{--@if($eduList[2]['educationMajorName'])--}}
+                                {{--Major:{{$eduList[2]['educationMajorName']}}<br>--}}
+                            {{--@endif--}}
+                            {{--@if($eduList[2]['boardName'])--}}
+                                {{--Board:{{$eduList[2]['boardName']}}<br>--}}
+                            {{--@endif--}}
+
+                        {{--@endif--}}
+                    {{--@if($i==5) @endif--}}
+                    {{--@if($i==6 && count($eduList)>3)--}}
+                            {{--{{$eduList[3]['institutionName']}}<br>&nbsp;&nbsp;--}}
+                            {{--{{$eduList[3]['institutionName']}}<br>&nbsp;&nbsp;--}}
+                            {{--Result:{{$eduList[3]['result']}}<br>&nbsp;&nbsp;--}}
+                            {{--@if($eduList[3]['educationMajorName'])--}}
+                                {{--Major:{{$eduList[3]['educationMajorName']}}<br>--}}
+                            {{--@endif--}}
+                            {{--@if($eduList[3]['boardName'])--}}
+                                {{--Board:{{$eduList[3]['boardName']}}<br>--}}
+                            {{--@endif--}}
 
 
-                        @endif
-                    @if($i==7) @endif
-                    @if($i==8 && count($eduList)>4)
-                            {{$eduList[4]['institutionName']}}<br>&nbsp;&nbsp;
-                            {{$eduList[4]['institutionName']}}<br>&nbsp;&nbsp;
-                            Result:{{$eduList[4]['result']}}<br>&nbsp;&nbsp;
-                            Major:{{$eduList[4]['educationMajorName']}}
-                        @endif
-                    @if($i==9) @endif
-                    @if($i==10 && count($eduList)>5)
-                            {{$eduList[5]['institutionName']}}<br>&nbsp;&nbsp;
-                            {{$eduList[5]['institutionName']}}<br>&nbsp;&nbsp;
-                            Result:{{$eduList[5]['result']}}<br>&nbsp;&nbsp;
-                            Major:{{$eduList[5]['educationMajorName']}}
+                        {{--@endif--}}
+                    {{--@if($i==7) @endif--}}
+                    {{--@if($i==8 && count($eduList)>4)--}}
+                            {{--{{$eduList[4]['institutionName']}}<br>&nbsp;&nbsp;--}}
+                            {{--{{$eduList[4]['institutionName']}}<br>&nbsp;&nbsp;--}}
+                            {{--Result:{{$eduList[4]['result']}}<br>&nbsp;&nbsp;--}}
+                            {{--@if($eduList[4]['educationMajorName'])--}}
+                                {{--Major:{{$eduList[4]['educationMajorName']}}<br>--}}
+                            {{--@endif--}}
+                            {{--@if($eduList[4]['boardName'])--}}
+                                {{--Board:{{$eduList[4]['boardName']}}<br>--}}
+                            {{--@endif--}}
+                        {{--@endif--}}
+                    {{--@if($i==9) @endif--}}
+                    {{--@if($i==10 && count($eduList)>5)--}}
+                            {{--{{$eduList[5]['institutionName']}}<br>&nbsp;&nbsp;--}}
+                            {{--{{$eduList[5]['institutionName']}}<br>&nbsp;&nbsp;--}}
+                            {{--Result:{{$eduList[5]['result']}}<br>&nbsp;&nbsp;--}}
+                            {{--M  @if($eduList[5]['educationMajorName'])--}}
+                                {{--Major:{{$eduList[5]['educationMajorName']}}<br>--}}
+                            {{--@endif--}}
+                            {{--@if($eduList[5]['boardName'])--}}
+                                {{--Board:{{$eduList[5]['boardName']}}<br>--}}
+                            {{--@endif--}}
 
-                        @endif
-                    @if($i==11) @endif
-                    @if($i==12 && count($eduList)>6)
-                            {{$eduList[6]['institutionName']}}<br>&nbsp;&nbsp;
-                            {{$eduList[6]['institutionName']}}<br>&nbsp;&nbsp;
-                            Result:{{$eduList[6]['result']}}<br>&nbsp;&nbsp;
-                            Major:{{$eduList[6]['educationMajorName']}}
-                        @endif
+                        {{--@endif--}}
+                    {{--@if($i==11) @endif--}}
+                    {{--@if($i==12 && count($eduList)>6)--}}
+                            {{--{{$eduList[6]['institutionName']}}<br>&nbsp;&nbsp;--}}
+                            {{--{{$eduList[6]['institutionName']}}<br>&nbsp;&nbsp;--}}
+                            {{--Result:{{$eduList[6]['result']}}<br>&nbsp;&nbsp;--}}
+                            {{--@if($eduList[6]['educationMajorName'])--}}
+                                {{--Major:{{$eduList[6]['educationMajorName']}}<br>--}}
+                            {{--@endif--}}
+                            {{--@if($eduList[6]['boardName'])--}}
+                                {{--Board:{{$eduList[6]['boardName']}}<br>--}}
+                            {{--@endif--}}
+                        {{--@endif--}}
 
-                    @if($i==14 && count($eduList)>7)
-                            {{$eduList[7]['institutionName']}}<br>&nbsp;&nbsp;
-                            {{$eduList[7]['institutionName']}}<br>&nbsp;&nbsp;
-                            Result:{{$eduList[7]['result']}}<br>&nbsp;&nbsp;
-                            Major:{{$eduList[7]['educationMajorName']}}
-                        @endif
+                    {{--@if($i==14 && count($eduList)>7)--}}
+                            {{--{{$eduList[7]['institutionName']}}<br>&nbsp;&nbsp;--}}
+                            {{--{{$eduList[7]['institutionName']}}<br>&nbsp;&nbsp;--}}
+                            {{--Result:{{$eduList[7]['result']}}<br>&nbsp;&nbsp;--}}
+                            {{--@if($eduList[7]['educationMajorName'])--}}
+                                {{--Major:{{$eduList[7]['educationMajorName']}}<br>--}}
+                            {{--@endif--}}
+                            {{--@if($eduList[7]['boardName'])--}}
+                                {{--Board:{{$eduList[7]['boardName']}}<br>--}}
+                            {{--@endif--}}
+                        {{--@endif--}}
                 </td>
 
 

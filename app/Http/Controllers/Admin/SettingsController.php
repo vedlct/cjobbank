@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Aggrementqus;
+use App\Board;
 use App\Degree;
 use App\Designation;
 use App\Education;
 use App\Educationlevel;
+use App\Educationmajor;
 use App\Ethnicity;
 use App\Nationality;
 
@@ -130,6 +132,7 @@ class SettingsController extends Controller
 
         $education=Educationlevel::findOrFail($id);
         $education->educationLevelName=$r->education;
+        $education->status = $r->status;
         $education->save();
 
         Session::flash('message', 'Education Updated Successfully!');
@@ -518,5 +521,84 @@ class SettingsController extends Controller
 
     }
 
+    /*====================== Religion ============================*/
 
+    public function major(){
+
+        $major=Educationmajor::select('*')
+        ->leftjoin('degree','degreeId','fkDegreeId')
+        ->get();
+        $degree = Degree::get();
+        return view('manage.major',compact('major', 'degree'));
+    }
+
+    public function insertMajor(Request $r){
+        $r->validate([
+            'major' => 'required',
+
+        ]);
+        $major =new Educationmajor();
+        $major->educationMajorName=$r->major;
+        $major->fkDegreeId=$r->degree;
+        $major->save();
+
+        Session::flash('message', 'Major Added Successfully!');
+        return redirect()->route('manage.major');
+
+    }
+
+    public function editMajor(Request $r){
+        $editMajor=Educationmajor::findOrFail($r->id);
+        return view('manage.editMajor',compact('editMajor'));
+    }
+
+    public function updateMajor($id,Request $r){
+        $major =Educationmajor::findOrFail($id);
+        $major->educationMajorName=$r->major;
+        $major->fkDegreeId=$r->degree;
+        $major->status = $r->status;
+        $major->save();
+
+        Session::flash('message', 'Major Updated Successfully!');
+        return redirect()->route('manage.major');
+
+    }
+
+    /*====================== Board ============================*/
+
+    public function board(){
+
+        $board=Board::get();
+        return view('manage.board',compact('board'));
+    }
+
+    public function insertBoard(Request $r){
+        $r->validate([
+            'board' => 'required',
+
+        ]);
+        $board =new Board();
+        $board->boardName=$r->board;
+        $board->save();
+
+        Session::flash('message', 'Board Added Successfully!');
+        return redirect()->route('manage.board');
+
+    }
+
+    public function editBoard(Request $r){
+        $editBoard=Board::findOrFail($r->id);
+        return view('manage.editBoard',compact('editBoard'));
+    }
+
+    public function updateBoard($id,Request $r){
+        $board =Board::findOrFail($id);
+        $board->boardName=$r->board;
+        $board->status = $r->status;
+        $board->save();
+
+        Session::flash('message', 'Board Updated Successfully!');
+        return redirect()->route('manage.board');
+
+    }
 }

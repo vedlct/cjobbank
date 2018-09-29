@@ -250,11 +250,12 @@ class ApplicationController extends Controller
                 ->where('employee.employeeId',$empId)
                 ->get()
                 ->toArray();
-            $education=Education::select('education.institutionName','education.fkemployeeId','education.status','education.resultSystem','education.result','educationlevel.educationLevelName',
+            $education=Education::select('education.institutionName','board.boardName','education.fkemployeeId','education.status','education.resultSystem','education.result','educationlevel.educationLevelName',
                 'educationmajor.educationMajorName','education.fkMajorId')
                 ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
                 ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
                 ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
+                ->leftJoin('board', 'board.boardId', '=', 'education.fkboardId')
                 ->where('fkemployeeId',$empId)
                 ->get()
                 ->toArray();

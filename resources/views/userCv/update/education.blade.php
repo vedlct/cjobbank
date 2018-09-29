@@ -47,9 +47,15 @@
                                     <label for="">{{$educationInfo->institutionName}}</label>
                                     {{--<input type="text" name="instituteName[]" required class="form-control" id="" placeholder="">--}}
                                 </div>
-                                <div class="form-group col-md-6">
+
+                                <div class="form-group col-md-3">
                                     <label for="">Major :</label>
                                     <label for="">{{$educationInfo->educationMajorName}}</label>
+
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="">Board :</label>
+                                    {{$educationInfo->boardName}}
 
                                 </div>
 
@@ -385,11 +391,20 @@
                     '<label for="">Institute Name<span style="color: red">*</span></label>'+
                     '<input type="text" name="instituteName[]" class="form-control" required id="instituteName'+counter+'" placeholder="">'+
                     '</div>'+
-                    '<div class="form-group col-md-6">'+
+                    '<div class="form-group col-md-3">'+
                     '<label for="">Major</label>'+
                     '<select name="major[]" class="form-control"  id="major'+counter+'">'+
                     '<option value="">Select Major</option>'+
                     '</select>'+
+                    '</div>'+
+                    '<div class="form-group col-md-3">'+
+                    '<label for="">Board</label>' +
+                    '<select name="board[]" class="form-control" id="major"> ' +
+                    '<option value="" >Select Board</option>'+
+                        @foreach($boards as $board)
+                            '<option value="{{$board->boardId}}" >{{$board->boardName}}</option>'+
+                        @endforeach
+                            '</select>' +
                     '</div>'+
 
                     '<div class="form-group col-md-3">'+

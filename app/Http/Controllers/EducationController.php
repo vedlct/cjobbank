@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Board;
 use Illuminate\Http\Request;
 use Auth;
 use Session;
@@ -45,10 +46,11 @@ class EducationController extends Controller
 
         $employee=Employee::where('fkuserId', '=',$userId)->first()->employeeId;
 
-        $employeeCvEducationInfo=Education::select('education.*','educationmajor.educationMajorName','educationLevelName','degreeName')
+        $employeeCvEducationInfo=Education::select('education.*','board.boardName','educationmajor.educationMajorName','educationLevelName','degreeName')
             ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
             ->leftJoin('educationmajor', 'educationmajor.educationMajorId', '=', 'education.fkMajorId')
             ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
+            ->leftJoin('board', 'board.boardId', '=', 'education.fkboardId')
             ->where('fkemployeeId', '=',$employee)->get();
 
 
@@ -56,17 +58,17 @@ class EducationController extends Controller
         $educationLevel=Educationlevel::get();
 
         $country=Country::get();
-
+        $boards=Board::where('status',1)->get();
 //        return $employeeCvEducationInfo;
 
 
 
         if ($employeeCvEducationInfo->isEmpty()){
 
-            return view('userCv.insert.education',compact('educationLevel','degree','country'));
+            return view('userCv.insert.education',compact('educationLevel','degree','country','boards'));
 
         }else{
-            return view('userCv.update.education',compact('educationLevel','degree','country','employeeCvEducationInfo'));
+            return view('userCv.update.education',compact('educationLevel','degree','country','employeeCvEducationInfo','boards'));
         }
 
     }
@@ -137,10 +139,11 @@ class EducationController extends Controller
 
         $educationLevel=Educationlevel::get();
         $country=Country::get();
+        $boards=Board::where('status',1)->get();
 
 //        return $r->id;
 
-        return view('userCv.edit.editEducation',compact('education','educationLevel','country'));
+        return view('userCv.edit.editEducation',compact('education','educationLevel','country','boards'));
 
 
     }
@@ -158,6 +161,7 @@ class EducationController extends Controller
         $personalEducation->result=$r->result;
         $personalEducation->resultOutOf=$r->resultOutOf;
         $personalEducation->fkcountryId=$r->country;
+        $personalEducation->fkboardId=$r->board;
         $personalEducation->save();
 
 

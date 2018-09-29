@@ -371,6 +371,7 @@
             $('#genderFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
                 table.ajax.reload();  //just reload table
+                emptySelect();
                 if ($('#genderFilter').val()!=""){
 
                     $('#genderFilter').css("background-color", "#7c9").css('color', 'white');
@@ -382,6 +383,7 @@
 //                table.search("").draw(); //just redraw myTableFilter
 
                 table.ajax.reload();  //just reload table
+                emptySelect();
                 if ($('#religionFilter').val()!=""){
 
                     $('#religionFilter').css("background-color", "#7c9").css('color', 'white');
@@ -395,6 +397,7 @@
 //                table.search("").draw(); //just redraw myTableFilter
 
                 table.ajax.reload();  //just reload table
+                emptySelect();
                 if ($('#ethnicityFilter').val()!=""){
 
                     $('#ethnicityFilter').css("background-color", "#7c9").css('color', 'white');
@@ -407,6 +410,7 @@
 //                table.search("").draw(); //just redraw myTableFilter
 
                 table.ajax.reload();  //just reload table
+                emptySelect();
                 if ($('#disabilityFilter').val()!=""){
 
                     $('#disabilityFilter').css("background-color", "#7c9").css('color', 'white');
@@ -418,6 +422,7 @@
             $('#nationalityFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
                 table.ajax.reload();  //just reload table
+                emptySelect();
                 if ($('#nationalityFilter').val()!=""){
 
                     $('#nationalityFilter').css("background-color", "#7c9").css('color', 'white');
@@ -428,6 +433,7 @@
             $('#zonefilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
                 table.ajax.reload();  //just reload table
+                emptySelect();
                 if ($('#zonefilter').val()!=""){
 
                     $('#zonefilter').css("background-color", "#7c9").css('color', 'white');
@@ -438,6 +444,7 @@
             $('#jobTitle').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
                 table.ajax.reload();  //just reload table
+                emptySelect();
                 if ($('#jobTitle').val()!=""){
 
                     $('#jobTitle').css("background-color", "#7c9").css('color', 'white');
@@ -449,6 +456,7 @@
             $('#applyDate').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
                 table.ajax.reload();  //just reload table
+                emptySelect();
                 if ($('#applyDate').val()!=""){
 
                     $('#applyDate').css("background-color", "#7c9").css('color', 'white');
@@ -458,6 +466,7 @@
             });
             $('#jobExperienceFromFilter').keyup(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
+                emptySelect();
                 if ($('#jobExperienceFromFilter').val()!="") {
 
 
@@ -489,6 +498,7 @@
             });
             $('#jobExperienceToFilter').keyup(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
+                emptySelect();
                 if ($('#jobExperienceToFilter').val()!="") {
 
                     if ($('#jobExperienceFromFilter').val() != "") {
@@ -520,6 +530,7 @@
             });
             $('#educationCompletingFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
+                emptySelect();
                 if ($('#educationCompletingFilter').val()!=""){
 
                     if ($('#educationLvlFilter').val()!="") {
@@ -542,6 +553,7 @@
             $('#educationMajorFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
                 table.ajax.reload();  //just reload table
+                emptySelect();
                 if ($('#educationMajorFilter').val()!=""){
 
                     $('#educationMajorFilter').css("background-color", "#7c9").css('color', 'white');
@@ -552,6 +564,7 @@
             $('#educationLvlFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
                 table.ajax.reload();  //just reload table
+                emptySelect();
                 if ($('#educationLvlFilter').val()!=""){
 
                     $('#educationLvlFilter').css("background-color", "#7c9").css('color', 'white');
@@ -562,6 +575,7 @@
             });
             $('#qualificationCompletingFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
+                emptySelect();
 
                 if($('#qualificationCompletingFilter').val()!=""){
 
@@ -585,6 +599,7 @@
             $('#trainingCompletingFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
 //                table.ajax.reload();  //just reload table
+                emptySelect();
                 if($('#trainingCompletingFilter').val()!=""){
 
                     if($('#TrainingNameFilter').val()==""){
@@ -606,6 +621,7 @@
             });
             $("#ageFromFilter").keyup(function(){
                 // table.search("").draw(); //just redraw myTableFilter
+                emptySelect();
 
                 if ($('#ageFromFilter').val()!="") {
 
@@ -642,6 +658,8 @@
                 // table.search("").draw(); //just redraw myTableFilter
                // table.ajax.reload();  //just reload table
 
+                emptySelect();
+
                 if ($('#ageToFilter').val()!="") {
 
                     if ($('#ageFromFilter').val() != "") {
@@ -675,6 +693,7 @@
             $("#professionalQualificationFilter").keyup(function(){
                 // table.search("").draw(); //just redraw myTableFilter
                 table.ajax.reload();  //just reload table
+                emptySelect();
                 if ($('#professionalQualificationFilter').val()!=""){
 
                     $('#professionalQualificationFilter').css("background-color", "#7c9").css('color', 'white');
@@ -687,6 +706,7 @@
             });
             $("#TrainingNameFilter").keyup(function(){
                 // table.search("").draw(); //just redraw myTableFilter
+                emptySelect();
 
                 table.ajax.reload();  //just reload table
                 if ($('#TrainingNameFilter').val()!=""){
@@ -702,6 +722,7 @@
             $("#jobExperienceFilter").change(function(){
                 // table.search("").draw(); //just redraw myTableFilter
                 table.ajax.reload();  //just reload table
+                emptySelect();
                 if ($('#jobExperienceFilter').val()!=""){
 
                     $('#jobExperienceFilter').css("background-color", "#7c9").css('color', 'white');
@@ -730,11 +751,14 @@
         }
 
         function myfunc() {
+            
 
             if ($('#jobTitle').val()!=""){
 
 
                 var products=selecteds;
+
+
 
 
 
@@ -754,6 +778,7 @@
                             selecteds=[];
 
                             $(':checkbox:checked').prop('checked',false);
+
                             //alert(data);
 
 //                            location.reload();
@@ -915,6 +940,14 @@
                     }
                 }
             });
+
+
+
+        }
+        function emptySelect(){
+
+            selecteds=[];
+            $(':checkbox:checked').prop('checked',false);
 
         }
 
