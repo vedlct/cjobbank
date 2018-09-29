@@ -45,7 +45,7 @@ class JobController extends Controller
        if ($r->zonefilter){
            $jobs= $jobs->where('job.fkzoneId',$r->zonefilter);
        }
-       $jobs=$jobs->paginate(10);
+       $jobs=$jobs->paginate(5);
 
        $cvStatus=Employee::where('fkuserId',Auth::user()->userId)->first()->cvStatus;
 
@@ -86,7 +86,7 @@ class JobController extends Controller
            ->get();
 
 
-       $jobs=$jobs->paginate(10);
+       $jobs=$jobs->paginate(5);
 
        $cvStatus=Employee::where('fkuserId',Auth::user()->userId)->first()->cvStatus;
 
