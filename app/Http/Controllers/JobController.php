@@ -52,6 +52,8 @@ class JobController extends Controller
 
        $empId=Employee::where('fkuserId',Auth::user()->userId)->first()->employeeId;
 
+       return $empId;
+
        $applyjob = Jobapply::select('fkjobId')
            ->where('fkemployeeId' , $empId)
            ->get();
@@ -81,6 +83,7 @@ class JobController extends Controller
        }
        $empId=Employee::where('fkuserId',Auth::user()->userId)->first()->employeeId;
 
+       return $empId;
        $applyjob = Jobapply::select('fkjobId')
            ->where('fkemployeeId' , $empId)
            ->get();
