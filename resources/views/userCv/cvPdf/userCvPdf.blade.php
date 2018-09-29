@@ -355,6 +355,25 @@
 @section('foot-js')
 
 <script>
+
+    @if($allEmp->cvStatus == null)
+
+    $.alert({
+        title: 'Error',
+        type: 'red',
+        content: 'sdf',
+        buttons: {
+            tryAgain: {
+                text: 'Ok',
+                btnClass: 'btn-green',
+                action: function () {
+
+                }
+            }
+        }
+    });
+
+    @endif
     function viewUserCv() {
 
 

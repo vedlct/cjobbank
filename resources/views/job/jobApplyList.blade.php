@@ -1,6 +1,6 @@
 @extends('main')
 @section('content')
-
+    <div class="container" >
     <div class="row">
         <div class="col-12">
             <div class="card m-b-30">
@@ -9,7 +9,7 @@
                 </div>
                 <div class="card-body">
 
-
+                    <div class="table table-responsive">
                     <table id="manageapplication" class="table table-striped table-bordered" style="width:100%" >
                         <thead>
                         <tr>
@@ -42,6 +42,7 @@
                         </tbody>
 
                     </table>
+                    </div>
 
 
 
@@ -50,6 +51,7 @@
             </div>
         </div> <!-- end col -->
     </div> <!-- end row -->
+    </div>
 
 
 

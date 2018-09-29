@@ -204,6 +204,7 @@ class UserManagementController extends Controller
     }
 
     public function changeUserStatus(Request $r){
+
         $hr=HR::findOrFail($r->id);
         $status=$hr->status;
         if($status == 0){

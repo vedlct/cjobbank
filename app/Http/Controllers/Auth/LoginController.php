@@ -47,6 +47,8 @@ class LoginController extends Controller
             return route('admin.dashboard');
         }
         elseif (Auth::user()->fkuserTypeId == USER_TYPE['User']) {
+
+
             return route('candidate.cvPersonalInfo');
         }
 
@@ -81,7 +83,7 @@ class LoginController extends Controller
             }
             else {
                 // Increment the failed login attempts and redirect back to the
-                // login form with an error message.
+                // login form with an error message..
                 $this->incrementLoginAttempts($request);
                 Session::flash('notActive', 'please acivate Your Account. !! before Login .');
                 return redirect()

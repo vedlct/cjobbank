@@ -32,7 +32,7 @@ class JobController extends Controller
 
    public function index(Request $r){
 
-       $allZone=DB::table('zone')->get();
+       $allZone=DB::table('zone')->where('status',1)->get();
 
 
        $jobs=Job::select('job.jobId','job.title','job.details','job.details','job.deadline','job.pdflink')
@@ -68,7 +68,7 @@ class JobController extends Controller
 
    public function getJobData(Request $r){
 
-       $allZone=DB::table('zone')->get();
+       $allZone=DB::table('zone')->where('status',1)->get();
 
        $jobs=Job::select('job.jobId','job.title','job.details','job.details','job.deadline','job.pdflink')
            ->where('job.status',1)

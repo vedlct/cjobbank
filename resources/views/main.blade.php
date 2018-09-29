@@ -16,7 +16,8 @@
 <style>form,header,section,.card,.card-body,footer { display:none; }</style>
 </noscript>
 
-<body oncontextmenu="return false;">
+{{--<body oncontextmenu="return false;">--}}
+<body>
 
 <!-- Loader -->
 {{--<div id="preloader"><div id="status"><div class="spinner"></div></div></div>--}}

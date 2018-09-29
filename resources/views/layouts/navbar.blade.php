@@ -9,24 +9,28 @@
                     {{--<a href="{{route('cv.apply')}}"><i class="ti-home"></i>Apply CV</a>--}}
                 {{--</li>--}}
                 @if(USER_TYPE['User']== Auth::user()->fkuserTypeId)
-                <li class="has-submenu">
-                    <a href="{{route('candidate.cvPersonalInfo')}}"><i class="ti-home"></i>User CV</a>
-                </li>
+
+                    <li class="has-submenu">
+                        <a href="{{route('candidate.cvPersonalInfo')}}"><i class="ti-home"></i>My CV</a>
+                        <ul class="submenu">
+                            <li><a href="{{route('candidate.viewUserCv')}}">View Cv</a></li>
+                        </ul>
+                    </li>
 
 
                 <li class="has-submenu">
-                    <a href="{{route('job.all')}}"><i class="ti-layout-width-default"></i>Job Bank</a>
+                    <a href="{{route('job.all')}}"><i class="ti-layout-width-default"></i>Apply Bank</a>
                 </li>
                     <li class="has-submenu">
 
                         <a href="{{route('candidate.manageApplication')}}">Manage Application</a>
 
                     </li>
-                    <li class="has-submenu">
+                    {{--<li class="has-submenu">--}}
 
-                        <a   href="{{route('candidate.viewUserCv')}}"><i class="ti-file"></i>View Cv</a>
+                        {{--<a   href="{{route('candidate.viewUserCv')}}"><i class="ti-file"></i>View Cv</a>--}}
 
-                    </li>
+                    {{--</li>--}}
                 @endif
 
                 @if(USER_TYPE['Admin']== Auth::user()->fkuserTypeId || USER_TYPE['Emp']== Auth::user()->fkuserTypeId)

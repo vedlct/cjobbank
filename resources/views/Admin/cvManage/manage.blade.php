@@ -21,11 +21,11 @@
 
                 <div class=" form-group ">
                     <label>Age From</label>&nbsp;<span style="color: red">(Year)</span>
-                    <input class="form-control" id="ageFromFilter" name="ageFromFilter" type="number">
+                    <input class="form-control" id="ageFromFilter" name="ageFromFilter" onkeypress="return isNumberKey(event)" type="text">
                 </div>
                 <div class=" form-group ">
                     <label>Age to</label>&nbsp;<span style="color: red">(Year)</span>
-                    <input class="form-control" id="ageToFilter" name="ageToFilter" type="number">
+                    <input class="form-control" id="ageToFilter" name="ageToFilter" onkeypress="return isNumberKey(event)" type="text">
                 </div>
                 <div class=" form-group ">
                     <label>Gender</label>
@@ -79,7 +79,7 @@
                     <button  class="btn btn-danger btn-sm" onclick="exportSelectedCv()">Export CV</button>
                     <br><br>
 
-
+                    <div class="table table-responsive">
                     <table id="managecv" class="table table-striped table-bordered" style="width:100%" >
                         <thead>
                         <tr>
@@ -98,6 +98,7 @@
 
 
                     </table>
+                    </div>
 
 
 
@@ -128,7 +129,9 @@
         var gend=[];
 
         $('.date').datepicker({
-            format: 'yyyy-m-d'
+            format: 'yyyy-m-d',
+            todayHighlight: true,
+            autoclose: true
         });
 
         $.ajaxSetup({
@@ -212,7 +215,7 @@
 
                     { "data": function(data){
 
-                        {{--var words = '<?php echo json_encode(GENDER) ?>';// don't use quotes--}}
+
 
                         if( data.gender == "M"){
                             return "Male"
@@ -348,6 +351,7 @@
 
         $("#ageFromFilter").keyup(function(){
             // table.search("").draw(); //just redraw myTableFilter
+            emptySelect();
 
             if ($('#ageFromFilter').val()!="") {
 
@@ -383,6 +387,7 @@
         $("#ageToFilter").keyup(function(){
             // table.search("").draw(); //just redraw myTableFilter
             // table.ajax.reload();  //just reload table
+            emptySelect();
 
             if ($('#ageToFilter').val()!="") {
 
@@ -419,24 +424,23 @@
         $('#genderFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
             table.ajax.reload();  //just reload table
-<<<<<<< HEAD
             emptySelect();
-=======
+
             if ($('#genderFilter').val()!=""){
 
                 $('#genderFilter').css("background-color", "#7c9").css('color', 'white');
             }else {
                 $('#genderFilter').css("background-color", "#FFF").css('color', 'black');
             }
->>>>>>> fc87720f53088101c96fedf10fe4b881436aee18
+
         });
         $('#religionFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
 
             table.ajax.reload();  //just reload table
-<<<<<<< HEAD
+
             emptySelect();
-=======
+
             if ($('#religionFilter').val()!=""){
 
                 $('#religionFilter').css("background-color", "#7c9").css('color', 'white');
@@ -444,14 +448,20 @@
                 $('#religionFilter').css("background-color", "#FFF").css('color', 'black');
             }
 
->>>>>>> fc87720f53088101c96fedf10fe4b881436aee18
+
 
         });
         $('#ethnicityFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
-<<<<<<< HEAD
+
             table.ajax.reload();  //just reload table
             emptySelect();
+            if ($('#ethnicityFilter').val()!=""){
+
+                $('#ethnicityFilter').css("background-color", "#7c9").css('color', 'white');
+            }else {
+                $('#ethnicityFilter').css("background-color", "#FFF").css('color', 'black');
+            }
         });
 
         $("#ageFromFilter").keyup(function(){
@@ -463,9 +473,7 @@
             // table.search("").draw(); //just redraw myTableFilter
             table.ajax.reload();  //just reload table
             emptySelect();
-=======
 
-            table.ajax.reload();  //just reload table
             if ($('#ethnicityFilter').val()!=""){
 
                 $('#ethnicityFilter').css("background-color", "#7c9").css('color', 'white');
@@ -473,7 +481,7 @@
                 $('#ethnicityFilter').css("background-color", "#FFF").css('color', 'black');
             }
 
->>>>>>> fc87720f53088101c96fedf10fe4b881436aee18
+
         });
 
 
@@ -486,7 +494,7 @@
             window.open(url,'_blank');
         }
 
-<<<<<<< HEAD
+
         function emptySelect(){
 
             selecteds=[];
@@ -494,7 +502,7 @@
 
         }
 
-=======
+
         function validationError(errorMsg){
 
             $.alert({
@@ -513,7 +521,16 @@
             });
 
         }
->>>>>>> fc87720f53088101c96fedf10fe4b881436aee18
+
+        function isNumberKey(evt)
+        {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+
+            return true;
+        }
+
     </script>
 
 @endsection
