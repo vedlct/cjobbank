@@ -61,16 +61,8 @@ class PersonalInfoController extends Controller
 
         if (!$employeeCvPersonalInfo->isEmpty()){
 
-            foreach ($employeeCvPersonalInfo as $info){
-                $cvStatus=$info->cvStatus;
-            }
-            if ($cvStatus == '1'){
 
-                return redirect()->route('job.all');
-
-            }else {
-                return view('userCv.update.personalInfo',compact('religion','ethnicity','natinality','employeeCvPersonalInfo'));
-            }
+            return view('userCv.update.personalInfo',compact('religion','ethnicity','natinality','employeeCvPersonalInfo'));
 
 
         }else{

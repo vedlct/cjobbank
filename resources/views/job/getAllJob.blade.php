@@ -46,6 +46,7 @@
                         @php
                             $flag= "False"
                         @endphp
+                        @if($applyjob != null)
                         @foreach($applyjob as $aj)
                         @if($job->jobId ==  $aj->fkjobId)
 
@@ -56,6 +57,7 @@
                             @endphp
                             @endif
                         @endforeach
+                        @endif
 
                         @if($flag == "True")
                         @else
@@ -123,10 +125,9 @@
 
             }
         });
-
-
-
     }
+
+
 </script>
 
 
