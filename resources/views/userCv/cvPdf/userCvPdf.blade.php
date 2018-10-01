@@ -36,10 +36,11 @@
     <div class="col-12">
         <div style="background-color: #F1F1F1" class="card">
             <div class="card-body">
-                @if($allEmp->cvStatus == 1)
+                @if($allEmp != null && $allEmp->cvStatus == 1)
 
                 <div id="regForm">
-                    <div class="pull-right"><a class="btn btn-sm btn-success" onclick="viewUserCv()">Download</a></div>
+                    {{--<div class="pull-right"><a class="btn btn-sm btn-success"  onclick="viewUserCv()">Download</a></div>--}}
+                    <div class="pull-right"><a class="btn btn-sm btn-success" href="{{route('userCv.post1',$allEmp->employeeId)}}" >Download</a></div>
 
 
 
@@ -224,6 +225,89 @@
 
                     </table >
 
+                    <table border="0" style="width:100%; margin-top: 25px; border: none;">
+                        <tr>
+                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Personal Info</b> </td>
+                        </tr>
+                    </table>
+                    <table border="0" style="width:100%; margin-top: 10px; border: none;">
+
+                        <tr>
+                            <td  style="border: none;">
+                                Father Name : {{$personalInfo->fathersName}}
+                            </td>
+
+
+                            <td style="border: none;">
+                                Mother Name : {{$personalInfo->mothersName}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td  style="border: none;">
+                                Gender :
+                                @if($personalInfo->gender == "M")
+                                {{"Male"}}
+                                @else
+                                {{"Female"}}
+                                @endif
+                            </td>
+
+
+
+                            <td style="border: none;">
+                                Date Of Birth : {{$personalInfo->dateOfBirth}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td  style="border: none;">
+                                Religion : {{$personalInfo->religionName}}
+                            </td>
+
+
+                            <td style="border: none;">
+                                Nationality : {{$personalInfo->nationalityName}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td  style="border: none;">
+                                Permanent Address : {{$personalInfo->parmanentAddress}}
+                            </td>
+
+
+                            <td style="border: none;">
+                                National Id : {{$personalInfo->nationalId}}
+                            </td>
+                        </tr>
+
+
+
+                    </table>
+
+                    <table border="0" style="width:100%; margin-top: 5px; border: none;">
+                        <tr>
+                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Relative in Caritas</b> </td>
+                        </tr>
+                    </table>
+
+                    <table border="0" style="width:100%; margin-top: 5px; border: none;">
+
+                        <tr style=" border: none;">
+                            @if($relativeCb->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @endif
+                            @foreach($relativeCb as $ref)
+
+                                <td style="border: none;">
+                                    <span class="bold"> Name :</span> &nbsp;&nbsp;&nbsp;{{$ref->firstName}} {{$ref->lastName}} <br>
+                                    <span class="bold">  Position:</span> &nbsp;&nbsp;&nbsp;{{$ref->degisnation}} <br>
+
+                                </td>
+
+                            @endforeach
+
+                        </tr>
+
+
+                    </table>
+
 
                     <table border="0" style="width:100%; margin-top: 15px; border: none;">
                         <tr>
@@ -258,83 +342,6 @@
 
                     </table>
 
-                    <table border="0" style="width:100%; margin-top: 5px; border: none;">
-                        <tr>
-                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Relative in Caritas</b> </td>
-                        </tr>
-                    </table>
-
-
-
-                    <table border="0" style="width:100%; margin-top: 5px; border: none;">
-
-                        <tr style=" border: none;">
-                            @if($relativeCb->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @endif
-                            @foreach($relativeCb as $ref)
-
-                                <td style="border: none;">
-                                    <span class="bold"> Name :</span> &nbsp;&nbsp;&nbsp;{{$ref->firstName}} {{$ref->lastName}} <br>
-                                    <span class="bold">  Position:</span> &nbsp;&nbsp;&nbsp;{{$ref->degisnation}} <br>
-
-                                </td>
-
-                            @endforeach
-
-                        </tr>
-
-
-                    </table>
-                    <table border="0" style="width:100%; margin-top: 25px; border: none;">
-                        <tr>
-                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Personal Info</b> </td>
-                        </tr>
-                    </table>
-                    <table border="0" style="width:100%; margin-top: 10px; border: none;">
-
-                        <tr>
-                            <td  style="border: none;">
-                                Father Name : {{$personalInfo->fathersName}}
-                            </td>
-
-
-                            <td style="border: none;">
-                                Mother Name : {{$personalInfo->mothersName}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td  style="border: none;">
-                                Gender : {{$personalInfo->gender}}
-                            </td>
-
-
-                            <td style="border: none;">
-                                Date Of Birth : {{$personalInfo->dateOfBirth}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td  style="border: none;">
-                                Religion : {{$personalInfo->religionName}}
-                            </td>
-
-
-                            <td style="border: none;">
-                                Nationality : {{$personalInfo->nationalityName}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td  style="border: none;">
-                                Permanent Address : {{$personalInfo->parmanentAddress}}
-                            </td>
-
-
-                            <td style="border: none;">
-                                National Id : {{$personalInfo->nationalId}}
-                            </td>
-                        </tr>
-
-
-
-                    </table>
 
 
 
@@ -355,21 +362,58 @@
 @section('foot-js')
 
 <script>
-    function viewUserCv() {
+
+    @if(Session::has('message') && $allEmp != null &&  $allEmp->cvStatus == null)
+
+    $.alert({
+        title: 'Error',
+        type: 'red',
+        content: 'Your CV is not Completed yet,Please Complete First',
+        buttons: {
+            tryAgain: {
+                text: 'Ok',
+                btnClass: 'btn-green',
+                action: function () {
+
+                }
+            }
+        }
+    });
+
+    @endif
+    @if(Session::has('message') && $msg != null)
+
+    $.alert({
+        title: 'Error',
+        type: 'red',
+        content: '<?php echo $msg?>',
+        buttons: {
+            tryAgain: {
+                text: 'Ok',
+                btnClass: 'btn-green',
+                action: function () {
+
+                }
+            }
+        }
+    });
+
+    @endif
+    {{--function viewUserCv() {--}}
 
 
-        $.ajax({
-            type: "get",
-            url: '{{route('userCv.post')}}',
-            data: {_token:"{{csrf_token()}}",id:"{{$allEmp->employeeId}}"},
-            success: function (data) {
+        {{--$.ajax({--}}
+            {{--type: "get",--}}
+            {{--url: '{{route('userCv.post')}}',--}}
+            {{--data: {_token:"{{csrf_token()}}",id:"{{$allEmp->employeeId}}"},--}}
+            {{--success: function (data) {--}}
 
 
-            },
-        });
+            {{--},--}}
+        {{--});--}}
 
 
-    }
+    {{--}--}}
 </script>
 
 @endsection

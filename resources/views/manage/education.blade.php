@@ -76,7 +76,7 @@
                         </div>
                     @endif
                     <div class="card-header-tabs">
-                        <h4>Manage Education</h4>
+                        <h4>Manage Education Level</h4>
                     </div>
 
                     <div align="right">
@@ -84,7 +84,7 @@
                     </div>
                     <br>
 
-
+                        <div class="table table-responsive">
                     <table id="managecv" class="table table-striped table-bordered" style="width:100%" >
                         <thead>
                         <tr>
@@ -115,6 +115,7 @@
                         </tbody>
 
                     </table>
+                        </div>
                     <br>
 
 
@@ -128,6 +129,20 @@
 
 @endsection
 @section('foot-js')
+
+    <script src="{{url('public/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{url('public/assets/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
+
+    <script>
+        $(function () {
+            $('#managecv').DataTable(
+                {
+                    "ordering": false,
+
+                }
+            );
+        });
+    </script>
 
     <script>
         function editEducation(x) {

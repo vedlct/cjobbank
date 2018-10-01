@@ -61,9 +61,12 @@ class PersonalInfoController extends Controller
 
         if (!$employeeCvPersonalInfo->isEmpty()){
 
+
             return view('userCv.update.personalInfo',compact('religion','ethnicity','natinality','employeeCvPersonalInfo'));
 
+
         }else{
+
             return view('userCv.insert.personalInfo',compact('religion','ethnicity','natinality'));
         }
 

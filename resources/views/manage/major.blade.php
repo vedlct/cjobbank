@@ -100,7 +100,7 @@
                     </div>
                     <br>
 
-
+                    <div class="table table-responsive">
                     <table id="majortable" class="table table-striped table-bordered" style="width:100%" >
                         <thead>
                         <tr>
@@ -136,6 +136,7 @@
                         </tbody>
 
                     </table>
+                    </div>
                     <br>
 
 
@@ -159,7 +160,9 @@
 
     <script>
         $(function () {
-            $('#majortable').DataTable();
+            $('#majortable').DataTable({
+                "ordering": false,
+            });
         });
 
         function addnewMajor() {

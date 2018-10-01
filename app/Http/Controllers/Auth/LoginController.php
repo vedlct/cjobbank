@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Employee;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -47,7 +48,19 @@ class LoginController extends Controller
             return route('admin.dashboard');
         }
         elseif (Auth::user()->fkuserTypeId == USER_TYPE['User']) {
-            return route('candidate.cvPersonalInfo');
+
+            $cvStatus1=Employee::where('fkuserId',Auth::user()->userId)->first();
+
+            if ($cvStatus1 != null && $cvStatus1->cvStatus == 1){
+
+                return route('job.all');
+
+            }else {
+                return route('candidate.cvPersonalInfo');
+            }
+
+
+
         }
 
     }
@@ -81,7 +94,7 @@ class LoginController extends Controller
             }
             else {
                 // Increment the failed login attempts and redirect back to the
-                // login form with an error message.
+                // login form with an error message..
                 $this->incrementLoginAttempts($request);
                 Session::flash('notActive', 'please acivate Your Account. !! before Login .');
                 return redirect()

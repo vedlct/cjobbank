@@ -1,6 +1,6 @@
 @extends('main')
 @section('content')
-
+    <div class="container" >
     <div class="row">
         <div class="col-12">
             <div class="card m-b-30">
@@ -8,7 +8,8 @@
                     <h4>Manage Application</h4>
                 </div>
                 <div class="card-body">
-
+                    @if($jobApplyList != null)
+                    <div class="table table-responsive">
 
                     <table id="manageapplication" class="table table-striped table-bordered" style="width:100%" >
                         <thead>
@@ -43,6 +44,9 @@
 
                     </table>
 
+                    </div>
+                    @endif
+
 
 
                 </div>
@@ -50,6 +54,7 @@
             </div>
         </div> <!-- end col -->
     </div> <!-- end row -->
+    </div>
 
 
 
@@ -82,6 +87,26 @@
                 }
             );
         } );
+
+        @if($jobApplyList == null)
+
+        $.alert({
+            title: 'Error',
+            type: 'red',
+            content: 'Your CV information is not found ,please make your CV first',
+            buttons: {
+                tryAgain: {
+                    text: 'Ok',
+                    btnClass: 'btn-green',
+                    action: function () {
+
+                    }
+                }
+            }
+        });
+
+        @endif
+
     </script>
 
 @endsection

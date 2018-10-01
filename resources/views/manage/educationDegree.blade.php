@@ -100,7 +100,7 @@
 
                 <div class="card-body">
                     <div class="card-header-tabs">
-                        <h4>Manage Education</h4>
+                        <h4>Manage Education Degree</h4>
                     </div>
 
                     <div align="right">
@@ -108,7 +108,7 @@
                     </div>
                     <br>
 
-
+                    <div class="table table-responsive">
                     <table id="managecv" class="table table-striped table-bordered" style="width:100%" >
                         <thead>
                         <tr>
@@ -144,6 +144,7 @@
                         </tbody>
 
                     </table>
+                    </div>
                     <br>
 
 
@@ -167,7 +168,9 @@
 
     <script>
         $(function () {
-           $('#managecv').DataTable();
+           $('#managecv').DataTable({
+               "ordering": false,
+           });
         });
         function addnewEducation() {
 

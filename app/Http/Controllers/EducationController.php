@@ -55,7 +55,7 @@ class EducationController extends Controller
 
 
 
-        $educationLevel=Educationlevel::get();
+        $educationLevel=Educationlevel::where('status',1)->get();
 
         $country=Country::get();
         $boards=Board::where('status',1)->get();
@@ -137,7 +137,7 @@ class EducationController extends Controller
             ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
             ->findOrFail($r->id);
 
-        $educationLevel=Educationlevel::get();
+        $educationLevel=Educationlevel::where('status',1)->get();
         $country=Country::get();
         $boards=Board::where('status',1)->get();
 
@@ -170,14 +170,11 @@ class EducationController extends Controller
 
         return redirect()->route('candidate.cvEducation');
 
-
-
     }
     public function deletePersonalEducation(Request $r)
     {
 
         $personalEducation=Education::destroy($r->id);
-
         // Session::flash('message', 'Education Deleted Successfully');
 
 

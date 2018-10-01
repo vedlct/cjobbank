@@ -16,7 +16,8 @@
 <style>form,header,section,.card,.card-body,footer { display:none; }</style>
 </noscript>
 
-<body oncontextmenu="return false;">
+{{--<body oncontextmenu="return false;">--}}
+<body>
 
 <!-- Loader -->
 {{--<div id="preloader"><div id="status"><div class="spinner"></div></div></div>--}}
@@ -140,7 +141,7 @@
                             <img src="{{url('public/assets/images/users/avatar-1.png')}}" alt="user" class="rounded-circle">
                         </a>
                         <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                            <a class="dropdown-item" href="#"><i class="dripicons-user text-muted"></i> Profile</a>
+                            {{--<a class="dropdown-item" href="#"><i class="dripicons-user text-muted"></i> Profile</a>--}}
                             {{--<a class="dropdown-item" href="#"><i class="dripicons-wallet text-muted"></i>Team</a>--}}
                             <a class="dropdown-item" href="{{route('password')}}"><i class="dripicons-gear text-muted"></i>Change Password</a>
 

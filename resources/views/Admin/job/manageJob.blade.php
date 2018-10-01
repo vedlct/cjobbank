@@ -4,7 +4,7 @@
 
     <div class="row">
 
-        <div class="col-2">
+        <div class="col-md-2">
 
             <div style="background-color: white;margin-bottom: 20px;" class="card-body">
 
@@ -20,11 +20,11 @@
                 </div>
                 <div class=" form-group">
                     <label>Post Date</label>
-                    <input id="postDateFilter" name="postDateFilter" class="form-control date" type="text">
+                    <input id="postDateFilter" name="postDateFilter" class="form-control date" onkeypress="return isNumberKey(event)" type="text">
                 </div>
                 <div class=" form-group">
                     <label>Deadline</label>
-                    <input id="deadlineFilter" name="deadlineFilter" class="form-control date" type="text">
+                    <input id="deadlineFilter" name="deadlineFilter" class="form-control date" onkeypress="return isNumberKey(event)" type="text">
                 </div>
                 <div class=" form-group">
                     <label>Job Status</label>
@@ -43,7 +43,7 @@
             </div>
         </div>
 
-        <div class="col-10">
+        <div class="col-md-10">
             <div class="card m-b-30">
                 <div class="card-header">
                     <h4 class="pull-left">Manage All Job</h4>
@@ -51,7 +51,7 @@
                 </div>
                 <div class="card-body">
 
-
+                    <div class="table table-responsive">
                     <table id="manageapplication" class="table table-striped table-bordered" style="width:100%" >
                         <thead>
                         <tr>
@@ -73,6 +73,7 @@
                         </tbody>
 
                     </table>
+                    </div>
 
 
 
@@ -101,8 +102,18 @@
 
         $('.date').datepicker({
             format: 'yyyy-mm-dd',
-            todayHighlight: true
+            todayHighlight: true,
+
+            autoclose: true
         });
+        function isNumberKey(evt)
+        {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+
+            return true;
+        }
         $(document).ready(function() {
 
             table = $('#manageapplication').DataTable({

@@ -106,7 +106,7 @@
                 </div>
                 <br>
 
-
+                <div class="table table-responsive">
                 <table id="nationalitytable" class="table table-striped table-bordered" style="width:100%" >
                     <thead>
                     <tr>
@@ -142,6 +142,7 @@
                     </tbody>
 
                 </table>
+                </div>
                 <br>
 
 
@@ -165,7 +166,9 @@
 
 <script>
     $(function () {
-        $('#nationalitytable').DataTable();
+        $('#nationalitytable').DataTable({
+            "ordering": false,
+        });
     });
     function addnewNationality() {
 

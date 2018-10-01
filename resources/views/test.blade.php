@@ -212,66 +212,6 @@
         </table >
 
 
-        <table border="0" style="width:100%; margin-top: 15px; border: none;">
-            <tr>
-                <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Referee</b> </td>
-            </tr>
-        </table>
-
-        <table border="0" style="width:100%; margin-top: 10px; border: none;">
-
-            @php $count=1;@endphp
-
-
-            @foreach($refree as $ref)
-                <tr style="">
-
-                    <td width="2%" style="border: none; vertical-align: top">
-                        <span>{{$count++}}.</span>
-                    </td>
-
-                    <td style="border: none;">
-                        Name : {{$ref->firstName}} {{$ref->lastName}} <br>
-                        Contact: {{$ref->phone}} <br>
-                        Position: {{$ref->presentposition}} <br>
-                        email: {{$ref->email}}
-
-                    </td>
-                </tr>
-            @endforeach
-
-
-
-
-        </table>
-
-        <table border="0" style="width:100%; margin-top: 5px; border: none;">
-            <tr>
-                <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Relative in Caritas</b> </td>
-            </tr>
-        </table>
-
-
-
-        <table border="0" style="width:100%; margin-top: 5px; border: none;">
-
-            <tr style=" border: none;">
-                @if($relativeCb->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @endif
-                @foreach($relativeCb as $ref)
-
-                    <td style="border: none;">
-                        <p> Name : {{$ref->firstName}} {{$ref->lastName}} <br>
-                            Position: {{$ref->degisnation}} <br>
-                        </p>
-                    </td>
-
-                @endforeach
-
-            </tr>
-
-
-        </table>
-
         <table border="0" style="width:100%; margin-top: 25px; border: none;">
             <tr>
                 <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Personal Info</b> </td>
@@ -291,7 +231,12 @@
             </tr>
             <tr>
                 <td  style="border: none;">
-                    Gender : {{$personalInfo->gender}}
+                    Gender :
+                    @if($personalInfo->gender == "M")
+                        {{"Male"}}
+                    @else
+                        {{"Female"}}
+                    @endif
                 </td>
 
 
@@ -325,6 +270,65 @@
         </table>
 
 
+        <table border="0" style="width:100%; margin-top: 5px; border: none;">
+            <tr>
+                <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Relative in Caritas</b> </td>
+            </tr>
+        </table>
+
+
+
+        <table border="0" style="width:100%; margin-top: 5px; border: none;">
+
+            <tr style=" border: none;">
+                @if($relativeCb->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @endif
+                @foreach($relativeCb as $ref)
+
+                    <td style="border: none;">
+                        <p> Name : {{$ref->firstName}} {{$ref->lastName}} <br>
+                            Position: {{$ref->degisnation}} <br>
+                        </p>
+                    </td>
+
+                @endforeach
+
+            </tr>
+
+
+        </table>
+
+        <table border="0" style="width:100%; margin-top: 15px; border: none;">
+            <tr>
+                <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Referee</b> </td>
+            </tr>
+        </table>
+
+        <table border="0" style="width:100%; margin-top: 10px; border: none;">
+
+            @php $count=1;@endphp
+
+
+            @foreach($refree as $ref)
+                <tr style="">
+
+                    <td width="2%" style="border: none; vertical-align: top">
+                        <span>{{$count++}}.</span>
+                    </td>
+
+                    <td style="border: none;">
+                        Name : {{$ref->firstName}} {{$ref->lastName}} <br>
+                        Contact: {{$ref->phone}} <br>
+                        Position: {{$ref->presentposition}} <br>
+                        email: {{$ref->email}}
+
+                    </td>
+                </tr>
+            @endforeach
+
+
+
+
+        </table>
 
 
     </div>

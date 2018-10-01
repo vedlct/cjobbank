@@ -97,7 +97,7 @@
                     </div>
                     <br>
 
-
+                    <div class="table table-responsive">
                     <table id="agreementtable" class="table table-striped table-bordered" style="width:100%" >
                         <thead>
                         <tr>
@@ -133,6 +133,7 @@
                         </tbody>
 
                     </table>
+                    </div>
                     <br>
 
 
@@ -156,8 +157,21 @@
 
     <script>
         $(function () {
-            $('#agreementtable').DataTable();
+            $('#agreementtable').DataTable(
+                {
+                    "columnDefs": [
+                        {
+                            "targets": [0,2,3], //first column / numbering column
+                            "orderable": false, //set not orderable
+
+                        },
+
+                    ],
+
+                }
+            );
         });
+
         function addnewAgreement() {
 
 

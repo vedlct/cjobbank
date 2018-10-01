@@ -4,7 +4,7 @@
 
     <div class="row">
 
-        <div class="col-2">
+        <div class="col-md-2">
 
             <div style="background-color: white;margin-bottom: 20px;" class="card-body">
 
@@ -34,7 +34,7 @@
             </div>
         </div>
 
-        <div class="col-10">
+        <div class="col-md-10">
             <div class="card m-b-30">
                 <div class="card-header">
                 <h4 class="pull-left">Manage User</h4>
@@ -42,11 +42,11 @@
                 </div>
                 <div class="card-body">
 
-
+                    <div class="table table-responsive">
                     <table id="managecv" class="table table-striped table-bordered " style="width:100%" >
                         <thead>
                         <tr>
-                            <th width="4%">Select</th>
+                            {{--<th width="4%">Select</th>--}}
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Degisnation</th>
@@ -63,11 +63,12 @@
                         </tbody>
 
                     </table>
+                    </div>
                     <br>
                     <br>
 
-                    <label class="checkbox-inline"><input style="width: auto;" type="checkbox" id="selectall2" value=""> Select All</label>&nbsp;
-                    <button  class="btn btn-danger btn-sm" >Export CV</button>
+                    {{--<label class="checkbox-inline"><input style="width: auto;" type="checkbox" id="selectall2" value=""> Select All</label>&nbsp;--}}
+                    {{--<button  class="btn btn-danger btn-sm" >Export CV</button>--}}
                     <br><br>
 
                 </div>
@@ -129,11 +130,11 @@
                 columns: [
 
 
-                    { "data": function(data){
-                        return "<input type='checkbox'>";
-                        },
-                        "orderable": false, "searchable":false
-                    },
+//                    { "data": function(data){
+//                        return "<input type='checkbox'>";
+//                        },
+//                        "orderable": false, "searchable":false
+//                    },
 
                     { data: 'firstName', name: 'firstName', "orderable": false, "searchable":true },
                     { data: 'lastName', name: 'lastName', "orderable": false, "searchable":true },
@@ -231,6 +232,7 @@
             document.location.href=url;
         }
         function deleteUser(x) {
+
             var id=$(x).data('panel-id');
 
             $.ajax({
@@ -239,8 +241,28 @@
             cache: false,
             data: {_token: "{{csrf_token()}}",'id': id},
             success: function (data) {
-//                console.log(data);
-                table.ajax.reload();
+
+
+
+                $.alert({
+                    title: 'Success',
+                    type: 'green',
+                    content: 'User Status Changed Successfully',
+                    buttons: {
+                        tryAgain: {
+                            text: 'Ok',
+                            btnClass: 'btn-green',
+                            action: function () {
+
+                                table.ajax.reload();
+                                emptySelect();
+
+                            }
+                        }
+                    }
+                });
+
+
             }
             });
         }

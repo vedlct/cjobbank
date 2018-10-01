@@ -118,8 +118,24 @@
              alert('No response from server');
          });
  }
+ @if($applyjob == null)
 
+ $.alert({
+     title: 'Error',
+     type: 'red',
+     content: 'Your CV information is not found ,please make your CV first',
+     buttons: {
+         tryAgain: {
+             text: 'Ok',
+             btnClass: 'btn-green',
+             action: function () {
 
+             }
+         }
+     }
+ });
+
+    @endif
 
 
 </script>

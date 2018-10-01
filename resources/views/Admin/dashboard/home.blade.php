@@ -15,7 +15,7 @@
                         <h2 style=" margin-bottom: 25px; margin-left: 13px; ">Today's Job Apply</h2>
                     </div>
 
-
+                    <div class="table table-responsive">
                     <table id="todayJobApply" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                         <tr>
@@ -69,6 +69,7 @@
                         </tbody>
 
                     </table>
+                    </div>
                     <br>
 
                 </div>
@@ -90,7 +91,7 @@
                     <div class="row">
                         <h2 style=" margin-bottom: 25px; margin-left: 13px; ">Today's Register CV</h2>
                     </div>
-
+                    <div class="table table-responsive">
                     <table id="todayRegisterCV" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                         <tr>
@@ -142,6 +143,7 @@
                         </tbody>
 
                     </table>
+                    </div>
 
 
 

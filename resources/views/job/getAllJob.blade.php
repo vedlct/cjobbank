@@ -46,6 +46,7 @@
                         @php
                             $flag= "False"
                         @endphp
+                        @if($applyjob != null)
                         @foreach($applyjob as $aj)
                         @if($job->jobId ==  $aj->fkjobId)
 
@@ -56,6 +57,7 @@
                             @endphp
                             @endif
                         @endforeach
+                        @endif
 
                         @if($flag == "True")
                         @else
@@ -81,7 +83,7 @@
 @endforeach
 
 
-<ul class="pagination pull-right">
+<ul class="pagination">
 
 
         <li class="page-item @if($jobs->currentPage()== 1) disabled @endif"> <a data-id="{{$jobs->previousPageUrl()}}" href="javascript:void(0)" class="page-link pagiNextPrevBtn"><i class="ion-ios-arrow-left"></i>Prev</a></li>
@@ -123,10 +125,9 @@
 
             }
         });
-
-
-
     }
+
+
 </script>
 
 

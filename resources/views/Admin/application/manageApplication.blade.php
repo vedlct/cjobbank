@@ -3,7 +3,7 @@
 
 
     <div class="row">
-        <div class="col-2">
+        <div class="col-md-2">
 
             <div style="background-color: white;margin-bottom: 20px;" class="card-body">
 
@@ -20,15 +20,15 @@
 
                 <div class=" form-group ">
                     <label>Age From</label><span style="color: red">(Year)</span>
-                    <input class="form-control" id="ageFromFilter" name="ageFromFilter" type="number">
+                    <input class="form-control" id="ageFromFilter" name="ageFromFilter" onkeypress="return isNumberKey(event)" type="text">
                 </div>
                 <div class=" form-group ">
                     <label>Age to</label><span style="color: red">(Year)</span>
-                    <input class="form-control" id="ageToFilter" name="ageToFilter" type="number">
+                    <input class="form-control" id="ageToFilter" name="ageToFilter" onkeypress="return isNumberKey(event)" type="text">
                 </div>
                 <div class=" form-group ">
                     <label>Apply Date</label>
-                    <input class="form-control date" id="applyDate" name="applyDate" type="text">
+                    <input class="form-control date" id="applyDate" name="applyDate" onkeypress="return isNumberKey(event)" type="text">
                 </div>
 
 
@@ -168,11 +168,11 @@
 
                     <div class=" form-group ">
                         <label>From</label>&nbsp;<span style="color: red">(Year)</span>
-                        <input id="jobExperienceFromFilter" name="jobExperienceFromFilter" class="form-control" type="number">
+                        <input id="jobExperienceFromFilter" name="jobExperienceFromFilter" class="form-control" onkeypress="return isNumberKey(event)" type="text">
                     </div>
                     <div class="form-group ">
                         <label>to</label>&nbsp;<span style="color: red">(Year)</span>
-                        <input id="jobExperienceToFilter" name="jobExperienceToFilter" class="form-control" type="number">
+                        <input id="jobExperienceToFilter" name="jobExperienceToFilter" class="form-control" onkeypress="return isNumberKey(event)" type="text">
                     </div>
 
                     <div class=" form-group ">
@@ -195,7 +195,7 @@
             </div>
         </div>
 
-        <div class="col-10">
+        <div class="col-md-10">
             <div class="card m-b-30">
                 <div class="card-header">
                     <h4 class="pull-left">Manage All Application</h4>
@@ -212,12 +212,12 @@
                         <label class="checkbox-inline"><input style="width: auto;" type="checkbox" id="selectall2" value="">Select All</label>
 
                         <div class="col-md-1">
-                            <a onclick="return myfunc()"><button class="btn btn-danger btn-sm">Export CV</button></a>
+                            <a onclick="return myfunc()"><button class="btn btn-danger btn-sm">Export Candidates excel</button></a>
                         </div>
 
                     </div>
                     <br>
-
+                    <div class="table table-responsive">
                     <table id="manageapplication" class="table table-striped table-bordered" style="width:100%" >
                         <thead>
                         <tr>
@@ -236,6 +236,7 @@
                         </tr>
                         </thead>
                     </table>
+                    </div>
 
 
 
@@ -261,7 +262,8 @@
 
             $('.date').datepicker({
                 format: 'yyyy-m-d',
-                todayHighlight: true
+                todayHighlight: true,
+                autoclose: true
             });
 
 
@@ -966,6 +968,15 @@
             });
 
         });
+
+        function isNumberKey(evt)
+        {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+
+            return true;
+        }
 
     </script>
 

@@ -126,9 +126,9 @@ class RegisterController extends Controller
     {
 
         $user=new User();
-        $user->name=$r->firstName." ".$r->lastName;
-        $user->email=$r->email;
-        $user->password=Hash::make($r->password);
+        $user->name=$r->userFirstName." ".$r->userLastName;
+        $user->email=$r->userEmail;
+        $user->password=Hash::make($r->userPass);
         $user->fkuserTypeId='user';
         $user->register='N';
         $userToken=$user->token=$r->userToken;
@@ -140,7 +140,7 @@ class RegisterController extends Controller
         for ($i=0;$i<count($r->qesId);$i++){
 
             $userAggrement=new Aggrement();
-            $userAggrement->fkuserId=$r->userId;
+            $userAggrement->fkuserId=$user->userId;
             $userAggrement->fkaggrementQusId=$r->qesId[$i];
             $userAggrement->ans=$r->qesans[$i].$r->qesId[$i];
             $userAggrement->save();
@@ -189,6 +189,11 @@ class RegisterController extends Controller
                 Auth::loginUsingId($userInfo->userId);
                 return redirect()->route('home');
             }
+        }else{
+
+            Session::flash('notActive', 'Your have allready performed this action once!,Please try resend the email');
+            return redirect('/');
+
         }
 
 
@@ -268,6 +273,12 @@ class RegisterController extends Controller
             Auth::loginUsingId($userInfo->userId);
             return redirect()->route('home');
         }
+        else{
+
+            Session::flash('notActive', 'Your have allready performed this action once!,Please try resend the email');
+            return redirect('/');
+
+        }
 
 
     }
@@ -280,13 +291,19 @@ class RegisterController extends Controller
 
         if(!empty($userInfo)) {
 
-            $userInfo->password = $password;
+            $userInfo->password = Hash::make($password);
             $userInfo->token = null;
             $userInfo->save();
 
             Session::flash('message', 'Your Password has been changed Successfully');
             Auth::loginUsingId($userInfo->userId);
             return redirect()->route('home');
+        }
+        else{
+
+            Session::flash('notActive', 'Your have allready performed this action once!,Please try resend the email');
+            return redirect('/');
+
         }
 
 
