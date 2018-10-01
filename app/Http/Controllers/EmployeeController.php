@@ -89,54 +89,66 @@ class EmployeeController extends Controller
 
         $empId=Employee::select('employeeId','cvStatus')->where('fkuserId',Auth::user()->userId)->first();
 
-        if ($empId->cvStatus==0){
+        if ($empId != null) {
 
-            $allEmp=$empId;
 
-            Session::flash('message', 'Your CV is not Completed yet,Please Complete First');
+            if ($empId->cvStatus == 0) {
 
-            return view('userCv.cvPdf.userCvPdf',compact('allEmp'));
+                $allEmp = $empId;
 
+                Session::flash('message', 'Your CV is not Completed yet,Please Complete First');
+                $msg=null;
+
+                return view('userCv.cvPdf.userCvPdf', compact('allEmp','msg'));
+
+            } else {
+
+                $allEmp = $empId;
+
+
+                $empId = $empId->employeeId;
+
+                $personalInfo = Employee::select('firstName', 'lastName',
+                    'fathersName', 'mothersName', 'gender', 'personalMobile',
+                    'dateOfBirth', 'email', 'presentAddress', 'image', 'religionName', 'nationalityName', 'nationalId', 'parmanentAddress')
+                    ->leftJoin('religion', 'religion.religionId', 'fkreligionId')
+                    ->leftJoin('nationality', 'nationality.nationalityId', 'fknationalityId')
+                    ->findOrFail($empId);
+
+                $education = Education::select('degreeName', 'education.institutionName', 'education.fkemployeeId', 'education.status', 'education.resultSystem', 'education.result', 'educationlevel.educationLevelName',
+                    'educationmajor.educationMajorName', 'education.fkMajorId', 'passingYear')
+                    ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
+                    ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
+                    ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
+                    ->where('fkemployeeId', $empId)
+                    ->orderBy('passingYear', 'desc')
+                    ->get();
+
+                $professionalCertificate = ProfessionalQualification::where('fkemployeeId', $empId)
+                    ->get();
+
+                $jobExperience = JobExperience::where('fkemployeeId', $empId)
+                    ->orderBy('startDate', 'desc')
+                    ->get();
+
+                $trainingCertificate = Traning::where('fkemployeeId', $empId)
+                    ->orderBy('startDate', 'desc')
+                    ->get();
+                $refree = Refree::where('fkemployeeId', $empId)
+                    ->get();
+                $relativeCb = RelativeInCb::where('fkemployeeId', $empId)
+                    ->get();
+
+                return view('userCv.cvPdf.userCvPdf', compact('allEmp', 'personalInfo', 'education', 'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree', 'relativeCb'));
+
+
+            }
         }else{
+            $allEmp= null;
+            Session::flash('message', 'Your CV information is not found ,please make your CV first');
+            $msg='Your CV information is not found ,please make your CV first';
 
-            $allEmp=$empId;
-
-
-            $empId=$empId->employeeId;
-
-            $personalInfo = Employee::select('firstName','lastName',
-                'fathersName','mothersName','gender','personalMobile',
-                'dateOfBirth','email','presentAddress','image','religionName','nationalityName','nationalId','parmanentAddress')
-                ->leftJoin('religion','religion.religionId','fkreligionId')
-                ->leftJoin('nationality','nationality.nationalityId','fknationalityId')
-                ->findOrFail($empId);
-
-            $education=Education::select('degreeName','education.institutionName','education.fkemployeeId','education.status','education.resultSystem','education.result','educationlevel.educationLevelName',
-                'educationmajor.educationMajorName','education.fkMajorId','passingYear')
-                ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
-                ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
-                ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
-                ->where('fkemployeeId',$empId)
-                ->orderBy('passingYear','desc')
-                ->get();
-
-            $professionalCertificate=ProfessionalQualification::where('fkemployeeId',$empId)
-                ->get();
-
-            $jobExperience=JobExperience::where('fkemployeeId',$empId)
-                ->orderBy('startDate','desc')
-                ->get();
-
-            $trainingCertificate=Traning::where('fkemployeeId',$empId)
-                ->orderBy('startDate','desc')
-                ->get();
-            $refree=Refree::where('fkemployeeId',$empId)
-                ->get();
-            $relativeCb=RelativeInCb::where('fkemployeeId',$empId)
-                ->get();
-
-            return view('userCv.cvPdf.userCvPdf',compact('allEmp','personalInfo','education','professionalCertificate','jobExperience','trainingCertificate','refree','relativeCb'));
-
+            return view('userCv.cvPdf.userCvPdf', compact('msg','allEmp'));
 
         }
 

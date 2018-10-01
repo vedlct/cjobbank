@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Employee;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -48,8 +49,18 @@ class LoginController extends Controller
         }
         elseif (Auth::user()->fkuserTypeId == USER_TYPE['User']) {
 
+            $cvStatus1=Employee::where('fkuserId',Auth::user()->userId)->first();
 
-            return route('candidate.cvPersonalInfo');
+            if ($cvStatus1 != null && $cvStatus1->cvStatus == 1){
+
+                return route('job.all');
+
+            }else {
+                return route('candidate.cvPersonalInfo');
+            }
+
+
+
         }
 
     }

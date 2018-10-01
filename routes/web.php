@@ -173,6 +173,7 @@ Route::get('user/cv/{empId}','UserCvController@getFullCv')->name('userCv.get');
 Route::post('user/cv/select','UserCvController@getSelectedCv')->name('userCv.select');
 
 Route::get('user-cv','UserCvController@getUserFullCv')->name('userCv.post');
+Route::get('user-cv-download/{empId}','UserCvController@getUserFullCvdownload')->name('userCv.post1');
 
 
 /*---------------Settings-------------*/

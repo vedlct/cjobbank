@@ -45,16 +45,29 @@ class JobController extends Controller
        if ($r->zonefilter){
            $jobs= $jobs->where('job.fkzoneId',$r->zonefilter);
        }
-       $jobs=$jobs->paginate(5);
-
-       $cvStatus=Employee::where('fkuserId',Auth::user()->userId)->first()->cvStatus;
+       $jobs=$jobs->paginate(10);
 
 
-       $empId=Employee::where('fkuserId',Auth::user()->userId)->first()->employeeId;
+       $empId1=Employee::where('fkuserId',Auth::user()->userId)->first();
 
-       $applyjob = Jobapply::select('fkjobId')
-           ->where('fkemployeeId' , $empId)
-           ->get();
+       if ($empId1 != null ){
+
+           $cvStatus=$empId1->cvStatus;
+
+           $applyjob = Jobapply::select('fkjobId')
+               ->where('fkemployeeId' , $empId1->employeeId)
+               ->get();
+
+
+
+       }else {
+           $cvStatus=null;
+
+
+
+           $applyjob = null;
+       }
+
 
 
 
@@ -62,7 +75,7 @@ class JobController extends Controller
            return view('job.getAllJob',compact('jobs','cvStatus', 'applyjob','allZone'));
        }
 
-       return view('job.all',compact('allZone'));
+       return view('job.all',compact('allZone','applyjob'));
 
    }
 
@@ -79,16 +92,36 @@ class JobController extends Controller
        if ($r->zonefilter){
            $jobs= $jobs->where('job.fkzoneId',$r->zonefilter);
        }
-       $empId=Employee::where('fkuserId',Auth::user()->userId)->first()->employeeId;
+//       $empId=Employee::where('fkuserId',Auth::user()->userId)->first()->employeeId;
+//
+//       $applyjob = Jobapply::select('fkjobId')
+//           ->where('fkemployeeId' , $empId)
+//           ->get();
 
-       $applyjob = Jobapply::select('fkjobId')
-           ->where('fkemployeeId' , $empId)
-           ->get();
+
+       $jobs=$jobs->paginate(10);
+
+//       $cvStatus=Employee::where('fkuserId',Auth::user()->userId)->first()->cvStatus;
+
+       $empId1=Employee::where('fkuserId',Auth::user()->userId)->first();
 
 
-       $jobs=$jobs->paginate(5);
 
-       $cvStatus=Employee::where('fkuserId',Auth::user()->userId)->first()->cvStatus;
+       if ($empId1 != null ){
+
+           $cvStatus=$empId1->cvStatus;
+
+           $applyjob = Jobapply::select('fkjobId')
+               ->where('fkemployeeId' , $empId1->employeeId)
+               ->get();
+
+
+
+       }else {
+           $cvStatus=null;
+
+           $applyjob = null;
+       }
 
        return view('job.getAllJob',compact('jobs','cvStatus','applyjob','allZone'));
    }
