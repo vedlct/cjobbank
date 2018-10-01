@@ -15,7 +15,7 @@
     <div class="form-group">
         <label for="">Status</label>
         <select class="form-control" name="status">
-            <option value="">select Status</option>
+            <option value="">Select Status</option>
             @foreach(STATUS as $key=>$value)
                 <option @if($key== $degree->status) selected @endif value="{{$key}}">{{$value}}</option>
             @endforeach
