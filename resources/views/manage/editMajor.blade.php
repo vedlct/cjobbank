@@ -3,7 +3,7 @@
 
     <div class="form-group">
         <label for="">Major</label>
-        <input type="text" class="form-control" value="{{$editMajor->religionName}}" placeholder="degree" name="major" required>
+        <input type="text" class="form-control" value="{{$editMajor->educationMajorName}}" placeholder="major" name="major" required>
     </div>
 
     <div class="form-group">
