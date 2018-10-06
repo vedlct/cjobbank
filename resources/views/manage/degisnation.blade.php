@@ -6,7 +6,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <b><h4 class="modal-title dark profile-title" id="myModalLabel">Create Degisnation</h4></b>
+                    <b><h4 class="modal-title dark profile-title" id="myModalLabel">Create Designation</h4></b>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
 
                 </div>
@@ -18,7 +18,7 @@
 
                         <div class="form-group">
 
-                            <label for="">Degisnation<span style="color: red">*</span></label>
+                            <label for="">Designation<span style="color: red">*</span></label>
 
                             <input class="form-control" name="designationName" required type="text">
 
@@ -27,7 +27,7 @@
                         <div class="form-group">
                             <label for="">Status</label>
                             <select class="form-control" name="status">
-                                <option value="">select Status</option>
+                                <option value="">Select Status</option>
                                 @foreach(STATUS as $key=>$value)
                                     <option value="{{$key}}">{{$value}}</option>
                                 @endforeach
@@ -57,7 +57,7 @@
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Edit Degisnation</h4>
+                    <h4 class="modal-title">Edit Designation</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
@@ -91,7 +91,7 @@
 
                 <div class="card-body">
                     <div class="card-header-tabs">
-                        <h4>Manage Degisnation</h4>
+                        <h4>Manage Designation</h4>
                     </div>
 
                     <div align="right">
@@ -105,7 +105,7 @@
                         <tr>
 
 
-                            <th>Degisnation</th>
+                            <th>Designation</th>
                             <th>Status</th>
                             <th width="30%">Action</th>
                         </tr>

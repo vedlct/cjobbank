@@ -52,7 +52,7 @@
 
 
 
-    <div class="modal" id="editModalReligion">
+    <div class="modal" id="editModalMajor">
         <div class="modal-dialog">
             <div class="modal-content">
 
@@ -175,7 +175,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: "{!! route('admin.editReligion') !!}",
+                url: "{!! route('admin.editMajor') !!}",
                 cache: false,
                 data: {_token: "{{csrf_token()}}",'id': id},
                 success: function (data) {
