@@ -192,10 +192,26 @@
             if (major == "others"){
 
                 $("#subjectNameDiv").show();
+            }else {
+                $("#subjectNameDiv").hide();
             }
 
 
         });
+
+        function checkMajor(x) {
+
+
+
+            var major =$('#majorSub'+x).val();
+            if (major == "others"){
+
+                $("#subjectNameDiv"+x).show();
+            }else {
+                $("#subjectNameDiv"+x).hide();
+            }
+
+        }
 
 
 
@@ -206,20 +222,26 @@
             $("#btnPevious").show();
             $("#submitBtn").show();
 
-            $('#majorSub'+(counter-1)).on('change', function() {
 
-                var major =$('#majorSub'+(counter-1)).val();
-                if (major == "others"){
-
-                    $("#subjectNameDiv"+(counter-1)).show();
-                }
-
-
-            });
 
 
 
             var counter = 1;
+
+//            $('#majorSub'+(counter)).on('change', function() {
+//
+//                alert(1);
+//
+//                var major =$('#majorSub'+(counter)).val();
+//                if (major == "others"){
+//
+//                    $("#subjectNameDiv"+(counter)).show();
+//                }else {
+//                    $("#subjectNameDiv"+(counter)).hide();
+//                }
+//
+//
+//            });
 
 
 
@@ -434,7 +456,7 @@
                     '</div>'+
                     '<div class="form-group col-md-3">'+
                     '<label for="">Major</label>'+
-                    '<select name="major[]" class="form-control"  id="majorSub'+counter+'">'+
+                    '<select name="major[]" class="form-control" onchange="checkMajor('+counter+')" id="majorSub'+counter+'">'+
                     '<option value="">Select Major</option>'+
                 '</select>'+
                 '</div>'+

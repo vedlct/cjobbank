@@ -132,6 +132,8 @@
         if (major == "others"){
 
             $("#subjectNameDiv").show();
+        }else {
+            $("#subjectNameDiv").hide();
         }
 
 
