@@ -41,7 +41,7 @@
             </div>
             <div style="display: none" id="subjectNameDiv" class="form-group col-md-6">
                 <label for="">Subject Name</label>
-                <input type="text" name="subjectName" class="form-control" id="subjectName"  placeholder="">
+                <input type="text" name="subjectName" maxlength="255" class="form-control" id="subjectName"  placeholder="">
 
             </div>
 

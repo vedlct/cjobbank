@@ -51,7 +51,7 @@
                                 </div>
                                 <div style="display: none" id="subjectNameDiv" class="form-group col-md-6">
                                     <label for="">Subject Name</label>
-                                    <input type="text" name="subjectName" class="form-control" id="subjectName"  placeholder="">
+                                    <input type="text" maxlength="255" name="subjectName" class="form-control" id="subjectName"  placeholder="">
 
                                 </div>
                                 <div class="form-group col-md-3">
@@ -462,7 +462,7 @@
                 '</div>'+
                     '<div style="display: none" id="subjectNameDiv'+counter+'" class="form-group col-md-6">'+
                     '<label for="">Subject Name</label>'+
-                '<input type="text" name="subjectName" class="form-control" id="subjectName'+counter+'"  placeholder="">'+
+                '<input type="text" maxlength="255" name="subjectName" class="form-control" id="subjectName'+counter+'"  placeholder="">'+
 
                     '</div>'+
                     '<div class="form-group col-md-3">'+
