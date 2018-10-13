@@ -7,6 +7,17 @@
     </div>
 
     <div class="form-group">
+        <label for="">Degree<span style="color: red">*</span></label>
+        <select name="degree" class="form-control" required id="degree">
+            <option value="">Select Degree </option>
+            @foreach($degree as $d)
+                <option @if($editMajor->fkDegreeId==$d->degreeId)selected @endif value="{{$d->degreeId}}">{{$d->degreeName}}</option>
+            @endforeach
+        </select>
+
+    </div>
+
+    <div class="form-group">
         <label for="">Status</label>
         <select class="form-control" name="status">
             @foreach(STATUS as $key=>$value)

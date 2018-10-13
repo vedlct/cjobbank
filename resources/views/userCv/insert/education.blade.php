@@ -45,9 +45,14 @@
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="">Major</label>
-                                    <select name="major[]" class="form-control" id="major">
+                                    <select name="major[]" class="form-control" id="majorSub">
                                         <option value="" >Select Major</option>
                                     </select>
+                                </div>
+                                <div style="display: none" id="subjectNameDiv" class="form-group col-md-6">
+                                    <label for="">Subject Name</label>
+                                    <input type="text" name="subjectName" class="form-control" id="subjectName"  placeholder="">
+
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="">Board</label>
@@ -181,11 +186,38 @@
             x[(n+1)].className += " active";
         }
 
+        $('#majorSub').on('change', function() {
+
+            var major =$('#majorSub').val();
+            if (major == "others"){
+
+                $("#subjectNameDiv").show();
+            }
+
+
+        });
+
+
+
+
         $(document).ready(function(){
 
             $("#removeButton").hide();
             $("#btnPevious").show();
             $("#submitBtn").show();
+
+            $('#majorSub'+(counter-1)).on('change', function() {
+
+                var major =$('#majorSub'+(counter-1)).val();
+                if (major == "others"){
+
+                    $("#subjectNameDiv"+(counter-1)).show();
+                }
+
+
+            });
+
+
 
             var counter = 1;
 
@@ -209,6 +241,14 @@
                     var cgpa=$('#cgpa').val();
 //                    var resultOutOf=$('#resultOutOf').val();
                     var status=$('#educationStatus').val();
+
+                    var major=$('#majorSub').val();
+
+                    if(major=="others" && $("#subjectName").val()=="" ){
+                        var errorMsg='Please Type a Subject Name First!!'
+                        validationError(errorMsg);
+                        return false;
+                    }
 
                     if(educationLevel==""){
 
@@ -288,6 +328,16 @@
                     var cgpa=$('#cgpa'+(counter-1)).val();
 //                    var resultOutOf=$('#resultOutOf'+(counter-1)).val();
                     var status=$('#educationStatus'+(counter-1)).val();
+
+                    var major=$('#majorSub'+(counter-1)).val();
+
+                    if(major=="others" && $("#subjectName"+(counter-1)).val()=="" ){
+                        var errorMsg='Please Type a Subject Name First!!'
+                        validationError(errorMsg);
+                        return false;
+                    }
+
+
 
                     if(educationLevel==""){
 
@@ -384,10 +434,15 @@
                     '</div>'+
                     '<div class="form-group col-md-3">'+
                     '<label for="">Major</label>'+
-                    '<select name="major[]" class="form-control"  id="major'+counter+'">'+
+                    '<select name="major[]" class="form-control"  id="majorSub'+counter+'">'+
                     '<option value="">Select Major</option>'+
                 '</select>'+
                 '</div>'+
+                    '<div style="display: none" id="subjectNameDiv'+counter+'" class="form-group col-md-6">'+
+                    '<label for="">Subject Name</label>'+
+                '<input type="text" name="subjectName" class="form-control" id="subjectName'+counter+'"  placeholder="">'+
+
+                    '</div>'+
                     '<div class="form-group col-md-3">'+
                     '<label for="">Board</label>' +
                     '<select name="board[]" class="form-control" id="major"> ' +
@@ -502,7 +557,7 @@
                 data:{id:this.value},
                 cache: false,
                 success:function(data) {
-                    document.getElementById("major").innerHTML = data;
+                    document.getElementById("majorSub").innerHTML = data;
 
                 }
             });
@@ -536,7 +591,7 @@
                 data:{id:degree},
                 cache: false,
                 success:function(data) {
-                    document.getElementById("major"+btn).innerHTML = data;
+                    document.getElementById("majorSub"+btn).innerHTML = data;
 
                 }
             });

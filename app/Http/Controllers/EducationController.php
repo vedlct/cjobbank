@@ -94,11 +94,13 @@ class EducationController extends Controller
 
         if ($major == null) {
             echo "<option value='' selected>Select Major</option>";
+            echo  "<option value=".OTHERS.">".OTHERS."</option>";
         } else {
             echo "<option value='' selected>Select Major</option>";
             foreach ($major as $mejor) {
                 echo "<option value='$mejor->educationMajorId'>$mejor->educationMajorName</option>";
             }
+            echo  "<option value=".OTHERS.">".OTHERS."</option>";
         }
     }
     public function insertPersonalEducation(Request $r)
@@ -107,11 +109,29 @@ class EducationController extends Controller
 
         $employee=Employee::where('fkuserId', '=',Auth::user()->userId)->first()->employeeId;
 
+        //return $r;
+
+
+
+
         for($i=0;$i<count($r->degree);$i++){
             $professional=new Education();
+
+            if ($r->major[$i] == OTHERS){
+                $eduMajor=new Educationmajor();
+                $eduMajor->educationMajorName=$r->subjectName[$i];
+                $eduMajor->fkDegreeId=$r->degree[$i];
+                $eduMajor->status=1;
+                $eduMajor->save();
+
+                $professional->fkMajorId=$eduMajor->educationMajorId;
+            }else{
+                $professional->fkMajorId=$r->major[$i];
+            }
+
             $professional->fkdegreeId=$r->degree[$i];
             $professional->institutionName=$r->instituteName[$i];
-            $professional->fkMajorId=$r->major[$i];
+           // $professional->fkMajorId=$r->major[$i];
             $professional->passingYear=$r->passingYear[$i];
             $professional->status=$r->status[$i];
             $professional->resultSystem=$r->resultSystem[$i];
@@ -149,12 +169,26 @@ class EducationController extends Controller
     }
     public function updatePersonalEducation(Request $r)
     {
-
         $personalEducation=Education::findOrFail($r->educationId);
+
+        if ($r->major == OTHERS){
+            $eduMajor=new Educationmajor();
+            $eduMajor->educationMajorName=$r->subjectName;
+            $eduMajor->fkDegreeId=$r->degree;
+            $eduMajor->status=1;
+            $eduMajor->save();
+
+            $personalEducation->fkMajorId=$eduMajor->educationMajorId;
+        }else{
+            $personalEducation->fkMajorId=$r->major;
+        }
+
+
 
         $personalEducation->fkdegreeId=$r->degree;
         $personalEducation->institutionName=$r->instituteName;
-        $personalEducation->fkMajorId=$r->major;
+
+
         $personalEducation->passingYear=$r->passingYear;
         $personalEducation->status=$r->status;
         $personalEducation->resultSystem=$r->resultSystem;

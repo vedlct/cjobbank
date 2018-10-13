@@ -30,12 +30,19 @@
                 <label for="">Institute Name<span style="color: red">*</span></label>
                 <input type="text" name="instituteName" required class="form-control" id="instituteName" value="{{$education->institutionName}}" placeholder="">
             </div>
+
             <div class="form-group col-md-3">
                 <label for="">Major</label>
-                <select name="major" class="form-control" id="major">
+                <select name="major" class="form-control" id="majorSub">
                     <option value="">Select Major</option>
-                    <option value="{{$education->educationMajorId}}">{{$education->educationMajorName}}</option>
+                    <option selected value="{{$education->educationMajorId}}">{{$education->educationMajorName}}</option>
+                    <option value="{{OTHERS}}">{{OTHERS}}</option>
                 </select>
+            </div>
+            <div style="display: none" id="subjectNameDiv" class="form-group col-md-6">
+                <label for="">Subject Name</label>
+                <input type="text" name="subjectName" class="form-control" id="subjectName"  placeholder="">
+
             </div>
 
             <div class="form-group col-md-3">
@@ -43,7 +50,7 @@
                 <select name="board" class="form-control" id="board">
                     <option value="" >Select Board</option>
                     @foreach($boards as $board)
-                        <option value="{{$board->boardId}}" @if($board->boardId == $education->fkboardId) selected @endif>{{$board->boardName}}</option>
+                        <option value="{{$board->boardId}}" @if($board->boardId == $education->fkboardId) selected @endif >{{$board->boardName}}</option>
                     @endforeach
                 </select>
             </div>
@@ -119,6 +126,16 @@
         });
     });
 
+    $('#majorSub').on('change', function() {
+
+        var major =$('#majorSub').val();
+        if (major == "others"){
+
+            $("#subjectNameDiv").show();
+        }
+
+
+    });
     $('#educationLevel').on('change', function() {
 
         $.ajax({
@@ -133,6 +150,7 @@
         });
 
     });
+
     $('#degree').on('change', function() {
 
         $.ajax({
@@ -141,7 +159,7 @@
             data:{id:this.value},
             cache: false,
             success:function(data) {
-                document.getElementById("major").innerHTML = data;
+                document.getElementById("majorSub").innerHTML = data;
 
             }
         });
@@ -160,10 +178,17 @@
         var cgpa=$('#cgpa').val();
 
         var status=$('#educationStatus').val();
+        var major=$('#majorSub').val();
 
         if(educationLevel==""){
 
             var errorMsg='Please Select a Education Level First!!';
+            validationError(errorMsg);
+            return false;
+        }
+        if(major=="others" && $("#subjectName").val()=="" ){
+
+            var errorMsg='Please Type a Subject Name First!!';
             validationError(errorMsg);
             return false;
         }

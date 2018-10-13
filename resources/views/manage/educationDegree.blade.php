@@ -39,7 +39,7 @@
                             <select class="form-control" name="status">
                                 <option value="">Select Status</option>
                                 @foreach(STATUS as $key=>$value)
-                                    <option value="{{$key}}">{{$value}}</option>
+                                    <option  value="{{$key}}">{{$value}}</option>
                                 @endforeach
                             </select>
                         </div>
