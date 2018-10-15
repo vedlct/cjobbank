@@ -179,15 +179,51 @@
                                         @endif
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="">Skype</label>
-                                        <input type="text"  name="skype" class="form-control {{ $errors->has('skype') ? ' is-invalid' : '' }}" value="{{$personalInfo->skype }}" id="" placeholder="">
-                                        @if ($errors->has('skype'))
+                                        <label for="">Blood Group<span style="color: red">*</span></label>
+                                        <select class="form-control" name="bloodGroup" required>
+                                            <option>Select Group</option>
+                                            @foreach(BLOOD_GROUP as $key=>$value)
+                                                {{--<option @if($personalInfo->disability == $value) selected @endif value="{{$value}}">{{$key}}</option>--}}
+                                                <option  value="{{$value}}">{{$key}}</option>
+                                            @endforeach
+                                        </select>
+                                        @if ($errors->has('bloodGroup'))
 
                                             <span class="">
-                                        <strong>{{ $errors->first('skype') }}</strong>
+                                        <strong>{{ $errors->first('bloodGroup') }}</strong>
                                     </span>
                                         @endif
                                     </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="">Marital Status<span style="color: red">*</span></label>
+                                        <select class="form-control" name="maritalStatus" required>
+                                            <option>Select Status</option>
+                                            @foreach(MARITAL_STATUS as $key=>$value)
+                                                {{--<option @if($personalInfo->disability == $value) selected @endif value="{{$value}}">{{$key}}</option>--}}
+                                                <option  value="{{$value}}">{{$key}}</option>
+                                            @endforeach
+                                        </select>
+                                        @if ($errors->has('maritalStatus'))
+
+                                            <span class="">
+                                        <strong>{{ $errors->first('maritalStatus') }}</strong>
+                                    </span>
+                                        @endif
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="">Name Of Husband/Wife</label>
+                                        <input type="text"  name="nameOfPartner" class="form-control"  id="" placeholder="Husband / Wife">
+                                        @if ($errors->has('nameOfPartner'))
+
+                                            <span class="">
+                                        <strong>{{ $errors->first('nameOfPartner') }}</strong>
+                                    </span>
+                                        @endif
+                                    </div>
+
+
+
                                 </div>
 
 
@@ -209,6 +245,23 @@
 
                                             <span class="">
                                         <strong>{{ $errors->first('nId') }}</strong>
+                                    </span>
+                                        @endif
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="">Passport</label>
+                                        <select class="form-control" name="passport" required>
+                                            <option>Select Passport</option>
+                                            @foreach(PASSPORT as $key=>$value)
+                                                {{--<option @if($personalInfo->disability == $value) selected @endif value="{{$value}}">{{$key}}</option>--}}
+                                                <option  value="{{$value}}">{{$key}}</option>
+                                            @endforeach
+                                        </select>
+                                        @if ($errors->has('passport'))
+
+                                            <span class="">
+                                        <strong>{{ $errors->first('passport') }}</strong>
                                     </span>
                                         @endif
                                     </div>
@@ -241,6 +294,16 @@
                                 </div>
 
                                 <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label for="">Skype</label>
+                                        <input type="text"  name="skype" class="form-control {{ $errors->has('skype') ? ' is-invalid' : '' }}" value="{{$personalInfo->skype }}" id="" placeholder="">
+                                        @if ($errors->has('skype'))
+
+                                            <span class="">
+                                        <strong>{{ $errors->first('skype') }}</strong>
+                                    </span>
+                                        @endif
+                                    </div>
                                     <div class="form-group col-md-6">
                                         <label for="">Personal Mobile<span style="color: red">*</span></label>
                                         <input required type="text" name="personalMobile" class="form-control {{ $errors->has('personalMobile') ? ' is-invalid' : '' }}" value="{{ $personalInfo->personalMobile }}" id="" placeholder="">
@@ -285,7 +348,11 @@
                                     </span>
                                         @endif
                                     </div>
+
+
                                 </div>
+
+
 
 
 

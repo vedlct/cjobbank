@@ -8,6 +8,28 @@ define('DISABILITY',array(
     "Yes"=>'Y',
     "No"=>'N'
 ));
+define('PASSPORT',array(
+    "Yes"=>'Y',
+    "No"=>'N'
+));
+define('BLOOD_GROUP',array(
+    "A+"=>'a+',
+    "A-"=>'a-',
+    "B+"=>'b+',
+    "B-"=>'b-',
+    "AB+"=>'ab+',
+    "AB-"=>'ab-',
+    "O+"=>'o+',
+    "O-"=>'o-',
+));
+
+define('MARITAL_STATUS',array(
+    "Single"=>'s',
+    "Married"=>'m',
+    "Divorced"=>'d',
+    "Widowed"=>'w',
+));
+
 define('COMPLETING_STATUS',array(
     "OnGoing"=>'1',
     "Completed"=>'2'
