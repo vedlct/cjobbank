@@ -6,6 +6,9 @@
         strong{
             color: red;
         }
+        #imageMsg,#signMsg{
+            display: none;
+        }
     </style>
     
     
@@ -395,14 +398,14 @@
                                 <div class="row">
 
                                     <div class="form-group col-md-6">
-                                        <label for="">Image</label>&nbsp;<strong>(Maximum Image Size 100Kb)</strong>
+                                        <label for="">Image</label>&nbsp;<span id="imageMsg"><strong>(Maximum Image Size 100Kb)</strong></span>
                                         @if ($errors->has('image'))
 
                                             <span class="">
                                         <strong>{{ $errors->first('image') }}</strong>
                                             </span>
                                         @endif
-                                        <input type="file" class="form-control" name="image" id="" placeholder="">
+                                        <input type="file" class="form-control" name="image" id="image" placeholder="">
 <br>
                                         @if($personalInfo->image != null)
                                             <div>
@@ -412,14 +415,14 @@
                                         @endif
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="">Signature</label>&nbsp;<strong>(Maximum Signature Size 50Kb)</strong>
+                                        <label for="">Signature</label>&nbsp;<span id="signMsg"><strong>(Maximum Signature Size 50Kb)</strong></span>
                                         @if ($errors->has('sign'))
 
                                             <span class="">
                                         <strong>{{ $errors->first('sign') }}</strong>
                                     </span>
                                         @endif
-                                        <input type="file" class="form-control" name="sign" id="" placeholder="">
+                                        <input type="file" class="form-control" name="sign" id="sign" placeholder="">
 
                                         <br>
                                         @if($personalInfo->sign != null)
@@ -494,6 +497,18 @@
         $(function () {
             $('#dob').datepicker({
                 format: 'yyyy-m-d'
+            });
+            $("#image").focus(function(){
+                $("#imageMsg").show();
+            });
+            $("#image").focusout(function(){
+                $("#imageMsg").css("display", "none");
+            });
+            $("#sign").focus(function(){
+                $("#signMsg").css("display", "inline");
+            });
+            $("#sign").focus(function(){
+                $("#signMsg").css("display", "inline");
             });
         });
 

@@ -19,9 +19,9 @@
                 </div>
 
                 <div class=" form-group">
-                    <label>Degisnation</label>
+                    <label>Designation</label>
                     <select class="form-control" id="designationId" >
-                        <option value="">Select a Degisnation</option>
+                        <option value="">Select a Designation</option>
                         @foreach($designations as $designation)
                             <option value="{{$designation->designationId}}">{{$designation->designationName}}</option>
                         @endforeach
@@ -49,7 +49,7 @@
                             {{--<th width="4%">Select</th>--}}
                             <th>First Name</th>
                             <th>Last Name</th>
-                            <th>Degisnation</th>
+                            <th>Designation</th>
                             <th>Gender</th>
                             <th>Email</th>
                             <th>Zone</th>

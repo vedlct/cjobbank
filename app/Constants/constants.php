@@ -57,6 +57,7 @@ define('STATUS',array(
 
 
 ));
+define('OTHERS',"others");
 
 
 

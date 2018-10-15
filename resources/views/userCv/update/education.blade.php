@@ -181,6 +181,21 @@
             }
         });
 
+        function checkMajor(x) {
+
+
+
+            var major =$('#majorSub'+x).val();
+            if (major == "others"){
+
+                $("#subjectNameDiv"+x).show();
+            }else {
+                $("#subjectNameDiv"+x).hide();
+            }
+
+        }
+
+
         function editInfo(x) {
             $.ajax({
                 type: 'POST',
@@ -300,6 +315,14 @@
 //                    var resultOutOf=$('#resultOutOf'+(counter-1)).val();
                     var status=$('#educationStatus'+(counter-1)).val();
 
+                    var major=$('#majorSub'+(counter-1)).val();
+
+                    if(major=="others" && $("#subjectName"+(counter-1)).val()=="" ){
+                        var errorMsg='Please Type a Subject Name First!!'
+                        validationError(errorMsg);
+                        return false;
+                    }
+
                     if(educationLevel==""){
 
                         var errorMsg='Please Select a Education Level First!!'
@@ -393,9 +416,14 @@
                     '</div>'+
                     '<div class="form-group col-md-3">'+
                     '<label for="">Major</label>'+
-                    '<select name="major[]" class="form-control"  id="major'+counter+'">'+
+                    '<select name="major[]" class="form-control"  onchange="checkMajor('+counter+')" id="majorSub'+counter+'">'+
                     '<option value="">Select Major</option>'+
                     '</select>'+
+                    '</div>'+
+                    '<div style="display: none" id="subjectNameDiv'+counter+'" class="form-group col-md-6">'+
+                    '<label for="">Subject Name</label>'+
+                    '<input type="text" maxlength="255" name="subjectName" class="form-control" id="subjectName'+counter+'"  placeholder="">'+
+
                     '</div>'+
                     '<div class="form-group col-md-3">'+
                     '<label for="">Board</label>' +
@@ -513,7 +541,7 @@
                 data:{id:degree},
                 cache: false,
                 success:function(data) {
-                    document.getElementById("major"+btn).innerHTML = data;
+                    document.getElementById("majorSub"+btn).innerHTML = data;
 
                 }
             });

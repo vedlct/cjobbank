@@ -16,17 +16,7 @@
                     <form action="{{route('manage.board.insert')}}" method="post">
                         {{csrf_field()}}
 
-                        {{--<div class="form-group">--}}
 
-                        {{--<label for="">Nationality<span style="color: red">*</span></label>--}}
-                        {{--<select name="educationLevel" class="form-control" required id="educationLevel">--}}
-                        {{--<option value="">Select Education Level</option>--}}
-                        {{--@foreach($nationality as $n)--}}
-                        {{--<option value="{{$education->educationLevelId}}">{{$education->educationLevelName}}</option>--}}
-                        {{--@endforeach--}}
-                        {{--</select>--}}
-
-                        {{--</div>--}}
                         <div class="form-group">
 
                             <label for="">Board<span style="color: red">*</span></label>

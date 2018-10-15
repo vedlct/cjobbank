@@ -70,7 +70,7 @@
         <li><a href="{{route('manage.ethnicity')}}">Manage Ethnicity</a></li>
         <li><a href="{{route('manage.organizationType')}}">Manage Organization type</a></li>
         <li><a href="{{route('manage.agreement')}}">Manage Agreement</a></li>
-        <li><a href="{{route('manage.degisnation')}}">Manage Degisnation</a></li>
+        <li><a href="{{route('manage.degisnation')}}">Manage Designation</a></li>
 
         </ul>
     </li>

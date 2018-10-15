@@ -3,7 +3,18 @@
 
     <div class="form-group">
         <label for="">Major</label>
-        <input type="text" class="form-control" value="{{$editMajor->religionName}}" placeholder="degree" name="major" required>
+        <input type="text" class="form-control" value="{{$editMajor->educationMajorName}}" placeholder="major" name="major" required>
+    </div>
+
+    <div class="form-group">
+        <label for="">Degree<span style="color: red">*</span></label>
+        <select name="degree" class="form-control" required id="degree">
+            <option value="">Select Degree </option>
+            @foreach($degree as $d)
+                <option @if($editMajor->fkDegreeId==$d->degreeId)selected @endif value="{{$d->degreeId}}">{{$d->degreeName}}</option>
+            @endforeach
+        </select>
+
     </div>
 
     <div class="form-group">
