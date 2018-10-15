@@ -46,7 +46,7 @@ class EducationController extends Controller
 
         $employee=Employee::where('fkuserId', '=',$userId)->first()->employeeId;
 
-        $employeeCvEducationInfo=Education::select('education.*','board.boardName','educationmajor.educationMajorName','educationLevelName','degreeName')
+        $employeeCvEducationInfo=Education::select('education.*','board.boardName','educationmajor.educationMajorName','educationLevelName','eduLvlUnder','degreeName')
             ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
             ->leftJoin('educationmajor', 'educationmajor.educationMajorId', '=', 'education.fkMajorId')
             ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
@@ -84,6 +84,20 @@ class EducationController extends Controller
                 echo "<option value='$deg->degreeId'>$deg->degreeName</option>";
             }
         }
+
+
+
+    }
+    public function getBoradOrUniversity(Request $r)
+    {
+        $eduLvlUnder=Educationlevel::findOrFail($r->id)->eduLvlUnder;
+
+        if($eduLvlUnder){
+            return $eduLvlUnder;
+        }else{
+            return 0;
+        }
+
 
 
 
@@ -138,6 +152,7 @@ class EducationController extends Controller
             $professional->result=$r->result[$i];
             $professional->resultOutOf=$r->resultOutOf[$i];
             $professional->fkcountryId=$r->country[$i];
+            $professional->fkboardId=$r->board[$i];
             $professional->fkemployeeId=$employee;
             $professional->save();
         }
@@ -151,7 +166,7 @@ class EducationController extends Controller
     public function getEducationEdit(Request $r)
     {
 
-        $education=Education::select('education.*','educationmajor.educationMajorName','educationLevelName','degree.educationLevelId','degree.degreeName','degree.degreeId')
+        $education=Education::select('education.*','educationmajor.educationMajorName','educationLevelName','eduLvlUnder','degree.educationLevelId','degree.degreeName','degree.degreeId')
             ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
             ->leftJoin('educationmajor', 'educationmajor.educationMajorId', '=', 'education.fkMajorId')
             ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
@@ -187,7 +202,6 @@ class EducationController extends Controller
 
         $personalEducation->fkdegreeId=$r->degree;
         $personalEducation->institutionName=$r->instituteName;
-
 
         $personalEducation->passingYear=$r->passingYear;
         $personalEducation->status=$r->status;

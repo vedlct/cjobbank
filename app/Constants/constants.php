@@ -51,6 +51,11 @@ define('USER_TYPE',array(
     "User"=>'user',
 
 ));
+define('CAREER_QUES',array(
+    "Ques1"=>'Why Do You Want to Leave Your Current Job?',
+    "Ques2"=>'Why you are intersted for the position applied for?',
+
+));
 define('STATUS',array(
     "1"=>'Active',
     "0"=>'Inactive',
@@ -58,6 +63,8 @@ define('STATUS',array(
 
 ));
 define('OTHERS',"others");
+
+
 
 
 

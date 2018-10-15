@@ -115,6 +115,8 @@ class SettingsController extends Controller
         ]);
         $education=new Educationlevel();
         $education->educationLevelName=$r->education;
+        $education->eduLvlUnder=$r->eduLvlUnder;
+
         $education->save();
 
         Session::flash('message', 'Education Updated Successfully!');
@@ -132,6 +134,7 @@ class SettingsController extends Controller
 
         $education=Educationlevel::findOrFail($id);
         $education->educationLevelName=$r->education;
+        $education->eduLvlUnder=$r->eduLvlUnder;
         $education->status = $r->status;
         $education->save();
 
