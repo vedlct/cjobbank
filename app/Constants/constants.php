@@ -34,9 +34,14 @@ define('COMPLETING_STATUS',array(
     "OnGoing"=>'1',
     "Completed"=>'2'
 ));
+
 define('JOB_STATUS',array(
     "Posted"=>'1',
     "De-activate"=>'2',
+));
+define('UNIVERSITY_TYPE',array(
+    "Private"=>'1',
+    "Public"=>'2',
 ));
 
 define('RESULT_SYSTEM',array(
@@ -56,6 +61,7 @@ define('CAREER_QUES',array(
     "Ques2"=>'Why you are intersted for the position applied for?',
 
 ));
+
 define('STATUS',array(
     "1"=>'Active',
     "0"=>'Inactive',

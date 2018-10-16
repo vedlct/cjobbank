@@ -158,7 +158,7 @@ class SettingsController extends Controller
     public function insertEducationDegree(Request $r){
         $r->validate([
             'educationLevel' => 'required',
-            'degree' => 'required|max:25',
+            'degree' => 'required|max:255',
 
         ]);
         $degree =new Degree();

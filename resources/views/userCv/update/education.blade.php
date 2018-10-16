@@ -26,7 +26,7 @@
 
                                     <div class="form-group col-md-4">
 
-                                        <label for="">Education Degree :</label>
+                                        <label for="">Education Exam/Degree :</label>
                                         {{$educationInfo->educationLevelName}}
                                     </div>
 
@@ -42,22 +42,40 @@
 
                                     </div>
 
+                                @if($educationInfo->eduLvlUnder ==2 || $educationInfo->eduLvlUnder==null )
+
                                 <div class="form-group col-md-12">
                                     <label for="">Institute Name :</label>
                                     <label for="">{{$educationInfo->institutionName}}</label>
                                     {{--<input type="text" name="instituteName[]" required class="form-control" id="" placeholder="">--}}
                                 </div>
+                                @endif
+
+                                @if (($educationInfo->eduLvlUnder == 2 || $educationInfo->eduLvlUnder==null) && $educationInfo->universityType != null )
+                                    <div class="form-group col-md-3">
+                                        <label for="">University Type :</label>
+                                        @foreach(UNIVERSITY_TYPE as $key=>$value)
+                                            @if($value==$educationInfo->universityType) {{$key}} @endif
+                                        @endforeach
+
+
+                                    </div>
+                                @endif
+
+                                @if($educationInfo->eduLvlUnder ==1 || $educationInfo->eduLvlUnder==null )
+                                    <div class="form-group col-md-3">
+                                        <label for="">Board :</label>
+                                        {{$educationInfo->boardName}}
+
+                                    </div>
+                                @endif
 
                                 <div class="form-group col-md-3">
                                     <label for="">Major :</label>
                                     <label for="">{{$educationInfo->educationMajorName}}</label>
 
                                 </div>
-                                <div class="form-group col-md-3">
-                                    <label for="">Board :</label>
-                                    {{$educationInfo->boardName}}
 
-                                </div>
 
                                 <div class="form-group col-md-3">
                                     <label for="">Country :</label>
@@ -135,7 +153,7 @@
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
-                                <a href="{{route('candidate.cvPersonalInfo')}}"><button type="button" id="btnPevious">Back</button></a>
+                                <a href="{{route('candidate.cvQuesObj')}}"><button type="button" id="btnPevious">Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
                                 <a href="{{route('candidate.cvProfessionalCertificate')}}"><button type="button" id="nextBtn" >Next</button></a>
                             </div>
@@ -316,6 +334,7 @@
                     var status=$('#educationStatus'+(counter-1)).val();
 
                     var major=$('#majorSub'+(counter-1)).val();
+                    var universityType=$('#universityType'+(counter-1)).val();
 
                     if(major=="others" && $("#subjectName"+(counter-1)).val()=="" ){
                         var errorMsg='Please Type a Subject Name First!!'
@@ -336,18 +355,30 @@
                         return false;
 
                     }
-                    if(instituteName==""){
+                    if(instituteName!="") {
+                        if (instituteName == "") {
 
-                        var errorMsg='Please Type instituteName First!!'
-                        validationError(errorMsg)
-                        return false;
+                            var errorMsg = 'Please Type instituteName First!!'
+                            validationError(errorMsg)
+                            return false;
 
+                        }
+                        if (instituteName.length > 255) {
+
+                            var errorMsg = 'Institute Name Should not more than 255 Charecter Length!!'
+                            validationError(errorMsg)
+                            return false;
+                        }
                     }
-                    if (instituteName.length > 255){
+                    if(universityType!="") {
+                        if (universityType == "") {
 
-                        var errorMsg='Institute Name Should not more than 255 Charecter Length!!'
-                        validationError(errorMsg)
-                        return false;
+                            var errorMsg = 'Please Type universityType First!!';
+                            validationError(errorMsg);
+                            return false;
+
+                        }
+
                     }
                     if(country==""){
 
@@ -410,10 +441,31 @@
 
                     '</div>'+
 
-                    '<div class="form-group col-md-12">'+
+                    '<div id="instituteNameDiv'+counter+'" class="form-group col-md-12">'+
                     '<label for="">Institute Name<span style="color: red">*</span></label>'+
                     '<input type="text" name="instituteName[]" class="form-control" required id="instituteName'+counter+'" placeholder="">'+
                     '</div>'+
+
+                    '<div style="display: none" id="universityTypeDiv'+counter+'" class="form-group col-md-3">'+
+                    '<label for="">University Type</label>'+
+                    '<select name="universityType[]" class="form-control" id="universityType'+counter+'">'+
+                    '<option value="" >Select Type</option>'+
+                        @foreach(UNIVERSITY_TYPE as $key=>$value)
+                            '<option value="{{$value}}" >{{$key}}</option>'+
+                        @endforeach
+                            '</select>'+
+                    '</div>'+
+
+                    '<div id="boardDiv'+counter+'" class="form-group col-md-3">'+
+                    '<label for="">Board</label>' +
+                    '<select name="board[]" class="form-control" id="major"> ' +
+                    '<option value="" >Select Board</option>'+
+                        @foreach($boards as $board)
+                            '<option value="{{$board->boardId}}" >{{$board->boardName}}</option>'+
+                        @endforeach
+                            '</select>' +
+                    '</div>'+
+
                     '<div class="form-group col-md-3">'+
                     '<label for="">Major</label>'+
                     '<select name="major[]" class="form-control"  onchange="checkMajor('+counter+')" id="majorSub'+counter+'">'+
@@ -425,15 +477,7 @@
                     '<input type="text" maxlength="255" name="subjectName" class="form-control" id="subjectName'+counter+'"  placeholder="">'+
 
                     '</div>'+
-                    '<div class="form-group col-md-3">'+
-                    '<label for="">Board</label>' +
-                    '<select name="board[]" class="form-control" id="major"> ' +
-                    '<option value="" >Select Board</option>'+
-                        @foreach($boards as $board)
-                            '<option value="{{$board->boardId}}" >{{$board->boardName}}</option>'+
-                        @endforeach
-                            '</select>' +
-                    '</div>'+
+
 
                     '<div class="form-group col-md-3">'+
                     '<label for="">Country<span style="color: red">*</span></label>'+
@@ -529,6 +573,32 @@
                 }
             });
 
+            $.ajax({
+                type:'POST',
+                url:'{{route('cv.getBoradOrUniversity')}}',
+                data:{id:educationLavel},
+                cache: false,
+                success:function(data) {
+                    if(data==0){
+
+                        $("#instituteNameDiv"+btn).show();
+                        $("#boardDiv"+btn).show();
+                        $("#universityTypeDiv"+btn).hide();
+
+                    }else if (data == 1){
+                        $("#instituteNameDiv"+btn).hide();
+                        $("#boardDiv"+btn).show();
+                        $("#universityTypeDiv"+btn).hide();
+
+                    }else if (data == 2){
+                        $("#instituteNameDiv"+btn).show();
+                        $("#boardDiv"+btn).hide();
+                        $("#universityTypeDiv"+btn).show();
+                    }
+
+                }
+            });
+
         }
         function getMajor(x){
 
@@ -545,6 +615,8 @@
 
                 }
             });
+
+
 
         }
 

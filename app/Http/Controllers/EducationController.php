@@ -125,9 +125,6 @@ class EducationController extends Controller
 
         //return $r;
 
-
-
-
         for($i=0;$i<count($r->degree);$i++){
             $professional=new Education();
 
@@ -141,6 +138,12 @@ class EducationController extends Controller
                 $professional->fkMajorId=$eduMajor->educationMajorId;
             }else{
                 $professional->fkMajorId=$r->major[$i];
+            }
+
+            if ($r->universityType[$i]==''){
+                $professional->universityType=null;
+            }else{
+                $professional->universityType=$r->universityType[$i];
             }
 
             $professional->fkdegreeId=$r->degree[$i];
@@ -166,7 +169,7 @@ class EducationController extends Controller
     public function getEducationEdit(Request $r)
     {
 
-        $education=Education::select('education.*','educationmajor.educationMajorName','educationLevelName','eduLvlUnder','degree.educationLevelId','degree.degreeName','degree.degreeId')
+        $education=Education::select('education.*','educationmajor.educationMajorName','educationLevelName','eduLvlUnder','universityType','degree.educationLevelId','degree.degreeName','degree.degreeId')
             ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
             ->leftJoin('educationmajor', 'educationmajor.educationMajorId', '=', 'education.fkMajorId')
             ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
@@ -176,7 +179,6 @@ class EducationController extends Controller
         $country=Country::get();
         $boards=Board::where('status',1)->get();
 
-//        return $r->id;
 
         return view('userCv.edit.editEducation',compact('education','educationLevel','country','boards'));
 
@@ -196,6 +198,12 @@ class EducationController extends Controller
             $personalEducation->fkMajorId=$eduMajor->educationMajorId;
         }else{
             $personalEducation->fkMajorId=$r->major;
+        }
+
+        if ($r->universityType==''){
+            $personalEducation->universityType=null;
+        }else{
+            $personalEducation->universityType=$r->universityType;
         }
 
 

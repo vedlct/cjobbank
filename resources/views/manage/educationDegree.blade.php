@@ -31,7 +31,7 @@
 
                             <label for="">Degree<span style="color: red">*</span></label>
 
-                            <input class="form-control" name="degree" required type="text">
+                            <input class="form-control" maxlength="255" name="degree" required type="text">
 
                         </div>
                         <div class="form-group">

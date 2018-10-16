@@ -26,10 +26,42 @@
 
             </div>
 
-            <div class="form-group col-md-12">
-                <label for="">Institute Name<span style="color: red">*</span></label>
-                <input type="text" name="instituteName" required class="form-control" id="instituteName" value="{{$education->institutionName}}" placeholder="">
+            {{--@if($education->eduLvlUnder == 2 || $education->eduLvlUnder==null )--}}
+
+            <div @if($education->eduLvlUnder == 2 || $education->eduLvlUnder==null ) style=" dispaly:none" @endif id="instituteNameDiv" class="form-group col-md-12">
+                <label for="">Institute Name</label>
+                <input type="text" name="instituteName"  class="form-control" id="instituteName" value="{{$education->institutionName}}" placeholder="">
             </div>
+
+            {{--@endif--}}
+
+
+
+            <div @if(($education->eduLvlUnder == 2 || $education->eduLvlUnder== null) && $education->universityType != null) style=" display: none" @endif id="instituteNameDiv" class="form-group col-md-3">
+                <label for="">University Type</label>
+                <select name="universityType" class="form-control" id="universityType">
+                    <option value="" >Select Type</option>
+                    @foreach(UNIVERSITY_TYPE as $key=>$value)
+                        <option @if($value == $education->universityType) selected @endif value="{{$value}}" >{{$key}}</option>
+                    @endforeach
+                </select>
+
+            </div>
+
+
+
+
+
+            <div @if($education->eduLvlUnder == 1 || $education->eduLvlUnder==null ) style="display: none" @endif id="boardDiv" class="form-group col-md-3">
+                <label for="">Board</label>
+                <select name="board" class="form-control" id="board">
+                    <option value="" >Select Board</option>
+                    @foreach($boards as $board)
+                        <option value="{{$board->boardId}}" @if($board->boardId == $education->fkboardId) selected @endif >{{$board->boardName}}</option>
+                    @endforeach
+                </select>
+            </div>
+
 
             <div class="form-group col-md-3">
                 <label for="">Major</label>
@@ -45,15 +77,7 @@
 
             </div>
 
-            <div class="form-group col-md-3">
-                <label for="">Board</label>
-                <select name="board" class="form-control" id="board">
-                    <option value="" >Select Board</option>
-                    @foreach($boards as $board)
-                        <option value="{{$board->boardId}}" @if($board->boardId == $education->fkboardId) selected @endif >{{$board->boardName}}</option>
-                    @endforeach
-                </select>
-            </div>
+
 
             <div class="form-group col-md-3">
                 <label for="">Country<span style="color: red">*</span></label>
@@ -151,6 +175,35 @@
             }
         });
 
+        $.ajax({
+            type:'POST',
+            url:'{{route('cv.getBoradOrUniversity')}}',
+            data:{id:this.value},
+            cache: false,
+            success:function(data) {
+
+                if(data==0){
+
+                    $("#instituteNameDiv").show();
+                    $("#boardDiv").show();
+
+                    $("#universityTypeDiv").hide();
+
+                }else if (data == 1){
+                    $("#instituteNameDiv").hide();
+                    $("#boardDiv").show();
+                    $("#universityTypeDiv").hide();
+
+                }else if (data == 2){
+                    $("#instituteNameDiv").show();
+                    $("#boardDiv").hide();
+                    $("#universityTypeDiv").show();
+                }
+
+            }
+        });
+
+
     });
 
     $('#degree').on('change', function() {
@@ -182,6 +235,8 @@
         var status=$('#educationStatus').val();
         var major=$('#majorSub').val();
 
+        var universityType=$('#universityType').val();
+
         if(educationLevel==""){
 
             var errorMsg='Please Select a Education Level First!!';
@@ -201,20 +256,36 @@
             return false;
 
         }
-        if(instituteName==""){
 
-            var errorMsg='Please Type instituteName First!!';
-            validationError(errorMsg);
-            return false;
+        if(instituteName!="") {
 
+            if (instituteName == "") {
+
+                var errorMsg = 'Please Type instituteName First!!';
+                validationError(errorMsg);
+                return false;
+
+            }
+            if (instituteName.length > 255) {
+
+                var errorMsg = 'Institute Name Should not more than 255 Charecter Length!!';
+                validationError(errorMsg);
+                return false;
+
+            }
         }
-        if (instituteName.length > 255){
 
-            var errorMsg='Institute Name Should not more than 255 Charecter Length!!';
-            validationError(errorMsg);
-            return false;
 
-        }
+            if (universityType == "") {
+
+                var errorMsg = 'Please Type universityType First!!';
+                validationError(errorMsg);
+                return false;
+
+            }
+
+
+
         if(country==""){
 
             var errorMsg='Please Select a Country First!!';

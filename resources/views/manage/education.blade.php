@@ -18,7 +18,17 @@
 
                         <div class="form-group">
                             <label for="">Education Level Name</label>
-                            <input type="text" class="form-control" name="education" placeholder="">
+                            <input type="text" class="form-control" maxlength="128" name="education" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Education Level is Under :</label><br>
+                            <label class="radio-inline">
+                                <input type="radio" value="1" required name="eduLvlUnder">Board
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" required value="2" name="eduLvlUnder">University
+                            </label>
+
                         </div>
                         <div class="form-group">
 
@@ -91,6 +101,7 @@
 
 
                             <th>Education Level Name</th>
+                            <th>Education Level Under</th>
                             <th>Status</th>
                             <th width="30%">Action</th>
                         </tr>
@@ -99,6 +110,7 @@
                         @foreach($educations as $education)
                             <tr>
                                 <td>{{$education->educationLevelName}}</td>
+                                <td>@if($education->eduLvlUnder == "1")Board @elseif($education->eduLvlUnder == "2")University @endif</td>
                                 <td>
                                     @foreach(STATUS as $key=>$value)
                                         @if($education->status == $key)
