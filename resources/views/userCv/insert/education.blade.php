@@ -20,7 +20,7 @@
                             <div id="TextBoxesGroup" class="row">
                                 <div class="form-group col-md-4">
 
-                                    <label for="">Education Degree<span style="color: red">*</span></label>
+                                    <label for="">Education Exam/level<span style="color: red">*</span></label>
                                     <select name="educationLevel[]" class="form-control" required="" id="educationLevel">
                                         <option value="">Select Education Level</option>
                                         @foreach($educationLevel as $edulevel)
@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="form-group col-md-8">
 
-                                    <label for="">Subject/Group<span style="color: red">*</span></label>
+                                    <label for="">Education Degree<span style="color: red">*</span></label>
                                     <select  name="degree[]" class="form-control" required id="degree">
                                         <option value="">Select Degree</option>
 
@@ -39,17 +39,12 @@
 
                                 </div>
 
-                                <div class="form-group col-md-12">
-                                    <label for="">Institute Name<span style="color: red">*</span></label>
-                                    <input type="text" name="instituteName[]" required class="form-control" id="instituteName" placeholder="">
+
+                                <div id="instituteNameDiv" class="form-group col-md-12">
+                                    <label for="">Institute Name</label>
+                                    <input type="text" name="instituteName[]" class="form-control" id="instituteName" placeholder="">
                                 </div>
-                                <div class="form-group col-md-3">
-                                    <label for="">Major</label>
-                                    <select name="major[]" class="form-control" id="major">
-                                        <option value="" >Select Major</option>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-3">
+                                <div id="boardDiv" class="form-group col-md-3">
                                     <label for="">Board</label>
                                     <select name="board[]" class="form-control" id="major">
                                         <option value="" >Select Board</option>
@@ -58,6 +53,30 @@
                                         @endforeach
                                     </select>
                                 </div>
+
+
+                                <div style="display: none" id="universityTypeDiv" class="form-group col-md-3">
+                                    <label for="">University Type</label>
+                                    <select name="universityType[]" class="form-control" id="universityType">
+                                        <option value="" >Select Type</option>
+                                        @foreach(UNIVERSITY_TYPE as $key=>$value)
+                                            <option value="{{$value}}" >{{$key}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label for="">Major</label>
+                                    <select name="major[]" class="form-control" id="majorSub">
+                                        <option value="" >Select Major</option>
+                                    </select>
+                                </div>
+                                <div style="display: none" id="subjectNameDiv" class="form-group col-md-6">
+                                    <label for="">Subject Name</label>
+                                    <input type="text" maxlength="255" name="subjectName" class="form-control" id="subjectName"  placeholder="">
+
+                                </div>
+
 
                                 <div class="form-group col-md-3">
                                     <label for="">Country<span style="color: red">*</span></label>
@@ -115,7 +134,7 @@
                         <div style="overflow:auto;">
                             <div style="float:right;">
 
-                                <a href="{{route('candidate.cvPersonalInfo')}}"><button type="button" id="btnPevious">Back</button></a>
+                                <a href="{{route('candidate.cvQuesObj')}}"><button type="button" id="btnPevious">Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
 
                                 {{--<a href="{{route('candidate.cvProfessionalCertificate')}}"><button type="button" id="nextBtn">Next</button></a>--}}
@@ -181,13 +200,62 @@
             x[(n+1)].className += " active";
         }
 
+        $('#majorSub').on('change', function() {
+
+            var major =$('#majorSub').val();
+            if (major == "others"){
+
+                $("#subjectNameDiv").show();
+            }else {
+                $("#subjectNameDiv").hide();
+            }
+
+
+        });
+
+        function checkMajor(x) {
+
+
+
+            var major =$('#majorSub'+x).val();
+            if (major == "others"){
+
+                $("#subjectNameDiv"+x).show();
+            }else {
+                $("#subjectNameDiv"+x).hide();
+            }
+
+        }
+
+
+
+
         $(document).ready(function(){
 
             $("#removeButton").hide();
             $("#btnPevious").show();
             $("#submitBtn").show();
 
+
+
+
+
             var counter = 1;
+
+//            $('#majorSub'+(counter)).on('change', function() {
+//
+//                alert(1);
+//
+//                var major =$('#majorSub'+(counter)).val();
+//                if (major == "others"){
+//
+//                    $("#subjectNameDiv"+(counter)).show();
+//                }else {
+//                    $("#subjectNameDiv"+(counter)).hide();
+//                }
+//
+//
+//            });
 
 
 
@@ -210,6 +278,15 @@
 //                    var resultOutOf=$('#resultOutOf').val();
                     var status=$('#educationStatus').val();
 
+                    var major=$('#majorSub').val();
+                    var universityType=$('#universityType').val();
+
+                    if(major=="others" && $("#subjectName").val()=="" ){
+                        var errorMsg='Please Type a Subject Name First!!'
+                        validationError(errorMsg);
+                        return false;
+                    }
+
                     if(educationLevel==""){
 
                         var errorMsg='Please Select a Education Level First!!'
@@ -223,18 +300,30 @@
                         return false;
 
                     }
-                    if(instituteName==""){
+                    if(instituteName!="") {
+                        if (instituteName == "") {
 
-                        var errorMsg='Please Type instituteName First!!'
-                        validationError(errorMsg)
-                        return false;
+                            var errorMsg = 'Please Type instituteName First!!'
+                            validationError(errorMsg)
+                            return false;
 
+                        }
+                        if (instituteName.length > 255) {
+
+                            var errorMsg = 'Institute Name Should not more than 255 Charecter Length!!'
+                            validationError(errorMsg)
+                            return false;
+
+                        }
                     }
-                    if (instituteName.length > 255){
+                    if(universityType!="") {
+                        if (universityType == "") {
 
-                        var errorMsg='Institute Name Should not more than 255 Charecter Length!!'
-                        validationError(errorMsg)
-                        return false;
+                            var errorMsg = 'Please Type universityType First!!';
+                            validationError(errorMsg);
+                            return false;
+
+                        }
 
                     }
                     if(country==""){
@@ -289,6 +378,17 @@
 //                    var resultOutOf=$('#resultOutOf'+(counter-1)).val();
                     var status=$('#educationStatus'+(counter-1)).val();
 
+                    var major=$('#majorSub'+(counter-1)).val();
+                    var universityType=$('#universityType'+(counter-1)).val();
+
+                    if(major=="others" && $("#subjectName"+(counter-1)).val()=="" ){
+                        var errorMsg='Please Type a Subject Name First!!'
+                        validationError(errorMsg);
+                        return false;
+                    }
+
+
+
                     if(educationLevel==""){
 
                         var errorMsg='Please Select a Education Level First!!'
@@ -302,18 +402,30 @@
                         return false;
 
                     }
-                    if(instituteName==""){
+                    if(instituteName!="") {
+                        if (instituteName == "") {
 
-                        var errorMsg='Please Type instituteName First!!'
-                        validationError(errorMsg)
-                        return false;
+                            var errorMsg = 'Please Type instituteName First!!'
+                            validationError(errorMsg)
+                            return false;
 
+                        }
+                        if (instituteName.length > 255) {
+
+                            var errorMsg = 'Institute Name Should not more than 255 Charecter Length!!'
+                            validationError(errorMsg)
+                            return false;
+                        }
                     }
-                    if (instituteName.length > 255){
+                    if(universityType!="") {
+                        if (universityType == "") {
 
-                        var errorMsg='Institute Name Should not more than 255 Charecter Length!!'
-                        validationError(errorMsg)
-                        return false;
+                            var errorMsg = 'Please Type universityType First!!';
+                            validationError(errorMsg);
+                            return false;
+
+                        }
+
                     }
                     if(country==""){
 
@@ -378,25 +490,40 @@
 
                 '</div>'+
 
-                '<div class="form-group col-md-12">'+
+                '<div id="instituteNameDiv'+counter+'" class="form-group col-md-12">'+
                     '<label for="">Institute Name<span style="color: red">*</span></label>'+
                 '<input type="text" name="instituteName[]" class="form-control" required id="instituteName'+counter+'" placeholder="">'+
                     '</div>'+
-                    '<div class="form-group col-md-3">'+
-                    '<label for="">Major</label>'+
-                    '<select name="major[]" class="form-control"  id="major'+counter+'">'+
-                    '<option value="">Select Major</option>'+
-                '</select>'+
-                '</div>'+
-                    '<div class="form-group col-md-3">'+
+                    '<div style="display: none" id="universityTypeDiv'+counter+'" class="form-group col-md-3">'+
+                    '<label for="">University Type</label>'+
+                '<select name="universityType[]" class="form-control" id="universityType'+counter+'">'+
+                    '<option value="" >Select Type</option>'+
+                @foreach(UNIVERSITY_TYPE as $key=>$value)
+                '<option value="{{$value}}" >{{$key}}</option>'+
+                        @endforeach
+                    '</select>'+
+                    '</div>'+
+                    '<div id="boardDiv'+counter+'" class="form-group col-md-3">'+
                     '<label for="">Board</label>' +
                     '<select name="board[]" class="form-control" id="major"> ' +
                     '<option value="" >Select Board</option>'+
                         @foreach($boards as $board)
-                    '<option value="{{$board->boardId}}" >{{$board->boardName}}</option>'+
+                            '<option value="{{$board->boardId}}" >{{$board->boardName}}</option>'+
                         @endforeach
-                    '</select>' +
-                        '</div>'+
+                            '</select>' +
+                    '</div>'+
+                    '<div class="form-group col-md-3">'+
+                    '<label for="">Major</label>'+
+                    '<select name="major[]" class="form-control" onchange="checkMajor('+counter+')" id="majorSub'+counter+'">'+
+                    '<option value="">Select Major</option>'+
+                '</select>'+
+                '</div>'+
+                    '<div style="display: none" id="subjectNameDiv'+counter+'" class="form-group col-md-6">'+
+                    '<label for="">Subject Name</label>'+
+                '<input type="text" maxlength="255" name="subjectName" class="form-control" id="subjectName'+counter+'"  placeholder="">'+
+
+                    '</div>'+
+
 
                 '<div class="form-group col-md-3">'+
                     '<label for="">Country<span style="color: red">*</span></label>'+
@@ -492,6 +619,32 @@
                 }
             });
 
+            $.ajax({
+                type:'POST',
+                url:'{{route('cv.getBoradOrUniversity')}}',
+                data:{id:this.value},
+                cache: false,
+                success:function(data) {
+                    if(data==0){
+
+                        $("#instituteNameDiv").show();
+                        $("#boardDiv").show();
+                        $("#universityTypeDiv").hide();
+
+                    }else if (data == 1){
+                        $("#instituteNameDiv").hide();
+                        $("#boardDiv").show();
+                        $("#universityTypeDiv").hide();
+
+                    }else if (data == 2){
+                        $("#instituteNameDiv").show();
+                        $("#universityTypeDiv").show();
+                        $("#boardDiv").hide();
+                    }
+
+                }
+            });
+
         });
 
         $('#degree').on('change', function() {
@@ -502,7 +655,7 @@
                 data:{id:this.value},
                 cache: false,
                 success:function(data) {
-                    document.getElementById("major").innerHTML = data;
+                    document.getElementById("majorSub").innerHTML = data;
 
                 }
             });
@@ -524,6 +677,33 @@
                 }
             });
 
+            $.ajax({
+                type:'POST',
+                url:'{{route('cv.getBoradOrUniversity')}}',
+                data:{id:educationLavel},
+                cache: false,
+                success:function(data) {
+                    if(data==0){
+
+                        $("#instituteNameDiv"+btn).show();
+                        $("#boardDiv"+btn).show();
+                        $("#universityTypeDiv"+btn).hide();
+
+                    }else if (data == 1){
+                        $("#instituteNameDiv"+btn).hide();
+                        $("#boardDiv"+btn).show();
+                        $("#universityTypeDiv"+btn).hide();
+
+                    }else if (data == 2){
+                        $("#instituteNameDiv"+btn).show();
+                        $("#boardDiv"+btn).hide();
+                        $("#universityTypeDiv"+btn).show();
+                    }
+
+                }
+            });
+
+
         }
         function getMajor(x){
 
@@ -536,7 +716,7 @@
                 data:{id:degree},
                 cache: false,
                 success:function(data) {
-                    document.getElementById("major"+btn).innerHTML = data;
+                    document.getElementById("majorSub"+btn).innerHTML = data;
 
                 }
             });

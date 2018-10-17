@@ -31,7 +31,7 @@
 
                             <label for="">Degree<span style="color: red">*</span></label>
 
-                            <input class="form-control" name="degree" required type="text">
+                            <input class="form-control" maxlength="255" name="degree" required type="text">
 
                         </div>
                         <div class="form-group">
@@ -39,7 +39,7 @@
                             <select class="form-control" name="status">
                                 <option value="">Select Status</option>
                                 @foreach(STATUS as $key=>$value)
-                                    <option value="{{$key}}">{{$value}}</option>
+                                    <option  value="{{$key}}">{{$value}}</option>
                                 @endforeach
                             </select>
                         </div>

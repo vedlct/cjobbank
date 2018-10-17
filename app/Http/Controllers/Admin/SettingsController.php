@@ -115,6 +115,8 @@ class SettingsController extends Controller
         ]);
         $education=new Educationlevel();
         $education->educationLevelName=$r->education;
+        $education->eduLvlUnder=$r->eduLvlUnder;
+
         $education->save();
 
         Session::flash('message', 'Education Updated Successfully!');
@@ -132,6 +134,7 @@ class SettingsController extends Controller
 
         $education=Educationlevel::findOrFail($id);
         $education->educationLevelName=$r->education;
+        $education->eduLvlUnder=$r->eduLvlUnder;
         $education->status = $r->status;
         $education->save();
 
@@ -142,8 +145,8 @@ class SettingsController extends Controller
     /*====================== Education Degree ============================*/
 
     public function educationDegree(){
-        $degree=Degree::leftJoin('educationlevel','educationlevel.educationLevelId','degree.educationLevelId')->get();
-        $educations=Educationlevel::get();
+        $degree=Degree::select('educationlevel.educationLevelName','degree.degreeName','degree.degreeId','degree.status')->leftJoin('educationlevel','educationlevel.educationLevelId','degree.educationLevelId')->get();
+        $educations=Educationlevel::where('status','!=',0)->get();
 //        $datatables = DataTables::of($degree);
 //
 //        return $datatables->make(true);
@@ -155,7 +158,7 @@ class SettingsController extends Controller
     public function insertEducationDegree(Request $r){
         $r->validate([
             'educationLevel' => 'required',
-            'degree' => 'required|max:25',
+            'degree' => 'required|max:255',
 
         ]);
         $degree =new Degree();
@@ -521,14 +524,14 @@ class SettingsController extends Controller
 
     }
 
-    /*====================== Religion ============================*/
+    /*====================== Major ============================*/
 
     public function major(){
 
-        $major=Educationmajor::select('*')
-        ->leftjoin('degree','degreeId','fkDegreeId')
+        $major=Educationmajor::select('educationmajor.educationMajorName','degree.degreeName','educationmajor.educationMajorId','educationmajor.status')
+        ->leftjoin('degree','degree.degreeId','educationmajor.fkDegreeId')
         ->get();
-        $degree = Degree::get();
+        $degree = Degree::where('status','!=',0)->get();
         return view('manage.major',compact('major', 'degree'));
     }
 
@@ -549,7 +552,8 @@ class SettingsController extends Controller
 
     public function editMajor(Request $r){
         $editMajor=Educationmajor::findOrFail($r->id);
-        return view('manage.editMajor',compact('editMajor'));
+        $degree = Degree::where('status','!=',0)->get();
+        return view('manage.editMajor',compact('editMajor','degree'));
     }
 
     public function updateMajor($id,Request $r){
