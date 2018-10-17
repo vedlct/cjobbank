@@ -12,6 +12,7 @@ use App\Educationmajor;
 use App\Ethnicity;
 use App\Nationality;
 
+use App\OtherSkillInformation;
 use App\Religion;
 
 use App\OrganizationType;
@@ -605,4 +606,56 @@ class SettingsController extends Controller
         return redirect()->route('manage.board');
 
     }
+
+
+    /*========================Other Skill ============================= */
+    public function otherSkill(){
+        $otherSkill=OtherSkillInformation::get();
+        return view('manage.otherSkill',compact('otherSkill'));
+    }
+
+    public function insertOtherSkill(Request $r){
+        $r->validate([
+            'skillName' => 'required|max:255',
+        ]);
+        $skill =new OtherSkillInformation();
+
+        $skill->skillName=$r->skillName;
+
+        if ($r->status ==""){
+            $skill->status='1';
+        }else{
+            $skill->status=$r->status;
+        }
+
+        $skill->save();
+
+        Session::flash('message', 'Skill Added Successfully!');
+        return redirect()->route('manage.otherSkill');
+    }
+
+    public function editOtherSkill(Request $r){
+        $skill=OtherSkillInformation::findOrFail($r->id);
+
+        return view('manage.editSkill',compact('skill'));
+    }
+    public function updateOtherSkill($id,Request $r){
+        $r->validate([
+            'skillName' => 'required|max:255',
+        ]);
+        $skill=OtherSkillInformation::findOrFail($id);
+        $skill->skillName=$r->skillName;
+
+        if ($r->status ==""){
+            $skill->status='1';
+        }else{
+            $skill->status=$r->status;
+        }
+
+        $skill->save();
+        Session::flash('message', 'Skill Updated Successfully!');
+        return redirect()->route('manage.otherSkill');
+
+    }
+
 }
