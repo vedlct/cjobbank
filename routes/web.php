@@ -269,6 +269,12 @@ Route::post('manage/Board/editBoard','Admin\SettingsController@editBoard')->name
 Route::post('manage/Board/updateBoard/{id}','Admin\SettingsController@updateBoard')->name('manage.board.update');
 
 
+//Other Skill
+Route::get('manage/other-skill','Admin\SettingsController@otherSkill')->name('manage.otherSkill');
+Route::post('manage/other-skill/insert','Admin\SettingsController@insertOtherSkill')->name('manage.otherSkill.insert');
+Route::post('manage/other-skill/editOtherSkill','Admin\SettingsController@editOtherSkill')->name('admin.editOtherSkill');
+Route::post('manage/other-skill/Update/{id}','Admin\SettingsController@updateOtherSkill')->name('manage.otherSkill.update');
+
 
 Route::get('/testloop','testController@testloop')->name('test');
 

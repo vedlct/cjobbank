@@ -72,7 +72,7 @@
         <li><a href="{{route('manage.agreement')}}">Manage Agreement</a></li>
         <li><a href="{{route('manage.degisnation')}}">Manage Designation</a></li>
         <li><a href="{{route('manage.getApplicantQuestionAnswer')}}">Applicant Question Answer</a></li>
-
+        <li><a href="{{route('manage.otherSkill')}}">Manage Other Skill</a></li>
         </ul>
     </li>
     @endif
