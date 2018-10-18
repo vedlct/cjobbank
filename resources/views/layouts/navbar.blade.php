@@ -71,6 +71,7 @@
         <li><a href="{{route('manage.organizationType')}}">Manage Organization type</a></li>
         <li><a href="{{route('manage.agreement')}}">Manage Agreement</a></li>
         <li><a href="{{route('manage.degisnation')}}">Manage Designation</a></li>
+        <li><a href="{{route('manage.getApplicantQuestionAnswer')}}">Applicant Question Answer</a></li>
 
         </ul>
     </li>

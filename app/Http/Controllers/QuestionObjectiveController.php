@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Employee;
 
+use App\EmployeeOtherInfo;
 use App\QuestionObjective;
 use Illuminate\Http\Request;
 use Session;
@@ -156,7 +157,6 @@ class QuestionObjectiveController extends Controller
 
 
     }
-
 
 
 }
