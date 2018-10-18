@@ -14,7 +14,7 @@
                         {{csrf_field()}}
                         <div class="tab">
 
-                            <h2 style="margin-bottom: 40px; text-align: center;">Career</h2>
+                            <h2 style="margin-bottom: 40px; text-align: center;">Career and Application Information</h2>
 
 
                             <div class="form-group">
@@ -46,6 +46,21 @@
                                         <strong>{{ $errors->first('CareerQues2') }}</strong>
                                     </span>
                                 @endif
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label>Current Salary</label>
+                                    <input type="number" placeholder="current salary" name="currentSalary">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label>Expected Salary</label>
+                                    <input type="number" placeholder="expected salary" name="expectedSalary" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <button class="btn btn-success">Apply</button>
+                                </div>
+
                             </div>
 
                         </div>
