@@ -19,6 +19,17 @@
             <label for="inputEmail4">Institute Name<span style="color: red">*</span></label> :</label>
             <input type="text" class="form-control" name="institutionName" id="institutionName" value="{{$professional->institutionName}}" placeholder="institution" required>
         </div>
+
+        <div class="form-group col-md-4">
+            <label for="">Result System<span style="color: red">*</span></label>
+            <select name="resultSystem" class="form-control"  id="resultSydtem">
+                <option value="">Select System</option>
+                @foreach(RESULT_SYSTEM as $key=>$value)
+                    <option @if($value == $professional->resultSystem ) selected @endif value="{{$value}}">{{$key}}</option>
+                @endforeach
+            </select>
+        </div>
+
         <div class="form-group col-md-4">
             <label for="inputPassword4">Result :</label>
             <input type="text" class="form-control" name="result" value="{{$professional->result}}" id="result" placeholder="">
@@ -69,6 +80,7 @@
         var start=$('#start').val();
         var end=$('#end').val();
         var status=$('#professinalCertificateStatus').val();
+        var resultSystem=$('#resultSystem').val();
 
 
         if(certificateName==""){
@@ -87,6 +99,13 @@
         if(institutionName==""){
 
             var errorMsg='Please Type instituteName First!!'
+            validationError(errorMsg)
+            return false;
+
+        }
+        if(resultSystem==""){
+
+            var errorMsg='Please Select resultSystem First!!'
             validationError(errorMsg)
             return false;
 

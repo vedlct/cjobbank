@@ -35,40 +35,87 @@ class ProfessionalCertificateController extends Controller
     }
     public function getEmployeeCvProfessionalCertificate()
     {
-        $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
-        $professional=ProfessionalQualification::where('fkemployeeId',$employee->employeeId)->get();
+        $employee=Employee::select('employeeId','hasProfCertificate')->where('fkuserId',Auth::user()->userId)->first();
+
+      //  return $employee->hasProfCertificate;
+
+        if (!$employee->hasProfCertificate) {
+
+            $hasProfCertificate = null;
 
 
-        if($professional->isEmpty()){
+            return view('userCv.insert.professionalCertificate', compact('hasProfCertificate'));
+        }elseif ($employee->hasProfCertificate == 0){
 
-            return view('userCv.insert.professionalCertificate');
-        }
+            $hasProfCertificate=0;
 
-        else{
+            return view('userCv.insert.professionalCertificate',compact('hasProfCertificate'));
+
+        }elseif ($employee->hasProfCertificate == 1){
+
+            $professional=ProfessionalQualification::where('fkemployeeId',$employee->employeeId)->get();
+
+
+
+            if($professional->isEmpty()){
+
+                $hasProfCertificate=0;
+
+                return view('userCv.insert.professionalCertificate',compact('hasProfCertificate'));
+            }
+
+            else{
 //            return $professional;
-            $count=ProfessionalQualification::where('fkemployeeId',$employee->employeeId)
-                ->count();
-            return view('userCv.update.professionalCertificate',compact('professional','count'));
+                $count=ProfessionalQualification::where('fkemployeeId',$employee->employeeId)
+                    ->count();
+                $hasProfCertificate=1;
+                return view('userCv.update.professionalCertificate',compact('professional','count','hasProfCertificate'));
+            }
+
+
         }
+
+//        return $employee;
+
+
+
+
+
 
 
 
     }
 
     public function submitEmployeeCvProfessionalCertificate(Request $r){
-        $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
 
-        for($i=0;$i<count($r->certificateName);$i++){
-            $professional=new ProfessionalQualification();
-            $professional->certificateName=$r->certificateName[$i];
-            $professional->institutionName=$r->institutionName[$i];
-            $professional->startDate=$r->startDate[$i];
-            $professional->endDate=$r->endDate[$i];
-            $professional->result=$r->result[$i];
-            $professional->status=$r->status[$i];
-            $professional->fkemployeeId=$employee->employeeId;
-            $professional->save();
+        $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
+       // return $r->hasProfCertificate;
+        $emp=Employee::findOrFail($employee->employeeId);
+        if ($r->hasProfCertificate==0){
+
+            $emp->hasProfCertificate=0;
+            $emp->save();
+
         }
+        else{
+            $emp->hasProfCertificate=1;
+            $emp->save();
+
+            for($i=0;$i<count($r->certificateName);$i++){
+                $professional=new ProfessionalQualification();
+                $professional->certificateName=$r->certificateName[$i];
+                $professional->institutionName=$r->institutionName[$i];
+                $professional->startDate=$r->startDate[$i];
+                $professional->endDate=$r->endDate[$i];
+                $professional->resultSystem=$r->resultSystem[$i];
+                $professional->result=$r->result[$i];
+                $professional->status=$r->status[$i];
+                $professional->fkemployeeId=$employee->employeeId;
+                $professional->save();
+            }
+        }
+
+
 
         Session::flash('message', 'Certificate Added Successfully');
 
@@ -77,14 +124,17 @@ class ProfessionalCertificateController extends Controller
 
     public function updateEmployeeCvProfessionalCertificate(Request $r){
 
-        $professional=ProfessionalQualification::findOrFail($r->professionalQualificationId);
-        $professional->certificateName=$r->certificateName;
-        $professional->institutionName=$r->institutionName;
-        $professional->startDate=$r->startDate;
-        $professional->endDate=$r->endDate;
-        $professional->result=$r->result;
-        $professional->status=$r->status;
-        $professional->save();
+
+            $professional=ProfessionalQualification::findOrFail($r->professionalQualificationId);
+            $professional->certificateName=$r->certificateName;
+            $professional->institutionName=$r->institutionName;
+            $professional->startDate=$r->startDate;
+            $professional->endDate=$r->endDate;
+            $professional->resultSystem=$r->resultSystem;
+            $professional->result=$r->result;
+            $professional->status=$r->status;
+            $professional->save();
+
 
 
         Session::flash('message', 'Certificate Edited Successfully');
@@ -97,9 +147,21 @@ class ProfessionalCertificateController extends Controller
     }
 
     public function deleteProfessionalQualification(Request $r){
+
         ProfessionalQualification::destroy($r->professionalQualificationId);
+        $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
+        $count=ProfessionalQualification::where('fkemployeeId',$employee->employeeId)
+            ->count();
+
+        if ($count == 0){
+            $emp=Employee::findOrFail($employee->employeeId);
+
+            $emp->hasProfCertificate=0;
+            $emp->save();
+
+        }
+
         Session::flash('message', 'Certificate Deleted Successfully');
 
-//        return $r;
     }
 }
