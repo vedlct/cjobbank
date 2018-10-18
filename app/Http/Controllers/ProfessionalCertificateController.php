@@ -37,9 +37,12 @@ class ProfessionalCertificateController extends Controller
     {
         $employee=Employee::select('employeeId','hasProfCertificate')->where('fkuserId',Auth::user()->userId)->first();
 
-      //  return $employee->hasProfCertificate;
+      // return $employee;
 
-        if (!$employee->hasProfCertificate) {
+
+        if (is_null($employee->hasProfCertificate)) {
+
+           // return $employee->hasProfCertificate;
 
             $hasProfCertificate = null;
 
