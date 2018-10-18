@@ -59,6 +59,8 @@ class PersonalInfoController extends Controller
         $ethnicity=Ethnicity::where('status',1)->get();
         $natinality=Nationality::where('status',1)->get();
 
+//        return view('userCv.insert.personalInfo',compact('religion','ethnicity','natinality'));
+
         if (!$employeeCvPersonalInfo->isEmpty()){
 
 
@@ -75,9 +77,12 @@ class PersonalInfoController extends Controller
     {
 
         $rules = [
-
             'firstName' => 'required|max:50',
             'lastName' => 'required|max:50',
+            'bloodGroup' => 'required|max:5',
+            'maritalStatus' => 'required|max:15',
+            'spouse' => 'max:100',
+            'passport' => 'max:12',
             'fathersName' => 'required|max:50',
             'mothersName' => 'required|max:50',
             'dob' => 'required|date',
@@ -132,8 +137,9 @@ class PersonalInfoController extends Controller
         $employee->presentAddress=$r->currentAddress;
         $employee->parmanentAddress=$r->permanentAddress;
         $employee->fkuserId=Auth::user()->userId;
-
-
+        $employee->maritalStatus=$r->maritalStatus;
+        $employee->spouse=$r->spouse;
+        $employee->passport=$r->passport;
         $employee->save();
 
 
@@ -178,6 +184,10 @@ class PersonalInfoController extends Controller
 
             'firstName' => 'required|max:50',
             'lastName' => 'required|max:50',
+            'bloodGroup' => 'required|max:5',
+            'maritalStatus' => 'required|max:15',
+            'spouse' => 'max:100',
+            'passport' => 'max:12',
             'fathersName' => 'required|max:50',
             'mothersName' => 'required|max:50',
             'dob' => 'required|date',
@@ -232,6 +242,10 @@ class PersonalInfoController extends Controller
         $employee->alternativeEmail=$r->alternateEmail;
         $employee->presentAddress=$r->currentAddress;
         $employee->parmanentAddress=$r->permanentAddress;
+        $employee->bloodGroup=$r->bloodGroup;
+        $employee->maritalStatus=$r->maritalStatus;
+        $employee->spouse=$r->spouse;
+        $employee->passport=$r->passport;
 //        $employee->fkuserId=Auth::user()->userId;
 
         $employee->save();

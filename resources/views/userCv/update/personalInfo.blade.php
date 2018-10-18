@@ -184,10 +184,11 @@
                                     <div class="form-group col-md-6">
                                         <label for="">Blood Group<span style="color: red">*</span></label>
                                         <select class="form-control" name="bloodGroup" required>
-                                            <option>Select Group</option>
+                                            <option value="">Select Group</option>
                                             @foreach(BLOOD_GROUP as $key=>$value)
                                                 {{--<option @if($personalInfo->disability == $value) selected @endif value="{{$value}}">{{$key}}</option>--}}
-                                                <option  value="{{$value}}">{{$key}}</option>
+                                                {{--<option  value="{{$value}}">{{$key}}</option>--}}
+                                                <option  value="{{$value}}"  @if($personalInfo->bloodGroup == $value) selected @endif >{{$key}}</option>
                                             @endforeach
                                         </select>
                                         @if ($errors->has('bloodGroup'))
@@ -201,10 +202,9 @@
                                     <div class="form-group col-md-6">
                                         <label for="">Marital Status<span style="color: red">*</span></label>
                                         <select class="form-control" name="maritalStatus" required>
-                                            <option>Select Status</option>
+                                            <option value="">Select Status</option>
                                             @foreach(MARITAL_STATUS as $key=>$value)
-                                                {{--<option @if($personalInfo->disability == $value) selected @endif value="{{$value}}">{{$key}}</option>--}}
-                                                <option  value="{{$value}}">{{$key}}</option>
+                                                <option  value="{{$value}}" @if($personalInfo->maritalStatus == $value) selected @endif>{{$key}}</option>
                                             @endforeach
                                         </select>
                                         @if ($errors->has('maritalStatus'))
@@ -215,12 +215,12 @@
                                         @endif
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="">Name Of Husband/Wife</label>
-                                        <input type="text"  name="nameOfPartner" class="form-control"  id="" placeholder="Husband / Wife">
-                                        @if ($errors->has('nameOfPartner'))
+                                        <label for="">Name Of Spouse</label>
+                                        <input type="text"  name="spouse" class="form-control"  value="{{$personalInfo->spouse}}" placeholder="Husband / Wife">
+                                        @if ($errors->has('spouse'))
 
                                             <span class="">
-                                        <strong>{{ $errors->first('nameOfPartner') }}</strong>
+                                        <strong>{{ $errors->first('spouse') }}</strong>
                                     </span>
                                         @endif
                                     </div>
@@ -254,13 +254,7 @@
 
                                     <div class="form-group col-md-6">
                                         <label for="">Passport</label>
-                                        <select class="form-control" name="passport" required>
-                                            <option>Select Passport</option>
-                                            @foreach(PASSPORT as $key=>$value)
-                                                {{--<option @if($personalInfo->disability == $value) selected @endif value="{{$value}}">{{$key}}</option>--}}
-                                                <option  value="{{$value}}">{{$key}}</option>
-                                            @endforeach
-                                        </select>
+                                        <input type="text" placeholder="If any" class="form-control" value="{{$personalInfo->passport}}" name="passport">
                                         @if ($errors->has('passport'))
 
                                             <span class="">
@@ -278,7 +272,6 @@
                                         <label for="">Email<span style="color: red">*</span></label>
                                         <input required type="text" name="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{$personalInfo->email }}" id="" placeholder="">
                                         @if ($errors->has('email'))
-
                                             <span class="">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
