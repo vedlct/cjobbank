@@ -7,11 +7,11 @@
                    <div class="card">
                        <div class="card-body">
                            <div class=" form-group ">
-                               <label>Personal Mobile</label>&nbsp;<span style="color: red">(Year)</span>
+                               <label>Personal Mobile</label>&nbsp;
                                <input class="form-control" id="personalMobile" name="personalMobile" onkeypress="return isNumberKey(event)" type="text">
                            </div>
                            <div class=" form-group ">
-                               <label>Email</label>&nbsp;<span style="color: red">(Year)</span>
+                               <label>Email</label>
                                <input class="form-control" id="Email" name="Email" onkeypress="return isNumberKey(event)" type="text">
                            </div>
                        </div>
