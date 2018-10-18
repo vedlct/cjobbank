@@ -12,6 +12,7 @@ use App\Educationmajor;
 use App\Ethnicity;
 use App\Nationality;
 
+use App\OtherSkillInformation;
 use App\Religion;
 
 use App\OrganizationType;
@@ -115,6 +116,8 @@ class SettingsController extends Controller
         ]);
         $education=new Educationlevel();
         $education->educationLevelName=$r->education;
+        $education->eduLvlUnder=$r->eduLvlUnder;
+
         $education->save();
 
         Session::flash('message', 'Education Updated Successfully!');
@@ -132,6 +135,7 @@ class SettingsController extends Controller
 
         $education=Educationlevel::findOrFail($id);
         $education->educationLevelName=$r->education;
+        $education->eduLvlUnder=$r->eduLvlUnder;
         $education->status = $r->status;
         $education->save();
 
@@ -142,8 +146,8 @@ class SettingsController extends Controller
     /*====================== Education Degree ============================*/
 
     public function educationDegree(){
-        $degree=Degree::leftJoin('educationlevel','educationlevel.educationLevelId','degree.educationLevelId')->get();
-        $educations=Educationlevel::get();
+        $degree=Degree::select('educationlevel.educationLevelName','degree.degreeName','degree.degreeId','degree.status')->leftJoin('educationlevel','educationlevel.educationLevelId','degree.educationLevelId')->get();
+        $educations=Educationlevel::where('status','!=',0)->get();
 //        $datatables = DataTables::of($degree);
 //
 //        return $datatables->make(true);
@@ -155,7 +159,7 @@ class SettingsController extends Controller
     public function insertEducationDegree(Request $r){
         $r->validate([
             'educationLevel' => 'required',
-            'degree' => 'required|max:25',
+            'degree' => 'required|max:255',
 
         ]);
         $degree =new Degree();
@@ -521,14 +525,14 @@ class SettingsController extends Controller
 
     }
 
-    /*====================== Religion ============================*/
+    /*====================== Major ============================*/
 
     public function major(){
 
-        $major=Educationmajor::select('*')
-        ->leftjoin('degree','degreeId','fkDegreeId')
+        $major=Educationmajor::select('educationmajor.educationMajorName','degree.degreeName','educationmajor.educationMajorId','educationmajor.status')
+        ->leftjoin('degree','degree.degreeId','educationmajor.fkDegreeId')
         ->get();
-        $degree = Degree::get();
+        $degree = Degree::where('status','!=',0)->get();
         return view('manage.major',compact('major', 'degree'));
     }
 
@@ -549,7 +553,8 @@ class SettingsController extends Controller
 
     public function editMajor(Request $r){
         $editMajor=Educationmajor::findOrFail($r->id);
-        return view('manage.editMajor',compact('editMajor'));
+        $degree = Degree::where('status','!=',0)->get();
+        return view('manage.editMajor',compact('editMajor','degree'));
     }
 
     public function updateMajor($id,Request $r){
@@ -601,4 +606,56 @@ class SettingsController extends Controller
         return redirect()->route('manage.board');
 
     }
+
+
+    /*========================Other Skill ============================= */
+    public function otherSkill(){
+        $otherSkill=OtherSkillInformation::get();
+        return view('manage.otherSkill',compact('otherSkill'));
+    }
+
+    public function insertOtherSkill(Request $r){
+        $r->validate([
+            'skillName' => 'required|max:255',
+        ]);
+        $skill =new OtherSkillInformation();
+
+        $skill->skillName=$r->skillName;
+
+        if ($r->status ==""){
+            $skill->status='1';
+        }else{
+            $skill->status=$r->status;
+        }
+
+        $skill->save();
+
+        Session::flash('message', 'Skill Added Successfully!');
+        return redirect()->route('manage.otherSkill');
+    }
+
+    public function editOtherSkill(Request $r){
+        $skill=OtherSkillInformation::findOrFail($r->id);
+
+        return view('manage.editSkill',compact('skill'));
+    }
+    public function updateOtherSkill($id,Request $r){
+        $r->validate([
+            'skillName' => 'required|max:255',
+        ]);
+        $skill=OtherSkillInformation::findOrFail($id);
+        $skill->skillName=$r->skillName;
+
+        if ($r->status ==""){
+            $skill->status='1';
+        }else{
+            $skill->status=$r->status;
+        }
+
+        $skill->save();
+        Session::flash('message', 'Skill Updated Successfully!');
+        return redirect()->route('manage.otherSkill');
+
+    }
+
 }

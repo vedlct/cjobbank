@@ -14,22 +14,34 @@
 
                             <h2 style="margin-bottom: 30px;">Professional Certification </h2>
 
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label">Has Professional Certification?<span style="color: red" class="required">*</span>:</label>
+                                    <div class="col-md-10">
+                                        <input type="radio" required <?php if ($hasProfCertificate =='1'){?>checked<?php } ?> name="hasProfCertificate" value="1"> Yes&nbsp;&nbsp;
+                                        <input type="radio" required <?php if ($hasProfCertificate =='0'){?>checked<?php } ?> name="hasProfCertificate" value="0"> No&nbsp;&nbsp;
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>
+                            <div style="display: none" id="profCertificateDiv">
+
                                 @php($tempHr=0)
-                                @foreach($professional as $value)
+                                @foreach($professional as $val)
                                     @if($tempHr>0)
                                         <div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>
                                     @endif
-                                    <div id="edit{{$value->professionalQualificationId}}">
-                                        <input type="hidden" name="professionalQualificationId[]" value="{{$value->professionalQualificationId}}">
+                                    <div id="edit{{$val->professionalQualificationId}}">
+                                        <input type="hidden" name="professionalQualificationId[]" value="{{$val->professionalQualificationId}}">
                                             <div class="row">
                                                 <div class="form-group col-md-10">
                                                     <label for="inputEmail4">Certificate Name :</label>
-                                                    <label for="inputEmail4">{{$value->certificateName}}</label>
-                                                    {{--<input type="text" class="form-control" name="certificateName{{$value->professionalQualificationId}}" id="inputEmail4" value="{{$value->certificateName}}" placeholder="certificate" required>--}}
+                                                    <label for="inputEmail4">{{$val->certificateName}}</label>
+                                                    {{--<input type="text" class="form-control" name="certificateName{{$val->professionalQualificationId}}" id="inputEmail4" value="{{$val->certificateName}}" placeholder="certificate" required>--}}
                                                 </div>
                                                 <div class="form-group col-md-2 ">
-                                                    <button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$value->professionalQualificationId}})"><i class="fa fa-edit"></i></button>
-                                                    <button type="button" class="btn btn-danger btn-sm " onclick="deleteProfession({{$value->professionalQualificationId}})"><i class="fa fa-trash"></i></button>
+                                                    <button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$val->professionalQualificationId}})"><i class="fa fa-edit"></i></button>
+                                                    <button type="button" class="btn btn-danger btn-sm " onclick="deleteProfession({{$val->professionalQualificationId}})"><i class="fa fa-trash"></i></button>
 
                                                 </div>
 
@@ -38,24 +50,39 @@
                                             <div class="row">
                                                 <div class="form-group col-md-8">
                                                     <label for="inputEmail4">Institute Name :</label>
-                                                    <label >{{$value->institutionName}}</label>
-                                                    {{--<input type="text" class="form-control" name="institutionName{{$value->professionalQualificationId}}" id="inputEmail4" value="{{$value->institutionName}}" placeholder="institution" required>--}}
+                                                    <label >{{$val->institutionName}}</label>
+                                                    {{--<input type="text" class="form-control" name="institutionName{{$val->professionalQualificationId}}" id="inputEmail4" value="{{$val->institutionName}}" placeholder="institution" required>--}}
                                                 </div>
                                                 <div class="form-group col-md-4">
+                                                    <label for="inputEmail4">Result System :</label>
+
+                                                    <label >
+                                                        @foreach(RESULT_SYSTEM as $key=>$value)
+                                                            @if($value==$val->resultSystem){{$key}}
+                                                            @endif
+                                                        @endforeach
+                                                    </label>
+
+                                                    {{--<input type="text" class="form-control" name="institutionName{{$val->professionalQualificationId}}" id="inputEmail4" value="{{$val->institutionName}}" placeholder="institution" required>--}}
+                                                </div>
+
+
+
+                                                <div class="form-group col-md-4">
                                                     <label for="inputPassword4">Result :</label>
-                                                    <label for="inputPassword4">{{$value->result}}</label>
-                                                    {{--<input type="text" class="form-control" name="result{{$value->professionalQualificationId}}" value="{{$value->result}}" id="inputPassword4" placeholder="">--}}
+                                                    <label for="inputPassword4">{{$val->result}}</label>
+                                                    {{--<input type="text" class="form-control" name="result{{$val->professionalQualificationId}}" value="{{$val->result}}" id="inputPassword4" placeholder="">--}}
                                                 </div>
 
                                                 <div class="form-group col-md-4">
                                                     <label for="inputPassword4">Start Date :</label>
-                                                    <label for="inputPassword4">{{$value->startDate}}</label>
-                                                    {{--<input type="text" class="form-control date" name="startDate{{$value->professionalQualificationId}}" value="{{$value->startDate}}" id="start" placeholder="date" required>--}}
+                                                    <label for="inputPassword4">{{$val->startDate}}</label>
+                                                    {{--<input type="text" class="form-control date" name="startDate{{$val->professionalQualificationId}}" value="{{$val->startDate}}" id="start" placeholder="date" required>--}}
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                     <label for="inputPassword4">End Date :</label>
-                                                    <label for="inputPassword4">{{$value->endDate}}</label>
-                                                    {{--<input type="text" class="form-control date" name="endDate{{$value->professionalQualificationId}}" value="{{$value->endDate}}" id="end" placeholder="date">--}}
+                                                    <label for="inputPassword4">{{$val->endDate}}</label>
+                                                    {{--<input type="text" class="form-control date" name="endDate{{$val->professionalQualificationId}}" value="{{$val->endDate}}" id="end" placeholder="date">--}}
                                                 </div>
 
                                                 <div class="form-group col-md-4">
@@ -63,7 +90,7 @@
                                                     <label for="inputPassword4">
                                                         @foreach(COMPLETING_STATUS as $key=>$values)
 
-                                                            @if($value->status == $values) {{$key}} @endif
+                                                            @if($val->status == $values) {{$key}} @endif
                                                         @endforeach
                                                         {{--@if($value->status == 1)--}}
                                                         {{--Completed--}}
@@ -86,7 +113,8 @@
                                 @endforeach
 
 
-                        </div>
+
+
                     <form id="" action="{{route('submit.cvProfessionalCertificate')}}"  method="post">
                         <!-- One "tab" for each step in the form: -->
                         {{csrf_field()}}
@@ -107,6 +135,8 @@
                         </div>
 
                     </form>
+                        </div>
+                        </div>
 
 
                         <!-- Circles which indicates the steps of the form: -->
@@ -197,6 +227,26 @@
             $('.date').datepicker({
                 format: 'yyyy-m-d'
             });
+        });
+
+        $("input[name=hasProfCertificate]").click( function () {
+
+            if ($(this).val()=='1'){
+                $('#profCertificateDiv').show();
+            }else {
+                $('#profCertificateDiv').hide();
+            }
+        });
+
+        $(document).ready(function(){
+            if ('<?php echo $hasProfCertificate?>'== '0'){
+
+                $('#profCertificateDiv').hide();
+
+            }else if ('<?php echo $hasProfCertificate?>'== '1') {
+                $('#profCertificateDiv').show();
+
+            }
         });
 
         $(document).ready(function(){
@@ -311,13 +361,22 @@
                     '<div class="row">'+
                     '<div class="form-group col-md-12">'+
                     '<label for="inputEmail4">Certificate Name<span style="color: red">*</span></label>'+
-                    '<input type="text" class="form-control" name="certificateName[]" id="certificateName'+counter+'" placeholder="certificate" required>'+
+                    '<input type="text" class="form-control" name="certificateName[]" id="certificateName'+counter+'" placeholder="certificate" >'+
                     '</div>'+
                     '</div>'+
                     '<div class="row">'+
                     '<div class="form-group col-md-8">'+
                     '<label for="inputEmail4">Institute Name<span style="color: red">*</span></label>'+
-                    '<input type="text" class="form-control" name="institutionName[]" id="institutionName'+counter+'" placeholder="institution" required>'+
+                    '<input type="text" class="form-control" name="institutionName[]" id="institutionName'+counter+'" placeholder="institution" >'+
+                    '</div>'+
+                    '<div class="form-group col-md-4">'+
+                    '<label for="">Result System<span style="color: red">*</span></label>'+
+                    '<select name="resultSystem[]" class="form-control"  id="resultSydtem'+counter+'">'+
+                    '<option value="">Select System</option>'+
+                    @foreach(RESULT_SYSTEM as $key=>$value)
+                        '<option value="{{$value}}">{{$key}}</option>'+
+                    @endforeach
+                        '</select>'+
                     '</div>'+
                     '<div class="form-group col-md-4">'+
                     '<label for="inputPassword4">Result</label>'+
@@ -335,7 +394,7 @@
 
                     '<div class="form-group col-md-4">'+
                     '<label for="inputPassword4">Staus<span style="color: red">*</span></label>'+
-                    '<select required class="form-control" id="professinalCertificateStatus'+counter+'" name="status[]">'+
+                    '<select  class="form-control" id="professinalCertificateStatus'+counter+'" name="status[]">'+
                     '<option value="">Select Status</option>'+
                     @foreach(COMPLETING_STATUS as $key=>$value)
                         '<option value="{{$value}}">{{$key}}</option>'+

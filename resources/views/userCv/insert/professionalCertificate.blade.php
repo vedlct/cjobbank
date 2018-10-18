@@ -15,20 +15,40 @@
                         <div id="" class="tab">
 
                             <h2 style="margin-bottom: 30px;">Professional Certification </h2>
+                            <div class="row">
+                            <div class="form-group">
+                                <label class="control-label">Has Professional Certification?<span style="color: red" class="required">*</span>:</label>
+                                <div class="col-md-10">
+                                    <input type="radio" required <?php if ($hasProfCertificate=='1'){?>checked<?php } ?> name="hasProfCertificate" value="1"> Yes&nbsp;&nbsp;
+                                    <input type="radio" required <?php if ($hasProfCertificate=='0'){?>checked<?php } ?> name="hasProfCertificate" value="0"> No&nbsp;&nbsp;
+                                </div>
+                            </div>
+                            </div>
+
+                            <div style="display: none" id="profCertificateDiv">
                             <div id="TextBoxesGroup">
 
                                 <div class="row">
                                 <div class="form-group col-md-12">
                                     <label for="inputEmail4">Certificate Name<span style="color: red">*</span></label>
-                                    <input type="text" class="form-control" name="certificateName[]" id="certificateName" placeholder="certificate" required>
+                                    <input type="text" class="form-control" name="certificateName[]" id="certificateName" placeholder="certificate" >
                                 </div>
                             </div>
 
                                 <div class="row">
                                 <div class="form-group col-md-8">
                                     <label for="inputEmail4">Institute Name<span style="color: red">*</span></label>
-                                    <input type="text" class="form-control" name="institutionName[]" id="institutionName" placeholder="institution" required>
+                                    <input type="text" class="form-control" name="institutionName[]" id="institutionName" placeholder="institution">
                                 </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="">Result System<span style="color: red">*</span></label>
+                                        <select name="resultSystem[]" class="form-control"  id="resultSydtem">
+                                            <option value="">Select System</option>
+                                            @foreach(RESULT_SYSTEM as $key=>$value)
+                                                <option value="{{$value}}">{{$key}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 <div class="form-group col-md-4">
                                     <label for="inputPassword4">Result</label>
                                     <input type="text" class="form-control" name="result[]" id="result" placeholder="">
@@ -36,7 +56,7 @@
 
                                 <div class="form-group col-md-4">
                                     <label for="inputPassword4">Start Date<span style="color: red">*</span></label>
-                                    <input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" required>
+                                    <input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" >
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="inputPassword4">End Date</label>
@@ -45,7 +65,7 @@
 
                                 <div class="form-group col-md-4">
                                     <label for="inputPassword4">Staus<span style="color: red">*</span></label>
-                                    <select required class="form-control"id="professinalCertificateStatus" name="status[]">
+                                    <select  class="form-control"id="professinalCertificateStatus" name="status[]">
 
                                         <option value="">Select Status</option>
                                         @foreach(COMPLETING_STATUS as $key=>$value)
@@ -61,13 +81,17 @@
                             <button type="button" id="addButton" class="btn btn-success">Add More</button>
                             <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
+                            </div>
+
                         </div>
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
 
                                 <button type="submit" id="submitBtn">Save</button>
-                                {{--<a href="{{route('candidate.cvTrainingCertificate')}}"><button type="button" id="nextBtn" >Next</button></a>--}}
+                                @if($hasProfCertificate == 1 || $hasProfCertificate == 0 )
+                                <a href="{{route('candidate.cvTrainingCertificate')}}"><button type="button" id="nextBtn" >Next</button></a>
+                                @endif
                             </div>
                         </div>
 
@@ -130,6 +154,27 @@
 //            });
         });
 
+        $("input[name=hasProfCertificate]").click( function () {
+
+            if ($(this).val()=='1'){
+                $('#profCertificateDiv').show();
+            }else {
+                $('#profCertificateDiv').hide();
+            }
+        });
+
+        $(document).ready(function(){
+            if ('<?php echo $hasProfCertificate?>'== '0'){
+
+                $('#profCertificateDiv').hide();
+
+            }else if ('<?php echo $hasProfCertificate?>'== '1'){
+                $('#profCertificateDiv').show();
+
+            }
+        });
+
+
         $(document).ready(function(){
 
             var counter = 1;
@@ -150,11 +195,18 @@
                     var start=$('#start').val();
                     var end=$('#end').val();
                     var status=$('#professinalCertificateStatus').val();
+                    var resultSystem=$('#resultSystem').val();
 
 
                     if(certificateName==""){
 
                         var errorMsg='Please Type certificateName First!!'
+                        validationError(errorMsg)
+                        return false;
+                    }
+                    if(resultSystem==""){
+
+                        var errorMsg='Please Select resultSystem First!!'
                         validationError(errorMsg)
                         return false;
                     }
@@ -238,6 +290,7 @@
                     var start=$('#start'+(counter-1)).val();
                     var end=$('#end'+(counter-1)).val();
                     var status=$('#professinalCertificateStatus'+(counter-1)).val();
+                    var resultSystem=$('#resultSystem'+(counter-1)).val();
 
 
                     if(certificateName==""){
@@ -267,6 +320,14 @@
                         return false;
 
                     }
+
+                    if(resultSystem==""){
+
+                        var errorMsg='Please Select resultSystem First!!'
+                        validationError(errorMsg)
+                        return false;
+                    }
+
 //                    if(result==""){
 //
 //                        var errorMsg='Please Type a Result First!!'
@@ -330,14 +391,23 @@
                     '<div class="row">'+
                     '<div class="form-group col-md-12">'+
                     '<label for="inputEmail4">Certificate Name<span style="color: red">*</span></label>'+
-                '<input type="text" class="form-control" name="certificateName[]" id="certificateName'+counter+'" placeholder="certificate" required>'+
+                '<input type="text" class="form-control" name="certificateName[]" id="certificateName'+counter+'" placeholder="certificate" >'+
                 '</div>'+
                 '</div>'+
                 '<div class="row">'+
                     '<div class="form-group col-md-8">'+
                     '<label for="inputEmail4">Institute Name<span style="color: red">*</span></label>'+
-                '<input type="text" class="form-control" name="institutionName[]" id="institutionName'+counter+'" placeholder="institution" required>'+
+                '<input type="text" class="form-control" name="institutionName[]" id="institutionName'+counter+'" placeholder="institution" >'+
                 '</div>'+
+                    '<div class="form-group col-md-4">'+
+                    '<label for="">Result System<span style="color: red">*</span></label>'+
+                    '<select name="resultSystem[]" class="form-control"  id="resultSydtem'+counter+'">'+
+                    '<option value="">Select System</option>'+
+                @foreach(RESULT_SYSTEM as $key=>$value)
+                '<option value="{{$value}}">{{$key}}</option>'+
+                        @endforeach
+                    '</select>'+
+                    '</div>'+
                 '<div class="form-group col-md-4">'+
                     '<label for="inputPassword4">Result</label>'+
                     '<input type="text" class="form-control" name="result[]" id="result'+counter+'" placeholder="">'+
@@ -345,7 +415,7 @@
 
                     '<div class="form-group col-md-4">'+
                     '<label for="inputPassword4">Start Date<span style="color: red">*</span></label>'+
-                '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date" required>'+
+                '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date" >'+
                 '</div>'+
                 '<div class="form-group col-md-4">'+
                     '<label for="inputPassword4">End Date</label>'+
@@ -354,7 +424,7 @@
 
                     '<div class="form-group col-md-4">'+
                     '<label for="inputPassword4">Staus<span style="color: red">*</span></label>'+
-                    '<select required class="form-control" id="professinalCertificateStatus'+counter+'" name="status[]">'+
+                    '<select  class="form-control" id="professinalCertificateStatus'+counter+'" name="status[]">'+
                     '<option value="">Select Status</option>'+
                     @foreach(COMPLETING_STATUS as $key=>$value)
                     '<option value="{{$value}}">{{$key}}</option>'+

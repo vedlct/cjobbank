@@ -68,17 +68,34 @@ Route::post('edit/professionalQualificationId','ProfessionalCertificateControlle
 Route::post('delete/professionalQualificationId','ProfessionalCertificateController@deleteProfessionalQualification')->name('professionalQualificationId.delete');
 
 
-
-
-
 //PersonalInfo
 Route::get('Candidate-CV','PersonalInfoController@getEmployeeCv')->name('candidate.cvPersonalInfo');
+
 Route::post('/Candidate-CV-savePersonalInfo', 'PersonalInfoController@insertPersonalInfo')->name('cv.insertPersonalInfo');
 Route::post('/Candidate-CV-updatePersonalInfo', 'PersonalInfoController@updatePersonalInfo')->name('cv.updatePersonalInfo');
+
+
+//Question And Objective Info
+Route::get('Candidate-CV-Objective-And-Question','QuestionObjectiveController@getEmployeeCvQuesTionObjective')->name('candidate.cvQuesObj');
+Route::post('/Candidate-CV-save-Objective-And-Question','QuestionObjectiveController@insertObjectiveAndQuestion')->name('cv.insertQuesObj');
+Route::post('/Candidate-CV-Objective-And-Question-Edit', 'QuestionObjectiveController@getQuestionObjectiveEdit')->name('cv.careerEdit');
+Route::post('/Candidate-CV-update-Objective-And-Question','QuestionObjectiveController@updateQuesObj')->name('cv.updateQuesObj');
+
+//Cv Other Info
+Route::get('/Candidate-Cv-others-info','EmployeeOtherInfoController@otherInfo')->name('cv.OthersInfo');
+Route::post('/Candidate-Cv-others-info-insert','EmployeeOtherInfoController@insertOtherInfo')->name('insert.OthersInfo');
+Route::post('/Candidate-Cv-others-info-update','EmployeeOtherInfoController@updateOtherInfo')->name('update.OthersInfo');
+Route::post('/Candidate-Cv-others-info-edit','EmployeeOtherInfoController@editOtherInfo')->name('edit.OthersInfo');
+Route::post('/Manage-Applicant-Question-Answer','Admin\ManageQuestionApplication@manageQuestionAnswer')->name('manage.applicantQuestionAnswer');
+Route::get('/Manage-Applicant-Question-Answer','Admin\ManageQuestionApplication@getManageQuestionAnswer')->name('manage.getApplicantQuestionAnswer');
+
+
+
 
 //Education
 Route::get('Candidate-CV-Education','EducationController@getEmployeeCvEducation')->name('candidate.cvEducation');
 Route::post('/Candidate-CV-educationDegree', 'EducationController@getDegreePerEducation')->name('cv.getDegreeForEducation');
+Route::post('/Candidate-CV-education-BoardOrUniversity', 'EducationController@getBoradOrUniversity')->name('cv.getBoradOrUniversity');
 Route::post('/Candidate-CV-educationMajor', 'EducationController@getMajorPerEducation')->name('cv.getMajorForEducation');
 Route::post('/Candidate-CV-educationEdit', 'EducationController@getEducationEdit')->name('cv.educationEdit');
 Route::post('/Candidate-CV-education-Save', 'EducationController@insertPersonalEducation')->name('cv.insertPersonalEducation');
@@ -252,6 +269,11 @@ Route::post('manage/Board/editBoard','Admin\SettingsController@editBoard')->name
 Route::post('manage/Board/updateBoard/{id}','Admin\SettingsController@updateBoard')->name('manage.board.update');
 
 
+//Other Skill
+Route::get('manage/other-skill','Admin\SettingsController@otherSkill')->name('manage.otherSkill');
+Route::post('manage/other-skill/insert','Admin\SettingsController@insertOtherSkill')->name('manage.otherSkill.insert');
+Route::post('manage/other-skill/editOtherSkill','Admin\SettingsController@editOtherSkill')->name('admin.editOtherSkill');
+Route::post('manage/other-skill/Update/{id}','Admin\SettingsController@updateOtherSkill')->name('manage.otherSkill.update');
 
 
 Route::get('/testloop','testController@testloop')->name('test');

@@ -10,7 +10,7 @@
     </div>
     <div class="form-group">
         <label for="">Degree Name</label>
-        <input type="text" class="form-control" value="{{$degree->degreeName}}" placeholder="degree" name="degree" required>
+        <input type="text" class="form-control" maxlength="255" value="{{$degree->degreeName}}" placeholder="degree" name="degree" required>
     </div>
     <div class="form-group">
         <label for="">Status</label>

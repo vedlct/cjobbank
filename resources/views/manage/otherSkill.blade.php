@@ -2,47 +2,38 @@
 @section('content')
 
     <!-- Modal -->
-    <div class="modal fade" id="NewEducationDegreeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade" id="NewDegisnationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <b><h4 class="modal-title dark profile-title" id="myModalLabel">Create Education Degree</h4></b>
+                    <b><h4 class="modal-title dark profile-title" id="myModalLabel">Create Other Skill</h4></b>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
 
                 </div>
 
                 <div class="modal-body">
 
-                    <form action="{{route('manage.educationDegree.insert')}}" method="post">
+                    <form action="{{route('manage.otherSkill.insert')}}" method="post">
                         {{csrf_field()}}
 
                         <div class="form-group">
 
-                            <label for="">Education Level<span style="color: red">*</span></label>
-                            <select name="educationLevel" class="form-control" required id="educationLevel">
-                                <option value="">Select Education Level</option>
-                                    @foreach($educations as $education)
-                                    <option value="{{$education->educationLevelId}}">{{$education->educationLevelName}}</option>
-                                    @endforeach
-                            </select>
+                            <label for="">Skill<span style="color: red">*</span></label>
+
+                            <input class="form-control" name="skillName" required type="text">
 
                         </div>
-                        <div class="form-group">
 
-                            <label for="">Degree<span style="color: red">*</span></label>
-
-                            <input class="form-control" maxlength="255" name="degree" required type="text">
-
-                        </div>
                         <div class="form-group">
                             <label for="">Status</label>
                             <select class="form-control" name="status">
                                 <option value="">Select Status</option>
                                 @foreach(STATUS as $key=>$value)
-                                    <option  value="{{$key}}">{{$value}}</option>
+                                    <option value="{{$key}}">{{$value}}</option>
                                 @endforeach
                             </select>
                         </div>
+
                         <div class="form-group">
 
                             <button type="submit" class="btn btn-success">Submit</button>
@@ -60,19 +51,19 @@
 
 
 
-    <div class="modal" id="editModal">
+    <div class="modal" id="editModalDegisnation">
         <div class="modal-dialog">
             <div class="modal-content">
 
                 <!-- Modal Header -->
                 <div class="modal-header">
-                    <h4 class="modal-title">Edit Degree</h4>
+                    <h4 class="modal-title">Edit Skill</h4>
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <div  id="editModalBody">
+                    <div  id="editModalBodyDegisnation">
 
                     </div>
                 </div>
@@ -100,50 +91,48 @@
 
                 <div class="card-body">
                     <div class="card-header-tabs">
-                        <h4>Manage Education Degree</h4>
+                        <h4>Manage Other Skill</h4>
                     </div>
 
                     <div align="right">
-                        <a onclick="addnewEducation()" href="#"> <button class="btn btn-info">Add New</button></a>
+                        <a onclick="addnewDegisnation()" href="#"> <button class="btn btn-info">Add New</button></a>
                     </div>
                     <br>
 
                     <div class="table table-responsive">
-                    <table id="managecv" class="table table-striped table-bordered" style="width:100%" >
-                        <thead>
-                        <tr>
+                        <table id="designationtable" class="table table-striped table-bordered" style="width:100%" >
+                            <thead>
+                            <tr>
 
 
-                            <th>Education Level Name</th>
-                            <th>Education Degree Name</th>
-                            <th>Status</th>
-                            <th width="30%">Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
+                                <th>Skill</th>
+                                <th>Status</th>
+                                <th width="30%">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
 
-                       @foreach($degree as $d)
-                           <tr>
-                               <td>{{$d->educationLevelName}}</td>
-                               <td>{{$d->degreeName}}</td>
-                               <td>
-                                   @foreach(STATUS as $key=>$value)
-                                       @if($d->status == $key)
-                                           {{$value}}
-                                       @endif
-                                   @endforeach
-                               </td>
-                               <td><button class="btn btn-sm btn-success" data-panel-id="{{$d->degreeId}}" onclick="editDegree(this)">Edit</button>
-                               </td>
+                            @foreach($otherSkill as $d)
+                                <tr>
+                                    <td>{{$d->skillName}}</td>
+                                    <td>
+                                        @foreach(STATUS as $key=>$value)
+                                            @if($d->status == $key)
+                                                {{$value}}
+                                            @endif
+                                        @endforeach
+                                    </td>
+                                    <td width="10%"><button class="btn btn-sm btn-success" data-panel-id="{{$d->id}}" onclick="editDegisnation(this)">Edit</button>
+                                    </td>
 
-                           </tr>
+                                </tr>
 
-                       @endforeach
+                            @endforeach
 
 
-                        </tbody>
+                            </tbody>
 
-                    </table>
+                        </table>
                     </div>
                     <br>
 
@@ -168,28 +157,28 @@
 
     <script>
         $(function () {
-           $('#managecv').DataTable({
-               "ordering": false,
-           });
+            $('#designationtable').DataTable({
+                "ordering": false,
+            });
         });
-        function addnewEducation() {
+        function addnewDegisnation() {
 
 
-            $('#NewEducationDegreeModal').modal({show:true});
+            $('#NewDegisnationModal').modal({show:true});
 
         }
-        function editDegree(x) {
+        function editDegisnation(x) {
             var id=$(x).data('panel-id');
 
             $.ajax({
                 type: 'POST',
-                url: "{!! route('admin.editDegree') !!}",
+                url: "{!! route('admin.editOtherSkill') !!}",
                 cache: false,
                 data: {_token: "{{csrf_token()}}",'id': id},
                 success: function (data) {
 //                    console.log(data);
-                    $('#editModalBody').html(data);
-                    $('#editModal').modal();
+                    $('#editModalBodyDegisnation').html(data);
+                    $('#editModalDegisnation').modal();
                 }
             });
 
