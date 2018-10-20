@@ -8,57 +8,62 @@
             <div style="background-color: #F1F1F1" class="card">
                 <div class="card-body">
 
-                    <form id="regForm" method="post" action="{{route('cv.insertQuesObj')}}">
+                    <form id="regForm" method="post" action="{{route('insert.OthersInfo')}}">
                         <!-- One "tab" for each step in the form: -->
 
                         {{csrf_field()}}
                         <div class="tab">
 
-                            <h2 style="margin-bottom: 40px; text-align: center;">Career and Application Information</h2>
+                            <h2 style="margin-bottom: 40px; text-align: center;">Employee Other Info</h2>
 
 
                             <div class="form-group">
-                                <label for="">Objective<span style="color: red">*</span></label>
-                                <textarea type="text" name="objective" maxlength="200" required rows="2" class="form-control{{ $errors->has('objective') ? ' is-invalid' : '' }}"  id="objective" placeholder="Career Objective">{{ old('objective') }}</textarea>
-                                @if ($errors->has('objective'))
+                                <label for="">Extra Curricular Activities</label>
+                                <textarea type="text" name="extraCurricularActivities" maxlength="200"  rows="2"
+                                          class="form-control{{ $errors->has('extraCurricularActivities') ? ' is-invalid' : '' }}"
+                                          id="objective" placeholder="Extra Curricular Activities">{{ old('extraCurricularActivities') }}</textarea>
+                                @if ($errors->has('extraCurricularActivities'))
 
                                     <span class="">
-                                        <strong>{{ $errors->first('objective') }}</strong>
+                                        <strong>{{ $errors->first('extraCurricularActivities') }}</strong>
                                     </span>
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="">Ques-1: {{CAREER_QUES['Ques1']}}<span style="color: red">*</span></label>
-                                <textarea type="text" name="CareerQues1" maxlength="200" required rows="3" class="form-control {{ $errors->has('CareerQues1') ? ' is-invalid' : '' }}" id="CareerQues1" placeholder="Career Question">{{ old('CareerQues1') }}</textarea>
-                                @if ($errors->has('CareerQues1'))
+                                <label for="">Interests</label>
+                                <textarea type="text" name="interests" maxlength="200"  rows="3"
+                                          class="form-control {{ $errors->has('interests') ? ' is-invalid' : '' }}"
+                                          id="interests" placeholder="Interests">{{ old('interests') }}</textarea>
+                                @if ($errors->has('interests'))
 
                                     <span class="">
-                                        <strong>{{ $errors->first('CareerQues1') }}</strong>
+                                        <strong>{{ $errors->first('interests') }}</strong>
                                     </span>
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="">Ques-2: {{CAREER_QUES['Ques2']}}<span style="color: red">*</span></label>
-                                <textarea type="text" name="CareerQues2" maxlength="200" required rows="3" class="form-control {{ $errors->has('CareerQues2') ? ' is-invalid' : '' }}" id="CareerQues2" placeholder="Career Question">{{ old('CareerQues2') }}</textarea>
-                                @if ($errors->has('CareerQues2'))
+                                <label for="">Award Received</label>
+                                <textarea type="text" name="awardReceived" maxlength="200"  rows="3"
+                                          class="form-control {{ $errors->has('awardReceived') ? ' is-invalid' : '' }}"
+                                          id="awardReceived" placeholder="Award Received">{{ old('awardReceived') }}</textarea>
+                                @if ($errors->has('awardReceived'))
 
                                     <span class="">
-                                        <strong>{{ $errors->first('CareerQues2') }}</strong>
+                                        <strong>{{ $errors->first('awardReceived') }}</strong>
                                     </span>
                                 @endif
                             </div>
+                            <div class="form-group">
+                                <label for="">Research Publication</label>
+                                <textarea type="text" name="researchPublication" maxlength="200"
+                                           rows="3" class="form-control {{ $errors->has('researchPublication') ? ' is-invalid' : '' }}"
+                                          id="researchPublication" placeholder="Research Publication">{{ old('researchPublication') }}</textarea>
+                                @if ($errors->has('researchPublication'))
 
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <label>Current Salary</label>
-                                    <input type="number" min="0" placeholder="current salary" name="currentSalary">
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label>Expected Salary</label>
-                                    <input type="number" min="0" placeholder="expected salary" name="expectedSalary" required>
-                                </div>
-
-
+                                    <span class="">
+                                        <strong>{{ $errors->first('researchPublication') }}</strong>
+                                    </span>
+                                @endif
                             </div>
 
                         </div>

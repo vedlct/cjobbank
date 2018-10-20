@@ -142,7 +142,7 @@ class RegisterController extends Controller
             $userAggrement=new Aggrement();
             $userAggrement->fkuserId=$user->userId;
             $userAggrement->fkaggrementQusId=$r->qesId[$i];
-            $userAggrement->ans=$r->qesans[$i].$r->qesId[$i];
+            $userAggrement->ans=$r->qesans[$i];
             $userAggrement->save();
 
         }

@@ -81,6 +81,15 @@ Route::post('/Candidate-CV-save-Objective-And-Question','QuestionObjectiveContro
 Route::post('/Candidate-CV-Objective-And-Question-Edit', 'QuestionObjectiveController@getQuestionObjectiveEdit')->name('cv.careerEdit');
 Route::post('/Candidate-CV-update-Objective-And-Question','QuestionObjectiveController@updateQuesObj')->name('cv.updateQuesObj');
 
+//Cv Other Info
+Route::get('/Candidate-Cv-others-info','EmployeeOtherInfoController@otherInfo')->name('cv.OthersInfo');
+Route::post('/Candidate-Cv-others-info-insert','EmployeeOtherInfoController@insertOtherInfo')->name('insert.OthersInfo');
+Route::post('/Candidate-Cv-others-info-update','EmployeeOtherInfoController@updateOtherInfo')->name('update.OthersInfo');
+Route::post('/Candidate-Cv-others-info-edit','EmployeeOtherInfoController@editOtherInfo')->name('edit.OthersInfo');
+Route::post('/Manage-Applicant-Question-Answer','Admin\ManageQuestionApplication@manageQuestionAnswer')->name('manage.applicantQuestionAnswer');
+Route::get('/Manage-Applicant-Question-Answer','Admin\ManageQuestionApplication@getManageQuestionAnswer')->name('manage.getApplicantQuestionAnswer');
+
+
 
 
 //Education
@@ -269,7 +278,6 @@ Route::get('manage/other-skill','Admin\SettingsController@otherSkill')->name('ma
 Route::post('manage/other-skill/insert','Admin\SettingsController@insertOtherSkill')->name('manage.otherSkill.insert');
 Route::post('manage/other-skill/editOtherSkill','Admin\SettingsController@editOtherSkill')->name('admin.editOtherSkill');
 Route::post('manage/other-skill/Update/{id}','Admin\SettingsController@updateOtherSkill')->name('manage.otherSkill.update');
-
 
 
 Route::get('/testloop','testController@testloop')->name('test');
