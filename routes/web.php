@@ -121,6 +121,9 @@ Route::post('/deleteJobExperience','JobExperienceController@deleteJobExperience'
 //Skill
 Route::get('/Candidate-CV-Skill','SkillController@index')->name('candidate.skill.index');
 Route::post('/Candidate-CV-Skill/insert','SkillController@insert')->name('candidate.skill.insert');
+Route::post('/Candidate-CV-Skill/Edit','SkillController@edit')->name('candidate.skill.edit');
+Route::post('/Candidate-CV-Skill/Update','SkillController@update')->name('candidate.skill.update');
+Route::post('/Candidate-CV-Skill/Delete','SkillController@delete')->name('candidate.skill.delete');
 
 //Refree
 Route::get('/Candidate-CV-Referee','RefreeController@index')->name('refree.index');

@@ -14,17 +14,8 @@
 
                             <h2 style="margin-bottom: 30px;">Professional Certification </h2>
 
-                            <div class="row">
-                                <div class="form-group">
-                                    <label class="control-label">Has Professional Certification?<span style="color: red" class="required">*</span>:</label>
-                                    <div class="col-md-10">
-                                        <input type="radio" required <?php if ($hasProfCertificate =='1'){?>checked<?php } ?> name="hasProfCertificate" value="1"> Yes&nbsp;&nbsp;
-                                        <input type="radio" required <?php if ($hasProfCertificate =='0'){?>checked<?php } ?> name="hasProfCertificate" value="0"> No&nbsp;&nbsp;
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>
-                            <div style="display: none" id="profCertificateDiv">
+
+                            <div  id="profCertificateDiv">
 
                                 @php($tempHr=0)
                                 @foreach($professional as $val)
@@ -136,7 +127,7 @@
 
                     </form>
                         </div>
-                        </div>
+
 
 
                         <!-- Circles which indicates the steps of the form: -->
@@ -229,25 +220,7 @@
             });
         });
 
-        $("input[name=hasProfCertificate]").click( function () {
 
-            if ($(this).val()=='1'){
-                $('#profCertificateDiv').show();
-            }else {
-                $('#profCertificateDiv').hide();
-            }
-        });
-
-        $(document).ready(function(){
-            if ('<?php echo $hasProfCertificate?>'== '0'){
-
-                $('#profCertificateDiv').hide();
-
-            }else if ('<?php echo $hasProfCertificate?>'== '1') {
-                $('#profCertificateDiv').show();
-
-            }
-        });
 
         $(document).ready(function(){
 

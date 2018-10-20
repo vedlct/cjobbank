@@ -31,6 +31,7 @@ class JobExperienceController extends Controller
         });
     }
    public function index(){
+
        $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
        $experiences=JobExperience::where('fkemployeeId',$employee->employeeId)
            ->leftJoin('organizationtype','organizationtype.organizationTypeId','jobexperience.fkOrganizationType')
