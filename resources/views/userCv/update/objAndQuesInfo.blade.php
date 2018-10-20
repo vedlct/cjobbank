@@ -14,7 +14,7 @@
 
                         <div class="tab">
 
-                            <h2 style="margin-bottom: 30px; text-align:center">Career</h2>
+                            <h2 style="margin-bottom: 30px; text-align:center">Career and Application Information</h2>
 
 
                                 <div id="edit{{$employeeCvQuesObjInfo->id}}" class="row">

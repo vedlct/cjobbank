@@ -8,12 +8,15 @@
                        <div class="card-body">
                            <div class=" form-group ">
                                <label>Personal Mobile</label>&nbsp;
+
                                <input class="form-control" id="personalMobileFilter" onkeypress="return isNumberKey(event)"  name="personalMobile"  type="text">
                            </div>
                            <div class=" form-group ">
-                               <label>Email</label>&nbsp;
+                               <label>Email</label>
                                <input class="form-control" id="emailFilter" name="email"  type="text">
+                               
                            </div>
+
                        </div>
                    </div>
                </div>
