@@ -7,12 +7,12 @@
                    <div class="card">
                        <div class="card-body">
                            <div class=" form-group ">
-                               <label>Personal Mobile</label>&nbsp;<span style="color: red">(Year)</span>
-                               <input class="form-control" id="personalMobile" name="personalMobile" onkeypress="return isNumberKey(event)" type="text">
+                               <label>Personal Mobile</label>&nbsp;
+                               <input class="form-control" id="personalMobileFilter" onkeypress="return isNumberKey(event)"  name="personalMobile"  type="text">
                            </div>
                            <div class=" form-group ">
-                               <label>Email</label>&nbsp;<span style="color: red">(Year)</span>
-                               <input class="form-control" id="Email" name="Email" onkeypress="return isNumberKey(event)" type="text">
+                               <label>Email</label>&nbsp;
+                               <input class="form-control" id="emailFilter" name="email"  type="text">
                            </div>
                        </div>
                    </div>
@@ -52,37 +52,68 @@
         <script src="{{url('public/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
         <script>
             $(document).ready(function () {
-                $('#shoQuesAns').DataTable({
+              var table= $('#shoQuesAns').DataTable({
                     "processing": true,
                     "serverSide": true,
                     "ajax":{
                         "url": "{!! route('manage.applicantQuestionAnswer') !!}",
                         "dataType": "json",
                         "type": "POST",
-                        "data":{ _token: "{{csrf_token()}}"}
+                        data:function (d){
+
+                            d._token="{{csrf_token()}}";
+                            if ($('#personalMobileFilter').val()!=""){
+                                d.personalMobileFilter=$('#personalMobileFilter').val();
+                            }
+                            if ($('#emailFilter').val()!=""){
+                                d.emailFilter=$('#emailFilter').val();
+                            }
+                        },
                     },
                     "columns": [
-                        { "data": "name",name:"name" },
+                        { "data": "full_name",name:"full_name"},
                         { "data": "qus",name:"qus" },
                         { "data": function(data){
-                                if( data.ans == "Y2"){
+                                if( data.ans == "Y"){
                                     return "Yes"
-                                }else if (data.ans == "N2") {
+                                }else if (data.ans == "N") {
                                     return "No"
                                 }
                                 else{
                                     return "Na"
                                 }
 
-
-
                             },
                             "orderable": true, "searchable":true,
                         },
-                    ]
+
+                    ],
+
+            });
+                $("#personalMobileFilter").keyup(function(){
+                    // table.search("").draw(); //just redraw myTableFilter
+                    table.ajax.reload();  //just reload table
+
+
+                });
+                $("#emailFilter").keyup(function(){
+                    // table.search("").draw(); //just redraw myTableFilter
+                    table.ajax.reload();  //just reload table
+
 
                 });
             });
+
+            function isNumberKey(evt)
+            {
+                var charCode = (evt.which) ? evt.which : event.keyCode
+                if (charCode > 31 && (charCode < 48 || charCode > 57))
+                    return false;
+
+                return true;
+            }
+
+
 
         </script>
         @endsection
