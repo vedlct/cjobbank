@@ -67,9 +67,9 @@
                                     <div class="form-group col-md-6">
                                         <label>Percentage of Skill (out of 100)</label>
                                         <div class="slidecontainer">
-                                            <input type="range" min="1" max="100" value="0" class="slider" id="myRange" required>
+                                            <input type="range" min="1" max="100" value="0" class="slider" name="skillPercentage[]" id="myRange" required>
                                             <p>Value: <span id="demo"></span> %</p>
-                                            <input type="hidden" id="skillPercentage" name="skillPercentage[]" class="form-control" required />
+                                            <input type="hidden" id="skillPercentage"  class="form-control" required />
                                         </div>
                                     </div>
 
@@ -196,9 +196,9 @@
                     '<div class="form-group col-md-6"> ' +
                     '<label>Percentage of Skill (out of 100)</label> ' +
                     '<div class="slidecontainer"> ' +
-                    '<input type="range" min="1" max="100" onchange="myRangeChanged('+counter+')" value="0" class="slider" id="myRange'+counter+'" required> ' +
+                    '<input type="range" min="1" max="100" onchange="myRangeChanged('+counter+')" value="0" class="slider" name="skillPercentage[]" id="myRange'+counter+'" required> ' +
                     '<p>Value: <span id="demo'+counter+'"></span> %</p> ' +
-                    '<input type="hidden" id="skillPercentage'+counter+'" name="skillPercentage[]" class="form-control" required /> ' +
+                    '<input type="hidden" id="skillPercentage'+counter+'" name="" class="form-control" required /> ' +
                     '</div> ' +
                     '</div>'+
                     '</div> ' +
