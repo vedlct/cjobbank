@@ -287,5 +287,5 @@ Route::get('/testloop','testController@testloop')->name('test');
 
 
 
-
+Route::get('test','Admin\ManageQuestionApplication@test');
 
