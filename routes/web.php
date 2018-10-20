@@ -109,6 +109,10 @@ Route::post('/editJobExperience','JobExperienceController@editJobExperience')->n
 Route::post('/updateJobExperience','JobExperienceController@updateJobExperience')->name('update.jobExperience');
 Route::post('/deleteJobExperience','JobExperienceController@deleteJobExperience')->name('JobExperience.delete');
 
+//Skill
+Route::get('/Candidate-CV-Skill','SkillController@index')->name('candidate.skill.index');
+Route::post('/Candidate-CV-Skill/insert','SkillController@insert')->name('candidate.skill.insert');
+
 //Refree
 Route::get('/Candidate-CV-Referee','RefreeController@index')->name('refree.index');
 Route::post('/Candidate-CV-Referee','RefreeController@submitRefree')->name('submit.refree');

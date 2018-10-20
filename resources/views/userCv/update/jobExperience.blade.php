@@ -94,7 +94,9 @@
                             <div style="float:right;">
                                 <a href="{{route('candidate.cvTrainingCertificate')}}"><button type="button" id="btnPevious" >Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
-                                <a href="{{route('refree.index')}}"><button type="button" id="nextBtn" >Next</button></a>
+                                {{--<a href="{{route('refree.index')}}"><button type="button" id="nextBtn" >Next</button></a>--}}
+                                <a href="{{route('candidate.skill.index')}}"><button type="button" id="nextBtn" >Next</button></a>
+
                             </div>
                         </div>
                         </form>
