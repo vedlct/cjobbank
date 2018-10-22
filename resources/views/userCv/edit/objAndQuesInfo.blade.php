@@ -37,6 +37,30 @@
                                 @endif
                             </div>
 
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label>Current Salary</label>
+                                <input type="number" min="0" placeholder="current salary" value="{{$employeeCareerInfo->currentSalary}}" name="currentSalary">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label>Expected Salary</label>
+                                <input type="number" min="0" placeholder="expected salary" value="{{$employeeCareerInfo->expectedSalary}}" name="expectedSalary">
+                            </div>
+
+
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label>Possible Joining Date</label>
+                                <input type="text" class="date" placeholder="Possible Joining Date" value="{{$employeeCareerInfo->readyToJoinAfter}}" name="readyToJoinAfter">
+                            </div>
+
+
+
+                        </div>
+
+
                         <div style="overflow:auto;">
                             <div style="float:right;">
 
@@ -50,3 +74,14 @@
                     </form>
 
 </div>
+
+<script type="text/javascript">
+    $(function () {
+        $('.date').datepicker({
+            format: 'yyyy-m-d'
+        });
+    });
+
+
+
+</script>

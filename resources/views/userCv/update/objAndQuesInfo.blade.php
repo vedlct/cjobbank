@@ -44,6 +44,30 @@
 
                                     </div>
 
+
+                                        <div class="form-group col-md-6">
+                                            <label>Current Salary :</label>
+                                            {{$employeeCvQuesObjInfo->currentSalary}}
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Expected Salary :</label>
+                                            {{$employeeCvQuesObjInfo->expectedSalary}}
+                                        </div>
+
+
+
+
+
+                                        <div class="form-group col-md-6">
+                                            <label>Possible Joining Date :</label>
+                                            {{$employeeCvQuesObjInfo->readyToJoinAfter}}
+                                        </div>
+
+
+
+
+
+
                                     <div class="form-group col-md-12" style="overflow:auto;">
                                         <div style="float:right;">
                                             <a href="{{route('candidate.cvPersonalInfo')}}"><button type="button" id="btnPevious">Back</button></a>

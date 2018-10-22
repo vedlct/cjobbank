@@ -126,6 +126,8 @@
                                 {{--<a id="btnPevious" class="btn btn-success" href="{{route('JobExperience.index')}}">Back</a>--}}
                                 <button type="submit" id="submitBtn">Save</button>
 
+                                <a href="{{route('candidate.previousWorkInCB.index')}}"><button type="button" id="btnNext" >Next</button></a>
+
                             </div>
                         </div>
 

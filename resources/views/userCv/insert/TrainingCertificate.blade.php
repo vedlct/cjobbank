@@ -14,26 +14,37 @@
 
                         <div id="" class="tab">
 
-                            <h2 style="margin-bottom: 30px;">Training Certification </h2>
+                            <h2 style="margin-bottom: 30px;text-align: center">Training Certification </h2>
+
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label">Has Training Certification?<span style="color: red" class="required">*</span>:</label>
+                                    <div class="col-md-10">
+                                        <input type="radio" required <?php if ($hasTrainingInfo=='1'){?>checked<?php } ?> name="hasTrainingInfo" value="1"> Yes&nbsp;&nbsp;
+                                        <input type="radio" required <?php if ($hasTrainingInfo=='0'){?>checked<?php } ?> name="hasTrainingInfo" value="0"> No&nbsp;&nbsp;
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display: none" id="TrainCertificateDiv">
                             <div id="TextBoxesGroup">
 
                                 <div class="row">
                                     <div class="form-group col-md-12">
 
                                         <label for="inputEmail4">Name Of The Training<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" name="trainingName[]" id="trainingName" placeholder="training name" required>
+                                        <input type="text" class="form-control" name="trainingName[]" id="trainingName" placeholder="training name" >
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="form-group col-md-8">
                                         <label for="inputEmail4">Venue <span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" name="vanue[]" id="vanue" placeholder="vanue" required>
+                                        <input type="text" class="form-control" name="vanue[]" id="vanue" placeholder="vanue" >
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="inputPassword4">Country<span style="color: red">*</span></label>
                                         {{--<input type="text" class="form-control"  id="inputPassword4" placeholder="">--}}
-                                        <select required class="form-control" id="country" name="countryId[]">
+                                        <select  class="form-control" id="country" name="countryId[]">
                                             <option value="">Select Country</option>
                                             @foreach($countries as $country)
                                                 <option value="{{$country->countryId}}">{{$country->countryName}}</option>
@@ -44,7 +55,7 @@
 
                                     <div class="form-group col-md-4">
                                         <label for="inputPassword4">Start Date<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" required>
+                                        <input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" >
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="inputPassword4">End Date</label>
@@ -53,7 +64,7 @@
 
                                     <div class="form-group col-md-4">
                                         <label for="inputPassword4">Staus<span style="color: red">*</span></label>
-                                        <select required class="form-control"id="trainingCertificateStatus" name="status[]">
+                                        <select  class="form-control"id="trainingCertificateStatus" name="status[]">
 
                                             <option value="">Select Status</option>
                                             @foreach(COMPLETING_STATUS as $key=>$value)
@@ -73,11 +84,15 @@
                             <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
                         </div>
+                        </div>
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
                                 <a href="{{route('candidate.cvProfessionalCertificate')}}"><button type="button" id="btnPevious" >Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
+                                @if($hasTrainingInfo == '1' || $hasTrainingInfo == '0')
+                                <a href="{{route('cv.OthersInfo')}}"><button type="button" id="btnNext" >Next</button></a>
+                                @endif
 
                             </div>
                         </div>
@@ -127,7 +142,30 @@
             //... and adds the "active" class on the current step:
             x[(n+3)].className += " active";
         }
+
+        $("input[name=hasTrainingInfo]").click( function () {
+
+            if ($(this).val()=='1'){
+                $('#TrainCertificateDiv').show();
+            }else {
+                $('#TrainCertificateDiv').hide();
+            }
+        });
+
+        $(document).ready(function(){
+            if ('<?php echo $hasTrainingInfo?>'== '0'){
+
+                $('#TrainCertificateDiv').hide();
+
+            }else if ('<?php echo $hasTrainingInfo?>'== '1'){
+                $('#TrainCertificateDiv').show();
+
+            }
+        });
+
     </script>
+
+
 
 
 

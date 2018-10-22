@@ -44,7 +44,7 @@
             <div class="card">
                 <div style="background-color: #F1F1F1" class="card-body">
 
-                    <h2 style="margin-bottom: 30px;">Other Skill Information</h2>
+
 
 
 
@@ -53,6 +53,8 @@
                         {{csrf_field()}}
 
                         <div id="" class="tab">
+
+                            <h2 style="margin-bottom: 30px; text-align: center">Other Skill Information</h2>
 
                             <div class="row">
                                 <div class="form-group">
@@ -100,9 +102,9 @@
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
-                                <a href="{{route('candidate.cvTrainingCertificate')}}"><button type="button" id="btnPevious" >Back</button></a>
+                                <a href="{{route('cv.OthersInfo')}}"><button type="button" id="btnPevious" >Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
-                                <a href="{{route('refree.index')}}"><button type="button" id="nextBtn" >Next</button></a>
+                                <a href="{{route('JobExperience.index')}}"><button type="button" id="nextBtn" >Next</button></a>
 
                             </div>
                         </div>

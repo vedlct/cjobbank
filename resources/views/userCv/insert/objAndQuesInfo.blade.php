@@ -55,8 +55,18 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Expected Salary</label>
-                                    <input type="number" min="0" placeholder="expected salary" name="expectedSalary" required>
+                                    <input type="number" min="0" placeholder="expected salary" name="expectedSalary">
                                 </div>
+
+
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label>Possible Joining Date</label>
+                                    <input type="text" class="date" placeholder="Possible Joining Date" name="readyToJoinAfter">
+                                </div>
+
 
 
                             </div>
@@ -98,6 +108,13 @@
     </div>
     <!-- end wrapper -->
 
+
+
+
+
+@endsection
+
+@section('foot-js')
     <script>
         var currentTab = 0; // Current tab is set to be the first tab (0)
         fixStepIndicator(currentTab); // Display the crurrent tab
@@ -115,6 +132,14 @@
         }
     </script>
 
+    <script type="text/javascript">
+        $(function () {
+            $('.date').datepicker({
+                format: 'yyyy-m-d'
+            });
+        });
 
 
-@endsection
+
+    </script>
+    @endsection

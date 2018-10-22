@@ -8,48 +8,44 @@
             <div class="card">
                 <div style="background-color: #F1F1F1" class="card-body">
 
-                    <form id="regForm" action="{{route('submit.jobExperience')}}" method="post">
+                    <form id="regForm" action="{{route('candidate.previousWorkInCB.insert')}}" method="post">
                         <!-- One "tab" for each step in the form: -->
                         {{csrf_field()}}
 
                         <div id="" class="tab">
 
-                            <h2 style="margin-bottom: 30px;">Job Experience</h2>
+                            <h2 style="margin-bottom: 30px;">Previous work information in Caritas Bangladesh</h2>
+
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label">Previouly work information in Caritas Bangladesh?<span style="color: red" class="required">*</span>:</label>
+                                    <div class="col-md-10">
+                                        <input type="radio" required <?php if ($hasWorkedInCB=='1'){?>checked<?php } ?> name="hasWorkedInCB" value="1"> Yes&nbsp;&nbsp;
+                                        <input type="radio" required <?php if ($hasWorkedInCB=='0'){?>checked<?php } ?> name="hasWorkedInCB" value="0"> No&nbsp;&nbsp;
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display: none" id="PreviousWorkInCBDiv">
                             <div id="TextBoxesGroup">
 
                                 <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Organization Type<span style="color: red">*</span></label>
-                                        <select required name="organizationType[]" class="form-control" id="organizationType">
-                                            <option selected value="">Select Organization Type</option>
-                                            @foreach($companyType as $natio)
-                                                <option value="{{$natio->organizationTypeId}}">{{$natio->organizationTypeName}}</option>
-                                            @endforeach
-                                        </select>
 
-                                        {{--<input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" required>--}}
-                                    </div>
+
                                     <div class="form-group col-md-12">
-                                        <label for="inputEmail4">Organization Name<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" required>
+                                        <label for="inputEmail4">Designation<span style="color: red">*</span></label>
+                                        <input type="text" class="form-control" name="degisnation[]" id="degisnation" placeholder="designation" >
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputPassword4">Start Date<span style="color: red">*</span></label>
+                                        <input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputPassword4">End Date</label> /
+                                        <input type="checkbox" id="currentlyRunning" name="currentlyRunning[]" value="1">Currenly Running
+                                        <input type="text" class="form-control date" name="endDate[]" id="end" placeholder="date">
+
                                     </div>
 
-                                    <div class="form-group col-md-4">
-                                        <label for="inputEmail4">Designation<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" name="degisnation[]" id="degisnation" placeholder="designation" required>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="inputPassword4">Start Date<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" required>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="inputPassword4">End Date</label>
-                                        <input type="text" class="form-control date" name="endDate[]" id="end" placeholder="date">
-                                    </div>
-                                    <div class="form-group col-md-8">
-                                        <label for="inputPassword4">Address<span style="color: red">*</span> </label>
-                                        <textarea class="form-control" name="address[]" required id="address" placeholder="address"></textarea>
-                                    </div>
                                 </div>
 
 
@@ -59,12 +55,15 @@
                             <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
                         </div>
+                        </div>
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
-                                <a href="{{route('candidate.skill.index')}}"><button type="button" id="btnPevious" >Back</button></a>
+                                <a href="{{route('refree.index')}}"><button type="button" id="btnPevious" >Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
-                                <a href="{{route('refree.index')}}"><button type="button" id="nextBtn" >Next</button></a>
+                                @if($hasWorkedInCB == '1' || $hasWorkedInCB == '0')
+                                <a href="{{route('candidate.membershipInSocialNetwork.index')}}"><button type="button" id="nextBtn" >Next</button></a>
+                                @endif
                             </div>
                         </div>
 
@@ -127,6 +126,26 @@
 //            });
         });
 
+        $("input[name=hasWorkedInCB]").click( function () {
+
+            if ($(this).val()=='1'){
+                $('#PreviousWorkInCBDiv').show();
+            }else {
+                $('#PreviousWorkInCBDiv').hide();
+            }
+        });
+
+        $(document).ready(function(){
+            if ('<?php echo $hasWorkedInCB?>'== '0'){
+
+                $('#PreviousWorkInCBDiv').hide();
+
+            }else if ('<?php echo $hasWorkedInCB?>'== '1'){
+                $('#PreviousWorkInCBDiv').show();
+
+            }
+        });
+
         $(document).ready(function(){
 
             var counter = 1;
@@ -141,36 +160,13 @@
 
                 if (counter == 1 ){
 
-                    var organizationType=$('#organizationType').val();
 
-                    var organization=$('#organization').val();
                     var degisnation=$('#degisnation').val();
                     var start=$('#start').val();
                     var end=$('#end').val();
-                    var address=$('#address').val();
 
 
 
-                    if(organizationType==""){
-
-                        var errorMsg='Please Select organizationType First!!'
-                        validationError(errorMsg)
-                        return false;
-                    }
-
-                    if(organization==""){
-
-                        var errorMsg='Please Type Organization Name First!!'
-                        validationError(errorMsg)
-                        return false;
-                    }
-                    if (organization.length > 100){
-
-                        var errorMsg='Organization Name Should not more than 100 Charecter Length!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
                     if(degisnation==""){
 
                         var errorMsg='Please Type Designation First!!'
@@ -178,9 +174,9 @@
                         return false;
 
                     }
-                    if (degisnation.length > 100){
+                    if (degisnation.length > 255){
 
-                        var errorMsg='Designation Should not more than 100 Charecter Length!!';
+                        var errorMsg='Designation Should not more than 255 Charecter Length!!';
                         validationError(errorMsg);
                         return false;
 
@@ -203,49 +199,30 @@
 
                         }
                     }
+                    else {
+                        if ($("#currentlyRunning").prop('checked') != true){
 
-                    if($.trim(address)==""){
+                            var errorMsg = 'Either End date or Currently Running Should be Selected!!';
+                            validationError(errorMsg);
+                            return false;
 
-                        var errorMsg='Please Type address First!!';
-                        validationError(errorMsg);
-                        return false;
-
+                        }
                     }
+
+
 
 
 
                 }
                 else {
 
-                    var organizationType=$('#organizationType'+(counter-1)).val();
-                    var organization=$('#organization'+(counter-1)).val();
+
                     var degisnation=$('#degisnation'+(counter-1)).val();
                     var start=$('#start'+(counter-1)).val();
                     var end=$('#end'+(counter-1)).val();
-                    var address=$('#address'+(counter-1)).val();
-
-                    if(organizationType==""){
-
-                        var errorMsg='Please Select organizationType First!!'
-                        validationError(errorMsg)
-                        return false;
-                    }
 
 
 
-                    if(organization==""){
-
-                        var errorMsg='Please Type Organization Name First!!'
-                        validationError(errorMsg)
-                        return false;
-                    }
-                    if (organization.length > 100){
-
-                        var errorMsg='Organization Name Should not more than 100 Charecter Length!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
                     if(degisnation==""){
 
                         var errorMsg='Please Type Designation First!!'
@@ -253,9 +230,9 @@
                         return false;
 
                     }
-                    if (degisnation.length > 100){
+                    if (degisnation.length > 255){
 
-                        var errorMsg='Designation Should not more than 100 Charecter Length!!';
+                        var errorMsg='Designation Should not more than 255 Charecter Length!!';
                         validationError(errorMsg);
                         return false;
 
@@ -278,14 +255,16 @@
 
                         }
                     }
+                    else {
+                        if ($("#currentlyRunning"+(counter-1)).prop('checked') != true){
 
-                    if($.trim(address)==""){
+                            var errorMsg = 'Either End date or Currently Running Should be Selected!!';
+                            validationError(errorMsg);
+                            return false;
 
-                        var errorMsg='Please Type address First!!';
-                        validationError(errorMsg);
-                        return false;
-
+                        }
                     }
+
 
 
                 }
@@ -296,39 +275,22 @@
                 var newTextBoxDiv = $(document.createElement('div'))
                     .attr("id", 'TextBoxDiv' + counter).attr("class", 'row');
                 newTextBoxDiv.after().html(
+
                     '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>' +
                     '<div class="row"> ' +
-                        '<div class="form-group col-md-6">'+
-                    '<label for="inputEmail4">Organization Type<span style="color: red">*</span></label>'+
-                    '<select required name="organizationType[]" class="form-control" id="sel1">'+
-                    '<option selected value="">Select Organization Type</option>'+
-                @foreach($companyType as $natio)
-                '<option value="{{$natio->organizationTypeId}}">{{$natio->organizationTypeName}}</option>'+
-                        @endforeach
-                    '</select>'+
-
-                        {{--<input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" required>--}}
-                    '</div>'+
-                    '<div class="form-group col-md-12"> ' +
-                    '<label for="inputEmail4">Organization Name</label> ' +
-                    '<input type="text" class="form-control" name="organization[]" id="organization'+counter+'" placeholder="organization" required> ' +
-                    '</div> ' +
                     '<div class="form-group col-md-4"> ' +
                     '<label for="inputEmail4">Designation</label> ' +
-                    '<input type="text" class="form-control" name="degisnation[]" id="degisnation'+counter+'" placeholder="designation" required> ' +
+                    '<input type="text" class="form-control" name="degisnation[]" id="degisnation'+counter+'" placeholder="designation" > ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
                     '<label for="inputPassword4">Start Date</label> ' +
-                    '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date" required> ' +
+                    '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date"> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
                     '<label for="inputPassword4">End Date</label> ' +
                     '<input type="text" class="form-control date" name="endDate[]" id="end'+counter+'" placeholder="date"> ' +
-                    '</div> ' +
-                    '<div class="form-group col-md-8"> ' +
-                    '<label for="inputPassword4">Address</label> ' +
-                    '<textarea class="form-control" name="address[]" id="address'+counter+'" placeholder="address"></textarea> ' +
-                    '</div> ' +
+                    '/ <input type="checkbox" id="currentlyRunning'+counter+'" name="currentlyRunning[]" value="1">Currenly Running'+
+                '</div> ' +
                     '</div>'
 
                 );
