@@ -151,9 +151,9 @@ Route::post('/deleteRelative','RelativeInCbController@deleteRelative')->name('re
 //Membership in Social Network
 Route::get('/Candidate-CV-Membership-In-Social-Network','MembershipInSocialNetworkController@index')->name('candidate.membershipInSocialNetwork.index');
 Route::post('/Candidate-CV-Membership-In-Social-Network/Add','MembershipInSocialNetworkController@insert')->name('candidate.membershipInSocialNetwork.insert');
-//Route::post('/Candidate-CV-Previous-Work-In-CB/Edit','PreviousWorkInCBController@edit')->name('candidate.previousWorkInCB.edit');
-//Route::post('/Candidate-CV-Previous-Work-In-CB/Update','PreviousWorkInCBController@update')->name('candidate.previousWorkInCB.update');
-//Route::post('/Candidate-CV-Previous-Work-In-CB/Delete','PreviousWorkInCBController@delete')->name('candidate.previousWorkInCB.delete');
+Route::post('/Candidate-CV-Membership-In-Social-Network/Edit','MembershipInSocialNetworkController@edit')->name('candidate.membershipInSocialNetwork.edit');
+Route::post('/Candidate-CV-Membership-In-Social-Network/Update','MembershipInSocialNetworkController@update')->name('candidate.membershipInSocialNetwork.update');
+Route::post('/Candidate-CV-Membership-In-Social-Network/Delete','MembershipInSocialNetworkController@delete')->name('candidate.membershipInSocialNetwork.delete');
 
 
 

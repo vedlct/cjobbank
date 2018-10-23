@@ -46,9 +46,46 @@
                                         <label for="inputPassword4">End Date</label>
                                         <input type="text" class="form-control date" name="endDate[]" id="end" placeholder="date">
                                     </div>
-                                    <div class="form-group col-md-8">
+                                    <div class="form-group col-md-12">
                                         <label for="inputPassword4">Address<span style="color: red">*</span> </label>
                                         <textarea class="form-control" name="address[]" required id="address" placeholder="address"></textarea>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="inputPassword4">Major responsibilities<span style="color: red">*</span> </label>
+                                        <textarea class="form-control" name="majorResponsibilities[]" maxlength="200" required id="majorResponsibilities" placeholder="Major responsibilities"></textarea>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="inputPassword4">Key Achievement<span style="color: red">*</span> </label>
+                                        <textarea class="form-control" name="keyAchivement[]" maxlength="200" required id="keyAchivement" placeholder="Key Achievement"></textarea>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Name of Supervisor<span style="color: red">*</span></label>
+                                        <input type="text" class="form-control" name="supervisorName[]" id="supervisorName" placeholder="Name of Supervisor" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Any reservation contacting your employer?<span style="color: red">*</span></label>
+                                        <select class="form-control" id="reservationContactingEmployer" name="reservationContactingEmployer[]" required>
+                                            <option value="" selected>Select Option</option>
+                                            @foreach(YES_NO as $key=>$value)
+                                                <option value="{{$value}}">{{$key}}</option>
+                                                @endforeach
+                                        </select>&nbsp;
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="inputEmail4">Type of Employment<span style="color: red">*</span></label>
+                                        <select class="form-control" id="employmentType" name="employmentType[]" required>
+                                            <option value="" selected>Select Employment Type</option>
+                                            @foreach(TYPE_OF_EMPLOYMENT as $key=>$value)
+                                                <option value="{{$value}}">{{$key}}</option>
+                                                @endforeach
+                                            <option value="{{OTHERS}}">Others</option>
+                                        </select>&nbsp;
+                                    </div>
+                                    <div style="display: none" id="employmentTypeTextDiv" class="form-group col-md-6">
+                                        <label for="inputEmail4">Write Employment Type<span style="color: red">*</span></label>
+                                        <input type="text" class="form-control" name="employmentTypeText[]" id="employmentTypeText" placeholder="Write Employment Type">
+
                                     </div>
                                 </div>
 
@@ -127,6 +164,8 @@
 //            });
         });
 
+
+
         $(document).ready(function(){
 
             var counter = 1;
@@ -149,6 +188,13 @@
                     var end=$('#end').val();
                     var address=$('#address').val();
 
+                    var majorResponsibilities=$('#majorResponsibilities').val();
+                    var keyAchivement=$('#keyAchivement').val();
+                    var supervisorName=$('#supervisorName').val();
+                    var reservationContactingEmployer=$('#reservationContactingEmployer').val();
+                    var employmentType=$('#employmentType').val();
+                    var employmentTypeText=$('#employmentTypeText').val();
+
 
 
                     if(organizationType==""){
@@ -209,6 +255,72 @@
                         var errorMsg='Please Type address First!!';
                         validationError(errorMsg);
                         return false;
+
+                    }
+
+                    if(majorResponsibilities==""){
+
+                        var errorMsg='Please Type Major Responsibilities First!!';
+                        validationError(errorMsg);
+                        return false;
+                    }
+                    if (majorResponsibilities.length > 200){
+
+                        var errorMsg='Major Responsibilities Should not more than 200 Charecter Length!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if(keyAchivement==""){
+
+                        var errorMsg='Please Type Key Achivement First!!'
+                        validationError(errorMsg)
+                        return false;
+                    }
+                    if (keyAchivement.length > 200){
+
+                        var errorMsg='Key Achivement Should not more than 200 Charecter Length!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if(supervisorName==""){
+
+                        var errorMsg='Please Type Supervisor Name First!!'
+                        validationError(errorMsg)
+                        return false;
+                    }
+                    if (supervisorName.length > 200){
+
+                        var errorMsg='Supervisor Name Should not more than 200 Charecter Length!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+
+                    if(reservationContactingEmployer==""){
+
+                        var errorMsg='Please Select reservation of Contacting Employer First!!'
+                        validationError(errorMsg)
+                        return false;
+                    }
+
+                    if(employmentType==""){
+
+                        var errorMsg='Please Select Employment Type First!!'
+                        validationError(errorMsg)
+                        return false;
+                    }
+                    if (employmentType != ""){
+
+                        if (employmentType == "{{OTHERS}}" && employmentTypeText != "" ){
+
+                            var errorMsg='Please Write Employement Other Text First!!';
+                            validationError(errorMsg);
+                            return false;
+
+                        }
+
 
                     }
 
@@ -224,6 +336,14 @@
                     var end=$('#end'+(counter-1)).val();
                     var address=$('#address'+(counter-1)).val();
 
+                    var majorResponsibilities=$('#majorResponsibilities'+(counter-1)).val();
+                    var keyAchivement=$('#keyAchivement'+(counter-1)).val();
+                    var supervisorName=$('#supervisorName'+(counter-1)).val();
+                    var reservationContactingEmployer=$('#reservationContactingEmployer'+(counter-1)).val();
+                    var employmentType=$('#employmentType'+(counter-1)).val();
+                    var employmentTypeText=$('#employmentTypeText'+(counter-1)).val();
+
+
                     if(organizationType==""){
 
                         var errorMsg='Please Select organizationType First!!'
@@ -284,6 +404,72 @@
                         var errorMsg='Please Type address First!!';
                         validationError(errorMsg);
                         return false;
+
+                    }
+
+                    if(majorResponsibilities==""){
+
+                        var errorMsg='Please Type Major Responsibilities First!!';
+                        validationError(errorMsg);
+                        return false;
+                    }
+                    if (majorResponsibilities.length > 200){
+
+                        var errorMsg='Major Responsibilities Should not more than 200 Charecter Length!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if(keyAchivement==""){
+
+                        var errorMsg='Please Type Key Achivement First!!'
+                        validationError(errorMsg)
+                        return false;
+                    }
+                    if (keyAchivement.length > 200){
+
+                        var errorMsg='Key Achivement Should not more than 200 Charecter Length!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if(supervisorName==""){
+
+                        var errorMsg='Please Type Supervisor Name First!!'
+                        validationError(errorMsg)
+                        return false;
+                    }
+                    if (supervisorName.length > 200){
+
+                        var errorMsg='Supervisor Name Should not more than 200 Charecter Length!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+
+                    if(reservationContactingEmployer==""){
+
+                        var errorMsg='Please Select reservation of Contacting Employer First!!'
+                        validationError(errorMsg)
+                        return false;
+                    }
+
+                    if(employmentType==""){
+
+                        var errorMsg='Please Select Employment Type First!!'
+                        validationError(errorMsg)
+                        return false;
+                    }
+                    if (employmentType != ""){
+
+                        if (employmentType == "{{OTHERS}}" && employmentTypeText != "" ){
+
+                            var errorMsg='Please Write Employement Other Text First!!';
+                            validationError(errorMsg);
+                            return false;
+
+                        }
+
 
                     }
 
@@ -325,10 +511,47 @@
                     '<label for="inputPassword4">End Date</label> ' +
                     '<input type="text" class="form-control date" name="endDate[]" id="end'+counter+'" placeholder="date"> ' +
                     '</div> ' +
-                    '<div class="form-group col-md-8"> ' +
+                    '<div class="form-group col-md-12"> ' +
                     '<label for="inputPassword4">Address</label> ' +
                     '<textarea class="form-control" name="address[]" id="address'+counter+'" placeholder="address"></textarea> ' +
                     '</div> ' +
+                    '<div class="form-group col-md-12">'+
+                    '<label for="inputPassword4">Major responsibilities<span style="color: red">*</span> </label>'+
+                    '<textarea class="form-control" name="majorResponsibilities[]" maxlength="200" required id="majorResponsibilities'+counter+'" placeholder="Major responsibilities"></textarea>'+
+                    '</div>'+
+                    '<div class="form-group col-md-12">'+
+                    '<label for="inputPassword4">Key Achievement<span style="color: red">*</span> </label>'+
+                    '<textarea class="form-control" name="keyAchivement[]" maxlength="200" required id="keyAchivement'+counter+'" placeholder="Key Achievement"></textarea>'+
+                    '</div>'+
+                    '<div class="form-group col-md-6">'+
+                    '<label for="inputEmail4">Name of Supervisor<span style="color: red">*</span></label>'+
+                    '<input type="text" class="form-control" name="supervisorName[]" id="supervisorName'+counter+'" placeholder="Name of Supervisor" required>'+
+                '</div>'+
+                '<div class="form-group col-md-6">'+
+                    '<label for="inputEmail4">Any reservation contacting your employer?<span style="color: red">*</span></label>'+
+                    '<select class="form-control" id="reservationContactingEmployer'+counter+'" name="reservationContactingEmployer[]" required>'+
+                '<option value="" selected>Select Option</option>'+
+                @foreach(YES_NO as $key=>$value)
+                '<option value="{{$value}}">{{$key}}</option>'+
+                        @endforeach
+                    '</select>'+
+                '</div>'+
+
+                '<div class="form-group col-md-6">'+
+                    '<label for="inputEmail4">Type of Employment<span style="color: red">*</span></label>'+
+                    '<select class="form-control" id="employmentType'+counter+'" onchange="employmentTypefunc('+counter+')" name="employmentType[]" required>'+
+                '<option value="" selected>Select Employment Type</option>'+
+                @foreach(TYPE_OF_EMPLOYMENT as $key=>$value)
+                '<option value="{{$value}}">{{$key}}</option>'+
+                        @endforeach
+                    '<option value="{{OTHERS}}">Others</option>'+
+                    '</select>'+
+                '</div>'+
+                '<div style="display: none" id="employmentTypeTextDiv'+counter+'" class="form-group col-md-6">'+
+                    '<label for="inputEmail4">Write Employment Type<span style="color: red">*</span></label>'+
+                    '<input type="text" class="form-control" name="employmentTypeText[]" id="employmentTypeText'+counter+'" placeholder="Write Employment Type">'+
+
+                    '</div>'+
                     '</div>'
 
                 );
@@ -360,6 +583,32 @@
 
 
         });
+
+        $('#employmentType').on('change', function() {
+
+            var employmentType =$('#employmentType').val();
+            if (employmentType == "{{OTHERS}}"){
+
+                $("#employmentTypeTextDiv").show();
+            }else {
+                $("#employmentTypeTextDiv").hide();
+            }
+
+
+        });
+
+        function employmentTypefunc(x) {
+
+            var employmentType =$('#employmentType'+x).val();
+
+            if (employmentType == "{{OTHERS}}"){
+
+                $("#employmentTypeTextDiv"+x).show();
+            }else {
+                $("#employmentTypeTextDiv"+x).hide();
+            }
+
+        }
 
         function validationError(errorMsg){
 

@@ -48,6 +48,9 @@ class JobExperienceController extends Controller
    }
 
    public function submitJobExperience(Request $r){
+
+      // return $r;
+
        $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
 
        for($i=0;$i<count($r->organization);$i++){
@@ -60,8 +63,18 @@ class JobExperienceController extends Controller
            $experience->address=$r->address[$i];
            $experience->fkemployeeId=$employee->employeeId;
            $experience->fkOrganizationType=$r->organizationType[$i];
+
+           $experience->majorResponsibilities=$r->majorResponsibilities[$i];
+           $experience->keyAchivement=$r->keyAchivement[$i];
+           $experience->supervisorName=$r->supervisorName[$i];
+           $experience->reservationContactingEmployer=$r->reservationContactingEmployer[$i];
+
+           $experience->employmentType=$r->employmentType[$i];
+           $experience->employmentTypeText=$r->employmentTypeText[$i];
+
            $experience->save();
        }
+
        Session::flash('message', 'Experience Added Successfully');
 
        return redirect()->route('JobExperience.index');
@@ -85,6 +98,14 @@ class JobExperienceController extends Controller
        $experience->endDate=$r->endDate;
        $experience->address=$r->address;
        $experience->fkOrganizationType=$r->organizationType;
+
+       $experience->majorResponsibilities=$r->majorResponsibilities;
+       $experience->keyAchivement=$r->keyAchivement;
+       $experience->supervisorName=$r->supervisorName;
+       $experience->reservationContactingEmployer=$r->reservationContactingEmployer;
+
+       $experience->employmentType=$r->employmentType;
+       $experience->employmentTypeText=$r->employmentTypeText;
 
        $experience->save();
 

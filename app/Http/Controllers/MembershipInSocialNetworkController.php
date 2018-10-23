@@ -79,48 +79,30 @@ class MembershipInSocialNetworkController extends Controller
 
    public function edit(Request $r){
 
-       $previousWorkInCB=PreviousWorkInCB::findOrFail($r->id);
+       $socialMembership=MembershipInSocialNetwork::findOrFail($r->id);
 
-       return view('userCv.edit.previousWorkInCB',compact('previousWorkInCB'));
+       return view('userCv.edit.SocialMembership',compact('socialMembership'));
    }
 
    public function update(Request $r){
 
-       $preWorkCB=PreviousWorkInCB::findOrFail($r->id);
+       $socialMembership=MembershipInSocialNetwork::findOrFail($r->membershipId);
 
-       $preWorkCB->designation=$r->degisnation;
-       $preWorkCB->startDate=$r->startDate;
+       $socialMembership->networkName=$r->networkName;
+       $socialMembership->membershipType=$r->membershipType;
+       $socialMembership->duration=$r->duration;
 
-       if ($r->currentlyRunning){
-           $preWorkCB->currentlyRunning=$r->currentlyRunning;
-       }else{
-           $preWorkCB->endDate=$r->endDate;
-       }
+       $socialMembership->save();
 
+       Session::flash('message', 'SocialMembership Updated Successfully');
 
-       $preWorkCB->save();
-
-       Session::flash('message', 'Previous Work In CB Updated Successfully');
-
-       return redirect()->route('candidate.previousWorkInCB.index');
+       return redirect()->route('candidate.membershipInSocialNetwork.index');
    }
 
    public function delete(Request $r){
-       PreviousWorkInCB::destroy($r->id);
+       MembershipInSocialNetwork::destroy($r->id);
 
-       $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
 
-       $count=PreviousWorkInCB::where('fkemployeeId',$employee->employeeId)
-           ->count();
-
-       if ($count == 0){
-           $emp=Employee::findOrFail($employee->employeeId);
-
-           $emp->hasWorkedInCB=0;
-           $emp->save();
-
-       }
-
-       Session::flash('message', 'Previous Work In CB Deleted Successfully');
+       Session::flash('message', 'SocialMembership Deleted Successfully');
    }
 }

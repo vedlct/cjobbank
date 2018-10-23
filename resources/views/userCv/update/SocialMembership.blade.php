@@ -30,7 +30,7 @@
 
                                         <div class="form-group col-md-2 ">
                                             <button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$socialMembership->membershipId}})"><i class="fa fa-edit"></i></button>
-                                            <button type="button" class="btn btn-danger btn-sm " onclick="deleteExperience({{$socialMembership->membershipId}})"><i class="fa fa-trash"></i></button>
+                                            <button type="button" class="btn btn-danger btn-sm " onclick="deleteMembership({{$socialMembership->membershipId}})"><i class="fa fa-trash"></i></button>
 
                                         </div>
 
@@ -51,7 +51,7 @@
                                 @php($tempHr++)
                             @endforeach
 
-                            <form  action="{{route('submit.jobExperience')}}" method="post">
+                            <form  action="{{route('candidate.membershipInSocialNetwork.insert')}}" method="post">
                                 <!-- One "tab" for each step in the form: -->
                                 {{csrf_field()}}
                                 <div id="TextBoxesGroup">
@@ -68,9 +68,11 @@
                         <div style="overflow:auto;">
                             <div style="float:right;">
                                 <a href="{{route('candidate.cvTrainingCertificate')}}"><button type="button" id="btnPevious" >Back</button></a>
+
                                 <button type="submit" id="submitBtn">Save</button>
-                                {{--<a href="{{route('refree.index')}}"><button type="button" id="nextBtn" >Next</button></a>--}}
-                                {{--<a href="{{route('refree.index')}}"><button type="button" id="nextBtn" >Next</button></a>--}}
+
+                                <a href="{{route('relativeInCaritas.getRelationInfo')}}"><button type="button" id="nextBtn" >Next</button></a>
+
 
                             </div>
                         </div>
@@ -114,17 +116,20 @@
 
             $.ajax({
                 type: 'POST',
-                url: "{!! route('JobExperience.edit') !!}",
+                url: "{!! route('candidate.membershipInSocialNetwork.edit') !!}",
                 cache: false,
-                data: {_token: "{{csrf_token()}}",'jobExperienceId': x},
+                data: {_token: "{{csrf_token()}}",'id': x},
                 success: function (data) {
 //                    console.log(data);
                     $('#edit'+x).html(data);
+                    $("#addButton").hide();
+                    $("#btnPevious").hide();
+                    $("#nextBtn").hide();
 
                 }
             });
         }
-        function deleteExperience(x){
+        function deleteMembership(x){
             $.confirm({
                 title: 'Delete!',
                 content: 'Are you sure ?',
@@ -132,9 +137,9 @@
                     confirm: function () {
                         $.ajax({
                             type: 'POST',
-                            url: "{!! route('JobExperience.delete') !!}",
+                            url: "{!! route('candidate.membershipInSocialNetwork.delete') !!}",
                             cache: false,
-                            data: {_token: "{{csrf_token()}}",'jobExperienceId': x},
+                            data: {_token: "{{csrf_token()}}",'id': x},
                             success: function (data) {
 //                                console.log(data);
                                 location.reload();
@@ -180,6 +185,7 @@
             var counter = 1;
             $("#removeButton").hide();
             $("#submitBtn").hide();
+
 
 
             $("#addButton").click(function () {
@@ -260,7 +266,7 @@
                     '</div>'+
                     '<div class="form-group col-md-6">'+
                     '<label for="inputPassword4">Duration<span style="color: red">*</span></label>'+
-                    '<input type="text" class="form-control" name="duration[]" id="duration'+counter+'" placeholder="date" required>'+
+                    '<input type="text" class="form-control" name="duration[]" id="duration'+counter+'" placeholder="duration" required>'+
                     '</div>'+
                     '</div>'
 

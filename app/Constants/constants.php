@@ -8,6 +8,20 @@ define('DISABILITY',array(
     "Yes"=>'Y',
     "No"=>'N'
 ));
+define('YES_NO',array(
+    "Yes"=>'Y',
+    "No"=>'N'
+));
+define('TYPE_OF_EMPLOYMENT',array(
+    "Permanent"=>'Permanent',
+    "Temp"=>'Temp',
+    "Casual"=>'Casual',
+    "Provitionary"=>'Provitionary',
+    "Bodli"=>'Bodli',
+    "Seasonal"=>'Seasonal',
+    "Occational"=>'Occational',
+
+));
 define('PASSPORT',array(
     "Yes"=>'Y',
     "No"=>'N'
