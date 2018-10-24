@@ -308,3 +308,9 @@ Route::get('/testloop','testController@testloop')->name('test');
 
 Route::get('test','Admin\ManageQuestionApplication@test');
 
+/*---------------Computer SKill-------------*/
+//Zone
+Route::get('manage/skill','Admin\ComputerSkillController@skill')->name('manage.skill');
+Route::post('manage/skill/insert','Admin\ComputerSkillController@insertSkill')->name('admin.skill.insert');
+Route::post('manage/skill/updateZone/{id}','Admin\ComputerSkillController@updateSkill')->name('admin.skill.update');
+Route::post('manage/skill/editZone','Admin\ComputerSkillController@editSkill')->name('admin.edit.skill');
