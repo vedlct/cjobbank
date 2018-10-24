@@ -14,7 +14,7 @@
 
                         <div id="" class="tab">
 
-                            <h2 style="margin-bottom: 30px;">Professional Certification </h2>
+                            <h2 style="margin-bottom: 30px;text-align: center">Professional Certification </h2>
                             <div class="row">
                             <div class="form-group">
                                 <label class="control-label">Has Professional Certification?<span style="color: red" class="required">*</span>:</label>

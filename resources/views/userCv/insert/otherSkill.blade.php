@@ -44,19 +44,35 @@
             <div class="card">
                 <div style="background-color: #F1F1F1" class="card-body">
 
-                    <form id="regForm" action="{{route('candidate.skill.insert')}}" method="post">
+
+
+
+
+                    <form id="regForm" name="skillForm" action="{{route('candidate.skill.insert')}}"  method="post">
                         <!-- One "tab" for each step in the form: -->
                         {{csrf_field()}}
 
                         <div id="" class="tab">
 
-                            <h2 style="margin-bottom: 30px;">Skill</h2>
+                            <h2 style="margin-bottom: 30px; text-align: center">Other Skill Information</h2>
+
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label">Has Other Skill Information?<span style="color: red" class="required">*</span>:</label>
+                                    <div class="col-md-10">
+                                        <input type="radio" required <?php if ($hasOtherSkill=='1'){?>checked<?php } ?> name="hasOtherSkill" value="1"> Yes&nbsp;&nbsp;
+                                        <input type="radio" required <?php if ($hasOtherSkill=='0'){?>checked<?php } ?> name="hasOtherSkill" value="0"> No&nbsp;&nbsp;
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="display: none" id="otherSkillDiv">
                             <div id="TextBoxesGroup">
 
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Skill<span style="color: red">*</span></label>
-                                        <select required name="skill[]" class="form-control" id="skill">
+                                        <select name="skill[]" class="form-control" id="skill">
                                             <option selected value="">Select Skill Type</option>
                                             @foreach($skills as $skill)
                                                 <option value="{{$skill->id}}">{{$skill->skillName}}</option>
@@ -67,9 +83,9 @@
                                     <div class="form-group col-md-6">
                                         <label>Percentage of Skill (out of 100)</label>
                                         <div class="slidecontainer">
-                                            <input type="range" min="1" max="100" value="0" class="slider" name="skillPercentage[]" id="myRange" required>
+                                            <input type="range" min="1" max="100" value="0" class="slider" name="skillPercentage[]" id="myRange" >
                                             <p>Value: <span id="demo"></span> %</p>
-                                            <input type="hidden" id="skillPercentage"  class="form-control" required />
+                                            {{--<input type="hidden" id="skillPercentage"  class="form-control"  />--}}
                                         </div>
                                     </div>
 
@@ -82,12 +98,13 @@
                             <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
                         </div>
+                        </div>
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
-                                <a href="{{route('candidate.cvTrainingCertificate')}}"><button type="button" id="btnPevious" >Back</button></a>
+                                <a href="{{route('cv.OthersInfo')}}"><button type="button" id="btnPevious" >Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
-                                <a href="{{route('refree.index')}}"><button type="button" id="nextBtn" >Next</button></a>
+                                <a href="{{route('JobExperience.index')}}"><button type="button" id="nextBtn" >Next</button></a>
 
                             </div>
                         </div>
@@ -145,6 +162,26 @@
 
         }
 
+        $("input[name=hasOtherSkill]").click( function () {
+
+            if ($(this).val()=='1'){
+                $('#otherSkillDiv').show();
+            }else {
+                $('#otherSkillDiv').hide();
+            }
+        });
+
+        $(document).ready(function(){
+            if ('<?php echo $hasOtherSkill?>'== '0'){
+
+                $('#otherSkillDiv').hide();
+
+            }else if ('<?php echo $hasOtherSkill?>'== '1'){
+                $('#otherSkillDiv').show();
+
+            }
+        });
+
 
 
     </script>
@@ -178,6 +215,45 @@
 
             $("#addButton").click(function () {
 
+                if (counter == 1 ) {
+
+                    var skill = $('#skill').val();
+                    var myRange = $('#myRange').val();
+
+
+                    if (skill == "") {
+
+                        var errorMsg = 'Please Select a Skill First!!';
+                        validationError(errorMsg);
+                        return false;
+                    }
+                    if (myRange == "") {
+
+                        var errorMsg = 'Please Select Skill Level First!!';
+                        validationError(errorMsg);
+                        return false;
+                    }
+                }else {
+
+                    var skill = $('#skill'+counter).val();
+                    var myRange = $('#myRange'+counter).val();
+
+
+                    if (skill == "") {
+
+                        var errorMsg = 'Please Select a Skill First!!';
+                        validationError(errorMsg);
+                        return false;
+                    }
+                    if (myRange == "") {
+
+                        var errorMsg = 'Please Select Skill Level First!!';
+                        validationError(errorMsg);
+                        return false;
+                    }
+
+                }
+
 
 
                 var newTextBoxDiv = $(document.createElement('div'))
@@ -186,7 +262,7 @@
                     '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>' +
                     '<div class="form-group col-md-6"> ' +
                     '<label for="inputEmail4">Skill<span style="color: red">*</span></label> ' +
-                    '<select required name="skill[]" class="form-control" id="skill"> ' +
+                    '<select required name="skill[]" class="form-control" id="skill'+counter+'"> ' +
                     '<option selected value="">Select Skill Type</option>'+
                 '@foreach($skills as $skill)'+
                 '<option value="{{$skill->id}}">{{$skill->skillName}}</option>'+
@@ -250,6 +326,32 @@
             });
 
         }
+//        function checkSkill() {
+//
+//            var skill = document.skillForm.elements["skill[]"];
+//            var skillLevel = document.skillForm.elements["skillPercentage[]"];
+//
+//            alert(skillLevel.length);
+//
+////            for(i=0;i<skill.length;i++)
+////            {
+////                if (skill[i].value != '' && skillLevel[i].value=='') {
+////                    var errorMsg = 'Please Select a Skill '+ (i + 1)+'First!!';
+////                    validationError(errorMsg);
+////                    return false;
+////                }
+////                if (skill[i].value == '' && skillLevel[i].value != '')
+////                {
+////                    var errorMsg = 'Please Select a Skill Level '+ (i + 1)+'First!!';
+////                    validationError(errorMsg);
+////                    return false;
+////                }
+////            }
+//
+//            return false;
+//
+//
+//        }
 
     </script>
 

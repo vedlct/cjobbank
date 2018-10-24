@@ -2,43 +2,6 @@
 
 @section('content')
 
-    <style>
-        .slidecontainer {
-            width: 100%;
-        }
-
-        .slider {
-            -webkit-appearance: none;
-            width: 100%;
-            height: 15px;
-            border-radius: 5px;
-            /*background: #d3d3d3;*/
-            outline: none;
-            opacity: 0.7;
-            -webkit-transition: .2s;
-            transition: opacity .2s;
-        }
-
-        .slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            background: #4CAF50;
-            cursor: pointer;
-        }
-
-        .slider::-moz-range-thumb {
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            background: #4CAF50;
-            cursor: pointer;
-        }
-
-    </style>
-
     <div class="row ">
 
         <div class="col-12 ">
@@ -50,46 +13,54 @@
 
                         <div id="" class="tab">
 
-                            <h2 style="margin-bottom: 30px;">Other Skill Information</h2>
-
-                            @foreach($empSkills as $empSkill)
-
-                                <div id="edit{{$empSkill->id}}">
+                            <h2 style="margin-bottom: 30px;">Previous work information in Caritas Bangladesh</h2>
+                            @php($tempHr=0)
+                            @foreach($previousWorkInCB as $previousWorkInCB)
+                                @if($tempHr>0)
+                                    <div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>
+                                @endif
+                                <div id="edit{{$previousWorkInCB->id}}">
                                     <div class="row">
-                                        <div class="form-group col-md-4">
+                                        <div class="form-group col-md-10">
 
-                                            <label for="inputEmail4">Name Of Skill :</label>
-                                            {{$empSkill->skillName}}
+                                            <label for="inputEmail4">Designation :</label>
+                                            <label for="inputEmail4">{{$previousWorkInCB->designation}}</label>
                                         </div>
-                                        <div class="form-group col-md-4">
-                                            <label>Percentage of Skill (out of 100) :</label>{{$empSkill->ratiing}}
 
-                                            <div class="slidecontainer">
-                                                <input type="range" min="1" max="100" value="{{$empSkill->ratiing}}" class="slider" name="skillPercentage[]" id="myRange" required>
-
-                                            </div>
-
-
-                                        </div>
                                         <div class="form-group col-md-2 ">
-                                            <button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$empSkill->id}})"><i class="fa fa-edit"></i></button>
-                                            <button type="button" class="btn btn-danger btn-sm " onclick="deleteSkill({{$empSkill->id}})"><i class="fa fa-trash"></i></button>
+                                            <button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$previousWorkInCB->id}})"><i class="fa fa-edit"></i></button>
+                                            <button type="button" class="btn btn-danger btn-sm " onclick="deletePreViousWork({{$previousWorkInCB->id}})"><i class="fa fa-trash"></i></button>
 
                                         </div>
 
                                     </div>
 
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Start Date</label>
+                                            {{$previousWorkInCB->startDate}}
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>End Date</label>
+                                            @if($previousWorkInCB->currentlyRunning=='0')
+                                                {{$previousWorkInCB->endDate}}
+                                            @else
+                                                Currently Running
+                                            @endif
 
 
+                                        </div>
+                                    </div>
 
-
+                                    @php($tempHr++)
 
 
                                 </div>
                             @endforeach
                         </div>
-                        <form action="{{route('candidate.skill.insert')}}" method="post">
+                        <form action="{{route('candidate.previousWorkInCB.insert')}}" method="post">
                             <!-- One "tab" for each step in the form: -->
+                            <input type="hidden" required name="hasWorkedInCB" value="1">&nbsp;
                             {{csrf_field()}}
 
                             <div id="TextBoxesGroup">
@@ -105,7 +76,7 @@
 
                             <div style="overflow:auto;">
                                 <div style="float:right;">
-                                    <a href="{{route('candidate.cvProfessionalCertificate')}}"><button type="button" id="btnPevious" >Back</button></a>
+                                    <a href="{{route('refree.index')}}"><button type="button" id="btnPevious" >Back</button></a>
                                     <button type="submit" id="submitBtn">Save</button>
                                     <a href="{{route('JobExperience.index')}}"><button type="button" id="nextBtn" >Next</button></a>
                                 </div>
@@ -151,31 +122,17 @@
 
             $.ajax({
                 type: 'POST',
-                url: "{!! route('candidate.skill.edit') !!}",
+                url: "{!! route('candidate.previousWorkInCB.edit') !!}",
                 cache: false,
-                data: {_token: "{{csrf_token()}}",'skillId': x},
+                data: {_token: "{{csrf_token()}}",'id': x},
                 success: function (data) {
 
                     $('#edit'+x).html(data);
-                    $("#addButton").hide();
 
                 }
             });
         }
-
-        function myRangeChanged(x){
-
-            var slider = document.getElementById("myRange"+x);
-            var output = document.getElementById("demo"+x);
-            output.innerHTML = slider.value;
-
-            slider.oninput = function() {
-                output.innerHTML = this.value;
-                $("#skillPercentage"+x).val(this.value);
-            }
-
-        }
-        function deleteSkill(x) {
+        function deletePreViousWork(x) {
 
 
             $.confirm({
@@ -185,9 +142,9 @@
                     confirm: function () {
                         $.ajax({
                             type: 'POST',
-                            url: "{!! route('candidate.skill.delete') !!}",
+                            url: "{!! route('candidate.previousWorkInCB.delete') !!}",
                             cache: false,
-                            data: {_token: "{{csrf_token()}}",'skillId': x},
+                            data: {_token: "{{csrf_token()}}",'id': x},
                             success: function (data) {
                                 location.reload();
                             }
@@ -219,7 +176,14 @@
 
 
     <script type="text/javascript">
-
+        $(function () {
+            $('.date').datepicker({
+                format: 'yyyy-m-d'
+            });
+//            $('#end').datepicker({
+//                format: 'yyyy-m-d'
+//            });
+        });
 
         $(document).ready(function(){
 
@@ -236,47 +200,78 @@
 
                 if (counter >1)
                 {
-                    var skill=$('#skill'+(counter-1)).val();
-                    var myRange=$('#myRange'+(counter-1)).val();
+                    var degisnation=$('#degisnation'+(counter-1)).val();
+                    var start=$('#start'+(counter-1)).val();
+                    var end=$('#end'+(counter-1)).val();
 
-                    if(skill==""){
 
-                        var errorMsg='Please Select a Sill Name First!!';
-                        validationError(errorMsg);
-                        return false;
-                    }
 
-                    if(myRange==""){
 
-                        var errorMsg='Please Select a myRange First!!';
-                        validationError(errorMsg);
+                    if(degisnation==""){
+
+                        var errorMsg='Please Type Designation First!!'
+                        validationError(errorMsg)
                         return false;
 
                     }
+                    if (degisnation.length > 255){
+
+                        var errorMsg='Designation Should not more than 255 Charecter Length!!';
+                        validationError(errorMsg);
+                        return false;
+
+                    }
+                    if(start==""){
+
+                        var errorMsg='Please Select a Start Date First!!';
+                        validationError(errorMsg);
+                        return false;
+
+                    }
+                    if(end != "") {
+
+
+                        if (Date.parse(end) < Date.parse(start)) {
+
+                            var errorMsg = 'End date should after Start Date!!';
+                            validationError(errorMsg);
+                            return false;
+
+                        }
+                    }else {
+                        if ($("#currentlyRunning"+(counter-1)).prop('checked') != true){
+
+                            var errorMsg = 'Either End date or Currently Running Should be Selected!!';
+                            validationError(errorMsg);
+                            return false;
+
+                        }
+                    }
+
                 }
+
+
+
+
                 var newTextBoxDiv = $(document.createElement('div'))
                     .attr("id", 'TextBoxDiv' + counter).attr("class", 'row');
                 newTextBoxDiv.after().html(
                     '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>' +
-                    '<div class="form-group col-md-6"> ' +
-                    '<label for="inputEmail4">Skill<span style="color: red">*</span></label> ' +
-                    '<select required name="skill[]" class="form-control" id="skill'+counter+'"> ' +
-                    '<option selected value="">Select Skill Type</option>'+
-                    '@foreach($skills as $skill)'+
-                    '<option value="{{$skill->id}}">{{$skill->skillName}}</option>'+
-                    '@endforeach'+
-                    '</select> ' +
-                    '</div>' +
-                    '<div class="form-group col-md-6"> ' +
-                    '<label>Percentage of Skill (out of 100)</label> ' +
-                    '<div class="slidecontainer"> ' +
-                    '<input type="range" min="1" max="100" onchange="myRangeChanged('+counter+')" value="0" class="slider" name="skillPercentage[]" id="myRange'+counter+'" required> ' +
-                    '<p>Value: <span id="demo'+counter+'"></span> %</p> ' +
-                    '<input type="hidden" id="skillPercentage'+counter+'" name="" class="form-control" required /> ' +
+                    '<div class="row"> ' +
+                    '<div class="form-group col-md-12"> ' +
+                    '<label for="inputEmail4">Designation</label> ' +
+                    '<input type="text" class="form-control" name="degisnation[]" id="degisnation'+counter+'" placeholder="designation" > ' +
                     '</div> ' +
-                    '</div>'+
+                    '<div class="form-group col-md-6"> ' +
+                    '<label for="inputPassword4">Start Date</label> ' +
+                    '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date"> ' +
                     '</div> ' +
-                    '</div>'+
+                    '<div class="form-group col-md-6"> ' +
+                    '<label for="inputPassword4">End Date</label> ' +
+                    '/ <input type="checkbox" id="currentlyRunning'+counter+'" name="currentlyRunning[]" value="1">Currenly Running'+
+                    '<input type="text" class="form-control date" name="endDate[]" id="end'+counter+'" placeholder="date"> ' +
+
+                    '</div> ' +
                     '</div>'
 
                 );
@@ -288,7 +283,9 @@
                     $("#removeButton").show();
                     $("#submitBtn").show();
                 }
-
+                $('.date').datepicker({
+                    format: 'yyyy-m-d'
+                });
             });
 
             $("#removeButton").click(function () {

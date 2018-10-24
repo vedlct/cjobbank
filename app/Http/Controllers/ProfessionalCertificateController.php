@@ -48,7 +48,8 @@ class ProfessionalCertificateController extends Controller
 
 
             return view('userCv.insert.professionalCertificate', compact('hasProfCertificate'));
-        }elseif ($employee->hasProfCertificate == 0){
+        }
+        elseif ($employee->hasProfCertificate == 0){
 
             $hasProfCertificate=0;
 

@@ -86,6 +86,8 @@
                         </div>
                             <form action="{{route('insert.cvTrainingCertificate')}}" method="post">
                                 <!-- One "tab" for each step in the form: -->
+
+                                <input type="hidden" required name="hasTrainingInfo" value="1">
                                 {{csrf_field()}}
 
                             <div id="TextBoxesGroup">

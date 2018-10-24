@@ -86,8 +86,7 @@ Route::get('/Candidate-Cv-others-info','EmployeeOtherInfoController@otherInfo')-
 Route::post('/Candidate-Cv-others-info-insert','EmployeeOtherInfoController@insertOtherInfo')->name('insert.OthersInfo');
 Route::post('/Candidate-Cv-others-info-update','EmployeeOtherInfoController@updateOtherInfo')->name('update.OthersInfo');
 Route::post('/Candidate-Cv-others-info-edit','EmployeeOtherInfoController@editOtherInfo')->name('edit.OthersInfo');
-Route::post('/Manage-Applicant-Question-Answer','Admin\ManageQuestionApplication@manageQuestionAnswer')->name('manage.applicantQuestionAnswer');
-Route::get('/Manage-Applicant-Question-Answer','Admin\ManageQuestionApplication@getManageQuestionAnswer')->name('manage.getApplicantQuestionAnswer');
+
 
 
 
@@ -121,6 +120,9 @@ Route::post('/deleteJobExperience','JobExperienceController@deleteJobExperience'
 //Skill
 Route::get('/Candidate-CV-Skill','SkillController@index')->name('candidate.skill.index');
 Route::post('/Candidate-CV-Skill/insert','SkillController@insert')->name('candidate.skill.insert');
+Route::post('/Candidate-CV-Skill/Edit','SkillController@edit')->name('candidate.skill.edit');
+Route::post('/Candidate-CV-Skill/Update','SkillController@update')->name('candidate.skill.update');
+Route::post('/Candidate-CV-Skill/Delete','SkillController@delete')->name('candidate.skill.delete');
 
 //Refree
 Route::get('/Candidate-CV-Referee','RefreeController@index')->name('refree.index');
@@ -128,6 +130,14 @@ Route::post('/Candidate-CV-Referee','RefreeController@submitRefree')->name('subm
 Route::post('/editRefree','RefreeController@editRefree')->name('refree.edit');
 Route::post('/updateRefree','RefreeController@updateRefree')->name('update.refree');
 Route::post('/deleteRefree','RefreeController@deleteRefree')->name('refree.delete');
+
+//Previous Wourk CB
+Route::get('/Candidate-CV-Previous-Work-In-CB','PreviousWorkInCBController@index')->name('candidate.previousWorkInCB.index');
+Route::post('/Candidate-CV-Previous-Work-In-CB/Add','PreviousWorkInCBController@insert')->name('candidate.previousWorkInCB.insert');
+Route::post('/Candidate-CV-Previous-Work-In-CB/Edit','PreviousWorkInCBController@edit')->name('candidate.previousWorkInCB.edit');
+Route::post('/Candidate-CV-Previous-Work-In-CB/Update','PreviousWorkInCBController@update')->name('candidate.previousWorkInCB.update');
+Route::post('/Candidate-CV-Previous-Work-In-CB/Delete','PreviousWorkInCBController@delete')->name('candidate.previousWorkInCB.delete');
+
 
 //Relation in Caritas
 Route::get('/Candidate-CV-RelativeInCaritas','RelativeInCbController@index')->name('relativeInCaritas.index');
@@ -137,6 +147,13 @@ Route::post('/Candidate-CV-RelativeInCaritasSubmitYesOrNo','RelativeInCbControll
 Route::post('/editRelative','RelativeInCbController@editRelative')->name('relative.edit');
 Route::post('/updateRelative','RelativeInCbController@updateRelative')->name('update.relative');
 Route::post('/deleteRelative','RelativeInCbController@deleteRelative')->name('relative.delete');
+
+//Membership in Social Network
+Route::get('/Candidate-CV-Membership-In-Social-Network','MembershipInSocialNetworkController@index')->name('candidate.membershipInSocialNetwork.index');
+Route::post('/Candidate-CV-Membership-In-Social-Network/Add','MembershipInSocialNetworkController@insert')->name('candidate.membershipInSocialNetwork.insert');
+Route::post('/Candidate-CV-Membership-In-Social-Network/Edit','MembershipInSocialNetworkController@edit')->name('candidate.membershipInSocialNetwork.edit');
+Route::post('/Candidate-CV-Membership-In-Social-Network/Update','MembershipInSocialNetworkController@update')->name('candidate.membershipInSocialNetwork.update');
+Route::post('/Candidate-CV-Membership-In-Social-Network/Delete','MembershipInSocialNetworkController@delete')->name('candidate.membershipInSocialNetwork.delete');
 
 
 
@@ -278,6 +295,10 @@ Route::get('manage/other-skill','Admin\SettingsController@otherSkill')->name('ma
 Route::post('manage/other-skill/insert','Admin\SettingsController@insertOtherSkill')->name('manage.otherSkill.insert');
 Route::post('manage/other-skill/editOtherSkill','Admin\SettingsController@editOtherSkill')->name('admin.editOtherSkill');
 Route::post('manage/other-skill/Update/{id}','Admin\SettingsController@updateOtherSkill')->name('manage.otherSkill.update');
+
+//Question Answer
+Route::post('/Manage-Applicant-Question-Answer','Admin\ManageQuestionApplication@manageQuestionAnswer')->name('manage.applicantQuestionAnswer');
+Route::get('/Manage-Applicant-Question-Answer','Admin\ManageQuestionApplication@getManageQuestionAnswer')->name('manage.getApplicantQuestionAnswer');
 
 
 Route::get('/testloop','testController@testloop')->name('test');

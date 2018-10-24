@@ -58,8 +58,6 @@ class QuestionObjectiveController extends Controller
         $employeeCvQuesObjInfo=QuestionObjective::where('empId','=',$employee)->first();
 
 
-
-
         if ($employeeCvQuesObjInfo){
 
             return view('userCv.update.objAndQuesInfo',compact('employeeCvQuesObjInfo','employee'));
@@ -99,6 +97,11 @@ class QuestionObjectiveController extends Controller
         $employeeCareerInfo->objective=$r->objective;
         $employeeCareerInfo->ques_1=$r->CareerQues1;
         $employeeCareerInfo->ques_2=$r->CareerQues2;
+
+        $employeeCareerInfo->currentSalary=$r->currentSalary;
+        $employeeCareerInfo->expectedSalary=$r->expectedSalary;
+        $employeeCareerInfo->readyToJoinAfter=$r->readyToJoinAfter;
+
         $employeeCareerInfo->empId=$employee;
 
 
@@ -146,6 +149,11 @@ class QuestionObjectiveController extends Controller
         $employeeCareerInfo->objective=$r->objective;
         $employeeCareerInfo->ques_1=$r->CareerQues1;
         $employeeCareerInfo->ques_2=$r->CareerQues2;
+
+
+        $employeeCareerInfo->currentSalary=$r->currentSalary;
+        $employeeCareerInfo->expectedSalary=$r->expectedSalary;
+        $employeeCareerInfo->readyToJoinAfter=$r->readyToJoinAfter;
 
 
         $employeeCareerInfo->save();
