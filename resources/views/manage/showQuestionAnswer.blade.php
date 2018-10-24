@@ -3,24 +3,24 @@
 
        <div class="container-fluid">
            <div class="row">
-               <div class="col-md-2">
-                   <div class="card">
-                       <div class="card-body">
-                           <div class=" form-group ">
-                               <label>Personal Mobile</label>&nbsp;
+               {{--<div class="col-md-2">--}}
+                   {{--<div class="card">--}}
+                       {{--<div class="card-body">--}}
+                           {{--<div class=" form-group ">--}}
+                               {{--<label>Personal Mobile</label>&nbsp;--}}
 
-                               <input class="form-control" id="personalMobileFilter" onkeypress="return isNumberKey(event)"  name="personalMobile"  type="text">
-                           </div>
-                           <div class=" form-group ">
-                               <label>Email</label>
-                               <input class="form-control" id="emailFilter" name="email"  type="text">
-                               
-                           </div>
+                               {{--<input class="form-control" id="personalMobileFilter" onkeypress="return isNumberKey(event)"  name="personalMobile"  type="text">--}}
+                           {{--</div>--}}
+                           {{--<div class=" form-group ">--}}
+                               {{--<label>Email</label>--}}
+                               {{--<input class="form-control" id="emailFilter" name="email"  type="text">--}}
 
-                       </div>
-                   </div>
-               </div>
-               <div class="col-md-10">
+                           {{--</div>--}}
+
+                       {{--</div>--}}
+                   {{--</div>--}}
+               {{--</div>--}}
+               <div class="col-md-12">
                    <div class="card">
                        <div class="card-body">
                            <div class="table table-responsive">
@@ -28,12 +28,11 @@
                                    <thead>
                                    <tr>
                                        <th>Name</th>
+                                       <th>Email</th>
                                        <th>Question</th>
                                        <th>Ans</th>
                                    </tr>
                                    </thead>
-
-
                                </table>
                            </div>
                        </div>
@@ -65,16 +64,17 @@
                         data:function (d){
 
                             d._token="{{csrf_token()}}";
-                            if ($('#personalMobileFilter').val()!=""){
-                                d.personalMobileFilter=$('#personalMobileFilter').val();
-                            }
-                            if ($('#emailFilter').val()!=""){
-                                d.emailFilter=$('#emailFilter').val();
-                            }
+                            // if ($('#personalMobileFilter').val()!=""){
+                            //     d.personalMobileFilter=$('#personalMobileFilter').val();
+                            // }
+                            // if ($('#emailFilter').val()!=""){
+                            //     d.emailFilter=$('#emailFilter').val();
+                            // }
                         },
                     },
                     "columns": [
-                        { "data": "full_name",name:"full_name"},
+                        { "data": "name",name:"name"},
+                        { "data": "email",name:"email"},
                         { "data": "qus",name:"qus" },
                         { "data": function(data){
                                 if( data.ans == "Y"){
@@ -93,18 +93,18 @@
                     ],
 
             });
-                $("#personalMobileFilter").keyup(function(){
-                    // table.search("").draw(); //just redraw myTableFilter
-                    table.ajax.reload();  //just reload table
-
-
-                });
-                $("#emailFilter").keyup(function(){
-                    // table.search("").draw(); //just redraw myTableFilter
-                    table.ajax.reload();  //just reload table
-
-
-                });
+                // $("#personalMobileFilter").keyup(function(){
+                //     // table.search("").draw(); //just redraw myTableFilter
+                //     table.ajax.reload();  //just reload table
+                //
+                //
+                // });
+                // $("#emailFilter").keyup(function(){
+                //     // table.search("").draw(); //just redraw myTableFilter
+                //     table.ajax.reload();  //just reload table
+                //
+                //
+                // });
             });
 
             function isNumberKey(evt)
