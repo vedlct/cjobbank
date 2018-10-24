@@ -15,17 +15,19 @@ class ManageQuestionApplication extends Controller
 {
     public function manageQuestionAnswer(Request $request){
 
-        $aggrements = Aggrement::select('aggrement.*','agreementqus.*','employee.email','employee.personalMobile',DB::raw('CONCAT_WS(" ",employee.firstName,employee.lastName) AS full_name'))
+        $aggrements = Aggrement::select('agreementqus.qus','user.email','user.name'
+//            DB::raw('CONCAT_WS(" ",employee.firstName,employee.lastName) AS full_name')
+        )
             ->leftJoin('agreementqus','agreementqus.agreementQusId','=','aggrement.fkaggrementQusId')
-            ->leftJoin('user','user.userId','=','aggrement.fkUserId')
-            ->leftJoin('employee','employee.fkuserId','=','user.userId');
+            ->leftJoin('user','user.userId','=','aggrement.fkUserId');
+//            ->leftJoin('employee','employee.fkuserId','=','user.userId');
 
-        if ($request->personalMobileFilter){
-            $aggrements= $aggrements->where('employee.personalMobile','=',$request->personalMobileFilter);
-        }
-        if ($request->emailFilter){
-            $aggrements= $aggrements->where('employee.email',$request->emailFilter);
-        }
+//        if ($request->personalMobileFilter){
+//            $aggrements= $aggrements->where('employee.personalMobile','=',$request->personalMobileFilter);
+//        }
+//        if ($request->emailFilter){
+//            $aggrements= $aggrements->where('employee.email',$request->emailFilter);
+//        }
         $aggrements=$aggrements->get();
 
         return DataTables::of($aggrements)->make(true);
@@ -33,11 +35,10 @@ class ManageQuestionApplication extends Controller
     }
     public function test(){
 
-        $aggrements = Aggrement::select('aggrement.*','agreementqus.*','employee.email','employee.personalMobile',DB::raw('CONCAT_WS(" ",employee.firstName,employee.lastName) AS full_name'))
+        $aggrements = Aggrement::select('agreementqus.qus','employee.email','employee.personalMobile',DB::raw('CONCAT_WS(" ",employee.firstName,employee.lastName) AS full_name'))
             ->leftJoin('agreementqus','agreementqus.agreementQusId','=','aggrement.fkaggrementQusId')
             ->leftJoin('user','user.userId','=','aggrement.fkUserId')
             ->leftJoin('employee','employee.fkuserId','=','user.userId');
-        $aggrements= $aggrements->where('employee.personalMobile','017');
 
 
         return $aggrements=$aggrements->toSql();
