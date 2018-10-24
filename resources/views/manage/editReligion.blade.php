@@ -3,7 +3,7 @@
 
     <div class="form-group">
         <label for="">Religion</label>
-        <input type="text" class="form-control" value="{{$editReligion->religionName}}" placeholder="degree" name="religionName" required>
+        <input type="text" class="form-control" maxlength="25" value="{{$editReligion->religionName}}" placeholder="religionName" name="religionName" required>
     </div>
 
     <div class="form-group">

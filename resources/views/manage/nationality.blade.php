@@ -31,14 +31,14 @@
 
                         <label for="">Nationality<span style="color: red">*</span></label>
 
-                        <input class="form-control" name="nationality" required type="text">
+                        <input class="form-control" name="nationality" maxlength="50" required type="text">
 
                     </div>
                     <div class="form-group">
 
                         <label for="">Country<span style="color: red">*</span></label>
 
-                        <input class="form-control" name="country" required type="text">
+                        <input class="form-control" name="country" maxlength="50"required type="text">
 
                     </div>
                     <div class="form-group">

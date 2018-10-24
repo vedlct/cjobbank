@@ -105,6 +105,16 @@
 
                     </select>
                 </div>
+                    <div class=" form-group ">
+                        <label>Major</label>
+                        <select id="educationMajorFilter" name="educationMajorFilter" class="form-control">
+                            <option value="">Select a Major</option>
+                            {{--@foreach($allEducationMajor as $eduMajor)--}}
+                            {{--<option value="{{$eduMajor->educationMajorId}}">{{$eduMajor->educationMajorName}}</option>--}}
+                            {{--@endforeach--}}
+
+                        </select>
+                    </div>
                 <div class=" form-group ">
                     <label>Status of completion</label>
                     <select id="educationCompletingFilter" name="educationCompletingFilter" class="form-control">
@@ -112,16 +122,6 @@
                         @foreach(COMPLETING_STATUS as $key=>$value)
                             <option value="{{$value}}">{{$key}}</option>
                         @endforeach
-
-                    </select>
-                </div>
-                <div class=" form-group ">
-                    <label>Major</label>
-                    <select id="educationMajorFilter" name="educationMajorFilter" class="form-control">
-                        <option value="">Select a Major</option>
-                        {{--@foreach($allEducationMajor as $eduMajor)--}}
-                            {{--<option value="{{$eduMajor->educationMajorId}}">{{$eduMajor->educationMajorName}}</option>--}}
-                        {{--@endforeach--}}
 
                     </select>
                 </div>
@@ -961,6 +961,8 @@
                 data:{_token:"{{csrf_token()}}",id:this.value},
                 cache: false,
                 success:function(data) {
+
+                   // console.log(data);
                     document.getElementById("educationMajorFilter").innerHTML = data;
                     $('#educationMajorFilter').css("background-color", "#FFF").css('color', 'black');
 
@@ -968,6 +970,21 @@
             });
 
         });
+
+        $("#educationMajorFilter").one('focus', function (){
+
+                if ($('#educationLvlFilter').val()=="") {
+
+                    var errorMsg = 'Please Select Education Qualification First!!';
+                    validationError(errorMsg);
+                    return false;
+
+                }
+
+
+
+            });
+        
 
         function isNumberKey(evt)
         {

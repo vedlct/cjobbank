@@ -3,7 +3,7 @@
 
     <div class="form-group">
         <label for="">Board</label>
-        <input type="text" class="form-control" value="{{$editBoard->boardName}}" placeholder="Board" name="board" required>
+        <input type="text" maxlength="50" class="form-control" value="{{$editBoard->boardName}}" placeholder="Board" name="board" required>
     </div>
 
     <div class="form-group">

@@ -233,9 +233,22 @@
                             </div>
 
                             <div class="row">
+
                                 <div class="form-group col-md-6">
-                                    <label for="">Personal Mobile<span style="color: red">*</span></label>
-                                    <input type="text" name="personalMobile" class="form-control {{ $errors->has('personalMobile') ? ' is-invalid' : '' }}" value="{{ old('personalMobile') }}" id="" placeholder="Personal Mobile Number">
+                                    <label for="">Telephone No.</label>
+                                    <input type="text"  maxlength="20" name="telephone" class="form-control {{ $errors->has('telephone') ? ' is-invalid' : '' }}" value="{{ old('telephone') }}" id="" placeholder="Telephone number">
+                                    @if ($errors->has('telephone'))
+
+                                        <span class="">
+                                        <strong>{{ $errors->first('telephone') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+
+
+                                <div class="form-group col-md-6">
+                                    <label for="">Personal phone number<span style="color: red">*</span></label>
+                                    <input type="text" maxlength="20" name="personalMobile" class="form-control {{ $errors->has('personalMobile') ? ' is-invalid' : '' }}" value="{{ old('personalMobile') }}" id="" placeholder="Personal Mobile Number">
                                     @if ($errors->has('personalMobile'))
 
                                         <span class="">
@@ -245,22 +258,27 @@
                                 </div>
 
                                 <div class="form-group col-md-6">
-                                    <label for="">Telephone No.</label>
-                                    <input type="text"  name="telephone" class="form-control {{ $errors->has('telephone') ? ' is-invalid' : '' }}" value="{{ old('telephone') }}" id="" placeholder="Telephone number">
-                                    @if ($errors->has('telephone'))
+                                    <label for="">Alternative phone no</label>
+                                    <input  type="text" maxlength="20" name="alternativePhoneNo" class="form-control {{ $errors->has('alternativePhoneNo') ? ' is-invalid' : '' }}" value="{{ old('alternativePhoneNo') }}" id="" placeholder="">
+                                    @if ($errors->has('alternativePhoneNo'))
 
                                         <span class="">
-                                        <strong>{{ $errors->first('telephone') }}</strong>
+                                        <strong>{{ $errors->first('alternativePhoneNo') }}</strong>
                                     </span>
                                     @endif
                                 </div>
+
+
+
+
+
 
                             </div>
 
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="">Home Telephone</label>
-                                    <input type="text" name="homeTelephone"  class="form-control {{ $errors->has('homeTelephone') ? ' is-invalid' : '' }}" value="{{ old('homeTelephone') }}" id="" placeholder="Home Telephone Number">
+                                    <input type="text" name="homeTelephone" maxlength="20" class="form-control {{ $errors->has('homeTelephone') ? ' is-invalid' : '' }}" value="{{ old('homeTelephone') }}" id="" placeholder="Home Telephone Number">
                                     @if ($errors->has('homeTelephone'))
 
                                         <span class="">
@@ -270,7 +288,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="">Office Telephone</label>
-                                    <input type="text"  name="officeTelephone" class="form-control {{ $errors->has('officeTelephone') ? ' is-invalid' : '' }}" value="{{ old('officeTelephone') }}" id="" placeholder="Office Telephone Number">
+                                    <input type="text" maxlength="20" name="officeTelephone" class="form-control {{ $errors->has('officeTelephone') ? ' is-invalid' : '' }}" value="{{ old('officeTelephone') }}" id="" placeholder="Office Telephone Number">
                                     @if ($errors->has('officeTelephone'))
 
                                         <span class="">

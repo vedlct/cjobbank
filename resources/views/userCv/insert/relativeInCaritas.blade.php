@@ -25,7 +25,7 @@
                                 <form action="{{route('submit.relativeYesOrNo')}}" method="post">
                                     {{csrf_field()}}
                                 <div class="row form-group">
-                                <label>Do You Have Relative in Caritas BD ?</label>
+                                <label>Do you have any relatives working in Caritas Bangladesh ?</label>
                                 <input onclick="myradio()" @if($relativeInCB->relativeInCB =='1') checked @endif class="form-control" type="radio" value="1" name="relativeincb" required> YES
                                 <input onclick="myradio()" @if($relativeInCB->relativeInCB =='0') checked @endif class="form-control" type="radio" value="0" name="relativeincb" required> NO
                                 </div>

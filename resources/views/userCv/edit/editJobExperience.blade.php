@@ -3,8 +3,6 @@
     {{csrf_field()}}
     <input type="hidden" name="jobExperienceId" value="{{$experience->jobExperienceId}}">
 
-
-
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">Organization Type<span style="color: red">*</span></label>
@@ -22,10 +20,7 @@
                     <label for="inputEmail4">Organization Name<span style="color: red">*</span></label>
                     <input type="text" class="form-control" name="organization" value="{{$experience->organization}}" id="organization" placeholder="organization" required>
                 </div>
-                {{--<div class="form-group col-md-2 ">--}}
-                    {{--<button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$experience->jobExperienceId}})"><i class="fa fa-edit"></i></button>--}}
-                    {{--<button type="button" class="btn btn-danger btn-sm " onclick="deleteExperience({{$experience->jobExperienceId}})"><i class="fa fa-trash"></i></button>--}}
-                {{--</div>--}}
+
                     <div class="form-group col-md-4">
                     <label for="inputEmail4">Designation<span style="color: red">*</span></label>
                     <input type="text" class="form-control" name="degisnation" value="{{$experience->degisnation}}"  id="degisnation" placeholder="designation" required>
@@ -67,23 +62,24 @@
 
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">Type of Employment<span style="color: red">*</span></label>
-                    <select class="form-control" id="employmentType"  name="employmentType" required>
+                    <select class="form-control" id="employmentType1"  name="employmentType" required>
                         <option value="" selected>Select Employment Type</option>
                         @foreach(TYPE_OF_EMPLOYMENT as $key=>$value)
                             <option @if($experience->employmentType == $value)selected @endif value="{{$value}}">{{$key}}</option>
                         @endforeach
-                        <option @if($experience->employmentType != $value) selected @endif value="{{OTHERS}}">Others</option>
+                        <option @if($experience->employmentType == OTHERS)selected @endif value="{{OTHERS}}">Others</option>
                     </select>&nbsp;
                 </div>
-                @if($experience->employmentType == OTHERS)
-                <div  id="employmentTypeTextDiv" class="form-group col-md-6">
+
+                <div @if($experience->employmentType != OTHERS) style="display: none" @endif id="employmentTypeTextDiv" class="form-group col-md-6">
                     <label for="inputEmail4">Write Employment Type<span style="color: red">*</span></label>
                     <input type="text" class="form-control" value="{{$experience->employmentTypeText}}" name="employmentTypeText" id="employmentTypeText" placeholder="Write Employment Type">
 
                 </div>
-                @endif
+
 
                 <div class="form-group col-md-12">
+                    <a class="btn btn-danger pull-right" href="{{route('JobExperience.index')}}">Cancel</a>
                     <button  class="btn btn-info pull-right">Update</button>
                 </div>
             </div>
@@ -93,7 +89,7 @@
     </form>
 
 <meta name="csrf-token" content="{{ csrf_token() }}" />
-@section('foot-js')
+
 <script>
     $.ajaxSetup({
         headers: {
@@ -106,9 +102,9 @@
     });
 
 
-    $('#employmentType').on('change', function() {
+    $('#employmentType1').on('change', function() {
 
-        var employmentType =$('#employmentType').val();
+        var employmentType =$('#employmentType1').val();
 
         if (employmentType == "{{OTHERS}}"){
 
@@ -287,4 +283,3 @@
 
     }
 </script>
-    @endsection

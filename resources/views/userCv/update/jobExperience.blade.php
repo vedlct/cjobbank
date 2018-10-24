@@ -179,6 +179,7 @@
                 success: function (data) {
 //                    console.log(data);
                     $('#edit'+x).html(data);
+                    $("#addButton").hide();
 
                 }
             });

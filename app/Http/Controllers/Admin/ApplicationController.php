@@ -383,9 +383,13 @@ class ApplicationController extends Controller
 
     public function showAllMajorForEducation(Request $r)
     {
-        $major=Degree::select('educationMajorId','educationMajorName')
+         $major=Degree::select('educationMajorId','educationMajorName')
             ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'degree.educationLevelId')
-            ->where('degree.educationLevelId', '=',$r->id)->where('degree.status',1)->where('educationmajor.status',1)->get();
+            ->where('degree.educationLevelId', '=',$r->id)
+            ->where('degree.status',1)
+            ->where('educationmajor.status',1)
+            ->groupBy('educationMajorId')
+            ->get();
 
         if ($major == null) {
             echo "<option value='' selected>Select Major</option>";

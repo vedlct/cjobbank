@@ -21,7 +21,7 @@
 
                             <label for="">OrganizationType<span style="color: red">*</span></label>
 
-                            <input class="form-control" name="typeName" required type="text">
+                            <input class="form-control" maxlength="50" name="typeName" required type="text">
 
                         </div>
                         <div class="form-group">

@@ -21,7 +21,7 @@
 
                             <label for="">Board<span style="color: red">*</span></label>
 
-                            <input class="form-control" name="board" required type="text">
+                            <input class="form-control" maxlength="50" name="board" required type="text">
 
                         </div>
 
