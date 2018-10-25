@@ -125,6 +125,14 @@ Route::post('/Candidate-CV-Skill/Edit','SkillController@edit')->name('candidate.
 Route::post('/Candidate-CV-Skill/Update','SkillController@update')->name('candidate.skill.update');
 Route::post('/Candidate-CV-Skill/Delete','SkillController@delete')->name('candidate.skill.delete');
 
+
+//Computer-Skill
+Route::get('/Candidate-CV-Computer-Skill','ComputerSkillController@index')->name('candidate.computerSkill.index');
+Route::post('/Candidate-CV-Computer-Skill','ComputerSkillController@insert')->name('candidate.computerSkill.submit');
+
+
+
+
 //Refree
 Route::get('/Candidate-CV-Referee','RefreeController@index')->name('refree.index');
 Route::post('/Candidate-CV-Referee','RefreeController@submitRefree')->name('submit.refree');

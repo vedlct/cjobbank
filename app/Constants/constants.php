@@ -84,6 +84,12 @@ define('STATUS',array(
 ));
 define('OTHERS',"others");
 
+//ComputerSkillAchievement
+define('ComputerSkillAchievement',array(
+    "General"=>'1',
+    "Advance"=>'2'
+));
+
 
 
 
