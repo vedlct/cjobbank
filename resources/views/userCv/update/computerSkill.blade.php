@@ -8,83 +8,62 @@
             <div class="card">
                 <div style="background-color: #F1F1F1" class="card-body">
 
-                    <form id="regForm" action="{{route('candidate.computerSkill.submit')}}" method="post">
-                        <!-- One "tab" for each step in the form: -->
-                        {{csrf_field()}}
 
-                        <div id="" class="tab">
 
-                            <h2 style="margin-bottom: 30px;">Computer-Skill</h2>
+                    <div id="regForm" class="tab">
+                        <h2 style="margin-bottom: 30px;">Computer-Skill</h2>
 
                             @foreach($empComputerSkills as $skills)
-                                <div class="row">
+                                <div id="edit{{$skills->id}}">
+                                <div id="" class="row">
                                     <div class="form-group col-md-5">
-                                        <label for="inputEmail4">Skill<span style="color: red">*</span></label>
-                                        <select name="computerSkillId" id="" class="form-control" required>
-                                            <option value="">Select Skill</option>
+                                        <label for="inputEmail4">Skill</label>
+
+
                                             @foreach($computerSkills as $skill)
-                                                <option value="{{$skill->id}}" @if($skill->id==$skills->computerSkillId) selected @endif>{{$skill->computerSkillName}}</option>
+                                            @if($skill->id==$skills->computerSkillId)
+                                                {{$skill->computerSkillName}}
+                                            @endif
+
                                             @endforeach
-                                        </select>
+
                                     </div>
 
 
                                     <div class="form-group col-md-5">
 
-                                        <label for="inputEmail4">Skill-Level<span style="color: red">*</span></label>
-                                        <select name="SkillAchievement[]" id="" class="form-control" required>
-                                            <option value="">Select Level</option>
-                                            @foreach(ComputerSkillAchievement as $key=>$value)
-                                                <option value="{{$value}}" @if($value==$skills->SkillAchievement) selected @endif>{{$key}}</option>
-                                            @endforeach
+                                        <label for="inputEmail4">Skill-Level</label>
 
-                                        </select>
+                                            @foreach(ComputerSkillAchievement as $key=>$value)
+                                             @if($value==$skills->SkillAchievement)
+                                            {{$key}}
+                                            @endif
+                                                    @endforeach
+
 
                                     </div>
                                     <div class="form-group col-md-2">
 
-                                        <button class="btn btn-info btn-sm"><i class="fa fa-edit"></i></button>
+                                        <button class="btn btn-info btn-sm" onclick="editInfo({{$skills->id}})"><i class="fa fa-edit"></i></button>
+                                        <button type="button" class="btn btn-danger btn-sm " onclick="deleteSkill({{$skills->id}})"><i class="fa fa-trash"></i></button>
+
 
                                     </div>
 
 
 
                                 </div>
-
+                                </div>
+                                <hr>
                             @endforeach
+
+                                <form id="" action="{{route('candidate.computerSkill.submit')}}" method="post">
+                                    <!-- One "tab" for each step in the form: -->
+                                    {{csrf_field()}}
 
                             <div id="TextBoxesGroup">
 
-                                <div class="row">
 
-                                    <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Skill<span style="color: red">*</span></label>
-                                        <select name="computerSkillId[]" id="" class="form-control" required>
-                                            <option value="">Select Skill</option>
-                                            @foreach($computerSkills as $skill)
-                                                <option value="{{$skill->id}}">{{$skill->computerSkillName}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-
-                                    <div class="form-group col-md-6">
-
-                                        <label for="inputEmail4">Skill-Level<span style="color: red">*</span></label>
-                                        <select name="SkillAchievement[]" id="" class="form-control" required>
-                                            <option value="">Select Level</option>
-                                            @foreach(ComputerSkillAchievement as $key=>$value)
-                                                <option value="{{$value}}">{{$key}}</option>
-                                            @endforeach
-
-                                        </select>
-
-                                    </div>
-
-
-
-
-                                </div>
 
 
                             </div>
@@ -92,18 +71,19 @@
                             <button type="button" id="addButton" class="btn btn-success">Add More</button>
                             <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
-                        </div>
+
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
                                 <a href="{{route('JobExperience.index')}}"><button type="button" id="btnPevious" >Back</button></a>
                                 {{--<a id="btnPevious" class="btn btn-success" href="{{route('JobExperience.index')}}">Back</a>--}}
-                                <button type="submit" id="submitBtn">Save</button>
+                                <button type="submit" id="submitBtn1">Save</button>
 
                                 <a href="{{route('candidate.previousWorkInCB.index')}}"><button type="button" id="btnNext" >Next</button></a>
 
                             </div>
                         </div>
+                    </form>
 
 
 
@@ -118,7 +98,8 @@
                             <span class="step"></span>
                         </div>
 
-                    </form>
+
+                    </div>
 
                 </div>
             </div>
@@ -252,6 +233,73 @@
                 }
             });
 
+        }
+
+
+
+        function deleteSkill(x) {
+
+            $.confirm({
+                title: 'Confirm!',
+                content: 'Are you sure To delete this Computer Skill?',
+                icon: 'fa fa-warning',
+                type: 'red',
+                typeAnimated: true,
+                buttons: {
+                    tryAgain: {
+                        text: 'Yes',
+                        btnClass: 'btn-red',
+                        action: function(){
+
+                            $.ajax({
+                                type: "POST",
+                                url: '{{route('candidate.computerSkill.delete')}}',
+                                data: {_token:"{{csrf_token()}}",id: x},
+                                success: function (data) {
+                                    $.alert({
+                                        title: 'Success!',
+                                        type: 'green',
+                                        content: 'Computer Skill Deleted successfully',
+                                        buttons: {
+                                            tryAgain: {
+                                                text: 'Ok',
+                                                btnClass: 'btn-green',
+                                                action: function () {
+                                                    location.reload();
+                                                }
+                                            }
+                                        }
+                                    });
+                                },
+                            });
+                        }
+                    },
+                    No: function () {
+                    },
+                }
+            });
+
+
+
+        }
+
+        function editInfo(x){
+
+            $.ajax({
+                type: 'POST',
+                url: "{!! route('candidate.computerSkill.edit') !!}",
+                cache: false,
+                data: {_token: "{{csrf_token()}}",'id': x},
+                success: function (data) {
+//                    console.log(data);
+                    $('#edit'+x).html(data);
+                    $("#addButton").hide();
+                    $("#btnPevious").hide();
+                    $("#btnNext").hide();
+                    $("#submitBtn1").hide();
+
+                }
+            });
         }
 
     </script>
