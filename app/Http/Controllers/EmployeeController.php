@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 
 use App\Education;
 use App\Employee;
+use App\EmployeeComputerSkill;
+use App\EmpOtherSkill;
 use App\Ethnicity;
 use App\Jobapply;
 use App\JobExperience;
@@ -110,19 +112,33 @@ class EmployeeController extends Controller
 
                 $personalInfo = Employee::select('firstName', 'lastName',
                     'fathersName', 'mothersName', 'gender', 'personalMobile',
-                    'dateOfBirth', 'email', 'presentAddress', 'image', 'religionName', 'nationalityName', 'nationalId', 'parmanentAddress')
+                    'dateOfBirth', 'email', 'presentAddress', 'image', 'religionName', 'nationalityName','nationalId','parmanentAddress',
+                    'passport','bloodGroup','maritalStatus')
                     ->leftJoin('religion', 'religion.religionId', 'fkreligionId')
                     ->leftJoin('nationality', 'nationality.nationalityId', 'fknationalityId')
                     ->findOrFail($empId);
 
-                $education = Education::select('degreeName', 'education.institutionName', 'education.fkemployeeId', 'education.status', 'education.resultSystem', 'education.result', 'educationlevel.educationLevelName',
+                $education = Education::select('degreeName', 'education.institutionName', 'boardName','education.fkemployeeId', 'education.status', 'education.resultSystem', 'education.result', 'educationlevel.educationLevelName',
                     'educationmajor.educationMajorName', 'education.fkMajorId', 'passingYear')
                     ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
                     ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
                     ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
+                    ->leftJoin('board', 'board.boardId', '=', 'education.fkboardId')
                     ->where('fkemployeeId', $empId)
                     ->orderBy('passingYear', 'desc')
                     ->get();
+
+                $empOtherSkillls=EmpOtherSkill::where('fkemployeeId',$empId)
+                    ->leftJoin('otherskillsinformation','otherskillsinformation.id','emp_otherskill_achievement.otherSkillId')
+                    ->get();
+
+                $empComputerSkill=EmployeeComputerSkill::where('fk_empId',$empId)
+                    ->leftJoin('computerskill','computerskill.id','empcomputerskill.computerSkillId')
+                    ->get();
+
+
+
+
 
                 $professionalCertificate = ProfessionalQualification::where('fkemployeeId', $empId)
                     ->get();
@@ -139,7 +155,9 @@ class EmployeeController extends Controller
                 $relativeCb = RelativeInCb::where('fkemployeeId', $empId)
                     ->get();
 
-                return view('userCv.cvPdf.userCvPdf', compact('allEmp', 'personalInfo', 'education', 'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree', 'relativeCb'));
+                return view('userCv.cvPdf.userCvPdf', compact('allEmp', 'personalInfo', 'education',
+                    'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree',
+                    'relativeCb','empOtherSkillls','empComputerSkill'));
 
 
             }
