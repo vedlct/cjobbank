@@ -8,7 +8,7 @@ use App\EmployeeComputerSkill;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
-use Session;
+use Illuminate\Support\Facades\Session;
 
 class ComputerSkillController extends Controller
 {
@@ -46,5 +46,38 @@ class ComputerSkillController extends Controller
 
 
         return Redirect()->route('candidate.computerSkill.index');
+    }
+
+public function deleteSkill(Request $r){
+
+        EmployeeComputerSkill::destroy($r->id);
+}
+
+public function update(Request $r){
+
+     //   return $r;
+    $empComputerSkill=EmployeeComputerSkill::findOrFail($r->id);
+
+    $empComputerSkill->computerSkillId=$r->computerSkillId;
+    $empComputerSkill->SkillAchievement=$r->SkillAchievement;
+
+    $empComputerSkill->save();
+
+
+    Session::flash('message', 'Computer SKill Updated Successfully!');
+
+    return redirect()->route('candidate.computerSkill.index');
+//    return redirect()->route('manage.skill');
+}
+
+    public function edit(Request $r){
+
+        $computerSkill=EmployeeComputerSkill::findOrFail($r->id);
+        $allComputerSkills=ComputerSkill::where('status',1)
+            ->get();
+
+
+        return view('userCv.edit.computerSkill',compact('computerSkill','allComputerSkills'));
+//       return $r;
     }
 }
