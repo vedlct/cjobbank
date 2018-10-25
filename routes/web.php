@@ -129,6 +129,9 @@ Route::post('/Candidate-CV-Skill/Delete','SkillController@delete')->name('candid
 //Computer-Skill
 Route::get('/Candidate-CV-Computer-Skill','ComputerSkillController@index')->name('candidate.computerSkill.index');
 Route::post('/Candidate-CV-Computer-Skill','ComputerSkillController@insert')->name('candidate.computerSkill.submit');
+Route::post('/Candidate-CV-Computer-Skill/delete','ComputerSkillController@deleteSkill')->name('candidate.computerSkill.delete');
+Route::post('/Candidate-CV-Computer-Skill/Edit','ComputerSkillController@edit')->name('candidate.computerSkill.edit');
+Route::post('/Candidate-CV-Computer-Skill/Update','ComputerSkillController@update')->name('candidate.computerSkill.update');
 
 
 
