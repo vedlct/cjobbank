@@ -44,7 +44,7 @@
             <div class="card">
                 <div style="background-color: #F1F1F1" class="card-body">
 
-                    <form id="regForm" name="skillForm" action="{{route('candidate.skill.insert')}}"  method="post">
+                    <form id="regForm" name="skillForm" action="{{route('candidate.language.insert')}}"  method="post">
                         <!-- One "tab" for each step in the form: -->
                         {{csrf_field()}}
 
@@ -68,12 +68,51 @@
                                             </select>
 
                                         </div>
-                                        <div class="form-group col-md-6">
+
+                                        <div class="col-sm-12 row">
+
+                                            <div class="form-group col-md-4" style="margin-top: 20px">
+                                                <label>Lisiting</label>
+
+                                            </div>
+                                            <div class="form-group col-md-6">
                                             <label>Percentage of Skill (out of 100)</label>
                                             <div class="slidecontainer">
                                                 <input type="range" min="1" max="100" value="0" class="slider" name="skillPercentage[]" id="myRange" >
                                                 <p>Value: <span id="demo"></span> %</p>
                                                 {{--<input type="hidden" id="skillPercentage"  class="form-control"  />--}}
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                        <div class="col-sm-12 row">
+
+                                            <div class="form-group col-md-4" style="margin-top: 20px">
+                                                <label>Reading</label>
+
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label>Percentage of Skill (out of 100)</label>
+                                                <div class="slidecontainer">
+                                                    <input type="range" min="1" max="100" value="0" class="slider" name="skillPercentage[]" id="myRange" >
+                                                    <p>Value: <span id="demo"></span> %</p>
+                                                    {{--<input type="hidden" id="skillPercentage"  class="form-control"  />--}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 row">
+
+                                            <div class="form-group col-md-4" style="margin-top: 20px">
+                                                <label>Writing</label>
+
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label>Percentage of Skill (out of 100)</label>
+                                                <div class="slidecontainer">
+                                                    <input type="range" min="1" max="100" value="0" class="slider" name="skillPercentage[]" id="myRange" >
+                                                    <p>Value: <span id="demo"></span> %</p>
+                                                    {{--<input type="hidden" id="skillPercentage"  class="form-control"  />--}}
+                                                </div>
                                             </div>
                                         </div>
 
@@ -240,9 +279,9 @@
                 newTextBoxDiv.after().html(
                     '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>' +
                     '<div class="form-group col-md-6"> ' +
-                    '<label for="inputEmail4">Skill<span style="color: red">*</span></label> ' +
+                    '<label for="inputEmail4">Language<span style="color: red">*</span></label> ' +
                     '<select required name="skill[]" class="form-control" id="skill'+counter+'"> ' +
-                    '<option selected value="">Select Skill Type</option>'+
+                    '<option selected value="">Select Language</option>'+
                     '@foreach($languagehead as $languageheads)'+
                     '<option value="{{$languageheads->id}}">{{$languageheads->languagename}}</option>'+
                     '@endforeach'+
