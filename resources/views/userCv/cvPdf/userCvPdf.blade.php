@@ -65,6 +65,21 @@
 
                     </table>
 
+                    {{--Objective--}}
+
+                    <p style="page-break-after: always"></p>
+
+                    <table border="0" style="width:100%;border: none;">
+                        <tr>
+                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"> <b>Objective</b> </td>
+                        </tr>
+                    </table>
+                    <table border="0" style="width:100%; margin-top: 10px; border: none;">
+                        <tr>
+                            <td style="width: 100%;border: none;">{{$personalInfo->objective}}</td>
+                        </tr>
+                    </table>
+
 
 
                     <table border="0" style="width:100%; margin-top: 25px; border: none;">
@@ -227,12 +242,7 @@
                                 <td style="border: none;">{{$certificate->result}}</td>
                             </tr>
 
-                            {{--<tr>--}}
 
-                                {{--<td style="border: none; width: 20%"><span class="bold">Result</span></td>--}}
-                                {{--<td style="border: none; width: 5%"><span class="bold">:</span></td>--}}
-                                {{--<td style="border: none;">{{$certificate->result}}</td>--}}
-                            {{--</tr>--}}
 
                         @endforeach
 

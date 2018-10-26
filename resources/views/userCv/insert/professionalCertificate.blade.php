@@ -87,7 +87,7 @@
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
-
+                                <a href="{{route('candidate.cvEducation')}}"><button type="button" id="btnPevious">Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
                                 @if($hasProfCertificate == 1 || $hasProfCertificate == 0 )
                                 <a href="{{route('candidate.cvTrainingCertificate')}}"><button type="button" id="nextBtn" >Next</button></a>
