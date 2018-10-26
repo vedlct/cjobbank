@@ -126,9 +126,20 @@ Route::post('/Candidate-CV-Skill/Update','SkillController@update')->name('candid
 Route::post('/Candidate-CV-Skill/Delete','SkillController@delete')->name('candidate.skill.delete');
 
 
+//language
+Route::get('/Candidate-CV-Language','LanguageController@index')->name('candidate.language.index');
+Route::post('/Candidate-CV-Language/insert','LanguageController@insert')->name('candidate.language.insert');
+Route::post('/Candidate-CV-Language/Edit','LanguageController@edit')->name('candidate.language.edit');
+Route::post('/Candidate-CV-Language/Update','LanguageController@update')->name('candidate.language.update');
+Route::post('/Candidate-CV-Language/Delete','LanguageController@delete')->name('candidate.language.delete');
+
+
 //Computer-Skill
 Route::get('/Candidate-CV-Computer-Skill','ComputerSkillController@index')->name('candidate.computerSkill.index');
 Route::post('/Candidate-CV-Computer-Skill','ComputerSkillController@insert')->name('candidate.computerSkill.submit');
+Route::post('/Candidate-CV-Computer-Skill/delete','ComputerSkillController@deleteSkill')->name('candidate.computerSkill.delete');
+Route::post('/Candidate-CV-Computer-Skill/Edit','ComputerSkillController@edit')->name('candidate.computerSkill.edit');
+Route::post('/Candidate-CV-Computer-Skill/Update','ComputerSkillController@update')->name('candidate.computerSkill.update');
 
 
 
@@ -304,6 +315,8 @@ Route::get('manage/other-skill','Admin\SettingsController@otherSkill')->name('ma
 Route::post('manage/other-skill/insert','Admin\SettingsController@insertOtherSkill')->name('manage.otherSkill.insert');
 Route::post('manage/other-skill/editOtherSkill','Admin\SettingsController@editOtherSkill')->name('admin.editOtherSkill');
 Route::post('manage/other-skill/Update/{id}','Admin\SettingsController@updateOtherSkill')->name('manage.otherSkill.update');
+
+
 
 //Question Answer
 Route::post('/Manage-Applicant-Question-Answer','Admin\ManageQuestionApplication@manageQuestionAnswer')->name('manage.applicantQuestionAnswer');
