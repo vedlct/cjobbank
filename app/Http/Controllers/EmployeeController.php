@@ -110,12 +110,13 @@ class EmployeeController extends Controller
 
                 $empId = $empId->employeeId;
 
-                $personalInfo = Employee::select('firstName', 'lastName',
+                $personalInfo = Employee::select('emp_ques_obj.objective','firstName', 'lastName',
                     'fathersName', 'mothersName', 'gender', 'personalMobile',
                     'dateOfBirth', 'email', 'presentAddress', 'image', 'religionName', 'nationalityName','nationalId','parmanentAddress',
                     'passport','bloodGroup','maritalStatus')
                     ->leftJoin('religion', 'religion.religionId', 'fkreligionId')
                     ->leftJoin('nationality', 'nationality.nationalityId', 'fknationalityId')
+                    ->leftJoin('emp_ques_obj', 'emp_ques_obj.empId', 'employee.employeeId')
                     ->findOrFail($empId);
 
                 $education = Education::select('degreeName', 'education.institutionName', 'boardName','education.fkemployeeId', 'education.status', 'education.resultSystem', 'education.result', 'educationlevel.educationLevelName',
@@ -126,7 +127,11 @@ class EmployeeController extends Controller
                     ->leftJoin('board', 'board.boardId', '=', 'education.fkboardId')
                     ->where('fkemployeeId', $empId)
                     ->orderBy('passingYear', 'desc')
+                    ->groupBy('education.educationId')
                     ->get();
+
+
+
 
                 $empOtherSkillls=EmpOtherSkill::where('fkemployeeId',$empId)
                     ->leftJoin('otherskillsinformation','otherskillsinformation.id','emp_otherskill_achievement.otherSkillId')
