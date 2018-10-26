@@ -8,7 +8,7 @@
             <div class="card">
                 <div style="background-color: #F1F1F1" class="card-body">
 
-                    <form id="regForm" action="{{route('candidate.computerSkill.submit')}}" method="post">
+                    <form onsubmit=" return chkComputerSkill()" id="regForm" action="{{route('candidate.computerSkill.submit')}}" method="post">
                         <!-- One "tab" for each step in the form: -->
                         {{csrf_field()}}
 
@@ -23,7 +23,7 @@
 
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Skill<span style="color: red">*</span></label>
-                                        <select name="computerSkillId[]" id="" class="form-control" required>
+                                        <select name="computerSkillId[]" id="" class="form-control req" required>
                                             <option value="">Select Skill</option>
                                             @foreach($computerSkills as $skill)
                                                 <option value="{{$skill->id}}">{{$skill->computerSkillName}}</option>
@@ -128,7 +128,44 @@
 //            });
         });
 
+        function chkComputerSkill() {
+
+            if ($("input[name=hasOtherSkill]:checked").val()=="1") {
+
+                var computerSkillId=document.getElementsByName('computerSkillId[]');
+                var SkillAchievement=document.getElementsByName('SkillAchievement[]');
+
+
+                for (i=0;i<computerSkillId.length;i++){
+
+                    if(computerSkillId[i].value==""){
+
+                        var errorMsg='Please Select a Computer Skill First!!';
+                        validationError(errorMsg);
+                        return false;
+                    }
+
+                    if(SkillAchievement[i].value==""){
+
+                        var errorMsg='Please Type Skill Achievement First!!';
+                        validationError(errorMsg);
+                        return false;
+                    }
+
+
+                }
+
+
+            }
+            else {
+                return true;
+
+            }
+
+        }
+
         $(document).ready(function(){
+
 
             var counter = 1;
             $("#removeButton").hide();

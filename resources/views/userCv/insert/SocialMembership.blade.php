@@ -8,7 +8,7 @@
             <div class="card">
                 <div style="background-color: #F1F1F1" class="card-body">
 
-                    <form id="regForm" action="{{route('candidate.membershipInSocialNetwork.insert')}}" method="post">
+                    <form id="regForm" onsubmit="return chkSocialMemberShip()" action="{{route('candidate.membershipInSocialNetwork.insert')}}" method="post">
                         <!-- One "tab" for each step in the form: -->
                         {{csrf_field()}}
 
@@ -95,6 +95,49 @@
             }
             //... and adds the "active" class on the current step:
             x[(n+4)].className += " active";
+        }
+
+        function chkSocialMemberShip() {
+
+            if ($("input[name=hasOtherSkill]:checked").val()=="1") {
+
+                var networkName=document.getElementsByName('networkName[]');
+                var membershipType=document.getElementsByName('membershipType[]');
+                var duration=document.getElementsByName('duration[]');
+
+
+                for (i=0;i<networkName.length;i++){
+
+                    if(networkName[i].value==""){
+
+                        var errorMsg='Please Type a Network First!!';
+                        validationError(errorMsg);
+                        return false;
+                    }
+
+                    if(membershipType[i].value==""){
+
+                        var errorMsg='Please Type Membership Type First!!';
+                        validationError(errorMsg);
+                        return false;
+                    }
+                    if(duration[i].value==""){
+
+                        var errorMsg='Please Type Membership Duration First!!';
+                        validationError(errorMsg);
+                        return false;
+                    }
+
+
+                }
+
+
+            }
+            else {
+                return true;
+
+            }
+
         }
     </script>
 
