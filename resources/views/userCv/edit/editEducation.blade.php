@@ -190,7 +190,7 @@
                     $("#universityTypeDiv").hide();
 
                 }else if (data == 1){
-                    $("#instituteNameDiv").hide();
+                    $("#instituteNameDiv").show();
                     $("#boardDiv").show();
                     $("#universityTypeDiv").hide();
 

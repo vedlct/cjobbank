@@ -110,9 +110,11 @@
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
-                                <a href="{{route('candidate.skill.index')}}"><button type="button" id="btnPevious" >Back</button></a>
+                                <a href="{{route('candidate.cvProfessionalCertificate')}}"><button type="button" id="btnPevious" >Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
-                                <a href="{{route('refree.index')}}"><button type="button" id="nextBtn" >Next</button></a>
+                                @if($hasProfCertificate == 0 || $hasProfCertificate== 1 )
+                                <a href="{{route('candidate.previousWorkInCB.index')}}"><button type="button" id="nextBtn" >Next</button></a>
+                                @endif
                             </div>
                         </div>
 

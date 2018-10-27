@@ -104,7 +104,7 @@ class EducationController extends Controller
     }
     public function getMajorPerEducation(Request $r)
     {
-        $major=Educationmajor::select('educationMajorId','educationMajorName')->where('fkDegreeId', '=',$r->id)->get();
+        $major=Educationmajor::select('educationMajorId','educationMajorName')->where('fkDegreeId', '=',$r->id)->groupBy('educationMajorId')->get();
 
         if ($major == null) {
             echo "<option value='' selected>Select Major</option>";
