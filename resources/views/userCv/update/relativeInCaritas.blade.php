@@ -44,7 +44,7 @@
 
 
                                         <div class="form-group col-md-6">
-                                            <label for="inputEmail4">Degisnation: </label>
+                                            <label for="inputEmail4">Designation: </label>
                                             {{$relative->degisnation}}
                                             {{--<input type="text" class="form-control" name="degisnation[]" id="degisnation" placeholder="degisnation" required>--}}
                                         </div>
@@ -77,7 +77,7 @@
                                     <div style="float:right;">
                                         <a href="{{route('refree.index')}}"><button type="button" id="btnPevious" >Back</button></a>
                                         <button type="submit" id="submitBtn">Save</button>
-                                        {{--<a href="{{route('relativeInCaritas.getRelationInfo')}}"><button type="button" id="nextBtn" >Next</button></a>--}}
+                                        {{--<a href="{{route('refree.index')}}"><button type="button" id="nextBtn" >Next</button></a>--}}
                                     </div>
                                 </div>
                             </form>

@@ -88,10 +88,10 @@
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
-                                <a href="{{route('candidate.cvProfessionalCertificate')}}"><button type="button" id="btnPevious" >Back</button></a>
+                                <a href="{{route('cv.OthersInfo')}}"><button type="button" id="btnPevious" >Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
                                 @if($hasTrainingInfo == '1' || $hasTrainingInfo == '0')
-                                <a href="{{route('cv.OthersInfo')}}"><button type="button" id="btnNext" >Next</button></a>
+                                <a href="{{route('candidate.cvProfessionalCertificate')}}"><button type="button" id="btnNext" >Next</button></a>
                                 @endif
 
                             </div>

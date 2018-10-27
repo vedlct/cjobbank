@@ -14,13 +14,14 @@
         </div>
 
         <div class="form-group col-md-6">
-            <label for="inputEmail4">Degisnation<span style="color: red">*</span></label>
+            <label for="inputEmail4">Designation<span style="color: red">*</span></label>
             <input type="text" class="form-control" name="degisnation" value="{{$relative->degisnation}}" id="degisnation" placeholder="degisnation" required>
         </div>
 
 
 
         <div class="form-group col-md-12">
+            <a class="btn btn-danger pull-left" href="{{route('relativeInCaritas.getRelationInfo')}}">Cancel</a>&nbsp;&nbsp;
             <button  class="btn btn-info pull-right">Update</button>
         </div>
 

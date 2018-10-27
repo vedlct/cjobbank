@@ -75,11 +75,11 @@
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
-                                <a href="{{route('JobExperience.index')}}"><button type="button" id="btnPevious" >Back</button></a>
+                                <a href="{{route('candidate.language.index')}}"><button type="button" id="btnPevious" >Back</button></a>
                                 {{--<a id="btnPevious" class="btn btn-success" href="{{route('JobExperience.index')}}">Back</a>--}}
                                 <button type="submit" id="submitBtn1">Save</button>
 
-                                <a href="{{route('candidate.previousWorkInCB.index')}}"><button type="button" id="btnNext" >Next</button></a>
+                                <a href="{{route('candidate.skill.index')}}"><button type="button" id="btnNext" >Next</button></a>
 
                             </div>
                         </div>

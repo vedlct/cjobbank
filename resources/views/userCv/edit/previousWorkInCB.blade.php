@@ -27,6 +27,7 @@
         </div>
 
         <div class="form-group col-md-12">
+            <a class="btn btn-danger pull-left" href="{{route('candidate.previousWorkInCB.index')}}">Cancel</a>&nbsp;&nbsp;
             <button  class="btn btn-info pull-right">Update</button>
         </div>
 

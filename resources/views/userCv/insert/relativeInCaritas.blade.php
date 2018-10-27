@@ -37,6 +37,10 @@
                                         {{--<a id="btnPevious" class="btn btn-success" href="{{route('JobExperience.index')}}">Back</a>--}}
                                         <button type="submit" >Save</button>
 
+                                        {{--@if($relativeInCB->relativeInCB == '1' || $relativeInCB->relativeInCB== '0' )--}}
+                                            {{--<a href="{{route('refree.index')}}"><button type="button" id="nextBtn" >Next</button></a>--}}
+                                        {{--@endif--}}
+
                                     </div>
                                 </div>
 
@@ -72,7 +76,7 @@
 
 
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Degisnation<span style="color: red">*</span></label>
+                                        <label for="inputEmail4">Designation<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" name="degisnation[]" id="degisnation" placeholder="degisnation" required>
                                     </div>
 
@@ -91,9 +95,12 @@
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
-                                <a href="{{route('refree.index')}}"><button type="button" id="btnPevious" >Back</button></a>
+                                <a href="{{route('candidate.membershipInSocialNetwork.index')}}"><button type="button" id="btnPevious" >Back</button></a>
                                 {{--<a id="btnPevious" class="btn btn-success" href="{{route('JobExperience.index')}}">Back</a>--}}
                                 <button type="submit" id="submitBtn">Save</button>
+                                @if($relativeInCB->relativeInCB == '1' || $relativeInCB->relativeInCB== '0' )
+                                    <a href="{{route('refree.index')}}"><button type="button" id="nextBtn" >Next</button></a>
+                                @endif
 
                             </div>
                         </div>
