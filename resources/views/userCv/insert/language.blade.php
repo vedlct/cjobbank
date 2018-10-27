@@ -60,7 +60,7 @@
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label for="inputEmail4">Language<span style="color: red">*</span></label>
-                                            <select name="skill[]" class="form-control" id="skill">
+                                            <select name="languagehead[]" class="form-control" id="skill">
                                                 <option selected value="">Select Language </option>
                                                 @foreach($languagehead as $languageheads)
                                                     <option value="{{$languageheads->id}}">{{$languageheads->languagename}}</option>
@@ -79,9 +79,9 @@
                                             <div class="form-group col-md-6">
                                             <label>Percentage of Skill (out of 100)</label>
                                             <div class="slidecontainer">
-                                                <input type="range" min="1" max="100" value="0" class="slider" onchange="myRangeChanged2('{{$ls->id}}')" name="skillPercentage[]" id="myRange<?php echo $ls->id?>" >
+                                                <input type="range" min="1" max="100" value="0" class="slider" onchange="myRangeChanged2('{{$ls->id}}')" name="languageskill[]" id="myRange<?php echo $ls->id?>" >
                                                 <p>Value: <span id="demo<?php echo $ls->id?>"></span> %</p>
-                                                {{--<input type="hidden" id="skillPercentage"  class="form-control"  />--}}
+                                                <input type="hidden" id="skillPercentage" name="langskillid" value="{{$ls->id}}" class="form-control"  />
                                             </div>
                                         </div>
                                         </div>
@@ -148,18 +148,18 @@
         //     $("#skillPercentage").val(this.value);
         // }
 
-        function myRangeChanged(x){
-
-            var slider = document.getElementById("myRange"+x);
-            var output = document.getElementById("demo"+x);
-            output.innerHTML = slider.value;
-
-            slider.oninput = function() {
-                output.innerHTML = this.value;
-                $("#skillPercentage"+x).val(this.value);
-            }
-
-        }
+        // function myRangeChanged(x){
+        //
+        //     var slider = document.getElementById("myRange"+x);
+        //     var output = document.getElementById("demo"+x);
+        //     output.innerHTML = slider.value;
+        //
+        //     slider.oninput = function() {
+        //         output.innerHTML = this.value;
+        //         $("#skillPercentage"+x).val(this.value);
+        //     }
+        //
+        // }
 
 
 
@@ -202,11 +202,16 @@
         $(document).ready(function(){
 
             var counter = 1;
+            var limit = '<?php echo count($languagehead)?>';
             $("#removeButton").hide();
 
 
             $("#addButton").click(function () {
 
+                if(counter > limit -1){
+                    alert("There are no more language!!");
+                    return false;
+                }
                 if (counter == 1 ) {
 
                     var skill = $('#skill').val();
@@ -254,7 +259,7 @@
                     '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>' +
                     '<div class="form-group col-md-6"> ' +
                     '<label for="inputEmail4">Language<span style="color: red">*</span></label> ' +
-                    '<select required name="skill[]" class="form-control" id="skill'+counter+'"> ' +
+                    '<select required name="languagehead[]" class="form-control" id="skill'+counter+'"> ' +
                     '<option selected value="">Select Language</option>'+
                     '@foreach($languagehead as $languageheads)'+
                     '<option value="{{$languageheads->id}}">{{$languageheads->languagename}}</option>'+
@@ -270,8 +275,9 @@
                     '<div class="form-group col-md-6">'+
                     '<label>Percentage of Skill (out of 100)</label>'+
                     '<div class="slidecontainer">'+
-                    '<input type="range" min="1" max="100" value="0" class="slider" onchange="myRangeChanged3('+'{{$ls->id}}'+')" name="skillPercentage[]" id="myRange'+'<?php echo $ls->id?>'+'" >'+
-                    '<p>Value: <span id="demo'+'<?php echo $ls->id?>'+'"></span> %</p>'+
+                    '<input type="range" min="1" max="100" value="0" class="slider" onchange="myRangeChanged3('+'{{$ls->id}}'+')" name="{{$ls->id}}" id="myRange1'+'<?php echo $ls->id?>'+'" >'+
+                    '<p>Value: <span id="demo1'+'<?php echo $ls->id?>'+'"></span> %</p>'+
+                    '<input type="hidden" id="skillPercentage" name="langskillid" value="{{$ls->id}}" class="form-control"  />'+
                     '</div>'+
                     '</div>'+
                     '</div>'+
@@ -285,13 +291,14 @@
                     $("#removeButton").show();
                 }
 
+
             });
 
             $("#removeButton").click(function () {
 
 
                 if(counter=='1'){
-                    alert("Atleast One Course Section is needed!!");
+                    alert("Atleast One Language is needed!!");
                     return false;
                 }
                 counter--;
@@ -322,12 +329,13 @@
 
         function myRangeChanged3(x){
 
-            alert(x);
+            //alert(x);
+            // alert(y);
 
 
-            var slider = document.getElementById("myRange"+x);
+            var slider = document.getElementById("myRange1"+x);
 
-            var output = document.getElementById("demo"+x);
+            var output = document.getElementById("demo1"+x);
             output.innerHTML = slider.value;
 
             slider.oninput = function() {
