@@ -69,52 +69,24 @@
 
                                         </div>
 
+                                        @foreach($languageskill as $ls)
                                         <div class="col-sm-12 row">
 
                                             <div class="form-group col-md-4" style="margin-top: 20px">
-                                                <label>Lisiting</label>
+                                                <label>{{$ls->languageSkillName}}</label>
 
                                             </div>
                                             <div class="form-group col-md-6">
                                             <label>Percentage of Skill (out of 100)</label>
                                             <div class="slidecontainer">
-                                                <input type="range" min="1" max="100" value="0" class="slider" name="skillPercentage[]" id="myRange" >
-                                                <p>Value: <span id="demo"></span> %</p>
+                                                <input type="range" min="1" max="100" value="0" class="slider" onchange="myRangeChanged2('{{$ls->id}}')" name="skillPercentage[]" id="myRange<?php echo $ls->id?>" >
+                                                <p>Value: <span id="demo<?php echo $ls->id?>"></span> %</p>
                                                 {{--<input type="hidden" id="skillPercentage"  class="form-control"  />--}}
                                             </div>
                                         </div>
                                         </div>
+                                            @endforeach
 
-                                        <div class="col-sm-12 row">
-
-                                            <div class="form-group col-md-4" style="margin-top: 20px">
-                                                <label>Reading</label>
-
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label>Percentage of Skill (out of 100)</label>
-                                                <div class="slidecontainer">
-                                                    <input type="range" min="1" max="100" value="0" class="slider" name="skillPercentage[]" id="myRange" >
-                                                    <p>Value: <span id="demo"></span> %</p>
-                                                    {{--<input type="hidden" id="skillPercentage"  class="form-control"  />--}}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12 row">
-
-                                            <div class="form-group col-md-4" style="margin-top: 20px">
-                                                <label>Writing</label>
-
-                                            </div>
-                                            <div class="form-group col-md-6">
-                                                <label>Percentage of Skill (out of 100)</label>
-                                                <div class="slidecontainer">
-                                                    <input type="range" min="1" max="100" value="0" class="slider" name="skillPercentage[]" id="myRange" >
-                                                    <p>Value: <span id="demo"></span> %</p>
-                                                    {{--<input type="hidden" id="skillPercentage"  class="form-control"  />--}}
-                                                </div>
-                                            </div>
-                                        </div>
 
                                     </div>
 
@@ -167,14 +139,14 @@
 
 @section('foot-js')
     <script>
-        var slider = document.getElementById("myRange");
-        var output = document.getElementById("demo");
-        output.innerHTML = slider.value;
-
-        slider.oninput = function() {
-            output.innerHTML = this.value;
-            $("#skillPercentage").val(this.value);
-        }
+        // var slider = document.getElementById("myRange");
+        // var output = document.getElementById("demo");
+        // output.innerHTML = slider.value;
+        //
+        // slider.oninput = function() {
+        //     output.innerHTML = this.value;
+        //     $("#skillPercentage").val(this.value);
+        // }
 
         function myRangeChanged(x){
 
@@ -188,6 +160,8 @@
             }
 
         }
+
+
 
         $("input[name=hasOtherSkill]").click( function () {
 
@@ -286,20 +260,24 @@
                     '<option value="{{$languageheads->id}}">{{$languageheads->languagename}}</option>'+
                     '@endforeach'+
                     '</select> ' +
-                    '</div>' +
-                    '<div class="form-group col-md-6"> ' +
-                    '<label>Percentage of Skill (out of 100)</label> ' +
-                    '<div class="slidecontainer"> ' +
-                    '<input type="range" min="1" max="100" onchange="myRangeChanged('+counter+')" value="0" class="slider" name="skillPercentage[]" id="myRange'+counter+'" required> ' +
-                    '<p>Value: <span id="demo'+counter+'"></span> %</p> ' +
-                    '<input type="hidden" id="skillPercentage'+counter+'" name="" class="form-control" required /> ' +
-                    '</div> ' +
                     '</div>'+
-                    '</div> ' +
-                    '</div>'+
-                    '</div>'
+                        '@foreach($languageskill as $ls)'+
 
-                );
+                    '<div class="col-sm-12 row">'+
+                    '<div class="form-group col-md-4" style="margin-top: 20px">'+
+                    '<label>{{$ls->languageSkillName}}</label>'+
+                    '</div>'+
+                    '<div class="form-group col-md-6">'+
+                    '<label>Percentage of Skill (out of 100)</label>'+
+                    '<div class="slidecontainer">'+
+                    '<input type="range" min="1" max="100" value="0" class="slider" onchange="myRangeChanged3('+'{{$ls->id}}'+')" name="skillPercentage[]" id="myRange'+'<?php echo $ls->id?>'+'" >'+
+                    '<p>Value: <span id="demo'+'<?php echo $ls->id?>'+'"></span> %</p>'+
+                    '</div>'+
+                    '</div>'+
+                    '</div>'+
+                    '@endforeach'
+
+);
                 newTextBoxDiv.appendTo("#TextBoxesGroup");
 
                 counter++;
@@ -325,6 +303,40 @@
 
 
         });
+
+
+        function myRangeChanged2(x){
+
+
+            var slider = document.getElementById("myRange"+x);
+
+            var output = document.getElementById("demo"+x);
+            output.innerHTML = slider.value;
+
+            slider.oninput = function() {
+                output.innerHTML = this.value;
+                $("#skillPercentage"+x).val(this.value);
+            }
+
+        }
+
+        function myRangeChanged3(x){
+
+            alert(x);
+
+
+            var slider = document.getElementById("myRange"+x);
+
+            var output = document.getElementById("demo"+x);
+            output.innerHTML = slider.value;
+
+            slider.oninput = function() {
+                output.innerHTML = this.value;
+                $("#skillPercentage"+x).val(this.value);
+            }
+
+        }
+
 
         function validationError(errorMsg){
 
