@@ -92,6 +92,7 @@ class SkillController extends Controller
 
             for($i=0;$i<count($r->skill);$i++){
 
+
                 $otherSkill=new EmpOtherSkill();
 
                 $otherSkill->otherSkillId=$r->skill[$i];
