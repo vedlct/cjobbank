@@ -186,7 +186,7 @@
 
                                 <div class="form-group col-md-6">
                                     <label for="">Passport</label>
-                                    <input type="text" placeholder="If any" class="form-control" value="{{old('passport')}}" name="passport">
+                                    <input type="text" placeholder="If any" onkeypress="return isNumberKey(event)" class="form-control" value="{{old('passport')}}" name="passport">
                                     @if ($errors->has('passport'))
 
                                         <span class="">
@@ -236,7 +236,7 @@
 
                                 <div class="form-group col-md-6">
                                     <label for="">Telephone No.</label>
-                                    <input type="text"  maxlength="20" name="telephone" class="form-control {{ $errors->has('telephone') ? ' is-invalid' : '' }}" value="{{ old('telephone') }}" id="" placeholder="Telephone number">
+                                    <input type="text"  maxlength="20" onkeypress="return isNumberKey(event)"name="telephone" class="form-control {{ $errors->has('telephone') ? ' is-invalid' : '' }}" value="{{ old('telephone') }}" id="" placeholder="Telephone number">
                                     @if ($errors->has('telephone'))
 
                                         <span class="">
@@ -248,7 +248,7 @@
 
                                 <div class="form-group col-md-6">
                                     <label for="">Personal phone number<span style="color: red">*</span></label>
-                                    <input type="text" maxlength="20" name="personalMobile" class="form-control {{ $errors->has('personalMobile') ? ' is-invalid' : '' }}" value="{{ old('personalMobile') }}" id="" placeholder="Personal Mobile Number">
+                                    <input type="text" maxlength="20" onkeypress="return isNumberKey(event)"name="personalMobile" class="form-control {{ $errors->has('personalMobile') ? ' is-invalid' : '' }}" value="{{ old('personalMobile') }}" id="" placeholder="Personal Mobile Number">
                                     @if ($errors->has('personalMobile'))
 
                                         <span class="">
@@ -259,7 +259,7 @@
 
                                 <div class="form-group col-md-6">
                                     <label for="">Alternative phone no</label>
-                                    <input  type="text" maxlength="20" name="alternativePhoneNo" class="form-control {{ $errors->has('alternativePhoneNo') ? ' is-invalid' : '' }}" value="{{ old('alternativePhoneNo') }}" id="" placeholder="">
+                                    <input  type="text" maxlength="20" onkeypress="return isNumberKey(event)" name="alternativePhoneNo" class="form-control {{ $errors->has('alternativePhoneNo') ? ' is-invalid' : '' }}" value="{{ old('alternativePhoneNo') }}" id="" placeholder="">
                                     @if ($errors->has('alternativePhoneNo'))
 
                                         <span class="">
@@ -269,16 +269,12 @@
                                 </div>
 
 
-
-
-
-
                             </div>
 
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="">Home Telephone</label>
-                                    <input type="text" name="homeTelephone" maxlength="20" class="form-control {{ $errors->has('homeTelephone') ? ' is-invalid' : '' }}" value="{{ old('homeTelephone') }}" id="" placeholder="Home Telephone Number">
+                                    <input type="text" name="homeTelephone" onkeypress="return isNumberKey(event)" maxlength="20" class="form-control {{ $errors->has('homeTelephone') ? ' is-invalid' : '' }}" value="{{ old('homeTelephone') }}" id="" placeholder="Home Telephone Number">
                                     @if ($errors->has('homeTelephone'))
 
                                         <span class="">
@@ -288,7 +284,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="">Office Telephone</label>
-                                    <input type="text" maxlength="20" name="officeTelephone" class="form-control {{ $errors->has('officeTelephone') ? ' is-invalid' : '' }}" value="{{ old('officeTelephone') }}" id="" placeholder="Office Telephone Number">
+                                    <input type="text" maxlength="20" onkeypress="return isNumberKey(event)" name="officeTelephone" class="form-control {{ $errors->has('officeTelephone') ? ' is-invalid' : '' }}" value="{{ old('officeTelephone') }}" id="" placeholder="Office Telephone Number">
                                     @if ($errors->has('officeTelephone'))
 
                                         <span class="">
@@ -364,9 +360,7 @@
 
                             <div style="overflow:auto;">
                                 <div style="float:right;">
-
                                     <button type="submit" id="submitBtn">Save</button>
-                                    {{--<a href="{{route('candidate.cvEducation')}}"><button type="button" id="nextBtn">Next</button></a>--}}
                                 </div>
                             </div>
 
@@ -425,6 +419,15 @@
                 format: 'yyyy-m-d'
             });
         });
+
+        function isNumberKey(evt)
+        {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+
+            return true;
+        }
 
 
 

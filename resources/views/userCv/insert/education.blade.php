@@ -491,8 +491,8 @@
                 '</div>'+
 
                 '<div id="instituteNameDiv'+counter+'" class="form-group col-md-12">'+
-                    '<label for="">Institute Name<span style="color: red">*</span></label>'+
-                '<input type="text" name="instituteName[]" class="form-control" required id="instituteName'+counter+'" placeholder="">'+
+                    '<label for="">Institute Name</label>'+
+                '<input type="text" name="instituteName[]" class="form-control"  id="instituteName'+counter+'" placeholder="">'+
                     '</div>'+
                     '<div style="display: none" id="universityTypeDiv'+counter+'" class="form-group col-md-3">'+
                     '<label for="">University Type</label>'+
@@ -632,7 +632,7 @@
                         $("#universityTypeDiv").hide();
 
                     }else if (data == 1){
-                        $("#instituteNameDiv").hide();
+                        $("#instituteNameDiv").show();
                         $("#boardDiv").show();
                         $("#universityTypeDiv").hide();
 
@@ -690,7 +690,7 @@
                         $("#universityTypeDiv"+btn).hide();
 
                     }else if (data == 1){
-                        $("#instituteNameDiv"+btn).hide();
+                        $("#instituteNameDiv"+btn).show();
                         $("#boardDiv"+btn).show();
                         $("#universityTypeDiv"+btn).hide();
 

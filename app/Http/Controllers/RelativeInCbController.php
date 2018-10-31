@@ -44,6 +44,7 @@ class RelativeInCbController extends Controller
 
         $employee = Employee::select('employeeId')->where('fkuserId', Auth::user()->userId)->first();
         $relativeInCB = Employee::select('relativeInCB')->where('employeeId',$employee->employeeId)->first();
+
         $relativeInCaritas = RelativeInCb::where('fkemployeeId', $employee->employeeId)->get();
 
 

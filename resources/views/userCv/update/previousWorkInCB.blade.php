@@ -76,9 +76,9 @@
 
                             <div style="overflow:auto;">
                                 <div style="float:right;">
-                                    <a href="{{route('refree.index')}}"><button type="button" id="btnPevious" >Back</button></a>
+                                    <a href="{{route('JobExperience.index')}}"><button type="button" id="btnPevious" >Back</button></a>
                                     <button type="submit" id="submitBtn">Save</button>
-                                    <a href="{{route('JobExperience.index')}}"><button type="button" id="nextBtn" >Next</button></a>
+                                    <a href="{{route('candidate.membershipInSocialNetwork.index')}}"><button type="button" id="nextBtn" >Next</button></a>
                                 </div>
                             </div>
                         </form>

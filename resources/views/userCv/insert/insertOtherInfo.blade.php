@@ -14,7 +14,7 @@
                         {{csrf_field()}}
                         <div class="tab">
 
-                            <h2 style="margin-bottom: 40px; text-align: center;">Employee Other Info</h2>
+                            <h2 style="margin-bottom: 40px; text-align: center;">Other Information</h2>
 
 
                             <div class="form-group">
@@ -72,12 +72,12 @@
                             <div style="float:right;">
 
 
-                                <a href="{{route('candidate.cvTrainingCertificate')}}"><button type="button" id="btnPevious" >Back</button></a>
+                                <a href="{{route('candidate.skill.index')}}"><button type="button" id="btnPevious" >Back</button></a>
 
                                 <button type="submit" id="submitBtn">Save</button>
 
 
-                                <a href="{{route('candidate.skill.index')}}"><button type="button" id="nextBtn" >Next</button></a>
+                                {{--<a href="{{route('candidate.skill.index')}}"><button type="button" id="nextBtn" >Next</button></a>--}}
                             </div>
                         </div>
 

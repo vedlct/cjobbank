@@ -1,6 +1,6 @@
 
 
-<form  action="{{route('candidate.skill.update')}}" method="post">
+<form onsubmit="return chkOtherSkill()" action="{{route('candidate.skill.update')}}" method="post">
     <!-- One "tab" for each step in the form: -->
     {{csrf_field()}}
     <input type="hidden" name="skillId" value="{{$empSkills->id}}">

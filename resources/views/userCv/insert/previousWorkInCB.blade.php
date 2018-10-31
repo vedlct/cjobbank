@@ -8,7 +8,7 @@
             <div class="card">
                 <div style="background-color: #F1F1F1" class="card-body">
 
-                    <form id="regForm" action="{{route('candidate.previousWorkInCB.insert')}}" method="post">
+                    <form id="regForm" onsubmit="return chkPreviousWork()" action="{{route('candidate.previousWorkInCB.insert')}}" method="post">
                         <!-- One "tab" for each step in the form: -->
                         {{csrf_field()}}
 
@@ -59,7 +59,7 @@
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
-                                <a href="{{route('refree.index')}}"><button type="button" id="btnPevious" >Back</button></a>
+                                <a href="{{route('JobExperience.index')}}"><button type="button" id="btnPevious" >Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
                                 @if($hasWorkedInCB == '1' || $hasWorkedInCB == '0')
                                 <a href="{{route('candidate.membershipInSocialNetwork.index')}}"><button type="button" id="nextBtn" >Next</button></a>
@@ -145,6 +145,42 @@
 
             }
         });
+
+        function chkPreviousWork() {
+
+            if ($("input[name=hasOtherSkill]:checked").val()=="1") {
+
+                var degisnation=document.getElementsByName('degisnation[]');
+                var startDate=document.getElementsByName('startDate[]');
+
+
+                for (i=0;i<degisnation.length;i++){
+
+                    if(degisnation[i].value==""){
+
+                        var errorMsg='Please Type a Designation First!!';
+                        validationError(errorMsg);
+                        return false;
+                    }
+
+                    if(startDate[i].value==""){
+
+                        var errorMsg='Please Type Start Date First!!';
+                        validationError(errorMsg);
+                        return false;
+                    }
+
+
+                }
+
+
+            }
+            else {
+                return true;
+
+            }
+
+        }
 
         $(document).ready(function(){
 
