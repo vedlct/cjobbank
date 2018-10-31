@@ -25,6 +25,11 @@
                                                 {{$skill->computerSkillName}}
                                             @endif
 
+                                                {{--@php--}}
+                                                    {{--array_push($skillId,$skill->id);--}}
+                                                    {{--array_push($skillTitle,$skill->computerSkillName );--}}
+                                                {{--@endphp--}}
+
                                             @endforeach
 
                                     </div>
@@ -152,10 +157,16 @@
 
 
             $("#addButton").click(function () {
+
+                {{--var skillId= <?php echo json_encode( $skillId ) ?>;--}}
+
                 if(counter>10){
                     alert("Only 10 Section allow per Time!!");
                     return false;
                 }
+
+
+
                 $("#btnPevious").hide();
 
 
@@ -254,6 +265,7 @@
                             $.ajax({
                                 type: "POST",
                                 url: '{{route('candidate.computerSkill.delete')}}',
+
                                 data: {_token:"{{csrf_token()}}",id: x},
                                 success: function (data) {
                                     $.alert({
@@ -307,3 +319,4 @@
 
 
 @endsection
+
