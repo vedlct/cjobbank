@@ -48,7 +48,7 @@
 
 
 
-                    <form id="regForm" name="skillForm" action="{{route('candidate.skill.insert')}}"  method="post">
+                    <form id="regForm" onsubmit="return chkOtherSkill()"  action="{{route('candidate.skill.insert')}}"  method="post">
                         <!-- One "tab" for each step in the form: -->
                         {{csrf_field()}}
 
@@ -102,9 +102,11 @@
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
-                                <a href="{{route('cv.OthersInfo')}}"><button type="button" id="btnPevious" >Back</button></a>
+                                <a href="{{route('candidate.computerSkill.index')}}"><button type="button" id="btnPevious" >Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
-                                <a href="{{route('JobExperience.index')}}"><button type="button" id="nextBtn" >Next</button></a>
+                                @if($hasOtherSkill == 0 || $hasOtherSkill == 1)
+                                <a href="{{route('cv.OthersInfo')}}"><button type="button" id="nextBtn" >Next</button></a>
+                                @endif
 
                             </div>
                         </div>
@@ -200,6 +202,42 @@
             //... and adds the "active" class on the current step:
             x[(n+4)].className += " active";
         }
+
+        function chkOtherSkill(){
+
+            if ($("input[name=hasOtherSkill]:checked").val()=="1") {
+
+                var skill=document.getElementsByName('skill[]');
+                var skillPercentage=document.getElementsByName('skillPercentage[]');
+
+
+                for (i=0;i<skill.length;i++){
+
+                    if(skill[i].value==""){
+
+                        var errorMsg='Please Select a Skill First!!';
+                        validationError(errorMsg);
+                        return false;
+                    }
+
+                    if(skillPercentage[i].value==""){
+
+                        var errorMsg='Please Type Skill Percentage First!!';
+                        validationError(errorMsg);
+                        return false;
+                    }
+
+
+                }
+
+
+            }
+            else {
+                return true;
+
+            }
+        }
+
     </script>
 
 
@@ -326,32 +364,7 @@
             });
 
         }
-//        function checkSkill() {
-//
-//            var skill = document.skillForm.elements["skill[]"];
-//            var skillLevel = document.skillForm.elements["skillPercentage[]"];
-//
-//            alert(skillLevel.length);
-//
-////            for(i=0;i<skill.length;i++)
-////            {
-////                if (skill[i].value != '' && skillLevel[i].value=='') {
-////                    var errorMsg = 'Please Select a Skill '+ (i + 1)+'First!!';
-////                    validationError(errorMsg);
-////                    return false;
-////                }
-////                if (skill[i].value == '' && skillLevel[i].value != '')
-////                {
-////                    var errorMsg = 'Please Select a Skill Level '+ (i + 1)+'First!!';
-////                    validationError(errorMsg);
-////                    return false;
-////                }
-////            }
-//
-//            return false;
-//
-//
-//        }
+
 
     </script>
 

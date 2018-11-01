@@ -199,7 +199,7 @@
 
                                 <div class="row">
                                     <div class="form-group col-md-12">
-                                        <label for="">Current Address<span style="color: red">*</span></label>
+                                        <label for="">Current Address</label>
                                         <br>
                                         {{$personalInfo->presentAddress }}
                                     </div>
@@ -211,7 +211,7 @@
                                 <div class="row">
 
                                     <div class="form-group col-md-12">
-                                        <label for="">Permanent Address<span style="color: red">*</span></label>
+                                        <label for="">Permanent Address</label>
                                         <br>
                                         {{$personalInfo->parmanentAddress }}
                                     </div>

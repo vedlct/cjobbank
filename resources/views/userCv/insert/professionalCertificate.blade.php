@@ -8,7 +8,7 @@
             <div class="card">
                 <div style="background-color: #F1F1F1" class="card-body">
 
-                    <form id="regForm" action="{{route('submit.cvProfessionalCertificate')}}" method="post">
+                    <form id="regForm" name="regForm" action="{{route('submit.cvProfessionalCertificate')}}" onsubmit="return chkProfessinalCertificate()" method="post">
                         <!-- One "tab" for each step in the form: -->
                         {{csrf_field()}}
 
@@ -87,10 +87,10 @@
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
-                                <a href="{{route('candidate.cvEducation')}}"><button type="button" id="btnPevious">Back</button></a>
+                                <a href="{{route('candidate.cvTrainingCertificate')}}"><button type="button" id="btnPevious">Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
                                 @if($hasProfCertificate == 1 || $hasProfCertificate == 0 )
-                                <a href="{{route('candidate.cvTrainingCertificate')}}"><button type="button" id="nextBtn" >Next</button></a>
+                                <a href="{{route('JobExperience.index')}}"><button type="button" id="nextBtn" >Next</button></a>
                                 @endif
                             </div>
                         </div>
@@ -173,6 +173,117 @@
 
             }
         });
+        
+        function chkProfessinalCertificate() {
+
+
+
+            if ($("input[name=hasProfCertificate]:checked").val()=="1") {
+
+
+
+                var certificateName = document.getElementsByName("certificateName[]");
+
+                var institutionName = document.getElementsByName("institutionName[]");
+
+                var start = document.getElementsByName("start[]");
+                var end = document.getElementsByName("end[]");
+                var status = document.getElementsByName("professinalCertificateStatus[]");
+                var resultSystem = document.getElementsByName("resultSystem[]");
+
+                for (i = 0; i < certificateName.length; i++) {
+
+                    if(certificateName[i].value==""){
+
+                        var errorMsg='Please Type certificateName First!!';
+                        validationError(errorMsg);
+                        return false;
+                    }
+                    if(resultSystem[i].value==""){
+
+                        var errorMsg='Please Select resultSystem First!!';
+                        validationError(errorMsg);
+                        return false;
+                    }
+                    if (certificateName[i].value.length > 100){
+
+                        var errorMsg='certificateName Should not more than 100 Charecter Length!!';
+                        validationError(errorMsg);
+                        return false;
+
+                    }
+                    if(institutionName[i].value==""){
+
+                        var errorMsg='Please Type instituteName First!!';
+                        validationError(errorMsg);
+                        return false;
+
+                    }
+                    if (institutionName[i].value.length > 255){
+
+                        var errorMsg='Institute Name Should not more than 255 Charecter Length!!';
+                        validationError(errorMsg);
+                        return false;
+
+                    }
+//                    if(result==""){
+//
+//                        var errorMsg='Please Type a Result First!!';
+//                        validationError(errorMsg);
+//                        return false;
+//
+//                    }
+//                    if (result.length > 10){
+//
+//                        var errorMsg='Result Should not more than 10 Charecter Length!!';
+//                        validationError(errorMsg);
+//                        return false;
+//
+//                    }
+                    if(start[i].value==""){
+
+                        var errorMsg='Please Select a Strat Date First!!';
+                        validationError(errorMsg);
+                        return false;
+
+                    }
+//                    if(end==""){
+//
+//                        var errorMsg='Please Select a End Date First!!';
+//                        validationError(errorMsg);
+//                        return false;
+//
+//                    }
+                    if (end[i].value != "") {
+
+
+                        if (Date.parse(end[i].value) < Date.parse(start[i].value)) {
+
+                            var errorMsg = 'End date should after Start Date!!'
+                            validationError(errorMsg)
+                            return false;
+
+                        }
+                    }
+
+                    if(status[i].value==""){
+
+                        var errorMsg='Please Select a status First!!';
+                        validationError(errorMsg);
+                        return false;
+
+                    }
+
+                }
+
+            }else {
+
+                return true;
+
+            }
+
+            
+        }
 
 
         $(document).ready(function(){
@@ -191,7 +302,7 @@
 
                     var certificateName=$('#certificateName').val();
                     var institutionName=$('#institutionName').val();
-//                    var result=$('#result').val();
+//                    
                     var start=$('#start').val();
                     var end=$('#end').val();
                     var status=$('#professinalCertificateStatus').val();
@@ -200,27 +311,27 @@
 
                     if(certificateName==""){
 
-                        var errorMsg='Please Type certificateName First!!'
-                        validationError(errorMsg)
+                        var errorMsg='Please Type certificateName First!!';
+                        validationError(errorMsg);
                         return false;
                     }
                     if(resultSystem==""){
 
-                        var errorMsg='Please Select resultSystem First!!'
-                        validationError(errorMsg)
+                        var errorMsg='Please Select resultSystem First!!';
+                        validationError(errorMsg);
                         return false;
                     }
                     if (certificateName.length > 100){
 
-                        var errorMsg='certificateName Should not more than 100 Charecter Length!!'
-                        validationError(errorMsg)
+                        var errorMsg='certificateName Should not more than 100 Charecter Length!!';
+                        validationError(errorMsg);
                         return false;
 
                     }
                     if(institutionName==""){
 
-                        var errorMsg='Please Type instituteName First!!'
-                        validationError(errorMsg)
+                        var errorMsg='Please Type instituteName First!!';
+                        validationError(errorMsg);
                         return false;
 
                     }
@@ -282,6 +393,7 @@
 
 
                 }
+                
                 else {
 
                     var certificateName=$('#certificateName'+(counter-1)).val();
@@ -379,10 +491,7 @@
 
 
                 }
-
-
-
-
+                
                 var newTextBoxDiv = $(document.createElement('div'))
                     .attr("id", 'TextBoxDiv' + counter).attr("class", 'row');
                 newTextBoxDiv.after().html(
@@ -444,6 +553,8 @@
                 $('.date').datepicker({
                     format: 'yyyy-m-d'
                 });
+                
+                
             });
 
             $("#removeButton").click(function () {

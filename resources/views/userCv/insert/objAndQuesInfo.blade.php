@@ -14,7 +14,7 @@
                         {{csrf_field()}}
                         <div class="tab">
 
-                            <h2 style="margin-bottom: 40px; text-align: center;">Career and Application Information</h2>
+                            <h2 style="margin-bottom: 40px; text-align: center;">Career Objective and Application Information</h2>
 
 
                             <div class="form-group">
@@ -80,7 +80,7 @@
 
                                 <button type="submit" id="submitBtn">Save</button>
 
-                                <a href="{{route('candidate.cvEducation')}}"><button type="button" id="nextBtn" >Next</button></a>
+                                {{--<a href="{{route('candidate.cvEducation')}}"><button type="button" id="nextBtn" >Next</button></a>--}}
                             </div>
                         </div>
 

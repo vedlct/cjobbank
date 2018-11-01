@@ -8,7 +8,7 @@
             <div class="card">
                 <div style="background-color: #F1F1F1" class="card-body">
 
-                    <form id="regForm" action="{{route('insert.cvTrainingCertificate')}}" method="post">
+                    <form id="regForm" onsubmit="return chkTrainingCertificate()" action="{{route('insert.cvTrainingCertificate')}}" method="post">
                         <!-- One "tab" for each step in the form: -->
                         {{csrf_field()}}
 
@@ -88,10 +88,10 @@
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
-                                <a href="{{route('candidate.cvProfessionalCertificate')}}"><button type="button" id="btnPevious" >Back</button></a>
+                                <a href="{{route('cv.OthersInfo')}}"><button type="button" id="btnPevious" >Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
                                 @if($hasTrainingInfo == '1' || $hasTrainingInfo == '0')
-                                <a href="{{route('cv.OthersInfo')}}"><button type="button" id="btnNext" >Next</button></a>
+                                <a href="{{route('candidate.cvProfessionalCertificate')}}"><button type="button" id="btnNext" >Next</button></a>
                                 @endif
 
                             </div>
@@ -179,6 +179,92 @@
 //            });
         });
 
+        function chkTrainingCertificate() {
+
+            if ($("input[name=hasTrainingInfo]:checked").val()=="1") {
+
+
+
+                var trainingName = document.getElementsByName('trainingName[]');
+                var vanue = document.getElementsByName('vanue[]');
+                var country = document.getElementsByName('countryId[]');
+
+                var start = document.getElementsByName('startDate[]');
+                var end = document.getElementsByName('endDate[]');
+                var trainingCertificateStatus = document.getElementsByName('status[]');
+
+                for (i=0;i<trainingName.length;i++) {
+
+
+                    if (trainingName[i].value == "") {
+
+                        var errorMsg = 'Please Type a Training Name First!!'
+                        validationError(errorMsg)
+                        return false;
+                    }
+                    if (trainingName[i].value.length > 100) {
+
+                        var errorMsg = 'Training Name Should not more than 100 Charecter Length!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if (vanue[i].value == "") {
+
+                        var errorMsg = 'Please Type a Venue First!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if (vanue[i].value.length > 255) {
+
+                        var errorMsg = 'value Should not more than 255 Charecter Length!!';
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if (country[i].value == "") {
+
+                        var errorMsg = 'Please Select a Country First!!';
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+
+                    if (start[i].value == "") {
+                        var errorMsg = 'Please Select a Strat Date First!!';
+                        validationError(errorMsg)
+                        return false;
+                    }
+//        if(end==""){
+//            var errorMsg='Please Select a End Date First!!';
+//            validationError(errorMsg)
+//            return false;
+//        }
+
+                    if (trainingCertificateStatus[i].value == "") {
+                        var errorMsg = 'Please Select a Status First!!';
+                        validationError(errorMsg)
+                        return false;
+                    }
+
+                    if (end[i].value != "") {
+
+
+                        if (Date.parse(end[i].value) < Date.parse(start[i].value)) {
+                            var errorMsg = 'End date should after Start Date!!';
+                            validationError(errorMsg);
+                            return false;
+                        }
+                    }
+                }
+            }else {
+
+                return true;
+
+            }
+
+        }
         $(document).ready(function(){
 
             var counter = 1;

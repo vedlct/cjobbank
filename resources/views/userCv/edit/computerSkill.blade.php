@@ -7,10 +7,13 @@
 
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">Skill<span style="color: red">*</span></label>
+                    <?php $skillId= array();
+                    $skillTitle=array();?>
                     <select name="computerSkillId" id="" class="form-control" required>
                         <option value="">Select Skill</option>
                         @foreach($allComputerSkills as $skill)
                             <option @if($skill->id==$computerSkill->computerSkillId)selected @endif value="{{$skill->id}}">{{$skill->computerSkillName}}</option>
+
                         @endforeach
                     </select>
                 </div>
@@ -29,8 +32,7 @@
 
                 </div>
 
-
-    </div>
+            </div>
 
     <div style="overflow:auto;">
         <div style="float:right;">
@@ -46,3 +48,4 @@
 
 
 </form>
+

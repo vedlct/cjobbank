@@ -32,18 +32,46 @@ class JobExperienceController extends Controller
     }
    public function index(){
 
-       $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
-       $experiences=JobExperience::where('fkemployeeId',$employee->employeeId)
-           ->leftJoin('organizationtype','organizationtype.organizationTypeId','jobexperience.fkOrganizationType')
-           ->get();
+       $employee=Employee::select('employeeId','hasProfCertificate')->where('fkuserId',Auth::user()->userId)->first();
+
+
        $companyType=DB::table('organizationtype')->where('status',1)->get();
 
-       if($experiences->isEmpty()){
+       if (is_null($employee->hasProfCertificate)) {
 
-           return view('userCv.insert.jobExperience',compact('companyType'));
+           $hasProfCertificate = null;
+
+           return view('userCv.insert.jobExperience',compact('companyType','hasProfCertificate'));
+
+
        }
+       elseif ($employee->hasProfCertificate == 0){
 
-       return view('userCv.update.jobExperience',compact('experiences','companyType'));
+           $hasProfCertificate=0;
+
+           return view('userCv.insert.jobExperience',compact('companyType','hasProfCertificate'));
+
+       }elseif ($employee->hasProfCertificate == 1){
+
+           $hasProfCertificate=1;
+
+           $experiences=JobExperience::where('fkemployeeId',$employee->employeeId)
+               ->leftJoin('organizationtype','organizationtype.organizationTypeId','jobexperience.fkOrganizationType')
+               ->get();
+
+
+
+           if($experiences->isEmpty()){
+
+               return view('userCv.insert.jobExperience',compact('companyType','hasProfCertificate'));
+           }
+
+           else{
+               return view('userCv.update.jobExperience',compact('experiences','companyType','hasProfCertificate'));
+           }
+
+
+       }
 
    }
 

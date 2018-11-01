@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Employee;
+use App\EmployeeLanguage;
 use App\LanguageHead;
 use App\LanguageSkill;
 use Illuminate\Http\Request;
@@ -34,5 +36,33 @@ class LanguageController extends Controller
         $languagehead = LanguageHead::get();
         $languageskill = LanguageSkill::get();
         return view('userCv.insert.language', compact('languagehead', 'languageskill'));
+    }
+
+    public function insert(Request $r){
+
+
+        $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
+
+        $emp=Employee::findOrFail($employee->employeeId);
+
+        $languageskill = LanguageSkill::get();
+
+            for($i=0;$i < count($r->languagehead);$i++) {
+
+                for ($j = 0; $j < count($r->languageskill); $j++) {
+
+                    $language = new EmployeeLanguage();
+                    $language->fkemployeeId = $employee->employeeId;
+                    $language->fklanguageHead = $r->languagehead[$i];
+                    $language->rate = $r->languageskill[$j];
+                    $language->save();
+
+                }
+            }
+
+        Session::flash('message', 'Language Added Successfully');
+
+        return redirect()->route('candidate.language.index');
+
     }
 }

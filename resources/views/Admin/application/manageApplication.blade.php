@@ -268,6 +268,7 @@
 
 
 
+
             table = $('#manageapplication').DataTable({
                 processing: true,
                 serverSide: true,
@@ -984,7 +985,7 @@
 
 
             });
-        
+
 
         function isNumberKey(evt)
         {
