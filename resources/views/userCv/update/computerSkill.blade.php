@@ -17,13 +17,18 @@
                                 <div id="edit{{$skills->id}}">
                                 <div id="" class="row">
                                     <div class="form-group col-md-5">
-                                        <label for="inputEmail4">Skill</label>
+                                        <label for="inputEmail4">Skill : </label>
 
 
                                             @foreach($computerSkills as $skill)
                                             @if($skill->id==$skills->computerSkillId)
                                                 {{$skill->computerSkillName}}
                                             @endif
+
+                                                {{--@php--}}
+                                                    {{--array_push($skillId,$skill->id);--}}
+                                                    {{--array_push($skillTitle,$skill->computerSkillName );--}}
+                                                {{--@endphp--}}
 
                                             @endforeach
 
@@ -32,7 +37,7 @@
 
                                     <div class="form-group col-md-5">
 
-                                        <label for="inputEmail4">Skill-Level</label>
+                                        <label for="inputEmail4">Skill-Level : </label>
 
                                             @foreach(ComputerSkillAchievement as $key=>$value)
                                              @if($value==$skills->SkillAchievement)
@@ -152,10 +157,16 @@
 
 
             $("#addButton").click(function () {
+
+                {{--var skillId= <?php echo json_encode( $skillId ) ?>;--}}
+
                 if(counter>10){
                     alert("Only 10 Section allow per Time!!");
                     return false;
                 }
+
+
+
                 $("#btnPevious").hide();
 
 
@@ -254,6 +265,7 @@
                             $.ajax({
                                 type: "POST",
                                 url: '{{route('candidate.computerSkill.delete')}}',
+
                                 data: {_token:"{{csrf_token()}}",id: x},
                                 success: function (data) {
                                     $.alert({
@@ -307,3 +319,4 @@
 
 
 @endsection
+

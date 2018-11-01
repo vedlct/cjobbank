@@ -32,12 +32,12 @@ class JobExperienceController extends Controller
     }
    public function index(){
 
-       $employee=Employee::select('employeeId','hasProfCertificate')->where('fkuserId',Auth::user()->userId)->first();
+       $employee=Employee::select('employeeId','hasJobExp')->where('fkuserId',Auth::user()->userId)->first();
 
 
        $companyType=DB::table('organizationtype')->where('status',1)->get();
 
-       if (is_null($employee->hasProfCertificate)) {
+       if (is_null($employee->hasJobExp)) {
 
            $hasProfCertificate = null;
 
@@ -45,13 +45,13 @@ class JobExperienceController extends Controller
 
 
        }
-       elseif ($employee->hasProfCertificate == 0){
+       elseif ($employee->hasJobExp == 0){
 
            $hasProfCertificate=0;
 
            return view('userCv.insert.jobExperience',compact('companyType','hasProfCertificate'));
 
-       }elseif ($employee->hasProfCertificate == 1){
+       }elseif ($employee->hasJobExp == 1){
 
            $hasProfCertificate=1;
 
@@ -81,26 +81,37 @@ class JobExperienceController extends Controller
 
        $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
 
-       for($i=0;$i<count($r->organization);$i++){
+       $emp=Employee::findOrFail($employee->employeeId);
+       if ($r->hasProfCertificate==0){
 
-           $experience=new JobExperience();
-           $experience->organization=$r->organization[$i];
-           $experience->degisnation=$r->degisnation[$i];
-           $experience->startDate=$r->startDate[$i];
-           $experience->endDate=$r->endDate[$i];
-           $experience->address=$r->address[$i];
-           $experience->fkemployeeId=$employee->employeeId;
-           $experience->fkOrganizationType=$r->organizationType[$i];
+           $emp->hasJobExp=0;
+           $emp->save();
 
-           $experience->majorResponsibilities=$r->majorResponsibilities[$i];
-           $experience->keyAchivement=$r->keyAchivement[$i];
-           $experience->supervisorName=$r->supervisorName[$i];
-           $experience->reservationContactingEmployer=$r->reservationContactingEmployer[$i];
+       }else {
+           $emp->hasJobExp = 1;
+           $emp->save();
 
-           $experience->employmentType=$r->employmentType[$i];
-           $experience->employmentTypeText=$r->employmentTypeText[$i];
+           for ($i = 0; $i < count($r->organization); $i++) {
 
-           $experience->save();
+               $experience = new JobExperience();
+               $experience->organization = $r->organization[$i];
+               $experience->degisnation = $r->degisnation[$i];
+               $experience->startDate = $r->startDate[$i];
+               $experience->endDate = $r->endDate[$i];
+               $experience->address = $r->address[$i];
+               $experience->fkemployeeId = $employee->employeeId;
+               $experience->fkOrganizationType = $r->organizationType[$i];
+
+               $experience->majorResponsibilities = $r->majorResponsibilities[$i];
+               $experience->keyAchivement = $r->keyAchivement[$i];
+               $experience->supervisorName = $r->supervisorName[$i];
+               $experience->reservationContactingEmployer = $r->reservationContactingEmployer[$i];
+
+               $experience->employmentType = $r->employmentType[$i];
+               $experience->employmentTypeText = $r->employmentTypeText[$i];
+
+               $experience->save();
+           }
        }
 
        Session::flash('message', 'Experience Added Successfully');
@@ -142,7 +153,22 @@ class JobExperienceController extends Controller
    }
 
    public function deleteJobExperience(Request $r){
+
        JobExperience::destroy($r->jobExperienceId);
+       $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
+
+       $count=JobExperience::where('fkemployeeId',$employee->employeeId)
+           ->count();
+
+       if ($count == 0){
+           $emp=Employee::findOrFail($employee->employeeId);
+
+           $emp->hasJobExp=0;
+           $emp->save();
+
+       }
+
+
        Session::flash('message', 'Experience Deleted Successfully');
    }
 }

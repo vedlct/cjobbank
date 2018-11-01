@@ -268,6 +268,7 @@
 
 
 
+
             table = $('#manageapplication').DataTable({
                 processing: true,
                 serverSide: true,

@@ -21,8 +21,15 @@
                                         @endif
                                 <div id="edit{{$refree->refereeId}}">
                                     <h2 style="margin-bottom: 30px;">Referee - {{++$tempHr}} </h2>
+                                    <div class="row">
+                                        <div class="form-group offset-10 col-md-2 pull">
+                                            <button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$refree->refereeId}})"><i class="fa fa-edit"></i></button>
+                                            <button type="button" class="btn btn-danger btn-sm " onclick="deleteReferee({{$refree->refereeId}})"><i class="fa fa-trash"></i></button>
+
+                                        </div>
+                                    </div>
                                         <div class="row">
-                                            <div class="form-group col-md-5">
+                                            <div class="form-group col-md-6">
                                                 <label for="inputEmail4">First Name</label>
                                                 {{$refree->firstName}}
                                                 {{--<input type="text" class="form-control" name="firstName[]" id="inputEmail4" placeholder="first name" required>--}}
@@ -30,16 +37,12 @@
 
 
 
-                                            <div class="form-group col-md-5">
+                                            <div class="form-group col-md-6">
                                                 <label for="inputEmail4">Last Name</label>
                                                 {{$refree->lastName}}
                                                 {{--<input type="text" class="form-control" name="lastName[]" id="inputEmail4" placeholder="last name" required>--}}
                                             </div>
-                                            <div class="form-group col-md-2 ">
-                                                <button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$refree->refereeId}})"><i class="fa fa-edit"></i></button>
-                                                <button type="button" class="btn btn-danger btn-sm " onclick="deleteReferee({{$refree->refereeId}})"><i class="fa fa-trash"></i></button>
 
-                                            </div>
 
 
 

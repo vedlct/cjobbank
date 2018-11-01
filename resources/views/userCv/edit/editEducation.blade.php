@@ -53,7 +53,7 @@
 
 
             <div @if($education->eduLvlUnder == 1 || $education->eduLvlUnder==null ) style="display: none" @endif id="boardDiv" class="form-group col-md-3">
-                <label for="">Board</label>
+                <label for="">Board/University</label>
                 <select name="board" class="form-control" id="board">
                     <option value="" >Select Board</option>
                     @foreach($boards as $board)
@@ -91,7 +91,7 @@
 
 
             <div class="form-group col-md-3">
-                <label for="">Year<span style="color: red">*</span></label>
+                <label for="">Passing Year<span style="color: red">*</span></label>
                 <input name="passingYear" type="text" class="form-control date" value="{{$education->passingYear}}" id="passingYear" required placeholder="passing Year">
             </div>
             <div class="form-group col-md-3">
@@ -106,7 +106,7 @@
 
             <div class="form-group col-md-3">
                 <label for="">CGPA<span style="color: red">*</span></label>
-                <input name="result" type="text" class="form-control" value="{{$education->result}}" required id="cgpa" placeholder="">
+                <input name="result" type="text" class="form-control" value="{{$education->result}}" required id="cgpa" maxlength="10" placeholder="">
             </div>
             <div class="form-group col-md-3">
                 <label for="">Out of</label>

@@ -175,7 +175,7 @@
                                 </div>
 
                                 <div class="form-group col-md-6">
-                                    <label for="">NID<span style="color: red">*</span></label>
+                                    <label for="">NID / BID<span style="color: red">*</span></label>
                                     <input type="text" required name="nId" class="form-control {{ $errors->has('nId') ? ' is-invalid' : '' }}" value="{{ old('nId') }}" id="" placeholder="National Id">
                                     @if ($errors->has('nId'))
                                         <span class="">
@@ -236,7 +236,7 @@
 
                                 <div class="form-group col-md-6">
                                     <label for="">Telephone No.</label>
-                                    <input type="text"  maxlength="20" onkeypress="return isNumberKey(event)"name="telephone" class="form-control {{ $errors->has('telephone') ? ' is-invalid' : '' }}" value="{{ old('telephone') }}" id="" placeholder="Telephone number">
+                                    <input type="text"  maxlength="20" onkeypress="return isNumberKey(event)" name="telephone" class="form-control {{ $errors->has('telephone') ? ' is-invalid' : '' }}" value="{{ old('telephone') }}" id="" placeholder="Telephone number">
                                     @if ($errors->has('telephone'))
 
                                         <span class="">
