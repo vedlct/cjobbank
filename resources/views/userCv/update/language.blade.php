@@ -40,18 +40,55 @@
 
     <div class="row ">
 
+
         <div class="col-12 ">
             <div class="card">
                 <div style="background-color: #F1F1F1" class="card-body">
 
-                    <form id="regForm" name="skillForm" action="{{route('candidate.language.insert')}}"  method="post">
-                        <!-- One "tab" for each step in the form: -->
-                        {{csrf_field()}}
+                        <div id="regForm">
 
                         <div id="" class="tab">
 
                             <h2 style="margin-bottom: 30px; text-align: center">Language</h2>
 
+                            @foreach($empLanguageGroup as $languageHead)
+                                <div id="language{{$languageHead->fklanguageHead}}">
+                                <div class="form-group pull-right">
+                                    <button class="btn btn-sm btn-info" data-panel-id="{{$languageHead->fklanguageHead}}" onclick="editLanguage(this)"><i class="fa fa-edit"></i></button>
+                                    <button class="btn btn-sm btn-danger" data-panel-id="{{$languageHead->fklanguageHead}}" onclick="deleteLanguage(this)"><i class="fa fa-trash"></i></button>
+                                </div>
+                                <h5>{{$languageHead->languagename}}</h5>
+
+                                <table class="table table-striped">
+                                    <thead>
+                                        <th>languageSkillName</th>
+                                        <th>rate</th>
+                                    </thead>
+
+
+
+                                @foreach($empLanguage as $language)
+                                        <tr>
+                                    @if($languageHead->fklanguageHead== $language->fklanguageHead)
+
+
+                                        <td>{{$language->languageSkillName}}</td>
+                                        <td>{{$language->rate}}</td>
+
+
+                                    @endif
+                                        </tr>
+
+                                @endforeach
+                                </table>
+                                </div>
+                                <hr>
+
+                            @endforeach
+
+                            <form  name="skillForm" action="{{route('candidate.language.insert')}}"  method="post">
+                                <!-- One "tab" for each step in the form: -->
+                                {{csrf_field()}}
 
 
                             <div style="display: block" id="otherSkillDiv">
@@ -70,22 +107,22 @@
                                         </div>
 
                                         @foreach($languageskill as $ls)
-                                        <div class="col-sm-12 row">
+                                            <div class="col-sm-12 row">
 
-                                            <div class="form-group col-md-4" style="margin-top: 20px">
-                                                <label>{{$ls->languageSkillName}}</label>
+                                                <div class="form-group col-md-4" style="margin-top: 20px">
+                                                    <label>{{$ls->languageSkillName}}</label>
 
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label>Percentage of Skill (out of 100)</label>
+                                                    <div class="slidecontainer">
+                                                        <input type="range" min="0" max="100" value="0" class="slider" onchange="myRangeChanged2('{{$ls->id}}')" name="languageskill[]" id="myRange<?php echo $ls->id?>" >
+                                                        <p>Value: <span id="demo<?php echo $ls->id?>"></span> %</p>
+                                                        <input type="hidden" id="skillPercentage" name="langskillid" value="{{$ls->id}}" class="form-control"  />
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="form-group col-md-6">
-                                            <label>Percentage of Skill (out of 100)</label>
-                                            <div class="slidecontainer">
-                                                <input type="range" min="0" max="100" value="0" class="slider" onchange="myRangeChanged2('{{$ls->id}}')" name="languageskill[]" id="myRange<?php echo $ls->id?>" >
-                                                <p>Value: <span id="demo<?php echo $ls->id?>"></span> %</p>
-                                                <input type="hidden" id="skillPercentage" name="langskillid" value="{{$ls->id}}" class="form-control"  />
-                                            </div>
-                                        </div>
-                                        </div>
-                                            @endforeach
+                                        @endforeach
 
 
                                     </div>
@@ -97,6 +134,8 @@
                                 <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
                             </div>
+
+
                         </div>
 
                         <div style="overflow:auto;">
@@ -107,10 +146,12 @@
 
                             </div>
                         </div>
+                            </form>
 
 
 
-                        <!-- Circles which indicates the steps of the form: -->
+
+                            <!-- Circles which indicates the steps of the form: -->
                         <div style="text-align:center;margin-top:40px;">
                             <span class="step"></span>
                             <span class="step"></span>
@@ -121,7 +162,8 @@
                             <span class="step"></span>
                         </div>
 
-                    </form>
+
+                        </div>
 
                 </div>
             </div>
@@ -139,28 +181,56 @@
 
 @section('foot-js')
     <script>
-        // var slider = document.getElementById("myRange");
-        // var output = document.getElementById("demo");
-        // output.innerHTML = slider.value;
-        //
-        // slider.oninput = function() {
-        //     output.innerHTML = this.value;
-        //     $("#skillPercentage").val(this.value);
-        // }
 
-        // function myRangeChanged(x){
-        //
-        //     var slider = document.getElementById("myRange"+x);
-        //     var output = document.getElementById("demo"+x);
-        //     output.innerHTML = slider.value;
-        //
-        //     slider.oninput = function() {
-        //         output.innerHTML = this.value;
-        //         $("#skillPercentage"+x).val(this.value);
-        //     }
-        //
-        // }
 
+        function editLanguage(x) {
+            var id=$(x).data('panel-id');
+            // alert(id);
+
+
+            $.ajax({
+                type: 'POST',
+                url: "{!! route('candidate.language.edit') !!}",
+                cache: false,
+                data: {_token: "{{csrf_token()}}",'id': id},
+                success: function (data) {
+
+                    $('#language'+id).html(data);
+                    // console.log(data);
+
+                }
+            });
+        }
+
+        function deleteLanguage(x){
+            var id=$(x).data('panel-id');
+            $.confirm({
+                title: 'Delete!',
+                content: 'Are you sure ?',
+                buttons: {
+                    confirm: function () {
+                        $.ajax({
+                            type: 'POST',
+                            url: "{!! route('candidate.language.delete') !!}",
+                            cache: false,
+                            data: {_token: "{{csrf_token()}}",'id': id},
+                            success: function (data) {
+
+                                location.reload();
+
+                            }
+                        });
+
+                    },
+                    cancel: function () {
+//                        $.alert('Canceled!');
+                    }
+
+                }
+            });
+
+
+        }
 
 
         $("input[name=hasOtherSkill]").click( function () {
@@ -266,7 +336,7 @@
                     '@endforeach'+
                     '</select> ' +
                     '</div>'+
-                        '@foreach($languageskill as $ls)'+
+                    '@foreach($languageskill as $ls)'+
                     '<div class="col-sm-12 row">'+
                     '<div class="form-group col-md-4" style="margin-top: 20px">'+
                     '<label>{{$ls->languageSkillName}}</label>'+
@@ -291,9 +361,9 @@
                     $("#removeButton").show();
                 }
 
-                });
+            });
 
-                $("#removeButton").click(function () {
+            $("#removeButton").click(function () {
 
 
                 if(counter=='1'){
@@ -305,7 +375,7 @@
                     $("#removeButton").hide();
                 }
                 $("#TextBoxDiv" + counter).remove();
-                });
+            });
 
 
         });

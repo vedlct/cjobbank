@@ -27,15 +27,50 @@ class LanguageController extends Controller
                 return redirect('/');
             }
 
-
         });
     }
 
     public function index(){
 
+
         $languagehead = LanguageHead::get();
         $languageskill = LanguageSkill::get();
-        return view('userCv.insert.language', compact('languagehead', 'languageskill'));
+
+        $employee=Employee::select('employeeId','hasJobExp')->where('fkuserId',Auth::user()->userId)
+            ->first();
+//        $empLanguage=EmployeeLanguage::where('fkemployeeId',$employee->employeeId)
+//            ->where('fklanguageHead',1)
+//            ->get();
+//
+//        return $empLanguage;
+
+
+        $empLanguage=EmployeeLanguage::select('emp_language.*','languageskill.languageSkillName','languagehead.languagename')
+            ->where('fkemployeeId',$employee->employeeId)
+            ->leftJoin('languageskill','languageskill.id','emp_language.fklanguageSkill')
+            ->leftJoin('languagehead','languagehead.id','emp_language.fklanguageHead')
+            ->get();
+
+//        return $empLanguage;
+
+        if($empLanguage->isEmpty()){
+            return view('userCv.insert.language', compact('languagehead', 'languageskill'));
+        }
+        else{
+            $empLanguageGroup=EmployeeLanguage::select('fklanguageHead','languagehead.languagename')->where('fkemployeeId',$employee->employeeId)
+                ->leftJoin('languagehead','languagehead.id','emp_language.fklanguageHead')
+                ->groupBy('fklanguageHead')
+                ->get();
+
+
+            return view('userCv.update.language', compact('languagehead', 'languageskill','empLanguage','empLanguageGroup'));
+        }
+
+
+
+
+
+
     }
 
     public function insert(Request $r){
@@ -67,6 +102,48 @@ class LanguageController extends Controller
         Session::flash('message', 'Language Added Successfully');
 
         return redirect()->route('candidate.language.index');
+
+    }
+
+    public function edit(Request $r){
+
+       $fklanguageHead=$r->id;
+        $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
+
+        $empLanguage=EmployeeLanguage::where('fkemployeeId',$employee->employeeId)
+            ->where('fklanguageHead',$r->id)
+            ->get();
+
+
+        $languagehead = LanguageHead::get();
+        $languageskill = LanguageSkill::get();
+
+
+
+        return view('userCv.edit.language', compact('languagehead', 'languageskill','empLanguage','fklanguageHead'));
+
+    }
+
+    public function update(Request $r){
+//        return $r;
+        $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
+
+        for($i=0;$i<count($r->langskillid);$i++){
+            EmployeeLanguage::where('fkemployeeId',$employee->employeeId)
+                ->where('fklanguageHead',$r->languagehead)
+                ->where('fklanguageSkill',$r->langskillid[$i])
+                ->update(['rate'=>$r->languageskill[$i]]);
+
+        }
+
+        return back();
+    }
+
+    public function delete(Request $r){
+        $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
+        EmployeeLanguage::where('fkemployeeId',$employee->employeeId)
+            ->where('fklanguageHead',$r->id)
+            ->delete();
 
     }
 }
