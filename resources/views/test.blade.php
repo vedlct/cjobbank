@@ -175,8 +175,6 @@
                         @endif
                         .
 
-
-
                     </td>
                 </tr>
             @endforeach
