@@ -111,7 +111,7 @@ Route::post('/updateCvTraning','TrainingController@updateCvTraning')->name('upda
 Route::post('/deleteCvTraning','TrainingController@deleteCvTraning')->name('cvTrainingCertificate.delete');
 
 
-//Job Experience
+//Job ExperienceCandidate-CV
 Route::get('/Candidate-CV-JobExperience','JobExperienceController@index')->name('JobExperience.index');
 Route::post('/Candidate-CV-JobExperience','JobExperienceController@submitJobExperience')->name('submit.jobExperience');
 Route::post('/editJobExperience','JobExperienceController@editJobExperience')->name('JobExperience.edit');

@@ -22,7 +22,7 @@
 
                                 <div class="form-group col-md-10">
 
-                                    <label for="">#extraCurricularActivities</label><br>
+                                    <label for="">Extra Curricular Activities</label><br>
                                     {{$empOtherInfo->extraCurricularActivities}}
                                 </div>
 
@@ -33,20 +33,20 @@
 
                                 <div class="form-group col-md-12">
 
-                                    <label for="">interests </label><br>
+                                    <label for="">Interests </label><br>
                                     {{$empOtherInfo->interests}}
 
                                 </div>
 
                                 <div class="form-group col-md-12">
 
-                                    <label for="">awardReceived</label><br>
+                                    <label for="">Awards received</label><br>
                                     {{$empOtherInfo->awardReceived}}
 
                                 </div>
                                 <div class="form-group col-md-12">
 
-                                    <label for="">researchPublication </label><br>
+                                    <label for="">Research / Publciation </label><br>
                                     {{$empOtherInfo->researchPublication}}
 
                                 </div>
@@ -135,5 +135,7 @@
         }
 
     </script>
+
+
 
 @endsection

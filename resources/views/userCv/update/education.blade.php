@@ -64,7 +64,7 @@
 
                                 @if($educationInfo->eduLvlUnder ==1 || $educationInfo->eduLvlUnder==null )
                                     <div class="form-group col-md-3">
-                                        <label for="">Board :</label>
+                                        <label for="">Board / University :</label>
                                         {{$educationInfo->boardName}}
 
                                     </div>
@@ -90,7 +90,7 @@
 
 
                                 <div class="form-group col-md-3">
-                                    <label for="">Year :</label>
+                                    <label for="">Passing Year :</label>
                                     {{$educationInfo->passingYear}}
 
                                     {{--<input name="passingYear[]" type="text" class="form-control date" id="" required placeholder="passing Year">--}}
@@ -457,7 +457,7 @@
                     '</div>'+
 
                     '<div id="boardDiv'+counter+'" class="form-group col-md-3">'+
-                    '<label for="">Board</label>' +
+                    '<label for="">Board/University</label>' +
                     '<select name="board[]" class="form-control" id="major"> ' +
                     '<option value="" >Select Board</option>'+
                         @foreach($boards as $board)
