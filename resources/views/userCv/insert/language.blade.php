@@ -79,7 +79,7 @@
                                             <div class="form-group col-md-6">
                                             <label>Percentage of Skill (out of 100)</label>
                                             <div class="slidecontainer">
-                                                <input type="range" min="1" max="100" value="0" class="slider" onchange="myRangeChanged2('{{$ls->id}}')" name="languageskill[]" id="myRange<?php echo $ls->id?>" >
+                                                <input type="range" min="0" max="100" value="0" class="slider" onchange="myRangeChanged2('{{$ls->id}}')" name="languageskill[]" id="myRange<?php echo $ls->id?>" >
                                                 <p>Value: <span id="demo<?php echo $ls->id?>"></span> %</p>
                                                 <input type="hidden" id="skillPercentage" name="langskillid" value="{{$ls->id}}" class="form-control"  />
                                             </div>
@@ -267,7 +267,6 @@
                     '</select> ' +
                     '</div>'+
                         '@foreach($languageskill as $ls)'+
-
                     '<div class="col-sm-12 row">'+
                     '<div class="form-group col-md-4" style="margin-top: 20px">'+
                     '<label>{{$ls->languageSkillName}}</label>'+
@@ -275,7 +274,7 @@
                     '<div class="form-group col-md-6">'+
                     '<label>Percentage of Skill (out of 100)</label>'+
                     '<div class="slidecontainer">'+
-                    '<input type="range" min="1" max="100" value="0" class="slider" onchange="myRangeChanged3('+'{{$ls->id}}'+')" name="{{$ls->id}}" id="myRange1'+'<?php echo $ls->id?>'+'" >'+
+                    '<input type="range" min="0" max="100" value="0" class="slider" onchange="myRangeChanged3('+'{{$ls->id}}'+')" name="{{$ls->id}}" id="myRange1'+'<?php echo $ls->id?>'+'" >'+
                     '<p>Value: <span id="demo1'+'<?php echo $ls->id?>'+'"></span> %</p>'+
                     '<input type="hidden" id="skillPercentage" name="langskillid" value="{{$ls->id}}" class="form-control"  />'+
                     '</div>'+
@@ -283,7 +282,8 @@
                     '</div>'+
                     '@endforeach'
 
-);
+                );
+
                 newTextBoxDiv.appendTo("#TextBoxesGroup");
 
                 counter++;
@@ -291,10 +291,9 @@
                     $("#removeButton").show();
                 }
 
+                });
 
-            });
-
-            $("#removeButton").click(function () {
+                $("#removeButton").click(function () {
 
 
                 if(counter=='1'){
@@ -306,7 +305,7 @@
                     $("#removeButton").hide();
                 }
                 $("#TextBoxDiv" + counter).remove();
-            });
+                });
 
 
         });
