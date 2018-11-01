@@ -49,15 +49,19 @@ class LanguageController extends Controller
 
             for($i=0;$i < count($r->languagehead);$i++) {
 
-                for ($j = 0; $j < count($r->languageskill); $j++) {
+                $count= 0;
+               foreach ($languageskill as $ls){
 
                     $language = new EmployeeLanguage();
                     $language->fkemployeeId = $employee->employeeId;
                     $language->fklanguageHead = $r->languagehead[$i];
-                    $language->rate = $r->languageskill[$j];
+                    $language->fklanguageSkill = $ls->id;
+                    $language->rate = $r->languageskill[$count];
                     $language->save();
+                $count++;
 
                 }
+
             }
 
         Session::flash('message', 'Language Added Successfully');
