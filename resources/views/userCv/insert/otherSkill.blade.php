@@ -59,9 +59,11 @@
                             <div class="row">
                                 <div class="form-group">
                                     <label class="control-label">Has Other Skill Information?<span style="color: red" class="required">*</span>:</label>
+                                    <div class="col-md-10 mb-3">
+                                        <input class="form-check-input" type="radio" required <?php if ($hasOtherSkill=='1'){?>checked<?php } ?> name="hasOtherSkill" value="1"> Yes&nbsp;&nbsp;
+                                    </div>
                                     <div class="col-md-10">
-                                        <input type="radio" required <?php if ($hasOtherSkill=='1'){?>checked<?php } ?> name="hasOtherSkill" value="1"> Yes&nbsp;&nbsp;
-                                        <input type="radio" required <?php if ($hasOtherSkill=='0'){?>checked<?php } ?> name="hasOtherSkill" value="0"> No&nbsp;&nbsp;
+                                        <input class="form-check-input" type="radio" required <?php if ($hasOtherSkill=='0'){?>checked<?php } ?> name="hasOtherSkill" value="0"> No&nbsp;&nbsp;
                                     </div>
                                 </div>
                             </div>

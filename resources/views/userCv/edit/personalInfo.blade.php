@@ -10,7 +10,7 @@
     </style>
 
                     @foreach($employeeCvPersonalInfo as $personalInfo)
-                        <form  enctype="multipart/form-data" method="post" action="{{route('cv.updatePersonalInfo')}}">
+                        <form  enctype="multipart/form-data" method="post"  action="{{route('cv.updatePersonalInfo')}}">
 
                         {{csrf_field()}}
                         <!-- One "tab" for each step in the form: -->
@@ -178,7 +178,7 @@
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label for="">NID <span style="color: red">*</span></label>
+                                        <label for="">NID / BID <span style="color: red">*</span></label>
                                         <input required type="text" name="nId" class="form-control {{ $errors->has('nId') ? ' is-invalid' : '' }}" value="{{ $personalInfo->nationalId }}" id="" placeholder="">
                                         @if ($errors->has('nId'))
 
@@ -337,7 +337,7 @@
 
                                             <span class="">
                                         <strong>{{ $errors->first('image') }}</strong>
-                                            </span>
+                                    </span>
                                         @endif
                                         <input type="file" class="form-control" name="image" id="image" placeholder="">
 <br>
@@ -387,7 +387,7 @@
 
 
 
-@section('foot-js')
+
 
 
 
@@ -419,9 +419,74 @@
             return true;
         }
 
+        $("#image").change(function() {
+
+            var val = $(this).val();
+
+            switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
+                case 'gif': case 'jpg': case 'png': case 'jpeg':
+
+                break;
+                default:
+                    $(this).val('');
+                    // error message here
+                    var errorMsg="Please Select a valid Image";
+                    validationError(errorMsg);
+                    break;
+            }
+            var picsize = (this.files[0].size);
+            if (picsize > 100){
+                var errorMsg="Image Size Should be less then 100 KB";
+                validationError(errorMsg);
+                $(this).val('');
+
+            }
+
+        });
+        $("#sign").change(function() {
+
+            var val = $(this).val();
+
+            switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
+                case 'gif': case 'jpg': case 'png': case 'jpeg':
+
+                break;
+                default:
+                    $(this).val('');
+                    // error message here
+                    var errorMsg="Please Select a valid Image";
+                    validationError(errorMsg);
+                    break;
+            }
+            var picsize = (this.files[0].size);
+            if (picsize > 100){
+                var errorMsg="Image Size Should be less then 100 KB";
+                validationError(errorMsg);
+                $(this).val('');
+
+            }
+
+        });
+
+        function validationError(errorMsg){
+
+            $.alert({
+                title: 'Error',
+                type: 'red',
+                content: errorMsg,
+                buttons: {
+                    tryAgain: {
+                        text: 'Ok',
+                        btnClass: 'btn-green',
+                        action: function () {
+
+                        }
+                    }
+                }
+            });
+
+        }
+
 
 
     </script>
-
-
-@endsection

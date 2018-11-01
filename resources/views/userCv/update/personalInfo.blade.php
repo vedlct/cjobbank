@@ -132,7 +132,7 @@
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label for="">NID:</label>
+                                        <label for="">NID / BID:</label>
                                         {{ $personalInfo->nationalId }}
                                     </div>
 
