@@ -134,6 +134,8 @@ Route::post('/Candidate-CV-Language/Update','LanguageController@update')->name('
 Route::post('/Candidate-CV-Language/Delete','LanguageController@delete')->name('candidate.language.delete');
 
 
+
+
 //Computer-Skill
 Route::get('/Candidate-CV-Computer-Skill','ComputerSkillController@index')->name('candidate.computerSkill.index');
 Route::post('/Candidate-CV-Computer-Skill','ComputerSkillController@insert')->name('candidate.computerSkill.submit');
