@@ -158,7 +158,7 @@
 
             $("#addButton").click(function () {
 
-                {{--var skillId= <?php echo json_encode( $skillId ) ?>;--}}
+
 
                 if(counter>10){
                     alert("Only 10 Section allow per Time!!");

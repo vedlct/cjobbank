@@ -12,6 +12,25 @@ use Illuminate\Support\Facades\Session;
 
 class ComputerSkillController extends Controller
 {
+
+    public function __construct()
+    {
+//        $this->middleware('auth');
+        $this->middleware(function ($request, $next) {
+
+            if (Auth::check()){
+
+                return $next($request);
+
+
+            }else{
+
+                return redirect('/');
+            }
+
+
+        });
+    }
     public function index(){
 
         $computerSkills=ComputerSkill::where('status',1)
