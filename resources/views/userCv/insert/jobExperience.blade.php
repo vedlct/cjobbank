@@ -64,11 +64,11 @@
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="inputPassword4">Major responsibilities </label>
-                                        <textarea class="form-control" name="majorResponsibilities[]" maxlength="200"  id="majorResponsibilities" placeholder="Major responsibilities"></textarea>
+                                        <textarea class="form-control" name="majorResponsibilities[]" maxlength="300"  id="majorResponsibilities" placeholder="Major responsibilities"></textarea>
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="inputPassword4">Key Achievement </label>
-                                        <textarea class="form-control" name="keyAchivement[]" maxlength="200"  id="keyAchivement" placeholder="Key Achievement"></textarea>
+                                        <textarea class="form-control" name="keyAchivement[]" maxlength="300"  id="keyAchivement" placeholder="Key Achievement"></textarea>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Name of Supervisor</label>

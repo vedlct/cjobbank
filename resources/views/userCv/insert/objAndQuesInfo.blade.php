@@ -19,7 +19,7 @@
 
                             <div class="form-group">
                                 <label for="">Objective<span style="color: red">*</span></label>
-                                <textarea type="text" name="objective" maxlength="200" required rows="2" class="form-control{{ $errors->has('objective') ? ' is-invalid' : '' }}"  id="objective" placeholder="Career Objective">{{ old('objective') }}</textarea>
+                                <textarea type="text" name="objective" maxlength="300" required rows="2" class="form-control{{ $errors->has('objective') ? ' is-invalid' : '' }}"  id="objective" placeholder="Career Objective">{{ old('objective') }}</textarea>
                                 @if ($errors->has('objective'))
 
                                     <span class="">
@@ -29,7 +29,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Ques-1: {{CAREER_QUES['Ques1']}}<span style="color: red">*</span></label>
-                                <textarea type="text" name="CareerQues1" maxlength="200" required rows="3" class="form-control {{ $errors->has('CareerQues1') ? ' is-invalid' : '' }}" id="CareerQues1" placeholder="Career Question">{{ old('CareerQues1') }}</textarea>
+                                <textarea type="text" name="CareerQues1" maxlength="300" required rows="3" class="form-control {{ $errors->has('CareerQues1') ? ' is-invalid' : '' }}" id="CareerQues1" placeholder="Career Question">{{ old('CareerQues1') }}</textarea>
                                 @if ($errors->has('CareerQues1'))
 
                                     <span class="">
@@ -39,7 +39,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Ques-2: {{CAREER_QUES['Ques2']}}<span style="color: red">*</span></label>
-                                <textarea type="text" name="CareerQues2" maxlength="200" required rows="3" class="form-control {{ $errors->has('CareerQues2') ? ' is-invalid' : '' }}" id="CareerQues2" placeholder="Career Question">{{ old('CareerQues2') }}</textarea>
+                                <textarea type="text" name="CareerQues2" maxlength="300" required rows="3" class="form-control {{ $errors->has('CareerQues2') ? ' is-invalid' : '' }}" id="CareerQues2" placeholder="Career Question">{{ old('CareerQues2') }}</textarea>
                                 @if ($errors->has('CareerQues2'))
 
                                     <span class="">
