@@ -62,7 +62,14 @@
                                             <label for="inputEmail4">Language<span style="color: red">*</span></label>
                                             <select name="languagehead[]" class="form-control" id="skill" required>
                                                 <option selected value="">Select Language </option>
+
+
                                                 @foreach($languagehead as $languageheads)
+                                                    @php $languageName= array();
+                                                    $languageId=array();
+                                                    array_push($languageName,$languageheads->languagename);
+                                                    array_push($languageId,$languageheads->id);
+                                                    @endphp
                                                     <option value="{{$languageheads->id}}">{{$languageheads->languagename}}</option>
                                                 @endforeach
                                             </select>
@@ -198,6 +205,8 @@
 
     <script type="text/javascript">
 
+        var newArray = [];
+
 
         $(document).ready(function(){
 
@@ -206,12 +215,31 @@
             $("#removeButton").hide();
 
 
+
             $("#addButton").click(function () {
 
-                if(counter > limit -1){
-                    alert("There are no more language!!");
-                    return false;
+                var coursename= '<?php echo json_encode( $languageName ) ?>';
+                var courseId= '<?php echo json_encode( $languageId ) ?>';
+
+                if(counter == 1)
+                {
+                    var id=document.getElementById("skill").value;
+                    if(id==""){alert("Please Select a Language First!!");
+                        return false;
+                    }
+
                 }
+                else{
+                    var id=$('#skill'+(counter-1)).val();
+                    if(id=="") {
+                        alert("Please Select a Language First!!");
+                        return false;
+                    }
+                }
+
+
+
+
                 if (counter == 1 ) {
 
                     var skill = $('#skill').val();
@@ -259,7 +287,7 @@
                     '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>' +
                     '<div class="form-group col-md-6"> ' +
                     '<label for="inputEmail4">Language<span style="color: red">*</span></label> ' +
-                    '<select required name="languagehead[]" class="form-control" id="skill'+counter+'"> ' +
+                    '<select required name="languagehead[]" onchange="checkLanguage('+counter+')"class="form-control" id="skill'+counter+'"> ' +
                     '<option selected value="">Select Language</option>'+
                     '@foreach($languagehead as $languageheads)'+
                     '<option value="{{$languageheads->id}}">{{$languageheads->languagename}}</option>'+
@@ -286,26 +314,71 @@
 
                 newTextBoxDiv.appendTo("#TextBoxesGroup");
 
+                if(counter == (limit-1)){
+                    //alert("There are no more language!!");
+                    $("#addButton").hide();
+                   // return false;
+                }
+
                 counter++;
                 if(counter>1){
                     $("#removeButton").show();
                 }
 
+
+
                 });
 
                 $("#removeButton").click(function () {
 
+                    if(counter==1){
+                        var id=document.getElementById("skill").value;
+                        alert("Atleast One Language is needed!!");
+                        document.getElementById("skill").selectedIndex= 0;
+                        return false;
+                    }
+                    else{
+                        var id=document.getElementById("skill"+(counter-1)).value;
+                    }
+                    var index = newArray.indexOf(id);
+                    newArray.splice(index, 1);
 
-                if(counter=='1'){
-                    alert("Atleast One Language is needed!!");
-                    return false;
-                }
+
+//                if(counter=='1'){
+//                    alert("Atleast One Language is needed!!");
+//                    return false;
+//                }
+
                 counter--;
                 if(counter<2){
                     $("#removeButton").hide();
+                    $("#addButton").show();
                 }
+
+
+
                 $("#TextBoxDiv" + counter).remove();
                 });
+
+
+        });
+
+        $('#skill').on('change', function() {
+
+            var id=document.getElementById("skill").value;
+
+                    if (newArray.indexOf(id)== '-1'){
+                        newArray.push(id);
+                    }else {
+
+                        var errorMsg = 'Allready selected this Language!!';
+                        document.getElementById("skill").selectedIndex= 0;
+                        validationError(errorMsg);
+                        return false;
+
+
+                    }
+
 
 
         });
@@ -325,12 +398,24 @@
             }
 
         }
+        function checkLanguage(x){
+
+                var id=$('#skill'+(x)).val();
+
+                if (newArray.indexOf(id)== '-1'){
+                    newArray.push(id);
+                }else {
+                    var errorMsg = 'Allready selected this Language!!';
+                    document.getElementById("skill"+x).selectedIndex= 0;
+                    validationError(errorMsg);
+                    return false;
+                }
+
+
+
+        }
 
         function myRangeChanged3(x){
-
-            //alert(x);
-            // alert(y);
-
 
             var slider = document.getElementById("myRange1"+x);
 
@@ -363,32 +448,7 @@
             });
 
         }
-        //        function checkSkill() {
-        //
-        //            var skill = document.skillForm.elements["skill[]"];
-        //            var skillLevel = document.skillForm.elements["skillPercentage[]"];
-        //
-        //            alert(skillLevel.length);
-        //
-        ////            for(i=0;i<skill.length;i++)
-        ////            {
-        ////                if (skill[i].value != '' && skillLevel[i].value=='') {
-        ////                    var errorMsg = 'Please Select a Skill '+ (i + 1)+'First!!';
-        ////                    validationError(errorMsg);
-        ////                    return false;
-        ////                }
-        ////                if (skill[i].value == '' && skillLevel[i].value != '')
-        ////                {
-        ////                    var errorMsg = 'Please Select a Skill Level '+ (i + 1)+'First!!';
-        ////                    validationError(errorMsg);
-        ////                    return false;
-        ////                }
-        ////            }
-        //
-        //            return false;
-        //
-        //
-        //        }
+
 
     </script>
 
