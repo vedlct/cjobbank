@@ -435,7 +435,7 @@
                     break;
             }
             var picsize = (this.files[0].size);
-            if (picsize > 100){
+            if ((picsize/1024) > 100){
                 var errorMsg="Image Size Should be less then 100 KB";
                 validationError(errorMsg);
                 $(this).val('');
@@ -455,12 +455,12 @@
                     $(this).val('');
                     // error message here
                     var errorMsg="Please Select a valid Image";
-                    validationError(errorMsg);
+                    validationError(picsize);
                     break;
             }
             var picsize = (this.files[0].size);
-            if (picsize > 100){
-                var errorMsg="Image Size Should be less then 100 KB";
+            if ((picsize/1024) > 50){
+                var errorMsg="Image Size Should be less then 50 KB";
                 validationError(errorMsg);
                 $(this).val('');
 

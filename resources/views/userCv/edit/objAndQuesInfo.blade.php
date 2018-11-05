@@ -40,11 +40,11 @@
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label>Current Salary</label>
-                                <input type="number" min="0" placeholder="current salary" value="{{$employeeCareerInfo->currentSalary}}" name="currentSalary">
+                                <input type="text"  onkeypress="return isNumberKey(event)" placeholder="current salary" value="{{$employeeCareerInfo->currentSalary}}" name="currentSalary">
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Expected Salary</label>
-                                <input type="number" min="0" placeholder="expected salary" value="{{$employeeCareerInfo->expectedSalary}}" name="expectedSalary">
+                                <input type="text"  onkeypress="return isNumberKey(event)" placeholder="expected salary" value="{{$employeeCareerInfo->expectedSalary}}" name="expectedSalary">
                             </div>
 
 
@@ -53,7 +53,7 @@
                         <div class="row">
                             <div class="form-group col-md-6">
                                 <label>Possible Joining Date</label>
-                                <input type="text" class="date" placeholder="Possible Joining Date" value="{{$employeeCareerInfo->readyToJoinAfter}}" name="readyToJoinAfter">
+                                <input type="text" class="date" onkeypress="return isNumberKey(event)" placeholder="Possible Joining Date" value="{{$employeeCareerInfo->readyToJoinAfter}}" name="readyToJoinAfter">
                             </div>
 
 
@@ -81,6 +81,15 @@
             format: 'yyyy-m-d'
         });
     });
+
+    function isNumberKey(evt)
+    {
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+
+        return true;
+    }
 
 
 
