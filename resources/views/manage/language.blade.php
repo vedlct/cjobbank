@@ -114,7 +114,7 @@
                                         @endforeach
 
                                     </td>
-                                    <td><button class="btn btn-success btn-sm" data-panel-id="{{$language->languageId}}" onclick="editlanguage(this)">Edit</button></td>
+                                    <td><button class="btn btn-success btn-sm" data-panel-id="{{$language->id}}" onclick="editlanguage(this)">Edit</button></td>
 
                                 </tr>
                             @endforeach

@@ -112,11 +112,11 @@ class SettingsController extends Controller
 
     public function insertLanguage(Request $r){
         $r->validate([
-            'language' => 'required|max:15|unique:language,languageName',
+            'language' => 'required|max:25|unique:languagehead,languagename',
 
         ]);
         $language=new LanguageHead();
-        $language->languageName=$r->languageName;
+        $language->languagename=$r->language;
 
         if ($r->status ==""){
             $language->status='1';
@@ -133,7 +133,7 @@ class SettingsController extends Controller
     public function editLanguage(Request $r){
         $language=LanguageHead::findOrFail($r->id);
 
-        return view('manage.editZone',compact('zone'));
+        return view('manage.editLanguage',compact('language'));
     }
     public function updateLanguage($id,Request $r){
         $language=LanguageHead::findOrFail($r->id);
