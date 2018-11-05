@@ -10,6 +10,7 @@ use App\Education;
 use App\Educationlevel;
 use App\Educationmajor;
 use App\Ethnicity;
+use App\LanguageHead;
 use App\Nationality;
 
 use App\OtherSkillInformation;
@@ -99,6 +100,52 @@ class SettingsController extends Controller
         $zone->save();
         Session::flash('message', 'Zone Updated Successfully!');
         return redirect()->route('manage.zone');
+    }
+
+
+    /*---------------------- Language -----------------*/
+    public function language(){
+        $languages=LanguageHead::get();
+
+        return view('manage.language',compact('languages'));
+    }
+
+    public function insertLanguage(Request $r){
+        $r->validate([
+            'language' => 'required|max:15|unique:language,languageName',
+
+        ]);
+        $language=new LanguageHead();
+        $language->languageName=$r->languageName;
+
+        if ($r->status ==""){
+            $language->status='1';
+        }else{
+            $language->status=$r->status;
+        }
+
+        $language->save();
+
+        Session::flash('message', 'Language Added Successfully!');
+        return back();
+    }
+
+    public function editLanguage(Request $r){
+        $language=LanguageHead::findOrFail($r->id);
+
+        return view('manage.editZone',compact('zone'));
+    }
+    public function updateLanguage($id,Request $r){
+        $language=LanguageHead::findOrFail($r->id);
+        $language->languagename=$r->language;
+        if ($r->status ==""){
+            $language->status='1';
+        }else{
+            $language->status=$r->status;
+        }
+        $language->save();
+        Session::flash('message', 'Language Updated Successfully!');
+        return redirect()->route('manage.language');
     }
 
     /*---------------------- Education -----------------*/

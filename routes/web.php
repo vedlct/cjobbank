@@ -305,11 +305,17 @@ Route::post('manage/Major/insert','Admin\SettingsController@insertMajor')->name(
 Route::post('manage/Major/editMajor','Admin\SettingsController@editMajor')->name('admin.editMajor');
 Route::post('manage/Major/updateMajor/{id}','Admin\SettingsController@updateMajor')->name('manage.major.update');
 
-//Major
+//Board
 Route::get('manage/Board','Admin\SettingsController@board')->name('manage.board');
 Route::post('manage/Board/insert','Admin\SettingsController@insertBoard')->name('manage.board.insert');
 Route::post('manage/Board/editBoard','Admin\SettingsController@editBoard')->name('admin.editBoard');
 Route::post('manage/Board/updateBoard/{id}','Admin\SettingsController@updateBoard')->name('manage.board.update');
+
+//Language
+Route::get('manage/Language','Admin\SettingsController@language')->name('manage.language');
+Route::post('manage/Language/insert','Admin\SettingsController@insertLanguage')->name('manage.language.insert');
+Route::post('manage/Language/editBoard','Admin\SettingsController@editLanguage')->name('admin.editlanguage');
+Route::post('manage/Language/updateBoard/{id}','Admin\SettingsController@updateLanguage')->name('manage.language.update');
 
 
 //Other Skill
