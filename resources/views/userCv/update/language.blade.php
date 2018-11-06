@@ -61,8 +61,8 @@
 
                                 <table class="table table-striped">
                                     <thead>
-                                        <th>languageSkillName</th>
-                                        <th>rate</th>
+                                        <th>Language Skill Name</th>
+                                        <th>Percentage</th>
                                     </thead>
 
 

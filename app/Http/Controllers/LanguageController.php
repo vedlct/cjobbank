@@ -36,14 +36,8 @@ class LanguageController extends Controller
         $languagehead = LanguageHead::get();
         $languageskill = LanguageSkill::get();
 
-        $employee=Employee::select('employeeId','hasJobExp')->where('fkuserId',Auth::user()->userId)
-            ->first();
-//        $empLanguage=EmployeeLanguage::where('fkemployeeId',$employee->employeeId)
-//            ->where('fklanguageHead',1)
-//            ->get();
-//
-//        return $empLanguage;
-
+        $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)
+                    ->first();
 
         $empLanguage=EmployeeLanguage::select('emp_language.*','languageskill.languageSkillName','languagehead.languagename')
             ->where('fkemployeeId',$employee->employeeId)
@@ -125,7 +119,7 @@ class LanguageController extends Controller
     }
 
     public function update(Request $r){
-//        return $r;
+//       return $r;
         $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
 
         for($i=0;$i<count($r->langskillid);$i++){
