@@ -133,9 +133,7 @@ class LanguageController extends Controller
                 ->where('fklanguageHead',$r->languagehead)
                 ->where('fklanguageSkill',$r->langskillid[$i])
                 ->update(['rate'=>$r->languageskill[$i]]);
-
         }
-
         return back();
     }
 
