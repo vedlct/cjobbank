@@ -8,7 +8,7 @@
 
         <div class="form-group">
             <label for="">Extra Curricular Activities</label>
-            <textarea type="text" name="extraCurricularActivities"   rows="2" maxlength="300"
+            <textarea type="text" name="extraCurricularActivities"   rows="2" maxlength="300"ww
                       class="form-control{{ $errors->has('extraCurricularActivities') ? ' is-invalid' : '' }}"
                       id="extraCurricularActivities" placeholder="Extra Curricular Activitiese">{{$empOtherInfo->extraCurricularActivities}}</textarea>
             @if ($errors->has('extraCurricularActivities'))

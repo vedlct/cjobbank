@@ -150,6 +150,30 @@
 //            });
         });
 
+
+
+        function  checkUnique(x) {
+
+
+            var values =  $('select[name="computerSkillId[]"]').map(function () {
+                return this.value; // $(this).val()
+            }).get();
+
+
+            var unique = values.filter(function(itm, i, values) {
+                return i == values.indexOf(itm);
+            });
+
+            if(values.length != unique.length){
+
+                alert("Already Inserted");
+                $(x).val('');
+
+            }
+
+            // alert($(x).val());
+
+        }
         $(document).ready(function(){
 
             var counter = 1;
@@ -178,7 +202,7 @@
 
                     '                                    <div class="form-group col-md-6">\n' +
                     '                                        <label for="inputEmail4">Skill<span style="color: red">*</span></label>\n' +
-                    '                                        <select name="computerSkillId[]" id="" class="form-control" required>\n' +
+                    '                                        <select name="computerSkillId[]" onchange="checkUnique(this)" id="" class="form-control" required>\n' +
                     '                                            <option value="">Select Skill</option>\n' +
                     '                                            @foreach($computerSkills as $skill)\n' +
                     '                                                <option value="{{$skill->id}}">{{$skill->computerSkillName}}</option>\n' +

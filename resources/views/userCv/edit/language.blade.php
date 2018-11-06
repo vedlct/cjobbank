@@ -62,7 +62,8 @@
     <div style="overflow:auto;">
         <div style="float:right;">
 
-            <button type="submit" id="submitBtn">Save</button>
+            <button type="button" onclick="cancel()" class="btn btn-sm btn-danger">Cancel</button>
+            <button type="submit" id="submitBtn" class="btn btn-sm btn-success">Save</button>
 
 
         </div>
@@ -86,6 +87,11 @@
             output.innerHTML = this.value;
             $("#skillPercentage"+x).val(this.value);
         }
+
+    }
+
+    function cancel() {
+        location.reload();
 
     }
 </script>

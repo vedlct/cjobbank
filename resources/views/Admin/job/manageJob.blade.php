@@ -55,16 +55,16 @@
                     <table id="manageapplication" class="table table-striped table-bordered" style="width:100%" >
                         <thead>
                         <tr>
-                            <th>Job Title</th>
-                            <th>Position</th>
-                            <th>Deadline</th>
-                            <th>Zone</th>
-                            <th>Create by</th>
-                            <th>Create date</th>
-                            <th>update by</th>
-                            <th>Post date</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th width="20%">Job Title</th>
+                            <th width="5%">Position</th>
+                            <th width="10%">Deadline</th>
+                            <th width="10%">Zone</th>
+                            <th width="5%">Create by</th>
+                            <th width="10%">Create date</th>
+                            <th width="10%">update by</th>
+                            <th width="10%">Post date</th>
+                            <th width="10%">Status</th>
+                            <th width="10%">Action</th>
 
                         </tr>
                         </thead>
@@ -103,6 +103,7 @@
         $('.date').datepicker({
             format: 'yyyy-mm-dd',
             todayHighlight: true,
+            orientation: 'bottom',
 
             autoclose: true
         });

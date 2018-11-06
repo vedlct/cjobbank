@@ -80,7 +80,8 @@ class JobController extends Controller
            ->leftJoin('zone', 'zone.zoneId', '=', 'job.fkzoneId')
            ->leftJoin('user as u1', 'u1.userId', '=', 'job.createBy')
            ->leftJoin('user as u2', 'u2.userId', '=', 'job.updateBy')
-           ->where('job.status', '!=',0);
+           ->where('job.status', '!=',0)
+           ->orderBy('job.postDate','desc');
 
 
        if ($r->zonefilter){
