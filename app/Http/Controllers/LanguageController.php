@@ -33,11 +33,20 @@ class LanguageController extends Controller
     public function index(){
 
 
-        $languagehead = LanguageHead::get();
+
         $languageskill = LanguageSkill::get();
 
         $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)
                     ->first();
+
+        $languagehead = LanguageHead::select('languagehead.*')->whereNotIn('id', function ($query) use ($employee){
+            $query->select('fklanguageHead')
+                ->from('emp_language')
+                ->where('fkemployeeId',$employee->employeeId);
+        })->get();
+
+//        $languagehead = LanguageHead::get();
+
 
         $empLanguage=EmployeeLanguage::select('emp_language.*','languageskill.languageSkillName','languagehead.languagename')
             ->where('fkemployeeId',$employee->employeeId)
@@ -68,7 +77,6 @@ class LanguageController extends Controller
     }
 
     public function insert(Request $r){
-
 
         $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
 

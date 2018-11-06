@@ -60,7 +60,7 @@
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label for="inputEmail4">Language<span style="color: red">*</span></label>
-                                            <select name="languagehead[]" class="form-control" id="skill" required>
+                                            <select name="languagehead[]" onchange="checkUnique(this)" class="form-control" id="skill" required>
                                                 <option selected value="">Select Language </option>
 
 
@@ -180,6 +180,30 @@
         });
 
 
+        function  checkUnique(x) {
+
+
+            var values =  $('select[name="languagehead[]"]').map(function () {
+                return this.value; // $(this).val()
+            }).get();
+
+
+            var unique = values.filter(function(itm, i, values) {
+                return i == values.indexOf(itm);
+            });
+
+            if(values.length != unique.length){
+
+                alert("Already Inserted");
+                $(x).val('');
+
+            }
+
+            // alert($(x).val());
+
+        }
+
+
 
 
 
@@ -218,8 +242,7 @@
 
             $("#addButton").click(function () {
 
-                var coursename= '<?php echo json_encode( $languageName ) ?>';
-                var courseId= '<?php echo json_encode( $languageId ) ?>';
+
 
                 if(counter == 1)
                 {
@@ -287,7 +310,7 @@
                     '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>' +
                     '<div class="form-group col-md-6"> ' +
                     '<label for="inputEmail4">Language<span style="color: red">*</span></label> ' +
-                    '<select required name="languagehead[]" onchange="checkLanguage('+counter+')"class="form-control" id="skill'+counter+'"> ' +
+                    '<select required name="languagehead[]" onchange="checkUnique(this)" class="form-control" id="skill'+counter+'"> ' +
                     '<option selected value="">Select Language</option>'+
                     '@foreach($languagehead as $languageheads)'+
                     '<option value="{{$languageheads->id}}">{{$languageheads->languagename}}</option>'+
@@ -363,25 +386,25 @@
 
         });
 
-        $('#skill').on('change', function() {
-
-            var id=document.getElementById("skill").value;
-
-                    if (newArray.indexOf(id)== '-1'){
-                        newArray.push(id);
-                    }else {
-
-                        var errorMsg = 'Allready selected this Language!!';
-                        document.getElementById("skill").selectedIndex= 0;
-                        validationError(errorMsg);
-                        return false;
-
-
-                    }
-
-
-
-        });
+        // $('#skill').on('change', function() {
+        //
+        //     var id=document.getElementById("skill").value;
+        //
+        //             if (newArray.indexOf(id)== '-1'){
+        //                 newArray.push(id);
+        //             }else {
+        //
+        //                 var errorMsg = 'Allready selected this Language!!';
+        //                 document.getElementById("skill").selectedIndex= 0;
+        //                 validationError(errorMsg);
+        //                 return false;
+        //
+        //
+        //             }
+        //
+        //
+        //
+        // });
 
 
         function myRangeChanged2(x){
@@ -398,22 +421,22 @@
             }
 
         }
-        function checkLanguage(x){
-
-                var id=$('#skill'+(x)).val();
-
-                if (newArray.indexOf(id)== '-1'){
-                    newArray.push(id);
-                }else {
-                    var errorMsg = 'Allready selected this Language!!';
-                    document.getElementById("skill"+x).selectedIndex= 0;
-                    validationError(errorMsg);
-                    return false;
-                }
-
-
-
-        }
+        // function checkLanguage(x){
+        //
+        //         var id=$('#skill'+(x)).val();
+        //
+        //         if (newArray.indexOf(id)== '-1'){
+        //             newArray.push(id);
+        //         }else {
+        //             var errorMsg = 'Allready selected this Language!!';
+        //             document.getElementById("skill"+x).selectedIndex= 0;
+        //             validationError(errorMsg);
+        //             return false;
+        //         }
+        //
+        //
+        //
+        // }
 
         function myRangeChanged3(x){
 
