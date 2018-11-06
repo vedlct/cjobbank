@@ -74,7 +74,7 @@
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Skill<span style="color: red">*</span></label>
-                                        <select name="skill[]" class="form-control" id="skill">
+                                        <select name="skill[]" class="form-control" id="skill" onchange="checkUnique(this)">
                                             <option selected value="">Select Skill Type</option>
                                             @foreach($skills as $skill)
                                                 <option value="{{$skill->id}}">{{$skill->skillName}}</option>
@@ -163,6 +163,29 @@
                 output.innerHTML = this.value;
                 $("#skillPercentage"+x).val(this.value);
             }
+
+        }
+
+        function  checkUnique(x) {
+
+
+            var values =  $('select[name="skill[]"]').map(function () {
+                return this.value; // $(this).val()
+            }).get();
+
+
+            var unique = values.filter(function(itm, i, values) {
+                return i == values.indexOf(itm);
+            });
+
+            if(values.length != unique.length){
+
+                alert("Already Inserted");
+                $(x).val('');
+
+            }
+
+            // alert($(x).val());
 
         }
 
@@ -302,7 +325,7 @@
                     '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>' +
                     '<div class="form-group col-md-6"> ' +
                     '<label for="inputEmail4">Skill<span style="color: red">*</span></label> ' +
-                    '<select required name="skill[]" class="form-control" id="skill'+counter+'"> ' +
+                    '<select required name="skill[]" onchange="checkUnique(this)" class="form-control" id="skill'+counter+'"> ' +
                     '<option selected value="">Select Skill Type</option>'+
                 '@foreach($skills as $skill)'+
                 '<option value="{{$skill->id}}">{{$skill->skillName}}</option>'+
