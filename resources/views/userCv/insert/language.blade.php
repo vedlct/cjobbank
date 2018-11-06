@@ -206,6 +206,7 @@
     <script type="text/javascript">
 
         var newArray = [];
+        var newArray1= [];
 
 
         $(document).ready(function(){
@@ -401,14 +402,34 @@
         function checkLanguage(x){
 
                 var id=$('#skill'+(x)).val();
+            alert(newArray);
 
                 if (newArray.indexOf(id)== '-1'){
                     newArray.push(id);
+                    alert(newArray);
                 }else {
-                    var errorMsg = 'Allready selected this Language!!';
-                    document.getElementById("skill"+x).selectedIndex= 0;
-                    validationError(errorMsg);
-                    return false;
+
+                    var inps = document.getElementsByName('languagehead[]');
+
+                    for (var i = 0; i <inps.length; i++) {
+                        newArray1.push(inps[i].value);
+                    }
+                    alert(newArray1);
+                    if (newArray1.indexOf(id)== '-1'){
+                        newArray.push(id);
+                        alert(newArray);
+                    }else {
+
+                        var errorMsg = 'Allready selected this Language!!';
+                        document.getElementById("skill"+x).selectedIndex= 0;
+                        validationError(errorMsg);
+                        return false;
+
+                    }
+                    alert(newArray1);
+                    alert(newArray);
+
+
                 }
 
 

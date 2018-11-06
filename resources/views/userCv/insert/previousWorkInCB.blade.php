@@ -43,8 +43,8 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputPassword4">End Date</label> /
-                                        <input type="checkbox" id="currentlyRunning" name="currentlyRunning[]" value="1">Currenly Running
-                                        <input type="text" class="form-control date" name="endDate[]" id="end" placeholder="date">
+                                        <input type="checkbox" class="col-md-2" id="currentlyRunning" name="currentlyRunning[]" value="1">Currenly Running
+                                        <input type="text" class="form-control date col-md-4" name="endDate[]" id="end" placeholder="date">
 
                                     </div>
 

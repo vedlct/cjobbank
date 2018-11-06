@@ -15,19 +15,20 @@
         </div>
         <div class="form-group col-md-6">
             <label for="inputPassword4">End Date</label>
-            @if($previousWorkInCB->currentlyRunning=='0')
-                <input type="text" id="endDate"name="endDate" placeholder="End Date" value="{{$previousWorkInCB->endDate}}" class="form-control col-md-3 date"/>
+            /
+            <input type="checkbox" class="col-md-4" id="currentlyRunning" name="currentlyRunning" @if($previousWorkInCB->currentlyRunning=='1')checked @endif value="1">Currently Running
+
+        @if($previousWorkInCB->currentlyRunning=='0')
+                <input type="text" id="endDate"name="endDate col-md-3" placeholder="End Date" value="{{$previousWorkInCB->endDate}}" class="form-control col-md-3 date"/>
             @else
                 <input type="text" id="endDate"name="endDate" placeholder="End Date"  class="form-control col-md-3 date"/>
             @endif
-            /
-            <input type="checkbox" id="currentlyRunning" name="currentlyRunning" @if($previousWorkInCB->currentlyRunning=='1')checked @endif value="1">Currently Running
 
 
         </div>
 
         <div class="form-group col-md-12">
-            <a class="btn btn-danger pull-left" href="{{route('candidate.previousWorkInCB.index')}}">Cancel</a>&nbsp;&nbsp;
+            <a class="btn btn-danger pull-right" href="{{route('candidate.previousWorkInCB.index')}}">Cancel</a>&nbsp;&nbsp;
             <button  class="btn btn-info pull-right">Update</button>
         </div>
 

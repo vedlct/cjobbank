@@ -128,6 +128,8 @@
                 success: function (data) {
 
                     $('#edit'+x).html(data);
+                    $("#addButton").hide();
+
 
                 }
             });
