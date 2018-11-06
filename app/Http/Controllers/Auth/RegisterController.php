@@ -155,7 +155,7 @@ class RegisterController extends Controller
                 $message->to($data['email'], 'Caritas BD')->subject('New - Account');
 
             });
-            Session::flash('notActive', 'Account Activation Mail is sent to your mail');
+            Session::flash('notActive', 'Account Activation Mail is sent to your mail , Also Check Spam');
 
         }catch (\Exception $ex) {
 
@@ -231,7 +231,7 @@ class RegisterController extends Controller
                         $message->to($data['email'], 'Caritas BD')->subject('Account-Activation');
 
                     });
-                    Session::flash('notActive', 'Account Activation Mail is sent to your mail');
+                    Session::flash('notActive', 'Account Activation Mail is sent to your mail , Also Check Spam');
                     return redirect('/');
 
                 }catch (\Exception $ex) {
