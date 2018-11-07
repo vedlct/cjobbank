@@ -118,7 +118,6 @@ class SkillController extends Controller
             $otherSkill=EmpOtherSkill::findOrFail($r->skillId);
 
             $otherSkill->otherSkillId=$r->skill;
-//            $otherSkill->fkemployeeId=$employee->employeeId;
             $otherSkill->ratiing=$r->skillPercentage;
 
             $otherSkill->save();

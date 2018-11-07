@@ -91,6 +91,7 @@
                         <form action="{{route('candidate.skill.insert')}}" method="post">
                             <!-- One "tab" for each step in the form: -->
                             {{csrf_field()}}
+                            <input type="hidden" name="hasOtherSkill" value="1">&nbsp;
 
                             <div id="TextBoxesGroup">
 

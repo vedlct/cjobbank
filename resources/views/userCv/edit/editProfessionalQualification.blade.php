@@ -1,4 +1,5 @@
 <form method="post" onsubmit="return checkProfessionalQualification()" action="{{route('update.cvProfessionalCertificate')}}">
+
     {{csrf_field()}}
     <input type="hidden" name="professionalQualificationId" value="{{$professional->professionalQualificationId}}">
     <div class="row">

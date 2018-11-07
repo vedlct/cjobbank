@@ -114,6 +114,7 @@
                             <form  action="{{route('submit.jobExperience')}}" method="post">
                                 <!-- One "tab" for each step in the form: -->
                                 {{csrf_field()}}
+                                <input class="form-check-input"  type="hidden"  name="hasProfCertificate" value="1">
                                 <div id="TextBoxesGroup">
                                 </div>
 
