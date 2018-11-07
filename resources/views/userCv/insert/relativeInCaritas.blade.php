@@ -24,10 +24,16 @@
 
                                 <form action="{{route('submit.relativeYesOrNo')}}" method="post">
                                     {{csrf_field()}}
-                                <div class="row form-group">
+                                <div class="  form-group">
                                 <label>Do you have any relatives working in Caritas Bangladesh ?</label>
-                                <input onclick="myradio()" @if($relativeInCB->relativeInCB =='1') checked @endif class="form-control" type="radio" value="1" name="relativeincb" required> YES
-                                <input onclick="myradio()" @if($relativeInCB->relativeInCB =='0') checked @endif class="form-control" type="radio" value="0" name="relativeincb" required> NO
+                                    <div class="col-md-3 mb-3">
+                                        <input class="form-check-input" onclick="myradio()" @if($relativeInCB->relativeInCB =='1') checked @endif class="form-control" type="radio" value="1" name="relativeincb" required> YES
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <input class="form-check-input" onclick="myradio()" @if($relativeInCB->relativeInCB =='0') checked @endif class="form-control" type="radio" value="0" name="relativeincb" required> NO
+                                    </div>
+
+
                                 </div>
 
 
