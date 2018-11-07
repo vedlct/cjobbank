@@ -135,6 +135,7 @@ class PersonalInfoController extends Controller
         $employee->mothersName=$r->mothersName;
         $employee->dateOfBirth=$r->dob;
         $employee->gender=$r->gender;
+        $employee->bloodGroup=$r->bloodGroup;
         $employee->fkreligionId=$r->religion;
         $employee->ethnicityId=$r->ethnicity;
         $employee->disability=$r->disability;

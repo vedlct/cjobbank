@@ -39,7 +39,7 @@ class LanguageController extends Controller
         $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)
                     ->first();
 
-        $languagehead = LanguageHead::select('languagehead.*')->whereNotIn('id', function ($query) use ($employee){
+        $languagehead = LanguageHead::select('languagehead.*')->where('languagehead.status',1)->whereNotIn('id', function ($query) use ($employee){
             $query->select('fklanguageHead')
                 ->from('emp_language')
                 ->where('fkemployeeId',$employee->employeeId);
@@ -83,10 +83,9 @@ class LanguageController extends Controller
         $emp=Employee::findOrFail($employee->employeeId);
 
         $languageskill = LanguageSkill::get();
-
+        $count= 0;
             for($i=0;$i < count($r->languagehead);$i++) {
 
-                $count= 0;
                foreach ($languageskill as $ls){
 
                     $language = new EmployeeLanguage();

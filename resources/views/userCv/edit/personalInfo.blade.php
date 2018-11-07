@@ -1,4 +1,6 @@
+@extends('main')
 
+@section('content')
 
     <style>
         strong{
@@ -9,11 +11,19 @@
         }
     </style>
 
+    <div class="row ">
+        <div class="col-12 ">
+            <div style="background-color: #F1F1F1" class="card">
+                <div class="card-body">
+
                     @foreach($employeeCvPersonalInfo as $personalInfo)
-                        <form  enctype="multipart/form-data" method="post"  action="{{route('cv.updatePersonalInfo')}}">
+                        <form  id="regForm" enctype="multipart/form-data" method="post"  action="{{route('cv.updatePersonalInfo')}}">
 
                         {{csrf_field()}}
                         <!-- One "tab" for each step in the form: -->
+
+                            {{--<div class="tab">--}}
+
 
                                 <div class="row">
                                     <div class="form-group col-md-6">
@@ -377,6 +387,20 @@
                                         <a href="{{route('candidate.cvQuesObj')}}"><button type="button" id="nextBtn">Next</button></a>
                                     </div>
                                 </div>
+                                {{--</div>--}}
+
+                            <!-- Circles which indicates the steps of the form: -->
+                            <div style="text-align:center;margin-top:40px;">
+                                <span class="step"></span>
+                                <span class="step"></span>
+                                <span class="step"></span>
+                                <span class="step"></span>
+                                <span class="step"></span>
+                                <span class="step"></span>
+                                <span class="step"></span>
+                            </div>
+
+
 
 
 
@@ -387,8 +411,21 @@
 
 
 
+                </div>
+            </div> <!-- end col -->
+        </div> <!-- end row -->
+
+    </div> <!-- end container -->
+    </div>
+
+    <!-- end wrapper -->
 
 
+@endsection
+
+
+
+@section('foot-js')
 
 
     <script type="text/javascript">
@@ -490,3 +527,4 @@
 
 
     </script>
+@endsection

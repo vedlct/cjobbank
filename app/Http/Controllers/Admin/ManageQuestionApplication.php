@@ -15,7 +15,7 @@ class ManageQuestionApplication extends Controller
 {
     public function manageQuestionAnswer(Request $request){
 
-        $aggrements = Aggrement::select('agreementqus.qus','user.email','user.name'
+        $aggrements = Aggrement::select('agreementqus.qus','user.email','user.name','aggrement.ans'
 //            DB::raw('CONCAT_WS(" ",employee.firstName,employee.lastName) AS full_name')
         )
             ->leftJoin('agreementqus','agreementqus.agreementQusId','=','aggrement.fkaggrementQusId')

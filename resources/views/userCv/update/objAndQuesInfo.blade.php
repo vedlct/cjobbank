@@ -22,7 +22,7 @@
 
                                     <div class="form-group col-md-10">
 
-                                        <label for="">#Objective</label><br>
+                                        <label for="">#Objective :</label><br>
                                         {{$employeeCvQuesObjInfo->objective}}
                                     </div>
 

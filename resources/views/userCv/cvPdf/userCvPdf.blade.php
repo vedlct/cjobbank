@@ -133,7 +133,7 @@
 
 
                     <table border="0" style="width:100%; margin-top: 10px; border: none;">
-
+                        @if($jobExperience->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @else
                         @php $count=1;@endphp
                         @foreach($jobExperience as $exp)
 
@@ -161,6 +161,7 @@
                             </tr>
 
                         @endforeach
+                            @endif
 
                     </table>
 
@@ -172,6 +173,7 @@
                     </table>
 
                     <table border="0" style="width:100%; margin-top: 10px; border: none;">
+                        @if($trainingCertificate->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @endif
 
                         @php $count=1;@endphp
 
@@ -206,7 +208,9 @@
                     </table>
 
                     <table border="0" style="width:100%; margin-top: 10px; border: none;">
-                        @foreach($professionalCertificate as $certificate)
+                        @if($professionalCertificate->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @endif
+
+                    @foreach($professionalCertificate as $certificate)
                             <tr>
 
                                 <td style="border: none; width: 20%"><span class="bold">Certificate Name</span></td>
@@ -256,6 +260,8 @@
                     <table border="0" style="width:100%; margin-top: 10px; border: none;">
                     </table>
                     <table border="0" style="width:100%; margin-top: 10px; border: none;">
+                        @if($empOtherSkillls->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @else
+
                         <thead>
                             <th style="width: 70%;text-align: center" >Skill</th>
                             <th style="width: 30%;text-align: center">Rating</th>
@@ -269,6 +275,7 @@
 
                             </tr>
                         @endforeach
+                            @endif
                     </table>
 
 

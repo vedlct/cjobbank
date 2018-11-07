@@ -335,9 +335,9 @@
                     '<div class="form-group col-md-6">'+
                     '<label>Percentage of Skill (out of 100)</label>'+
                     '<div class="slidecontainer">'+
-                    '<input type="range" min="0" max="100" value="0" class="slider" onchange="myRangeChanged3('+'{{$ls->id}}'+')" name="languageskill[]" id="myRange1'+'<?php echo $ls->id?>'+'" >'+
+                    '<input type="range" min="0" max="100" value="0" class="slider" onchange="myRangeChanged3('+'{{$ls->id}},'+counter+')" name="languageskill[]" id="myRange1'+'<?php echo $ls->id?>'+counter+'">'+
                     '<p>Value: <span id="demo1'+'<?php echo $ls->id?>'+'"></span> %</p>'+
-                    '<input type="hidden" id="skillPercentage" name="langskillid" value="{{$ls->id}}" class="form-control"  />'+
+                    '<input type="hidden" id="skillPercentage'+'<?php echo $ls->id?>'+counter+'" name="langskillid" value="{{$ls->id}}" class="form-control"  />'+
                     '</div>'+
                     '</div>'+
                     '</div>'+
@@ -387,20 +387,20 @@
 
         }
 
-        function myRangeChanged3(x){
+        function myRangeChanged3(x,y){
 
             //alert(x);
             // alert(y);
 
 
-            var slider = document.getElementById("myRange1"+x);
+            var slider = document.getElementById("myRange1"+x+y);
 
-            var output = document.getElementById("demo1"+x);
+            var output = document.getElementById("demo1"+x,y);
             output.innerHTML = slider.value;
 
             slider.oninput = function() {
                 output.innerHTML = this.value;
-                $("#skillPercentage"+x).val(this.value);
+                $("#skillPercentage"+x+y).val(this.value);
             }
 
         }

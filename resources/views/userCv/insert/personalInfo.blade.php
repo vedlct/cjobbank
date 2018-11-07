@@ -2,7 +2,14 @@
 
 @section('content')
 
-
+    <style>
+        strong{
+            color: red;
+        }
+        #imageMsg,#signMsg{
+            display: none;
+        }
+    </style>
 
     <div class="row ">
 
@@ -339,7 +346,7 @@
 
                                 <div class="form-group col-md-6">
                                     <label for="">Image</label>&nbsp;<strong>(Maximum Image Size 100Kb)</strong>
-                                    <input type="file" class="form-control" name="image" id="" placeholder="">
+                                    <input type="file" class="form-control" name="image" id="image" placeholder="">
                                     @if ($errors->has('image'))
 
                                         <span class="">
@@ -355,7 +362,7 @@
                                         <strong>{{ $errors->first('sign') }}</strong>
                                     </span>
                                     @endif
-                                    <input type="file" class="form-control" name="sign" id="" placeholder="">
+                                    <input type="file" class="form-control" name="sign" id="sign" placeholder="">
 
                                 </div>
 
@@ -430,6 +437,74 @@
                 return false;
 
             return true;
+        }
+
+        $("#image").change(function() {
+
+            var val = $(this).val();
+
+            switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
+                case 'gif': case 'jpg': case 'png': case 'jpeg':
+
+                break;
+                default:
+                    $(this).val('');
+                    // error message here
+                    var errorMsg="Please Select a valid Image";
+                    validationError(errorMsg);
+                    break;
+            }
+            var picsize = (this.files[0].size);
+            if ((picsize/1024) > 100){
+                var errorMsg="Image Size Should be less then 100 KB";
+                validationError(errorMsg);
+                $(this).val('');
+
+            }
+
+        });
+        $("#sign").change(function() {
+
+            var val = $(this).val();
+
+            switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
+                case 'gif': case 'jpg': case 'png': case 'jpeg':
+
+                break;
+                default:
+                    $(this).val('');
+                    // error message here
+                    var errorMsg="Please Select a valid Image";
+                    validationError(picsize);
+                    break;
+            }
+            var picsize = (this.files[0].size);
+            if ((picsize/1024) > 50){
+                var errorMsg="Image Size Should be less then 50 KB";
+                validationError(errorMsg);
+                $(this).val('');
+
+            }
+
+        });
+
+        function validationError(errorMsg){
+
+            $.alert({
+                title: 'Error',
+                type: 'red',
+                content: errorMsg,
+                buttons: {
+                    tryAgain: {
+                        text: 'Ok',
+                        btnClass: 'btn-green',
+                        action: function () {
+
+                        }
+                    }
+                }
+            });
+
         }
 
 

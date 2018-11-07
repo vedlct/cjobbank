@@ -24,7 +24,7 @@
         }
 
         @page {
-            margin-bottom:0px;
+            margin-bottom:0px;margin-top: 5px;
         }
     </style>
 
@@ -118,6 +118,7 @@
         </table>
 
         <table border="0" style="width:100%; margin-top: 10px; border: none;">
+            @if($jobExperience->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @else
 
             @php $count=1;@endphp
             @foreach($jobExperience as $exp)
@@ -146,18 +147,20 @@
                 </tr>
 
             @endforeach
-
+    @endif
         </table>
-        @if(!$trainingCertificate->isEmpty())
+
+
 
         <table border="0" style="width:100%; margin-top: 15px; border: none;">
             <tr>
                 <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000; background-color: #eff0f1;" ><b>Training Certificate</b> </td>
             </tr>
         </table>
-        @endif
+
 
         <table border="0" style="width:100%; margin-top: 10px; border: none;">
+            @if($trainingCertificate->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @endif
 
             @php $count=1;@endphp
 
@@ -182,17 +185,19 @@
         </table>
 
         {{--<p style="page-break-after: always"></p>--}}
-        @if(!$professionalCertificate->isEmpty())
+
         <table border="0" style="width:100%;border: none;">
             <tr>
                 <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"> <b>Professional Certificate</b> </td>
             </tr>
         </table>
 
-        @endif
+
 
         <table border="0" style="width:100%; margin-top: 10px; border: none;">
-            @foreach($professionalCertificate as $certificate)
+            @if($professionalCertificate->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @endif
+
+        @foreach($professionalCertificate as $certificate)
                 <tr>
 
                     <td style="border: none; width: 20%">Certificate Name</td>
@@ -235,7 +240,7 @@
 
         </table >
 
-
+        <p style="page-break-after: always"></p>
 
         <table border="0" style="width:100%; margin-top: 25px; border: none;">
             <tr>
@@ -245,6 +250,7 @@
         <table border="0" style="width:100%; margin-top: 10px; border: none;">
         </table>
         <table border="0" style="width:100%; margin-top: 10px; border: none;">
+            @if($empOtherSkillls->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @else
             <tr>
             <th style="width: 70%;text-align: center" >Skill</th>
             <th style="width: 30%;text-align: center">Rating</th>
@@ -258,6 +264,7 @@
 
                 </tr>
             @endforeach
+                @endif
         </table>
 
 
@@ -294,7 +301,7 @@
 
 
 
-
+        {{--<p style="page-break-after: always"></p>--}}
         <table border="0" style="width:100%; margin-top: 25px; border: none;">
             <tr>
                 <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Personal Info</b> </td>

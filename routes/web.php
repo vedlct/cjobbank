@@ -73,7 +73,7 @@ Route::post('delete/professionalQualificationId','ProfessionalCertificateControl
 Route::get('Candidate-CV','PersonalInfoController@getEmployeeCv')->name('candidate.cvPersonalInfo');
 
 Route::post('/Candidate-CV-savePersonalInfo', 'PersonalInfoController@insertPersonalInfo')->name('cv.insertPersonalInfo');
-Route::post('/Candidate-CV-Edit-PersonalInfo', 'PersonalInfoController@editPersonalInfo')->name('personalInfo.edit');
+Route::get('/Candidate-CV-Edit-PersonalInfo', 'PersonalInfoController@editPersonalInfo')->name('personalInfo.edit');
 Route::post('/Candidate-CV-updatePersonalInfo', 'PersonalInfoController@updatePersonalInfo')->name('cv.updatePersonalInfo');
 
 
