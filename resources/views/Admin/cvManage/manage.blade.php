@@ -75,20 +75,20 @@
                 </div>
                 <div class="card-body">
 
-                    <label class="checkbox-inline"><input style="width: auto;" type="checkbox" id="selectall2" value=""> Select All</label>&nbsp;
-                    <button  class="btn btn-danger btn-sm" onclick="exportSelectedCv()">Export CV</button>
-                    <br><br>
+                    {{--<label class="checkbox-inline"><input style="width: auto;" type="checkbox" id="selectall2" value=""> Select All</label>&nbsp;--}}
+                    {{--<button  class="btn btn-danger btn-sm" onclick="exportSelectedCv()">Export CV</button>--}}
+                    {{--<br><br>--}}
 
                     <div class="table table-responsive">
                     <table id="managecv" class="table table-striped table-bordered" style="width:100%" >
                         <thead>
                         <tr>
-                            <th width="4%">Select</th>
+                            {{--<th width="4%">Select</th>--}}
                             <th>Image</th>
 
                             <th>First Name</th>
                             <th>Last Name</th>
-                            <th>Age</th>
+                            <th width="8%">Age(Year.Month)</th>
                             <th>Gender</th>
                             <th>Email</th>
 
@@ -183,11 +183,11 @@
                 },
                 columns: [
 
-                    { "data": function(data){
-                        return '<input  data-panel-id="'+data.employeeId+'"onclick="selected_rows(this)" type="checkbox" class="chk" name="selected_rows[]" value="'+ data.employeeId +'" />'
-                            ;},
-                        "orderable": false, "searchable":false
-                    },
+//                    { "data": function(data){
+//                        return '<input  data-panel-id="'+data.employeeId+'"onclick="selected_rows(this)" type="checkbox" class="chk" name="selected_rows[]" value="'+ data.employeeId +'" />'
+//                            ;},
+//                        "orderable": false, "searchable":false
+//                    },
                     {
                         "name": "image",
                         "data": "image",
@@ -205,7 +205,14 @@
                     { data: 'lastName', name: 'lastName',"orderable": false, "searchable":true },
 
                     { "data": function(data){
-                        return data.age1+"."+data.age2 ;},
+                        if(data.age1 > 0){
+
+                            return data.age1+"."+parseInt((data.age2)/(12*data.age1));
+
+                        }else {
+                            return data.age1+"."+parseInt((data.age2));
+                        }
+                        },
                         "orderable": true, "searchable":true,
                     },
 

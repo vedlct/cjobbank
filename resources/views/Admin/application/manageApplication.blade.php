@@ -761,10 +761,6 @@
 
                 var products=selecteds;
 
-
-
-
-
                 if (products.length >0) {
 
                     $.ajax({

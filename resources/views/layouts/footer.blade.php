@@ -30,6 +30,10 @@
 <script src="{{url('public/assets/js/app.js')}}"></script>
 
 <script>
+    var ckBaseUrl = "<?php echo url('/');; ?>";
+</script>
+
+<script>
 //    $(document).bind("contextmenu",function(e) {
 //        e.preventDefault();
 //    });
