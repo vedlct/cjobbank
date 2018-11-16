@@ -35,10 +35,12 @@ class MailTamplateController extends Controller
         });
     }
     public function show(){
-
         return view('manage.mail_tamplate');
+    }
 
-
+    public function storeMailTemplete(Request $r)
+    {
+        return $r;
     }
 
 }
