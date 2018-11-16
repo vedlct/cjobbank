@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\MailTamplate;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Job;
 use App\HR;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use Illuminate\Support\Facades\Mail;
 use Session;
 use Yajra\DataTables\DataTables;
 
@@ -37,10 +39,8 @@ class MailTamplateController extends Controller
         });
     }
     public function show(){
-
-        return view('manage.mail_tamplate');
-
-
+        $mailTemplete =MailTamplate::all();
+        return view('manage.mail_tamplate')->with('mailTemplete',$mailTemplete);
     }
     public function test(){
 
@@ -60,4 +60,27 @@ class MailTamplateController extends Controller
 
     }
 
+    public function storeMailTemplete(Request $r)
+    {
+       $mailTemplete = new MailTamplate();
+       $mailTemplete->tamplateName = $r->tamplateName;
+       $mailTemplete->tamplateBody = $r->tamplateBody;
+       $mailTemplete->status = $r->status;
+       $mailTemplete->save();
+        Session::flash('message', 'Mail Template Saved');
+       return back();
+    }
+    public function editMailTemplete(Request $r){
+        $mailTemplete = MailTamplate::findOrFail($r->id);
+        return view('manage.editMailTemplete')->with('mail',$mailTemplete);
+    }
+public function updateMailTemplete(Request $r){
+       $mail = MailTamplate::findOrFail($r->id);
+       $mail->tamplateName = $r->tamplateName;
+       $mail->tamplateBody = $r->tamplateBody;
+       $mail->status = $r->status;
+       $mail->update();
+      Session::flash('message', 'Mail Template Updated');
+      return back();
+}
 }
