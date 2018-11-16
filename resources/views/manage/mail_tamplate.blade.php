@@ -19,15 +19,15 @@
 
                 <div class="modal-body">
 
-                    <form method="post" action="{{route('manage.language.insert')}}">
+                    <form method="post" action="{{route('mailTamplate.store')}}">
                         {{csrf_field()}}
                         <div class="form-group">
                             <label for="">Title</label>
-                            <input type="text" class="form-control" id="" placeholder="language" name="language">
+                            <input type="text" class="form-control" id="" placeholder="language" name="tamplateName">
                         </div>
                         <div class="form-group">
                             <label for="">Body</label>
-                            <textarea class="form-control ckeditor" name="content" rows="6" ></textarea>
+                            <textarea class="form-control ckeditor" name="tamplateBody" rows="6" ></textarea>
                         </div>
                         <div class="form-group">
                             <label for="">Status</label>
@@ -53,7 +53,7 @@
     </div>
 
     <div class="modal" id="editModal">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
 
                 <!-- Modal Header -->
@@ -102,36 +102,33 @@
                     <br>
 
                     <div class="table table-responsive">
-                        {{--<table id="managelanguage" class="table table-striped table-bordered" style="width:100%" >--}}
-                            {{--<thead>--}}
-                            {{--<tr>--}}
+                        <table id="managelanguage" class="table table-striped table-bordered" style="width:100%" >
+                            <thead>
+                            <tr>
+                                <th>Language Name</th>
+                                <th>Language status</th>
+                                <th width="30%">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($mailTemplete as $mail)
+                                <tr>
+                                    <td>{{$mail->tamplateName}}</td>
+                                    <td>
+                                        @if($mail->status=='1')
+                                            Active
+                                            @else
+                                        InActive
+                                            @endif
+                                    </td>
+                                    <td><button class="btn btn-success btn-sm" data-panel-id="{{$mail->tamplateId}}" onclick="editlanguage(this)">Edit</button></td>
 
+                                </tr>
+                            @endforeach
 
-                                {{--<th>Language Name</th>--}}
-                                {{--<th>Language status</th>--}}
-                                {{--<th width="30%">Action</th>--}}
-                            {{--</tr>--}}
-                            {{--</thead>--}}
-                            {{--<tbody>--}}
-                            {{--@foreach($languages as $language)--}}
-                                {{--<tr>--}}
-                                    {{--<td>{{$language->languagename}}</td>--}}
-                                    {{--<td>--}}
-                                        {{--@foreach(STATUS as $key=>$value)--}}
-                                            {{--@if($language->status == $key)--}}
-                                                {{--{{$value}}--}}
-                                            {{--@endif--}}
-                                        {{--@endforeach--}}
+                            </tbody>
 
-                                    {{--</td>--}}
-                                    {{--<td><button class="btn btn-success btn-sm" data-panel-id="{{$language->id}}" onclick="editlanguage(this)">Edit</button></td>--}}
-
-                                {{--</tr>--}}
-                            {{--@endforeach--}}
-
-                            {{--</tbody>--}}
-
-                        {{--</table>--}}
+                        </table>
                     </div>
                     <br>
 
@@ -168,13 +165,15 @@
 
             $.ajax({
                 type: 'POST',
-                url: "{!! route('admin.editlanguage') !!}",
+                url: "{!! route('edit.mailTamplate') !!}",
                 cache: false,
                 data: {_token: "{{csrf_token()}}",'id': id},
                 success: function (data) {
-//                    console.log(data);
+                   // console.log(data);
                     $('#editModalBody').html(data);
                     $('#editModal').modal();
+
+
                 }
             });
 
