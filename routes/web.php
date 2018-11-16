@@ -333,10 +333,10 @@ Route::get('/Manage-Applicant-Question-Answer','Admin\ManageQuestionApplication@
 
 
 Route::get('/testloop','testController@testloop')->name('test');
-
-
-
 Route::get('test','Admin\ManageQuestionApplication@test');
+
+Route::get('rumiTest','Admin\MailTamplateController@test');
+Route::get('rumiTest/mail','Admin\MailTamplateController@testPdf');
 
 /*---------------Computer SKill-------------*/
 //Zone
@@ -347,3 +347,5 @@ Route::post('manage/skill/editZone','Admin\ComputerSkillController@editSkill')->
 
 //mail Tamplate
 Route::get('manage/Mail-Tamplate','Admin\MailTamplateController@show')->name('manage.mailTamplate');
+
+
