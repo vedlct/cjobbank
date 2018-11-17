@@ -64,7 +64,11 @@ class MailTamplateController extends Controller
     {
        $mailTemplete = new MailTamplate();
        $mailTemplete->tamplateName = $r->tamplateName;
-       $mailTemplete->tamplateBody = $r->tamplateBody;
+       $mailTemplete->tamplateFooterAndSign = $r->tamplateFooterAndSign;
+       $mailTemplete->testDetails = $r->testDetails;
+       $mailTemplete->testDate = $r->testDate;
+       $mailTemplete->testAddress = $r->testAddress;
+       $mailTemplete->subjectLine = $r->subjectLine;
        $mailTemplete->status = $r->status;
        $mailTemplete->save();
         Session::flash('message', 'Mail Template Saved');
@@ -75,11 +79,17 @@ class MailTamplateController extends Controller
         return view('manage.editMailTemplete')->with('mail',$mailTemplete);
     }
 public function updateMailTemplete(Request $r){
-       $mail = MailTamplate::findOrFail($r->id);
-       $mail->tamplateName = $r->tamplateName;
-       $mail->tamplateBody = $r->tamplateBody;
-       $mail->status = $r->status;
-       $mail->update();
+//        return $r;
+        $mailTemplete = MailTamplate::findOrFail($r->id);
+//        return $mailTemplete;
+        $mailTemplete->tamplateName = $r->tamplateName;
+        $mailTemplete->tamplateFooterAndSign = $r->tamplateFooterAndSign;
+        $mailTemplete->testDetails = $r->testDetails;
+        $mailTemplete->testDate = $r->testDate;
+        $mailTemplete->testAddress = $r->testAddress;
+        $mailTemplete->subject = $r->subject;
+        $mailTemplete->status = '1';
+       $mailTemplete->save();
       Session::flash('message', 'Mail Template Updated');
       return back();
 }
