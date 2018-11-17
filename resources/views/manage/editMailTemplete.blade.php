@@ -7,6 +7,10 @@
         <input type="text" class="form-control" id="" value="{{$mail->tamplateName}}" name="tamplateName">
     </div>
     <div class="form-group">
+        <label for="">Subject line</label>
+        <input type="text" class="form-control" id="" placeholder="subject line" value="{{$mail->subject}}" name="subjectLine">
+    </div>
+    <div class="form-group">
         <label for="">Body</label>
         <textarea class="form-control ckeditor" id="tamplateBody" name="tamplateBody" rows="6" >{!! $mail->tamplateBody !!}</textarea>
     </div>

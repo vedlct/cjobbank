@@ -23,8 +23,13 @@
                         {{csrf_field()}}
                         <div class="form-group">
                             <label for="">Title</label>
-                            <input type="text" class="form-control" id="" placeholder="language" name="tamplateName">
+                            <input type="text" class="form-control" id="" placeholder="templete name" name="tamplateName">
                         </div>
+                        <div class="form-group">
+                            <label for="">Subject line</label>
+                            <input type="text" class="form-control" id="" placeholder="subject line" name="subjectLine">
+                        </div>
+
                         <div class="form-group">
                             <label for="">Body</label>
                             <textarea class="form-control ckeditor" name="tamplateBody" rows="6" ></textarea>
@@ -105,8 +110,8 @@
                         <table id="managelanguage" class="table table-striped table-bordered" style="width:100%" >
                             <thead>
                             <tr>
-                                <th>Language Name</th>
-                                <th>Language status</th>
+                                <th>templete Name</th>
+                                <th>templete status</th>
                                 <th width="30%">Action</th>
                             </tr>
                             </thead>
