@@ -102,7 +102,7 @@
                     </div>
 
                     <div align="right">
-                        <a onclick="addMailTamplate()" href="#"> <button class="btn btn-info">Add New</button></a>
+                        {{--<a onclick="addMailTamplate()" href="#"> <button class="btn btn-info">Add New</button></a>--}}
                     </div>
                     <br>
 

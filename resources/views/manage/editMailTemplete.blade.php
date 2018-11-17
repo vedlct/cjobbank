@@ -12,7 +12,7 @@
     </div>
     <div class="form-group">
         <label for="">Test Details</label>
-        <textarea class="form-control" id="tamplateBody" name="tamplateBody" rows="2" >{!! $mail->testDetails !!}</textarea>
+        <textarea class="form-control" id="tamplateBody" name="testDetails" rows="2" >{!! $mail->testDetails !!}</textarea>
     </div>
     <div class="form-group">
         <label for="">Test Date</label>
@@ -20,11 +20,11 @@
     </div>
     <div class="form-group">
         <label for="">Test Address</label>
-        <textarea class="form-control" id="tamplateBody" name="tamplateBody" rows="2" >{!! $mail->testAddress !!}</textarea>
+        <textarea class="form-control" id="testAddress" name="testAddress" rows="2" >{!! $mail->testAddress !!}</textarea>
     </div>
     <div class="form-group">
         <label for="">Mail Footer</label>
-        <textarea class="form-control ckeditor" id="ckBox" name="tamplateBody" rows="6" >{!! $mail->tamplateFooterAndSign !!}</textarea>
+        <textarea class="form-control ckeditor" id="ckBox" name="tamplateFooterAndSign" rows="6" >{!! $mail->tamplateFooterAndSign !!}</textarea>
     </div>
     {{--<div class="form-group">--}}
         {{--<label for="">Status</label>--}}
