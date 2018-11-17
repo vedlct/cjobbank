@@ -338,6 +338,8 @@ Route::get('/Manage-Applicant-Question-Answer','Admin\ManageQuestionApplication@
 Route::get('/testloop','testController@testloop')->name('test');
 Route::get('test','Admin\ManageQuestionApplication@test');
 
+Route::get('test/excel','testController@testExcel');
+
 Route::get('rumiTest','Admin\MailTamplateController@test');
 Route::get('rumiTest/mail','Admin\MailTamplateController@testPdf');
 
