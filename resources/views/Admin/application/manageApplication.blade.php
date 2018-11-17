@@ -216,6 +216,24 @@
                         </div>
 
                     </div>
+                    <div class="row">
+                        <label class="form-group">send Mail</label>
+
+                        <div class="col-md-3">
+                            <select class="form-control" id="mailTamplate">
+                                <option selected value="">Select Tamplate</option>
+                                @foreach($mailTamplate as $mT)
+                                    <option value="{{$mT->tamplateId}}">{{$mT->tamplateName}}</option>
+                                    @endforeach
+
+                            </select>
+                        </div>
+
+                        <div class="col-md-1">
+                            <a onclick="return sendMail()"><button class="btn btn-danger btn-sm">Send Mail</button></a>
+                        </div>
+
+                    </div>
                     <br>
                     <div class="table table-responsive">
                     <table id="manageapplication" class="table table-striped table-bordered" style="width:100%" >
@@ -866,6 +884,168 @@
 
 
             }else {
+
+                $.alert({
+                    title: 'Alert!',
+                    type: 'red',
+                    content: 'Please Filter With Job Title First',
+                    buttons: {
+                        tryAgain: {
+                            text: 'Ok',
+                            btnClass: 'btn-blue',
+                            action: function () {
+
+
+                            }
+                        }
+
+                    }
+                });
+
+            }
+
+        }
+        function sendMail() {
+
+
+            if ($('#jobTitle').val()!=""){
+
+                if ($('#mailTamplate').val() !=""){
+
+                    var products=selecteds;
+
+                    if (products.length >0) {
+
+                        $.ajax({
+                            type: 'POST',
+                            url: "{!! route('jobAppliedCadidate.admin.sendMail') !!}",
+                            cache: false,
+                            data: {'jobApply': products,_token:"{{csrf_token()}}",'tamplateId':$('#mailTamplate').val()},
+                            success: function (data) {
+//                            console.log(data);
+
+                                $('#SessionMessage').load(document.URL +  ' #SessionMessage');
+                                table.ajax.reload();  //just reload table
+
+                                selecteds=[];
+
+                                $(':checkbox:checked').prop('checked',false);
+
+                                //alert(data);
+
+//                            location.reload();
+
+                                if (data.success=='1'){
+
+                                    $.alert({
+                                        title: 'Success!',
+                                        type: 'green',
+                                        content: data.message,
+                                        buttons: {
+                                            tryAgain: {
+                                                text: 'Ok',
+                                                btnClass: 'btn-blue',
+                                                action: function () {
+
+                                                    var link = document.createElement("a");
+                                                    link.download = data.fileName+".xls";
+                                                    var uri = '{{url("public/exportedExcel")}}'+"/"+data.fileName+".xls";
+                                                    link.href = uri;
+                                                    document.body.appendChild(link);
+                                                    link.click();
+                                                    document.body.removeChild(link);
+                                                    delete link;
+
+                                                    location.reload();
+
+
+
+
+                                                }
+                                            }
+
+                                        }
+                                    });
+
+
+                                }else if(data.success=='0'){
+
+                                    $.alert({
+                                        title: 'Alert!',
+                                        type: 'Red',
+                                        content: data.message,
+                                        buttons: {
+                                            tryAgain: {
+                                                text: 'Ok',
+                                                btnClass: 'btn-red',
+                                                action: function () {
+                                                    location.reload();
+
+                                                }
+                                            }
+
+                                        }
+                                    });
+
+
+                                }
+
+
+                            }
+
+                        });
+                    }
+                    else {
+
+
+                        $.alert({
+                            title: 'Alert!',
+                            type: 'Red',
+                            content: 'Please select Application for Sending Mail',
+                            buttons: {
+                                tryAgain: {
+                                    text: 'Ok',
+                                    btnClass: 'btn-red',
+                                    action: function () {
+
+
+                                    }
+                                }
+
+                            }
+                        });
+                    }
+
+                }
+
+                else {
+
+                    $.alert({
+                        title: 'Alert!',
+                        type: 'red',
+                        content: 'Please Select a Tamplate First',
+                        buttons: {
+                            tryAgain: {
+                                text: 'Ok',
+                                btnClass: 'btn-blue',
+                                action: function () {
+
+
+                                }
+                            }
+
+                        }
+                    });
+
+                }
+
+
+
+
+
+
+            }
+            else {
 
                 $.alert({
                     title: 'Alert!',

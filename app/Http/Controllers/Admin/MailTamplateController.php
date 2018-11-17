@@ -51,7 +51,7 @@ class MailTamplateController extends Controller
     public function testPdf(){
 
 
-
+    
         $pdf = PDF::loadView('mail.interviewCard');
 
         return $pdf->stream('test'.'.pdf',array('Attachment'=>false));

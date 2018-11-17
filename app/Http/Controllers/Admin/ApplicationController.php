@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use App\Job;
 use App\Jobapply;
 use App\JobExperience;
+use App\MailTamplate;
 use App\Nationality;
 use App\ProfessionalQualification;
 use App\Refree;
@@ -87,6 +88,7 @@ class ApplicationController extends Controller
         $organizationType=DB::table('organizationtype')->where('status',1)->get();
         $allJobTitle=Job::select('title')->get();
         $allEducationLevel=Educationlevel::where('status',1)->get();
+        $mailTamplate=MailTamplate::select('tamplateName','tamplateId')->get();
 //        $allEducationMajor=Educationmajor::select('educationMajorId','educationMajorName')->get();
 
 //        $application = Jobapply::select('jobapply.jobapply as applyId', 'jobapply.applydate', 'zone.zoneName', 'employee.firstName', 'employee.lastName', 'job.title',
@@ -113,7 +115,7 @@ class ApplicationController extends Controller
 
 
 
-        return view('Admin.application.manageApplication',compact('religion','ethnicity','natinality','allZone','allJobTitle','allEducationLevel','allEducationMajor','organizationType'));
+        return view('Admin.application.manageApplication',compact('religion','ethnicity','natinality','allZone','allJobTitle','allEducationLevel','allEducationMajor','organizationType','mailTamplate'));
     }
     public function showAllApplication(Request $r)
     {
@@ -399,6 +401,12 @@ class ApplicationController extends Controller
                 echo "<option value='$mejor->educationMajorId'>$mejor->educationMajorName</option>";
             }
         }
+    }
+    public function sendMailtoAppliedCandidate(Request $r)
+    {
+        $appliedList=$r->jobApply;
+        $appliedList=$r->jobApply;
+
     }
 
 
