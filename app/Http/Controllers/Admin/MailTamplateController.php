@@ -65,6 +65,7 @@ class MailTamplateController extends Controller
        $mailTemplete = new MailTamplate();
        $mailTemplete->tamplateName = $r->tamplateName;
        $mailTemplete->tamplateBody = $r->tamplateBody;
+       $mailTemplete->subject = $r->subjectLine;
        $mailTemplete->status = $r->status;
        $mailTemplete->save();
         Session::flash('message', 'Mail Template Saved');
@@ -78,6 +79,7 @@ public function updateMailTemplete(Request $r){
        $mail = MailTamplate::findOrFail($r->id);
        $mail->tamplateName = $r->tamplateName;
        $mail->tamplateBody = $r->tamplateBody;
+       $mail->subject = $r->subjectLine;
        $mail->status = $r->status;
        $mail->update();
       Session::flash('message', 'Mail Template Updated');
