@@ -147,6 +147,20 @@
     </table>
 
 </div>
+<div style="margin: 30px 30px 0px 30px;">
+
+    <table width="100%">
+        <tr>
+        <td width="100%" align="left">
+            <b>Dear</b>
+            Mainzer Landstraße 49, 60329 Frankfurt am Main, DE
+        </td>
+        </tr>
+
+
+    </table>
+
+</div>
 
 <div id="footer">
     <hr>
