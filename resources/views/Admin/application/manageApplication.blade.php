@@ -1245,7 +1245,7 @@
                         cache: false,
                         data: {_token: "{{csrf_token()}}",'id': $('#mailTamplate').val()},
                         success: function (data) {
-                            
+
                             $('#testDate').val(data['testDate']);
                             $('#subjectLine').val(data['subject']);
                             $('#tamplateBody').val(data['testDetails']);
