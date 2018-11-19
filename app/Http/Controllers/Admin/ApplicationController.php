@@ -28,6 +28,8 @@ use Session;
 use Yajra\DataTables\DataTables;
 
 use Excel;
+use PDF;
+use Mail;
 
 
 
@@ -405,7 +407,65 @@ class ApplicationController extends Controller
     public function sendMailtoAppliedCandidate(Request $r)
     {
         $appliedList=$r->jobApply;
-        $appliedList=$r->jobApply;
+        $template=$r->tamplateId;
+        $testDate=$r->testDate;
+        $testAddress=$r->testAddress;
+        $testDetails=$r->testDetails;
+        $footerAndSign=$r->footerAndSign;
+        $subjectLine=$r->subjectLine;
+
+//        $list=array();
+
+        for ($i=0;$i<count($appliedList);$i++) {
+
+            $appliedId = $appliedList[$i];
+
+
+            $jobInfo=Jobapply::select('job.title','job.position','jobapply.fkemployeeId')->where('jobapply',$appliedId)
+                ->leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')->first();
+
+            $employeeInfo=Employee::select('employee.*')
+                ->where('employee.employeeId',$jobInfo->fkemployeeId)
+                ->first();
+
+            /* make invoice pdf*/
+
+            if ($template=='1'){
+
+                $pdf = PDF::loadView('mail.interviewCard',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
+                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'jobInfo'=>$jobInfo]);
+            }
+
+            try{
+
+                Mail::send('mail.MailBody',[], function($message) use ($pdf,$employeeInfo)
+                {
+
+                    $message->from('support@caritasbd.com', 'CARITAS BD');
+
+                    $message->to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)->subject('INTERVIEW CARD From CARITAS BD');
+
+                    $message->attachData($pdf->output(),'INTERVIEW-CARD.pdf',['mime' => 'application/pdf']);
+
+
+
+                });
+                return 1;
+            }
+            catch (\Exception $ex) {
+
+                return 0;
+        }
+
+
+
+
+        }
+
+
+
+
+
 
     }
 

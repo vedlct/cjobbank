@@ -7,6 +7,80 @@
 
             <div style="background-color: white;margin-bottom: 20px;" class="card-body">
 
+                <!-- Modal -->
+                <div class="modal fade" id="mail_info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <b><h4 class="modal-title dark profile-title" id="myModalLabel">Mail Info</h4></b>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+
+                            </div>
+
+                            <div class="modal-body">
+
+                                {{--<form method="post" action="{{route('mailTamplate.store')}}">--}}
+                                    {{--{{csrf_field()}}--}}
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+
+                                            <label class="control-label">Mail Tamplate</label>
+
+
+                                            <select class="form-control" id="mailTamplate">
+                                                <option selected value="">Select Tamplate</option>
+                                                @foreach($mailTamplate as $mT)
+                                                    <option value="{{$mT->tamplateId}}">{{$mT->tamplateName}}</option>
+                                                @endforeach
+
+                                            </select>
+
+
+                                        </div>
+                                        <div class="col-md-6">
+
+                                                <label for="">Test Date</label>
+                                                <input class="form-control date" id="testDate" name="testDate" value="">
+
+                                        </div>
+
+                                    </div>
+
+                                <div class="form-group">
+                                    <label for="">Subject line</label>
+                                    <input type="text" class="form-control" id="subjectLine" placeholder="subject line" value="" name="subjectLine">
+                                </div>
+
+                                    <div class="form-group">
+                                        <label for="">Test Details</label>
+                                        <textarea class="form-control" id="tamplateBody" name="testDetails" rows="2" ></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Test Address</label>
+                                        <textarea class="form-control" id="testAddress" name="testAddress" rows="2" ></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Mail Footer</label>
+                                        <textarea class="form-control ckeditor" id="ckBox" name="tamplateFooterAndSign" rows="6" ></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <button type="submit" onclick="sendMailToJobApplied()" class="btn btn-success">Submit</button>
+                                    </div>
+
+                                {{--</form>--}}
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
                 <div class=" form-group ">
                     <label>Gender</label>
                     <select name="genderFilter" id="genderFilter" class="form-control">
@@ -217,21 +291,11 @@
 
                     </div>
                     <div class="row">
-                        <label class="form-group">send Mail</label>
-
-                        <div class="col-md-3">
-                            <select class="form-control" id="mailTamplate">
-                                <option selected value="">Select Tamplate</option>
-                                @foreach($mailTamplate as $mT)
-                                    <option value="{{$mT->tamplateId}}">{{$mT->tamplateName}}</option>
-                                    @endforeach
-
-                            </select>
-                        </div>
 
                         <div class="col-md-1">
                             <a onclick="return sendMail()"><button class="btn btn-danger btn-sm">Send Mail</button></a>
                         </div>
+
 
                     </div>
                     <br>
@@ -274,6 +338,13 @@
 @section('foot-js')
     <script src="{{url('public/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{url('public/assets/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    <script type="text/javascript" src="{{url('public/assets/ckeditor/ckeditor.js')}}"></script>
+
+    <script>
+//        CKEDITOR.replace( 'tamplateBody' );
+//        CKEDITOR.replace( 'ckBox' );
+        // $('tamplateBody').CKEDITOR(); // ADD THIS
+    </script>
 
     <script>
         $(document).ready(function() {
@@ -910,124 +981,24 @@
 
             if ($('#jobTitle').val()!=""){
 
-                if ($('#mailTamplate').val() !=""){
 
-                    var products=selecteds;
+                var products=selecteds;
 
-                    if (products.length >0) {
+                if (products.length >0) {
 
-                        $.ajax({
-                            type: 'POST',
-                            url: "{!! route('jobAppliedCadidate.admin.sendMail') !!}",
-                            cache: false,
-                            data: {'jobApply': products,_token:"{{csrf_token()}}",'tamplateId':$('#mailTamplate').val()},
-                            success: function (data) {
-//                            console.log(data);
-
-                                $('#SessionMessage').load(document.URL +  ' #SessionMessage');
-                                table.ajax.reload();  //just reload table
-
-                                selecteds=[];
-
-                                $(':checkbox:checked').prop('checked',false);
-
-                                //alert(data);
-
-//                            location.reload();
-
-                                if (data.success=='1'){
-
-                                    $.alert({
-                                        title: 'Success!',
-                                        type: 'green',
-                                        content: data.message,
-                                        buttons: {
-                                            tryAgain: {
-                                                text: 'Ok',
-                                                btnClass: 'btn-blue',
-                                                action: function () {
-
-                                                    var link = document.createElement("a");
-                                                    link.download = data.fileName+".xls";
-                                                    var uri = '{{url("public/exportedExcel")}}'+"/"+data.fileName+".xls";
-                                                    link.href = uri;
-                                                    document.body.appendChild(link);
-                                                    link.click();
-                                                    document.body.removeChild(link);
-                                                    delete link;
-
-                                                    location.reload();
-
-
-
-
-                                                }
-                                            }
-
-                                        }
-                                    });
-
-
-                                }else if(data.success=='0'){
-
-                                    $.alert({
-                                        title: 'Alert!',
-                                        type: 'Red',
-                                        content: data.message,
-                                        buttons: {
-                                            tryAgain: {
-                                                text: 'Ok',
-                                                btnClass: 'btn-red',
-                                                action: function () {
-                                                    location.reload();
-
-                                                }
-                                            }
-
-                                        }
-                                    });
-
-
-                                }
-
-
-                            }
-
-                        });
-                    }
-                    else {
-
-
-                        $.alert({
-                            title: 'Alert!',
-                            type: 'Red',
-                            content: 'Please select Application for Sending Mail',
-                            buttons: {
-                                tryAgain: {
-                                    text: 'Ok',
-                                    btnClass: 'btn-red',
-                                    action: function () {
-
-
-                                    }
-                                }
-
-                            }
-                        });
-                    }
-
+                    $('#mail_info').modal({show: true});
                 }
-
                 else {
+
 
                     $.alert({
                         title: 'Alert!',
-                        type: 'red',
-                        content: 'Please Select a Tamplate First',
+                        type: 'Red',
+                        content: 'Please select Application for Sending Mail',
                         buttons: {
                             tryAgain: {
                                 text: 'Ok',
-                                btnClass: 'btn-blue',
+                                btnClass: 'btn-red',
                                 action: function () {
 
 
@@ -1036,13 +1007,7 @@
 
                         }
                     });
-
                 }
-
-
-
-
-
 
             }
             else {
@@ -1065,6 +1030,109 @@
                 });
 
             }
+
+        }
+
+        function sendMailToJobApplied() {
+
+
+            if ($('#mailTamplate').val() !=""){
+
+                var products=selecteds;
+
+                    $.ajax({
+                        type: 'POST',
+                        url: "{!! route('jobAppliedCadidate.admin.sendMail') !!}",
+                        cache: false,
+                        data: {'jobApply': products,_token:"{{csrf_token()}}",'tamplateId':$('#mailTamplate').val(),'testDate':$('#testDate').val(),
+                            'testAddress':$('#testAddress').val(),'testDetails':$('#tamplateBody').val(),'footerAndSign':$('#ckBox').val(),
+                            'subjectLine':$('#subjectLine').val()},
+                        success: function (data) {
+//
+                            $('#SessionMessage').load(document.URL +  ' #SessionMessage');
+                            table.ajax.reload();  //just reload table
+
+                            selecteds=[];
+
+                            $(':checkbox:checked').prop('checked',false);
+
+                            //alert(data);
+
+//                            location.reload();
+
+                            if (data =='1'){
+
+                                $.alert({
+                                    title: 'Alert!',
+                                    type: 'green',
+                                    content: 'Mail Send successfully',
+                                    buttons: {
+                                        tryAgain: {
+                                            text: 'Ok',
+                                            btnClass: 'btn-blue',
+                                            action: function(){
+                                                {{--window.location.href = "{{route('home')}}";--}}
+                                                // console.log(data);
+                                                location.reload();
+                                            }
+                                        }
+                                    }
+                                });
+
+
+                            }else if(data=='0'){
+
+                                $.alert({
+                                    title: 'Alert!',
+                                    type: 'Red',
+                                    content: data.message,
+                                    buttons: {
+                                        tryAgain: {
+                                            text: 'Ok',
+                                            btnClass: 'btn-red',
+                                            action: function () {
+                                                location.reload();
+
+                                            }
+                                        }
+
+                                    }
+                                });
+
+
+                            }
+
+
+                        }
+
+                    });
+
+
+
+            }
+
+            else {
+
+                $.alert({
+                    title: 'Alert!',
+                    type: 'red',
+                    content: 'Please Select a Tamplate First',
+                    buttons: {
+                        tryAgain: {
+                            text: 'Ok',
+                            btnClass: 'btn-blue',
+                            action: function () {
+
+
+                            }
+                        }
+
+                    }
+                });
+
+            }
+
+
 
         }
 
@@ -1161,6 +1229,38 @@
 
 
             });
+        $("#mailTamplate").on('change', function (){
+
+                if ($('#mailTamplate').val()=="") {
+
+                    var errorMsg = 'Please Select Tamplate First!!';
+                    validationError(errorMsg);
+                    return false;
+
+                }else{
+
+                    $.ajax({
+                        type: 'POST',
+                        url: "{!! route('edit.mailTamplate1') !!}",
+                        cache: false,
+                        data: {_token: "{{csrf_token()}}",'id': $('#mailTamplate').val()},
+                        success: function (data) {
+                            
+                            $('#testDate').val(data['testDate']);
+                            $('#subjectLine').val(data['subject']);
+                            $('#tamplateBody').val(data['testDetails']);
+                            $('#testAddress').val(data['testAddress']);
+
+                            CKEDITOR.instances['ckBox'].setData(data['tamplateFooterAndSign']); // where editor1 is id
+
+
+
+                        }
+                    });
+
+                }
+
+        });
 
 
         function isNumberKey(evt)

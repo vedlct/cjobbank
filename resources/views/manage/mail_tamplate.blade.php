@@ -153,6 +153,9 @@
     <script src="{{url('public/assets/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
     <script type="text/javascript" src="{{url('public/assets/ckeditor/ckeditor.js')}}"></script>
 
+
+
+
     <script>
         $(function () {
             $('#managelanguage').DataTable(

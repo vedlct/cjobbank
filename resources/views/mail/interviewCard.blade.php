@@ -72,7 +72,7 @@
         <tr>
             <td width="100%" >
 
-                asdhgjashdgjahsda asdhkjahsdkjashd shdkahsdkjashdkl shashdkajsd hkajsdhaksjdh
+                Central Office: 2, Outer Circular Road, Shantibagh, Dhaka-1217, Bangladesh, GPO Box-994, Dhaka - 1000
 
             </td>
         </tr>
@@ -98,7 +98,7 @@
         <td width="35%">
             <table align="center" >
                 <tr>
-                    <td> <b>Date: </b>Date</td>
+                    <td> <b>Date: </b>{{date('d-m-Y')}}</td>
                 </tr>
             </table>
         </td>
@@ -113,11 +113,10 @@
         <td align="left">
             <table width="50%" >
                 <tr >
-                    <td> Mr. Abu Bakker Mohammad Moinul Hassan<br>
-                        456/3 (5 th floor), West Sawrapara
-                        Mirpur, Dhaka<br>
-                        Email: abm.moinul.hassan@gmail.com<br>
-                        Cell: 01718975141
+                    <td> {{$empInfo->firstName.' '.$empInfo->lastName}}<br>
+                        {{$empInfo->presentAddress}}<br>
+                        Email: {{$empInfo->email}}<br>
+                        Cell: {{$empInfo->personalMobile}}
                     </td>
                 </tr>
             </table>
@@ -132,8 +131,7 @@
     <table width="100%">
         <tr>
         <td width="100%" align="left">
-            <b>Subject: Interview (written test and personal interview) for the post of Manager (WASH)
-                under Caritas Central Office.</b>
+            <b>Subject:{{$subjectLine.' for the post of '}}{{$jobInfo->position}}</b>
         </td>
         </tr>
 
@@ -146,7 +144,7 @@
     <table width="100%">
         <tr>
         <td width="100%" align="left">
-            <b>Dear</b>Mr. Abu Bakker Mohammad Moinul Hassan,
+            <b>Dear</b>{{$empInfo->firstName.' '.$empInfo->lastName}},
         </td>
         </tr>
         <tr>
@@ -155,14 +153,12 @@
 
                         <span>
 
-With reference to your application for the post of Manager (WASH) under Caritas Central
-Office, we would like to invite you for a written test (9.00 a.m. – 11.00 p.m.) and personal
-interview (11.30 a.m. – onward) to be held on the 28th September 2018 (Friday) at Caritas
-Central Office, 2, Outer Circular Road, Shantibagh, Dhaka-1217.
-Please take note of the following information for attending the interview:
-1. That you are requested to be present for the interview on time.
-2. That no TA/DA will be provided for attending the above interview.
-3. That you are requested to bring original copies of all certificates during interview.
+With reference to your application for the post of {{$jobInfo->position}}, we would like to invite you for {{$testDetails}} to be held on the {{date('dS F Y (l)',strtotime($testDate))}} at {{$testAddress}}.
+<br>
+Please take note of the following information for attending the interview:<br>
+1. That you are requested to be present for the interview on time.<br>
+2. That no TA/DA will be provided for attending the above interview.<br>
+3. That you are requested to bring original copies of all certificates during interview.<br>
 
                         </span>
             </td>
@@ -182,13 +178,7 @@ Please take note of the following information for attending the interview:
         </tr>
         <tr>
         <td width="100%" align="left">
-            Sebastian Rozario
-            Assistant Executive Director (Finance and Admin.)
-            Caritas Bangladesh
-
-            CC: ED/ AED (P)
-            : Convener, Selection Committee
-            : Manager (HR) - Please follow up.
+            {{$footerAndSign}}
         </td>
         </tr>
 
@@ -204,7 +194,7 @@ Please take note of the following information for attending the interview:
             <td align="left" width="60%">
                 <table>
                     <tr  >
-                        <td> Regd under the Societies Registration Act XXI of 1860 No. 3760-B of 1972-73, Dated 13-7-1972
+                        <td>Regd under the Societies Registration Act XXI of 1860 No. 3760-B of 1972-73, Dated 13-7-1972
                         </td>
                     </tr>
                     <tr  >
