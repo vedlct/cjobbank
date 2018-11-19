@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use App\Job;
 use App\Jobapply;
 use App\JobExperience;
+use App\MailTamplate;
 use App\Nationality;
 use App\ProfessionalQualification;
 use App\Refree;
@@ -27,6 +28,8 @@ use Session;
 use Yajra\DataTables\DataTables;
 
 use Excel;
+use PDF;
+use Mail;
 
 
 
@@ -87,6 +90,7 @@ class ApplicationController extends Controller
         $organizationType=DB::table('organizationtype')->where('status',1)->get();
         $allJobTitle=Job::select('title')->get();
         $allEducationLevel=Educationlevel::where('status',1)->get();
+        $mailTamplate=MailTamplate::select('tamplateName','tamplateId')->get();
 //        $allEducationMajor=Educationmajor::select('educationMajorId','educationMajorName')->get();
 
 //        $application = Jobapply::select('jobapply.jobapply as applyId', 'jobapply.applydate', 'zone.zoneName', 'employee.firstName', 'employee.lastName', 'job.title',
@@ -113,7 +117,7 @@ class ApplicationController extends Controller
 
 
 
-        return view('Admin.application.manageApplication',compact('religion','ethnicity','natinality','allZone','allJobTitle','allEducationLevel','allEducationMajor','organizationType'));
+        return view('Admin.application.manageApplication',compact('religion','ethnicity','natinality','allZone','allJobTitle','allEducationLevel','allEducationMajor','organizationType','mailTamplate'));
     }
     public function showAllApplication(Request $r)
     {
@@ -399,6 +403,70 @@ class ApplicationController extends Controller
                 echo "<option value='$mejor->educationMajorId'>$mejor->educationMajorName</option>";
             }
         }
+    }
+    public function sendMailtoAppliedCandidate(Request $r)
+    {
+        $appliedList=$r->jobApply;
+        $template=$r->tamplateId;
+        $testDate=$r->testDate;
+        $testAddress=$r->testAddress;
+        $testDetails=$r->testDetails;
+        $footerAndSign=$r->footerAndSign;
+        $subjectLine=$r->subjectLine;
+
+//        $list=array();
+
+        for ($i=0;$i<count($appliedList);$i++) {
+
+            $appliedId = $appliedList[$i];
+
+
+            $jobInfo=Jobapply::select('job.title','job.position','jobapply.fkemployeeId')->where('jobapply',$appliedId)
+                ->leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')->first();
+
+            $employeeInfo=Employee::select('employee.*')
+                ->where('employee.employeeId',$jobInfo->fkemployeeId)
+                ->first();
+
+            /* make invoice pdf*/
+
+            if ($template=='1'){
+
+                $pdf = PDF::loadView('mail.interviewCard',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
+                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'jobInfo'=>$jobInfo]);
+            }
+
+            try{
+
+                Mail::send('mail.MailBody',[], function($message) use ($pdf,$employeeInfo)
+                {
+
+                    $message->from('support@caritasbd.com', 'CARITAS BD');
+
+                    $message->to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)->subject('INTERVIEW CARD From CARITAS BD');
+
+                    $message->attachData($pdf->output(),'INTERVIEW-CARD.pdf',['mime' => 'application/pdf']);
+
+
+
+                });
+                return 1;
+            }
+            catch (\Exception $ex) {
+
+                return 0;
+        }
+
+
+
+
+        }
+
+
+
+
+
+
     }
 
 

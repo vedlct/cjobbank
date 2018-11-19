@@ -54,6 +54,16 @@ class MailTamplateController extends Controller
 
         $pdf = PDF::loadView('mail.interviewCard');
 
+        $template=1;
+        $testDate='ad';
+        $testAddress='asd';
+        $testDetails='ads';
+        $footerAndSign='sdasewe';
+        $subjectLine='asdsd';
+
+        $pdf = PDF::loadView('mail.interviewCard',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
+            'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'jobInfo'=>$jobInfo]);
+
         return $pdf->stream('test'.'.pdf',array('Attachment'=>false));
 
 
@@ -77,6 +87,10 @@ class MailTamplateController extends Controller
     public function editMailTemplete(Request $r){
         $mailTemplete = MailTamplate::findOrFail($r->id);
         return view('manage.editMailTemplete')->with('mail',$mailTemplete);
+    }
+    public function editMailTemplete1(Request $r){
+        $mailTemplete = MailTamplate::findOrFail($r->id);
+        return $mailTemplete;
     }
 public function updateMailTemplete(Request $r){
 //        return $r;
