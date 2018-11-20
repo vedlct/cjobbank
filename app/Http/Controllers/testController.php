@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Education;
 use App\Employee;
+use App\EmployeeComputerSkill;
+use App\EmployeeLanguage;
+use App\EmployeeOtherInfo;
+use App\EmpOtherSkill;
 use App\JobExperience;
 use App\MembershipInSocialNetwork;
+use App\OtherSkillInformation;
 use App\ProfessionalQualification;
 use App\QuestionObjective;
 use App\Refree;
@@ -38,7 +43,7 @@ class testController extends Controller
 
     public function testExcel(){
 
-        $empId=6;
+        $empId=7;
         $employee=Employee::select('employee.*','nationality.nationalityName','ethnicity.ethnicityName','religion.religionName')
             ->leftJoin('nationality','nationality.nationalityId','employee.fknationalityId')
             ->leftJoin('ethnicity','ethnicity.ethnicityId','employee.ethnicityId')
@@ -70,15 +75,35 @@ class testController extends Controller
 
         $empQuestion=QuestionObjective::where('empId',$empId)->first();
 
+        $extraCurriculumn=EmpOtherSkill::where('fkemployeeId',$empId)
+            ->leftJoin('otherskillsinformation','otherskillsinformation.id','emp_otherskill_achievement.otherSkillId')
+            ->get();
+
+        $computerSkill=EmployeeComputerSkill::where('fk_empId',$empId)
+            ->leftJoin('computerskill','computerskill.id','empcomputerskill.computerSkillId')
+            ->get();
+
+        $languageHead=EmployeeLanguage::select('fklanguageHead','fkemployeeId','languagename')
+            ->where('fkemployeeId',$empId)
+            ->leftJoin('languagehead','languagehead.id','emp_language.fklanguageHead')
+            ->groupBy('fklanguageHead')
+            ->get();
+
+        $language=EmployeeLanguage::where('fkemployeeId',$empId)
+            ->leftJoin('languagehead','languagehead.id','emp_language.fklanguageHead')
+            ->leftJoin('languageskill','languageskill.id','emp_language.fklanguageSkill')
+            ->get();
+
+//        return $language;
 
 //       return $reference;
 
         $fileName="Full Info";
 
-        $check=Excel::create($fileName,function($excel)use ($employee,$social,$education,$pQualification,$training,$jobExperience,$reference,$empQuestion) {
+        $check=Excel::create($fileName,function($excel)use ($employee,$social,$education,$pQualification,$training,$jobExperience,$reference,$empQuestion,$extraCurriculumn,$computerSkill,$languageHead,$language) {
 
 
-            $excel->sheet('First sheet', function($sheet) use ($employee,$social,$education,$pQualification,$training,$jobExperience,$reference,$empQuestion) {
+            $excel->sheet('First sheet', function($sheet) use ($employee,$social,$education,$pQualification,$training,$jobExperience,$reference,$empQuestion,$extraCurriculumn,$computerSkill,$languageHead,$language) {
 
                 $sheet->setStyle(array(
                     'font' => array(
@@ -88,7 +113,7 @@ class testController extends Controller
                     )
                 ));
 
-                $sheet->loadView('Admin.application.fullInfo',compact('employee','social','education','pQualification','training','jobExperience','reference','empQuestion'));
+                $sheet->loadView('Admin.application.fullInfo',compact('employee','social','education','pQualification','training','jobExperience','reference','empQuestion','extraCurriculumn','computerSkill','languageHead','language'));
             });
 
         });

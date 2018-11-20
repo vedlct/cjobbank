@@ -103,8 +103,29 @@
 
 
             Other skills:<br>
-            Computer skill<br>
+            @foreach($extraCurriculumn as $c)
+                Name: {{$c->skillName}} -{{$c->ratiing}}%<br><br>
+            @endforeach
+
+            Computer skill:<br>
+            @foreach($computerSkill as $skill)
+                Name: {{$skill->computerSkillName}}  -@if($skill->SkillAchievement==1) General @else Advanced @endif <br><br>
+
+            @endforeach
             Language Proficiency<br>
+            @foreach($languageHead as $lh)
+
+                Name: {{$lh->languagename}} <br>
+                @foreach($language as $l)
+                    @if($lh->fklanguageHead == $l->fklanguageHead)
+                        Skill: {{$l->languageSkillName}}  -Rate: {{$l->rate}}<br>
+
+
+                    @endif
+               @endforeach
+
+                <br>
+            @endforeach
 
         </td>
         <td colspan="3" height="250" style="text-align: center;vertical-align: middle;">
