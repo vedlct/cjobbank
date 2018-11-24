@@ -1,7 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
     <style>
+
+
+        @font-face {
+            font-family: 'SolaimanLipi';
+            src: url('public/fonts/SolaimanLipi.ttf')format('truetype');
+        }
         #footer {
 
             position:absolute;
@@ -12,6 +20,7 @@
         }
         body{
             font-size: 14px;
+            font-family: "SolaimanLipi", "DejaVu Sans", sans-serif;
         }
 
         @page{
@@ -19,7 +28,10 @@
             margin: 25px 20px;
         }
 
+
     </style>
+
+
 </head>
 <body style="margin: 0 auto">
 <div id="header" style="margin: 0px 0px 5px 0px;">
@@ -84,7 +96,7 @@
         <td width="35%">
             <table align="center" >
                 <tr>
-                    <td> <b>Date: </b>Date</td>
+                    <td><b>Date: </b>{{date('d-m-Y')}}</td>
                 </tr>
             </table>
         </td>
@@ -99,11 +111,11 @@
         <td align="left">
             <table width="50%" >
                 <tr >
-                    <td> Mr. Abu Bakker Mohammad Moinul Hassan<br>
-                        456/3 (5 th floor), West Sawrapara
-                        Mirpur, Dhaka<br>
-                        Email: abm.moinul.hassan@gmail.com<br>
-                        Cell: 01718975141
+                    <td>TO <br>
+                        {{$empInfo->firstName.' '.$empInfo->lastName}}<br>
+                        {{$empInfo->presentAddress}}<br>
+                        Email: {{$empInfo->email}}<br>
+                        Cell: {{$empInfo->personalMobile}}
                     </td>
                 </tr>
             </table>
@@ -118,7 +130,7 @@
     <table width="100%">
         <tr>
             <td width="100%" align="left">
-                <b>Dear</b>Mr. Abu Bakker Mohammad Moinul Hassan,
+                <b>Dear</b>{{$empInfo->firstName.' '.$empInfo->lastName}},
             </td>
         </tr>
 
@@ -146,18 +158,17 @@
 
             <td align="left" width="100%">
 
-                        <span>
 
-This has reference to your recent application for the post of Accounts Officer under Caritas
-Central Office and the subsequent formal written test, Computer test and personal interview
-held on 7th April 2018 (Saturday).
+
+This has reference to your recent application for the post of {{$jobInfo->position}} and the subsequent formal {{$testDetails}}
+held on {{date('dS F Y (l)',strtotime($testDate))}}.<br><br>
 Please be informed that you have been enlisted in the panel of future recruitment as
 determined by the Recruitment Committee upon careful assessment of candidates’
-applications and the results of the written test, Computer test and personal interview. Kindly
-note that you will be communicated if any scope arises in future.
+applications and the results of the {{$testDetails}}. Kindly
+note that you will be communicated if any scope arises in future.<br><br>
 Thank you very much for your interest in working with Caritas Bangladesh.
 
-                        </span>
+
             </td>
 
         </tr>
@@ -175,13 +186,7 @@ Thank you very much for your interest in working with Caritas Bangladesh.
         </tr>
         <tr>
             <td width="100%" align="left">
-                Sebastian Rozario
-                Assistant Executive Director (Finance and Admin.)
-                Caritas Bangladesh
-
-                CC: ED/ AED (P)
-                : Convener, Selection Committee
-                : Manager (HR) - Please follow up.
+                {{$footerAndSign}}
             </td>
         </tr>
 

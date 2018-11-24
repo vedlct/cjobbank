@@ -16,6 +16,11 @@ use Yajra\DataTables\DataTables;
 
 use PDF;
 
+use MPDF;
+
+use App\Employee;
+use App\Jobapply;
+
 
 class MailTamplateController extends Controller
 {
@@ -52,7 +57,7 @@ class MailTamplateController extends Controller
 
 
 
-        $pdf = PDF::loadView('mail.interviewCard');
+//        $pdf = PDF::loadView('mail.interviewCard');
 
         $template=1;
         $testDate='ad';
@@ -61,10 +66,18 @@ class MailTamplateController extends Controller
         $footerAndSign='sdasewe';
         $subjectLine='asdsd';
 
-        $pdf = PDF::loadView('mail.interviewCard',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
+
+        $jobInfo=Jobapply::select('job.title','job.position','jobapply.fkemployeeId')->where('jobapply',5)
+            ->leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')->first();
+
+        $employeeInfo=Employee::select('employee.*')
+            ->where('employee.employeeId',1)
+            ->first();
+
+        $pdf = MPDF::loadView('mail.panelListed',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
             'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'jobInfo'=>$jobInfo]);
 
-        return $pdf->stream('test'.'.pdf',array('Attachment'=>false));
+        return $pdf->stream('test'.'.pdf');
 
 
 
