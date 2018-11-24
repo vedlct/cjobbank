@@ -47,35 +47,53 @@
     </tr>
     <tr>
         <td colspan="1" height="250" style="text-align: center;vertical-align: middle;">1</td>
-        <td colspan="4" height="250" style="text-align: center;vertical-align: middle;"><span style="text-align: center">Zamal Hossen</span></td>
-        <td colspan="3" height="250" style="text-align: center;vertical-align: middle;">Why Do You Want to Leave Your Current Job?</td>
-        <td colspan="4" height="250" style="text-align: center;vertical-align: middle;">1. Degree title : M. Com (Accounting)<br>
-            Major Subject: B.Com (Ho)<br>
-            Passing Year : 2010<br>
-            Board<br>
-            Name of Institution/school/college/versity:<br>
-            Status (ongoing/Completed)-<br>
-            Result: 1st division<br><br>
+        <td colspan="4" height="250" style="text-align: center;vertical-align: middle;"><span style="text-align: center">{{$employee->firstName}} {{$employee->lastName}}</span></td>
 
-            2. Degree title : B. Com (Accounting)<br>
-            Major Subject: B.Com (Ho)<br>
-            Passing Year : 2010<br>
-            Name of Institution/school/college/versity: National University<br>
-            Result:<br>
+
+
+
+        <td colspan="3" height="250" style="text-align: center;vertical-align: middle;">
+
+            Why Do You Want to Leave Your Current Job?<br>
+            @if($empQuestion)
+            {{$empQuestion->ques_1}}
+            @endif
+
+
+        </td>
+
+
+
+        <td colspan="4" height="250" style="text-align: center;vertical-align: middle;">
+            <?php  $temp=0; ?>
+            @foreach($education as $edu)
+                {{++$temp}}. Degree title : {{$edu->degreeName}}<br>
+                Major Subject: {{$edu->educationMajorName}}<br>
+                Passing Year: {{$edu->passingYear}}<br>
+                Board: {{$edu->boardName}}<br>
+                Name of Institution/school/college/versity: <br>
+                    {{$edu->institutionName}}<br>
+                Status : @if($edu->status==1) Ongoing @elseif($edu->status==2) Complete @endif<br>
+                Result: {{$edu->result}}<br><br>
+
+            @endforeach
         </td>
         <td colspan="4" height="250"   style="text-align: center;vertical-align: middle;">
-            1. Position:<br>
-            Organization name:<br>
-            Organizarion type:<br>
-            Total experience:<br>
-            Department:<br>
-            Type of Employment:<br>
-            Served From /To:<br>
-            Job location/Address:<br>
-            Name of Supervisor<br>:
-            Present Salary:<br>
-            Expected Salary:<br>
-            Ready to join after(Days):<br>
+            <?php $temp=0 ?>
+            @foreach($jobExperience as $job)
+            {{++$temp}}. Position: {{$job->degisnation}}<br>
+            Organization name: {{$job->organization}}<br>
+            Organizarion type: {{$job->organizationTypeName}}<br>
+            {{--Total experience: {{$job->organization}}<br>--}}
+            {{--Department: {{$job->organization}}<br>--}}
+            Type of Employment: {{$job->employmentType}}<br>
+            Served From /To: {{$job->startDate}} - {{$job->endDate}}<br>
+            Job location/Address: {{$job->address}}<br>
+            Name of Supervisor: {{$job->supervisorName}}<br>
+            {{--Present Salary: {{$job->organization}}<br>--}}
+            {{--Ready to join after(Days):--}}
+                <br><br>
+            @endforeach
         </td>
         <td colspan="4" height="250" style="text-align: center;vertical-align: middle;">
             Extracurricular activities<br>
@@ -85,17 +103,40 @@
 
 
             Other skills:<br>
-            Computer skill<br>
+            @foreach($extraCurriculumn as $c)
+                Name: {{$c->skillName}} -{{$c->ratiing}}%<br><br>
+            @endforeach
+
+            Computer skill:<br>
+            @foreach($computerSkill as $skill)
+                Name: {{$skill->computerSkillName}}  -@if($skill->SkillAchievement==1) General @else Advanced @endif <br><br>
+
+            @endforeach
             Language Proficiency<br>
+            @foreach($languageHead as $lh)
+
+                Name: {{$lh->languagename}} <br>
+                @foreach($language as $l)
+                    @if($lh->fklanguageHead == $l->fklanguageHead)
+                        Skill: {{$l->languageSkillName}}  -Rate: {{$l->rate}}<br>
+
+
+                    @endif
+               @endforeach
+
+                <br>
+            @endforeach
 
         </td>
         <td colspan="3" height="250" style="text-align: center;vertical-align: middle;">
-            1. David Benjamin Singha <br>
-            Administrative Officer<br>
-            Christian Missionary Hospital<br>
-            Brahmanbaria, Bangladesh<br>
-            Cell Phone: 01703-095846               E-mail:davidbenjaminsingha@gmail.com<br>
-
+            <?php $temp=0;  ?>
+            @foreach($reference as $ref)
+            {{++$temp}}. {{$ref->firstName}} {{$ref->lastName}}<br>
+            {{$ref->presentposition}}<br>
+            {{$ref->organization}}<br>
+            Relation: {{$ref->relation}} <br>
+            Cell Phone: {{$ref->phone}}              E-mail:{{$ref->email}}<br><br>
+            @endforeach
         </td>
         <td colspan="1" height="250" style="text-align: center;vertical-align: middle;"></td>
 
@@ -103,34 +144,41 @@
     <tr>
         <td colspan="1" height="250" style="text-align: center;vertical-align: middle;">2</td>
         <td colspan="4" height="250" style="text-align: center;vertical-align: middle;"><span style="text-align: center">
-                Telephone: 02146596461<br>
-                Personal Phone no.0215462162<br>
-                Alternative phone no 6645+9+9856+4<br>
-                Home Phone :0.2563<br>
-                Office Phone: 20256232<br>
-                Email: gfdydehy@gmail.com<br>
-                Alternative Email:-sdhiofhyo@yahoo.com<br>
-                Skype :zaman.1<br>
-                Date Of Birth: 7/12/1989<br>
-                National ID Card No-235856322020.<br>
-                Passport No. (If any)<br>
-                Parmanent Adress: Eden Garden(3rd floor)<br>
-                Main Road, Coxsbazar Sadar,<br>
-                Coxsbazar, Bangladesh.   <br>
-                Present Adress: Eden Garden(3rd floor)<br>
-                Main Road, Coxsbazar Sadar,<br>
-                Coxsbazar, Bangladesh.  <br>
+                Telephone: {{$employee->telephone}}<br>
+                Personal Phone no:  {{$employee->personalMobile}}<br>
+                Alternative phone no: {{$employee->alternativePhoneNo}}<br>
+                Home Phone: {{$employee->homeNumber}}<br>
+                Office Phone: {{$employee->officeNumber}}<br>
+                Email: {{$employee->email}}<br>
+                Alternative Email: {{$employee->alternativeEmail}}<br>
+                Skype :  {{$employee->skype}}<br>
+                Date Of Birth: {{$employee->dateOfBirth}}<br>
+                National ID Card No: {{$employee->nationalId}}.<br>
+                Passport No:  {{$employee->passport}}<br>
+
+                Parmanent Adress: {{$employee->parmanentAddress}}<br>
+
+
+                Present Adress: {{$employee->presentAddress}}<br>
+
             </span></td>
         <td colspan="3" height="250" style="text-align: center;vertical-align: middle;">
-            Why you are intersted for the position applied for?
+            Why you are intersted for the position applied for?<br>
+            @if($empQuestion)
+                {{$empQuestion->ques_2}}
+            @endif
         </td>
         <td colspan="4" height="250" style="text-align: center;vertical-align: middle;">
             Professional Qualification:<br>
-            1. Exam/Degree Title<br>
-            Subject/Concentration/Major<br>
-            Passing Year<br>
-            Name of Institution/school/college/versity<br>
-            Result<br>
+            <?php  $temp=0; ?>
+            @foreach($pQualification as $qualification)
+
+            1. Certificate Name: {{$qualification->certificateName}}<br>
+            Institution: {{$qualification->institutionName}}<br>
+            Duration: {{$qualification->startDate}} - {{$qualification->endDate}}<br>
+
+            Result: {{$qualification->result}}<br>
+            @endforeach
         </td>
         <td colspan="4" height="250"   style="text-align: center;vertical-align: middle;">
             Major Job responsibility:<br>
@@ -145,8 +193,12 @@
 
         </td>
         <td colspan="3" height="250" style="text-align: center;vertical-align: middle;">
+
             1. Name of Referees, Designation, Organization, adress, mobile number and email number, Relation<br>
             2. Name of Referees, Designation, Organization, adress, mobile number and email number, Relation
+
+
+
         </td>
         <td colspan="1" height="250" style="text-align: center;vertical-align: middle;"></td>
 
@@ -155,15 +207,15 @@
     <tr>
         <td colspan="1" height="250" style="text-align: center;vertical-align: middle;">3</td>
         <td colspan="4" height="250" style="text-align: center;vertical-align: middle;"><span style="text-align: center">
-                Fathers Name<br>
-                Mothers Name<br>
-                Spouse Name: <br>
-                Blood Group<br>
-                Gender<br>
-                Nationality<br>
-                Ethnicity<br>
-                Disability(Yes/No)<br>
-                Religion<br>
+                Fathers Name: {{$employee->fathersName}}<br>
+                Mothers Name: {{$employee->mothersName}}<br>
+                Spouse Name: {{$employee->spouse}}<br>
+                Blood Group: {{$employee->bloodGroup}}<br>
+                Gender: {{$employee->gender}}<br>
+                Nationality: {{$employee->nationalityName}}<br>
+                Ethnicity: {{$employee->ethnicityName}}<br>
+                Disability: {{$employee->disability}}<br>
+                Religion: {{$employee->religionName}}<br>
 
             </span></td>
         <td colspan="3" height="250" style="text-align: center;vertical-align: middle;">
@@ -174,13 +226,12 @@
         </td>
         <td colspan="4" height="250" style="text-align: center;vertical-align: middle;">
             Training information:<br>
-            1. Training/Workshop/Course title<br>
-            Institute<br>
-            Location of training/workshop<br>
-            Duration<br>
-            year<br>
-            Result (if any)<br>
-            Country<br>
+            @foreach($training as $t)
+            1. Training title: {{$t->trainingName}}<br>
+            Institute: {{$t->vanue}}<br>
+            Duration: {{$t->startDate}} - {{$t->endDate}}<br>
+            Country: {{$t->countryName}}<br>
+            @endforeach
         </td>
         <td colspan="4" height="250"   style="text-align: center;vertical-align: middle;">
             Do you have any reservation contacting your employer?
@@ -201,11 +252,16 @@
         <td colspan="1" height="250" style="text-align: center;vertical-align: middle;">4</td>
         <td colspan="4" height="250" style="text-align: center;vertical-align: middle;"><span style="text-align: center">
                 Membership in Social Network :<br>
-                Name of Network<br>
-                Type of Membership<br>
-                Duration<br>
+                @foreach($social as $s)
 
-            </span></td>
+                Name of Network: {{$s->networkName}}<br>
+                Type of Membership: {{$s->membershipType}}<br>
+                Duration: {{$s->duration}}<br>
+                @endforeach
+
+            </span>
+
+        </td>
         <td colspan="3" height="250" style="text-align: center;vertical-align: middle;">
             Answers of declaration form:
         </td>
