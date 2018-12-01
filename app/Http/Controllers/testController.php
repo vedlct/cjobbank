@@ -43,60 +43,68 @@ class testController extends Controller
 
     public function testExcel(){
 
+
         $empId=7;
+        $employees=[5,7];
+
+
+
         $employee=Employee::select('employee.*','nationality.nationalityName','ethnicity.ethnicityName','religion.religionName')
             ->leftJoin('nationality','nationality.nationalityId','employee.fknationalityId')
             ->leftJoin('ethnicity','ethnicity.ethnicityId','employee.ethnicityId')
             ->leftJoin('religion','religion.religionId','employee.fkreligionId')
-//            ->leftJoin('membership_social_network','membership_social_network.fkemployeeId','employee.employeeId')
-            ->findOrFail($empId);
+            ->whereIn('employeeId',$employees)
+            ->get();
 
 //        return $employee;
-        $social=MembershipInSocialNetwork::where('fkemployeeId',$empId)->get();
+        $social=MembershipInSocialNetwork::whereIn('fkemployeeId',$employees)->get();
 
         $education=Education::select('education.*','degree.degreeName','board.boardName','educationmajor.educationMajorName')
-            ->where('fkemployeeId',$empId)
+            ->whereIn('fkemployeeId',$employees)
             ->leftJoin('degree','degree.degreeId','education.fkdegreeId')
             ->leftJoin('board','board.boardId','education.fkboardId')
             ->leftJoin('educationmajor','educationmajor.educationMajorId','education.fkMajorId')
             ->get();
 
-        $pQualification=ProfessionalQualification::where('fkemployeeId',$empId)->get();
+//        return $education;
 
-        $training=Traning::where('fkemployeeId',$empId)
+        $pQualification=ProfessionalQualification::whereIn('fkemployeeId',$employees)->get();
+
+        $training=Traning::whereIn('fkemployeeId',$employees)
             ->leftJoin('country','country.countryId','traning.countryId')
             ->get();
 
-        $jobExperience=JobExperience::where('fkemployeeId',$empId)
+        $jobExperience=JobExperience::whereIn('fkemployeeId',$employees)
             ->leftJoin('organizationtype','organizationtype.organizationTypeId','jobexperience.fkOrganizationType')
             ->get();
 
-        $reference=Refree::where('fkemployeeId',$empId)->get();
+//        return $jobExperience;
 
-        $empQuestion=QuestionObjective::where('empId',$empId)->first();
+        $reference=Refree::whereIn('fkemployeeId',$employees)->get();
 
-        $extraCurriculumn=EmpOtherSkill::where('fkemployeeId',$empId)
+        $empQuestion=QuestionObjective::whereIn('empId',$employees)->get();
+
+
+        $extraCurriculumn=EmpOtherSkill::whereIn('fkemployeeId',$employees)
             ->leftJoin('otherskillsinformation','otherskillsinformation.id','emp_otherskill_achievement.otherSkillId')
             ->get();
 
-        $computerSkill=EmployeeComputerSkill::where('fk_empId',$empId)
+        $computerSkill=EmployeeComputerSkill::whereIn('fk_empId',$employees)
             ->leftJoin('computerskill','computerskill.id','empcomputerskill.computerSkillId')
             ->get();
 
         $languageHead=EmployeeLanguage::select('fklanguageHead','fkemployeeId','languagename')
-            ->where('fkemployeeId',$empId)
+            ->whereIn('fkemployeeId',$employees)
             ->leftJoin('languagehead','languagehead.id','emp_language.fklanguageHead')
             ->groupBy('fklanguageHead')
             ->get();
 
-        $language=EmployeeLanguage::where('fkemployeeId',$empId)
+        $language=EmployeeLanguage::whereIn('fkemployeeId',$employees)
             ->leftJoin('languagehead','languagehead.id','emp_language.fklanguageHead')
             ->leftJoin('languageskill','languageskill.id','emp_language.fklanguageSkill')
             ->get();
 
-//        return $language;
 
-//       return $reference;
 
         $fileName="Full Info";
 
