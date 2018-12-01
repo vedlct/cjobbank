@@ -188,6 +188,8 @@ return [
         //DomPdf
         Barryvdh\DomPDF\ServiceProvider::class,
 
+
+
     ],
 
     /*
@@ -246,6 +248,9 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         //DomPdf
         'PDF' => Barryvdh\DomPDF\Facade::class,
+
+
+
 
     ],
 

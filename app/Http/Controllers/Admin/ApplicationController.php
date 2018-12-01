@@ -29,6 +29,7 @@ use Yajra\DataTables\DataTables;
 
 use Excel;
 use PDF;
+use MPDF;
 use Mail;
 
 
@@ -432,39 +433,95 @@ class ApplicationController extends Controller
 
             if ($template=='1'){
 
-                $pdf = PDF::loadView('mail.interviewCard',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
+                $pdf = MPDF::loadView('mail.interviewCard',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
                     'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'jobInfo'=>$jobInfo]);
+
+
+                try{
+
+                    Mail::send('mail.MailBody',[], function($message) use ($pdf,$employeeInfo)
+                    {
+
+                        $message->from('support@caritasbd.com', 'CARITAS BD');
+
+                        $message->to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)->subject('INTERVIEW CARD From CARITAS BD');
+
+                        $message->attachData($pdf->output(),'INTERVIEW-CARD.pdf',['mime' => 'application/pdf']);
+
+
+
+                    });
+                    return 1;
+                }
+                catch (\Exception $ex) {
+
+                    return 0;
+                }
+
+            }
+            if ($template=='2'){
+
+                $pdf = MPDF::loadView('mail.notSelected',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
+                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'jobInfo'=>$jobInfo]);
+
+
+                try{
+
+                    Mail::send('mail.MailBody',[], function($message) use ($pdf,$employeeInfo)
+                    {
+
+                        $message->from('support@caritasbd.com', 'CARITAS BD');
+
+                        $message->to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)->subject('APOLOGY LETTER From CARITAS BD');
+
+                        $message->attachData($pdf->output(),'NOTSELECTED-CARD.pdf',['mime' => 'application/pdf']);
+
+
+
+                    });
+                    return 1;
+                }
+                catch (\Exception $ex) {
+
+                    return 0;
+                }
+
+            }
+            if ($template=='3'){
+
+                $pdf = MPDF::loadView('mail.panelListed',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
+                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'jobInfo'=>$jobInfo]);
+
+
+                try{
+
+                    Mail::send('mail.MailBody',[], function($message) use ($pdf,$employeeInfo)
+                    {
+
+                        $message->from('support@caritasbd.com', 'CARITAS BD');
+
+                        $message->to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)->subject('PANEL-LIST LETTER From CARITAS BD');
+
+                        $message->attachData($pdf->output(),'PANEL-LIST.pdf',['mime' => 'application/pdf']);
+
+
+
+                    });
+                    return 1;
+                }
+                catch (\Exception $ex) {
+
+                    return 0;
+                }
+
             }
 
-            try{
 
-                Mail::send('mail.MailBody',[], function($message) use ($pdf,$employeeInfo)
-                {
-
-                    $message->from('support@caritasbd.com', 'CARITAS BD');
-
-                    $message->to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)->subject('INTERVIEW CARD From CARITAS BD');
-
-                    $message->attachData($pdf->output(),'INTERVIEW-CARD.pdf',['mime' => 'application/pdf']);
-
-
-
-                });
-                return 1;
-            }
-            catch (\Exception $ex) {
-
-                return 0;
-        }
 
 
 
 
         }
-
-
-
-
 
 
     }

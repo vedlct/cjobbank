@@ -47,7 +47,7 @@
 
                                     </div>
 
-                                <div class="form-group">
+                                <div id="subjectLineDiv" class="form-group">
                                     <label for="">Subject line</label>
                                     <input type="text" class="form-control" id="subjectLine" placeholder="subject line" value="" name="subjectLine">
                                 </div>
@@ -63,7 +63,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="">Mail Footer</label>
-                                        <textarea class="form-control ckeditor" id="ckBox" name="tamplateFooterAndSign" rows="6" ></textarea>
+                                        <textarea class="form-control ckeditor" id="ckBox" value="" name="tamplateFooterAndSign" rows="6" ></textarea>
                                     </div>
 
                                     <div class="form-group">
@@ -341,7 +341,7 @@
     <script type="text/javascript" src="{{url('public/assets/ckeditor/ckeditor.js')}}"></script>
 
     <script>
-//        CKEDITOR.replace( 'tamplateBody' );
+        CKEDITOR.replace( 'tamplateBody' );
 //        CKEDITOR.replace( 'ckBox' );
         // $('tamplateBody').CKEDITOR(); // ADD THIS
     </script>
@@ -1038,16 +1038,21 @@
 
             if ($('#mailTamplate').val() !=""){
 
+                $("#wait").css("display", "block");
+
                 var products=selecteds;
+
 
                     $.ajax({
                         type: 'POST',
                         url: "{!! route('jobAppliedCadidate.admin.sendMail') !!}",
                         cache: false,
                         data: {'jobApply': products,_token:"{{csrf_token()}}",'tamplateId':$('#mailTamplate').val(),'testDate':$('#testDate').val(),
-                            'testAddress':$('#testAddress').val(),'testDetails':$('#tamplateBody').val(),'footerAndSign':$('#ckBox').val(),
+                            'testAddress':$('#testAddress').val(),'testDetails':CKEDITOR.instances['tamplateBody'].getData(),'footerAndSign':CKEDITOR.instances['ckBox'].getData(),
                             'subjectLine':$('#subjectLine').val()},
                         success: function (data) {
+
+                            $("#wait").css("display", "none");
 //
                             $('#SessionMessage').load(document.URL +  ' #SessionMessage');
                             table.ajax.reload();  //just reload table
@@ -1056,9 +1061,7 @@
 
                             $(':checkbox:checked').prop('checked',false);
 
-                            //alert(data);
 
-//                            location.reload();
 
                             if (data =='1'){
 
@@ -1071,8 +1074,7 @@
                                             text: 'Ok',
                                             btnClass: 'btn-blue',
                                             action: function(){
-                                                {{--window.location.href = "{{route('home')}}";--}}
-                                                // console.log(data);
+
                                                 location.reload();
                                             }
                                         }
@@ -1226,8 +1228,6 @@
 
                 }
 
-
-
             });
         $("#mailTamplate").on('change', function (){
 
@@ -1246,12 +1246,20 @@
                         data: {_token: "{{csrf_token()}}",'id': $('#mailTamplate').val()},
                         success: function (data) {
 
+                            if ($('#mailTamplate').val()==1){
+                                $('#subjectLineDiv').show();
+                            }if ($('#mailTamplate').val()==2){
+                                $('#subjectLineDiv').hide();
+                            }
+
+
                             $('#testDate').val(data['testDate']);
                             $('#subjectLine').val(data['subject']);
-                            $('#tamplateBody').val(data['testDetails']);
+//                            $('#tamplateBody').val(data['testDetails']);
                             $('#testAddress').val(data['testAddress']);
 
                             CKEDITOR.instances['ckBox'].setData(data['tamplateFooterAndSign']); // where editor1 is id
+                            CKEDITOR.instances['tamplateBody'].setData(data['testDetails']); // where editor1 is id
 
 
 

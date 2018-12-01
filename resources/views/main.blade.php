@@ -193,6 +193,10 @@
 
 <div class="wrapper">
 
+    <div id="wait" style="display:none;position:absolute;top:20%;left:50%;padding:2px;z-index: 9999">
+        <img src='{{url('public/images/pleaseWait-1.gif')}}' />
+    </div>
+
     <div class="container-fluid">
         @if(Session::has('message'))
             <p class="alert alert-info">{{ Session::get('message') }}</p>
