@@ -45,7 +45,7 @@
             <td  width="35%">
                 <table align="left" >
                     <tr  >
-                        <td style="font-size: 20px;"> <b>কারিতাস বাংলাদেশ</b><br>
+                        <td style="font-size: 20px;"> <b>কারিতাস বাংলাদেশ </b><br>
                             <span style="font-size: 12px;">সমাজ কল্যাণ ও মানব উন্নয়নের জন্য বাংলাদেশের কাথলিক বিশপ সম্মেলনীর একটি জাতীয় প্রতিষ্ঠান</span>
                         </td>
                     </tr>
