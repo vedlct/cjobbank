@@ -45,9 +45,11 @@
         <td colspan="3" style="text-align: center">References</td>
         <td colspan="1" style="text-align: center">Remarks</td>
     </tr>
+    <?php $sl=0; ?>
+    @foreach($employee as $emp)
     <tr>
-        <td colspan="1" height="250" style="text-align: center;vertical-align: middle;">1</td>
-        <td colspan="4" height="250" style="text-align: center;vertical-align: middle;"><span style="text-align: center">{{$employee->firstName}} {{$employee->lastName}}</span></td>
+        <td colspan="1" height="250" style="text-align: center;vertical-align: middle;">{{++$sl}}</td>
+        <td colspan="4" height="250" style="text-align: center;vertical-align: middle;"><span style="text-align: center">{{$emp->firstName}} {{$emp->lastName}}</span></td>
 
 
 
@@ -55,8 +57,8 @@
         <td colspan="3" height="250" style="text-align: center;vertical-align: middle;">
 
             Why Do You Want to Leave Your Current Job?<br>
-            @if($empQuestion)
-            {{$empQuestion->ques_1}}
+            @if($empQuestion->where('empId',$emp->employeeId)->first())
+            {{$empQuestion->where('empId',$emp->employeeId)->first()->ques_1}}
             @endif
 
 
@@ -66,7 +68,7 @@
 
         <td colspan="4" height="250" style="text-align: center;vertical-align: middle;">
             <?php  $temp=0; ?>
-            @foreach($education as $edu)
+            @foreach($education->where('fkemployeeId',$emp->employeeId) as $edu)
                 {{++$temp}}. Degree title : {{$edu->degreeName}}<br>
                 Major Subject: {{$edu->educationMajorName}}<br>
                 Passing Year: {{$edu->passingYear}}<br>
@@ -80,7 +82,7 @@
         </td>
         <td colspan="4" height="250"   style="text-align: center;vertical-align: middle;">
             <?php $temp=0 ?>
-            @foreach($jobExperience as $job)
+            @foreach($jobExperience->where('fkemployeeId',$emp->employeeId) as $job)
             {{++$temp}}. Position: {{$job->degisnation}}<br>
             Organization name: {{$job->organization}}<br>
             Organizarion type: {{$job->organizationTypeName}}<br>
@@ -103,20 +105,20 @@
 
 
             Other skills:<br>
-            @foreach($extraCurriculumn as $c)
+            @foreach($extraCurriculumn->where('fkemployeeId',$emp->employeeId) as $c)
                 Name: {{$c->skillName}} -{{$c->ratiing}}%<br><br>
             @endforeach
 
             Computer skill:<br>
-            @foreach($computerSkill as $skill)
+            @foreach($computerSkill->where('fk_empId',$emp->employeeId) as $skill)
                 Name: {{$skill->computerSkillName}}  -@if($skill->SkillAchievement==1) General @else Advanced @endif <br><br>
 
             @endforeach
             Language Proficiency<br>
-            @foreach($languageHead as $lh)
+            @foreach($languageHead->where('fkemployeeId',$emp->employeeId) as $lh)
 
                 Name: {{$lh->languagename}} <br>
-                @foreach($language as $l)
+                @foreach($language->where('fkemployeeId',$emp->employeeId) as $l)
                     @if($lh->fklanguageHead == $l->fklanguageHead)
                         Skill: {{$l->languageSkillName}}  -Rate: {{$l->rate}}<br>
 
@@ -130,7 +132,7 @@
         </td>
         <td colspan="3" height="250" style="text-align: center;vertical-align: middle;">
             <?php $temp=0;  ?>
-            @foreach($reference as $ref)
+            @foreach($reference->where('fkemployeeId',$emp->employeeId) as $ref)
             {{++$temp}}. {{$ref->firstName}} {{$ref->lastName}}<br>
             {{$ref->presentposition}}<br>
             {{$ref->organization}}<br>
@@ -142,36 +144,36 @@
 
     </tr>
     <tr>
-        <td colspan="1" height="250" style="text-align: center;vertical-align: middle;">2</td>
+        <td colspan="1" height="250" style="text-align: center;vertical-align: middle;"></td>
         <td colspan="4" height="250" style="text-align: center;vertical-align: middle;"><span style="text-align: center">
-                Telephone: {{$employee->telephone}}<br>
-                Personal Phone no:  {{$employee->personalMobile}}<br>
-                Alternative phone no: {{$employee->alternativePhoneNo}}<br>
-                Home Phone: {{$employee->homeNumber}}<br>
-                Office Phone: {{$employee->officeNumber}}<br>
-                Email: {{$employee->email}}<br>
-                Alternative Email: {{$employee->alternativeEmail}}<br>
-                Skype :  {{$employee->skype}}<br>
-                Date Of Birth: {{$employee->dateOfBirth}}<br>
-                National ID Card No: {{$employee->nationalId}}.<br>
-                Passport No:  {{$employee->passport}}<br>
+                Telephone: {{$emp->telephone}}<br>
+                Personal Phone no:  {{$emp->personalMobile}}<br>
+                Alternative phone no: {{$emp->alternativePhoneNo}}<br>
+                Home Phone: {{$emp->homeNumber}}<br>
+                Office Phone: {{$emp->officeNumber}}<br>
+                Email: {{$emp->email}}<br>
+                Alternative Email: {{$emp->alternativeEmail}}<br>
+                Skype :  {{$emp->skype}}<br>
+                Date Of Birth: {{$emp->dateOfBirth}}<br>
+                National ID Card No: {{$emp->nationalId}}.<br>
+                Passport No:  {{$emp->passport}}<br>
 
-                Parmanent Adress: {{$employee->parmanentAddress}}<br>
+                Parmanent Adress: {{$emp->parmanentAddress}}<br>
 
 
-                Present Adress: {{$employee->presentAddress}}<br>
+                Present Adress: {{$emp->presentAddress}}<br>
 
             </span></td>
         <td colspan="3" height="250" style="text-align: center;vertical-align: middle;">
             Why you are intersted for the position applied for?<br>
-            @if($empQuestion)
-                {{$empQuestion->ques_2}}
+            @if($empQuestion->where('empId',$emp->employeeId)->first())
+                {{$empQuestion->where('empId',$emp->employeeId)->first()->ques_2}}
             @endif
         </td>
         <td colspan="4" height="250" style="text-align: center;vertical-align: middle;">
             Professional Qualification:<br>
             <?php  $temp=0; ?>
-            @foreach($pQualification as $qualification)
+            @foreach($pQualification->where('fkemployeeId',$emp->employeeId) as $qualification)
 
             1. Certificate Name: {{$qualification->certificateName}}<br>
             Institution: {{$qualification->institutionName}}<br>
@@ -205,17 +207,17 @@
     </tr>
 
     <tr>
-        <td colspan="1" height="250" style="text-align: center;vertical-align: middle;">3</td>
+        <td colspan="1" height="250" style="text-align: center;vertical-align: middle;"></td>
         <td colspan="4" height="250" style="text-align: center;vertical-align: middle;"><span style="text-align: center">
-                Fathers Name: {{$employee->fathersName}}<br>
-                Mothers Name: {{$employee->mothersName}}<br>
-                Spouse Name: {{$employee->spouse}}<br>
-                Blood Group: {{$employee->bloodGroup}}<br>
-                Gender: {{$employee->gender}}<br>
-                Nationality: {{$employee->nationalityName}}<br>
-                Ethnicity: {{$employee->ethnicityName}}<br>
-                Disability: {{$employee->disability}}<br>
-                Religion: {{$employee->religionName}}<br>
+                Fathers Name: {{$emp->fathersName}}<br>
+                Mothers Name: {{$emp->mothersName}}<br>
+                Spouse Name: {{$emp->spouse}}<br>
+                Blood Group: {{$emp->bloodGroup}}<br>
+                Gender: {{$emp->gender}}<br>
+                Nationality: {{$emp->nationalityName}}<br>
+                Ethnicity: {{$emp->ethnicityName}}<br>
+                Disability: {{$emp->disability}}<br>
+                Religion: {{$emp->religionName}}<br>
 
             </span></td>
         <td colspan="3" height="250" style="text-align: center;vertical-align: middle;">
@@ -226,7 +228,7 @@
         </td>
         <td colspan="4" height="250" style="text-align: center;vertical-align: middle;">
             Training information:<br>
-            @foreach($training as $t)
+            @foreach($training->where('fkemployeeId',$emp->employeeId) as $t)
             1. Training title: {{$t->trainingName}}<br>
             Institute: {{$t->vanue}}<br>
             Duration: {{$t->startDate}} - {{$t->endDate}}<br>
@@ -249,10 +251,10 @@
 
 
     <tr>
-        <td colspan="1" height="250" style="text-align: center;vertical-align: middle;">4</td>
+        <td colspan="1" height="250" style="text-align: center;vertical-align: middle;"></td>
         <td colspan="4" height="250" style="text-align: center;vertical-align: middle;"><span style="text-align: center">
                 Membership in Social Network :<br>
-                @foreach($social as $s)
+                @foreach($social->where('fkemployeeId',$emp->employeeId) as $s)
 
                 Name of Network: {{$s->networkName}}<br>
                 Type of Membership: {{$s->membershipType}}<br>
@@ -281,7 +283,7 @@
 
     </tr>
 
-
+@endforeach
 
 </table>
 </body>
