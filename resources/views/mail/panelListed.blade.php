@@ -40,9 +40,9 @@
 <body style="margin: 0 auto">
 <div id="header" style="margin: 0px 0px 5px 0px;">
 
-    <table width="100%">
+    <table >
         <tr>
-            <td  width="35%">
+            <td  >
                 <table align="left" >
                     <tr  >
                         <td style="font-size: 20px;"> <b>কারিতাস বাংলাদেশ </b><br>
@@ -51,11 +51,11 @@
                     </tr>
                 </table>
             </td>
-            <td align="center" width="30%">
+            <td align="center" >
                 <img  src="{{url('public/logo/TCL_logo.png')}}" alt="logo">
             </td>
 
-            <td align="right"width="35%">
+            <td align="right" width="35%">
                 <table >
                     <tr>
                         <td style="font-size: 20px;"> <b>Caritas Bangladesh</b><br>
@@ -70,7 +70,7 @@
 </div>
 <div style="margin: 0px 0px 5px 0px;">
 
-    <table width="100%">
+    <table >
         <tr>
             <td width="100%" >
 
@@ -84,7 +84,7 @@
 <hr>
 <div style="margin: 0px 0px 5px 0px;">
 
-    <table width="100%">
+    <table >
         <td align="left" width="35%">
             <table >
                 <tr  >
@@ -111,7 +111,7 @@
 
 <div style="margin: 0px 30px 10px 30px;">
 
-    <table width="100%">
+    <table >
         <td align="left">
             <table width="50%" >
                 <tr >
@@ -131,7 +131,7 @@
 
 <div style="margin: 0px 30px 0px 30px;">
 
-    <table width="100%">
+    <table >
         <tr>
             <td width="100%" align="left">
                 <b>Dear</b>{{$empInfo->firstName.' '.$empInfo->lastName}},
@@ -143,7 +143,7 @@
 </div>
 <div style="margin: 20px 30px 20px 30px;">
 
-    <table width="100%">
+    <table >
         <tr>
             <td width="100%" align="left">
                 Cordial Greetings from Caritas Bangladesh!
@@ -156,7 +156,7 @@
 
 <div style="margin: 0px 30px 0px 30px;">
 
-    <table width="100%">
+    <table >
 
         <tr>
 
@@ -182,7 +182,7 @@ Thank you very much for your interest in working with Caritas Bangladesh.
 </div>
 <div style="margin: 30px 30px 0px 30px;">
 
-    <table width="100%">
+    <table >
         <tr>
             <td>
                 With best regards,
@@ -201,7 +201,7 @@ Thank you very much for your interest in working with Caritas Bangladesh.
 
 <div id="footer">
     <hr>
-    <table width="100%">
+    <table >
         <tr>
             <td align="left" width="60%">
                 <table>
@@ -220,7 +220,7 @@ Thank you very much for your interest in working with Caritas Bangladesh.
             <td width="5%"></td>
 
 
-            <td align="right"width="35%">
+            <td align="right" width="35%">
                 <table >
                     <tr>
                         <td> Fax <br>
