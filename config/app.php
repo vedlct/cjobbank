@@ -186,7 +186,8 @@ return [
         //excel
         Maatwebsite\Excel\ExcelServiceProvider::class,
         //DomPdf
-        Barryvdh\DomPDF\ServiceProvider::class,
+//        Barryvdh\DomPDF\ServiceProvider::class,
+        niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
 
 
 
@@ -247,8 +248,9 @@ return [
         //excel
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         //DomPdf
-        'PDF' => Barryvdh\DomPDF\Facade::class,
+//        'PDF' => Barryvdh\DomPDF\Facade::class,
 
+        'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class,
 
 
 

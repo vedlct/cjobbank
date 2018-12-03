@@ -184,7 +184,7 @@
 
         </table>
 
-        {{--<p style="page-break-after: always"></p>--}}
+        <p style="page-break-after: always"></p>
 
         <table border="0" style="width:100%;border: none;">
             <tr>
@@ -249,7 +249,8 @@
         </table>
         <table border="0" style="width:100%; margin-top: 10px; border: none;">
         </table>
-        <table border="0" style="width:100%; margin-top: 10px; border: none;">
+
+        <table border="0" style=" margin-top: 10px; border: none;">
             @if($empOtherSkillls->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @else
             <tr>
             <th style="width: 70%;text-align: center" >Skill</th>
@@ -264,37 +265,37 @@
 
                 </tr>
             @endforeach
-                @endif
+            @endif
         </table>
 
 
 
-        <table border="0" style="width:100%; margin-top: 25px; border: none;">
-            <tr>
-                <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Computer Skill</b> </td>
-            </tr>
-        </table>
-        <table border="0" style="width:100%; margin-top: 10px; border: none;">
-        </table>
-        <table border="0" style="width:100%; margin-top: 10px; border: none;">
-            <thead>
-            <tr>
-                <th style="width: 70%;text-align: center" >Skill</th>
-                <th style="width: 30%;text-align: center">Level</th>
+        {{--<table border="0" style="width:100%; margin-top: 25px; border: none;">--}}
+            {{--<tr>--}}
+                {{--<td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Computer Skill</b> </td>--}}
+            {{--</tr>--}}
+        {{--</table>--}}
+        {{--<table border="0" style="width:100%; margin-top: 10px; border: none;">--}}
+        {{--</table>--}}
+        {{--<table border="0" style="width:100%; margin-top: 10px; border: none;">--}}
+            {{--<thead>--}}
+            {{--<tr>--}}
+                {{--<th style="width: 70%;text-align: center" >Skill</th>--}}
+                {{--<th style="width: 30%;text-align: center">Level</th>--}}
 
-            </tr>
+            {{--</tr>--}}
 
-            </thead>
-            @foreach($empComputerSkill as $skills)
-                <tr>
+            {{--</thead>--}}
+            {{--@foreach($empComputerSkill as $skills)--}}
+                {{--<tr>--}}
 
-                    <td style="text-align: center">{{$skills->computerSkillName}}</td>
+                    {{--<td style="text-align: center">{{$skills->computerSkillName}}</td>--}}
 
-                    <td style="text-align: center">{{$skills->SkillAchievement}}</td>
+                    {{--<td style="text-align: center">{{$skills->SkillAchievement}}</td>--}}
 
-                </tr>
-            @endforeach
-        </table>
+                {{--</tr>--}}
+            {{--@endforeach--}}
+        {{--</table>--}}
 
 
 
@@ -302,150 +303,150 @@
 
 
         {{--<p style="page-break-after: always"></p>--}}
-        <table border="0" style="width:100%; margin-top: 25px; border: none;">
-            <tr>
-                <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Personal Info</b> </td>
-            </tr>
-        </table>
-        <table border="0" style="width:100%; margin-top: 10px; border: none;">
+        {{--<table border="0" style="width:100%; margin-top: 25px; border: none;">--}}
+            {{--<tr>--}}
+                {{--<td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Personal Info</b> </td>--}}
+            {{--</tr>--}}
+        {{--</table>--}}
+        {{--<table border="0" style="width:100%; margin-top: 10px; border: none;">--}}
 
-            <tr>
-                <td  style="border: none;">
-                    <label>Father Name : </label>{{$personalInfo->fathersName}}
-                </td>
-
-
-                <td style="border: none;">
-                    <label> Mother Name :</label> {{$personalInfo->mothersName}}
-                </td>
-            </tr>
-            <tr>
-                <td  style="border: none;">
-                    <label>Gender :</label>
-                    @if($personalInfo->gender == "M")
-                        {{"Male"}}
-                    @else
-                        {{"Female"}}
-                    @endif
-                </td>
+            {{--<tr>--}}
+                {{--<td  style="border: none;">--}}
+                    {{--<label>Father Name : </label>{{$personalInfo->fathersName}}--}}
+                {{--</td>--}}
 
 
-
-                <td style="border: none;">
-                    <label>Date Of Birth :</label> {{$personalInfo->dateOfBirth}}
-                </td>
-            </tr>
-            <tr>
-                <td  style="border: none;">
-                    <label> Religion : </label>{{$personalInfo->religionName}}
-                </td>
-
-
-                <td style="border: none;">
-                    <label> Nationality :</label> {{$personalInfo->nationalityName}}
-                </td>
-            </tr>
-
-            <tr>
-                <td  style="border: none;">
-                    <label> Blood Group: </label>{{$personalInfo->bloodGroup}}
-                </td>
+                {{--<td style="border: none;">--}}
+                    {{--<label> Mother Name :</label> {{$personalInfo->mothersName}}--}}
+                {{--</td>--}}
+            {{--</tr>--}}
+            {{--<tr>--}}
+                {{--<td  style="border: none;">--}}
+                    {{--<label>Gender :</label>--}}
+                    {{--@if($personalInfo->gender == "M")--}}
+                        {{--{{"Male"}}--}}
+                    {{--@else--}}
+                        {{--{{"Female"}}--}}
+                    {{--@endif--}}
+                {{--</td>--}}
 
 
-                <td style="border: none;">
-                    @foreach(MARITAL_STATUS as $key=>$value)
-                        @if($personalInfo->maritalStatus==$value) <label>Marital Status :</label> {{$key}}@endif
-                    @endforeach
 
-                </td>
-            </tr>
-
-
-            <tr>
-                <td  style="border: none;">
-                    <label>Passport :</label> {{$personalInfo->passport}}
-                </td>
+                {{--<td style="border: none;">--}}
+                    {{--<label>Date Of Birth :</label> {{$personalInfo->dateOfBirth}}--}}
+                {{--</td>--}}
+            {{--</tr>--}}
+            {{--<tr>--}}
+                {{--<td  style="border: none;">--}}
+                    {{--<label> Religion : </label>{{$personalInfo->religionName}}--}}
+                {{--</td>--}}
 
 
-                <td style="border: none;">
-                    <label>National Id :</label> {{$personalInfo->nationalId}}
-                </td>
-            </tr>
-            <tr>
-                <td  style="border: none;">
-                    <label>Permanent Address :</label> {{$personalInfo->parmanentAddress}}
-                </td>
-            </tr>
+                {{--<td style="border: none;">--}}
+                    {{--<label> Nationality :</label> {{$personalInfo->nationalityName}}--}}
+                {{--</td>--}}
+            {{--</tr>--}}
+
+            {{--<tr>--}}
+                {{--<td  style="border: none;">--}}
+                    {{--<label> Blood Group: </label>{{$personalInfo->bloodGroup}}--}}
+                {{--</td>--}}
+
+
+                {{--<td style="border: none;">--}}
+                    {{--@foreach(MARITAL_STATUS as $key=>$value)--}}
+                        {{--@if($personalInfo->maritalStatus==$value) <label>Marital Status :</label> {{$key}}@endif--}}
+                    {{--@endforeach--}}
+
+                {{--</td>--}}
+            {{--</tr>--}}
+
+
+            {{--<tr>--}}
+                {{--<td  style="border: none;">--}}
+                    {{--<label>Passport :</label> {{$personalInfo->passport}}--}}
+                {{--</td>--}}
+
+
+                {{--<td style="border: none;">--}}
+                    {{--<label>National Id :</label> {{$personalInfo->nationalId}}--}}
+                {{--</td>--}}
+            {{--</tr>--}}
+            {{--<tr>--}}
+                {{--<td  style="border: none;">--}}
+                    {{--<label>Permanent Address :</label> {{$personalInfo->parmanentAddress}}--}}
+                {{--</td>--}}
+            {{--</tr>--}}
 
             {{--bloodGroup--}}
             {{--maritalStatus--}}
 
 
-        </table>
+        {{--</table>--}}
 
 
-        <table border="0" style="width:100%; margin-top: 5px; border: none;">
-            <tr>
-                <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Relative in Caritas</b> </td>
-            </tr>
-        </table>
-
-
-
-        <table border="0" style="width:100%; margin-top: 5px; border: none;">
-
-            <tr style=" border: none;">
-                @if($relativeCb->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @endif
-                @foreach($relativeCb as $ref)
-
-                    <td style="border: none;">
-                        <p> Name : {{$ref->firstName}} {{$ref->lastName}} <br>
-                            Position: {{$ref->degisnation}} <br>
-                        </p>
-                    </td>
-
-                @endforeach
-
-            </tr>
-
-
-        </table>
-
-        <table border="0" style="width:100%; margin-top: 15px; border: none;">
-            <tr>
-                <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Referee</b> </td>
-            </tr>
-        </table>
-
-        <table border="0" style="width:100%; margin-top: 10px; border: none;">
-
-            @php $count=1;@endphp
-
-
-            @foreach($refree as $ref)
-                <tr style="">
-
-                    <td width="2%" style="border: none; vertical-align: top">
-                        <span>{{$count++}}.</span>
-                    </td>
-
-                    <td style="border: none;">
-                        Name : {{$ref->firstName}} {{$ref->lastName}} <br>
-                        Contact: {{$ref->phone}} <br>
-                        Position: {{$ref->presentposition}} <br>
-                        email: {{$ref->email}}
-
-                    </td>
-                </tr>
-            @endforeach
+        {{--<table border="0" style="width:100%; margin-top: 5px; border: none;">--}}
+            {{--<tr>--}}
+                {{--<td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Relative in Caritas</b> </td>--}}
+            {{--</tr>--}}
+        {{--</table>--}}
 
 
 
+        {{--<table border="0" style="width:100%; margin-top: 5px; border: none;">--}}
 
-        </table>
+            {{--<tr style=" border: none;">--}}
+                {{--@if($relativeCb->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @endif--}}
+                {{--@foreach($relativeCb as $ref)--}}
+
+                    {{--<td style="border: none;">--}}
+                        {{--<p> Name : {{$ref->firstName}} {{$ref->lastName}} <br>--}}
+                            {{--Position: {{$ref->degisnation}} <br>--}}
+                        {{--</p>--}}
+                    {{--</td>--}}
+
+                {{--@endforeach--}}
+
+            {{--</tr>--}}
 
 
-    </div>
-</div>
+        {{--</table>--}}
+
+        {{--<table border="0" style="width:100%; margin-top: 15px; border: none;">--}}
+            {{--<tr>--}}
+                {{--<td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Referee</b> </td>--}}
+            {{--</tr>--}}
+        {{--</table>--}}
+
+        {{--<table border="0" style="width:100%; margin-top: 10px; border: none;">--}}
+
+            {{--@php $count=1;@endphp--}}
+
+
+            {{--@foreach($refree as $ref)--}}
+                {{--<tr style="">--}}
+
+                    {{--<td width="2%" style="border: none; vertical-align: top">--}}
+                        {{--<span>{{$count++}}.</span>--}}
+                    {{--</td>--}}
+
+                    {{--<td style="border: none;">--}}
+                        {{--Name : {{$ref->firstName}} {{$ref->lastName}} <br>--}}
+                        {{--Contact: {{$ref->phone}} <br>--}}
+                        {{--Position: {{$ref->presentposition}} <br>--}}
+                        {{--email: {{$ref->email}}--}}
+
+                    {{--</td>--}}
+                {{--</tr>--}}
+            {{--@endforeach--}}
+
+
+
+
+        {{--</table>--}}
+
+
+    {{--</div>--}}
+{{--</div>--}}
 </body>
 </html>
