@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <style>
 
@@ -18,11 +19,14 @@
 
 
         }
-        body{
-            font-size: 14px;
-            font-family: "SolaimanLipi", "DejaVu Sans", sans-serif;
-        }
 
+
+        body{
+            font-family: 'bangla', sans-serif;
+            font-size: 14px;
+            padding: 0px;
+            margin: 0px;
+        }
         @page{
 
             margin: 25px 20px;

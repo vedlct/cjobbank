@@ -16,7 +16,7 @@ use Yajra\DataTables\DataTables;
 
 use PDF;
 
-use MPDF;
+//use MPDF;
 
 use App\Employee;
 use App\Jobapply;
@@ -74,7 +74,7 @@ class MailTamplateController extends Controller
             ->where('employee.employeeId',1)
             ->first();
 
-        $pdf = MPDF::loadView('mail.panelListed',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
+        $pdf = PDF::loadView('mail.panelListed',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
             'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'jobInfo'=>$jobInfo]);
 
         return $pdf->stream('test'.'.pdf');
