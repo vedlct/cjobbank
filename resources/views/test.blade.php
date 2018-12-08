@@ -39,9 +39,9 @@
             </tr>
 
         </table>
-        <table border="0" style="width:100%; margin-top: 30px; border: none;">
+        <table border="0" style="width:100%; border: none;">
             <tr>
-                <td style="text-align: left; border: none;">
+                <td style="text-align: left; border: none;width: 85%; ">
                     <h3 style="">{{$personalInfo->firstName}} {{$personalInfo->lastName}}</h3>
                     <p style="max-width: 300px">Cell No: {{$personalInfo->personalMobile}} <br>
                         email: {{$personalInfo->email}} <br>
@@ -49,7 +49,7 @@
                     </p>
 
                 </td>
-                <td style="width: 13%; border: none; "><img height="150px" width="150px" src="{{url('public/candidateImages/thumb').'/'.$personalInfo->image}}" alt=""></td>
+                <td style="width: 15%; border: none; "><img height="150px" width="150px" src="{{url('public/candidateImages/thumb').'/'.$personalInfo->image}}" alt=""></td>
             </tr>
 
         </table>
@@ -124,7 +124,7 @@
             @foreach($jobExperience as $exp)
 
                 <tr>
-                    <td width="2%" style="border: none; vertical-align: top">
+                    <td width="5%" style="border: none; vertical-align: top">
                         <span class="bold">{{$count++}}.</span>
                     </td>
 
@@ -139,7 +139,7 @@
                         <span class="bold"> Duration:</span>&nbsp;&nbsp;&nbsp; {{$exp->startDate}} -  @if($exp->endDate) {{$exp->endDate}} @else
                             Continuing
                         @endif
-                        .
+
 
 
 
@@ -167,7 +167,7 @@
 
             @foreach($trainingCertificate as $certificate)
                 <tr>
-                    <td width="2%" style="border: none; vertical-align: top">
+                    <td width="5%" style="border: none; vertical-align: top">
                         <span>{{$count++}}.</span>
                     </td>
                     <td style="border: none;">
@@ -184,7 +184,7 @@
 
         </table>
 
-        <p style="page-break-after: always"></p>
+        {{--<p style="page-break-after: always"></p>--}}
 
         <table border="0" style="width:100%;border: none;">
             <tr>
@@ -240,7 +240,7 @@
 
         </table >
 
-        <p style="page-break-after: always"></p>
+        {{--<p style="page-break-after: always"></p>--}}
 
         <table border="0" style="width:100%; margin-top: 25px; border: none;">
             <tr>
@@ -250,8 +250,10 @@
         <table border="0" style="width:100%; margin-top: 10px; border: none;">
         </table>
 
-        <table border="0" style=" margin-top: 10px; border: none;">
-            @if($empOtherSkillls->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @else
+        <table border="0"  style="width:100%;margin-top:10px; border: none;">
+            @if($empOtherSkillls->isEmpty())
+                <tr>
+                <td style=" border: none; text-align: center"> <strong>None </strong> </td> </tr>@else
             <tr>
             <th style="width: 70%;text-align: center" >Skill</th>
             <th style="width: 30%;text-align: center">Rating</th>
