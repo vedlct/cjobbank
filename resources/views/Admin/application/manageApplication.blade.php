@@ -23,10 +23,9 @@
                                     {{--{{csrf_field()}}--}}
                                     <div class="row">
 
-                                        <div class="col-md-6">
+                                        <div  class="col-md-6">
 
-                                            <label class="control-label">Mail Tamplate</label>
-
+                                            <label for="mailTamplate" class="control-label">Mail Tamplate</label>
 
                                             <select class="form-control" id="mailTamplate">
                                                 <option selected value="">Select Tamplate</option>
@@ -38,14 +37,25 @@
 
 
                                         </div>
-                                        <div class="col-md-6">
 
-                                                <label for="">Test Date</label>
-                                                <input class="form-control date" id="testDate" name="testDate" value="">
-
-                                        </div>
 
                                     </div>
+                                <div class="row">
+
+                                    <div class="col-md-6">
+
+                                        <label for="refNo">Ref No:</label>
+                                        <input class="form-control" id="refNo" name="refNo" value="">
+
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <label for="">Test Date</label>
+                                        <input class="form-control date" id="testDate" name="testDate" value="">
+
+                                    </div>
+
+                                </div>
 
                                 <div id="subjectLineDiv" class="form-group">
                                     <label for="">Subject line</label>
@@ -1049,7 +1059,7 @@
                         cache: false,
                         data: {'jobApply': products,_token:"{{csrf_token()}}",'tamplateId':$('#mailTamplate').val(),'testDate':$('#testDate').val(),
                             'testAddress':$('#testAddress').val(),'testDetails':CKEDITOR.instances['tamplateBody'].getData(),'footerAndSign':CKEDITOR.instances['ckBox'].getData(),
-                            'subjectLine':$('#subjectLine').val()},
+                            'subjectLine':$('#subjectLine').val(),'refNo':$('#refNo').val()},
                         success: function (data) {
 
                             $("#wait").css("display", "none");
@@ -1058,6 +1068,8 @@
                             table.ajax.reload();  //just reload table
 
                             selecteds=[];
+
+                            console.log(data);
 
                             $(':checkbox:checked').prop('checked',false);
 
@@ -1238,12 +1250,12 @@
                     return false;
 
                 }else{
-
+                    
                     $.ajax({
                         type: 'POST',
                         url: "{!! route('edit.mailTamplate1') !!}",
                         cache: false,
-                        data: {_token: "{{csrf_token()}}",'id': $('#mailTamplate').val()},
+                        data: {_token: "{{csrf_token()}}",'id': $('#mailTamplate').val(),},
                         success: function (data) {
 
                             if ($('#mailTamplate').val()==1){
@@ -1257,6 +1269,7 @@
                             $('#subjectLine').val(data['subject']);
 //                            $('#tamplateBody').val(data['testDetails']);
                             $('#testAddress').val(data['testAddress']);
+                            $('#refNo').val(data['refNo']);
 
                             CKEDITOR.instances['ckBox'].setData(data['tamplateFooterAndSign']); // where editor1 is id
                             CKEDITOR.instances['tamplateBody'].setData(data['testDetails']); // where editor1 is id

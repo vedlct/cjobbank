@@ -414,6 +414,7 @@ class ApplicationController extends Controller
         $testDetails=$r->testDetails;
         $footerAndSign=$r->footerAndSign;
         $subjectLine=$r->subjectLine;
+        $refNo=$r->refNo;
 
 //        $list=array();
 
@@ -422,19 +423,27 @@ class ApplicationController extends Controller
             $appliedId = $appliedList[$i];
 
 
-            $jobInfo=Jobapply::select('job.title','job.position','jobapply.fkemployeeId')->where('jobapply',$appliedId)
-                ->leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')->first();
+//            $jobInfo=Jobapply::select('job.title','job.position','jobapply.fkemployeeId','interviewCallDate')->where('jobapply',$appliedId)
+            $jobInfo=Jobapply::leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')->findOrFail($appliedId);
+
+
+
 
             $employeeInfo=Employee::select('employee.*')
                 ->where('employee.employeeId',$jobInfo->fkemployeeId)
                 ->first();
 
+          //  return $template;
+
             /* make invoice pdf*/
 
             if ($template=='1'){
 
+                $jobInfo->interviewCallDate=$testDate;
+                $jobInfo->save();
+
                 $pdf = PDF::loadView('mail.interviewCard',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
-                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'jobInfo'=>$jobInfo]);
+                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo]);
 
 
                 try{
@@ -461,7 +470,7 @@ class ApplicationController extends Controller
             }
             if ($template=='2'){
 
-                $pdf = PDF::loadView('mail.notSelected',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
+                $pdf = PDF::loadView('mail.notSelected',['empInfo' => $employeeInfo,'testDate'=>$jobInfo->interviewCallDate,'testAddress'=>$testAddress,
                     'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'jobInfo'=>$jobInfo]);
 
 
@@ -489,7 +498,7 @@ class ApplicationController extends Controller
             }
             if ($template=='3'){
 
-                $pdf = PDF::loadView('mail.panelListed',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
+                $pdf = PDF::loadView('mail.panelListed',['empInfo' => $employeeInfo,'testDate'=>$jobInfo->interviewCallDate,'testAddress'=>$testAddress,
                     'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'jobInfo'=>$jobInfo]);
 
 

@@ -55,8 +55,6 @@ class MailTamplateController extends Controller
     }
     public function testPdf(){
 
-
-
 //        $pdf = PDF::loadView('mail.interviewCard');
 
         $template=1;
@@ -74,8 +72,15 @@ class MailTamplateController extends Controller
             ->where('employee.employeeId',1)
             ->first();
 
-        $pdf = PDF::loadView('mail.panelListed',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
+//        $pdf = PDF::loadView('mail.panelListed',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
+//            'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'jobInfo'=>$jobInfo]);
+
+//        $pdf = PDF::loadView('mail.notSelected',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
+//            'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'jobInfo'=>$jobInfo]);
+
+        $pdf = PDF::loadView('mail.interviewCard',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
             'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'jobInfo'=>$jobInfo]);
+
 
         return $pdf->stream('test'.'.pdf');
 
@@ -103,6 +108,7 @@ class MailTamplateController extends Controller
     }
     public function editMailTemplete1(Request $r){
         $mailTemplete = MailTamplate::findOrFail($r->id);
+
         return $mailTemplete;
     }
 public function updateMailTemplete(Request $r){
