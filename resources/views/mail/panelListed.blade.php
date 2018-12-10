@@ -183,7 +183,7 @@ Thank you very much for your interest in working with Caritas Bangladesh.
         </tr>
         <tr>
             <td width="100%" align="left">
-                {{$footerAndSign}}
+                <span>{{$footerAndSign}}</span>
             </td>
         </tr>
 

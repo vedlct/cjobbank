@@ -184,7 +184,7 @@ feel free to apply again for other position/vacancies for which you may be quali
         </tr>
         <tr>
             <td width="100%" align="left">
-                {{$footerAndSign}}
+                <span>{{$footerAndSign}}</span>
             </td>
         </tr>
 

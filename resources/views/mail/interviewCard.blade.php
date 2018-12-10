@@ -155,7 +155,7 @@ Please take note of the following information for attending the interview:<br>
 2. That no TA/DA will be provided for attending the above interview.<br>
 3. That you are requested to bring original copies of all certificates during interview.<br>
 
-                        </span>
+               </span>
             </td>
 
         </tr>
@@ -173,7 +173,7 @@ Please take note of the following information for attending the interview:<br>
         </tr>
         <tr>
         <td style="width: 100%" align="left">
-            {{$footerAndSign}}
+            <span>{{$footerAndSign}}</span>
         </td>
         </tr>
 
