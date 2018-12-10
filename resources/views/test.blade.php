@@ -35,7 +35,7 @@
 
         <table border="0" style="width:100%; margin-top: 10px; border: none;">
             <tr>
-                <td style="border: none;"><h2 style="font-size: 24px; border: none; text-align: center"><span style="border-bottom: 1px solid #000">Curriculam Vitae</span> </h2></td>
+                <td style="border: none;text-align: center"><h2 style="font-size: 24px; border: none; text-align: center"><span style="border-bottom: 1px solid #000">Curriculam Vitae</span> </h2></td>
             </tr>
 
         </table>
@@ -184,8 +184,8 @@
 
         </table>
 
-        {{--<p style="page-break-after: always"></p>--}}
-
+        <p style="page-break-after: always;"></p>
+<br>
         <table border="0" style="width:100%;border: none;">
             <tr>
                 <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"> <b>Professional Certificate</b> </td>
@@ -304,7 +304,7 @@
 
 
 
-        {{--<p style="page-break-after: always"></p>--}}
+        <p style="page-break-after: always"></p><br>
         <table border="0" style="width:100%; margin-top: 25px; border: none;">
             <tr>
                 <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Personal Info</b> </td>
