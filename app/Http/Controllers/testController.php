@@ -44,8 +44,9 @@ class testController extends Controller
     public function testExcel(){
 
 
-        $empId=7;
-        $employees=[5,7];
+//        $empId=7;
+        $employees=[1,2];
+
 
 
 
