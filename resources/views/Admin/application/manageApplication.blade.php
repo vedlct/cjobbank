@@ -339,7 +339,7 @@
 
 
                         <div class="col-md-3">
-                            <a onclick="return sendMail()"><button class="btn btn-danger btn-sm">Send Mail</button></a>
+                            <a onclick="sendMail()"><button class="btn btn-danger btn-sm">Send Mail</button></a>
                         </div>
 
 
@@ -1113,7 +1113,7 @@
 
                             selecteds=[];
 
-                            console.log(data);
+                          //  console.log(data);
 
                             $(':checkbox:checked').prop('checked',false);
 
@@ -1138,12 +1138,13 @@
                                 });
 
 
-                            }else if(data=='0'){
+                            }
+                            else if(data=='0'){
 
                                 $.alert({
                                     title: 'Alert!',
                                     type: 'Red',
-                                    content: data.message,
+                                    content: 'There is something wrong with the mail',
                                     buttons: {
                                         tryAgain: {
                                             text: 'Ok',

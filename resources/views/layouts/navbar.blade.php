@@ -75,7 +75,7 @@
         <li><a href="{{route('manage.otherSkill')}}">Manage Other Skill</a></li>
         <li><a href="{{route('manage.skill')}}">Manage Computer Skill</a></li>
         <li><a href="{{route('manage.language')}}">Manage Language</a></li>
-        <li><a href="{{route('manage.mailTamplate')}}">Manage Mail Tamplate</a></li>
+        {{--<li><a href="{{route('manage.mailTamplate')}}">Manage Mail Tamplate</a></li>--}}
         </ul>
     </li>
     @endif

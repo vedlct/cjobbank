@@ -573,7 +573,7 @@ class ApplicationController extends Controller
 
                 try{
 
-                    Mail::send('mail.MailBody',[], function($message) use ($pdf,$employeeInfo)
+                    Mail::send('mail.MailBody',['employeeInfo' => $employeeInfo], function($message) use ($pdf,$employeeInfo)
                     {
 
                         $message->from('support@caritasbd.com', 'CARITAS BD');
@@ -596,12 +596,12 @@ class ApplicationController extends Controller
             if ($template=='2'){
 
                 $pdf = PDF::loadView('mail.notSelected',['empInfo' => $employeeInfo,'testDate'=>$jobInfo->interviewCallDate,'testAddress'=>$testAddress,
-                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'jobInfo'=>$jobInfo]);
+                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo]);
 
 
                 try{
 
-                    Mail::send('mail.MailBody',[], function($message) use ($pdf,$employeeInfo)
+                    Mail::send('mail.MailBody',['employeeInfo' => $employeeInfo], function($message) use ($pdf,$employeeInfo)
                     {
 
                         $message->from('support@caritasbd.com', 'CARITAS BD');
@@ -624,12 +624,12 @@ class ApplicationController extends Controller
             if ($template=='3'){
 
                 $pdf = PDF::loadView('mail.panelListed',['empInfo' => $employeeInfo,'testDate'=>$jobInfo->interviewCallDate,'testAddress'=>$testAddress,
-                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'jobInfo'=>$jobInfo]);
+                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo]);
 
 
                 try{
 
-                    Mail::send('mail.MailBody',[], function($message) use ($pdf,$employeeInfo)
+                    Mail::send('mail.MailBody',['employeeInfo' => $employeeInfo], function($message) use ($pdf,$employeeInfo)
                     {
 
                         $message->from('support@caritasbd.com', 'CARITAS BD');
