@@ -79,8 +79,6 @@ define('CAREER_QUES',array(
 define('STATUS',array(
     "1"=>'Active',
     "0"=>'Inactive',
-
-
 ));
 define('OTHERS',"others");
 
@@ -89,6 +87,8 @@ define('ComputerSkillAchievement',array(
     "General"=>'1',
     "Advance"=>'2'
 ));
+
+
 
 
 

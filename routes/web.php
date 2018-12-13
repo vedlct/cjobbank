@@ -73,7 +73,7 @@ Route::post('delete/professionalQualificationId','ProfessionalCertificateControl
 Route::get('Candidate-CV','PersonalInfoController@getEmployeeCv')->name('candidate.cvPersonalInfo');
 
 Route::post('/Candidate-CV-savePersonalInfo', 'PersonalInfoController@insertPersonalInfo')->name('cv.insertPersonalInfo');
-Route::post('/Candidate-CV-Edit-PersonalInfo', 'PersonalInfoController@editPersonalInfo')->name('personalInfo.edit');
+Route::get('/Candidate-CV-Edit-PersonalInfo', 'PersonalInfoController@editPersonalInfo')->name('personalInfo.edit');
 Route::post('/Candidate-CV-updatePersonalInfo', 'PersonalInfoController@updatePersonalInfo')->name('cv.updatePersonalInfo');
 
 
@@ -217,6 +217,9 @@ Route::get('Admin-Manage-Application','Admin\ApplicationController@manageApplica
 Route::post('Admin-Show-All-Application','Admin\ApplicationController@showAllApplication')->name('application.admin.showAll');
 Route::post('Admin-Show-All-Major-For Education','Admin\ApplicationController@showAllMajorForEducation')->name('application.admin.getMajorFromEducationlvl');
 Route::post('Admin-Export-All-AppliedCandidate','Admin\ApplicationController@exportAppliedCandidate')->name('jobAppliedCadidate.admin.Exportxls');
+Route::post('Admin-Send-Mail-AppliedCandidate','Admin\ApplicationController@sendMailtoAppliedCandidate')->name('jobAppliedCadidate.admin.sendMail');
+
+
 
 Route::get('Admin-Export-All-AppliedCandidate1','Admin\ApplicationController@export')->name('jobAppliedCadidate.admin.Exportxls1');
 
@@ -333,10 +336,12 @@ Route::get('/Manage-Applicant-Question-Answer','Admin\ManageQuestionApplication@
 
 
 Route::get('/testloop','testController@testloop')->name('test');
-
-
-
 Route::get('test','Admin\ManageQuestionApplication@test');
+
+Route::get('test/excel','testController@testExcel');
+
+Route::get('rumiTest','Admin\MailTamplateController@test');
+Route::get('rumiTest/mail','Admin\MailTamplateController@testPdf');
 
 /*---------------Computer SKill-------------*/
 //Zone
@@ -344,3 +349,11 @@ Route::get('manage/skill','Admin\ComputerSkillController@skill')->name('manage.s
 Route::post('manage/skill/insert','Admin\ComputerSkillController@insertSkill')->name('admin.skill.insert');
 Route::post('manage/skill/updateZone/{id}','Admin\ComputerSkillController@updateSkill')->name('admin.skill.update');
 Route::post('manage/skill/editZone','Admin\ComputerSkillController@editSkill')->name('admin.edit.skill');
+
+//mail Tamplate
+Route::get('manage/Mail-Tamplate','Admin\MailTamplateController@show')->name('manage.mailTamplate');
+
+Route::post('edit/Mail-Tamplate','Admin\MailTamplateController@editMailTemplete')->name('edit.mailTamplate');
+Route::post('Send/Mail-Tamplate','Admin\MailTamplateController@editMailTemplete1')->name('edit.mailTamplate1');
+Route::post('mailTemplete/create','Admin\MailTamplateController@storeMailTemplete')->name('mailTamplate.store');
+Route::post('mailTemplete/update','Admin\MailTamplateController@updateMailTemplete')->name('mailTamplate.update');

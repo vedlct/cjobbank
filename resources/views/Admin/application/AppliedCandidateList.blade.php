@@ -63,84 +63,84 @@
         $refList=array();
         $relList=array();
 
-    
+
         ?>
         @foreach($educationList as $education)
             @if($education['fkemployeeId'] == $list['employeeId'])
                 <?php
 
-                    array_push($eduList,$education);
-                    ?>
+                array_push($eduList,$education);
+                ?>
             @endif
         @endforeach
 
         @foreach($qualificationList as $q)
-                @if($q['fkemployeeId'] == $list['employeeId'])
-                    <?php
-                    array_push($qList,$q);
-                    ?>
-                @endif
-         @endforeach
+            @if($q['fkemployeeId'] == $list['employeeId'])
+                <?php
+                array_push($qList,$q);
+                ?>
+            @endif
+        @endforeach
 
         @foreach($trainingList as $tList)
-                @if($tList['fkemployeeId'] == $list['employeeId'])
-                    <?php
-                    array_push($trainList,$tList);
-                    ?>
-                @endif
+            @if($tList['fkemployeeId'] == $list['employeeId'])
+                <?php
+                array_push($trainList,$tList);
+                ?>
+            @endif
         @endforeach
 
         @foreach($jobExperienceList as $jList)
-                @if($jList['fkemployeeId'] == $list['employeeId'])
-                    <?php
-                    array_push($jobList,$jList);
-                    ?>
-                @endif
+            @if($jList['fkemployeeId'] == $list['employeeId'])
+                <?php
+                array_push($jobList,$jList);
+                ?>
+            @endif
         @endforeach
 
         @foreach($salaryList as $sList)
-                @if($sList['fkemployeeId'] == $list['employeeId'])
-                    <?php
-                    array_push($salList,$sList);
-                    ?>
-                @endif
+            @if($sList['fkemployeeId'] == $list['employeeId'])
+                <?php
+                array_push($salList,$sList);
+                ?>
+            @endif
         @endforeach
 
         @foreach($refreeList as $rList)
-                @if($rList['fkemployeeId'] == $list['employeeId'])
-                    <?php
-                    array_push($refList,$rList);
-                    ?>
-                @endif
+            @if($rList['fkemployeeId'] == $list['employeeId'])
+                <?php
+                array_push($refList,$rList);
+                ?>
+            @endif
         @endforeach
         @foreach($relativeList as $reList)
-                @if($reList['fkemployeeId'] == $list['employeeId'])
-                    <?php
-                    array_push($relList,$reList);
-                    ?>
-                @endif
+            @if($reList['fkemployeeId'] == $list['employeeId'])
+                <?php
+                array_push($relList,$reList);
+                ?>
+            @endif
         @endforeach
 
 
-            <?php
-            $count=8;
+        <?php
+        $count=8;
 
 
 
-            if(count($eduList) >$count){
-                $count=count($eduList)*2;
-            }
-            if(count($trainList) >$count){
-                $count=count($trainList)*2;
-            }
-            if(count($jobList) >$count){
-                $count=count($jobList)*2;
-            }
+        if(count($eduList) >$count){
+            $count=count($eduList)*2;
+        }
+        if(count($trainList) >$count){
+            $count=count($trainList)*2;
+        }
+        if(count($jobList) >$count){
+            $count=count($jobList)*2;
+        }
 
-            ?>
+        ?>
 
 
-    <tbody>
+        <tbody>
 
 
         <tr>
@@ -254,120 +254,33 @@
 
                 </td>
                 {{--Education--}}
-                <td>
+                <td >
                     @if($i==0 && count($eduList)>0)
                         {{$eduList[0]['educationLevelName']}}<br>&nbsp;&nbsp;
                         {{$eduList[0]['institutionName']}}<br>&nbsp;&nbsp;
                         Result:{{$eduList[0]['result']}}<br>&nbsp;&nbsp;
                         @if($eduList[0]['educationMajorName'])
-                        Major:{{$eduList[0]['educationMajorName']}}<br>
+                            Major:{{$eduList[0]['educationMajorName']}}<br>
                         @endif
                         @if($eduList[0]['boardName'])
-                        Board:{{$eduList[0]['boardName']}}<br>
+                            Board:{{$eduList[0]['boardName']}}<br>
                         @endif
 
 
                     @endif
-                        @if($i%2==0 && count($eduList)>$i/2)
+                    @if($i%2==0 && count($eduList)>$i/2)
                         {{$eduList[$i/2]['institutionName']}}<br>&nbsp;&nbsp;
                         {{$eduList[$i/2]['institutionName']}}<br>&nbsp;&nbsp;
                         Result:{{$eduList[$i/2]['result']}}<br>&nbsp;&nbsp;
                         @if($eduList[$i/2]['educationMajorName'])
-                        Major:{{$eduList[$i/2]['educationMajorName']}}<br>
+                            Major:{{$eduList[$i/2]['educationMajorName']}}<br>
                         @endif
                         @if($eduList[$i/2]['boardName'])
-                        Board:{{$eduList[$i/2]['boardName']}}<br>
+                            Board:{{$eduList[$i/2]['boardName']}}<br>
                         @endif
 
-                        @endif
-                    {{--@if($i==2 && count($eduList)>1)--}}
-                            {{--{{$eduList[1]['institutionName']}}<br>&nbsp;&nbsp;--}}
-                            {{--{{$eduList[1]['institutionName']}}<br>&nbsp;&nbsp;--}}
-                            {{--Result:{{$eduList[1]['result']}}<br>&nbsp;&nbsp;--}}
-                            {{--@if($eduList[1]['educationMajorName'])--}}
-                                {{--Major:{{$eduList[1]['educationMajorName']}}<br>--}}
-                            {{--@endif--}}
-                            {{--@if($eduList[1]['boardName'])--}}
-                                {{--Board:{{$eduList[1]['boardName']}}<br>--}}
-                            {{--@endif--}}
+                    @endif
 
-                        {{--@endif--}}
-
-                    {{--@if($i==4 && count($eduList)>2)--}}
-                            {{--{{$eduList[2]['institutionName']}}<br>&nbsp;&nbsp;--}}
-                            {{--{{$eduList[2]['institutionName']}}<br>&nbsp;&nbsp;--}}
-                            {{--Result:{{$eduList[2]['result']}}<br>&nbsp;&nbsp;--}}
-                            {{--@if($eduList[2]['educationMajorName'])--}}
-                                {{--Major:{{$eduList[2]['educationMajorName']}}<br>--}}
-                            {{--@endif--}}
-                            {{--@if($eduList[2]['boardName'])--}}
-                                {{--Board:{{$eduList[2]['boardName']}}<br>--}}
-                            {{--@endif--}}
-
-                        {{--@endif--}}
-                    {{--@if($i==5) @endif--}}
-                    {{--@if($i==6 && count($eduList)>3)--}}
-                            {{--{{$eduList[3]['institutionName']}}<br>&nbsp;&nbsp;--}}
-                            {{--{{$eduList[3]['institutionName']}}<br>&nbsp;&nbsp;--}}
-                            {{--Result:{{$eduList[3]['result']}}<br>&nbsp;&nbsp;--}}
-                            {{--@if($eduList[3]['educationMajorName'])--}}
-                                {{--Major:{{$eduList[3]['educationMajorName']}}<br>--}}
-                            {{--@endif--}}
-                            {{--@if($eduList[3]['boardName'])--}}
-                                {{--Board:{{$eduList[3]['boardName']}}<br>--}}
-                            {{--@endif--}}
-
-
-                        {{--@endif--}}
-                    {{--@if($i==7) @endif--}}
-                    {{--@if($i==8 && count($eduList)>4)--}}
-                            {{--{{$eduList[4]['institutionName']}}<br>&nbsp;&nbsp;--}}
-                            {{--{{$eduList[4]['institutionName']}}<br>&nbsp;&nbsp;--}}
-                            {{--Result:{{$eduList[4]['result']}}<br>&nbsp;&nbsp;--}}
-                            {{--@if($eduList[4]['educationMajorName'])--}}
-                                {{--Major:{{$eduList[4]['educationMajorName']}}<br>--}}
-                            {{--@endif--}}
-                            {{--@if($eduList[4]['boardName'])--}}
-                                {{--Board:{{$eduList[4]['boardName']}}<br>--}}
-                            {{--@endif--}}
-                        {{--@endif--}}
-                    {{--@if($i==9) @endif--}}
-                    {{--@if($i==10 && count($eduList)>5)--}}
-                            {{--{{$eduList[5]['institutionName']}}<br>&nbsp;&nbsp;--}}
-                            {{--{{$eduList[5]['institutionName']}}<br>&nbsp;&nbsp;--}}
-                            {{--Result:{{$eduList[5]['result']}}<br>&nbsp;&nbsp;--}}
-                            {{--M  @if($eduList[5]['educationMajorName'])--}}
-                                {{--Major:{{$eduList[5]['educationMajorName']}}<br>--}}
-                            {{--@endif--}}
-                            {{--@if($eduList[5]['boardName'])--}}
-                                {{--Board:{{$eduList[5]['boardName']}}<br>--}}
-                            {{--@endif--}}
-
-                        {{--@endif--}}
-                    {{--@if($i==11) @endif--}}
-                    {{--@if($i==12 && count($eduList)>6)--}}
-                            {{--{{$eduList[6]['institutionName']}}<br>&nbsp;&nbsp;--}}
-                            {{--{{$eduList[6]['institutionName']}}<br>&nbsp;&nbsp;--}}
-                            {{--Result:{{$eduList[6]['result']}}<br>&nbsp;&nbsp;--}}
-                            {{--@if($eduList[6]['educationMajorName'])--}}
-                                {{--Major:{{$eduList[6]['educationMajorName']}}<br>--}}
-                            {{--@endif--}}
-                            {{--@if($eduList[6]['boardName'])--}}
-                                {{--Board:{{$eduList[6]['boardName']}}<br>--}}
-                            {{--@endif--}}
-                        {{--@endif--}}
-
-                    {{--@if($i==14 && count($eduList)>7)--}}
-                            {{--{{$eduList[7]['institutionName']}}<br>&nbsp;&nbsp;--}}
-                            {{--{{$eduList[7]['institutionName']}}<br>&nbsp;&nbsp;--}}
-                            {{--Result:{{$eduList[7]['result']}}<br>&nbsp;&nbsp;--}}
-                            {{--@if($eduList[7]['educationMajorName'])--}}
-                                {{--Major:{{$eduList[7]['educationMajorName']}}<br>--}}
-                            {{--@endif--}}
-                            {{--@if($eduList[7]['boardName'])--}}
-                                {{--Board:{{$eduList[7]['boardName']}}<br>--}}
-                            {{--@endif--}}
-                        {{--@endif--}}
                 </td>
 
 
@@ -440,7 +353,7 @@
                         {{$trainList[0]['vanue']}}<br>&nbsp;&nbsp;
                         {{$trainList[0]['startDate']}}<br>&nbsp;&nbsp;
                         {{$trainList[0]['endDate']}}<br>&nbsp;&nbsp;
-                        
+
                     @endif
 
                     @if($i==2 && count($trainList) >1)
@@ -492,14 +405,14 @@
                 {{--Job Experience--}}
                 <td>
                     @if($i==0 && count($jobList) >0)
-                            {{$jobList[0]['organization']}}<br>&nbsp;&nbsp;
-                            {{$jobList[0]['degisnation']}}<br>&nbsp;&nbsp;
-                           From {{$jobList[0]['startDate']}} To
-                            @if($jobList[0]['endDate'])
+                        {{$jobList[0]['organization']}}<br>&nbsp;&nbsp;
+                        {{$jobList[0]['degisnation']}}<br>&nbsp;&nbsp;
+                        From {{$jobList[0]['startDate']}} To
+                        @if($jobList[0]['endDate'])
                             {{$jobList[0]['endDate']}}
-                            @else
-                                Running
-                            @endif
+                        @else
+                            Running
+                        @endif
 
 
                     @endif
@@ -590,31 +503,31 @@
                 <td>
                     @if($i==0 && count($refList) >0)
                         {{$refList[0]['firstName']}}  {{$refList[0]['lastName']}}<br>&nbsp;&nbsp;
-                       Email : {{$refList[0]['email']}}<br>&nbsp;&nbsp;
-                       Phone : {{$refList[0]['phone']}}
+                        Email : {{$refList[0]['email']}}<br>&nbsp;&nbsp;
+                        Phone : {{$refList[0]['phone']}}
                     @endif
                     @if($i==2 && count($refList) >1)
-                            {{$refList[1]['firstName']}}  {{$refList[1]['lastName']}}<br>;&nbsp;&nbsp;
-                            Email : {{$refList[1]['email']}}<br>&nbsp;&nbsp;
-                            Phone : {{$refList[1]['phone']}}
+                        {{$refList[1]['firstName']}}  {{$refList[1]['lastName']}}<br>;&nbsp;&nbsp;
+                        Email : {{$refList[1]['email']}}<br>&nbsp;&nbsp;
+                        Phone : {{$refList[1]['phone']}}
 
-                        @endif
+                    @endif
                     @if($i==4 && count($refList) >2)
-                            {{$refList[2]['firstName']}}  {{$refList[2]['lastName']}}<br>&nbsp;&nbsp;
-                            Email : {{$refList[2]['email']}}<br>&nbsp;&nbsp;
-                            Phone : {{$refList[2]['phone']}}
+                        {{$refList[2]['firstName']}}  {{$refList[2]['lastName']}}<br>&nbsp;&nbsp;
+                        Email : {{$refList[2]['email']}}<br>&nbsp;&nbsp;
+                        Phone : {{$refList[2]['phone']}}
 
-                        @endif
+                    @endif
                     @if($i==6 && count($refList) >3)
-                            {{$refList[3]['firstName']}}  {{$refList[3]['lastName']}}<br>&nbsp;&nbsp;
-                            Email : {{$refList[3]['email']}}<br>&nbsp;&nbsp;
-                            Phone : {{$refList[3]['phone']}}
+                        {{$refList[3]['firstName']}}  {{$refList[3]['lastName']}}<br>&nbsp;&nbsp;
+                        Email : {{$refList[3]['email']}}<br>&nbsp;&nbsp;
+                        Phone : {{$refList[3]['phone']}}
 
-                        @endif
+                    @endif
                     @if($i==8 && count($refList) >4)
-                            {{$refList[4]['firstName']}}  {{$refList[1]['lastName']}}<br>&nbsp;&nbsp;
-                            Email : {{$refList[4]['email']}}<br>&nbsp;&nbsp;
-                            Phone : {{$refList[4]['phone']}}
+                        {{$refList[4]['firstName']}}  {{$refList[1]['lastName']}}<br>&nbsp;&nbsp;
+                        Email : {{$refList[4]['email']}}<br>&nbsp;&nbsp;
+                        Phone : {{$refList[4]['phone']}}
 
                     @endif
 
@@ -668,10 +581,10 @@
 
         {{--<tr>--}}
 
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
 
 
 
@@ -679,83 +592,83 @@
         {{--</tr>--}}
         {{--<tr>--}}
         {{--<td>Cell-{{$list['personalMobile']}}, {{$list['homeNumber']}}</td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td>Name Of Institution:</td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--<td>Name Of Institution:</td>--}}
 
         {{--</tr>--}}
 
         {{--<tr>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
         {{--</tr>--}}
 
         {{--<tr>--}}
-            {{--<td>Skype address: {{$list['skype']}}</td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td>Name Of Institution:</td>--}}
-
-        {{--</tr>--}}
-
-        {{--<tr>--}}
-            {{--<td>--}}
-                {{--Email-{{$list['email']}}--}}
-            {{--</td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td>Name Of Institution:</td>--}}
-        {{--</tr>--}}
-        {{--<tr>--}}
-            {{--<td>Alternative Mail:{{$list['alternativeEmail']}}</td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td>Name Of Institution:</td>--}}
-
-        {{--</tr>--}}
-        {{--<tr>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-        {{--</tr>--}}
-        {{--<tr>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
+        {{--<td>Skype address: {{$list['skype']}}</td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--<td>Name Of Institution:</td>--}}
 
         {{--</tr>--}}
 
         {{--<tr>--}}
-            {{--<td><b>Present Address :</b></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td>Name Of Institution:</td>--}}
+        {{--<td>--}}
+        {{--Email-{{$list['email']}}--}}
+        {{--</td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--<td>Name Of Institution:</td>--}}
         {{--</tr>--}}
         {{--<tr>--}}
-            {{--<td>{{$list['presentAddress']}}</td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td>Name Of Institution:</td>--}}
-        {{--</tr>--}}
-        {{--<tr>--}}
-            {{--<td></td>--}}
-        {{--</tr>--}}
-        {{--<tr>--}}
-            {{--<td>Parmanent Address :</td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td>Name Of Institution:</td>--}}
+        {{--<td>Alternative Mail:{{$list['alternativeEmail']}}</td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--<td>Name Of Institution:</td>--}}
 
         {{--</tr>--}}
         {{--<tr>--}}
-            {{--<td>{{$list['parmanentAddress']}}</td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td>Name Of Institution:</td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--</tr>--}}
+        {{--<tr>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+
+        {{--</tr>--}}
+
+        {{--<tr>--}}
+        {{--<td><b>Present Address :</b></td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--<td>Name Of Institution:</td>--}}
+        {{--</tr>--}}
+        {{--<tr>--}}
+        {{--<td>{{$list['presentAddress']}}</td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--<td>Name Of Institution:</td>--}}
+        {{--</tr>--}}
+        {{--<tr>--}}
+        {{--<td></td>--}}
+        {{--</tr>--}}
+        {{--<tr>--}}
+        {{--<td>Parmanent Address :</td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--<td>Name Of Institution:</td>--}}
+
+        {{--</tr>--}}
+        {{--<tr>--}}
+        {{--<td>{{$list['parmanentAddress']}}</td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--<td>Name Of Institution:</td>--}}
 
         {{--</tr>--}}
 
@@ -766,90 +679,90 @@
 
 
 
-            {{--<td rowspan="16">--}}
+        {{--<td rowspan="16">--}}
 
-                   {{--<b>{{$list['firstName']." ".$list['lastName']}}</b>--}}
-                {{--<br>&nbsp;&nbsp;--}}
+        {{--<b>{{$list['firstName']." ".$list['lastName']}}</b>--}}
+        {{--<br>&nbsp;&nbsp;--}}
 
-                {{----}}
-
-
-            {{--</td>--}}
+        {{----}}
 
 
-                        {{--<td>Skype adress: {{$list['skype']}}</td>--}}
+        {{--</td>--}}
 
 
-                        {{--<td>--}}
-                            {{--Email-{{$list['email']}}--}}
-                            {{--Alternative Mail:{{$list['alternativeEmail']}}--}}
-                        {{--</td>--}}
-
-                {{--<td></td>--}}
-                {{--<td></td>--}}
+        {{--<td>Skype adress: {{$list['skype']}}</td>--}}
 
 
-                    {{--<td>--}}
-                        {{--<b>Present Address: </b>--}}
-                    {{--</td>--}}
+        {{--<td>--}}
+        {{--Email-{{$list['email']}}--}}
+        {{--Alternative Mail:{{$list['alternativeEmail']}}--}}
+        {{--</td>--}}
+
+        {{--<td></td>--}}
+        {{--<td></td>--}}
 
 
-
-                    {{--<td>--}}
-                        {{--{{$list['presentAddress']}}--}}
-                    {{--</td>--}}
-
-                {{--<td></td>--}}
-
-
-                    {{--<td>--}}
-                        {{--<b>Parmanent Address :</b>--}}
-                    {{--</td>--}}
+        {{--<td>--}}
+        {{--<b>Present Address: </b>--}}
+        {{--</td>--}}
 
 
 
-                    {{--<td>--}}
-                        {{--{{$list['parmanentAddress']}}--}}
-                    {{--</td>--}}
+        {{--<td>--}}
+        {{--{{$list['presentAddress']}}--}}
+        {{--</td>--}}
 
-                    {{--<td></td>--}}
-                    {{--<td></td>--}}
-
+        {{--<td></td>--}}
 
 
+        {{--<td>--}}
+        {{--<b>Parmanent Address :</b>--}}
+        {{--</td>--}}
 
-            {{--<td style="border: solid black 2px" >--}}
 
 
+        {{--<td>--}}
+        {{--{{$list['parmanentAddress']}}--}}
+        {{--</td>--}}
+
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+
+
+
+
+        {{--<td style="border: solid black 2px" >--}}
 
 
 
 
 
 
-            {{--</td>--}}
-
-            {{--<td valign="middle" rowspan="16"><span style="text-align: center">{{$list['disability']}}</span></td>--}}
-            {{--<td valign="middle" rowspan="16"><span style="text-align: center">{{$list['ethnicityId']}}</span></td>--}}
-
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
-            {{--<td></td>--}}
 
 
+        {{--</td>--}}
 
-    </tbody>
+        {{--<td valign="middle" rowspan="16"><span style="text-align: center">{{$list['disability']}}</span></td>--}}
+        {{--<td valign="middle" rowspan="16"><span style="text-align: center">{{$list['ethnicityId']}}</span></td>--}}
+
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+        {{--<td></td>--}}
+
+
+
+        </tbody>
         @php $sl++;
         @endphp
     @endforeach

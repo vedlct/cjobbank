@@ -13,8 +13,14 @@ use App\Http\Controllers\Controller;
 use App\Job;
 use App\Jobapply;
 use App\JobExperience;
+use App\MailTamplate;
 use App\Nationality;
 use App\ProfessionalQualification;
+use App\MembershipInSocialNetwork;
+use App\QuestionObjective;
+use App\EmpOtherSkill;
+use App\EmployeeComputerSkill;
+use App\EmployeeLanguage;
 use App\Refree;
 use App\RelativeInCb;
 use App\Religion;
@@ -27,6 +33,9 @@ use Session;
 use Yajra\DataTables\DataTables;
 
 use Excel;
+use PDF;
+use MPDF;
+use Mail;
 
 
 
@@ -87,6 +96,7 @@ class ApplicationController extends Controller
         $organizationType=DB::table('organizationtype')->where('status',1)->get();
         $allJobTitle=Job::select('title')->get();
         $allEducationLevel=Educationlevel::where('status',1)->get();
+        $mailTamplate=MailTamplate::select('tamplateName','tamplateId')->get();
 //        $allEducationMajor=Educationmajor::select('educationMajorId','educationMajorName')->get();
 
 //        $application = Jobapply::select('jobapply.jobapply as applyId', 'jobapply.applydate', 'zone.zoneName', 'employee.firstName', 'employee.lastName', 'job.title',
@@ -113,7 +123,7 @@ class ApplicationController extends Controller
 
 
 
-        return view('Admin.application.manageApplication',compact('religion','ethnicity','natinality','allZone','allJobTitle','allEducationLevel','allEducationMajor','organizationType'));
+        return view('Admin.application.manageApplication',compact('religion','ethnicity','natinality','allZone','allJobTitle','allEducationLevel','allEducationMajor','organizationType','mailTamplate'));
     }
     public function showAllApplication(Request $r)
     {
@@ -218,7 +228,7 @@ class ApplicationController extends Controller
 
     public function exportAppliedCandidate(Request $r)
     {
-        $ethnicity=Ethnicity::get();
+       /* $ethnicity=Ethnicity::get();
 
         $appliedList=$r->jobApply;
         $filePath=public_path ()."/exportedExcel";
@@ -334,6 +344,126 @@ class ApplicationController extends Controller
         return $fileInfo;
 
 
+        */
+
+        $appliedList=$r->jobApply;
+        $excelName=$r->excelName;
+        $filePath=public_path ()."/exportedExcel";
+//        $fileName="AppliedCandidateList".date("Y-m-d_H-i-s");
+        $fileName=$excelName." Info".date("Y-m-d_H-i-s");
+
+        $fileInfo=array(
+            'fileName'=>$fileName,
+            'filePath'=>$fileName,
+        );
+//        $list=array();
+        $employees=array();
+        for ($i=0;$i<count($appliedList);$i++){
+            $appliedId=$appliedList[$i];
+            $empId=Jobapply::where('jobapply',$appliedId)->first()->fkemployeeId;
+            array_push($employees,$empId);
+        }
+
+       // array_merge($employees,$list);
+
+       // return $employees;
+
+        //$employees=[5,7];
+
+        $employee=Employee::select('employee.*','nationality.nationalityName','ethnicity.ethnicityName','religion.religionName')
+            ->leftJoin('nationality','nationality.nationalityId','employee.fknationalityId')
+            ->leftJoin('ethnicity','ethnicity.ethnicityId','employee.ethnicityId')
+            ->leftJoin('religion','religion.religionId','employee.fkreligionId')
+            ->whereIn('employeeId',$employees)
+            ->get();
+
+//        return $employee;
+        $social=MembershipInSocialNetwork::whereIn('fkemployeeId',$employees)->get();
+
+        $education=Education::select('education.*','degree.degreeName','board.boardName','educationmajor.educationMajorName')
+            ->whereIn('fkemployeeId',$employees)
+            ->leftJoin('degree','degree.degreeId','education.fkdegreeId')
+            ->leftJoin('board','board.boardId','education.fkboardId')
+            ->leftJoin('educationmajor','educationmajor.educationMajorId','education.fkMajorId')
+            ->get();
+
+//        return $education;
+
+        $pQualification=ProfessionalQualification::whereIn('fkemployeeId',$employees)->get();
+
+        $training=Traning::whereIn('fkemployeeId',$employees)
+            ->leftJoin('country','country.countryId','traning.countryId')
+            ->get();
+
+        $jobExperience=JobExperience::whereIn('fkemployeeId',$employees)
+            ->leftJoin('organizationtype','organizationtype.organizationTypeId','jobexperience.fkOrganizationType')
+            ->get();
+
+//        return $jobExperience;
+
+        $reference=Refree::whereIn('fkemployeeId',$employees)->get();
+
+        $empQuestion=QuestionObjective::whereIn('empId',$employees)->get();
+
+
+        $extraCurriculumn=EmpOtherSkill::whereIn('fkemployeeId',$employees)
+            ->leftJoin('otherskillsinformation','otherskillsinformation.id','emp_otherskill_achievement.otherSkillId')
+            ->get();
+
+        $computerSkill=EmployeeComputerSkill::whereIn('fk_empId',$employees)
+            ->leftJoin('computerskill','computerskill.id','empcomputerskill.computerSkillId')
+            ->get();
+
+        $languageHead=EmployeeLanguage::select('fklanguageHead','fkemployeeId','languagename')
+            ->whereIn('fkemployeeId',$employees)
+            ->leftJoin('languagehead','languagehead.id','emp_language.fklanguageHead')
+            ->groupBy('fklanguageHead')
+            ->get();
+
+        $language=EmployeeLanguage::whereIn('fkemployeeId',$employees)
+            ->leftJoin('languagehead','languagehead.id','emp_language.fklanguageHead')
+            ->leftJoin('languageskill','languageskill.id','emp_language.fklanguageSkill')
+            ->get();
+
+
+
+
+
+        $check=Excel::create($fileName,function($excel)use ($employee,$excelName,$social,$education,$pQualification,$training,$jobExperience,$reference,$empQuestion,$extraCurriculumn,$computerSkill,$languageHead,$language) {
+
+
+            $excel->sheet('First sheet', function($sheet) use ($employee,$excelName,$social,$education,$pQualification,$training,$jobExperience,$reference,$empQuestion,$extraCurriculumn,$computerSkill,$languageHead,$language) {
+
+                $sheet->setStyle(array(
+                    'font' => array(
+                        'name'      =>  'Calibri',
+                        'size'      =>  10,
+                        'bold'      =>  false
+                    )
+                ));
+
+                $sheet->loadView('Admin.application.fullInfo',
+                    compact('employee','social','education','pQualification','training','jobExperience','reference',
+                        'empQuestion','extraCurriculumn','computerSkill','languageHead','language','excelName'));
+            });
+
+        })->store('xls',$filePath);
+
+        if ($check){
+            $message=array('message'=>$fileName .'.xls has been downloaded',
+                'success'=>'1');
+            $fileInfo=array_merge($fileInfo,$message);
+        }else{
+
+            $message=array('message'=>'Someting went wrong',
+                'success'=>'0');
+            $fileInfo=array_merge($fileInfo,$message);
+
+
+        }
+        return $fileInfo;
+
+
 
     }
     public function export()
@@ -399,6 +529,135 @@ class ApplicationController extends Controller
                 echo "<option value='$mejor->educationMajorId'>$mejor->educationMajorName</option>";
             }
         }
+    }
+    public function sendMailtoAppliedCandidate(Request $r)
+    {
+        $appliedList=$r->jobApply;
+        $template=$r->tamplateId;
+        $testDate=$r->testDate;
+        $testAddress=$r->testAddress;
+        $testDetails=$r->testDetails;
+        $footerAndSign=$r->footerAndSign;
+        $subjectLine=$r->subjectLine;
+        $refNo=$r->refNo;
+
+//        $list=array();
+
+        for ($i=0;$i<count($appliedList);$i++) {
+
+            $appliedId = $appliedList[$i];
+
+
+//            $jobInfo=Jobapply::select('job.title','job.position','jobapply.fkemployeeId','interviewCallDate')->where('jobapply',$appliedId)
+            $jobInfo=Jobapply::leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')->findOrFail($appliedId);
+
+
+
+
+            $employeeInfo=Employee::select('employee.*')
+                ->where('employee.employeeId',$jobInfo->fkemployeeId)
+                ->first();
+
+          //  return $template;
+
+            /* make invoice pdf*/
+
+            if ($template=='1'){
+
+                $jobInfo->interviewCallDate=$testDate;
+                $jobInfo->save();
+
+                $pdf = PDF::loadView('mail.interviewCard',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
+                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo]);
+
+
+                try{
+
+                    Mail::send('mail.MailBody',[], function($message) use ($pdf,$employeeInfo)
+                    {
+
+                        $message->from('support@caritasbd.com', 'CARITAS BD');
+
+                        $message->to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)->subject('INTERVIEW CARD From CARITAS BD');
+
+                        $message->attachData($pdf->output(),'INTERVIEW-CARD.pdf',['mime' => 'application/pdf']);
+
+
+
+                    });
+                    return 1;
+                }
+                catch (\Exception $ex) {
+
+                    return 0;
+                }
+
+            }
+            if ($template=='2'){
+
+                $pdf = PDF::loadView('mail.notSelected',['empInfo' => $employeeInfo,'testDate'=>$jobInfo->interviewCallDate,'testAddress'=>$testAddress,
+                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'jobInfo'=>$jobInfo]);
+
+
+                try{
+
+                    Mail::send('mail.MailBody',[], function($message) use ($pdf,$employeeInfo)
+                    {
+
+                        $message->from('support@caritasbd.com', 'CARITAS BD');
+
+                        $message->to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)->subject('APOLOGY LETTER From CARITAS BD');
+
+                        $message->attachData($pdf->output(),'NOTSELECTED-CARD.pdf',['mime' => 'application/pdf']);
+
+
+
+                    });
+                    return 1;
+                }
+                catch (\Exception $ex) {
+
+                    return 0;
+                }
+
+            }
+            if ($template=='3'){
+
+                $pdf = PDF::loadView('mail.panelListed',['empInfo' => $employeeInfo,'testDate'=>$jobInfo->interviewCallDate,'testAddress'=>$testAddress,
+                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'jobInfo'=>$jobInfo]);
+
+
+                try{
+
+                    Mail::send('mail.MailBody',[], function($message) use ($pdf,$employeeInfo)
+                    {
+
+                        $message->from('support@caritasbd.com', 'CARITAS BD');
+
+                        $message->to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)->subject('PANEL-LIST LETTER From CARITAS BD');
+
+                        $message->attachData($pdf->output(),'PANEL-LIST.pdf',['mime' => 'application/pdf']);
+
+
+
+                    });
+                    return 1;
+                }
+                catch (\Exception $ex) {
+
+                    return 0;
+                }
+
+            }
+
+
+
+
+
+
+        }
+
+
     }
 
 

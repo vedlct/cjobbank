@@ -354,6 +354,7 @@
                     .attr("id", 'TextBoxDiv' + counter).attr("class", 'row');
                 newTextBoxDiv.after().html(
                     '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>'+
+                    '<h2 style="margin-bottom: 30px;">Referee - '+(counter+2)+'</h2>'+
                     '  <div class="row"> ' +
                     '<div class="form-group col-md-6"> ' +
                     '<label for="inputEmail4">First Name<span style="color: red">*</span></label> ' +

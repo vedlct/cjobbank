@@ -76,6 +76,7 @@
                         { "data": "name",name:"name"},
                         { "data": "email",name:"email"},
                         { "data": "qus",name:"qus" },
+//                        { "data": "ans",name:"ans" },
                         { "data": function(data){
                                 if( data.ans == "Y"){
                                     return "Yes"

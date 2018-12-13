@@ -61,11 +61,7 @@
 
 
                                                 @foreach($languagehead as $languageheads)
-                                                    @php $languageName= array();
-                                                    $languageId=array();
-                                                    array_push($languageName,$languageheads->languagename);
-                                                    array_push($languageId,$languageheads->id);
-                                                    @endphp
+
                                                     <option value="{{$languageheads->id}}">{{$languageheads->languagename}}</option>
                                                 @endforeach
                                             </select>
@@ -84,7 +80,7 @@
                                                     <div class="slidecontainer">
                                                         <input type="range" min="0" max="100" value="0" class="slider" onchange="myRangeChanged2('{{$ls->id}}')" name="languageskill[]" id="myRange<?php echo $ls->id?>" >
                                                         <p>Value: <span id="demo<?php echo $ls->id?>"></span> %</p>
-                                                        <input type="hidden" id="skillPercentage" name="langskillid" value="{{$ls->id}}" class="form-control"  />
+                                                        <input type="hidden" id="skillPercentage<?php echo $ls->id?>" name="langskillid" value="{{$ls->id}}" class="form-control"  />
                                                     </div>
                                                 </div>
                                             </div>
@@ -106,7 +102,7 @@
                             <div style="float:right;">
                                 <a href="{{route('candidate.cvEducation')}}"><button type="button" id="btnPevious" >Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
-                                <a href="{{route('candidate.computerSkill.index')}}"><button type="button" id="nextBtn" >Next</button></a>
+{{--                                <a href="{{route('candidate.computerSkill.index')}}"><button type="button" id="nextBtn" >Next</button></a>--}}
 
                             </div>
                         </div>
@@ -270,9 +266,9 @@
                     '<div class="form-group col-md-6">'+
                     '<label>Percentage of Skill (out of 100)</label>'+
                     '<div class="slidecontainer">'+
-                    '<input type="range" min="0" max="100" value="0" class="slider" onchange="myRangeChanged3('+'{{$ls->id}}'+')" name="{{$ls->id}}" id="myRange1'+'<?php echo $ls->id?>'+'" >'+
-                    '<p>Value: <span id="demo1'+'<?php echo $ls->id?>'+'"></span> %</p>'+
-                    '<input type="hidden" id="skillPercentage" name="langskillid" value="{{$ls->id}}" class="form-control"  />'+
+                    '<input type="range" min="0" max="100" value="0" class="slider" onchange="myRangeChanged3('+'{{$ls->id}},'+counter+')" name="languageskill[]" id="myRange1'+'<?php echo $ls->id?>'+counter+'" >'+
+                    '<p>Value: <span id="demo1'+'<?php echo $ls->id?>'+counter+'"></span> %</p>'+
+                    '<input type="hidden" id="skillPercentage'+'<?php echo $ls->id?>'+counter+'" name="langskillid" value="{{$ls->id}}" class="form-control"  />'+
                     '</div>'+
                     '</div>'+
                     '</div>'+
@@ -357,13 +353,13 @@
         //
         //
         // }
-        function myRangeChanged3(x){
-            var slider = document.getElementById("myRange1"+x);
-            var output = document.getElementById("demo1"+x);
+        function myRangeChanged3(x,y){
+            var slider = document.getElementById("myRange1"+x+y);
+            var output = document.getElementById("demo1"+x+y);
             output.innerHTML = slider.value;
             slider.oninput = function() {
                 output.innerHTML = this.value;
-                $("#skillPercentage"+x).val(this.value);
+                $("#skillPercentage"+x+y).val(this.value);
             }
         }
         function validationError(errorMsg){

@@ -15,18 +15,7 @@
 
     <div style="position: relative;" class="row ">
 
-        {{--<div class="sidenav">--}}
-            {{--<a href="{{route('candidate.cvPersonalInfo')}}" class="active">Personal details</a>--}}
-            {{--<a href="#">Education</a>--}}
-            {{--<a href="#">Professional qualification</a>--}}
-            {{--<a href="#">Training</a>--}}
-            {{--<a href="#">Experience</a>--}}
-            {{--<a href="#">Referee</a>--}}
-        {{--</div>--}}
 
-        {{--<div class="main">--}}
-
-        {{--</div>--}}
 
         <div class="col-12 ">
             <div style="background-color: #F1F1F1" class="card">
@@ -247,7 +236,7 @@
                                 <div style="overflow:auto;">
                                     <div style="float:right;">
 
-                                        <button type="submit" onclick="editPersonalInfo()" id="submitBtn">Edit</button>
+                                        <a href="{{route('personalInfo.edit')}}"><button type="submit"  id="submitBtn">Edit</button></a>
                                         {{--<a href="{{route('candidate.cvEducation')}}"><button type="button" id="nextBtn">Next</button></a>--}}
                                         <a href="{{route('candidate.cvQuesObj')}}"><button type="button" id="nextBtn">Next</button></a>
                                     </div>
@@ -325,6 +314,8 @@
 //        });
 
         function editPersonalInfo() {
+
+
 
             $.ajax({
                 type: 'POST',

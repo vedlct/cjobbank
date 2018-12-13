@@ -95,6 +95,7 @@ class DashboardController extends Controller
 
 
         return view('Admin.dashboard.home',compact('todaysJobApply','allZone','todaysRegisterCv','religion','ethnicity'));
+
     }
 
 

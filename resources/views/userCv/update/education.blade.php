@@ -64,7 +64,7 @@
 
                                 @if($educationInfo->eduLvlUnder ==1 || $educationInfo->eduLvlUnder==null )
                                     <div class="form-group col-md-3">
-                                        <label for="">Board / University :</label>
+                                        <label for="">Board:</label>
                                         {{$educationInfo->boardName}}
 
                                     </div>
