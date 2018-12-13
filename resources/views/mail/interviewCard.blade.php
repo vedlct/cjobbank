@@ -146,7 +146,7 @@
 
 
 
-With reference to your application for the post of {{$jobInfo->position}}, we would like to invite you for {{$testDetails}} to be held on the {{date('dS F Y (l)',strtotime($testDate))}} at {{$testAddress}}.
+With reference to your application for the post of {{$jobInfo->position}}, we would like to invite you for <pre>{{$testDetails}}</pre> to be held on the {{date('dS F Y (l)',strtotime($testDate))}} at {{$testAddress}}.
 <br>
 <br>
                 <span>
@@ -173,7 +173,7 @@ Please take note of the following information for attending the interview:<br>
         </tr>
         <tr>
         <td style="width: 100%" align="left">
-            <span>{{$footerAndSign}}</span>
+            <pre>{{$footerAndSign}}</pre>
         </td>
         </tr>
 

@@ -158,7 +158,7 @@
 
 
 
-This has reference to your recent application and the subsequent formal {{$testDetails}} held on {{date('dS F Y (l)',strtotime($testDate))}} for the post of {{$jobInfo->position}}.<br><br>
+This has reference to your recent application and the subsequent formal <pre>{{$testDetails}}</pre> held on {{date('dS F Y (l)',strtotime($testDate))}} for the post of {{$jobInfo->position}}.<br><br>
 Please be informed that the other candidate has been selected for appointment in the
 post of {{$jobInfo->position}} as determined by the
 Recruitment Committee upon careful assessment of candidates applications and the
@@ -184,7 +184,7 @@ feel free to apply again for other position/vacancies for which you may be quali
         </tr>
         <tr>
             <td width="100%" align="left">
-                <span>{{$footerAndSign}}</span>
+                <pre>{{$footerAndSign}}</pre>
             </td>
         </tr>
 

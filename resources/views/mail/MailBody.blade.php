@@ -2,7 +2,13 @@
 <html lang="en">
 <body>
 
-test
+Dear {{$employeeInfo['firstName'].' '.$employeeInfo['lastName']}},<br>
+
+please see the attached file with this email.<br>
+
+Thanks.
+
+
 
 
 </body>
