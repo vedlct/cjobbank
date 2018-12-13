@@ -195,7 +195,7 @@
 
 
         <table border="0" style="width:100%; margin-top: 10px; border: none;">
-            @if($professionalCertificate->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @endif
+            @if($professionalCertificate->isEmpty())<tr><td style=" border: none; text-align: center"> <strong>None </strong> </td></tr> @endif
 
         @foreach($professionalCertificate as $certificate)
                 <tr>
