@@ -423,6 +423,7 @@
         <table border="0" style="width:100%; margin-top: 10px; border: none;">
 
             @php $count=1;@endphp
+            @if($refree->isEmpty())<tr><td style=" border: none; text-align: center"> <strong>None </strong> </td></tr> @endif
 
 
             @foreach($refree as $ref)
