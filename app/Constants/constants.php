@@ -71,8 +71,9 @@ define('USER_TYPE',array(
 
 ));
 define('CAREER_QUES',array(
-    "Ques1"=>'Why Do You Want to Leave Your Current Job?',
+    "Ques1"=>'What are the reasons behind leaving you current or last job?',
     "Ques2"=>'Why you are intersted for the position applied for?',
+    "Ques0"=>'Are you currently working for any organization?',
 
 ));
 

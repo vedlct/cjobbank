@@ -1286,6 +1286,7 @@
                 }
 
             });
+
         $("#mailTamplate").on('change', function (){
 
                 if ($('#mailTamplate').val()=="") {

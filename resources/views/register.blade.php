@@ -46,7 +46,7 @@
 
                     <div class="form-group row">
                         <div class="col-12 {{ $errors->has('firstName') ? ' has-error' : '' }}">
-                            <input class="form-control" type="text" required="" value="{{ old('firstName') }}" name="firstName" placeholder="Firstname">
+                            <input class="form-control" type="text" required="" value="{{ old('firstName') }}" name="firstName" placeholder="First Name">
                             @if ($errors->has('firstName'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('firstName') }}</strong>
@@ -56,7 +56,7 @@
                     </div>
                     <div class="form-group row ">
                         <div class="col-12 {{ $errors->has('lastName') ? ' has-error' : '' }}">
-                            <input class="form-control" type="text" required="" value="{{ old('lastName') }}" name="lastName" placeholder="Lastname">
+                            <input class="form-control" type="text" required="" value="{{ old('lastName') }}" name="lastName" placeholder="Last Name">
                             @if ($errors->has('lastName'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('lastName') }}</strong>
