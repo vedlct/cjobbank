@@ -61,7 +61,14 @@ class MailTamplateController extends Controller
         $testDate='ad';
         $testAddress='asd';
         $testDetails='ads';
-        $footerAndSign='sdasewe';
+        $refNo="sadaewfd";
+        $footerAndSign='Sebastian Rozario
+Assistant Executive Director (Finance and Admin.)
+Caritas Bangladesh
+
+CC: ED/ AED (P)
+: Convener, Selection Committee
+: Manager (HR) - Please follow up.';
         $subjectLine='asdsd';
 
 
@@ -79,7 +86,7 @@ class MailTamplateController extends Controller
 //            'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'jobInfo'=>$jobInfo]);
 
         $pdf = PDF::loadView('mail.interviewCard',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
-            'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'jobInfo'=>$jobInfo]);
+            'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'jobInfo'=>$jobInfo,'refNo'=>$refNo]);
 
 
         return $pdf->stream('test'.'.pdf');

@@ -19,11 +19,16 @@
             /*font-size: 14px;*/
             padding: 0px;
             margin: 0px;
+            /*font-weight: 300;*/
         }
         @page{
 
             margin: 25px 20px;
         }
+        b{
+            10;
+        }
+
 
 
     </style>
@@ -125,7 +130,7 @@
     <table style="width: 100%">
         <tr>
         <td style="width: 100%" align="left">
-            <b>Subject:{{$subjectLine.' for the post of '}}{{$jobInfo->position}}</b>
+            <b>Subject: {{$subjectLine.' for the post of '}}{{$jobInfo->position}}</b>
         </td>
         </tr>
 
@@ -138,7 +143,7 @@
     <table style="width: 100%">
         <tr>
         <td style="width: 100%" align="left">
-            <b>Dear</b>{{$empInfo->firstName.' '.$empInfo->lastName}},
+            <b>Dear </b>{{$empInfo->firstName.' '.$empInfo->lastName}},
         </td>
         </tr>
         <tr>
@@ -146,7 +151,7 @@
 
 
 
-With reference to your application for the post of {{$jobInfo->position}}, we would like to invite you for <pre>{{$testDetails}}</pre> to be held on the {{date('dS F Y (l)',strtotime($testDate))}} at {{$testAddress}}.
+With reference to your application for the post of {{$jobInfo->position}}, we would like to invite you for {{$testDetails}} to be held on the {{date('dS F Y (l)',strtotime($testDate))}} at {{$testAddress}}.
 <br>
 <br>
                 <span>
@@ -173,7 +178,7 @@ Please take note of the following information for attending the interview:<br>
         </tr>
         <tr>
         <td style="width: 100%" align="left">
-            <pre>{{$footerAndSign}}</pre>
+            {!! $footerAndSign !!}
         </td>
         </tr>
 

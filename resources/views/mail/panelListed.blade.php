@@ -157,7 +157,7 @@
 
 
 
-This has reference to your recent application for the post of {{$jobInfo->position}} and the subsequent formal <pre>{{$testDetails}}</pre>
+This has reference to your recent application for the post of {{$jobInfo->position}} and the subsequent formal {{$testDetails}}
 held on {{date('dS F Y (l)',strtotime($testDate))}}.<br><br>
 Please be informed that you have been enlisted in the panel of future recruitment as
 determined by the Recruitment Committee upon careful assessment of candidate's
@@ -183,7 +183,7 @@ Thank you very much for your interest in working with Caritas Bangladesh.
         </tr>
         <tr>
             <td width="100%" align="left">
-                <pre>{{$footerAndSign}}</pre>
+                {!!$footerAndSign!!}
             </td>
         </tr>
 
