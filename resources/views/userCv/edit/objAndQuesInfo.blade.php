@@ -6,9 +6,22 @@
                         {{csrf_field()}}
                         <input type="hidden" name="empQuesObjId" value="{{$employeeCareerInfo->id}}">
 
+                        <div class="form-group">
+                            <label for="">{{CAREER_QUES['Ques0']}}<span style="color: red">*</span></label>
+                            <input type="checkbox" name="freshers" onclick="checkFreshers(this)">
+
+                            {{--@if ($errors->has('CareerQues1'))--}}
+
+                            {{--<span class="">--}}
+                            {{--<strong>{{ $errors->first('CareerQues1') }}</strong>--}}
+                            {{--</span>--}}
+                            {{--@endif--}}
+                        </div>
+                        <div id="compulsoryQuestions">
+
                             <div class="form-group">
                                 <label for="">Objective<span style="color: red">*</span></label>
-                                <textarea type="text" name="objective" maxlength="300" required rows="2" class="form-control{{ $errors->has('objective') ? ' is-invalid' : '' }}"  id="objective" placeholder="Career Objective">{{$employeeCareerInfo->objective}}</textarea>
+                                <textarea type="text" name="objective" maxlength="300"  rows="2" class="form-control{{ $errors->has('objective') ? ' is-invalid' : '' }}"  id="objective" placeholder="Career Objective">{{$employeeCareerInfo->objective}}</textarea>
                                 @if ($errors->has('objective'))
 
                                     <span class="">
@@ -16,9 +29,14 @@
                                     </span>
                                 @endif
                             </div>
-                            <div class="form-group">
+
+
+
+
+
+                        <div class="form-group">
                                 <label for="">Ques-1: {{CAREER_QUES['Ques1']}}<span style="color: red">*</span></label>
-                                <textarea type="text" name="CareerQues1" maxlength="300" required rows="3" class="form-control {{ $errors->has('CareerQues1') ? ' is-invalid' : '' }}" id="CareerQues1" placeholder="Career Question">{{$employeeCareerInfo->ques_1}}</textarea>
+                                <textarea type="text" name="CareerQues1" maxlength="300" rows="3" class="form-control {{ $errors->has('CareerQues1') ? ' is-invalid' : '' }}" id="CareerQues1" placeholder="Career Question">{{$employeeCareerInfo->ques_1}}</textarea>
                                 @if ($errors->has('CareerQues1'))
 
                                     <span class="">
@@ -28,7 +46,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Ques-2: {{CAREER_QUES['Ques2']}}<span style="color: red">*</span></label>
-                                <textarea type="text" name="CareerQues2" maxlength="300" required rows="3" class="form-control {{ $errors->has('CareerQues2') ? ' is-invalid' : '' }}" id="CareerQues2" placeholder="Career Question">{{$employeeCareerInfo->ques_2}}</textarea>
+                                <textarea type="text" name="CareerQues2" maxlength="300" rows="3" class="form-control {{ $errors->has('CareerQues2') ? ' is-invalid' : '' }}" id="CareerQues2" placeholder="Career Question">{{$employeeCareerInfo->ques_2}}</textarea>
                                 @if ($errors->has('CareerQues2'))
 
                                     <span class="">
@@ -36,6 +54,7 @@
                                     </span>
                                 @endif
                             </div>
+                        </div>
 
                         <div class="row">
                             <div class="form-group col-md-6">
@@ -77,6 +96,7 @@
 
 <script type="text/javascript">
     $(function () {
+        $('#compulsoryQuestions').hide();
         $('.date').datepicker({
             format: 'yyyy-m-d'
         });
@@ -89,6 +109,20 @@
             return false;
 
         return true;
+    }
+
+    function checkFreshers(x) {
+        // $('#compulsoryQuestions').show();
+        // if($(x).prop("checked") == true){}
+        if($(x).prop("checked")){
+            $('#compulsoryQuestions').show();
+        }
+
+        else {
+            $('#compulsoryQuestions').hide();
+        }
+
+
     }
 
 

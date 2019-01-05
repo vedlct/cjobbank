@@ -103,7 +103,7 @@ class ConfigVariables
 			// Substitute missing characters in UTF-8(multibyte) documents - from other fonts
 			'useSubstitutions' => false,
 			// Weight for bold text when using an artificial (outline) bold, value 0 (off) - 10 (rec. max)
-			'falseBoldWeight' => 5,
+			'falseBoldWeight' => 10,
 
 			// CONFIGURATION
 			'allow_output_buffering' => false,

@@ -64,6 +64,7 @@
 
                                     <div class="form-group">
                                         <label for="">Test Details</label>
+
                                         <textarea class="form-control" id="tamplateBody" name="testDetails" rows="2" ></textarea>
                                     </div>
 
@@ -395,9 +396,22 @@
     <script type="text/javascript" src="{{url('public/assets/ckeditor/ckeditor.js')}}"></script>
 
     <script>
-        CKEDITOR.replace( 'tamplateBody' );
+//        CKEDITOR.replace( 'tamplateBody' );
 //        CKEDITOR.replace( 'ckBox' );
         // $('tamplateBody').CKEDITOR(); // ADD THIS
+CKEDITOR.config.autoParagraph = false;
+
+CKEDITOR.config.toolbar = [
+    { name: 'document', items: [ 'Source', '-', 'Preview', '-'] },
+    { name: 'clipboard', items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
+    '/',
+    { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline' ] },
+    { name: 'paragraph',   items: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+    { name: 'styles', items: [ 'Format', 'Styles', 'blocks', 'align', 'bidi' ]},
+    { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ]},
+    { name: 'paragraph', items: [ 'Outdent', 'Indent', 'Blockquote' ]}
+
+];
     </script>
 
     <script>
@@ -1102,7 +1116,7 @@
                         url: "{!! route('jobAppliedCadidate.admin.sendMail') !!}",
                         cache: false,
                         data: {'jobApply': products,_token:"{{csrf_token()}}",'tamplateId':$('#mailTamplate').val(),'testDate':$('#testDate').val(),
-                            'testAddress':$('#testAddress').val(),'testDetails':CKEDITOR.instances['tamplateBody'].getData(),'footerAndSign':CKEDITOR.instances['ckBox'].getData(),
+                            'testAddress':$('#testAddress').val(),'testDetails':$('#tamplateBody').val(),'footerAndSign':CKEDITOR.instances['ckBox'].getData(),
                             'subjectLine':$('#subjectLine').val(),'refNo':$('#refNo').val()},
                         success: function (data) {
 
@@ -1286,6 +1300,7 @@
                 }
 
             });
+
         $("#mailTamplate").on('change', function (){
 
                 if ($('#mailTamplate').val()=="") {
@@ -1305,6 +1320,7 @@
 
                             if ($('#mailTamplate').val()==1){
                                 $('#subjectLineDiv').show();
+                                $('#testDateDiv').show();
                             }else{
                                 $('#subjectLineDiv').hide();
                                 $('#testDateDiv').hide();

@@ -16,6 +16,19 @@
 
                             <h2 style="margin-bottom: 40px; text-align: center;">Career Objective and Application Information</h2>
 
+                            <div class="form-group">
+                                <label for="">{{CAREER_QUES['Ques0']}}<span style="color: red">*</span></label>
+                                <input type="checkbox" name="freshers" onclick="checkFreshers(this)">
+
+                                {{--@if ($errors->has('CareerQues1'))--}}
+
+                                {{--<span class="">--}}
+                                {{--<strong>{{ $errors->first('CareerQues1') }}</strong>--}}
+                                {{--</span>--}}
+                                {{--@endif--}}
+                            </div>
+
+                            <div id="compulsoryQuestions">
 
                             <div class="form-group">
                                 <label for="">Objective<span style="color: red">*</span></label>
@@ -27,6 +40,8 @@
                                     </span>
                                 @endif
                             </div>
+
+
                             <div class="form-group">
                                 <label for="">Ques-1: {{CAREER_QUES['Ques1']}}<span style="color: red">*</span></label>
                                 <textarea type="text" name="CareerQues1" maxlength="300" required rows="3" class="form-control {{ $errors->has('CareerQues1') ? ' is-invalid' : '' }}" id="CareerQues1" placeholder="Career Question">{{ old('CareerQues1') }}</textarea>
@@ -46,6 +61,7 @@
                                         <strong>{{ $errors->first('CareerQues2') }}</strong>
                                     </span>
                                 @endif
+                            </div>
                             </div>
 
                             <div class="row">
@@ -137,6 +153,7 @@
             $('.date').datepicker({
                 format: 'yyyy-m-d'
             });
+            $('#compulsoryQuestions').hide();
         });
         function isNumberKey(evt)
         {
@@ -145,6 +162,20 @@
                 return false;
 
             return true;
+        }
+
+        function checkFreshers(x) {
+            // $('#compulsoryQuestions').show();
+            // if($(x).prop("checked") == true){}
+            if($(x).prop("checked")){
+                $('#compulsoryQuestions').show();
+            }
+
+            else {
+                $('#compulsoryQuestions').hide();
+            }
+
+
         }
 
 

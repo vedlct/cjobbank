@@ -57,21 +57,18 @@ class QuestionObjectiveController extends Controller
 
         $employeeCvQuesObjInfo=QuestionObjective::where('empId','=',$employee)->first();
 
-
         if ($employeeCvQuesObjInfo){
-
             return view('userCv.update.objAndQuesInfo',compact('employeeCvQuesObjInfo','employee'));
 
-
-        }else{
-
+        }
+        else{
             return view('userCv.insert.objAndQuesInfo',compact('employeeCvQuesObjInfo'));
         }
 
     }
     public function insertObjectiveAndQuestion(Request $r)
     {
-        //return $r;
+
 
         $rules = [
 
@@ -131,9 +128,9 @@ class QuestionObjectiveController extends Controller
 
         $rules = [
 
-            'objective' => 'required|max:200',
-            'CareerQues1' => 'required|max:200',
-            'CareerQues2' => 'required|max:200',
+            'objective' => 'max:200',
+            'CareerQues1' => 'max:200',
+            'CareerQues2' => 'max:200',
 
         ];
 

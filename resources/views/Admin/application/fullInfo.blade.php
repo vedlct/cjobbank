@@ -56,7 +56,6 @@
 
 
         <td colspan="3" height="250" style="text-align: center;vertical-align: middle;">
-
             Why Do You Want to Leave Your Current Job?<br>
             @if($empQuestion->where('empId',$emp->employeeId)->first())
             {{$empQuestion->where('empId',$emp->employeeId)->first()->ques_1}}

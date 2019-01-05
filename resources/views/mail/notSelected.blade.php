@@ -158,7 +158,7 @@
 
 
 
-This has reference to your recent application and the subsequent formal <pre>{{$testDetails}}</pre> held on {{date('dS F Y (l)',strtotime($testDate))}} for the post of {{$jobInfo->position}}.<br><br>
+This has reference to your recent application and the subsequent formal {{$testDetails}} held on {{date('dS F Y (l)',strtotime($testDate))}} for the post of {{$jobInfo->position}}.<br><br>
 Please be informed that the other candidate has been selected for appointment in the
 post of {{$jobInfo->position}} as determined by the
 Recruitment Committee upon careful assessment of candidates applications and the
@@ -184,54 +184,54 @@ feel free to apply again for other position/vacancies for which you may be quali
         </tr>
         <tr>
             <td width="100%" align="left">
-                <pre>{{$footerAndSign}}</pre>
-            </td>
-        </tr>
+            {!!$footerAndSign!!}
+</td>
+</tr>
 
 
-    </table>
+</table>
 
 </div>
 
 <div id="footer">
-    <hr>
-    <table style="font-size: 10px;width: 100%;margin-left: 20px">
-        <tr>
-            <td align="left" style="width: 60%">
-                <table>
-                    <tr  >
-                        <td> Regd under the Societies Registration Act XXI of 1860 <br>
-                            No. 3760-B of 1972-73, Dated 13-7-1972
-                        </td>
-                    </tr>
-                    <tr >
-                        <td> Regd.with NGO Affairs Bureau under the Foreign Donations (Voluntary Activities) Regulation Ordinance, 1978, No.009, Dated 22-4-1981 Regd. under the Micro Credit Regulatory Authority Act 2006
-                            0.00032-00286-00184, Dated 16-03-2008
+<hr>
+<table style="font-size: 10px;width: 100%;margin-left: 20px">
+<tr>
+<td align="left" style="width: 60%">
+<table>
+    <tr  >
+        <td> Regd under the Societies Registration Act XXI of 1860 <br>
+            No. 3760-B of 1972-73, Dated 13-7-1972
+        </td>
+    </tr>
+    <tr >
+        <td> Regd.with NGO Affairs Bureau under the Foreign Donations (Voluntary Activities) Regulation Ordinance, 1978, No.009, Dated 22-4-1981 Regd. under the Micro Credit Regulatory Authority Act 2006
+            0.00032-00286-00184, Dated 16-03-2008
 
-                        </td>
-                    </tr>
-                </table>
-            </td>
+        </td>
+    </tr>
+</table>
+</td>
 
-            <td align="left" style="width: 40%;margin-left: 20px">
-                <table >
-                    <tr>
-                        <td>
+<td align="left" style="width: 40%;margin-left: 20px">
+<table >
+    <tr>
+        <td>
 
-                            Tel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: +880-2-8315405-9,8315641<br>
-                            Fax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: +880-2-8314993 <br>
-                            E-mail&nbsp;&nbsp;&nbsp;: ed@caritasbd.org<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;info@caritasbd.org, cbgeneral@caritasbd.org<br>
-                            Website: www.caritasbd.org
+            Tel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: +880-2-8315405-9,8315641<br>
+            Fax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: +880-2-8314993 <br>
+            E-mail&nbsp;&nbsp;&nbsp;: ed@caritasbd.org<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;info@caritasbd.org, cbgeneral@caritasbd.org<br>
+            Website: www.caritasbd.org
 
 
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
+        </td>
+    </tr>
+</table>
+</td>
+</tr>
 
-    </table>
+</table>
 
 </div>
 
