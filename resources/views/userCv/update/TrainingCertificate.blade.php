@@ -42,6 +42,12 @@
                                             <label for="inputEmail4">{{$training->vanue}} </label>
                                             {{--<input type="text" class="form-control" name="vanue[]" id="inputEmail4" placeholder="vanue" required>--}}
                                         </div>
+
+                                        <div class="form-group col-md-12">
+                                            <label for="inputEmail4">Duration :</label>
+                                            <label for="inputEmail4">{{"H:".$training->hour." D:".$training->day." W:".$training->week." M:".$training->month." Y:".$training->year}} </label>
+                                            {{--<input type="text" class="form-control" name="vanue[]" id="inputEmail4" placeholder="vanue" required>--}}
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-6">
