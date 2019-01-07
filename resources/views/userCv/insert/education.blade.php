@@ -39,6 +39,12 @@
 
                                 </div>
 
+                                <div style="display: none" id="degreeNameDiv" class="form-group col-md-12">
+                                    <label for="">Degree Name</label>
+                                    <input type="text" maxlength="255" name="degreeName" class="form-control" id="degreeName"  placeholder="">
+
+                                </div>
+
 
                                 <div id="instituteNameDiv" class="form-group col-md-12">
                                     <label for="">Institute Name</label>
@@ -46,12 +52,18 @@
                                 </div>
                                 <div id="boardDiv" class="form-group col-md-3">
                                     <label for="">Board/University</label>
-                                    <select name="board[]" class="form-control" id="major">
+                                    <select name="board[]" class="form-control" id="board">
                                         <option value="" >Select Board</option>
                                         @foreach($boards as $board)
                                             <option value="{{$board->boardId}}" >{{$board->boardName}}</option>
                                         @endforeach
+                                        <option value="{{OTHERS}}" >{{OTHERS}}</option>
                                     </select>
+                                </div>
+                                <div style="display: none" id="boardNameDiv" class="form-group col-md-3">
+                                    <label for="">Board Name</label>
+                                    <input type="text" maxlength="255" name="boardName" class="form-control" id="boardName"  placeholder="">
+
                                 </div>
 
 
@@ -69,6 +81,7 @@
                                     <label for="">Major</label>
                                     <select name="major[]" class="form-control" id="majorSub">
                                         <option value="" >Select Major</option>
+                                        <option value="{{OTHERS}}" >{{OTHERS}}</option>
                                     </select>
                                 </div>
                                 <div style="display: none" id="subjectNameDiv" class="form-group col-md-6">
@@ -78,6 +91,7 @@
                                 </div>
 
 
+
                                 <div class="form-group col-md-3">
                                     <label for="">Country<span style="color: red">*</span></label>
                                     <select name="country[]" class="form-control" required id="country">
@@ -85,6 +99,7 @@
                                         @foreach($country as $coun)
                                             <option value="{{$coun->countryId}}">{{$coun->countryName}}</option>
                                         @endforeach
+
                                     </select>
                                 </div>
 
@@ -100,7 +115,14 @@
                                         @foreach(RESULT_SYSTEM as $key=>$value)
                                             <option value="{{$value}}">{{$key}}</option>
                                         @endforeach
+                                        <option value="{{OTHERS}}" >{{OTHERS}}</option>
                                     </select>
+                                </div>
+
+                                <div style="display: none" id="resultSydtemNameDiv" class="form-group col-md-3">
+                                    <label for="">Result System Name</label>
+                                    <input type="text" maxlength="255" name="resultSydtemName" class="form-control" id="resultSydtemName"  placeholder="">
+
                                 </div>
 
                                 <div class="form-group col-md-3">
@@ -489,6 +511,11 @@
                 '</select>'+
 
                 '</div>'+
+                    '<div style="display: none" id="degreeNameDiv" class="form-group col-md-12">'+
+                    '<label for="">Degree Name</label>'+
+                '<input type="text" maxlength="255" name="degreeName" class="form-control" id="degreeName"  placeholder="">'+
+
+                    '</div>'+
 
                 '<div id="instituteNameDiv'+counter+'" class="form-group col-md-12">'+
                     '<label for="">Institute Name</label>'+
@@ -510,12 +537,14 @@
                         @foreach($boards as $board)
                             '<option value="{{$board->boardId}}" >{{$board->boardName}}</option>'+
                         @endforeach
+                    '<option value="{{OTHERS}}" >{{OTHERS}}</option>'+
                             '</select>' +
                     '</div>'+
                     '<div class="form-group col-md-3">'+
                     '<label for="">Major</label>'+
                     '<select name="major[]" class="form-control" onchange="checkMajor('+counter+')" id="majorSub'+counter+'">'+
                     '<option value="">Select Major</option>'+
+                    '<option value="{{OTHERS}}" >{{OTHERS}}</option>'+
                 '</select>'+
                 '</div>'+
                     '<div style="display: none" id="subjectNameDiv'+counter+'" class="form-group col-md-6">'+
@@ -629,17 +658,43 @@
 
                         $("#instituteNameDiv").show();
                         $("#boardDiv").show();
+                        $("#board").val($("#board option:first").val());
+                        $("#universityType").val($("#universityType option:first").val());
+                        $("#resultSydtem").val($("#resultSydtem option:first").val());
+                        $("#resultSydtemNameDiv").hide();
+                        $("#boardNameDiv").hide();
                         $("#universityTypeDiv").hide();
+                        $("#degreeNameDiv").hide();
+                        $("#subjectNameDiv").hide();
+                        $('#majorSub').children('option:not(:first,:last)').remove();
 
                     }else if (data == 1){
                         $("#instituteNameDiv").show();
                         $("#boardDiv").show();
+                        $("#board").val($("#board option:first").val());
+                        $("#universityType").val($("#universityType option:first").val());
+                        $("#resultSydtem").val($("#resultSydtem option:first").val());
+                        $("#resultSydtemNameDiv").hide();
+
+                        $("#boardNameDiv").hide();
                         $("#universityTypeDiv").hide();
+                        $("#degreeNameDiv").hide();
+                        $("#subjectNameDiv").hide();
+                        $('#majorSub').children('option:not(:first,:last)').remove();
 
                     }else if (data == 2){
                         $("#instituteNameDiv").show();
                         $("#universityTypeDiv").show();
                         $("#boardDiv").hide();
+                        $("#board").val($("#board option:first").val());
+                        $("#universityType").val($("#universityType option:first").val());
+                        $("#resultSydtem").val($("#resultSydtem option:first").val());
+                        $("#resultSydtemNameDiv").hide();
+
+                        $("#boardNameDiv").hide();
+                        $("#degreeNameDiv").hide();
+                        $("#subjectNameDiv").hide();
+                        $('#majorSub').children('option:not(:first,:last)').remove();
                     }
 
                 }
@@ -649,16 +704,71 @@
 
         $('#degree').on('change', function() {
 
-            $.ajax({
-                type:'POST',
-                url:'{{route('cv.getMajorForEducation')}}',
-                data:{id:this.value},
-                cache: false,
-                success:function(data) {
-                    document.getElementById("majorSub").innerHTML = data;
+            var degree =$('#degree').val();
+            if (degree == "others"){
 
-                }
-            });
+                $("#degreeNameDiv").show();
+                $("#subjectNameDiv").show();
+
+                $('#majorSub').children('option:not(:first,:last)').remove();
+                $("#majorSub option[value='{{OTHERS}}']").attr("selected", true);
+                $("#resultSydtem").val($("#resultSydtem option:first").val());
+
+            }else {
+
+
+                $("#degreeNameDiv").hide();
+                $("#subjectNameDiv").hide();
+                $("#resultSydtem").val($("#resultSydtem option:first").val());
+
+
+                $.ajax({
+                    type:'POST',
+                    url:'{{route('cv.getMajorForEducation')}}',
+                    data:{id:this.value},
+                    cache: false,
+                    success:function(data) {
+                        document.getElementById("majorSub").innerHTML = data;
+
+                    }
+                });
+            }
+
+
+
+        });
+        $('#board').on('change', function() {
+
+            var board =$('#board').val();
+            if (board == "others"){
+
+                $("#boardNameDiv").show();
+            }else {
+
+
+                $("#boardNameDiv").hide();
+
+
+            }
+
+
+
+        });
+        $('#resultSydtem').on('change', function() {
+
+            var resultSydtem =$('#resultSydtem').val();
+            if (resultSydtem == "others"){
+
+                $("#resultSydtemNameDiv").show();
+            }else {
+
+
+                $("#resultSydtemNameDiv").hide();
+
+
+            }
+
+
 
         });
 
@@ -687,17 +797,52 @@
 
                         $("#instituteNameDiv"+btn).show();
                         $("#boardDiv"+btn).show();
+
                         $("#universityTypeDiv"+btn).hide();
+                        $("#board"+btn).val($("#board"+btn+"option:first").val());
+                        $("#universityType"+btn).val($("#universityType"+btn+"option:first").val());
+                        $("#resultSydtem"+btn).val($("#resultSydtem"+btn+" option:first").val());
+                        $("#resultSydtemNameDiv"+btn).hide();
+                        $("#boardNameDiv"+btn).hide();
+
+                        $("#degreeNameDiv"+btn).hide();
+                        $("#subjectNameDiv"+btn).hide();
+                        $('#majorSub'+btn).children('option:not(:first,:last)').remove();
+
 
                     }else if (data == 1){
                         $("#instituteNameDiv"+btn).show();
                         $("#boardDiv"+btn).show();
                         $("#universityTypeDiv"+btn).hide();
 
+                        $("#board"+btn).val($("#board"+btn+" option:first").val());
+                        $("#universityType"+btn).val($("#universityType"+btn+" option:first").val());
+                        $("#resultSydtem"+btn).val($("#resultSydtem"+btn+" option:first").val());
+                        $("#resultSydtemNameDiv"+btn).hide();
+
+                        $("#boardNameDiv"+btn).hide();
+
+                        $("#degreeNameDiv"+btn).hide();
+                        $("#subjectNameDiv"+btn).hide();
+                        $('#majorSub'+btn).children('option:not(:first,:last)').remove();
+
                     }else if (data == 2){
                         $("#instituteNameDiv"+btn).show();
                         $("#boardDiv"+btn).hide();
                         $("#universityTypeDiv"+btn).show();
+
+
+
+                        $("#board"+btn).val($("#board"+btn+" option:first").val());
+                        $("#universityType"+btn).val($("#universityType"+btn+" option:first").val());
+                        $("#resultSydtem"+btn).val($("#resultSydtem"+btn+" option:first").val());
+                        $("#resultSydtemNameDiv"+btn).hide();
+
+                        $("#boardNameDiv"+btn).hide();
+                        $("#degreeNameDiv"+btn).hide();
+                        $("#subjectNameDiv"+btn).hide();
+                        $('#majorSub'+btn).children('option:not(:first,:last)').remove();
+
                     }
 
                 }
