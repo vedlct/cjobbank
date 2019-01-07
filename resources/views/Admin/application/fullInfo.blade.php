@@ -208,6 +208,7 @@
     </tr>
 
     <tr>
+
         <td colspan="1" height="250" style="text-align: center;vertical-align: middle;"></td>
         <td colspan="4" height="250" style="text-align: center;vertical-align: middle;"><span style="text-align: center">
                 Fathers Name: {{$emp->fathersName}}<br>
