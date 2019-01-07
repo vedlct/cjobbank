@@ -1300,6 +1300,7 @@ CKEDITOR.config.toolbar = [
                 }
 
             });
+
         $("#mailTamplate").on('change', function (){
 
                 if ($('#mailTamplate').val()=="") {

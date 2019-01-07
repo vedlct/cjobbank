@@ -50,14 +50,11 @@ Route::view('apply','usercv')->name('cv.apply');
 
 Route::view('application','application')->name('application');
 //Route::get('application','JobController')->name('application');
-
 Route::view('job/manage','job.manage')->name('job.manage');
 
 
 
-
 //user Cv
-
 Route::get('Candidate-CV-CareerObjective','EmployeeController@getEmployeeCvCareerObjective')->name('candidate.cvCareerObjective');
 Route::get('Candidate-CV-Show','EmployeeController@getEmployeeshowFullCv')->name('candidate.viewUserCv');
 

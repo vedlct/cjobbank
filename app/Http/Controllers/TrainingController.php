@@ -99,6 +99,11 @@ class TrainingController extends Controller
                $training->fkemployeeId=$employee->employeeId;
 
                $training->status=$r->status[$i];
+               $training->hour=$r->hour[$i];
+               $training->day=$r->day[$i];
+               $training->week=$r->week[$i];
+               $training->month=$r->month[$i];
+               $training->year=$r->year[$i];
 
                $training->save();
            }
@@ -126,6 +131,11 @@ class TrainingController extends Controller
        $training->vanue=$r->vanue;
        $training->countryId=$r->countryId;
        $training->status=$r->status;
+       $training->hour=$r->hour;
+       $training->day=$r->day;
+       $training->week=$r->week;
+       $training->month=$r->month;
+       $training->year=$r->year;
 
        $training->save();
 
