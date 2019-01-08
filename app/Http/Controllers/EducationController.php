@@ -122,23 +122,64 @@ class EducationController extends Controller
     }
     public function insertPersonalEducation(Request $r)
     {
-
-
+       // return $r;
         $employee=Employee::where('fkuserId', '=',Auth::user()->userId)->first()->employeeId;
 
-        //return $r;
+
 
         for($i=0;$i<count($r->degree);$i++){
             $professional=new Education();
 
+            if ($r->degree[$i]=='others'){
+                $degreeName=new Degree();
+                $degreeName->degreeName=$r->degreeName[$i];
+                $degreeName->educationLevelId=$r->educationLevel[$i];
+                $degreeName->status=1;
+                $degreeName->save();
+
+                $professional->fkdegreeId=$degreeName->degreeId;
+
+            }else{
+                $professional->fkdegreeId=$r->degree[$i];
+
+            }
+
+            if ($r->board[$i]=='others'){
+
+                $boardName=new Board();
+                $boardName->boardName=$r->boardName[$i];
+                $boardName->status=1;
+                $boardName->save();
+
+                $professional->fkboardId=$boardName->boardId;
+            }else{
+                $professional->fkboardId=$r->board[$i];
+            }
+
+
+            if ($r->resultSystem[$i]=='others'){
+
+                $professional->resultSystem=4;
+            }else{
+                $professional->resultSystem=$r->resultSystem[$i];
+            }
+
             if ($r->major[$i] == OTHERS){
+
                 $eduMajor=new Educationmajor();
                 $eduMajor->educationMajorName=$r->subjectName[$i];
-                $eduMajor->fkDegreeId=$r->degree[$i];
+
+                if ($r->degree[$i]=='others'){
+                    $eduMajor->fkDegreeId=$degreeName->degreeId;
+                }else{
+                    $eduMajor->fkDegreeId=$r->degree[$i];
+                }
+
                 $eduMajor->status=1;
                 $eduMajor->save();
 
                 $professional->fkMajorId=$eduMajor->educationMajorId;
+
             }else{
                 $professional->fkMajorId=$r->major[$i];
             }
@@ -149,16 +190,15 @@ class EducationController extends Controller
                 $professional->universityType=$r->universityType[$i];
             }
 
-            $professional->fkdegreeId=$r->degree[$i];
             $professional->institutionName=$r->instituteName[$i];
            // $professional->fkMajorId=$r->major[$i];
             $professional->passingYear=$r->passingYear[$i];
             $professional->status=$r->status[$i];
-            $professional->resultSystem=$r->resultSystem[$i];
+
             $professional->result=$r->result[$i];
             $professional->resultOutOf=$r->resultOutOf[$i];
             $professional->fkcountryId=$r->country[$i];
-            $professional->fkboardId=$r->board[$i];
+
             $professional->fkemployeeId=$employee;
             $professional->save();
         }
