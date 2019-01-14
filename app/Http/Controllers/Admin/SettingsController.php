@@ -14,6 +14,7 @@ use App\LanguageHead;
 use App\Nationality;
 
 use App\OtherSkillInformation;
+use App\QuestionObjective;
 use App\Religion;
 
 use App\OrganizationType;
@@ -704,5 +705,13 @@ class SettingsController extends Controller
         return redirect()->route('manage.otherSkill');
 
     }
+    /* careerObjectiveAndApplicationInformation */
+
+    public function careerObjectiveAndApplicationInformation(){
+
+        $otherSkill=QuestionObjective::get();
+        return view('manage.otherSkill',compact('otherSkill'));
+    }
+
 
 }

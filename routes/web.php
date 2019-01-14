@@ -350,7 +350,11 @@ Route::post('manage/skill/editZone','Admin\ComputerSkillController@editSkill')->
 //mail Tamplate
 Route::get('manage/Mail-Tamplate','Admin\MailTamplateController@show')->name('manage.mailTamplate');
 
+
 Route::post('edit/Mail-Tamplate','Admin\MailTamplateController@editMailTemplete')->name('edit.mailTamplate');
 Route::post('Send/Mail-Tamplate','Admin\MailTamplateController@editMailTemplete1')->name('edit.mailTamplate1');
 Route::post('mailTemplete/create','Admin\MailTamplateController@storeMailTemplete')->name('mailTamplate.store');
 Route::post('mailTemplete/update','Admin\MailTamplateController@updateMailTemplete')->name('mailTamplate.update');
+
+/* career Objective And Application Information */
+Route::get('manage/career-Objective-And-Application-Information','Admin\SettingsController@careerObjectiveAndApplicationInformation')->name('manage.careerObjectiveAndApplicationInformation');
