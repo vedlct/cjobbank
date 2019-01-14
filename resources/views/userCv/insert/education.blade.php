@@ -129,6 +129,7 @@
                                     <label for="">CGPA<span style="color: red">*</span></label>
                                     <input name="result[]" type="text" class="form-control" required id="cgpa" maxlength="10" placeholder="">
                                 </div>
+
                                 <div class="form-group col-md-3">
                                     <label for="">Out of</label>
                                     <input type="text" name="resultOutOf[]" class="form-control" id="resultOutOf" placeholder="CGPA Out of">
