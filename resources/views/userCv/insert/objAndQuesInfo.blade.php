@@ -28,64 +28,95 @@
                                 {{--@endif--}}
                             </div>
 
+
+
                             <div id="compulsoryQuestions">
 
-                            <div class="form-group">
-                                <label for="">Objective<span style="color: red">*</span></label>
-                                <textarea type="text" name="objective" maxlength="300" required rows="2" class="form-control{{ $errors->has('objective') ? ' is-invalid' : '' }}"  id="objective" placeholder="Career Objective">{{ old('objective') }}</textarea>
-                                @if ($errors->has('objective'))
+                                <div class="form-group">
+                                    <label for="">Objective<span style="color: red">*</span></label>
+                                    <textarea type="text" name="objective" maxlength="300"  rows="2" class="form-control{{ $errors->has('objective') ? ' is-invalid' : '' }}"  id="objective" placeholder="Career Objective">{{ old('objective') }}</textarea>
+                                    @if ($errors->has('objective'))
 
-                                    <span class="">
+                                        <span class="">
                                         <strong>{{ $errors->first('objective') }}</strong>
                                     </span>
-                                @endif
-                            </div>
+                                    @endif
+                                </div>
 
 
-                            <div class="form-group">
-                                <label for="">Ques-1: {{CAREER_QUES['Ques1']}}<span style="color: red">*</span></label>
-                                <textarea type="text" name="CareerQues1" maxlength="300" required rows="3" class="form-control {{ $errors->has('CareerQues1') ? ' is-invalid' : '' }}" id="CareerQues1" placeholder="Career Question">{{ old('CareerQues1') }}</textarea>
-                                @if ($errors->has('CareerQues1'))
 
-                                    <span class="">
-                                        <strong>{{ $errors->first('CareerQues1') }}</strong>
+                                @php
+                                $st=1;
+
+                                @endphp
+
+
+                                @foreach($employeeCvQuesObjQues as $empCvObjQues)
+                                    <input type="hidden" name="qesId{{$st}}" value="{{$empCvObjQues->id}}">
+                                    <div class="form-group">
+                                        <label for="">Ques-{{$st}}: {{$empCvObjQues->ques}}<span style="color: red">*</span></label>
+                                        <textarea type="text" name="CareerQues{{$st}}" maxlength="300"  rows="3" class="form-control {{ $errors->has('CareerQues'.$st) ? ' is-invalid' : '' }}" id="CareerQues{{$st}}" placeholder="Career Question">{{ old('CareerQues'.$st) }}</textarea>
+                                        @if ($errors->has('CareerQues'.$st))
+
+                                            <span class="">
+                                        <strong>{{ $errors->first('CareerQues'.$st) }}</strong>
                                     </span>
-                                @endif
-                            </div>
-                            <div class="form-group">
-                                <label for="">Ques-2: {{CAREER_QUES['Ques2']}}<span style="color: red">*</span></label>
-                                <textarea type="text" name="CareerQues2" maxlength="300" required rows="3" class="form-control {{ $errors->has('CareerQues2') ? ' is-invalid' : '' }}" id="CareerQues2" placeholder="Career Question">{{ old('CareerQues2') }}</textarea>
-                                @if ($errors->has('CareerQues2'))
+                                        @endif
+                                    </div>
 
-                                    <span class="">
-                                        <strong>{{ $errors->first('CareerQues2') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                            </div>
+                                    @php
+                                        $st++;
+                                    @endphp
 
-                            <div class="row">
+                                @endforeach
+
+
+
+                            {{--<div class="form-group">--}}
+                                {{--<label for="">Ques-1: {{CAREER_QUES['Ques1']}}<span style="color: red">*</span></label>--}}
+                                {{--<textarea type="text" name="CareerQues1" maxlength="300" required rows="3" class="form-control {{ $errors->has('CareerQues1') ? ' is-invalid' : '' }}" id="CareerQues1" placeholder="Career Question">{{ old('CareerQues1') }}</textarea>--}}
+                                {{--@if ($errors->has('CareerQues1'))--}}
+
+                                    {{--<span class="">--}}
+                                        {{--<strong>{{ $errors->first('CareerQues1') }}</strong>--}}
+                                    {{--</span>--}}
+                                {{--@endif--}}
+                            {{--</div>--}}
+                            {{--<div class="form-group">--}}
+                                {{--<label for="">Ques-2: {{CAREER_QUES['Ques2']}}<span style="color: red">*</span></label>--}}
+                                {{--<textarea type="text" name="CareerQues2" maxlength="300" required rows="3" class="form-control {{ $errors->has('CareerQues2') ? ' is-invalid' : '' }}" id="CareerQues2" placeholder="Career Question">{{ old('CareerQues2') }}</textarea>--}}
+                                {{--@if ($errors->has('CareerQues2'))--}}
+
+                                    {{--<span class="">--}}
+                                        {{--<strong>{{ $errors->first('CareerQues2') }}</strong>--}}
+                                    {{--</span>--}}
+                                {{--@endif--}}
+                            {{--</div>--}}
+                                <div class="row">
                                 <div class="form-group col-md-6">
                                     <label>Current Salary</label>
                                     <input type="text" onkeypress="return isNumberKey(event)" placeholder="current salary" name="currentSalary">
                                 </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+
                                 <div class="form-group col-md-6">
                                     <label>Expected Salary</label>
                                     <input type="text" onkeypress="return isNumberKey(event)" placeholder="expected salary" name="expectedSalary">
                                 </div>
 
-
-                            </div>
-
-                            <div class="row">
                                 <div class="form-group col-md-6">
                                     <label>Possible Joining Date</label>
                                     <input type="text" class="date" onkeypress="return isNumberKey(event)" placeholder="Possible Joining Date" name="readyToJoinAfter">
                                 </div>
 
 
-
                             </div>
+
+
 
                         </div>
 
