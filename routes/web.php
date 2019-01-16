@@ -77,7 +77,8 @@ Route::post('/Candidate-CV-updatePersonalInfo', 'PersonalInfoController@updatePe
 //Question And Objective Info
 Route::get('Candidate-CV-Objective-And-Question','QuestionObjectiveController@getEmployeeCvQuesTionObjective')->name('candidate.cvQuesObj');
 Route::post('/Candidate-CV-save-Objective-And-Question','QuestionObjectiveController@insertObjectiveAndQuestion')->name('cv.insertQuesObj');
-Route::post('/Candidate-CV-Objective-And-Question-Edit', 'QuestionObjectiveController@getQuestionObjectiveEdit')->name('cv.careerEdit');
+Route::post('/Candidate-CV-Objective-And-Question-Edit', 'QuestionObjectiveController@getQuestionObjectiveEdit')
+    ->name('cv.careerEdit');
 Route::post('/Candidate-CV-update-Objective-And-Question','QuestionObjectiveController@updateQuesObj')->name('cv.updateQuesObj');
 
 //Cv Other Info

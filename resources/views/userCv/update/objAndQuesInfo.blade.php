@@ -17,6 +17,9 @@
                             <h2 style="margin-bottom: 30px; text-align:center">Career Objective and Application Information</h2>
 
 
+
+
+
                                 <div id="edit{{$employeeCvQuesObjInfo->id}}" class="row">
 
 
@@ -31,6 +34,14 @@
                                             {{$employeeCvQuesObjInfo->objective}}
                                         </div>
 
+                                        <div class="form-group col-md-2">
+                                            <button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$employeeCvQuesObjInfo->id}})"><i class="fa fa-edit"></i></button>
+                                            {{--<button type="button" class="btn btn-danger btn-sm " onclick="deleteProfession({{$employeeCvQuesObjInfo->id}})"><i class="fa fa-trash"></i></button>--}}
+
+                                        </div>
+
+
+
                                         @php
                                             $st=1;
 
@@ -39,7 +50,7 @@
 
                                         @foreach($employeeCvQuesObjQuesAns as $empCvObjQues)
 
-                                            <div class="form-group">
+                                            <div class="form-group col-md-12">
                                                 <label for="">Ques-{{$st}}: {{$empCvObjQues->ques}}<span style="color: red">*</span></label>
                                                 {{$empCvObjQues->ans}}
 
@@ -77,7 +88,7 @@
 
 
 
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-5">
                                             <label>Expected Salary :</label>
                                             {{$employeeCvQuesObjInfo->expectedSalary}}
                                         </div>
@@ -86,10 +97,19 @@
 
 
 
-                                        <div class="form-group col-md-6">
+                                        <div class="form-group col-md-5">
                                             <label>Possible Joining Date :</label>
                                             {{$employeeCvQuesObjInfo->readyToJoinAfter}}
                                         </div>
+
+                                        @if($employeeCvQuesObjQuesAns->isEmpty())
+
+                                        <div class="form-group col-md-2">
+                                            <button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$employeeCvQuesObjInfo->id}})"><i class="fa fa-edit"></i></button>
+                                            <button type="button" class="btn btn-danger btn-sm " onclick="deleteProfession({{$employeeCvQuesObjInfo->id}})"><i class="fa fa-trash"></i></button>
+
+                                        </div>
+                                        @endif
 
 
 
