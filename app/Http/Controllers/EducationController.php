@@ -78,11 +78,14 @@ class EducationController extends Controller
 
         if ($degree == null) {
             echo "<option value='' selected>Select Degree</option>";
+            echo  "<option value=".OTHERS.">".OTHERS."</option>";
         } else {
             echo "<option value='' selected>Select Degree</option>";
             foreach ($degree as $deg) {
                 echo "<option value='$deg->degreeId'>$deg->degreeName</option>";
+
             }
+            echo  "<option value=".OTHERS.">".OTHERS."</option>";
         }
 
 
@@ -119,23 +122,65 @@ class EducationController extends Controller
     }
     public function insertPersonalEducation(Request $r)
     {
-
-
+       // return $r;
         $employee=Employee::where('fkuserId', '=',Auth::user()->userId)->first()->employeeId;
 
-        //return $r;
+
 
         for($i=0;$i<count($r->degree);$i++){
             $professional=new Education();
 
+            if ($r->degree[$i]=='others'){
+                $degreeName=new Degree();
+                $degreeName->degreeName=$r->degreeName[$i];
+                $degreeName->educationLevelId=$r->educationLevel[$i];
+                $degreeName->status=1;
+                $degreeName->save();
+
+                $professional->fkdegreeId=$degreeName->degreeId;
+
+            }else{
+                $professional->fkdegreeId=$r->degree[$i];
+
+            }
+
+            if ($r->board[$i]=='others'){
+
+                $boardName=new Board();
+                $boardName->boardName=$r->boardName[$i];
+                $boardName->status=1;
+                $boardName->save();
+
+                $professional->fkboardId=$boardName->boardId;
+            }else{
+                $professional->fkboardId=$r->board[$i];
+            }
+
+
+            if ($r->resultSystem[$i]=='others'){
+
+                $professional->resultSystem=4;
+                $professional->resultSystemName=$r->resultSydtemName[$i];
+            }else{
+                $professional->resultSystem=$r->resultSystem[$i];
+            }
+
             if ($r->major[$i] == OTHERS){
+
                 $eduMajor=new Educationmajor();
                 $eduMajor->educationMajorName=$r->subjectName[$i];
-                $eduMajor->fkDegreeId=$r->degree[$i];
+
+                if ($r->degree[$i]=='others'){
+                    $eduMajor->fkDegreeId=$degreeName->degreeId;
+                }else{
+                    $eduMajor->fkDegreeId=$r->degree[$i];
+                }
+
                 $eduMajor->status=1;
                 $eduMajor->save();
 
                 $professional->fkMajorId=$eduMajor->educationMajorId;
+
             }else{
                 $professional->fkMajorId=$r->major[$i];
             }
@@ -146,16 +191,15 @@ class EducationController extends Controller
                 $professional->universityType=$r->universityType[$i];
             }
 
-            $professional->fkdegreeId=$r->degree[$i];
             $professional->institutionName=$r->instituteName[$i];
            // $professional->fkMajorId=$r->major[$i];
             $professional->passingYear=$r->passingYear[$i];
             $professional->status=$r->status[$i];
-            $professional->resultSystem=$r->resultSystem[$i];
+
             $professional->result=$r->result[$i];
             $professional->resultOutOf=$r->resultOutOf[$i];
             $professional->fkcountryId=$r->country[$i];
-            $professional->fkboardId=$r->board[$i];
+
             $professional->fkemployeeId=$employee;
             $professional->save();
         }
@@ -180,6 +224,8 @@ class EducationController extends Controller
         $boards=Board::where('status',1)->get();
 
 
+
+
         return view('userCv.edit.editEducation',compact('education','educationLevel','country','boards'));
 
 
@@ -188,14 +234,57 @@ class EducationController extends Controller
     {
         $personalEducation=Education::findOrFail($r->educationId);
 
+        if ($r->degree=='others'){
+            $degreeName=new Degree();
+            $degreeName->degreeName=$r->degreeName;
+            $degreeName->educationLevelId=$r->educationLevel;
+            $degreeName->status=1;
+            $degreeName->save();
+
+            $personalEducation->fkdegreeId=$degreeName->degreeId;
+
+        }else{
+            $personalEducation->fkdegreeId=$r->degree;
+
+        }
+
+        if ($r->board=='others'){
+
+            $boardName=new Board();
+            $boardName->boardName=$r->boardName;
+            $boardName->status=1;
+            $boardName->save();
+
+            $personalEducation->fkboardId=$boardName->boardId;
+        }else{
+            $personalEducation->fkboardId=$r->board;
+        }
+
+        if ($r->resultSystem=='others'){
+
+            $personalEducation->resultSystem=4;
+            $personalEducation->resultSystemName=$r->resultSydtemName;
+        }else{
+            $personalEducation->resultSystem=$r->resultSystem;
+        }
+
+
         if ($r->major == OTHERS){
+
             $eduMajor=new Educationmajor();
             $eduMajor->educationMajorName=$r->subjectName;
-            $eduMajor->fkDegreeId=$r->degree;
+
+            if ($r->degree=='others'){
+                $eduMajor->fkDegreeId=$degreeName->degreeId;
+            }else{
+                $eduMajor->fkDegreeId=$r->degree;
+            }
+
             $eduMajor->status=1;
             $eduMajor->save();
 
             $personalEducation->fkMajorId=$eduMajor->educationMajorId;
+
         }else{
             $personalEducation->fkMajorId=$r->major;
         }
@@ -206,19 +295,42 @@ class EducationController extends Controller
             $personalEducation->universityType=$r->universityType;
         }
 
+        /*-----*/
+
+//        if ($r->major == OTHERS){
+//            $eduMajor=new Educationmajor();
+//            $eduMajor->educationMajorName=$r->subjectName;
+//            $eduMajor->fkDegreeId=$r->degree;
+//            $eduMajor->status=1;
+//            $eduMajor->save();
+//
+//            $personalEducation->fkMajorId=$eduMajor->educationMajorId;
+//        }else{
+//            $personalEducation->fkMajorId=$r->major;
+//        }
+//
+//        if ($r->universityType==''){
+//            $personalEducation->universityType=null;
+//        }else{
+//            $personalEducation->universityType=$r->universityType;
+//        }
 
 
-        $personalEducation->fkdegreeId=$r->degree;
+
+
+
+//        $personalEducation->fkdegreeId=$r->degree;
         $personalEducation->institutionName=$r->instituteName;
-
         $personalEducation->passingYear=$r->passingYear;
         $personalEducation->status=$r->status;
-        $personalEducation->resultSystem=$r->resultSystem;
+//        $personalEducation->resultSystem=$r->resultSystem;
         $personalEducation->result=$r->result;
         $personalEducation->resultOutOf=$r->resultOutOf;
         $personalEducation->fkcountryId=$r->country;
-        $personalEducation->fkboardId=$r->board;
+//        $personalEducation->fkboardId=$r->board;
         $personalEducation->save();
+
+
 
 
 

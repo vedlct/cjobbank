@@ -20,35 +20,63 @@
                                 <div id="edit{{$employeeCvQuesObjInfo->id}}" class="row">
 
 
-                                    <div class="form-group col-md-10">
-
-                                        <label for="">#Objective :</label><br>
-                                        {{$employeeCvQuesObjInfo->objective}}
-                                    </div>
-
-                                    <div class="form-group col-md-2">
-                                        <button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$employeeCvQuesObjInfo->id}})"><i class="fa fa-edit"></i></button>
-                                    </div>
-
-                                    <div class="form-group col-md-12">
-
-                                        <label for="">#Ques-1: {{CAREER_QUES['Ques1']}}</label><br>
-                                        {{$employeeCvQuesObjInfo->ques_1}}
-
-                                    </div>
-
-                                    <div class="form-group col-md-12">
-
-                                        <label for="">#Ques-2: {{CAREER_QUES['Ques2']}}</label><br>
-                                        {{$employeeCvQuesObjInfo->ques_2}}
-
-                                    </div>
 
 
-                                        <div class="form-group col-md-6">
-                                            <label>Current Salary :</label>
-                                            {{$employeeCvQuesObjInfo->currentSalary}}
+
+                                    @if(!$employeeCvQuesObjQuesAns->isEmpty())
+
+                                        <div class="form-group col-md-10">
+
+                                            <label for="">#Objective :</label><br>
+                                            {{$employeeCvQuesObjInfo->objective}}
                                         </div>
+
+                                        @php
+                                            $st=1;
+
+                                        @endphp
+
+
+                                        @foreach($employeeCvQuesObjQuesAns as $empCvObjQues)
+
+                                            <div class="form-group">
+                                                <label for="">Ques-{{$st}}: {{$empCvObjQues->ques}}<span style="color: red">*</span></label>
+                                                {{$empCvObjQues->ans}}
+
+                                            </div>
+
+                                            @php
+                                                $st++;
+                                            @endphp
+
+                                        @endforeach
+
+
+
+                                        {{--<div class="form-group col-md-12">--}}
+
+                                            {{--<label for="">#Ques-1: {{CAREER_QUES['Ques1']}}</label><br>--}}
+                                            {{--{{$employeeCvQuesObjInfo->ques_1}}--}}
+
+                                        {{--</div>--}}
+
+                                        {{--<div class="form-group col-md-12">--}}
+
+                                            {{--<label for="">#Ques-2: {{CAREER_QUES['Ques2']}}</label><br>--}}
+                                            {{--{{$employeeCvQuesObjInfo->ques_2}}--}}
+
+                                        {{--</div>--}}
+
+
+                                        {{--<div class="form-group col-md-6">--}}
+                                            {{--<label>Current Salary :</label>--}}
+                                            {{--{{$employeeCvQuesObjInfo->currentSalary}}--}}
+                                        {{--</div>--}}
+
+                                    @endif
+
+
+
                                         <div class="form-group col-md-6">
                                             <label>Expected Salary :</label>
                                             {{$employeeCvQuesObjInfo->expectedSalary}}

@@ -315,6 +315,7 @@ Route::post('manage/Board/updateBoard/{id}','Admin\SettingsController@updateBoar
 //Language
 Route::get('manage/Language','Admin\SettingsController@language')->name('manage.language');
 Route::post('manage/Language/insert','Admin\SettingsController@insertLanguage')->name('manage.language.insert');
+
 Route::post('manage/Language/editBoard','Admin\SettingsController@editLanguage')->name('admin.editlanguage');
 Route::post('manage/Language/updateBoard/{id}','Admin\SettingsController@updateLanguage')->name('manage.language.update');
 
@@ -350,7 +351,18 @@ Route::post('manage/skill/editZone','Admin\ComputerSkillController@editSkill')->
 //mail Tamplate
 Route::get('manage/Mail-Tamplate','Admin\MailTamplateController@show')->name('manage.mailTamplate');
 
+
 Route::post('edit/Mail-Tamplate','Admin\MailTamplateController@editMailTemplete')->name('edit.mailTamplate');
 Route::post('Send/Mail-Tamplate','Admin\MailTamplateController@editMailTemplete1')->name('edit.mailTamplate1');
 Route::post('mailTemplete/create','Admin\MailTamplateController@storeMailTemplete')->name('mailTamplate.store');
 Route::post('mailTemplete/update','Admin\MailTamplateController@updateMailTemplete')->name('mailTamplate.update');
+
+/* career Objective And Application Information */
+Route::get('manage/career-Objective-And-Application-Information','Admin\SettingsController@careerObjectiveAndApplicationInformation')
+    ->name('manage.careerObjectiveAndApplicationInformation');
+Route::post('manage/objective-Page-Question/insert','Admin\SettingsController@insertobjectivePageQuestion')
+    ->name('manage.objectivePageQuestion.insert');
+Route::post('manage/objective-Page-Question/edit','Admin\SettingsController@editobjectivePageQuestion')
+    ->name('manage.objectivePageQuestion.edit');
+Route::post('manage/objective-Page-Question/update/{id}','Admin\SettingsController@updateobjectivePageQuestion')
+    ->name('manage.objectivePageQuestion.update');
