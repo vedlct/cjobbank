@@ -77,7 +77,8 @@ Route::post('/Candidate-CV-updatePersonalInfo', 'PersonalInfoController@updatePe
 //Question And Objective Info
 Route::get('Candidate-CV-Objective-And-Question','QuestionObjectiveController@getEmployeeCvQuesTionObjective')->name('candidate.cvQuesObj');
 Route::post('/Candidate-CV-save-Objective-And-Question','QuestionObjectiveController@insertObjectiveAndQuestion')->name('cv.insertQuesObj');
-Route::post('/Candidate-CV-Objective-And-Question-Edit', 'QuestionObjectiveController@getQuestionObjectiveEdit')->name('cv.careerEdit');
+Route::post('/Candidate-CV-Objective-And-Question-Edit', 'QuestionObjectiveController@getQuestionObjectiveEdit')
+    ->name('cv.careerEdit');
 Route::post('/Candidate-CV-update-Objective-And-Question','QuestionObjectiveController@updateQuesObj')->name('cv.updateQuesObj');
 
 //Cv Other Info
@@ -315,6 +316,7 @@ Route::post('manage/Board/updateBoard/{id}','Admin\SettingsController@updateBoar
 //Language
 Route::get('manage/Language','Admin\SettingsController@language')->name('manage.language');
 Route::post('manage/Language/insert','Admin\SettingsController@insertLanguage')->name('manage.language.insert');
+
 Route::post('manage/Language/editBoard','Admin\SettingsController@editLanguage')->name('admin.editlanguage');
 Route::post('manage/Language/updateBoard/{id}','Admin\SettingsController@updateLanguage')->name('manage.language.update');
 
@@ -357,4 +359,11 @@ Route::post('mailTemplete/create','Admin\MailTamplateController@storeMailTemplet
 Route::post('mailTemplete/update','Admin\MailTamplateController@updateMailTemplete')->name('mailTamplate.update');
 
 /* career Objective And Application Information */
-Route::get('manage/career-Objective-And-Application-Information','Admin\SettingsController@careerObjectiveAndApplicationInformation')->name('manage.careerObjectiveAndApplicationInformation');
+Route::get('manage/career-Objective-And-Application-Information','Admin\SettingsController@careerObjectiveAndApplicationInformation')
+    ->name('manage.careerObjectiveAndApplicationInformation');
+Route::post('manage/objective-Page-Question/insert','Admin\SettingsController@insertobjectivePageQuestion')
+    ->name('manage.objectivePageQuestion.insert');
+Route::post('manage/objective-Page-Question/edit','Admin\SettingsController@editobjectivePageQuestion')
+    ->name('manage.objectivePageQuestion.edit');
+Route::post('manage/objective-Page-Question/update/{id}','Admin\SettingsController@updateobjectivePageQuestion')
+    ->name('manage.objectivePageQuestion.update');

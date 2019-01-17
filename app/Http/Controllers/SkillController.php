@@ -77,10 +77,13 @@ class SkillController extends Controller
 
     public function insert(Request $r){
 
+        //return $r;
+
 
         $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
 
         $emp=Employee::findOrFail($employee->employeeId);
+
         if ($r->hasOtherSkill==0){
 
             $emp->hasOtherSkill=0;
@@ -95,7 +98,19 @@ class SkillController extends Controller
 
                 $otherSkill=new EmpOtherSkill();
 
-                $otherSkill->otherSkillId=$r->skill[$i];
+                if ($r->skill[$i] == OTHERS){
+                    $newOtherSkill=new OtherSkillInformation();
+                    $newOtherSkill->skillName=$r->otherSkillName[$i];
+                    $newOtherSkill->status=1;
+                    $newOtherSkill->save();
+
+                    $otherSkill->otherSkillId=$newOtherSkill->id;
+
+                }else{
+                    $otherSkill->otherSkillId=$r->skill[$i];
+                }
+
+
                 $otherSkill->fkemployeeId=$employee->employeeId;
                 $otherSkill->ratiing=$r->skillPercentage[$i];
 
@@ -113,11 +128,27 @@ class SkillController extends Controller
     }
     public function update(Request $r){
 
+//        return $r;
+        $otherSkill=EmpOtherSkill::findOrFail($r->skillId);
 
+        if ($r->skill == OTHERS){
 
-            $otherSkill=EmpOtherSkill::findOrFail($r->skillId);
+            $newOtherSkill=new OtherSkillInformation();
 
+            $newOtherSkill->skillName=$r->otherSkillName;
+            $newOtherSkill->status=1;
+            $newOtherSkill->save();
+
+            $otherSkill->otherSkillId=$newOtherSkill->id;
+
+        }else{
             $otherSkill->otherSkillId=$r->skill;
+        }
+
+
+//            $otherSkill=EmpOtherSkill::findOrFail($r->skillId);
+
+
             $otherSkill->ratiing=$r->skillPercentage;
 
             $otherSkill->save();
