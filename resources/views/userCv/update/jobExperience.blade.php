@@ -68,7 +68,7 @@
                                                 @endif
                                             </div>
                                             <div class="form-group col-md-12">
-                                                <label for="inputPassword4">Address :</label>
+                                                <label for="inputPassword4">Organization Address :</label>
                                                 {{$experience->address}}
 
                                             </div>

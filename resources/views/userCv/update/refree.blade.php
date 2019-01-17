@@ -53,7 +53,7 @@
                                             </div>
 
                                             <div class="form-group col-md-6">
-                                                <label for="inputPassword4">Organization</label>
+                                                <label for="inputPassword4">Name Of Organization</label>
                                                 {{$refree->organization}}
                                                 {{--<input type="text" class="form-control" name="organization[]" id="inputPassword4" placeholder="organization" required>--}}
                                             </div>
@@ -71,7 +71,7 @@
                                             </div>
 
                                             <div class="form-group col-md-6">
-                                                <label for="inputPassword4">relation</label>
+                                                <label for="inputPassword4">Relation</label>
                                                 {{$refree->relation}}
                                                 {{--<input type="text" class="form-control" name="relation[]" id="inputPassword4" placeholder="relation" required>--}}
                                             </div>

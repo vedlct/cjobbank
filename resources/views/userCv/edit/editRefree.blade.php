@@ -17,18 +17,18 @@
 
 
     <div class="form-group col-md-6">
-        <label for="inputEmail4">Present Position<span style="color: red">*</span></label>
-        <input type="text" class="form-control" name="presentposition" value="{{$refree->presentposition}}" id="presentposition" placeholder="position" required>
+        <label for="inputEmail4">Present Position<span style="color: red"></span></label>
+        <input type="text" class="form-control" name="presentposition" value="{{$refree->presentposition}}" id="presentposition" placeholder="position" >
     </div>
 
     <div class="form-group col-md-6">
-        <label for="inputPassword4">Organization<span style="color: red">*</span></label>
-        <input type="text" class="form-control" name="organization" value="{{$refree->organization}}" id="organization" placeholder="organization" required>
+        <label for="inputPassword4">Name Of Organization<span style="color: red"></span></label>
+        <input type="text" class="form-control" name="organization" value="{{$refree->organization}}" id="organization" placeholder="organization" >
     </div>
 
     <div class="form-group col-md-6">
-        <label for="inputPassword4">Email<span style="color: red">*</span></label>
-        <input type="email" class="form-control" name="email" value="{{$refree->email}}" id="email" placeholder="email" required>
+        <label for="inputPassword4">Email<span style="color: red"></span></label>
+        <input type="email" class="form-control" name="email" value="{{$refree->email}}" id="email" placeholder="email" >
     </div>
 
     <div class="form-group col-md-6">
@@ -105,13 +105,13 @@
 
         }
 
-        if(presentposition==""){
-
-            var errorMsg='Please Type Present Position First!!'
-            validationError(errorMsg)
-            return false;
-
-        }
+        // if(presentposition==""){
+        //
+        //     var errorMsg='Please Type Present Position First!!'
+        //     validationError(errorMsg)
+        //     return false;
+        //
+        // }
         if (presentposition.length > 100){
 
             var errorMsg='Present Position Should not more than 100 Charecter Length!!';
@@ -119,13 +119,13 @@
             return false;
 
         }
-        if(organization==""){
-
-            var errorMsg='Please Type Organization First!!'
-            validationError(errorMsg)
-            return false;
-
-        }
+        // if(organization==""){
+        //
+        //     var errorMsg='Please Type Organization First!!'
+        //     validationError(errorMsg)
+        //     return false;
+        //
+        // }
         if (organization.length > 100){
 
             var errorMsg='Organization Should not more than 100 Charecter Length!!';
@@ -171,15 +171,15 @@
 
         }
 
-        if(email==""){
+        // if(email==""){
+        //
+        //     var errorMsg='Please Type a Email First!!'
+        //     validationError(errorMsg)
+        //     return false;
+        //
+        // }
 
-            var errorMsg='Please Type a Email First!!'
-            validationError(errorMsg)
-            return false;
-
-        }
-
-        if(!email.match(mailformat))
+        if(email!="" &&!email.match(mailformat))
         {
             var errorMsg='You have entered an invalid email address!';
             validationError(errorMsg);
