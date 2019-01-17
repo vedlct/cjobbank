@@ -14,7 +14,13 @@
                         @foreach($skills as $skill)
                             <option @if($skill->id==$empSkills->otherSkillId) selected @endif value="{{$skill->id}}">{{$skill->skillName}}</option>
                         @endforeach
+                        <option value="{{OTHERS}}" >{{OTHERS}}</option>
                     </select>
+
+                </div>
+                <div style="display: none" id="otherSkillNameDiv" class="form-group col-md-6">
+                    <label for="">Other Skill Name</label>
+                    <input type="text" maxlength="255" name="otherSkillName" class="form-control" id="otherSkillName"  placeholder="">
 
                 </div>
                 <div class="form-group col-md-6">
@@ -49,5 +55,23 @@
         output.innerHTML = this.value;
         $("#skillPercentage1").val(this.value);
     }
+
+    $('#skill1').on('change', function() {
+
+        var skill =$('#skill1').val();
+        if (skill == "others"){
+
+            $("#otherSkillNameDiv").show();
+        }else {
+
+
+            $("#otherSkillNameDiv").hide();
+
+
+        }
+
+
+
+    });
 
 </script>

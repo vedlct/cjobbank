@@ -179,6 +179,10 @@
                 return this.value; // $(this).val()
             }).get();
 
+            for( var i = values.length-1; i--;){
+                if ( values[i] === '{{OTHERS}}') values.splice(i, 1);
+            }
+
 
             var unique = values.filter(function(itm, i, values) {
 
