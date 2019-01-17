@@ -178,6 +178,7 @@
                         Duration: {{$certificate->startDate}} -  @if($certificate->endDate) {{$certificate->endDate}} @else
                             Continuing
                         @endif
+                        ({{$certificate->year}}Y - {{$certificate->month}}M - {{$certificate->week}}W - {{$certificate->day}}D - {{$certificate->hour}}H)
                         .
 
                     </td>
@@ -216,7 +217,9 @@
 
                     <td style="border: none; width: 20%">Session</td>
                     <td style="border: none; width: 5%">:</td>
-                    <td style="border: none;">{{$certificate->startDate}} - {{$certificate->endDate}}</td>
+                    <td style="border: none;">{{$certificate->startDate}} - {{$certificate->endDate}}
+                        ({{$certificate->year}}Y - {{$certificate->month}}M - {{$certificate->week}}W - {{$certificate->day}}D - {{$certificate->hour}}H)
+                    </td>
                 </tr>
 
                 <tr>
