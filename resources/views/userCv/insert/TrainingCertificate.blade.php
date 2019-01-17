@@ -265,13 +265,13 @@
                         return false;
 
                     }
-                    if (vanue[i].value == "") {
-
-                        var errorMsg = 'Please Type a Venue First!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
+                    // if (vanue[i].value == "") {
+                    //
+                    //     var errorMsg = 'Please Type a Venue First!!'
+                    //     validationError(errorMsg)
+                    //     return false;
+                    //
+                    // }
                     if (vanue[i].value.length > 255) {
 
                         var errorMsg = 'value Should not more than 255 Charecter Length!!';
@@ -279,19 +279,19 @@
                         return false;
 
                     }
-                    if (country[i].value == "") {
+                    // if (country[i].value == "") {
+                    //
+                    //     var errorMsg = 'Please Select a Country First!!';
+                    //     validationError(errorMsg)
+                    //     return false;
+                    //
+                    // }
 
-                        var errorMsg = 'Please Select a Country First!!';
-                        validationError(errorMsg)
-                        return false;
-
-                    }
-
-                    if (start[i].value == "") {
-                        var errorMsg = 'Please Select a Strat Date First!!';
-                        validationError(errorMsg)
-                        return false;
-                    }
+                    // if (start[i].value == "") {
+                    //     var errorMsg = 'Please Select a Strat Date First!!';
+                    //     validationError(errorMsg)
+                    //     return false;
+                    // }
 //        if(end==""){
 //            var errorMsg='Please Select a End Date First!!';
 //            validationError(errorMsg)
