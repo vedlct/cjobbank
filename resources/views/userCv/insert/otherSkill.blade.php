@@ -79,7 +79,13 @@
                                             @foreach($skills as $skill)
                                                 <option value="{{$skill->id}}">{{$skill->skillName}}</option>
                                             @endforeach
+                                            <option value="{{OTHERS}}" >{{OTHERS}}</option>
                                         </select>
+
+                                    </div>
+                                    <div style="display: none" id="otherSkillNameDiv" class="form-group col-md-6">
+                                        <label for="">Other Skill Name</label>
+                                        <input type="text" maxlength="255" name="otherSkillName[]" class="form-control" id="otherSkillName"  placeholder="">
 
                                     </div>
                                     <div class="form-group col-md-6">
@@ -175,7 +181,10 @@
 
 
             var unique = values.filter(function(itm, i, values) {
-                return i == values.indexOf(itm);
+
+                    return i == values.indexOf(itm);
+
+
             });
 
             if(values.length != unique.length){
@@ -325,13 +334,19 @@
                     '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>' +
                     '<div class="form-group col-md-6"> ' +
                     '<label for="inputEmail4">Skill<span style="color: red">*</span></label> ' +
-                    '<select required name="skill[]" onchange="checkUnique(this)" class="form-control" id="skill'+counter+'"> ' +
+                    '<select required name="skill[]" onchange="checkUnique(this);skillchange('+counter+')"   class="form-control" id="skill'+counter+'"> ' +
                     '<option selected value="">Select Skill Type</option>'+
                 '@foreach($skills as $skill)'+
                 '<option value="{{$skill->id}}">{{$skill->skillName}}</option>'+
                  '@endforeach'+
-                    '</select> ' +
+                    '<option value="{{OTHERS}}" >{{OTHERS}}</option>'+
+                    '</select>' +
                     '</div>' +
+                        '<div style="display: none" id="otherSkillNameDiv'+counter+'" class="form-group col-md-6">'+
+                    '<label for="">Other Skill Name</label>'+
+                '<input type="text" maxlength="255" name="otherSkillName[]" class="form-control" id="otherSkillName'+counter+'"  placeholder="">'+
+
+                    '</div>'+
                     '<div class="form-group col-md-6"> ' +
                     '<label>Percentage of Skill (out of 100)</label> ' +
                     '<div class="slidecontainer"> ' +
@@ -387,6 +402,41 @@
                     }
                 }
             });
+
+        }
+
+        $('#skill').on('change', function() {
+
+            var skill =$('#skill').val();
+            if (skill == "others"){
+
+                $("#otherSkillNameDiv").show();
+            }else {
+
+
+                $("#otherSkillNameDiv").hide();
+
+
+            }
+
+
+
+        });
+
+        function skillchange(x) {
+
+
+            var skill =$('#skill'+x).val();
+            if (skill == "others"){
+
+                $("#otherSkillNameDiv"+x).show();
+            }else {
+
+
+                $("#otherSkillNameDiv"+x).hide();
+
+
+            }
 
         }
 

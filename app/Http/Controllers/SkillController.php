@@ -77,6 +77,8 @@ class SkillController extends Controller
 
     public function insert(Request $r){
 
+        return $r;
+
 
         $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
 
@@ -91,6 +93,8 @@ class SkillController extends Controller
             $emp->save();
 
             for($i=0;$i<count($r->skill);$i++){
+
+
 
 
                 $otherSkill=new EmpOtherSkill();
