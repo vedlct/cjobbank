@@ -40,7 +40,7 @@
 
                                 <div class="row">
                                 <div class="form-group col-md-8">
-                                    <label for="inputEmail4">Institute Name<span style="color: red">*</span></label>
+                                    <label for="inputEmail4">Institute Name</label>
                                     <input type="text" class="form-control" name="institutionName[]" id="institutionName" placeholder="institution">
                                 </div>
                                     <div class="form-group col-md-4">
@@ -58,13 +58,71 @@
                                 </div>
 
                                 <div class="form-group col-md-4">
-                                    <label for="inputPassword4">Start Date<span style="color: red">*</span></label>
+                                    <label for="inputPassword4">Start Date</label>
                                     <input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" >
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="inputPassword4">End Date</label>
                                     <input type="text" class="form-control date" name="endDate[]" id="end" placeholder="date">
                                 </div>
+
+                                 <!--duration-->
+
+                                    <div class="row" style="margin-left: 10px">
+                                        <label>Duration</label>
+                                        <div class="form-group col-md-2">
+                                            <label for="inputPassword4">Hour</label>
+                                            <select  class="form-control"id="trainingCertificatehour" name="hour[]">
+
+                                                <option value="">Select Hour</option>
+                                                @for($i = 1 ; $i <51 ; $i++)
+                                                    <option value="{{$i}}">{{$i}}</option>
+                                                @endfor
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="inputPassword4">Day</label>
+                                            <select  class="form-control"id="trainingCertificateday" name="day[]">
+
+                                                <option value="">Select Day</option>
+                                                @for($i = 1 ; $i <51 ; $i++)
+                                                    <option value="{{$i}}">{{$i}}</option>
+                                                @endfor
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="inputPassword4">Week</label>
+                                            <select  class="form-control"id="trainingCertificateweek" name="week[]">
+
+                                                <option value="">Select Week</option>
+                                                @for($i = 1 ; $i <51 ; $i++)
+                                                    <option value="{{$i}}">{{$i}}</option>
+                                                @endfor
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="inputPassword4">Month</label>
+                                            <select  class="form-control"id="trainingCertificatemonth" name="month[]">
+
+                                                <option value="">Select Month</option>
+                                                @for($i = 1 ; $i <51 ; $i++)
+                                                    <option value="{{$i}}">{{$i}}</option>
+                                                @endfor
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="inputPassword4">Year</label>
+                                            <select  class="form-control"id="trainingCertificateyear" name="year[]">
+
+                                                <option value="">Select Year</option>
+                                                @for($i = 1 ; $i <51 ; $i++)
+                                                    <option value="{{$i}}">{{$i}}</option>
+                                                @endfor
+                                            </select>
+                                        </div>
+
+
+                                    </div>
 
                                 <div class="form-group col-md-4">
                                     <label for="inputPassword4">Staus<span style="color: red">*</span></label>
@@ -222,13 +280,13 @@
                         return false;
 
                     }
-                    if (institutionName[i].value.length > 255){
-
-                        var errorMsg='Institute Name Should not more than 255 Charecter Length!!';
-                        validationError(errorMsg);
-                        return false;
-
-                    }
+                    // if (institutionName[i].value.length > 255){
+                    //
+                    //     var errorMsg='Institute Name Should not more than 255 Charecter Length!!';
+                    //     validationError(errorMsg);
+                    //     return false;
+                    //
+                    // }
 //                    if(result==""){
 //
 //                        var errorMsg='Please Type a Result First!!';
@@ -243,13 +301,13 @@
 //                        return false;
 //
 //                    }
-                    if(start[i].value==""){
-
-                        var errorMsg='Please Select a Strat Date First!!';
-                        validationError(errorMsg);
-                        return false;
-
-                    }
+//                     if(start[i].value==""){
+//
+//                         var errorMsg='Please Select a Strat Date First!!';
+//                         validationError(errorMsg);
+//                         return false;
+//
+//                     }
 //                    if(end==""){
 //
 //                        var errorMsg='Please Select a End Date First!!';
@@ -506,7 +564,7 @@
                 '<input type="text" class="form-control" name="certificateName[]" id="certificateName'+counter+'" placeholder="certificate" >'+
                 '</div>'+
                 '</div>'+
-                '<div class="row">'+
+                '<div class="row" >'+
                     '<div class="form-group col-md-8">'+
                     '<label for="inputEmail4">Institute Name<span style="color: red">*</span></label>'+
                 '<input type="text" class="form-control" name="institutionName[]" id="institutionName'+counter+'" placeholder="institution" >'+
@@ -544,7 +602,60 @@
                     '</select>'+
                     '</div>'+
                     '</div>'+
-                    '</div>'
+                    '</div>'+
+                '<div class="row" style="margin-left: 10px">'+
+                '<label>Duration</label>'+
+                '<div class="form-group col-md-2">'+
+                '<label for="inputPassword4">Hour</label>'+
+                '<select  class="form-control"id="trainingCertificatehour" name="hour[]">'+
+
+                '<option value="">Select Hour</option>'+
+                @for($i = 1 ; $i <51 ; $i++)
+                    '<option value="{{$i}}">{{$i}}</option>'+
+                @endfor
+                    '</select>'+
+                '</div>'+
+                '<div class="form-group col-md-2">'+
+                '<label for="inputPassword4">Day</label>'+
+                '<select  class="form-control"id="trainingCertificateday" name="day[]">'+
+
+                '<option value="">Select Day</option>'+
+                @for($i = 1 ; $i <51 ; $i++)
+                    '<option value="{{$i}}">{{$i}}</option>'+
+                @endfor
+                    '</select>'+
+                '</div>'+
+                '<div class="form-group col-md-2">'+
+                '<label for="inputPassword4">Week</label>' +
+                '<select  class="form-control"id="trainingCertificateweek" name="week[]">'+
+
+                '<option value="">Select Week</option>'+
+                @for($i = 1 ; $i <51 ; $i++)
+                    '<option value="{{$i}}">{{$i}}</option>'+
+                @endfor
+                    '</select>'+
+                '</div>'+
+                '<div class="form-group col-md-2">'+
+                '<label for="inputPassword4">Month</label>'+
+                '<select  class="form-control"id="trainingCertificatemonth" name="month[]">'+
+
+                '<option value="">Select Month</option>'+
+                @for($i = 1 ; $i <51 ; $i++)
+                    '<option value="{{$i}}">{{$i}}</option>'+
+                @endfor
+                    '</select>'+
+                '</div>'+
+                '<div class="form-group col-md-2">'+
+                '<label for="inputPassword4">Year</label>'+
+                '<select  class="form-control"id="trainingCertificateyear" name="year[]">'+
+
+                '<option value="">Select Year</option>'+
+                @for($i = 1 ; $i <51 ; $i++)
+                    '<option value="{{$i}}">{{$i}}</option>'+
+                @endfor
+                    '</select>'+
+                '</div>'+
+                '</div>'
                 );
                 newTextBoxDiv.appendTo("#TextBoxesGroup");
 

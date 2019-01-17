@@ -75,6 +75,11 @@
                                                     <label for="inputPassword4">{{$val->endDate}}</label>
                                                     {{--<input type="text" class="form-control date" name="endDate{{$val->professionalQualificationId}}" value="{{$val->endDate}}" id="end" placeholder="date">--}}
                                                 </div>
+                                                <div class="form-group col-md-12">
+                                                    <label for="inputEmail4">Duration :</label>
+                                                    <label for="inputEmail4">{{"H:".$val->hour." D:".$val->day." W:".$val->week." M:".$val->month." Y:".$val->year}} </label>
+                                                    {{--<input type="text" class="form-control" name="vanue[]" id="inputEmail4" placeholder="vanue" required>--}}
+                                                </div>
 
                                                 <div class="form-group col-md-4">
                                                     <label for="inputPassword4">Staus :</label>
@@ -366,16 +371,69 @@
                     '<input type="text" class="form-control date" name="endDate[]" id="end'+counter+'"  placeholder="date">'+
                     '</div>'+
 
+
+                    '</div>'+
+                    '<div class="row" style="margin-left: 10px">'+
+                    '<label>Duration</label>'+
+                    '<div class="form-group col-md-2">'+
+                    '<label for="inputPassword4">Hour</label>'+
+                    '<select  class="form-control"id="trainingCertificatehour" name="hour[]">'+
+
+                    '<option value="">Select Hour</option>'+
+                        @for($i = 1 ; $i <51 ; $i++)
+                            '<option value="{{$i}}">{{$i}}</option>'+
+                        @endfor
+                            '</select>'+
+                    '</div>'+
+                    '<div class="form-group col-md-2">'+
+                    '<label for="inputPassword4">Day</label>'+
+                    '<select  class="form-control"id="trainingCertificateday" name="day[]">'+
+
+                    '<option value="">Select Day</option>'+
+                        @for($i = 1 ; $i <51 ; $i++)
+                            '<option value="{{$i}}">{{$i}}</option>'+
+                        @endfor
+                            '</select>'+
+                    '</div>'+
+                    '<div class="form-group col-md-2">'+
+                    '<label for="inputPassword4">Week</label>' +
+                    '<select  class="form-control"id="trainingCertificateweek" name="week[]">'+
+
+                    '<option value="">Select Week</option>'+
+                        @for($i = 1 ; $i <51 ; $i++)
+                            '<option value="{{$i}}">{{$i}}</option>'+
+                        @endfor
+                            '</select>'+
+                    '</div>'+
+                    '<div class="form-group col-md-2">'+
+                    '<label for="inputPassword4">Month</label>'+
+                    '<select  class="form-control"id="trainingCertificatemonth" name="month[]">'+
+
+                    '<option value="">Select Month</option>'+
+                        @for($i = 1 ; $i <51 ; $i++)
+                            '<option value="{{$i}}">{{$i}}</option>'+
+                        @endfor
+                            '</select>'+
+                    '</div>'+
+                    '<div class="form-group col-md-2">'+
+                    '<label for="inputPassword4">Year</label>'+
+                    '<select  class="form-control"id="trainingCertificateyear" name="year[]">'+
+
+                    '<option value="">Select Year</option>'+
+                        @for($i = 1 ; $i <51 ; $i++)
+                            '<option value="{{$i}}">{{$i}}</option>'+
+                        @endfor
+                            '</select>'+
+                    '</div>'+
+                    '</div>'+
                     '<div class="form-group col-md-4">'+
                     '<label for="inputPassword4">Staus<span style="color: red">*</span></label>'+
                     '<select  class="form-control" id="professinalCertificateStatus'+counter+'" name="status[]">'+
                     '<option value="">Select Status</option>'+
-                    @foreach(COMPLETING_STATUS as $key=>$value)
-                        '<option value="{{$value}}">{{$key}}</option>'+
-                    @endforeach
-                    '</select>'+
-                    '</div>'+
-                    '</div>'+
+                        @foreach(COMPLETING_STATUS as $key=>$value)
+                            '<option value="{{$value}}">{{$key}}</option>'+
+                        @endforeach
+                            '</select>'+
                     '</div>'
                 );
                 newTextBoxDiv.appendTo("#TextBoxesGroup");
