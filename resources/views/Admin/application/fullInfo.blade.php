@@ -56,12 +56,15 @@
 
 
         <td colspan="3" height="250" style="text-align: center;vertical-align: middle;">
-            Why Do You Want to Leave Your Current Job?<br>
-            @if($empQuestion->where('empId',$emp->employeeId)->first())
-            {{$empQuestion->where('empId',$emp->employeeId)->first()->ques_1}}
-            @endif
+            {{--Why Do You Want to Leave Your Current Job?<br>--}}
+            {{--@if($empQuestion->where('empId',$emp->employeeId)->first())--}}
+            {{--{{$empQuestion->where('empId',$emp->employeeId)->first()->ques_1}}--}}
+            {{--@endif--}}
 
+            @foreach($empQuestionAns->where('fkemployeeId',$emp->employeeId) as $ans)
+                {{$ans->ques}} <br>  {{$ans->ans}} <br>
 
+            @endforeach
         </td>
 
 
@@ -165,10 +168,10 @@
 
             </span></td>
         <td colspan="3" height="250" style="text-align: center;vertical-align: middle;">
-            Why you are intersted for the position applied for?<br>
-            @if($empQuestion->where('empId',$emp->employeeId)->first())
-                {{$empQuestion->where('empId',$emp->employeeId)->first()->ques_2}}
-            @endif
+            {{--Why you are intersted for the position applied for?<br>--}}
+            {{--@if($empQuestion->where('empId',$emp->employeeId)->first())--}}
+                {{--{{$empQuestion->where('empId',$emp->employeeId)->first()->ques_2}}--}}
+            {{--@endif--}}
         </td>
         <td colspan="4" height="250" style="text-align: center;vertical-align: middle;">
             Professional Qualification:<br>

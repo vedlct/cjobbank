@@ -55,7 +55,7 @@
         </table>
 
 
-
+        @if($personalInfo->objective)
         <table border="0" style="width:100%;border: none;">
             <tr>
                 <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"> <b>Objective</b> </td>
@@ -66,6 +66,8 @@
                 <td style="width: 100%;border: none;">{{$personalInfo->objective}}</td>
             </tr>
         </table>
+
+        @endif
 
 
         <table border="0" style="width:100%; margin-top: 25px; border: none;">

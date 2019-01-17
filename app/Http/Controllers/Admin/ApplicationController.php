@@ -6,6 +6,7 @@ use App\Education;
 use App\Educationlevel;
 use App\Educationmajor;
 use App\Employee;
+use App\EmpQuestionObjAns;
 use App\Ethnicity;
 use App\HR;
 use App\Http\Controllers\Controller;
@@ -97,30 +98,6 @@ class ApplicationController extends Controller
         $allJobTitle=Job::select('title')->get();
         $allEducationLevel=Educationlevel::where('status',1)->get();
         $mailTamplate=MailTamplate::select('tamplateName','tamplateId')->get();
-//        $allEducationMajor=Educationmajor::select('educationMajorId','educationMajorName')->get();
-
-//        $application = Jobapply::select('jobapply.jobapply as applyId', 'jobapply.applydate', 'zone.zoneName', 'employee.firstName', 'employee.lastName', 'job.title',
-//                                    DB::raw("CONCAT((year(now()) - year(`employee`.`dateOfBirth`)),'.',(month(now()) - month(`employee`.`dateOfBirth`))) as Age"))
-//            ->leftJoin('employee', 'employee.employeeId', '=', 'jobapply.fkemployeeId')
-//            ->leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')
-//            ->leftJoin('education', 'education.fkemployeeId', '=', 'employee.employeeId')
-//            ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
-//            ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
-//            ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'degree.degreeId')
-//            ->leftJoin('professionalqualification', 'professionalqualification.fkemployeeId', '=', 'employee.employeeId')
-//            ->leftJoin('jobexperience', 'jobexperience.fkemployeeId', '=', 'employee.employeeId')
-//            ->leftJoin('traning', 'traning.fkemployeeId', '=', 'employee.employeeId')
-//            ->leftJoin('zone', 'zone.zoneId', '=', 'job.fkzoneId')
-//            ->distinct('educationmajor.fkDegreeId')
-//        ;
-//
-//        $application= $application->where('jobexperience.startDate','>=','2018-08-24');
-
-
-
-//        return $application=$application->get();
-
-
 
 
         return view('Admin.application.manageApplication',compact('religion','ethnicity','natinality','allZone','allJobTitle','allEducationLevel','allEducationMajor','organizationType','mailTamplate'));
@@ -228,123 +205,7 @@ class ApplicationController extends Controller
 
     public function exportAppliedCandidate(Request $r)
     {
-       /* $ethnicity=Ethnicity::get();
 
-        $appliedList=$r->jobApply;
-        $filePath=public_path ()."/exportedExcel";
-        $fileName="AppliedCandidateList".date("Y-m-d_H-i-s");
-
-        $fileInfo=array(
-            'fileName'=>$fileName,
-            'filePath'=>$fileName,
-        );
-
-
-
-        $list=array();
-        $eduList=array();
-        $qualificationList=array();
-        $trainingList=array();
-        $jobExperienceList=array();
-        $salaryList=array();
-        $refreeList=array();
-        $relativeList=array();
-
-        for ($i=0;$i<count($appliedList);$i++){
-            $appliedId=$appliedList[$i];
-
-            $empId=Jobapply::where('jobapply',$appliedId)->first()->fkemployeeId;
-
-            $newlist=Employee::select('employee.*',DB::raw("TIMESTAMPDIFF(YEAR,`employee`.`dateOfBirth`,CURDATE()) as AgeYear"),DB::raw("MONTH(`employee`.`dateOfBirth`)-MONTH(CURDATE()) as AgeMonth"))
-//                ->leftJoin('education', 'education.fkemployeeId', '=', 'employee.employeeId')
-                ->where('employee.employeeId',$empId)
-                ->get()
-                ->toArray();
-            $education=Education::select('education.institutionName','board.boardName','education.fkemployeeId','education.status','education.resultSystem','education.result','educationlevel.educationLevelName',
-                'educationmajor.educationMajorName','education.fkMajorId')
-                ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
-                ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
-                ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
-                ->leftJoin('board', 'board.boardId', '=', 'education.fkboardId')
-                ->where('fkemployeeId',$empId)
-                ->get()
-                ->toArray();
-
-            $pQualification=ProfessionalQualification::where('professionalqualification.fkemployeeId',$empId)
-                ->get()
-                ->toArray();
-
-            $training=Traning::where('fkemployeeId',$empId)
-                ->get()
-                ->toArray();
-
-            $jobExperience=JobExperience::where('fkemployeeId',$empId)
-                ->get()
-                ->toArray();
-
-            $jobApply=Jobapply::where('jobapply',$appliedId)
-                ->get()
-                ->toArray();
-
-            $refree=Refree::where('fkemployeeId',$empId)
-                ->get()
-                ->toArray();
-            $relList=RelativeInCb::where('fkemployeeId',$empId)
-                ->get()
-                ->toArray();
-
-            $jobTitle=Jobapply::select('job.title','job.deadline')
-                ->leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')->where('jobapply',$appliedId)->first();
-
-
-            $list=array_merge($list,$newlist);
-            $eduList=array_merge($eduList,$education);
-            $trainingList=array_merge($trainingList,$training);
-            $qualificationList=array_merge($qualificationList,$pQualification);
-            $jobExperienceList=array_merge($jobExperienceList,$jobExperience);
-            $salaryList=array_merge($salaryList,$jobApply);
-            $refreeList=array_merge($refreeList,$refree);
-            $relativeList=array_merge($relativeList,$relList);
-
-        }
-//        return $jobTitle;
-
-
-        $check=Excel::create($fileName,function($excel) use($list,$filePath,$ethnicity,$eduList,$qualificationList,$trainingList,$jobExperienceList,$salaryList,$refreeList,$relativeList,$jobTitle) {
-            $excel->sheet('First sheet', function($sheet) use($list,$ethnicity,$eduList,$qualificationList,$trainingList,$jobExperienceList,$salaryList,$refreeList,$relativeList,$jobTitle) {
-
-
-                $sheet->loadView('Admin.application.AppliedCandidateList')
-                    ->with('AppliedCandidateList',$list)
-                    ->with('ethnicity',$ethnicity)
-                    ->with('educationList',$eduList)
-                    ->with('qualificationList',$qualificationList)
-                    ->with('trainingList',$trainingList)
-                    ->with('jobExperienceList',$jobExperienceList)
-                    ->with('salaryList',$salaryList)
-                    ->with('refreeList',$refreeList)
-                    ->with('jobTitle',$jobTitle)
-                    ->with('relativeList',$relativeList);
-            });
-
-        })->store('xls',$filePath);
-
-        if ($check){
-            $message=array('message'=>$fileName .'.xls has been downloaded',
-                'success'=>'1');
-            $fileInfo=array_merge($fileInfo,$message);
-        }else{
-
-            $message=array('message'=>'Someting went wrong',
-                'success'=>'0');
-            $fileInfo=array_merge($fileInfo,$message);
-
-
-        }
-        return $fileInfo;
-
-
-        */
 
         $appliedList=$r->jobApply;
         $excelName=$r->excelName;
@@ -425,14 +286,18 @@ class ApplicationController extends Controller
             ->leftJoin('languageskill','languageskill.id','emp_language.fklanguageSkill')
             ->get();
 
+        $empQuestionAns=EmpQuestionObjAns::whereIn('fkemployeeId',$employees)
+            ->leftJoin('emp_ques_objective_and_info','emp_ques_objective_and_info.id','emp_ques_objective_and_info_ans.fkqusId')
+            ->get();
 
 
 
 
-        $check=Excel::create($fileName,function($excel)use ($employee,$excelName,$social,$education,$pQualification,$training,$jobExperience,$reference,$empQuestion,$extraCurriculumn,$computerSkill,$languageHead,$language) {
+
+        $check=Excel::create($fileName,function($excel)use ($empQuestionAns,$employee,$excelName,$social,$education,$pQualification,$training,$jobExperience,$reference,$empQuestion,$extraCurriculumn,$computerSkill,$languageHead,$language) {
 
 
-            $excel->sheet('First sheet', function($sheet) use ($employee,$excelName,$social,$education,$pQualification,$training,$jobExperience,$reference,$empQuestion,$extraCurriculumn,$computerSkill,$languageHead,$language) {
+            $excel->sheet('First sheet', function($sheet) use ($empQuestionAns,$employee,$excelName,$social,$education,$pQualification,$training,$jobExperience,$reference,$empQuestion,$extraCurriculumn,$computerSkill,$languageHead,$language) {
 
                 $sheet->setStyle(array(
                     'font' => array(
@@ -444,7 +309,7 @@ class ApplicationController extends Controller
 
                 $sheet->loadView('Admin.application.fullInfo',
                     compact('employee','social','education','pQualification','training','jobExperience','reference',
-                        'empQuestion','extraCurriculumn','computerSkill','languageHead','language','excelName'));
+                        'empQuestion','extraCurriculumn','computerSkill','languageHead','language','excelName','empQuestionAns'));
             });
 
         })->store('xls',$filePath);
