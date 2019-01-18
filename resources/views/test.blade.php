@@ -55,7 +55,7 @@
         </table>
 
 
-
+        @if($personalInfo->objective)
         <table border="0" style="width:100%;border: none;">
             <tr>
                 <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"> <b>Objective</b> </td>
@@ -66,6 +66,8 @@
                 <td style="width: 100%;border: none;">{{$personalInfo->objective}}</td>
             </tr>
         </table>
+
+        @endif
 
 
         <table border="0" style="width:100%; margin-top: 25px; border: none;">
@@ -176,6 +178,7 @@
                         Duration: {{$certificate->startDate}} -  @if($certificate->endDate) {{$certificate->endDate}} @else
                             Continuing
                         @endif
+                        ({{$certificate->year}}Y - {{$certificate->month}}M - {{$certificate->week}}W - {{$certificate->day}}D - {{$certificate->hour}}H)
                         .
 
                     </td>
@@ -214,7 +217,9 @@
 
                     <td style="border: none; width: 20%">Session</td>
                     <td style="border: none; width: 5%">:</td>
-                    <td style="border: none;">{{$certificate->startDate}} - {{$certificate->endDate}}</td>
+                    <td style="border: none;">{{$certificate->startDate}} - {{$certificate->endDate}}
+                        ({{$certificate->year}}Y - {{$certificate->month}}M - {{$certificate->week}}W - {{$certificate->day}}D - {{$certificate->hour}}H)
+                    </td>
                 </tr>
 
                 <tr>

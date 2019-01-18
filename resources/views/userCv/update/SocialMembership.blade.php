@@ -12,7 +12,7 @@
 
                         <div id="" class="tab">
 
-                            <h2 style="margin-bottom: 30px;">Membership in Social Networks</h2>
+                            <h2 style="margin-bottom: 30px;">Certification of membership in Social network/forum</h2>
                             @php($tempHr=0)
                             @foreach($socialMembership as $socialMembership)
                                 @if($tempHr>0)

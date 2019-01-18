@@ -59,7 +59,7 @@
                                         <input type="text" class="form-control date" name="endDate[]" id="end" placeholder="date">
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <label for="inputPassword4">Address </label>
+                                        <label for="inputPassword4">Organization Address </label>
                                         <textarea class="form-control" name="address[]"  id="address" placeholder="address"></textarea>
                                     </div>
                                     <div class="form-group col-md-12">

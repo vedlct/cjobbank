@@ -34,7 +34,7 @@
                     <input type="text" class="form-control date" name="endDate" value="{{$experience->endDate}}"  id="end" placeholder="date">
                 </div>
                 <div class="form-group col-md-12">
-                    <label for="inputPassword4">Address<span style="color: red">*</span></label>
+                    <label for="inputPassword4">Organization Address<span style="color: red">*</span></label>
                     <textarea required class="form-control" name="address"id="address" placeholder="address">{{$experience->address}} </textarea>
                 </div>
 
