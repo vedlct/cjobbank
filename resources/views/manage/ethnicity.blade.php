@@ -21,7 +21,7 @@
 
                             <label for="">Ethnicity<span style="color: red">*</span></label>
 
-                            <input class="form-control" name="ethnicityName" required type="text">
+                            <input class="form-control" name="ethnicityName" maxlength="50" required type="text">
 
                         </div>
                         <div class="form-group">

@@ -15,7 +15,7 @@
 
                         <div id="regForm" class="tab">
 
-                            <h2 style="margin-bottom: 30px;">Relative in CB</h2>
+                            <h2 style="margin-bottom: 30px;">Do you have any relatives working in Caritas Bangladesh?</h2>
 
 
 
@@ -24,18 +24,28 @@
 
                                 <form action="{{route('submit.relativeYesOrNo')}}" method="post">
                                     {{csrf_field()}}
-                                <div class="row form-group">
-                                <label>Do You Have Relative in Caritas BD ?</label>
-                                <input onclick="myradio()" @if($relativeInCB->relativeInCB =='1') checked @endif class="form-control" type="radio" value="1" name="relativeincb" required> YES
-                                <input onclick="myradio()" @if($relativeInCB->relativeInCB =='0') checked @endif class="form-control" type="radio" value="0" name="relativeincb" required> NO
+                                <div class="  form-group">
+                                <label>Do you have any relatives working in Caritas Bangladesh ?</label>
+                                    <div class="col-md-3 mb-3">
+                                        <input class="form-check-input" onclick="myradio()" @if($relativeInCB->relativeInCB =='1') checked @endif class="form-control" type="radio" value="1" name="relativeincb" required> YES
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <input class="form-check-input" onclick="myradio()" @if($relativeInCB->relativeInCB =='0') checked @endif class="form-control" type="radio" value="0" name="relativeincb" required> NO
+                                    </div>
+
+
                                 </div>
 
 
                                 <div style="overflow:auto;" id="ques">
                                     <div style="float:right;">
                                         <a href="{{route('refree.index')}}"><button type="button" id="btnPevious" >Back</button></a>
-                                        {{--<a id="btnPevious" class="btn btn-success" href="{{route('JobExperience.index')}}">Back</a>--}}
+                                        <a href="{{route('candidate.viewUserCv')}}"><button type="button" id="btnPevious" >Done</button></a>
                                         <button type="submit" >Save</button>
+
+                                        {{--@if($relativeInCB->relativeInCB == '1' || $relativeInCB->relativeInCB== '0' )--}}
+                                            {{--<a href="{{route('refree.index')}}"><button type="button" id="nextBtn" >Next</button></a>--}}
+                                        {{--@endif--}}
 
                                     </div>
                                 </div>
@@ -72,7 +82,7 @@
 
 
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Degisnation<span style="color: red">*</span></label>
+                                        <label for="inputEmail4">Designation<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" name="degisnation[]" id="degisnation" placeholder="degisnation" required>
                                     </div>
 
@@ -91,9 +101,12 @@
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
-                                <a href="{{route('refree.index')}}"><button type="button" id="btnPevious" >Back</button></a>
+                                <a href="{{route('candidate.membershipInSocialNetwork.index')}}"><button type="button" id="btnPevious" >Back</button></a>
                                 {{--<a id="btnPevious" class="btn btn-success" href="{{route('JobExperience.index')}}">Back</a>--}}
                                 <button type="submit" id="submitBtn">Save</button>
+                                @if($relativeInCB->relativeInCB == '1' || $relativeInCB->relativeInCB== '0' )
+                                    <a href="{{route('refree.index')}}"><button type="button" id="nextBtn" >Next</button></a>
+                                @endif
 
                             </div>
                         </div>

@@ -14,17 +14,8 @@
 
                             <h2 style="margin-bottom: 30px;">Professional Certification </h2>
 
-                            <div class="row">
-                                <div class="form-group">
-                                    <label class="control-label">Has Professional Certification?<span style="color: red" class="required">*</span>:</label>
-                                    <div class="col-md-10">
-                                        <input type="radio" required <?php if ($hasProfCertificate =='1'){?>checked<?php } ?> name="hasProfCertificate" value="1"> Yes&nbsp;&nbsp;
-                                        <input type="radio" required <?php if ($hasProfCertificate =='0'){?>checked<?php } ?> name="hasProfCertificate" value="0"> No&nbsp;&nbsp;
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>
-                            <div style="display: none" id="profCertificateDiv">
+
+                            <div  id="profCertificateDiv">
 
                                 @php($tempHr=0)
                                 @foreach($professional as $val)
@@ -84,6 +75,11 @@
                                                     <label for="inputPassword4">{{$val->endDate}}</label>
                                                     {{--<input type="text" class="form-control date" name="endDate{{$val->professionalQualificationId}}" value="{{$val->endDate}}" id="end" placeholder="date">--}}
                                                 </div>
+                                                <div class="form-group col-md-12">
+                                                    <label for="inputEmail4">Duration :</label>
+                                                    <label for="inputEmail4">{{"H:".$val->hour." D:".$val->day." W:".$val->week." M:".$val->month." Y:".$val->year}} </label>
+                                                    {{--<input type="text" class="form-control" name="vanue[]" id="inputEmail4" placeholder="vanue" required>--}}
+                                                </div>
 
                                                 <div class="form-group col-md-4">
                                                     <label for="inputPassword4">Staus :</label>
@@ -118,6 +114,7 @@
                     <form id="" action="{{route('submit.cvProfessionalCertificate')}}"  method="post">
                         <!-- One "tab" for each step in the form: -->
                         {{csrf_field()}}
+                        <input class="form-check-input"  type="hidden"  name="hasProfCertificate" value="1">
                         <div id="TextBoxesGroup">
 
 
@@ -128,15 +125,15 @@
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
-                                <a href="{{route('candidate.cvEducation')}}"><button type="button" id="btnPevious">Back</button></a>
+                                <a href="{{route('candidate.cvTrainingCertificate')}}"><button type="button" id="btnPevious">Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
-                                <a href="{{route('candidate.cvTrainingCertificate')}}"><button type="button" id="nextBtn" >Next</button></a>
+                                <a href="{{route('JobExperience.index')}}"><button type="button" id="nextBtn" >Next</button></a>
                             </div>
                         </div>
 
                     </form>
                         </div>
-                        </div>
+
 
 
                         <!-- Circles which indicates the steps of the form: -->
@@ -229,25 +226,7 @@
             });
         });
 
-        $("input[name=hasProfCertificate]").click( function () {
 
-            if ($(this).val()=='1'){
-                $('#profCertificateDiv').show();
-            }else {
-                $('#profCertificateDiv').hide();
-            }
-        });
-
-        $(document).ready(function(){
-            if ('<?php echo $hasProfCertificate?>'== '0'){
-
-                $('#profCertificateDiv').hide();
-
-            }else if ('<?php echo $hasProfCertificate?>'== '1') {
-                $('#profCertificateDiv').show();
-
-            }
-        });
 
         $(document).ready(function(){
 
@@ -392,16 +371,69 @@
                     '<input type="text" class="form-control date" name="endDate[]" id="end'+counter+'"  placeholder="date">'+
                     '</div>'+
 
+
+                    '</div>'+
+                    '<div class="row" style="margin-left: 10px">'+
+                    '<label>Duration</label>'+
+                    '<div class="form-group col-md-2">'+
+                    '<label for="inputPassword4">Hour</label>'+
+                    '<select  class="form-control"id="trainingCertificatehour" name="hour[]">'+
+
+                    '<option value="">Select Hour</option>'+
+                        @for($i = 1 ; $i <51 ; $i++)
+                            '<option value="{{$i}}">{{$i}}</option>'+
+                        @endfor
+                            '</select>'+
+                    '</div>'+
+                    '<div class="form-group col-md-2">'+
+                    '<label for="inputPassword4">Day</label>'+
+                    '<select  class="form-control"id="trainingCertificateday" name="day[]">'+
+
+                    '<option value="">Select Day</option>'+
+                        @for($i = 1 ; $i <51 ; $i++)
+                            '<option value="{{$i}}">{{$i}}</option>'+
+                        @endfor
+                            '</select>'+
+                    '</div>'+
+                    '<div class="form-group col-md-2">'+
+                    '<label for="inputPassword4">Week</label>' +
+                    '<select  class="form-control"id="trainingCertificateweek" name="week[]">'+
+
+                    '<option value="">Select Week</option>'+
+                        @for($i = 1 ; $i <51 ; $i++)
+                            '<option value="{{$i}}">{{$i}}</option>'+
+                        @endfor
+                            '</select>'+
+                    '</div>'+
+                    '<div class="form-group col-md-2">'+
+                    '<label for="inputPassword4">Month</label>'+
+                    '<select  class="form-control"id="trainingCertificatemonth" name="month[]">'+
+
+                    '<option value="">Select Month</option>'+
+                        @for($i = 1 ; $i <51 ; $i++)
+                            '<option value="{{$i}}">{{$i}}</option>'+
+                        @endfor
+                            '</select>'+
+                    '</div>'+
+                    '<div class="form-group col-md-2">'+
+                    '<label for="inputPassword4">Year</label>'+
+                    '<select  class="form-control"id="trainingCertificateyear" name="year[]">'+
+
+                    '<option value="">Select Year</option>'+
+                        @for($i = 1 ; $i <51 ; $i++)
+                            '<option value="{{$i}}">{{$i}}</option>'+
+                        @endfor
+                            '</select>'+
+                    '</div>'+
+                    '</div>'+
                     '<div class="form-group col-md-4">'+
                     '<label for="inputPassword4">Staus<span style="color: red">*</span></label>'+
                     '<select  class="form-control" id="professinalCertificateStatus'+counter+'" name="status[]">'+
                     '<option value="">Select Status</option>'+
-                    @foreach(COMPLETING_STATUS as $key=>$value)
-                        '<option value="{{$value}}">{{$key}}</option>'+
-                    @endforeach
-                    '</select>'+
-                    '</div>'+
-                    '</div>'+
+                        @foreach(COMPLETING_STATUS as $key=>$value)
+                            '<option value="{{$value}}">{{$key}}</option>'+
+                        @endforeach
+                            '</select>'+
                     '</div>'
                 );
                 newTextBoxDiv.appendTo("#TextBoxesGroup");

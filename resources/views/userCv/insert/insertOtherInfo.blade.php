@@ -14,12 +14,12 @@
                         {{csrf_field()}}
                         <div class="tab">
 
-                            <h2 style="margin-bottom: 40px; text-align: center;">Employee Other Info</h2>
+                            <h2 style="margin-bottom: 40px; text-align: center;">Other Information</h2>
 
 
                             <div class="form-group">
                                 <label for="">Extra Curricular Activities</label>
-                                <textarea type="text" name="extraCurricularActivities" maxlength="200"  rows="2"
+                                <textarea type="text" name="extraCurricularActivities" maxlength="300"  rows="2"
                                           class="form-control{{ $errors->has('extraCurricularActivities') ? ' is-invalid' : '' }}"
                                           id="objective" placeholder="Extra Curricular Activities">{{ old('extraCurricularActivities') }}</textarea>
                                 @if ($errors->has('extraCurricularActivities'))
@@ -31,7 +31,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Interests</label>
-                                <textarea type="text" name="interests" maxlength="200"  rows="3"
+                                <textarea type="text" name="interests" maxlength="300"  rows="3"
                                           class="form-control {{ $errors->has('interests') ? ' is-invalid' : '' }}"
                                           id="interests" placeholder="Interests">{{ old('interests') }}</textarea>
                                 @if ($errors->has('interests'))
@@ -43,7 +43,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Award Received</label>
-                                <textarea type="text" name="awardReceived" maxlength="200"  rows="3"
+                                <textarea type="text" name="awardReceived" maxlength="300"  rows="3"
                                           class="form-control {{ $errors->has('awardReceived') ? ' is-invalid' : '' }}"
                                           id="awardReceived" placeholder="Award Received">{{ old('awardReceived') }}</textarea>
                                 @if ($errors->has('awardReceived'))
@@ -55,7 +55,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Research Publication</label>
-                                <textarea type="text" name="researchPublication" maxlength="200"
+                                <textarea type="text" name="researchPublication" maxlength="300"
                                            rows="3" class="form-control {{ $errors->has('researchPublication') ? ' is-invalid' : '' }}"
                                           id="researchPublication" placeholder="Research Publication">{{ old('researchPublication') }}</textarea>
                                 @if ($errors->has('researchPublication'))
@@ -71,11 +71,13 @@
                         <div style="overflow:auto;">
                             <div style="float:right;">
 
-                                <a href="{{route('candidate.cvPersonalInfo')}}"><button type="button" id="btnPevious">Back</button></a>
+
+                                <a href="{{route('candidate.skill.index')}}"><button type="button" id="btnPevious" >Back</button></a>
 
                                 <button type="submit" id="submitBtn">Save</button>
 
-                                <a href="{{route('candidate.cvEducation')}}"><button type="button" id="nextBtn" >Next</button></a>
+
+                                {{--<a href="{{route('candidate.skill.index')}}"><button type="button" id="nextBtn" >Next</button></a>--}}
                             </div>
                         </div>
 

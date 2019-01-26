@@ -3,7 +3,7 @@
 
     <div class="form-group">
         <label for="">Designation</label>
-        <input type="text" class="form-control" value="{{$editDesignation->designationName}}" placeholder="designation" name="designationName" required>
+        <input type="text" maxlength="50" class="form-control" value="{{$editDesignation->designationName}}" placeholder="designation" name="designationName" required>
     </div>
     {{--<div class="form-group">--}}
         {{--<label for="">Serial &nbsp;</label><label>(last serial number: <span style="color: red">{{$lastserialnumber->serial}}</span>)</label>--}}

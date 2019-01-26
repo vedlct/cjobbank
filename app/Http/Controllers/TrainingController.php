@@ -32,18 +32,43 @@ class TrainingController extends Controller
         });
     }
    public function index(){
-       $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
-       $trainings=Traning::where('fkemployeeId',$employee->employeeId)
-           ->leftJoin('country','country.countryId','traning.countryId')
-           ->get();
 
+       $employee=Employee::select('employeeId','hasTrainingInfo')->where('fkuserId',Auth::user()->userId)->first();
        $countries=Country::get();
-       if($trainings->isEmpty()){
-           return view('userCv.insert.TrainingCertificate',compact('countries'));
-       }
 
-       else{
-           return view('userCv.update.TrainingCertificate',compact('countries','trainings'));
+
+
+       if (is_null($employee->hasTrainingInfo)) {
+
+           $hasTrainingInfo = null;
+
+           return view('userCv.insert.TrainingCertificate',compact('countries','hasTrainingInfo'));
+       }
+       elseif ($employee->hasTrainingInfo == 0){
+
+           $hasTrainingInfo=0;
+
+           return view('userCv.insert.TrainingCertificate',compact('countries','hasTrainingInfo'));
+
+       }elseif ($employee->hasTrainingInfo == 1){
+
+           $hasTrainingInfo=1;
+
+           $trainings=Traning::where('fkemployeeId',$employee->employeeId)
+               ->leftJoin('country','country.countryId','traning.countryId')
+               ->get();
+
+
+
+           if($trainings->isEmpty()){
+               return view('userCv.insert.TrainingCertificate',compact('countries','hasTrainingInfo'));
+           }
+
+           else{
+               return view('userCv.update.TrainingCertificate',compact('countries','trainings','hasTrainingInfo'));
+           }
+
+
        }
 
 
@@ -53,19 +78,38 @@ class TrainingController extends Controller
        $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)
            ->first();
 
-       for($i=0;$i<count($r->trainingName);$i++){
-          $training=new Traning();
-          $training->trainingName=$r->trainingName[$i];
-          $training->startDate=$r->startDate[$i];
-          $training->endDate=$r->endDate[$i];
-          $training->vanue=$r->vanue[$i];
-          $training->countryId=$r->countryId[$i];
-          $training->fkemployeeId=$employee->employeeId;
+       $emp=Employee::findOrFail($employee->employeeId);
+       if ($r->hasTrainingInfo==0){
 
-          $training->status=$r->status[$i];
+           $emp->hasTrainingInfo=0;
+           $emp->save();
 
-          $training->save();
        }
+       else {
+           $emp->hasTrainingInfo = 1;
+           $emp->save();
+
+           for($i=0;$i<count($r->trainingName);$i++){
+               $training=new Traning();
+               $training->trainingName=$r->trainingName[$i];
+               $training->startDate=$r->startDate[$i];
+               $training->endDate=$r->endDate[$i];
+               $training->vanue=$r->vanue[$i];
+               $training->countryId=$r->countryId[$i];
+               $training->fkemployeeId=$employee->employeeId;
+
+               $training->status=$r->status[$i];
+               $training->hour=$r->hour[$i];
+               $training->day=$r->day[$i];
+               $training->week=$r->week[$i];
+               $training->month=$r->month[$i];
+               $training->year=$r->year[$i];
+
+               $training->save();
+           }
+       }
+
+
 
        Session::flash('message', 'Traning Added Successfully');
        return redirect()->route('candidate.cvTrainingCertificate');
@@ -87,6 +131,11 @@ class TrainingController extends Controller
        $training->vanue=$r->vanue;
        $training->countryId=$r->countryId;
        $training->status=$r->status;
+       $training->hour=$r->hour;
+       $training->day=$r->day;
+       $training->week=$r->week;
+       $training->month=$r->month;
+       $training->year=$r->year;
 
        $training->save();
 
@@ -97,6 +146,20 @@ class TrainingController extends Controller
 
    public function deleteCvTraning(Request $r){
        Traning::destroy($r->traningId);
+
+       $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
+
+       $count=Traning::where('fkemployeeId',$employee->employeeId)
+           ->count();
+
+       if ($count == 0){
+           $emp=Employee::findOrFail($employee->employeeId);
+
+           $emp->hasTrainingInfo=0;
+           $emp->save();
+
+       }
+
        Session::flash('message', 'Traning Deleted Successfully');
    }
 }

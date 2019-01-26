@@ -3,7 +3,7 @@
 
     <div class="form-group">
         <label for="">Agreement Qustions</label>
-        <input type="text" class="form-control" value="{{$editAgreement->qus}}" placeholder="Qus" name="qus" required>
+        <input type="text" maxlength="1000" class="form-control" value="{{$editAgreement->qus}}" placeholder="Qus" name="qus" required>
     </div>
     <div class="form-group">
         <label for="">Serial &nbsp;</label><label>(last serial number: <span style="color: red">{{$lastserialnumber->serial}}</span>)</label>

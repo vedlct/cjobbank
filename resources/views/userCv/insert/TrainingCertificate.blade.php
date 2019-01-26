@@ -8,32 +8,45 @@
             <div class="card">
                 <div style="background-color: #F1F1F1" class="card-body">
 
-                    <form id="regForm" action="{{route('insert.cvTrainingCertificate')}}" method="post">
+                    <form id="regForm" onsubmit="return chkTrainingCertificate()" action="{{route('insert.cvTrainingCertificate')}}" method="post">
                         <!-- One "tab" for each step in the form: -->
                         {{csrf_field()}}
 
                         <div id="" class="tab">
 
-                            <h2 style="margin-bottom: 30px;">Training Certification </h2>
+                            <h2 style="margin-bottom: 30px;text-align: center">Training Certification </h2>
+
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label">Has Training Certification?<span style="color: red" class="required">*</span>:</label>
+                                    <div class="col-md-10 mb-3">
+                                        <input class="form-check-input" type="radio" required <?php if ($hasTrainingInfo=='1'){?>checked<?php } ?> name="hasTrainingInfo" value="1"> Yes&nbsp;&nbsp;
+                                    </div>
+                                    <div class="col-md-10">
+                                        <input class="form-check-input" type="radio" required <?php if ($hasTrainingInfo=='0'){?>checked<?php } ?> name="hasTrainingInfo" value="0"> No&nbsp;&nbsp;
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="display: none" id="TrainCertificateDiv">
                             <div id="TextBoxesGroup">
 
                                 <div class="row">
                                     <div class="form-group col-md-12">
 
                                         <label for="inputEmail4">Name Of The Training<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" name="trainingName[]" id="trainingName" placeholder="training name" required>
+                                        <input type="text" class="form-control" name="trainingName[]" id="trainingName" placeholder="training name" >
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="form-group col-md-8">
                                         <label for="inputEmail4">Venue <span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" name="vanue[]" id="vanue" placeholder="vanue" required>
+                                        <input type="text" class="form-control" name="vanue[]" id="vanue" placeholder="vanue" >
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="inputPassword4">Country<span style="color: red">*</span></label>
                                         {{--<input type="text" class="form-control"  id="inputPassword4" placeholder="">--}}
-                                        <select required class="form-control" id="country" name="countryId[]">
+                                        <select  class="form-control" id="country" name="countryId[]">
                                             <option value="">Select Country</option>
                                             @foreach($countries as $country)
                                                 <option value="{{$country->countryId}}">{{$country->countryName}}</option>
@@ -44,7 +57,7 @@
 
                                     <div class="form-group col-md-4">
                                         <label for="inputPassword4">Start Date<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" required>
+                                        <input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" >
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="inputPassword4">End Date</label>
@@ -53,7 +66,7 @@
 
                                     <div class="form-group col-md-4">
                                         <label for="inputPassword4">Staus<span style="color: red">*</span></label>
-                                        <select required class="form-control"id="trainingCertificateStatus" name="status[]">
+                                        <select  class="form-control"id="trainingCertificateStatus" name="status[]">
 
                                             <option value="">Select Status</option>
                                             @foreach(COMPLETING_STATUS as $key=>$value)
@@ -66,6 +79,59 @@
 
                                 </div>
 
+                                <div class="row">
+                                    <label>Duration</label>
+                                    <div class="form-group col-md-2">
+                                        <label for="inputPassword4">Hour</label>
+                                        <select  class="form-control"id="trainingCertificatehour" name="hour[]">
+
+                                            <option value="">Select Hour</option>
+                                            @for($i = 1 ; $i <51 ; $i++)
+                                                <option value="{{$i}}">{{$i}}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="inputPassword4">Day</label>
+                                        <select  class="form-control"id="trainingCertificateday" name="day[]">
+
+                                            <option value="">Select Day</option>
+                                            @for($i = 1 ; $i <51 ; $i++)
+                                                <option value="{{$i}}">{{$i}}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="inputPassword4">Week</label>
+                                        <select  class="form-control"id="trainingCertificateweek" name="week[]">
+
+                                            <option value="">Select Week</option>
+                                            @for($i = 1 ; $i <51 ; $i++)
+                                                <option value="{{$i}}">{{$i}}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="inputPassword4">Month</label>
+                                        <select  class="form-control"id="trainingCertificatemonth" name="month[]">
+
+                                            <option value="">Select Month</option>
+                                            @for($i = 1 ; $i <51 ; $i++)
+                                                <option value="{{$i}}">{{$i}}</option>
+                                            @endfor
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label for="inputPassword4">Year</label>
+                                        <select  class="form-control"id="trainingCertificateyear" name="year[]">
+
+                                            <option value="">Select Year</option>
+                                            @for($i = 1 ; $i <51 ; $i++)
+                                                <option value="{{$i}}">{{$i}}</option>
+                                            @endfor
+                                        </select>
+                                </div>
+
 
                             </div>
 
@@ -73,11 +139,15 @@
                             <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
                         </div>
+                        </div>
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
-                                <a href="{{route('candidate.cvProfessionalCertificate')}}"><button type="button" id="btnPevious" >Back</button></a>
+                                <a href="{{route('cv.OthersInfo')}}"><button type="button" id="btnPevious" >Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
+                                @if($hasTrainingInfo == '1' || $hasTrainingInfo == '0')
+                                <a href="{{route('candidate.cvProfessionalCertificate')}}"><button type="button" id="btnNext" >Next</button></a>
+                                @endif
 
                             </div>
                         </div>
@@ -94,8 +164,9 @@
                             <span class="step"></span>
                             <span class="step"></span>
                         </div>
-
+                        </div>
                     </form>
+
 
                 </div>
             </div>
@@ -127,7 +198,30 @@
             //... and adds the "active" class on the current step:
             x[(n+3)].className += " active";
         }
+
+        $("input[name=hasTrainingInfo]").click( function () {
+
+            if ($(this).val()=='1'){
+                $('#TrainCertificateDiv').show();
+            }else {
+                $('#TrainCertificateDiv').hide();
+            }
+        });
+
+        $(document).ready(function(){
+            if ('<?php echo $hasTrainingInfo?>'== '0'){
+
+                $('#TrainCertificateDiv').hide();
+
+            }else if ('<?php echo $hasTrainingInfo?>'== '1'){
+                $('#TrainCertificateDiv').show();
+
+            }
+        });
+
     </script>
+
+
 
 
 
@@ -141,6 +235,92 @@
 //            });
         });
 
+        function chkTrainingCertificate() {
+
+            if ($("input[name=hasTrainingInfo]:checked").val()=="1") {
+
+
+
+                var trainingName = document.getElementsByName('trainingName[]');
+                var vanue = document.getElementsByName('vanue[]');
+                var country = document.getElementsByName('countryId[]');
+
+                var start = document.getElementsByName('startDate[]');
+                var end = document.getElementsByName('endDate[]');
+                var trainingCertificateStatus = document.getElementsByName('status[]');
+
+                for (i=0;i<trainingName.length;i++) {
+
+
+                    if (trainingName[i].value == "") {
+
+                        var errorMsg = 'Please Type a Training Name First!!'
+                        validationError(errorMsg)
+                        return false;
+                    }
+                    if (trainingName[i].value.length > 100) {
+
+                        var errorMsg = 'Training Name Should not more than 100 Charecter Length!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    // if (vanue[i].value == "") {
+                    //
+                    //     var errorMsg = 'Please Type a Venue First!!'
+                    //     validationError(errorMsg)
+                    //     return false;
+                    //
+                    // }
+                    if (vanue[i].value.length > 255) {
+
+                        var errorMsg = 'value Should not more than 255 Charecter Length!!';
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    // if (country[i].value == "") {
+                    //
+                    //     var errorMsg = 'Please Select a Country First!!';
+                    //     validationError(errorMsg)
+                    //     return false;
+                    //
+                    // }
+
+                    // if (start[i].value == "") {
+                    //     var errorMsg = 'Please Select a Strat Date First!!';
+                    //     validationError(errorMsg)
+                    //     return false;
+                    // }
+//        if(end==""){
+//            var errorMsg='Please Select a End Date First!!';
+//            validationError(errorMsg)
+//            return false;
+//        }
+
+                    if (trainingCertificateStatus[i].value == "") {
+                        var errorMsg = 'Please Select a Status First!!';
+                        validationError(errorMsg)
+                        return false;
+                    }
+
+                    if (end[i].value != "") {
+
+
+                        if (Date.parse(end[i].value) < Date.parse(start[i].value)) {
+                            var errorMsg = 'End date should after Start Date!!';
+                            validationError(errorMsg);
+                            return false;
+                        }
+                    }
+                }
+            }else {
+
+                return true;
+
+            }
+
+        }
         $(document).ready(function(){
 
             var counter = 1;
@@ -347,6 +527,61 @@
                 '<option value="{{$value}}">{{$key}}</option>'+
                         @endforeach
                     '</select>'+
+                    '</div>'+
+                    '<div class="row">'+
+                    '<label>Duration</label>'+
+                    '<div class="form-group col-md-2">'+
+                    '<label for="inputPassword4">Hour</label>'+
+                    '<select  class="form-control"id="trainingCertificatehour" name="hour[]">'+
+
+                    '<option value="">Select Hour</option>'+
+                    @for($i = 1 ; $i <51 ; $i++)
+                    '<option value="{{$i}}">{{$i}}</option>'+
+                        @endfor
+                    '</select>'+
+                    '</div>'+
+                    '<div class="form-group col-md-2">'+
+                    '<label for="inputPassword4">Day</label>'+
+                    '<select  class="form-control"id="trainingCertificateday" name="day[]">'+
+
+                    '<option value="">Select Day</option>'+
+                    @for($i = 1 ; $i <51 ; $i++)
+                    '<option value="{{$i}}">{{$i}}</option>'+
+                        @endfor
+                    '</select>'+
+                    '</div>'+
+                    '<div class="form-group col-md-2">'+
+                    '<label for="inputPassword4">Week</label>' +
+                    '<select  class="form-control"id="trainingCertificateweek" name="week[]">'+
+
+                    '<option value="">Select Week</option>'+
+                    @for($i = 1 ; $i <51 ; $i++)
+                    '<option value="{{$i}}">{{$i}}</option>'+
+                        @endfor
+                    '</select>'+
+                    '</div>'+
+                    '<div class="form-group col-md-2">'+
+                    '<label for="inputPassword4">Month</label>'+
+                    '<select  class="form-control"id="trainingCertificatemonth" name="month[]">'+
+
+                    '<option value="">Select Month</option>'+
+                @for($i = 1 ; $i <51 ; $i++)
+                '<option value="{{$i}}">{{$i}}</option>'+
+                        @endfor
+                    '</select>'+
+                    '</div>'+
+                    '<div class="form-group col-md-2">'+
+                    '<label for="inputPassword4">Year</label>'+
+                    '<select  class="form-control"id="trainingCertificateyear" name="year[]">'+
+
+                    '<option value="">Select Year</option>'+
+                @for($i = 1 ; $i <51 ; $i++)
+               '<option value="{{$i}}">{{$i}}</option>'+
+                        @endfor
+                    '</select>'+
+                    '</div>'+
+
+
                     '</div>'
 
                 );

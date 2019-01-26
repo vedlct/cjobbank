@@ -42,6 +42,12 @@
                                             <label for="inputEmail4">{{$training->vanue}} </label>
                                             {{--<input type="text" class="form-control" name="vanue[]" id="inputEmail4" placeholder="vanue" required>--}}
                                         </div>
+
+                                        <div class="form-group col-md-12">
+                                            <label for="inputEmail4">Duration :</label>
+                                            <label for="inputEmail4">{{"H:".$training->hour." D:".$training->day." W:".$training->week." M:".$training->month." Y:".$training->year}} </label>
+                                            {{--<input type="text" class="form-control" name="vanue[]" id="inputEmail4" placeholder="vanue" required>--}}
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-6">
@@ -86,6 +92,8 @@
                         </div>
                             <form action="{{route('insert.cvTrainingCertificate')}}" method="post">
                                 <!-- One "tab" for each step in the form: -->
+
+                                <input type="hidden" required name="hasTrainingInfo" value="1">
                                 {{csrf_field()}}
 
                             <div id="TextBoxesGroup">
@@ -101,9 +109,9 @@
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
-                                <a href="{{route('candidate.cvProfessionalCertificate')}}"><button type="button" id="btnPevious" >Back</button></a>
+                                <a href="{{route('cv.OthersInfo')}}"><button type="button" id="btnPevious" >Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
-                                <a href="{{route('JobExperience.index')}}"><button type="button" id="nextBtn" >Next</button></a>
+                                <a href="{{route('candidate.cvProfessionalCertificate')}}"><button type="button" id="nextBtn" >Next</button></a>
                             </div>
                         </div>
                         </form>
@@ -340,8 +348,60 @@
                     '<option value="{{$value}}">{{$key}}</option>'+
                 @endforeach
                     '</select>'+
-                '</div>'
+                '</div>'+
+                '<div class="row">'+
+                '<label>Duration</label>'+
+                '<div class="form-group col-md-2">'+
+                '<label for="inputPassword4">Hour</label>'+
+                '<select  class="form-control"id="trainingCertificatehour" name="hour[]">'+
 
+                '<option value="">Select Hour</option>'+
+                @for($i = 1 ; $i <51 ; $i++)
+                    '<option value="{{$i}}">{{$i}}</option>'+
+                @endfor
+                    '</select>'+
+                '</div>'+
+                '<div class="form-group col-md-2">'+
+                '<label for="inputPassword4">Day</label>'+
+                '<select  class="form-control"id="trainingCertificateday" name="day[]">'+
+
+                '<option value="">Select Day</option>'+
+                @for($i = 1 ; $i <51 ; $i++)
+                    '<option value="{{$i}}">{{$i}}</option>'+
+                @endfor
+                    '</select>'+
+                '</div>'+
+                '<div class="form-group col-md-2">'+
+                '<label for="inputPassword4">Week</label>' +
+                '<select  class="form-control"id="trainingCertificateweek" name="week[]">'+
+
+                '<option value="">Select Week</option>'+
+                @for($i = 1 ; $i <51 ; $i++)
+                    '<option value="{{$i}}">{{$i}}</option>'+
+                @endfor
+                    '</select>'+
+                '</div>'+
+                '<div class="form-group col-md-2">'+
+                '<label for="inputPassword4">Month</label>'+
+                '<select  class="form-control"id="trainingCertificatemonth" name="month[]">'+
+
+                '<option value="">Select Month</option>'+
+                @for($i = 1 ; $i <51 ; $i++)
+                    '<option value="{{$i}}">{{$i}}</option>'+
+                @endfor
+                    '</select>'+
+                '</div>'+
+                '<div class="form-group col-md-2">'+
+                '<label for="inputPassword4">Year</label>'+
+                '<select  class="form-control"id="trainingCertificateyear" name="year[]">'+
+
+                '<option value="">Select Year</option>'+
+                @for($i = 1 ; $i <51 ; $i++)
+                    '<option value="{{$i}}">{{$i}}</option>'+
+                @endfor
+                    '</select>'+
+                '</div>'+
+                '</div>'
                 );
                 newTextBoxDiv.appendTo("#TextBoxesGroup");
 

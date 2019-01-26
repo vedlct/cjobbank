@@ -6,7 +6,7 @@
         <div  class="row">
             <div class="form-group col-md-4">
 
-                <label for="">Education Degree<span style="color: red">*</span></label>
+                <label for="">Education Exam/level<span style="color: red">*</span></label>
                 <select name="educationLevel" class="form-control" required="" id="educationLevel">
                     <option value="">Select Education Level</option>
                     @foreach($educationLevel as $edulevel)
@@ -21,8 +21,16 @@
                 <select name="degree" class="form-control" required id="degree">
                     <option value="">Select Degree</option>
                     <option  selected value="{{$education->degreeId}}">{{$education->degreeName}}</option>
+                    <option  value="{{OTHERS}}">{{OTHERS}}</option>
+
 
                 </select>
+
+            </div>
+
+            <div style="display: none" id="degreeNameDiv" class="form-group col-md-12">
+                <label for="">Degree Name</label>
+                <input type="text" maxlength="255" name="degreeName" class="form-control" id="degreeName"  placeholder="">
 
             </div>
 
@@ -37,7 +45,7 @@
 
 
 
-            <div @if(($education->eduLvlUnder == 2 || $education->eduLvlUnder== null) && $education->universityType != null) style=" display: none" @endif id="instituteNameDiv" class="form-group col-md-3">
+            <div @if(($education->eduLvlUnder != 2 || $education->eduLvlUnder== null) && $education->universityType == null) style=" display: none" @endif id="instituteNameDiv" class="form-group col-md-3">
                 <label for="">University Type</label>
                 <select name="universityType" class="form-control" id="universityType">
                     <option value="" >Select Type</option>
@@ -52,14 +60,21 @@
 
 
 
-            <div @if($education->eduLvlUnder == 1 || $education->eduLvlUnder==null ) style="display: none" @endif id="boardDiv" class="form-group col-md-3">
-                <label for="">Board</label>
+            <div @if($education->eduLvlUnder != 1 || $education->eduLvlUnder==null ) style="display: none" @endif id="boardDiv" class="form-group col-md-3">
+                <label for="">Board/University</label>
                 <select name="board" class="form-control" id="board">
                     <option value="" >Select Board</option>
                     @foreach($boards as $board)
                         <option value="{{$board->boardId}}" @if($board->boardId == $education->fkboardId) selected @endif >{{$board->boardName}}</option>
                     @endforeach
+                    <option value="{{OTHERS}}" >{{OTHERS}}</option>
                 </select>
+            </div>
+
+            <div style="display: none" id="boardNameDiv" class="form-group col-md-3">
+                <label for="">Board Name</label>
+                <input type="text" maxlength="255" name="boardName" class="form-control" id="boardName"  placeholder="">
+
             </div>
 
 
@@ -91,22 +106,34 @@
 
 
             <div class="form-group col-md-3">
-                <label for="">Year<span style="color: red">*</span></label>
+                <label for="">Passing Year<span style="color: red">*</span></label>
                 <input name="passingYear" type="text" class="form-control date" value="{{$education->passingYear}}" id="passingYear" required placeholder="passing Year">
             </div>
             <div class="form-group col-md-3">
                 <label for="">Result System<span style="color: red">*</span></label>
                 <select name="resultSystem" class="form-control" required id="resultSydtem">
                     <option value="">Select System</option>
+                    @if($education->resultSystem!=4)
                     @foreach(RESULT_SYSTEM as $key=>$value)
                         <option @if($value==$education->resultSystem)selected @endif value="{{$value}}">{{$key}}</option>
+
                     @endforeach
+                        <option value="{{OTHERS}}" >{{OTHERS}}</option>
+                    @else
+                    <option selected value="{{OTHERS}}" >{{OTHERS}}</option>
+                    @endif
                 </select>
+            </div>
+
+            <div @if($education->resultSystem !=4)style="display: none" @endif id="resultSydtemNameDiv" class="form-group col-md-3">
+                <label for="">Result System Name</label>
+                <input type="text" maxlength="255" name="resultSydtemName" value="{{$education->resultSystemName}}" class="form-control" id="resultSydtemName"  placeholder="">
+
             </div>
 
             <div class="form-group col-md-3">
                 <label for="">CGPA<span style="color: red">*</span></label>
-                <input name="result" type="text" class="form-control" value="{{$education->result}}" required id="cgpa" placeholder="">
+                <input name="result" type="text" class="form-control" value="{{$education->result}}" required id="cgpa" maxlength="10" placeholder="">
             </div>
             <div class="form-group col-md-3">
                 <label for="">Out of</label>
@@ -162,6 +189,24 @@
 
 
     });
+
+    $('#board').on('change', function() {
+
+        var board =$('#board').val();
+        if (board == "others"){
+
+            $("#boardNameDiv").show();
+        }else {
+
+
+            $("#boardNameDiv").hide();
+
+
+        }
+
+
+
+    });
     $('#educationLevel').on('change', function() {
 
         $.ajax({
@@ -186,18 +231,43 @@
 
                     $("#instituteNameDiv").show();
                     $("#boardDiv").show();
-
+                    $("#board").val($("#board option:first").val());
+                    $("#universityType").val($("#universityType option:first").val());
+                    $("#resultSydtem").val($("#resultSydtem option:first").val());
+                    $("#resultSydtemNameDiv").hide();
+                    $("#boardNameDiv").hide();
                     $("#universityTypeDiv").hide();
+                    $("#degreeNameDiv").hide();
+                    $("#subjectNameDiv").hide();
+                    $('#majorSub').children('option:not(:first,:last)').remove();
 
                 }else if (data == 1){
-                    $("#instituteNameDiv").hide();
+                    $("#instituteNameDiv").show();
                     $("#boardDiv").show();
+                    $("#board").val($("#board option:first").val());
+                    $("#universityType").val($("#universityType option:first").val());
+                    $("#resultSydtem").val($("#resultSydtem option:first").val());
+                    $("#resultSydtemNameDiv").hide();
+
+                    $("#boardNameDiv").hide();
                     $("#universityTypeDiv").hide();
+                    $("#degreeNameDiv").hide();
+                    $("#subjectNameDiv").hide();
+                    $('#majorSub').children('option:not(:first,:last)').remove();
 
                 }else if (data == 2){
                     $("#instituteNameDiv").show();
-                    $("#boardDiv").hide();
                     $("#universityTypeDiv").show();
+                    $("#boardDiv").hide();
+                    $("#board").val($("#board option:first").val());
+                    $("#universityType").val($("#universityType option:first").val());
+                    $("#resultSydtem").val($("#resultSydtem option:first").val());
+                    $("#resultSydtemNameDiv").hide();
+
+                    $("#boardNameDiv").hide();
+                    $("#degreeNameDiv").hide();
+                    $("#subjectNameDiv").hide();
+                    $('#majorSub').children('option:not(:first,:last)').remove();
                 }
 
             }
@@ -206,18 +276,56 @@
 
     });
 
+    $('#resultSydtem').on('change', function() {
+
+        var resultSydtem =$('#resultSydtem').val();
+        if (resultSydtem == "others"){
+
+            $("#resultSydtemNameDiv").show();
+        }else {
+
+
+            $("#resultSydtemNameDiv").hide();
+
+
+        }
+
+    });
+
     $('#degree').on('change', function() {
 
-        $.ajax({
-            type:'POST',
-            url:'{{route('cv.getMajorForEducation')}}',
-            data:{id:this.value},
-            cache: false,
-            success:function(data) {
-                document.getElementById("majorSub").innerHTML = data;
 
-            }
-        });
+
+
+        var degree =$('#degree').val();
+        if (degree == "others"){
+
+            $("#degreeNameDiv").show();
+            $("#subjectNameDiv").show();
+
+            $('#majorSub').children('option:not(:first,:last)').remove();
+            $("#majorSub option[value='{{OTHERS}}']").attr("selected", true);
+            $("#resultSydtem").val($("#resultSydtem option:first").val());
+
+        }else {
+
+
+            $("#degreeNameDiv").hide();
+            $("#subjectNameDiv").hide();
+            $("#resultSydtem").val($("#resultSydtem option:first").val());
+
+
+            $.ajax({
+                type:'POST',
+                url:'{{route('cv.getMajorForEducation')}}',
+                data:{id:this.value},
+                cache: false,
+                success:function(data) {
+                    document.getElementById("majorSub").innerHTML = data;
+
+                }
+            });
+        }
 
     });
 
@@ -237,18 +345,19 @@
 
         var universityType=$('#universityType').val();
 
+        if(major=="others" && $("#subjectName").val()=="" ){
+            var errorMsg='Please Type a Subject Name First!!'
+            validationError(errorMsg);
+            return false;
+        }
+
         if(educationLevel==""){
 
             var errorMsg='Please Select a Education Level First!!';
             validationError(errorMsg);
             return false;
         }
-        if(major=="others" && $("#subjectName").val()=="" ){
 
-            var errorMsg='Please Type a Subject Name First!!';
-            validationError(errorMsg);
-            return false;
-        }
         if(degree==""){
 
             var errorMsg='Please Select Degree First!!';
@@ -275,7 +384,7 @@
             }
         }
 
-
+        if(universityType!="") {
             if (universityType == "") {
 
                 var errorMsg = 'Please Type universityType First!!';
@@ -283,6 +392,7 @@
                 return false;
 
             }
+        }
 
 
 

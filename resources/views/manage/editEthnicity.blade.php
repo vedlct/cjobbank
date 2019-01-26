@@ -6,7 +6,7 @@
 
         <label for="">Ethnicity<span style="color: red">*</span></label>
 
-        <input class="form-control" name="ethnicityName" value="{{$editEthnicity->ethnicityName}}" required type="text">
+        <input class="form-control" name="ethnicityName" maxlength="50" value="{{$editEthnicity->ethnicityName}}" required type="text">
 
     </div>
 

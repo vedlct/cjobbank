@@ -14,7 +14,7 @@
 
                         <div id="" class="tab">
 
-                            <h2 style="margin-bottom: 30px;">Referee</h2>
+                            <h2 style="margin-bottom: 30px;">Referee - 1</h2>
                             <div id="TextBoxesGroup1">
 
                                 <div class="row">
@@ -33,18 +33,18 @@
 
 
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Present Position<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" name="presentposition[]" id="presentposition" placeholder="position" required>
+                                        <label for="inputEmail4">Present Position<span style="color: red"></span></label>
+                                        <input type="text" class="form-control" name="presentposition[]" id="presentposition" placeholder="position" >
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label for="inputPassword4">Organization<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" required>
+                                        <label for="inputPassword4">Name Of Organization<span style="color: red"></span></label>
+                                        <input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" >
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label for="inputPassword4">Email<span style="color: red">*</span></label>
-                                        <input type="email" class="form-control" name="email[]" id="email" placeholder="email" required>
+                                        <label for="inputPassword4">Email<span style="color: red"></span></label>
+                                        <input type="email" class="form-control" name="email[]" id="email" placeholder="email" >
                                     </div>
 
                                     <div class="form-group col-md-6">
@@ -65,6 +65,7 @@
 
                             </div>
 <hr>
+                            <h2 style="margin-bottom: 30px;">Referee - 2</h2>
                             <div id="TextBoxesGroup">
 
                                 <div class="row">
@@ -122,9 +123,10 @@
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
-                                <a href="{{route('JobExperience.index')}}"><button type="button" id="btnPevious" >Back</button></a>
+                                <a href="{{route('candidate.membershipInSocialNetwork.index')}}"><button type="button" id="btnPevious" >Back</button></a>
                                 {{--<a id="btnPevious" class="btn btn-success" href="{{route('JobExperience.index')}}">Back</a>--}}
                                 <button type="submit" id="submitBtn">Save</button>
+                                <a href="{{route('relativeInCaritas.getRelationInfo')}}"><button type="button" id="btnNext" >Next</button></a>
 
                             </div>
                         </div>
@@ -243,13 +245,13 @@
 
                     }
 
-                    if(presentposition==""){
-
-                        var errorMsg='Please Type Present Position First!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
+                    // if(presentposition==""){
+                    //
+                    //     var errorMsg='Please Type Present Position First!!'
+                    //     validationError(errorMsg)
+                    //     return false;
+                    //
+                    // }
                     if (presentposition.length > 100){
 
                         var errorMsg='Present Position Should not more than 100 Charecter Length!!';
@@ -257,13 +259,13 @@
                         return false;
 
                     }
-                    if(organization==""){
-
-                        var errorMsg='Please Type Organization First!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
+                    // if(organization==""){
+                    //
+                    //     var errorMsg='Please Type Organization First!!'
+                    //     validationError(errorMsg)
+                    //     return false;
+                    //
+                    // }
                     if (organization.length > 100){
 
                         var errorMsg='Organization Should not more than 100 Charecter Length!!';
@@ -309,15 +311,15 @@
 
                     }
 
-                    if(email==""){
+                    // if(email==""){
+                    //
+                    //     var errorMsg='Please Type a Email First!!'
+                    //     validationError(errorMsg)
+                    //     return false;
+                    //
+                    // }
 
-                        var errorMsg='Please Type a Email First!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
-
-                    if(!email.match(mailformat))
+                    if(email!="" && !email.match(mailformat))
                     {
                         var errorMsg='You have entered an invalid email address!';
                         validationError(errorMsg);
@@ -460,6 +462,7 @@
                     .attr("id", 'TextBoxDiv' + counter).attr("class", 'row');
                 newTextBoxDiv.after().html(
                     '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>'+
+                    '<h2 style="margin-bottom: 30px;">Referee - '+(counter+2)+'</h2>'+
                     '  <div class="row"> ' +
                     '<div class="form-group col-md-6"> ' +
                     '<label for="inputEmail4">First Name<span style="color: red">*</span></label> ' +

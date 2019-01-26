@@ -3,7 +3,7 @@
 
     <div class="form-group">
         <label for="">Skill</label>
-        <input type="text" class="form-control" value="{{$skill->skillName}}" placeholder="skill" name="skillName" required>
+        <input type="text" maxlength="255" class="form-control" value="{{$skill->skillName}}" placeholder="skill" name="skillName" required>
     </div>
     {{--<div class="form-group">--}}
     {{--<label for="">Serial &nbsp;</label><label>(last serial number: <span style="color: red">{{$lastserialnumber->serial}}</span>)</label>--}}

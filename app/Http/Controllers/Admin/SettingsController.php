@@ -10,9 +10,12 @@ use App\Education;
 use App\Educationlevel;
 use App\Educationmajor;
 use App\Ethnicity;
+use App\LanguageHead;
 use App\Nationality;
 
 use App\OtherSkillInformation;
+use App\QuestionObjective;
+use App\QuestionObjectiveAndInfo;
 use App\Religion;
 
 use App\OrganizationType;
@@ -99,6 +102,52 @@ class SettingsController extends Controller
         $zone->save();
         Session::flash('message', 'Zone Updated Successfully!');
         return redirect()->route('manage.zone');
+    }
+
+
+    /*---------------------- Language -----------------*/
+    public function language(){
+        $languages=LanguageHead::get();
+
+        return view('manage.language',compact('languages'));
+    }
+
+    public function insertLanguage(Request $r){
+        $r->validate([
+            'language' => 'required|max:25|unique:languagehead,languagename',
+
+        ]);
+        $language=new LanguageHead();
+        $language->languagename=$r->language;
+
+        if ($r->status ==""){
+            $language->status='1';
+        }else{
+            $language->status=$r->status;
+        }
+
+        $language->save();
+
+        Session::flash('message', 'Language Added Successfully!');
+        return back();
+    }
+
+    public function editLanguage(Request $r){
+        $language=LanguageHead::findOrFail($r->id);
+
+        return view('manage.editLanguage',compact('language'));
+    }
+    public function updateLanguage($id,Request $r){
+        $language=LanguageHead::findOrFail($r->id);
+        $language->languagename=$r->language;
+        if ($r->status ==""){
+            $language->status='1';
+        }else{
+            $language->status=$r->status;
+        }
+        $language->save();
+        Session::flash('message', 'Language Updated Successfully!');
+        return redirect()->route('manage.language');
     }
 
     /*---------------------- Education -----------------*/
@@ -444,6 +493,7 @@ class SettingsController extends Controller
 
     }
 
+
     public function editAgreement(Request $r){
         $editAgreement=Aggrementqus::findOrFail($r->id);
         $lastserialnumber = Aggrementqus::select('serial')
@@ -451,6 +501,7 @@ class SettingsController extends Controller
             ->first();
         return view('manage.editAgreement',compact('editAgreement', 'lastserialnumber'));
     }
+
 
     public function updateAgreement($id,Request $r){
 
@@ -469,6 +520,7 @@ class SettingsController extends Controller
         return redirect()->route('manage.agreement');
 
     }
+
 
 
     /*====================== Degisnation ============================*/
@@ -657,5 +709,64 @@ class SettingsController extends Controller
         return redirect()->route('manage.otherSkill');
 
     }
+    /* careerObjectiveAndApplicationInformation */
+
+    public function careerObjectiveAndApplicationInformation(){
+
+
+        $questionObj=QuestionObjectiveAndInfo::get();
+        $lastserialnumber = QuestionObjectiveAndInfo::select('serial')
+            ->orderBy('serial', 'DESC')
+            ->first();
+
+       
+        return view('manage.careerObjectiveAndApplication',compact('questionObj','lastserialnumber'));
+    }
+
+    public function insertobjectivePageQuestion(Request $r){
+        $r->validate([
+            'qus' => 'required',
+            'serial' => 'required|unique:emp_ques_objective_and_info,serial',
+
+        ]);
+        $agreement =new QuestionObjectiveAndInfo();
+        $agreement->ques=$r->qus;
+        $agreement->serial=$r->serial;
+        $agreement->save();
+
+        Session::flash('message', 'Question Added Successfully!');
+        return redirect()->route('manage.careerObjectiveAndApplicationInformation');
+
+    }
+
+    public function editobjectivePageQuestion(Request $r){
+
+        $editAgreement=QuestionObjectiveAndInfo::findOrFail($r->id);
+        $lastserialnumber = QuestionObjectiveAndInfo::select('serial')
+            ->orderBy('serial', 'DESC')
+            ->first();
+
+        return view('manage.editCareerObjectiveAndApplicationInformation',compact('editAgreement', 'lastserialnumber'));
+    }
+
+    public function updateobjectivePageQuestion($id,Request $r){
+
+        $r->validate([
+            'qus' => 'required',
+            'serial' => 'required|unique:emp_ques_objective_and_info,serial,'.$id.',id',
+
+        ]);
+
+        $agreement =QuestionObjectiveAndInfo::findOrFail($id);
+        $agreement->ques=$r->qus;
+        $agreement->serial=$r->serial;
+        $agreement->status = $r->status;
+        $agreement->save();
+
+        Session::flash('message', 'Updated Successfully!');
+        return redirect()->route('manage.careerObjectiveAndApplicationInformation');
+
+    }
+
 
 }

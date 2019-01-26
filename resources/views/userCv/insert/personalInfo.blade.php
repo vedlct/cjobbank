@@ -2,7 +2,17 @@
 
 @section('content')
 
+    <style>
+        strong{
+            color: red;
+        }
+        #imageMsg,#signMsg{
+            display: none;
+        }
+    </style>
+
     <div class="row ">
+
 
         <div class="col-12 ">
             <div style="background-color: #F1F1F1" class="card">
@@ -175,7 +185,7 @@
                                 </div>
 
                                 <div class="form-group col-md-6">
-                                    <label for="">NID<span style="color: red">*</span></label>
+                                    <label for="">NID / BID<span style="color: red">*</span></label>
                                     <input type="text" required name="nId" class="form-control {{ $errors->has('nId') ? ' is-invalid' : '' }}" value="{{ old('nId') }}" id="" placeholder="National Id">
                                     @if ($errors->has('nId'))
                                         <span class="">
@@ -186,7 +196,7 @@
 
                                 <div class="form-group col-md-6">
                                     <label for="">Passport</label>
-                                    <input type="text" placeholder="If any" class="form-control" value="{{old('passport')}}" name="passport">
+                                    <input type="text" placeholder="If any" onkeypress="return isNumberKey(event)" class="form-control" value="{{old('passport')}}" name="passport">
                                     @if ($errors->has('passport'))
 
                                         <span class="">
@@ -233,9 +243,22 @@
                             </div>
 
                             <div class="row">
+
                                 <div class="form-group col-md-6">
-                                    <label for="">Personal Mobile<span style="color: red">*</span></label>
-                                    <input type="text" name="personalMobile" class="form-control {{ $errors->has('personalMobile') ? ' is-invalid' : '' }}" value="{{ old('personalMobile') }}" id="" placeholder="Personal Mobile Number">
+                                    <label for="">Telephone No.</label>
+                                    <input type="text"  maxlength="20" onkeypress="return isNumberKey(event)" name="telephone" class="form-control {{ $errors->has('telephone') ? ' is-invalid' : '' }}" value="{{ old('telephone') }}" id="" placeholder="Telephone number">
+                                    @if ($errors->has('telephone'))
+
+                                        <span class="">
+                                        <strong>{{ $errors->first('telephone') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+
+
+                                <div class="form-group col-md-6">
+                                    <label for="">Personal phone number<span style="color: red">*</span></label>
+                                    <input type="text" maxlength="20" onkeypress="return isNumberKey(event)"name="personalMobile" class="form-control {{ $errors->has('personalMobile') ? ' is-invalid' : '' }}" value="{{ old('personalMobile') }}" id="" placeholder="Personal Mobile Number">
                                     @if ($errors->has('personalMobile'))
 
                                         <span class="">
@@ -245,22 +268,23 @@
                                 </div>
 
                                 <div class="form-group col-md-6">
-                                    <label for="">Telephone No.</label>
-                                    <input type="text"  name="telephone" class="form-control {{ $errors->has('telephone') ? ' is-invalid' : '' }}" value="{{ old('telephone') }}" id="" placeholder="Telephone number">
-                                    @if ($errors->has('telephone'))
+                                    <label for="">Alternative phone no</label>
+                                    <input  type="text" maxlength="20" onkeypress="return isNumberKey(event)" name="alternativePhoneNo" class="form-control {{ $errors->has('alternativePhoneNo') ? ' is-invalid' : '' }}" value="{{ old('alternativePhoneNo') }}" id="" placeholder="">
+                                    @if ($errors->has('alternativePhoneNo'))
 
                                         <span class="">
-                                        <strong>{{ $errors->first('telephone') }}</strong>
+                                        <strong>{{ $errors->first('alternativePhoneNo') }}</strong>
                                     </span>
                                     @endif
                                 </div>
+
 
                             </div>
 
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="">Home Telephone</label>
-                                    <input type="text" name="homeTelephone"  class="form-control {{ $errors->has('homeTelephone') ? ' is-invalid' : '' }}" value="{{ old('homeTelephone') }}" id="" placeholder="Home Telephone Number">
+                                    <input type="text" name="homeTelephone" onkeypress="return isNumberKey(event)" maxlength="20" class="form-control {{ $errors->has('homeTelephone') ? ' is-invalid' : '' }}" value="{{ old('homeTelephone') }}" id="" placeholder="Home Telephone Number">
                                     @if ($errors->has('homeTelephone'))
 
                                         <span class="">
@@ -270,7 +294,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="">Office Telephone</label>
-                                    <input type="text"  name="officeTelephone" class="form-control {{ $errors->has('officeTelephone') ? ' is-invalid' : '' }}" value="{{ old('officeTelephone') }}" id="" placeholder="Office Telephone Number">
+                                    <input type="text" maxlength="20" onkeypress="return isNumberKey(event)" name="officeTelephone" class="form-control {{ $errors->has('officeTelephone') ? ' is-invalid' : '' }}" value="{{ old('officeTelephone') }}" id="" placeholder="Office Telephone Number">
                                     @if ($errors->has('officeTelephone'))
 
                                         <span class="">
@@ -322,7 +346,7 @@
 
                                 <div class="form-group col-md-6">
                                     <label for="">Image</label>&nbsp;<strong>(Maximum Image Size 100Kb)</strong>
-                                    <input type="file" class="form-control" name="image" id="" placeholder="">
+                                    <input type="file" class="form-control" name="image" id="image" placeholder="">
                                     @if ($errors->has('image'))
 
                                         <span class="">
@@ -338,7 +362,7 @@
                                         <strong>{{ $errors->first('sign') }}</strong>
                                     </span>
                                     @endif
-                                    <input type="file" class="form-control" name="sign" id="" placeholder="">
+                                    <input type="file" class="form-control" name="sign" id="sign" placeholder="">
 
                                 </div>
 
@@ -346,9 +370,7 @@
 
                             <div style="overflow:auto;">
                                 <div style="float:right;">
-
                                     <button type="submit" id="submitBtn">Save</button>
-                                    {{--<a href="{{route('candidate.cvEducation')}}"><button type="button" id="nextBtn">Next</button></a>--}}
                                 </div>
                             </div>
 
@@ -407,6 +429,83 @@
                 format: 'yyyy-m-d'
             });
         });
+
+        function isNumberKey(evt)
+        {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+
+            return true;
+        }
+
+        $("#image").change(function() {
+
+            var val = $(this).val();
+
+            switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
+                case 'gif': case 'jpg': case 'png': case 'jpeg':
+
+                break;
+                default:
+                    $(this).val('');
+                    // error message here
+                    var errorMsg="Please Select a valid Image";
+                    validationError(errorMsg);
+                    break;
+            }
+            var picsize = (this.files[0].size);
+            if ((picsize/1024) > 100){
+                var errorMsg="Image Size Should be less then 100 KB";
+                validationError(errorMsg);
+                $(this).val('');
+
+            }
+
+        });
+        $("#sign").change(function() {
+
+            var val = $(this).val();
+
+            switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
+                case 'gif': case 'jpg': case 'png': case 'jpeg':
+
+                break;
+                default:
+                    $(this).val('');
+                    // error message here
+                    var errorMsg="Please Select a valid Image";
+                    validationError(picsize);
+                    break;
+            }
+            var picsize = (this.files[0].size);
+            if ((picsize/1024) > 50){
+                var errorMsg="Image Size Should be less then 50 KB";
+                validationError(errorMsg);
+                $(this).val('');
+
+            }
+
+        });
+
+        function validationError(errorMsg){
+
+            $.alert({
+                title: 'Error',
+                type: 'red',
+                content: errorMsg,
+                buttons: {
+                    tryAgain: {
+                        text: 'Ok',
+                        btnClass: 'btn-green',
+                        action: function () {
+
+                        }
+                    }
+                }
+            });
+
+        }
 
 
 

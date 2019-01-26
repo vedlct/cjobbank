@@ -1,15 +1,4 @@
 <?php return array (
-  'barryvdh/laravel-dompdf' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Barryvdh\\DomPDF\\ServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'PDF' => 'Barryvdh\\DomPDF\\Facade',
-    ),
-  ),
   'fideloper/proxy' => 
   array (
     'providers' => 
@@ -28,13 +17,6 @@
       'Image' => 'Intervention\\Image\\Facades\\Image',
     ),
   ),
-  'laravel/tinker' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Laravel\\Tinker\\TinkerServiceProvider',
-    ),
-  ),
   'maatwebsite/excel' => 
   array (
     'providers' => 
@@ -44,6 +26,24 @@
     'aliases' => 
     array (
       'Excel' => 'Maatwebsite\\Excel\\Facades\\Excel',
+    ),
+  ),
+  'laravel/tinker' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Tinker\\TinkerServiceProvider',
+    ),
+  ),
+  'niklasravnsborg/laravel-pdf' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'niklasravnsborg\\LaravelPdf\\PdfServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'PDF' => 'niklasravnsborg\\LaravelPdf\\Facades\\Pdf',
     ),
   ),
   'nesbot/carbon' => 

@@ -14,35 +14,107 @@
 
                         <div class="tab">
 
-                            <h2 style="margin-bottom: 30px; text-align:center">Career and Application Information</h2>
+                            <h2 style="margin-bottom: 30px; text-align:center">Career Objective and Application Information</h2>
+
+
+
 
 
                                 <div id="edit{{$employeeCvQuesObjInfo->id}}" class="row">
 
 
-                                    <div class="form-group col-md-10">
 
-                                        <label for="">#Objective</label><br>
-                                        {{$employeeCvQuesObjInfo->objective}}
-                                    </div>
 
-                                    <div class="form-group col-md-2">
-                                        <button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$employeeCvQuesObjInfo->id}})"><i class="fa fa-edit"></i></button>
-                                    </div>
 
-                                    <div class="form-group col-md-12">
+                                    @if(!$employeeCvQuesObjQuesAns->isEmpty())
 
-                                        <label for="">#Ques-1: {{CAREER_QUES['Ques1']}}</label><br>
-                                        {{$employeeCvQuesObjInfo->ques_1}}
+                                        <div class="form-group col-md-10">
 
-                                    </div>
+                                            <label for="">#Objective :</label><br>
+                                            {{$employeeCvQuesObjInfo->objective}}
+                                        </div>
 
-                                    <div class="form-group col-md-12">
+                                        <div class="form-group col-md-2">
+                                            <button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$employeeCvQuesObjInfo->id}})"><i class="fa fa-edit"></i></button>
+                                            {{--<button type="button" class="btn btn-danger btn-sm " onclick="deleteProfession({{$employeeCvQuesObjInfo->id}})"><i class="fa fa-trash"></i></button>--}}
 
-                                        <label for="">#Ques-2: {{CAREER_QUES['Ques2']}}</label><br>
-                                        {{$employeeCvQuesObjInfo->ques_2}}
+                                        </div>
 
-                                    </div>
+
+
+                                        @php
+                                            $st=1;
+
+                                        @endphp
+
+
+                                        @foreach($employeeCvQuesObjQuesAns as $empCvObjQues)
+
+                                            <div class="form-group col-md-12">
+                                                <label for="">Ques-{{$st}}: {{$empCvObjQues->ques}}<span style="color: red">*</span></label>
+                                                {{$empCvObjQues->ans}}
+
+                                            </div>
+
+                                            @php
+                                                $st++;
+                                            @endphp
+
+                                        @endforeach
+
+
+
+                                        {{--<div class="form-group col-md-12">--}}
+
+                                            {{--<label for="">#Ques-1: {{CAREER_QUES['Ques1']}}</label><br>--}}
+                                            {{--{{$employeeCvQuesObjInfo->ques_1}}--}}
+
+                                        {{--</div>--}}
+
+                                        {{--<div class="form-group col-md-12">--}}
+
+                                            {{--<label for="">#Ques-2: {{CAREER_QUES['Ques2']}}</label><br>--}}
+                                            {{--{{$employeeCvQuesObjInfo->ques_2}}--}}
+
+                                        {{--</div>--}}
+
+
+                                        {{--<div class="form-group col-md-6">--}}
+                                            {{--<label>Current Salary :</label>--}}
+                                            {{--{{$employeeCvQuesObjInfo->currentSalary}}--}}
+                                        {{--</div>--}}
+
+                                    @endif
+
+
+
+                                        <div class="form-group col-md-5">
+                                            <label>Expected Salary :</label>
+                                            {{$employeeCvQuesObjInfo->expectedSalary}}
+                                        </div>
+
+
+
+
+
+                                        <div class="form-group col-md-5">
+                                            <label>Possible Joining Date :</label>
+                                            {{$employeeCvQuesObjInfo->readyToJoinAfter}}
+                                        </div>
+
+                                        @if($employeeCvQuesObjQuesAns->isEmpty())
+
+                                        <div class="form-group col-md-2">
+                                            <button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$employeeCvQuesObjInfo->id}})"><i class="fa fa-edit"></i></button>
+                                            <button type="button" class="btn btn-danger btn-sm " onclick="deleteProfession({{$employeeCvQuesObjInfo->id}})"><i class="fa fa-trash"></i></button>
+
+                                        </div>
+                                        @endif
+
+
+
+
+
 
                                     <div class="form-group col-md-12" style="overflow:auto;">
                                         <div style="float:right;">
@@ -122,6 +194,15 @@
 
                 }
             });
+        }
+
+        function isNumberKey(evt)
+        {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+
+            return true;
         }
 
 </script>

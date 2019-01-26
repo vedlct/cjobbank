@@ -3,11 +3,11 @@
 
     <div class="form-group">
         <label for="">Nationality</label>
-        <input type="text" class="form-control" value="{{$editNationality->nationalityName}}" placeholder="degree" name="nationality" required>
+        <input type="text" class="form-control" maxlength="50" value="{{$editNationality->nationalityName}}" placeholder="nationality" name="nationality" required>
     </div>
     <div class="form-group">
         <label for="">Country Name</label>
-        <input type="text" class="form-control" value="{{$editNationality->countryName}}" placeholder="degree" name="country" required>
+        <input type="text" class="form-control" maxlength="50" value="{{$editNationality->countryName}}" placeholder="country" name="country" required>
     </div>
     <div class="form-group">
         <label for="">Status</label>

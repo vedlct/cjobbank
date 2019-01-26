@@ -8,19 +8,22 @@
             <div class="card">
                 <div style="background-color: #F1F1F1" class="card-body">
 
-                    <form id="regForm" action="{{route('submit.cvProfessionalCertificate')}}" method="post">
+                    <form id="regForm" name="regForm" action="{{route('submit.cvProfessionalCertificate')}}" onsubmit="return chkProfessinalCertificate()" method="post">
                         <!-- One "tab" for each step in the form: -->
                         {{csrf_field()}}
 
                         <div id="" class="tab">
 
-                            <h2 style="margin-bottom: 30px;">Professional Certification </h2>
+                            <h2 style="margin-bottom: 30px;text-align: center">Professional Certification </h2>
                             <div class="row">
                             <div class="form-group">
                                 <label class="control-label">Has Professional Certification?<span style="color: red" class="required">*</span>:</label>
+                                <div class="col-md-10 mb-3">
+                                    <input class="form-check-input"  type="radio" required <?php if ($hasProfCertificate=='1'){?>checked<?php } ?> name="hasProfCertificate" value="1"> Yes&nbsp;&nbsp;
+                                </div>
                                 <div class="col-md-10">
-                                    <input type="radio" required <?php if ($hasProfCertificate=='1'){?>checked<?php } ?> name="hasProfCertificate" value="1"> Yes&nbsp;&nbsp;
-                                    <input type="radio" required <?php if ($hasProfCertificate=='0'){?>checked<?php } ?> name="hasProfCertificate" value="0"> No&nbsp;&nbsp;
+
+                                    <input class="form-check-input"   type="radio" required <?php if ($hasProfCertificate=='0'){?>checked<?php } ?> name="hasProfCertificate" value="0"> No&nbsp;&nbsp;
                                 </div>
                             </div>
                             </div>
@@ -37,7 +40,7 @@
 
                                 <div class="row">
                                 <div class="form-group col-md-8">
-                                    <label for="inputEmail4">Institute Name<span style="color: red">*</span></label>
+                                    <label for="inputEmail4">Institute Name</label>
                                     <input type="text" class="form-control" name="institutionName[]" id="institutionName" placeholder="institution">
                                 </div>
                                     <div class="form-group col-md-4">
@@ -55,13 +58,71 @@
                                 </div>
 
                                 <div class="form-group col-md-4">
-                                    <label for="inputPassword4">Start Date<span style="color: red">*</span></label>
+                                    <label for="inputPassword4">Start Date</label>
                                     <input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" >
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="inputPassword4">End Date</label>
                                     <input type="text" class="form-control date" name="endDate[]" id="end" placeholder="date">
                                 </div>
+
+                                 <!--duration-->
+
+                                    <div class="row" style="margin-left: 10px">
+                                        <label>Duration</label>
+                                        <div class="form-group col-md-2">
+                                            <label for="inputPassword4">Hour</label>
+                                            <select  class="form-control"id="trainingCertificatehour" name="hour[]">
+
+                                                <option value="">Select Hour</option>
+                                                @for($i = 1 ; $i <51 ; $i++)
+                                                    <option value="{{$i}}">{{$i}}</option>
+                                                @endfor
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="inputPassword4">Day</label>
+                                            <select  class="form-control"id="trainingCertificateday" name="day[]">
+
+                                                <option value="">Select Day</option>
+                                                @for($i = 1 ; $i <51 ; $i++)
+                                                    <option value="{{$i}}">{{$i}}</option>
+                                                @endfor
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="inputPassword4">Week</label>
+                                            <select  class="form-control"id="trainingCertificateweek" name="week[]">
+
+                                                <option value="">Select Week</option>
+                                                @for($i = 1 ; $i <51 ; $i++)
+                                                    <option value="{{$i}}">{{$i}}</option>
+                                                @endfor
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="inputPassword4">Month</label>
+                                            <select  class="form-control"id="trainingCertificatemonth" name="month[]">
+
+                                                <option value="">Select Month</option>
+                                                @for($i = 1 ; $i <51 ; $i++)
+                                                    <option value="{{$i}}">{{$i}}</option>
+                                                @endfor
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="inputPassword4">Year</label>
+                                            <select  class="form-control"id="trainingCertificateyear" name="year[]">
+
+                                                <option value="">Select Year</option>
+                                                @for($i = 1 ; $i <51 ; $i++)
+                                                    <option value="{{$i}}">{{$i}}</option>
+                                                @endfor
+                                            </select>
+                                        </div>
+
+
+                                    </div>
 
                                 <div class="form-group col-md-4">
                                     <label for="inputPassword4">Staus<span style="color: red">*</span></label>
@@ -87,10 +148,10 @@
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
-
+                                <a href="{{route('candidate.cvTrainingCertificate')}}"><button type="button" id="btnPevious">Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
                                 @if($hasProfCertificate == 1 || $hasProfCertificate == 0 )
-                                <a href="{{route('candidate.cvTrainingCertificate')}}"><button type="button" id="nextBtn" >Next</button></a>
+                                <a href="{{route('JobExperience.index')}}"><button type="button" id="nextBtn" >Next</button></a>
                                 @endif
                             </div>
                         </div>
@@ -173,6 +234,117 @@
 
             }
         });
+        
+        function chkProfessinalCertificate() {
+
+
+
+            if ($("input[name=hasProfCertificate]:checked").val()=="1") {
+
+
+
+                var certificateName = document.getElementsByName("certificateName[]");
+
+                var institutionName = document.getElementsByName("institutionName[]");
+
+                var start = document.getElementsByName("start[]");
+                var end = document.getElementsByName("end[]");
+                var status = document.getElementsByName("professinalCertificateStatus[]");
+                var resultSystem = document.getElementsByName("resultSystem[]");
+
+                for (i = 0; i < certificateName.length; i++) {
+
+                    if(certificateName[i].value==""){
+
+                        var errorMsg='Please Type certificateName First!!';
+                        validationError(errorMsg);
+                        return false;
+                    }
+                    if(resultSystem[i].value==""){
+
+                        var errorMsg='Please Select resultSystem First!!';
+                        validationError(errorMsg);
+                        return false;
+                    }
+                    if (certificateName[i].value.length > 100){
+
+                        var errorMsg='certificateName Should not more than 100 Charecter Length!!';
+                        validationError(errorMsg);
+                        return false;
+
+                    }
+                    if(institutionName[i].value==""){
+
+                        var errorMsg='Please Type instituteName First!!';
+                        validationError(errorMsg);
+                        return false;
+
+                    }
+                    // if (institutionName[i].value.length > 255){
+                    //
+                    //     var errorMsg='Institute Name Should not more than 255 Charecter Length!!';
+                    //     validationError(errorMsg);
+                    //     return false;
+                    //
+                    // }
+//                    if(result==""){
+//
+//                        var errorMsg='Please Type a Result First!!';
+//                        validationError(errorMsg);
+//                        return false;
+//
+//                    }
+//                    if (result.length > 10){
+//
+//                        var errorMsg='Result Should not more than 10 Charecter Length!!';
+//                        validationError(errorMsg);
+//                        return false;
+//
+//                    }
+//                     if(start[i].value==""){
+//
+//                         var errorMsg='Please Select a Strat Date First!!';
+//                         validationError(errorMsg);
+//                         return false;
+//
+//                     }
+//                    if(end==""){
+//
+//                        var errorMsg='Please Select a End Date First!!';
+//                        validationError(errorMsg);
+//                        return false;
+//
+//                    }
+                    if (end[i].value != "") {
+
+
+                        if (Date.parse(end[i].value) < Date.parse(start[i].value)) {
+
+                            var errorMsg = 'End date should after Start Date!!'
+                            validationError(errorMsg)
+                            return false;
+
+                        }
+                    }
+
+                    if(status[i].value==""){
+
+                        var errorMsg='Please Select a status First!!';
+                        validationError(errorMsg);
+                        return false;
+
+                    }
+
+                }
+
+            }else {
+
+                return true;
+
+            }
+
+            
+        }
 
 
         $(document).ready(function(){
@@ -191,7 +363,7 @@
 
                     var certificateName=$('#certificateName').val();
                     var institutionName=$('#institutionName').val();
-//                    var result=$('#result').val();
+//                    
                     var start=$('#start').val();
                     var end=$('#end').val();
                     var status=$('#professinalCertificateStatus').val();
@@ -200,27 +372,27 @@
 
                     if(certificateName==""){
 
-                        var errorMsg='Please Type certificateName First!!'
-                        validationError(errorMsg)
+                        var errorMsg='Please Type certificateName First!!';
+                        validationError(errorMsg);
                         return false;
                     }
                     if(resultSystem==""){
 
-                        var errorMsg='Please Select resultSystem First!!'
-                        validationError(errorMsg)
+                        var errorMsg='Please Select resultSystem First!!';
+                        validationError(errorMsg);
                         return false;
                     }
                     if (certificateName.length > 100){
 
-                        var errorMsg='certificateName Should not more than 100 Charecter Length!!'
-                        validationError(errorMsg)
+                        var errorMsg='certificateName Should not more than 100 Charecter Length!!';
+                        validationError(errorMsg);
                         return false;
 
                     }
                     if(institutionName==""){
 
-                        var errorMsg='Please Type instituteName First!!'
-                        validationError(errorMsg)
+                        var errorMsg='Please Type instituteName First!!';
+                        validationError(errorMsg);
                         return false;
 
                     }
@@ -282,6 +454,7 @@
 
 
                 }
+                
                 else {
 
                     var certificateName=$('#certificateName'+(counter-1)).val();
@@ -379,10 +552,7 @@
 
 
                 }
-
-
-
-
+                
                 var newTextBoxDiv = $(document.createElement('div'))
                     .attr("id", 'TextBoxDiv' + counter).attr("class", 'row');
                 newTextBoxDiv.after().html(
@@ -394,7 +564,7 @@
                 '<input type="text" class="form-control" name="certificateName[]" id="certificateName'+counter+'" placeholder="certificate" >'+
                 '</div>'+
                 '</div>'+
-                '<div class="row">'+
+                '<div class="row" >'+
                     '<div class="form-group col-md-8">'+
                     '<label for="inputEmail4">Institute Name<span style="color: red">*</span></label>'+
                 '<input type="text" class="form-control" name="institutionName[]" id="institutionName'+counter+'" placeholder="institution" >'+
@@ -432,7 +602,60 @@
                     '</select>'+
                     '</div>'+
                     '</div>'+
-                    '</div>'
+                    '</div>'+
+                '<div class="row" style="margin-left: 10px">'+
+                '<label>Duration</label>'+
+                '<div class="form-group col-md-2">'+
+                '<label for="inputPassword4">Hour</label>'+
+                '<select  class="form-control"id="trainingCertificatehour" name="hour[]">'+
+
+                '<option value="">Select Hour</option>'+
+                @for($i = 1 ; $i <51 ; $i++)
+                    '<option value="{{$i}}">{{$i}}</option>'+
+                @endfor
+                    '</select>'+
+                '</div>'+
+                '<div class="form-group col-md-2">'+
+                '<label for="inputPassword4">Day</label>'+
+                '<select  class="form-control"id="trainingCertificateday" name="day[]">'+
+
+                '<option value="">Select Day</option>'+
+                @for($i = 1 ; $i <51 ; $i++)
+                    '<option value="{{$i}}">{{$i}}</option>'+
+                @endfor
+                    '</select>'+
+                '</div>'+
+                '<div class="form-group col-md-2">'+
+                '<label for="inputPassword4">Week</label>' +
+                '<select  class="form-control"id="trainingCertificateweek" name="week[]">'+
+
+                '<option value="">Select Week</option>'+
+                @for($i = 1 ; $i <51 ; $i++)
+                    '<option value="{{$i}}">{{$i}}</option>'+
+                @endfor
+                    '</select>'+
+                '</div>'+
+                '<div class="form-group col-md-2">'+
+                '<label for="inputPassword4">Month</label>'+
+                '<select  class="form-control"id="trainingCertificatemonth" name="month[]">'+
+
+                '<option value="">Select Month</option>'+
+                @for($i = 1 ; $i <51 ; $i++)
+                    '<option value="{{$i}}">{{$i}}</option>'+
+                @endfor
+                    '</select>'+
+                '</div>'+
+                '<div class="form-group col-md-2">'+
+                '<label for="inputPassword4">Year</label>'+
+                '<select  class="form-control"id="trainingCertificateyear" name="year[]">'+
+
+                '<option value="">Select Year</option>'+
+                @for($i = 1 ; $i <51 ; $i++)
+                    '<option value="{{$i}}">{{$i}}</option>'+
+                @endfor
+                    '</select>'+
+                '</div>'+
+                '</div>'
                 );
                 newTextBoxDiv.appendTo("#TextBoxesGroup");
 
@@ -444,6 +667,8 @@
                 $('.date').datepicker({
                     format: 'yyyy-m-d'
                 });
+                
+                
             });
 
             $("#removeButton").click(function () {

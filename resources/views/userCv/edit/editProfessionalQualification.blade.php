@@ -1,4 +1,5 @@
 <form method="post" onsubmit="return checkProfessionalQualification()" action="{{route('update.cvProfessionalCertificate')}}">
+
     {{csrf_field()}}
     <input type="hidden" name="professionalQualificationId" value="{{$professional->professionalQualificationId}}">
     <div class="row">
@@ -16,7 +17,7 @@
 
     <div class="row">
         <div class="form-group col-md-8">
-            <label for="inputEmail4">Institute Name<span style="color: red">*</span></label> :</label>
+            <label for="inputEmail4">Institute Name</label> :</label>
             <input type="text" class="form-control" name="institutionName" id="institutionName" value="{{$professional->institutionName}}" placeholder="institution" required>
         </div>
 
@@ -36,12 +37,64 @@
         </div>
 
         <div class="form-group col-md-4">
-            <label for="inputPassword4">Start Date <span style="color: red">*</span></label>:</label>
+            <label for="inputPassword4">Start Date </label>:</label>
             <input type="text" class="form-control date" name="startDate" value="{{$professional->startDate}}" id="start" placeholder="date" required>
         </div>
         <div class="form-group col-md-4">
-            <label for="inputPassword4">End Date <span style="color: red">*</span></label>:</label>
+            <label for="inputPassword4">End Date </label>:</label>
             <input type="text" class="form-control date" name="endDate" value="{{$professional->endDate}}" id="end" placeholder="date">
+        </div>
+
+        <label>Duration</label>
+        <div class="form-group col-md-2">
+            <label for="inputPassword4">Hour</label>
+            <select  class="form-control"id="trainingCertificatehour" name="hour">
+
+                <option value="">Select Hour</option>
+                @for($i = 1 ; $i <51 ; $i++)
+                    <option value="{{$i}}" @if($professional->hour == $i)selected @endif>{{$i}}</option>
+                @endfor
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="inputPassword4">Day</label>
+            <select  class="form-control"id="trainingCertificateday" name="day">
+
+                <option value="">Select Day</option>
+                @for($i = 1 ; $i <51 ; $i++)
+                    <option value="{{$i}}" @if($professional->day == $i)selected @endif>{{$i}}</option>
+                @endfor
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="inputPassword4">Week</label>
+            <select  class="form-control"id="trainingCertificateweek" name="week">
+
+                <option value="">Select Week</option>
+                @for($i = 1 ; $i <51 ; $i++)
+                    <option value="{{$i}}" @if($professional->week == $i)selected @endif>{{$i}}</option>
+                @endfor
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="inputPassword4">Month</label>
+            <select  class="form-control"id="trainingCertificatemonth" name="month">
+
+                <option value="">Select Month</option>
+                @for($i = 1 ; $i <51 ; $i++)
+                    <option value="{{$i}}" @if($professional->month == $i)selected @endif>{{$i}}</option>
+                @endfor
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="inputPassword4">Year</label>
+            <select  class="form-control"id="trainingCertificateyear" name="year">
+
+                <option value="">Select Year</option>
+                @for($i = 1 ; $i <51 ; $i++)
+                    <option value="{{$i}}" @if($professional->year == $i)selected @endif>{{$i}}</option>
+                @endfor
+            </select>
         </div>
 
         <div class="form-group col-md-4">
@@ -54,6 +107,7 @@
             </select>
         </div>
         <div class="form-group col-md-12">
+            <a class="btn btn-danger pull-left" href="{{route('candidate.cvProfessionalCertificate')}}">Cancel</a>&nbsp;&nbsp;
             <button  class="btn btn-info pull-right">Update</button>
         </div>
 
@@ -96,13 +150,13 @@
             return false;
 
         }
-        if(institutionName==""){
-
-            var errorMsg='Please Type instituteName First!!'
-            validationError(errorMsg)
-            return false;
-
-        }
+        // if(institutionName==""){
+        //
+        //     var errorMsg='Please Type instituteName First!!'
+        //     validationError(errorMsg)
+        //     return false;
+        //
+        // }
         if(resultSystem==""){
 
             var errorMsg='Please Select resultSystem First!!'
@@ -131,13 +185,13 @@
 //            return false;
 //
 //        }
-        if(start==""){
-
-            var errorMsg='Please Select a Strat Date First!!'
-            validationError(errorMsg)
-            return false;
-
-        }
+//         if(start==""){
+//
+//             var errorMsg='Please Select a Strat Date First!!'
+//             validationError(errorMsg)
+//             return false;
+//
+//         }
 //        if(end==""){
 //
 //            var errorMsg='Please Select a End Date First!!'
@@ -145,17 +199,17 @@
 //            return false;
 //
 //        }
-        if (end != "") {
-
-
-            if (Date.parse(end) < Date.parse(start)) {
-
-                var errorMsg = 'End date should after Start Date!!'
-                validationError(errorMsg)
-                return false;
-
-            }
-        }
+//         if (end != "") {
+//
+//
+//             if (Date.parse(end) < Date.parse(start)) {
+//
+//                 var errorMsg = 'End date should after Start Date!!'
+//                 validationError(errorMsg)
+//                 return false;
+//
+//             }
+//         }
 
         if(status==""){
 

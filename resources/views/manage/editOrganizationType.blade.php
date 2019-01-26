@@ -6,7 +6,7 @@
 
         <label for="">OrganizationType<span style="color: red">*</span></label>
 
-        <input class="form-control" name="typeName" value="{{$organizationType->organizationTypeName}}" required type="text">
+        <input class="form-control" name="typeName" maxlength="50" value="{{$organizationType->organizationTypeName}}" required type="text">
 
     </div>
 

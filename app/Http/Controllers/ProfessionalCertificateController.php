@@ -48,7 +48,8 @@ class ProfessionalCertificateController extends Controller
 
 
             return view('userCv.insert.professionalCertificate', compact('hasProfCertificate'));
-        }elseif ($employee->hasProfCertificate == 0){
+        }
+        elseif ($employee->hasProfCertificate == 0){
 
             $hasProfCertificate=0;
 
@@ -113,6 +114,11 @@ class ProfessionalCertificateController extends Controller
                 $professional->resultSystem=$r->resultSystem[$i];
                 $professional->result=$r->result[$i];
                 $professional->status=$r->status[$i];
+                $professional->hour=$r->hour[$i];
+                $professional->day=$r->day[$i];
+                $professional->week=$r->week[$i];
+                $professional->month=$r->month[$i];
+                $professional->year=$r->year[$i];
                 $professional->fkemployeeId=$employee->employeeId;
                 $professional->save();
             }
@@ -136,6 +142,12 @@ class ProfessionalCertificateController extends Controller
             $professional->resultSystem=$r->resultSystem;
             $professional->result=$r->result;
             $professional->status=$r->status;
+            $professional->hour=$r->hour;
+            $professional->day=$r->day;
+            $professional->week=$r->week;
+            $professional->month=$r->month;
+            $professional->year=$r->year;
+
             $professional->save();
 
 

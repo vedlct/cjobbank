@@ -20,7 +20,7 @@
 
                             <label for="">Skill<span style="color: red">*</span></label>
 
-                            <input class="form-control" name="skillName" required type="text">
+                            <input class="form-control" maxlength="255" name="skillName" required type="text">
 
                         </div>
 

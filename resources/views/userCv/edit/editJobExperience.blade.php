@@ -3,8 +3,6 @@
     {{csrf_field()}}
     <input type="hidden" name="jobExperienceId" value="{{$experience->jobExperienceId}}">
 
-
-
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">Organization Type<span style="color: red">*</span></label>
@@ -22,10 +20,7 @@
                     <label for="inputEmail4">Organization Name<span style="color: red">*</span></label>
                     <input type="text" class="form-control" name="organization" value="{{$experience->organization}}" id="organization" placeholder="organization" required>
                 </div>
-                {{--<div class="form-group col-md-2 ">--}}
-                    {{--<button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$experience->jobExperienceId}})"><i class="fa fa-edit"></i></button>--}}
-                    {{--<button type="button" class="btn btn-danger btn-sm " onclick="deleteExperience({{$experience->jobExperienceId}})"><i class="fa fa-trash"></i></button>--}}
-                {{--</div>--}}
+
                     <div class="form-group col-md-4">
                     <label for="inputEmail4">Designation<span style="color: red">*</span></label>
                     <input type="text" class="form-control" name="degisnation" value="{{$experience->degisnation}}"  id="degisnation" placeholder="designation" required>
@@ -38,11 +33,53 @@
                     <label for="inputPassword4">End Date</label>
                     <input type="text" class="form-control date" name="endDate" value="{{$experience->endDate}}"  id="end" placeholder="date">
                 </div>
-                <div class="form-group col-md-8">
-                    <label for="inputPassword4">Address<span style="color: red">*</span></label>
+                <div class="form-group col-md-12">
+                    <label for="inputPassword4">Organization Address<span style="color: red">*</span></label>
                     <textarea required class="form-control" name="address"id="address" placeholder="address">{{$experience->address}} </textarea>
                 </div>
+
                 <div class="form-group col-md-12">
+                    <label for="inputPassword4">Major responsibilities<span style="color: red">*</span> </label>
+                    <textarea class="form-control" name="majorResponsibilities" maxlength="300" required id="majorResponsibilities" placeholder="Major responsibilities">{{$experience->majorResponsibilities}}</textarea>
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="inputPassword4">Key Achievement<span style="color: red">*</span> </label>
+                    <textarea class="form-control" name="keyAchivement" maxlength="300" required id="keyAchivement" placeholder="Key Achievement">{{$experience->keyAchivement}}</textarea>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Name of Supervisor<span style="color: red">*</span></label>
+                    <input type="text" class="form-control" name="supervisorName" value="{{$experience->supervisorName}}" id="supervisorName" placeholder="Name of Supervisor" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Any reservation contacting your employer?<span style="color: red">*</span></label>
+                    <select class="form-control" id="reservationContactingEmployer" name="reservationContactingEmployer" required>
+                        <option value="" selected>Select Option</option>
+                        @foreach(YES_NO as $key=>$value)
+                            <option @if($experience->reservationContactingEmployer == $value) selected @endif value="{{$value}}">{{$key}}</option>
+                        @endforeach
+                    </select>&nbsp;
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="inputEmail4">Type of Employment<span style="color: red">*</span></label>
+                    <select class="form-control" id="employmentType1"  name="employmentType" required>
+                        <option value="" selected>Select Employment Type</option>
+                        @foreach(TYPE_OF_EMPLOYMENT as $key=>$value)
+                            <option @if($experience->employmentType == $value)selected @endif value="{{$value}}">{{$key}}</option>
+                        @endforeach
+                        <option @if($experience->employmentType == OTHERS)selected @endif value="{{OTHERS}}">Others</option>
+                    </select>&nbsp;
+                </div>
+
+                <div @if($experience->employmentType != OTHERS) style="display: none" @endif id="employmentTypeTextDiv" class="form-group col-md-6">
+                    <label for="inputEmail4">Write Employment Type<span style="color: red">*</span></label>
+                    <input type="text" class="form-control" value="{{$experience->employmentTypeText}}" name="employmentTypeText" id="employmentTypeText" placeholder="Write Employment Type">
+
+                </div>
+
+
+                <div class="form-group col-md-12">
+                    <a class="btn btn-danger pull-right" href="{{route('JobExperience.index')}}">Cancel</a>
                     <button  class="btn btn-info pull-right">Update</button>
                 </div>
             </div>
@@ -52,6 +89,7 @@
     </form>
 
 <meta name="csrf-token" content="{{ csrf_token() }}" />
+
 <script>
     $.ajaxSetup({
         headers: {
@@ -63,6 +101,21 @@
         format: 'yyyy-m-d'
     });
 
+
+    $('#employmentType1').on('change', function() {
+
+        var employmentType =$('#employmentType1').val();
+
+        if (employmentType == "{{OTHERS}}"){
+
+            $("#employmentTypeTextDiv").show();
+        }else {
+            $("#employmentTypeTextDiv").hide();
+        }
+
+
+    });
+
     function checkJobExperience(){
 
         var organizationType=$('#organizationType').val();
@@ -71,6 +124,13 @@
         var start=$('#start').val();
         var end=$('#end').val();
         var address=$('#address').val();
+
+        var majorResponsibilities=$('#majorResponsibilities').val();
+        var keyAchivement=$('#keyAchivement').val();
+        var supervisorName=$('#supervisorName').val();
+        var reservationContactingEmployer=$('#reservationContactingEmployer').val();
+        var employmentType=$('#employmentType').val();
+        var employmentTypeText=$('#employmentTypeText').val();
 
 
 
@@ -132,6 +192,72 @@
             var errorMsg='Please Type address First!!';
             validationError(errorMsg);
             return false;
+
+        }
+
+        if(majorResponsibilities==""){
+
+            var errorMsg='Please Type Major Responsibilities First!!';
+            validationError(errorMsg);
+            return false;
+        }
+        if (majorResponsibilities.length > 200){
+
+            var errorMsg='Major Responsibilities Should not more than 200 Charecter Length!!'
+            validationError(errorMsg)
+            return false;
+
+        }
+        if(keyAchivement==""){
+
+            var errorMsg='Please Type Key Achivement First!!'
+            validationError(errorMsg)
+            return false;
+        }
+        if (keyAchivement.length > 200){
+
+            var errorMsg='Key Achivement Should not more than 200 Charecter Length!!'
+            validationError(errorMsg)
+            return false;
+
+        }
+        if(supervisorName==""){
+
+            var errorMsg='Please Type Supervisor Name First!!'
+            validationError(errorMsg)
+            return false;
+        }
+        if (supervisorName.length > 200){
+
+            var errorMsg='Supervisor Name Should not more than 200 Charecter Length!!'
+            validationError(errorMsg)
+            return false;
+
+        }
+
+        if(reservationContactingEmployer==""){
+
+            var errorMsg='Please Select reservation of Contacting Employer First!!'
+            validationError(errorMsg)
+            return false;
+        }
+
+        if(employmentType==""){
+
+            var errorMsg='Please Select Employment Type First!!'
+            validationError(errorMsg)
+            return false;
+        }
+        if (employmentType != ""){
+
+            if (employmentType == "{{OTHERS}}" && employmentTypeText != "" ){
+
+                var errorMsg='Please Write Employement Other Text First!!';
+                validationError(errorMsg);
+                return false;
+
+            }
+
 
         }
 

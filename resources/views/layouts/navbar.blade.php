@@ -73,6 +73,10 @@
         <li><a href="{{route('manage.degisnation')}}">Manage Designation</a></li>
         <li><a href="{{route('manage.getApplicantQuestionAnswer')}}">Applicant Question Answer</a></li>
         <li><a href="{{route('manage.otherSkill')}}">Manage Other Skill</a></li>
+        <li><a href="{{route('manage.skill')}}">Manage Computer Skill</a></li>
+        <li><a href="{{route('manage.language')}}">Manage Language</a></li>
+        {{--<li><a href="{{route('manage.mailTamplate')}}">Manage Mail Tamplate</a></li>--}}
+        <li><a href="{{route('manage.careerObjectiveAndApplicationInformation')}}">career objective and application information</a></li>
         </ul>
     </li>
     @endif

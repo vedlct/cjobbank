@@ -21,8 +21,15 @@
                                         @endif
                                 <div id="edit{{$refree->refereeId}}">
                                     <h2 style="margin-bottom: 30px;">Referee - {{++$tempHr}} </h2>
+                                    <div class="row">
+                                        <div class="form-group offset-10 col-md-2 pull">
+                                            <button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$refree->refereeId}})"><i class="fa fa-edit"></i></button>
+                                            <button type="button" class="btn btn-danger btn-sm " onclick="deleteReferee({{$refree->refereeId}})"><i class="fa fa-trash"></i></button>
+
+                                        </div>
+                                    </div>
                                         <div class="row">
-                                            <div class="form-group col-md-5">
+                                            <div class="form-group col-md-6">
                                                 <label for="inputEmail4">First Name</label>
                                                 {{$refree->firstName}}
                                                 {{--<input type="text" class="form-control" name="firstName[]" id="inputEmail4" placeholder="first name" required>--}}
@@ -30,16 +37,12 @@
 
 
 
-                                            <div class="form-group col-md-5">
+                                            <div class="form-group col-md-6">
                                                 <label for="inputEmail4">Last Name</label>
                                                 {{$refree->lastName}}
                                                 {{--<input type="text" class="form-control" name="lastName[]" id="inputEmail4" placeholder="last name" required>--}}
                                             </div>
-                                            <div class="form-group col-md-2 ">
-                                                <button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$refree->refereeId}})"><i class="fa fa-edit"></i></button>
-                                                <button type="button" class="btn btn-danger btn-sm " onclick="deleteReferee({{$refree->refereeId}})"><i class="fa fa-trash"></i></button>
 
-                                            </div>
 
 
 
@@ -50,7 +53,7 @@
                                             </div>
 
                                             <div class="form-group col-md-6">
-                                                <label for="inputPassword4">Organization</label>
+                                                <label for="inputPassword4">Name Of Organization</label>
                                                 {{$refree->organization}}
                                                 {{--<input type="text" class="form-control" name="organization[]" id="inputPassword4" placeholder="organization" required>--}}
                                             </div>
@@ -68,7 +71,7 @@
                                             </div>
 
                                             <div class="form-group col-md-6">
-                                                <label for="inputPassword4">relation</label>
+                                                <label for="inputPassword4">Relation</label>
                                                 {{$refree->relation}}
                                                 {{--<input type="text" class="form-control" name="relation[]" id="inputPassword4" placeholder="relation" required>--}}
                                             </div>
@@ -97,7 +100,7 @@
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
-                                <a href="{{route('JobExperience.index')}}"><button type="button" id="btnPevious" >Back</button></a>
+                                <a href="{{route('candidate.membershipInSocialNetwork.index')}}"><button type="button" id="btnPevious" >Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
                                 <a href="{{route('relativeInCaritas.getRelationInfo')}}"><button type="button" id="nextBtn" >Next</button></a>
                             </div>
@@ -351,6 +354,7 @@
                     .attr("id", 'TextBoxDiv' + counter).attr("class", 'row');
                 newTextBoxDiv.after().html(
                     '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>'+
+                    '<h2 style="margin-bottom: 30px;">Referee - '+(counter+2)+'</h2>'+
                     '  <div class="row"> ' +
                     '<div class="form-group col-md-6"> ' +
                     '<label for="inputEmail4">First Name<span style="color: red">*</span></label> ' +

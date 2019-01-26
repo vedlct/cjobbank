@@ -21,7 +21,7 @@
 
                             <label for="">Agreement Question<span style="color: red">*</span></label>
 
-                            <input class="form-control" name="qus" required type="text">
+                            <input class="form-control" maxlength="1000" name="qus" required type="text">
 
                         </div>
                         <div class="form-group">

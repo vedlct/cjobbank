@@ -7,6 +7,129 @@
 
             <div style="background-color: white;margin-bottom: 20px;" class="card-body">
 
+                <!-- Modal -->
+                <div class="modal fade" id="mail_info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <b><h4 class="modal-title dark profile-title" id="myModalLabel">Mail Info</h4></b>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+
+                            </div>
+
+                            <div class="modal-body">
+
+                                {{--<form method="post" action="{{route('mailTamplate.store')}}">--}}
+                                    {{--{{csrf_field()}}--}}
+                                    <div class="row">
+
+                                        <div  class="col-md-6">
+
+                                            <label for="mailTamplate" class="control-label">Mail Tamplate</label>
+
+                                            <select class="form-control" id="mailTamplate">
+                                                <option selected value="">Select Tamplate</option>
+                                                @foreach($mailTamplate as $mT)
+                                                    <option value="{{$mT->tamplateId}}">{{$mT->tamplateName}}</option>
+                                                @endforeach
+
+                                            </select>
+
+
+                                        </div>
+
+
+                                    </div>
+                                <div class="row">
+
+                                    <div class="col-md-6">
+
+                                        <label for="refNo">Ref No:</label>
+                                        <input class="form-control" id="refNo" name="refNo" value="">
+
+                                    </div>
+                                    <div id="testDateDiv" class="col-md-6">
+
+                                        <label for="">Test Date</label>
+                                        <input class="form-control date" id="testDate" name="testDate" value="">
+
+                                    </div>
+
+                                </div>
+
+                                <div id="subjectLineDiv" class="form-group">
+                                    <label for="">Subject line</label>
+                                    <input type="text" class="form-control" id="subjectLine" placeholder="subject line" value="" name="subjectLine">
+                                </div>
+
+                                    <div class="form-group">
+                                        <label for="">Test Details</label>
+
+                                        <textarea class="form-control" id="tamplateBody" name="testDetails" rows="2" ></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Test Address</label>
+                                        <textarea class="form-control" id="testAddress" name="testAddress" rows="2" ></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Mail Footer</label>
+                                        <textarea class="form-control ckeditor" id="ckBox" value="" name="tamplateFooterAndSign" rows="6" ></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <button type="submit" onclick="sendMailToJobApplied()" class="btn btn-success">Submit</button>
+                                    </div>
+
+                                {{--</form>--}}
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="excel_info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <b><h4 class="modal-title dark profile-title" id="myModalLabel">Excel Info</h4></b>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+
+                            </div>
+
+                            <div class="modal-body">
+
+
+
+
+                                    <div class="form-group">
+
+                                        <label for="excelName">Excel Name:</label>
+                                        <input class="form-control" id="excelName" name="excelName" value="">
+
+                                    </div>
+
+
+
+                                <div class="form-group">
+
+                                    <a href="#" onclick="return myfunc()" ><button type="submit" class="btn btn-success">Submit</button></a>
+                                </div>
+
+
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
                 <div class=" form-group ">
                     <label>Gender</label>
                     <select name="genderFilter" id="genderFilter" class="form-control">
@@ -105,6 +228,16 @@
 
                     </select>
                 </div>
+                    <div class=" form-group ">
+                        <label>Major</label>
+                        <select id="educationMajorFilter" name="educationMajorFilter" class="form-control">
+                            <option value="">Select a Major</option>
+                            {{--@foreach($allEducationMajor as $eduMajor)--}}
+                            {{--<option value="{{$eduMajor->educationMajorId}}">{{$eduMajor->educationMajorName}}</option>--}}
+                            {{--@endforeach--}}
+
+                        </select>
+                    </div>
                 <div class=" form-group ">
                     <label>Status of completion</label>
                     <select id="educationCompletingFilter" name="educationCompletingFilter" class="form-control">
@@ -112,16 +245,6 @@
                         @foreach(COMPLETING_STATUS as $key=>$value)
                             <option value="{{$value}}">{{$key}}</option>
                         @endforeach
-
-                    </select>
-                </div>
-                <div class=" form-group ">
-                    <label>Major</label>
-                    <select id="educationMajorFilter" name="educationMajorFilter" class="form-control">
-                        <option value="">Select a Major</option>
-                        {{--@foreach($allEducationMajor as $eduMajor)--}}
-                            {{--<option value="{{$eduMajor->educationMajorId}}">{{$eduMajor->educationMajorName}}</option>--}}
-                        {{--@endforeach--}}
 
                     </select>
                 </div>
@@ -211,11 +334,25 @@
                     <div style="margin-top: 10px;" class="row">
                         <label class="checkbox-inline"><input style="width: auto;" type="checkbox" id="selectall2" value="">Select All</label>
 
-                        <div class="col-md-1">
-                            <a onclick="return myfunc()"><button class="btn btn-danger btn-sm">Export Candidates excel</button></a>
+                        <div class="col-md-3">
+                            <a onclick="excelInfomationSubmit()"><button class="btn btn-danger btn-sm">Export Candidates excel</button></a>
                         </div>
 
+
+                        <div class="col-md-3">
+                            <a onclick="sendMail()"><button class="btn btn-danger btn-sm">Send Mail</button></a>
+                        </div>
+
+
                     </div>
+                    {{--<div class="row">--}}
+
+                        {{--<div class="col-md-1">--}}
+                            {{--<a onclick="return sendMail()"><button class="btn btn-danger btn-sm">Send Mail</button></a>--}}
+                        {{--</div>--}}
+
+
+                    {{--</div>--}}
                     <br>
                     <div class="table table-responsive">
                     <table id="manageapplication" class="table table-striped table-bordered" style="width:100%" >
@@ -256,6 +393,26 @@
 @section('foot-js')
     <script src="{{url('public/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{url('public/assets/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    <script type="text/javascript" src="{{url('public/assets/ckeditor/ckeditor.js')}}"></script>
+
+    <script>
+//        CKEDITOR.replace( 'tamplateBody' );
+//        CKEDITOR.replace( 'ckBox' );
+        // $('tamplateBody').CKEDITOR(); // ADD THIS
+CKEDITOR.config.autoParagraph = false;
+
+CKEDITOR.config.toolbar = [
+    { name: 'document', items: [ 'Source', '-', 'Preview', '-'] },
+    { name: 'clipboard', items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
+    '/',
+    { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline' ] },
+    { name: 'paragraph',   items: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+    { name: 'styles', items: [ 'Format', 'Styles', 'blocks', 'align', 'bidi' ]},
+    { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ]},
+    { name: 'paragraph', items: [ 'Outdent', 'Indent', 'Blockquote' ]}
+
+];
+    </script>
 
     <script>
         $(document).ready(function() {
@@ -265,6 +422,7 @@
                 todayHighlight: true,
                 autoclose: true
             });
+
 
 
 
@@ -760,19 +918,15 @@
 
                 var products=selecteds;
 
-
-
-
-
                 if (products.length >0) {
 
                     $.ajax({
                         type: 'POST',
                         url: "{!! route('jobAppliedCadidate.admin.Exportxls') !!}",
                         cache: false,
-                        data: {'jobApply': products,_token:"{{csrf_token()}}"},
+                        data: {'jobApply': products,'excelName':$('#excelName').val(),_token:"{{csrf_token()}}"},
                         success: function (data) {
-//                            console.log(data);
+                           // console.log(data);
 
                             $('#SessionMessage').load(document.URL +  ' #SessionMessage');
                             table.ajax.reload();  //just reload table
@@ -890,6 +1044,170 @@
             }
 
         }
+        function sendMail() {
+
+
+            if ($('#jobTitle').val()!=""){
+
+
+                var products=selecteds;
+
+                if (products.length >0) {
+
+                    $('#mail_info').modal({show: true});
+                }
+                else {
+
+
+                    $.alert({
+                        title: 'Alert!',
+                        type: 'Red',
+                        content: 'Please select Application for Sending Mail',
+                        buttons: {
+                            tryAgain: {
+                                text: 'Ok',
+                                btnClass: 'btn-red',
+                                action: function () {
+
+
+                                }
+                            }
+
+                        }
+                    });
+                }
+
+            }
+            else {
+
+                $.alert({
+                    title: 'Alert!',
+                    type: 'red',
+                    content: 'Please Filter With Job Title First',
+                    buttons: {
+                        tryAgain: {
+                            text: 'Ok',
+                            btnClass: 'btn-blue',
+                            action: function () {
+
+
+                            }
+                        }
+
+                    }
+                });
+
+            }
+
+        }
+
+        function sendMailToJobApplied() {
+
+
+            if ($('#mailTamplate').val() !=""){
+
+                $("#wait").css("display", "block");
+
+                var products=selecteds;
+
+
+                    $.ajax({
+                        type: 'POST',
+                        url: "{!! route('jobAppliedCadidate.admin.sendMail') !!}",
+                        cache: false,
+                        data: {'jobApply': products,_token:"{{csrf_token()}}",'tamplateId':$('#mailTamplate').val(),'testDate':$('#testDate').val(),
+                            'testAddress':$('#testAddress').val(),'testDetails':$('#tamplateBody').val(),'footerAndSign':CKEDITOR.instances['ckBox'].getData(),
+                            'subjectLine':$('#subjectLine').val(),'refNo':$('#refNo').val()},
+                        success: function (data) {
+
+                            $("#wait").css("display", "none");
+//
+                            $('#SessionMessage').load(document.URL +  ' #SessionMessage');
+                            table.ajax.reload();  //just reload table
+
+                            selecteds=[];
+
+                          //  console.log(data);
+
+                            $(':checkbox:checked').prop('checked',false);
+
+
+
+                            if (data =='1'){
+
+                                $.alert({
+                                    title: 'Alert!',
+                                    type: 'green',
+                                    content: 'Mail Send successfully',
+                                    buttons: {
+                                        tryAgain: {
+                                            text: 'Ok',
+                                            btnClass: 'btn-blue',
+                                            action: function(){
+
+                                                location.reload();
+                                            }
+                                        }
+                                    }
+                                });
+
+
+                            }
+                            else if(data=='0'){
+
+                                $.alert({
+                                    title: 'Alert!',
+                                    type: 'Red',
+                                    content: 'There is something wrong with the mail',
+                                    buttons: {
+                                        tryAgain: {
+                                            text: 'Ok',
+                                            btnClass: 'btn-red',
+                                            action: function () {
+                                                location.reload();
+
+                                            }
+                                        }
+
+                                    }
+                                });
+
+
+                            }
+
+
+                        }
+
+                    });
+
+
+
+            }
+
+            else {
+
+                $.alert({
+                    title: 'Alert!',
+                    type: 'red',
+                    content: 'Please Select a Tamplate First',
+                    buttons: {
+                        tryAgain: {
+                            text: 'Ok',
+                            btnClass: 'btn-blue',
+                            action: function () {
+
+
+                            }
+                        }
+
+                    }
+                });
+
+            }
+
+
+
+        }
 
         // add multiple select / deselect functionality
         $("#selectall2").click(function () {
@@ -961,6 +1279,8 @@
                 data:{_token:"{{csrf_token()}}",id:this.value},
                 cache: false,
                 success:function(data) {
+
+                   // console.log(data);
                     document.getElementById("educationMajorFilter").innerHTML = data;
                     $('#educationMajorFilter').css("background-color", "#FFF").css('color', 'black');
 
@@ -968,6 +1288,63 @@
             });
 
         });
+
+        $("#educationMajorFilter").one('focus', function (){
+
+                if ($('#educationLvlFilter').val()=="") {
+
+                    var errorMsg = 'Please Select Education Qualification First!!';
+                    validationError(errorMsg);
+                    return false;
+
+                }
+
+            });
+
+        $("#mailTamplate").on('change', function (){
+
+                if ($('#mailTamplate').val()=="") {
+
+                    var errorMsg = 'Please Select Tamplate First!!';
+                    validationError(errorMsg);
+                    return false;
+
+                }else{
+
+                    $.ajax({
+                        type: 'POST',
+                        url: "{!! route('edit.mailTamplate1') !!}",
+                        cache: false,
+                        data: {_token: "{{csrf_token()}}",'id': $('#mailTamplate').val(),},
+                        success: function (data) {
+
+                            if ($('#mailTamplate').val()==1){
+                                $('#subjectLineDiv').show();
+                                $('#testDateDiv').show();
+                            }else{
+                                $('#subjectLineDiv').hide();
+                                $('#testDateDiv').hide();
+                            }
+
+
+                            $('#testDate').val(data['testDate']);
+                            $('#subjectLine').val(data['subject']);
+//                            $('#tamplateBody').val(data['testDetails']);
+                            $('#testAddress').val(data['testAddress']);
+                            $('#refNo').val(data['refNo']);
+
+                            CKEDITOR.instances['ckBox'].setData(data['tamplateFooterAndSign']); // where editor1 is id
+                            CKEDITOR.instances['tamplateBody'].setData(data['testDetails']); // where editor1 is id
+
+
+
+                        }
+                    });
+
+                }
+
+        });
+
 
         function isNumberKey(evt)
         {
@@ -977,6 +1354,64 @@
 
             return true;
         }
+        function excelInfomationSubmit()
+        {
+            if ($('#jobTitle').val()!=""){
+
+
+                var products=selecteds;
+
+                if (products.length >0) {
+
+                    $('#excel_info').modal({show: true});
+                }
+                else {
+
+
+                    $.alert({
+                        title: 'Alert!',
+                        type: 'Red',
+                        content: 'Please select Application for Export',
+                        buttons: {
+                            tryAgain: {
+                                text: 'Ok',
+                                btnClass: 'btn-red',
+                                action: function () {
+
+
+                                }
+                            }
+
+                        }
+                    });
+                }
+
+            }
+            else {
+
+                $.alert({
+                    title: 'Alert!',
+                    type: 'red',
+                    content: 'Please Filter With Job Title First',
+                    buttons: {
+                        tryAgain: {
+                            text: 'Ok',
+                            btnClass: 'btn-blue',
+                            action: function () {
+
+
+                            }
+                        }
+
+                    }
+                });
+
+            }
+        }
+
+
+
+
 
     </script>
 

@@ -14,6 +14,7 @@
 //Route::get('/', function () {
 //    return view('auth.login');
 //});
+//sleep(2);
 Route::get('/','Auth\LoginController@loginForm');
 Auth::routes();
 
@@ -49,14 +50,11 @@ Route::view('apply','usercv')->name('cv.apply');
 
 Route::view('application','application')->name('application');
 //Route::get('application','JobController')->name('application');
-
 Route::view('job/manage','job.manage')->name('job.manage');
 
 
 
-
 //user Cv
-
 Route::get('Candidate-CV-CareerObjective','EmployeeController@getEmployeeCvCareerObjective')->name('candidate.cvCareerObjective');
 Route::get('Candidate-CV-Show','EmployeeController@getEmployeeshowFullCv')->name('candidate.viewUserCv');
 
@@ -72,13 +70,15 @@ Route::post('delete/professionalQualificationId','ProfessionalCertificateControl
 Route::get('Candidate-CV','PersonalInfoController@getEmployeeCv')->name('candidate.cvPersonalInfo');
 
 Route::post('/Candidate-CV-savePersonalInfo', 'PersonalInfoController@insertPersonalInfo')->name('cv.insertPersonalInfo');
+Route::get('/Candidate-CV-Edit-PersonalInfo', 'PersonalInfoController@editPersonalInfo')->name('personalInfo.edit');
 Route::post('/Candidate-CV-updatePersonalInfo', 'PersonalInfoController@updatePersonalInfo')->name('cv.updatePersonalInfo');
 
 
 //Question And Objective Info
 Route::get('Candidate-CV-Objective-And-Question','QuestionObjectiveController@getEmployeeCvQuesTionObjective')->name('candidate.cvQuesObj');
 Route::post('/Candidate-CV-save-Objective-And-Question','QuestionObjectiveController@insertObjectiveAndQuestion')->name('cv.insertQuesObj');
-Route::post('/Candidate-CV-Objective-And-Question-Edit', 'QuestionObjectiveController@getQuestionObjectiveEdit')->name('cv.careerEdit');
+Route::post('/Candidate-CV-Objective-And-Question-Edit', 'QuestionObjectiveController@getQuestionObjectiveEdit')
+    ->name('cv.careerEdit');
 Route::post('/Candidate-CV-update-Objective-And-Question','QuestionObjectiveController@updateQuesObj')->name('cv.updateQuesObj');
 
 //Cv Other Info
@@ -86,8 +86,7 @@ Route::get('/Candidate-Cv-others-info','EmployeeOtherInfoController@otherInfo')-
 Route::post('/Candidate-Cv-others-info-insert','EmployeeOtherInfoController@insertOtherInfo')->name('insert.OthersInfo');
 Route::post('/Candidate-Cv-others-info-update','EmployeeOtherInfoController@updateOtherInfo')->name('update.OthersInfo');
 Route::post('/Candidate-Cv-others-info-edit','EmployeeOtherInfoController@editOtherInfo')->name('edit.OthersInfo');
-Route::post('/Manage-Applicant-Question-Answer','Admin\ManageQuestionApplication@manageQuestionAnswer')->name('manage.applicantQuestionAnswer');
-Route::get('/Manage-Applicant-Question-Answer','Admin\ManageQuestionApplication@getManageQuestionAnswer')->name('manage.getApplicantQuestionAnswer');
+
 
 
 
@@ -111,12 +110,40 @@ Route::post('/updateCvTraning','TrainingController@updateCvTraning')->name('upda
 Route::post('/deleteCvTraning','TrainingController@deleteCvTraning')->name('cvTrainingCertificate.delete');
 
 
-//Job Experience
+//Job ExperienceCandidate-CV
 Route::get('/Candidate-CV-JobExperience','JobExperienceController@index')->name('JobExperience.index');
 Route::post('/Candidate-CV-JobExperience','JobExperienceController@submitJobExperience')->name('submit.jobExperience');
 Route::post('/editJobExperience','JobExperienceController@editJobExperience')->name('JobExperience.edit');
 Route::post('/updateJobExperience','JobExperienceController@updateJobExperience')->name('update.jobExperience');
 Route::post('/deleteJobExperience','JobExperienceController@deleteJobExperience')->name('JobExperience.delete');
+
+//Skill
+Route::get('/Candidate-CV-Skill','SkillController@index')->name('candidate.skill.index');
+Route::post('/Candidate-CV-Skill/insert','SkillController@insert')->name('candidate.skill.insert');
+Route::post('/Candidate-CV-Skill/Edit','SkillController@edit')->name('candidate.skill.edit');
+Route::post('/Candidate-CV-Skill/Update','SkillController@update')->name('candidate.skill.update');
+Route::post('/Candidate-CV-Skill/Delete','SkillController@delete')->name('candidate.skill.delete');
+
+
+//language
+Route::get('/Candidate-CV-Language','LanguageController@index')->name('candidate.language.index');
+Route::post('/Candidate-CV-Language/insert','LanguageController@insert')->name('candidate.language.insert');
+Route::post('/Candidate-CV-Language/Edit','LanguageController@edit')->name('candidate.language.edit');
+Route::post('/Candidate-CV-Language/Update','LanguageController@update')->name('candidate.language.update');
+Route::post('/Candidate-CV-Language/Delete','LanguageController@delete')->name('candidate.language.delete');
+
+
+
+
+//Computer-Skill
+Route::get('/Candidate-CV-Computer-Skill','ComputerSkillController@index')->name('candidate.computerSkill.index');
+Route::post('/Candidate-CV-Computer-Skill','ComputerSkillController@insert')->name('candidate.computerSkill.submit');
+Route::post('/Candidate-CV-Computer-Skill/delete','ComputerSkillController@deleteSkill')->name('candidate.computerSkill.delete');
+Route::post('/Candidate-CV-Computer-Skill/Edit','ComputerSkillController@edit')->name('candidate.computerSkill.edit');
+Route::post('/Candidate-CV-Computer-Skill/Update','ComputerSkillController@update')->name('candidate.computerSkill.update');
+
+
+
 
 //Refree
 Route::get('/Candidate-CV-Referee','RefreeController@index')->name('refree.index');
@@ -124,6 +151,14 @@ Route::post('/Candidate-CV-Referee','RefreeController@submitRefree')->name('subm
 Route::post('/editRefree','RefreeController@editRefree')->name('refree.edit');
 Route::post('/updateRefree','RefreeController@updateRefree')->name('update.refree');
 Route::post('/deleteRefree','RefreeController@deleteRefree')->name('refree.delete');
+
+//Previous Wourk CB
+Route::get('/Candidate-CV-Previous-Work-In-CB','PreviousWorkInCBController@index')->name('candidate.previousWorkInCB.index');
+Route::post('/Candidate-CV-Previous-Work-In-CB/Add','PreviousWorkInCBController@insert')->name('candidate.previousWorkInCB.insert');
+Route::post('/Candidate-CV-Previous-Work-In-CB/Edit','PreviousWorkInCBController@edit')->name('candidate.previousWorkInCB.edit');
+Route::post('/Candidate-CV-Previous-Work-In-CB/Update','PreviousWorkInCBController@update')->name('candidate.previousWorkInCB.update');
+Route::post('/Candidate-CV-Previous-Work-In-CB/Delete','PreviousWorkInCBController@delete')->name('candidate.previousWorkInCB.delete');
+
 
 //Relation in Caritas
 Route::get('/Candidate-CV-RelativeInCaritas','RelativeInCbController@index')->name('relativeInCaritas.index');
@@ -133,6 +168,13 @@ Route::post('/Candidate-CV-RelativeInCaritasSubmitYesOrNo','RelativeInCbControll
 Route::post('/editRelative','RelativeInCbController@editRelative')->name('relative.edit');
 Route::post('/updateRelative','RelativeInCbController@updateRelative')->name('update.relative');
 Route::post('/deleteRelative','RelativeInCbController@deleteRelative')->name('relative.delete');
+
+//Membership in Social Network
+Route::get('/Candidate-CV-Membership-In-Social-Network','MembershipInSocialNetworkController@index')->name('candidate.membershipInSocialNetwork.index');
+Route::post('/Candidate-CV-Membership-In-Social-Network/Add','MembershipInSocialNetworkController@insert')->name('candidate.membershipInSocialNetwork.insert');
+Route::post('/Candidate-CV-Membership-In-Social-Network/Edit','MembershipInSocialNetworkController@edit')->name('candidate.membershipInSocialNetwork.edit');
+Route::post('/Candidate-CV-Membership-In-Social-Network/Update','MembershipInSocialNetworkController@update')->name('candidate.membershipInSocialNetwork.update');
+Route::post('/Candidate-CV-Membership-In-Social-Network/Delete','MembershipInSocialNetworkController@delete')->name('candidate.membershipInSocialNetwork.delete');
 
 
 
@@ -173,6 +215,9 @@ Route::get('Admin-Manage-Application','Admin\ApplicationController@manageApplica
 Route::post('Admin-Show-All-Application','Admin\ApplicationController@showAllApplication')->name('application.admin.showAll');
 Route::post('Admin-Show-All-Major-For Education','Admin\ApplicationController@showAllMajorForEducation')->name('application.admin.getMajorFromEducationlvl');
 Route::post('Admin-Export-All-AppliedCandidate','Admin\ApplicationController@exportAppliedCandidate')->name('jobAppliedCadidate.admin.Exportxls');
+Route::post('Admin-Send-Mail-AppliedCandidate','Admin\ApplicationController@sendMailtoAppliedCandidate')->name('jobAppliedCadidate.admin.sendMail');
+
+
 
 Route::get('Admin-Export-All-AppliedCandidate1','Admin\ApplicationController@export')->name('jobAppliedCadidate.admin.Exportxls1');
 
@@ -262,11 +307,18 @@ Route::post('manage/Major/insert','Admin\SettingsController@insertMajor')->name(
 Route::post('manage/Major/editMajor','Admin\SettingsController@editMajor')->name('admin.editMajor');
 Route::post('manage/Major/updateMajor/{id}','Admin\SettingsController@updateMajor')->name('manage.major.update');
 
-//Major
+//Board
 Route::get('manage/Board','Admin\SettingsController@board')->name('manage.board');
 Route::post('manage/Board/insert','Admin\SettingsController@insertBoard')->name('manage.board.insert');
 Route::post('manage/Board/editBoard','Admin\SettingsController@editBoard')->name('admin.editBoard');
 Route::post('manage/Board/updateBoard/{id}','Admin\SettingsController@updateBoard')->name('manage.board.update');
+
+//Language
+Route::get('manage/Language','Admin\SettingsController@language')->name('manage.language');
+Route::post('manage/Language/insert','Admin\SettingsController@insertLanguage')->name('manage.language.insert');
+
+Route::post('manage/Language/editBoard','Admin\SettingsController@editLanguage')->name('admin.editlanguage');
+Route::post('manage/Language/updateBoard/{id}','Admin\SettingsController@updateLanguage')->name('manage.language.update');
 
 
 //Other Skill
@@ -276,9 +328,42 @@ Route::post('manage/other-skill/editOtherSkill','Admin\SettingsController@editOt
 Route::post('manage/other-skill/Update/{id}','Admin\SettingsController@updateOtherSkill')->name('manage.otherSkill.update');
 
 
+
+//Question Answer
+Route::post('/Manage-Applicant-Question-Answer','Admin\ManageQuestionApplication@manageQuestionAnswer')->name('manage.applicantQuestionAnswer');
+Route::get('/Manage-Applicant-Question-Answer','Admin\ManageQuestionApplication@getManageQuestionAnswer')->name('manage.getApplicantQuestionAnswer');
+
+
 Route::get('/testloop','testController@testloop')->name('test');
+Route::get('test','Admin\ManageQuestionApplication@test');
+
+Route::get('test/excel','testController@testExcel');
+
+Route::get('rumiTest','Admin\MailTamplateController@test');
+Route::get('rumiTest/mail','Admin\MailTamplateController@testPdf');
+
+/*---------------Computer SKill-------------*/
+//Zone
+Route::get('manage/skill','Admin\ComputerSkillController@skill')->name('manage.skill');
+Route::post('manage/skill/insert','Admin\ComputerSkillController@insertSkill')->name('admin.skill.insert');
+Route::post('manage/skill/updateZone/{id}','Admin\ComputerSkillController@updateSkill')->name('admin.skill.update');
+Route::post('manage/skill/editZone','Admin\ComputerSkillController@editSkill')->name('admin.edit.skill');
+
+//mail Tamplate
+Route::get('manage/Mail-Tamplate','Admin\MailTamplateController@show')->name('manage.mailTamplate');
 
 
+Route::post('edit/Mail-Tamplate','Admin\MailTamplateController@editMailTemplete')->name('edit.mailTamplate');
+Route::post('Send/Mail-Tamplate','Admin\MailTamplateController@editMailTemplete1')->name('edit.mailTamplate1');
+Route::post('mailTemplete/create','Admin\MailTamplateController@storeMailTemplete')->name('mailTamplate.store');
+Route::post('mailTemplete/update','Admin\MailTamplateController@updateMailTemplete')->name('mailTamplate.update');
 
-
-
+/* career Objective And Application Information */
+Route::get('manage/career-Objective-And-Application-Information','Admin\SettingsController@careerObjectiveAndApplicationInformation')
+    ->name('manage.careerObjectiveAndApplicationInformation');
+Route::post('manage/objective-Page-Question/insert','Admin\SettingsController@insertobjectivePageQuestion')
+    ->name('manage.objectivePageQuestion.insert');
+Route::post('manage/objective-Page-Question/edit','Admin\SettingsController@editobjectivePageQuestion')
+    ->name('manage.objectivePageQuestion.edit');
+Route::post('manage/objective-Page-Question/update/{id}','Admin\SettingsController@updateobjectivePageQuestion')
+    ->name('manage.objectivePageQuestion.update');

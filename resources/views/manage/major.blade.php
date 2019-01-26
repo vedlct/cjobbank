@@ -31,7 +31,7 @@
 
                             <label for="">Major<span style="color: red">*</span></label>
 
-                            <input class="form-control" name="major" required type="text">
+                            <input class="form-control" name="major" maxlength="255" required type="text">
 
                         </div>
 

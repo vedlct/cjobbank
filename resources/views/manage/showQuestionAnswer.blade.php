@@ -3,21 +3,24 @@
 
        <div class="container-fluid">
            <div class="row">
-               <div class="col-md-2">
-                   <div class="card">
-                       <div class="card-body">
-                           <div class=" form-group ">
-                               <label>Personal Mobile</label>&nbsp;
-                               <input class="form-control" id="personalMobile" name="personalMobile" onkeypress="return isNumberKey(event)" type="text">
-                           </div>
-                           <div class=" form-group ">
-                               <label>Email</label>
-                               <input class="form-control" id="Email" name="Email" onkeypress="return isNumberKey(event)" type="text">
-                           </div>
-                       </div>
-                   </div>
-               </div>
-               <div class="col-md-10">
+               {{--<div class="col-md-2">--}}
+                   {{--<div class="card">--}}
+                       {{--<div class="card-body">--}}
+                           {{--<div class=" form-group ">--}}
+                               {{--<label>Personal Mobile</label>&nbsp;--}}
+
+                               {{--<input class="form-control" id="personalMobileFilter" onkeypress="return isNumberKey(event)"  name="personalMobile"  type="text">--}}
+                           {{--</div>--}}
+                           {{--<div class=" form-group ">--}}
+                               {{--<label>Email</label>--}}
+                               {{--<input class="form-control" id="emailFilter" name="email"  type="text">--}}
+
+                           {{--</div>--}}
+
+                       {{--</div>--}}
+                   {{--</div>--}}
+               {{--</div>--}}
+               <div class="col-md-12">
                    <div class="card">
                        <div class="card-body">
                            <div class="table table-responsive">
@@ -25,12 +28,11 @@
                                    <thead>
                                    <tr>
                                        <th>Name</th>
+                                       <th>Email</th>
                                        <th>Question</th>
                                        <th>Ans</th>
                                    </tr>
                                    </thead>
-
-
                                </table>
                            </div>
                        </div>
@@ -52,37 +54,70 @@
         <script src="{{url('public/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
         <script>
             $(document).ready(function () {
-                $('#shoQuesAns').DataTable({
+              var table= $('#shoQuesAns').DataTable({
                     "processing": true,
                     "serverSide": true,
                     "ajax":{
                         "url": "{!! route('manage.applicantQuestionAnswer') !!}",
                         "dataType": "json",
                         "type": "POST",
-                        "data":{ _token: "{{csrf_token()}}"}
+                        data:function (d){
+
+                            d._token="{{csrf_token()}}";
+                            // if ($('#personalMobileFilter').val()!=""){
+                            //     d.personalMobileFilter=$('#personalMobileFilter').val();
+                            // }
+                            // if ($('#emailFilter').val()!=""){
+                            //     d.emailFilter=$('#emailFilter').val();
+                            // }
+                        },
                     },
                     "columns": [
-                        { "data": "name",name:"name" },
+                        { "data": "name",name:"name"},
+                        { "data": "email",name:"email"},
                         { "data": "qus",name:"qus" },
+//                        { "data": "ans",name:"ans" },
                         { "data": function(data){
-                                if( data.ans == "Y2"){
+                                if( data.ans == "Y"){
                                     return "Yes"
-                                }else if (data.ans == "N2") {
+                                }else if (data.ans == "N") {
                                     return "No"
                                 }
                                 else{
                                     return "Na"
                                 }
 
-
-
                             },
                             "orderable": true, "searchable":true,
                         },
-                    ]
 
-                });
+                    ],
+
             });
+                // $("#personalMobileFilter").keyup(function(){
+                //     // table.search("").draw(); //just redraw myTableFilter
+                //     table.ajax.reload();  //just reload table
+                //
+                //
+                // });
+                // $("#emailFilter").keyup(function(){
+                //     // table.search("").draw(); //just redraw myTableFilter
+                //     table.ajax.reload();  //just reload table
+                //
+                //
+                // });
+            });
+
+            function isNumberKey(evt)
+            {
+                var charCode = (evt.which) ? evt.which : event.keyCode
+                if (charCode > 31 && (charCode < 48 || charCode > 57))
+                    return false;
+
+                return true;
+            }
+
+
 
         </script>
         @endsection

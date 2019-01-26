@@ -49,6 +49,18 @@ class PersonalInfoController extends Controller
     {
         //return view('home');
     }
+    public function editPersonalInfo()
+    {
+        $userId=Auth::user()->userId;
+        $employeeCvPersonalInfo=Employee::where('fkuserId','=',$userId)->get();
+
+        $religion=Religion::where('status',1)->get();
+        $ethnicity=Ethnicity::where('status',1)->get();
+        $natinality=Nationality::where('status',1)->get();
+
+        return view('userCv.edit.personalInfo',compact('religion','ethnicity','natinality','employeeCvPersonalInfo'));
+
+    }
 
     public function getEmployeeCv()
     {
@@ -94,6 +106,7 @@ class PersonalInfoController extends Controller
             'homeTelephone' => 'nullable|max:20',
             'officeTelephone' => 'nullable|max:20',
             'telephone' => 'nullable|max:20',
+            'alternativePhoneNo' => 'nullable|max:20',
             'personalMobile' => 'required|max:20',
             'email' => 'required|max:255|email',
             'nationality' => 'required|max:25',
@@ -122,6 +135,7 @@ class PersonalInfoController extends Controller
         $employee->mothersName=$r->mothersName;
         $employee->dateOfBirth=$r->dob;
         $employee->gender=$r->gender;
+        $employee->bloodGroup=$r->bloodGroup;
         $employee->fkreligionId=$r->religion;
         $employee->ethnicityId=$r->ethnicity;
         $employee->disability=$r->disability;
@@ -130,6 +144,7 @@ class PersonalInfoController extends Controller
         $employee->officeNumber=$r->officeTelephone;
         $employee->telephone=$r->telephone;
         $employee->personalMobile=$r->personalMobile;
+        $employee->alternativePhoneNo=$r->alternativePhoneNo;
         $employee->email=$r->email;
         $employee->nationalId=$r->nId;
         $employee->skype=$r->skype;
@@ -199,6 +214,7 @@ class PersonalInfoController extends Controller
             'homeTelephone' => 'nullable|max:20',
             'officeTelephone' => 'nullable|max:20',
             'telephone' => 'nullable|max:20',
+            'alternativePhoneNo' => 'nullable|max:20',
             'personalMobile' => 'required|max:20',
             'email' => 'required|max:255|email',
             'nationality' => 'required|max:25',
@@ -236,6 +252,7 @@ class PersonalInfoController extends Controller
         $employee->officeNumber=$r->officeTelephone;
         $employee->telephone=$r->telephone;
         $employee->personalMobile=$r->personalMobile;
+        $employee->alternativePhoneNo=$r->alternativePhoneNo;
         $employee->email=$r->email;
         $employee->nationalId=$r->nId;
         $employee->skype=$r->skype;

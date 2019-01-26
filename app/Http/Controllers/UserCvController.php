@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Employee;
 use App\Education;
+use App\EmployeeComputerSkill;
+use App\EmpOtherSkill;
 use App\JobExperience;
 use App\ProfessionalQualification;
 use App\Refree;
@@ -70,40 +72,58 @@ class UserCvController extends Controller
    public function getFullCv($empId){
 
 
-
-       $personalInfo = Employee::select('firstName','lastName',
-           'fathersName','mothersName','gender','personalMobile',
-           'dateOfBirth','email','presentAddress','image','religionName','nationalityName','nationalId','parmanentAddress')
-           ->leftJoin('religion','religion.religionId','fkreligionId')
-           ->leftJoin('nationality','nationality.nationalityId','fknationalityId')
+       $personalInfo = Employee::select('emp_ques_obj.objective','firstName', 'lastName',
+           'fathersName', 'mothersName', 'gender', 'personalMobile',
+           'dateOfBirth', 'email', 'presentAddress', 'image', 'religionName', 'nationalityName','nationalId','parmanentAddress',
+           'passport','bloodGroup','maritalStatus')
+           ->leftJoin('religion', 'religion.religionId', 'fkreligionId')
+           ->leftJoin('nationality', 'nationality.nationalityId', 'fknationalityId')
+           ->leftJoin('emp_ques_obj', 'emp_ques_obj.empId', 'employee.employeeId')
            ->findOrFail($empId);
 
-       $education=Education::select('degreeName','education.institutionName','education.fkemployeeId','education.status','education.resultSystem','education.result','educationlevel.educationLevelName',
-           'educationmajor.educationMajorName','education.fkMajorId','passingYear')
+       $education = Education::select('degreeName', 'education.institutionName', 'boardName','education.fkemployeeId', 'education.status', 'education.resultSystem', 'education.result', 'educationlevel.educationLevelName',
+           'educationmajor.educationMajorName', 'education.fkMajorId', 'passingYear')
            ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
            ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
            ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
-           ->where('fkemployeeId',$empId)
-           ->orderBy('passingYear','desc')
+           ->leftJoin('board', 'board.boardId', '=', 'education.fkboardId')
+           ->where('fkemployeeId', $empId)
+           ->orderBy('passingYear', 'desc')
+           ->groupBy('education.educationId')
            ->get();
 
-       $professionalCertificate=ProfessionalQualification::where('fkemployeeId',$empId)
+       $empOtherSkillls=EmpOtherSkill::where('fkemployeeId',$empId)
+           ->leftJoin('otherskillsinformation','otherskillsinformation.id','emp_otherskill_achievement.otherSkillId')
            ->get();
 
-       $jobExperience=JobExperience::where('fkemployeeId',$empId)
-           ->orderBy('startDate','desc')
+       $empComputerSkill=EmployeeComputerSkill::where('fk_empId',$empId)
+           ->leftJoin('computerskill','computerskill.id','empcomputerskill.computerSkillId')
            ->get();
 
-       $trainingCertificate=Traning::where('fkemployeeId',$empId)
-           ->orderBy('startDate','desc')
-           ->get();
-       $refree=Refree::where('fkemployeeId',$empId)
-           ->get();
-       $relativeCb=RelativeInCb::where('fkemployeeId',$empId)
+
+
+
+
+       $professionalCertificate = ProfessionalQualification::where('fkemployeeId', $empId)
            ->get();
 
-       $pdf = PDF::loadView('test',compact('personalInfo','education','professionalCertificate','jobExperience','trainingCertificate','refree','relativeCb'));
-       return $pdf->stream('Curriculam Vitae of '.$personalInfo->firstName." ".$personalInfo->lastName.'.pdf',array('Attachment'=>0));
+       $jobExperience = JobExperience::where('fkemployeeId', $empId)
+           ->orderBy('startDate', 'desc')
+           ->get();
+
+       $trainingCertificate = Traning::where('fkemployeeId', $empId)
+           ->orderBy('startDate', 'desc')
+           ->get();
+       $refree = Refree::where('fkemployeeId', $empId)
+           ->get();
+       $relativeCb = RelativeInCb::where('fkemployeeId', $empId)
+           ->get();
+
+       $pdf = PDF::loadView('test',compact('allEmp', 'personalInfo', 'education',
+           'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree',
+           'relativeCb','empOtherSkillls','empComputerSkill'));
+
+       return $pdf->stream('Curriculam Vitae of '.$personalInfo->firstName." ".$personalInfo->lastName.'.pdf',array('Attachment'=>false));
 
 
    }
@@ -111,38 +131,57 @@ class UserCvController extends Controller
 
        $empId=$r->id;
 
-       $personalInfo = Employee::select('firstName','lastName',
-           'fathersName','mothersName','gender','personalMobile',
-           'dateOfBirth','email','presentAddress','image','religionName','nationalityName','nationalId','parmanentAddress')
-           ->leftJoin('religion','religion.religionId','fkreligionId')
-           ->leftJoin('nationality','nationality.nationalityId','fknationalityId')
+
+       $personalInfo = Employee::select('emp_ques_obj.objective','firstName', 'lastName',
+           'fathersName', 'mothersName', 'gender', 'personalMobile',
+           'dateOfBirth', 'email', 'presentAddress', 'image', 'religionName', 'nationalityName','nationalId','parmanentAddress',
+           'passport','bloodGroup','maritalStatus')
+           ->leftJoin('religion', 'religion.religionId', 'fkreligionId')
+           ->leftJoin('nationality', 'nationality.nationalityId', 'fknationalityId')
+           ->leftJoin('emp_ques_obj', 'emp_ques_obj.empId', 'employee.employeeId')
            ->findOrFail($empId);
 
-       $education=Education::select('degreeName','education.institutionName','education.fkemployeeId','education.status','education.resultSystem','education.result','educationlevel.educationLevelName',
-           'educationmajor.educationMajorName','education.fkMajorId','passingYear')
+       $education = Education::select('degreeName', 'education.institutionName', 'boardName','education.fkemployeeId', 'education.status', 'education.resultSystem', 'education.result', 'educationlevel.educationLevelName',
+           'educationmajor.educationMajorName', 'education.fkMajorId', 'passingYear')
            ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
            ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
            ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
-           ->where('fkemployeeId',$empId)
-           ->orderBy('passingYear','desc')
+           ->leftJoin('board', 'board.boardId', '=', 'education.fkboardId')
+           ->where('fkemployeeId', $empId)
+           ->orderBy('passingYear', 'desc')
+           ->groupBy('education.educationId')
            ->get();
 
-       $professionalCertificate=ProfessionalQualification::where('fkemployeeId',$empId)
+       $empOtherSkillls=EmpOtherSkill::where('fkemployeeId',$empId)
+           ->leftJoin('otherskillsinformation','otherskillsinformation.id','emp_otherskill_achievement.otherSkillId')
            ->get();
 
-       $jobExperience=JobExperience::where('fkemployeeId',$empId)
-           ->orderBy('startDate','desc')
+       $empComputerSkill=EmployeeComputerSkill::where('fk_empId',$empId)
+           ->leftJoin('computerskill','computerskill.id','empcomputerskill.computerSkillId')
            ->get();
 
-       $trainingCertificate=Traning::where('fkemployeeId',$empId)
-           ->orderBy('startDate','desc')
-           ->get();
-       $refree=Refree::where('fkemployeeId',$empId)
-           ->get();
-       $relativeCb=RelativeInCb::where('fkemployeeId',$empId)
+
+
+
+
+       $professionalCertificate = ProfessionalQualification::where('fkemployeeId', $empId)
            ->get();
 
-        $pdf = PDF::loadView('test',compact('personalInfo','education','professionalCertificate','jobExperience','trainingCertificate','refree','relativeCb'));
+       $jobExperience = JobExperience::where('fkemployeeId', $empId)
+           ->orderBy('startDate', 'desc')
+           ->get();
+
+       $trainingCertificate = Traning::where('fkemployeeId', $empId)
+           ->orderBy('startDate', 'desc')
+           ->get();
+       $refree = Refree::where('fkemployeeId', $empId)
+           ->get();
+       $relativeCb = RelativeInCb::where('fkemployeeId', $empId)
+           ->get();
+
+        $pdf = PDF::loadView('test',compact('allEmp', 'personalInfo', 'education',
+            'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree',
+            'relativeCb','empOtherSkillls','empComputerSkill'));
 
        return $pdf->stream('Curriculam Vitae of '.$personalInfo->firstName." ".$personalInfo->lastName.'.pdf',array('Attachment'=>false));
 
@@ -151,38 +190,56 @@ class UserCvController extends Controller
    public function getUserFullCvdownload($empId){
 
 
-       $personalInfo = Employee::select('firstName','lastName',
-           'fathersName','mothersName','gender','personalMobile',
-           'dateOfBirth','email','presentAddress','image','religionName','nationalityName','nationalId','parmanentAddress')
-           ->leftJoin('religion','religion.religionId','fkreligionId')
-           ->leftJoin('nationality','nationality.nationalityId','fknationalityId')
+       $personalInfo = Employee::select('emp_ques_obj.objective','firstName', 'lastName',
+           'fathersName', 'mothersName', 'gender', 'personalMobile',
+           'dateOfBirth', 'email', 'presentAddress', 'image', 'religionName', 'nationalityName','nationalId','parmanentAddress',
+           'passport','bloodGroup','maritalStatus')
+           ->leftJoin('religion', 'religion.religionId', 'fkreligionId')
+           ->leftJoin('nationality', 'nationality.nationalityId', 'fknationalityId')
+           ->leftJoin('emp_ques_obj', 'emp_ques_obj.empId', 'employee.employeeId')
            ->findOrFail($empId);
 
-       $education=Education::select('degreeName','education.institutionName','education.fkemployeeId','education.status','education.resultSystem','education.result','educationlevel.educationLevelName',
-           'educationmajor.educationMajorName','education.fkMajorId','passingYear')
+       $education = Education::select('degreeName', 'education.institutionName', 'boardName','education.fkemployeeId', 'education.status', 'education.resultSystem', 'education.result', 'educationlevel.educationLevelName',
+           'educationmajor.educationMajorName', 'education.fkMajorId', 'passingYear')
            ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
            ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
            ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
-           ->where('fkemployeeId',$empId)
-           ->orderBy('passingYear','desc')
+           ->leftJoin('board', 'board.boardId', '=', 'education.fkboardId')
+           ->where('fkemployeeId', $empId)
+           ->orderBy('passingYear', 'desc')
+           ->groupBy('education.educationId')
            ->get();
 
-       $professionalCertificate=ProfessionalQualification::where('fkemployeeId',$empId)
+       $empOtherSkillls=EmpOtherSkill::where('fkemployeeId',$empId)
+           ->leftJoin('otherskillsinformation','otherskillsinformation.id','emp_otherskill_achievement.otherSkillId')
            ->get();
 
-       $jobExperience=JobExperience::where('fkemployeeId',$empId)
-           ->orderBy('startDate','desc')
+       $empComputerSkill=EmployeeComputerSkill::where('fk_empId',$empId)
+           ->leftJoin('computerskill','computerskill.id','empcomputerskill.computerSkillId')
            ->get();
 
-       $trainingCertificate=Traning::where('fkemployeeId',$empId)
-           ->orderBy('startDate','desc')
-           ->get();
-       $refree=Refree::where('fkemployeeId',$empId)
-           ->get();
-       $relativeCb=RelativeInCb::where('fkemployeeId',$empId)
+
+
+
+
+       $professionalCertificate = ProfessionalQualification::where('fkemployeeId', $empId)
            ->get();
 
-        $pdf = PDF::loadView('test',compact('personalInfo','education','professionalCertificate','jobExperience','trainingCertificate','refree','relativeCb'));
+       $jobExperience = JobExperience::where('fkemployeeId', $empId)
+           ->orderBy('startDate', 'desc')
+           ->get();
+
+       $trainingCertificate = Traning::where('fkemployeeId', $empId)
+           ->orderBy('startDate', 'desc')
+           ->get();
+       $refree = Refree::where('fkemployeeId', $empId)
+           ->get();
+       $relativeCb = RelativeInCb::where('fkemployeeId', $empId)
+           ->get();
+
+        $pdf = PDF::loadView('test',compact('allEmp', 'personalInfo', 'education',
+            'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree',
+            'relativeCb','empOtherSkillls','empComputerSkill'));
 
        return $pdf->download('Curriculam Vitae of '.$personalInfo->firstName." ".$personalInfo->lastName.'.pdf',array('Attachment'=>false));
 
@@ -199,21 +256,37 @@ class UserCvController extends Controller
         foreach ($r->ids as $id) {
             $empId = $id;
 
-            $personalInfo = Employee::select('firstName','lastName',
-                'fathersName','mothersName','gender','personalMobile',
-                'dateOfBirth','email','presentAddress','image','religionName','nationalityName','nationalId','parmanentAddress')
-                ->leftJoin('religion','religion.religionId','fkreligionId')
-                ->leftJoin('nationality','nationality.nationalityId','fknationalityId')
+            $personalInfo = Employee::select('emp_ques_obj.objective','firstName', 'lastName',
+                'fathersName', 'mothersName', 'gender', 'personalMobile',
+                'dateOfBirth', 'email', 'presentAddress', 'image', 'religionName', 'nationalityName','nationalId','parmanentAddress',
+                'passport','bloodGroup','maritalStatus')
+                ->leftJoin('religion', 'religion.religionId', 'fkreligionId')
+                ->leftJoin('nationality', 'nationality.nationalityId', 'fknationalityId')
+                ->leftJoin('emp_ques_obj', 'emp_ques_obj.empId', 'employee.employeeId')
                 ->findOrFail($empId);
 
-            $education = Education::select('degreeName', 'education.institutionName', 'education.fkemployeeId', 'education.status', 'education.resultSystem', 'education.result', 'educationlevel.educationLevelName',
+            $education = Education::select('degreeName', 'education.institutionName', 'boardName','education.fkemployeeId', 'education.status', 'education.resultSystem', 'education.result', 'educationlevel.educationLevelName',
                 'educationmajor.educationMajorName', 'education.fkMajorId', 'passingYear')
                 ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
                 ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
                 ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
+                ->leftJoin('board', 'board.boardId', '=', 'education.fkboardId')
                 ->where('fkemployeeId', $empId)
                 ->orderBy('passingYear', 'desc')
+                ->groupBy('education.educationId')
                 ->get();
+
+            $empOtherSkillls=EmpOtherSkill::where('fkemployeeId',$empId)
+                ->leftJoin('otherskillsinformation','otherskillsinformation.id','emp_otherskill_achievement.otherSkillId')
+                ->get();
+
+            $empComputerSkill=EmployeeComputerSkill::where('fk_empId',$empId)
+                ->leftJoin('computerskill','computerskill.id','empcomputerskill.computerSkillId')
+                ->get();
+
+
+
+
 
             $professionalCertificate = ProfessionalQualification::where('fkemployeeId', $empId)
                 ->get();
@@ -230,7 +303,13 @@ class UserCvController extends Controller
             $relativeCb = RelativeInCb::where('fkemployeeId', $empId)
                 ->get();
 
-            $pdf = PDF::loadView('test', compact('personalInfo', 'education', 'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree', 'relativeCb'));
+//            $pdf = PDF::loadView('test', compact('personalInfo', 'education', 'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree', 'relativeCb'));
+
+
+            $pdf = PDF::loadView('test',compact('allEmp', 'personalInfo', 'education',
+                'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree',
+                'relativeCb','empOtherSkillls','empComputerSkill'));
+
             return $pdf->stream('Curriculam Vitae of ' . $personalInfo->firstName . " " . $personalInfo->lastName . '.pdf', array('Attachment' => 0));
         }
 

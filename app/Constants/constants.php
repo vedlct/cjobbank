@@ -8,6 +8,20 @@ define('DISABILITY',array(
     "Yes"=>'Y',
     "No"=>'N'
 ));
+define('YES_NO',array(
+    "Yes"=>'Y',
+    "No"=>'N'
+));
+define('TYPE_OF_EMPLOYMENT',array(
+    "Permanent"=>'Permanent',
+    "Temp"=>'Temp',
+    "Casual"=>'Casual',
+    "Provitionary"=>'Provitionary',
+    "Bodli"=>'Bodli',
+    "Seasonal"=>'Seasonal',
+    "Occational"=>'Occational',
+
+));
 define('PASSPORT',array(
     "Yes"=>'Y',
     "No"=>'N'
@@ -57,18 +71,25 @@ define('USER_TYPE',array(
 
 ));
 define('CAREER_QUES',array(
-    "Ques1"=>'Why Do You Want to Leave Your Current Job?',
+    "Ques1"=>'What are the reasons behind leaving you current or last job?',
     "Ques2"=>'Why you are intersted for the position applied for?',
+    "Ques0"=>'Are you currently working for any organization?',
 
 ));
 
 define('STATUS',array(
     "1"=>'Active',
     "0"=>'Inactive',
-
-
 ));
 define('OTHERS',"others");
+
+//ComputerSkillAchievement
+define('ComputerSkillAchievement',array(
+    "General"=>'1',
+    "Advance"=>'2'
+));
+
+
 
 
 

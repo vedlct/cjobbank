@@ -31,7 +31,7 @@
 
                             <label for="">Religion<span style="color: red">*</span></label>
 
-                            <input class="form-control" name="religionName" required type="text">
+                            <input class="form-control" name="religionName" maxlength="25" required type="text">
 
                         </div>
 

@@ -7,6 +7,9 @@ use App\Employee;
 
 use App\EmployeeOtherInfo;
 use App\QuestionObjective;
+use App\QuestionObjectiveAndInfo;
+use App\QuestionObjectiveAns;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Session;
 use Auth;
@@ -57,29 +60,28 @@ class QuestionObjectiveController extends Controller
 
         $employeeCvQuesObjInfo=QuestionObjective::where('empId','=',$employee)->first();
 
-
-
-
         if ($employeeCvQuesObjInfo){
+            $employeeCvQuesObjQuesAns=QuestionObjectiveAns::where('fkemployeeId',$employee)->get();
 
-            return view('userCv.update.objAndQuesInfo',compact('employeeCvQuesObjInfo','employee'));
+            return view('userCv.update.objAndQuesInfo',compact('employeeCvQuesObjInfo','employee','employeeCvQuesObjQuesAns'));
 
+        }
+        else{
+            $employeeCvQuesObjQues=QuestionObjectiveAndInfo::where('status',1)->orderBy('serial', 'ASC')->get();
 
-        }else{
-
-            return view('userCv.insert.objAndQuesInfo',compact('employeeCvQuesObjInfo'));
+            return view('userCv.insert.objAndQuesInfo',compact('employeeCvQuesObjInfo','employeeCvQuesObjQues'));
         }
 
     }
     public function insertObjectiveAndQuestion(Request $r)
     {
-        //return $r;
+       // return $r->CareerQues[$i];
+
 
         $rules = [
 
-            'objective' => 'required|max:200',
-            'CareerQues1' => 'required|max:200',
-            'CareerQues2' => 'required|max:200',
+            'objective' => 'max:300',
+
 
         ];
 
@@ -93,12 +95,39 @@ class QuestionObjectiveController extends Controller
 
         $employee=Employee::where('fkuserId', '=',$userId)->first()->employeeId;
 
+        $employeeCvQuesObjQues=QuestionObjectiveAndInfo::where('status',1)->orderBy('serial', 'ASC')->count();
+
 
         $employeeCareerInfo=new QuestionObjective();
 
-        $employeeCareerInfo->objective=$r->objective;
-        $employeeCareerInfo->ques_1=$r->CareerQues1;
-        $employeeCareerInfo->ques_2=$r->CareerQues2;
+        if ($r->freshers){
+
+            $employeeCareerInfo->objective=$r->objective;
+            $employeeCareerInfo->currentSalary=$r->currentSalary;
+
+            for ($i=1;$i<=$employeeCvQuesObjQues;$i++){
+
+
+
+                $userAggrement=new QuestionObjectiveAns();
+
+                $userAggrement->fkemployeeId=$employee;
+                $userAggrement->fkqusId=$r['qesId'.$i];
+                $userAggrement->ans=$r['CareerQues'.$i];
+                $userAggrement->save();
+
+            }
+
+        }
+
+
+//        $employeeCareerInfo->ques_1=$r->CareerQues1;
+//        $employeeCareerInfo->ques_2=$r->CareerQues2;
+
+
+        $employeeCareerInfo->expectedSalary=$r->expectedSalary;
+        $employeeCareerInfo->readyToJoinAfter=$r->readyToJoinAfter;
+
         $employeeCareerInfo->empId=$employee;
 
 
@@ -116,7 +145,19 @@ class QuestionObjectiveController extends Controller
 
         $employeeCareerInfo=QuestionObjective::findOrFail($r->id);
 
-        return view('userCv.edit.objAndQuesInfo',compact('employeeCareerInfo'));
+        $userId=Auth::user()->userId;
+
+        $employee=Employee::where('fkuserId', '=',$userId)->first()->employeeId;
+
+
+            $employeeCvQuesObjQuesAns=QuestionObjectiveAns::select('emp_ques_objective_and_info.ques','emp_ques_objective_and_info_ans.*')->leftJoin('emp_ques_objective_and_info', 'emp_ques_objective_and_info.id', '=', 'emp_ques_objective_and_info_ans.fkqusId')->where('fkemployeeId',$employee)
+                ->where('emp_ques_objective_and_info.status', 1)->get();
+
+            $employeeCvQuesObjQues=QuestionObjectiveAndInfo::where('status',1)->orderBy('serial', 'ASC')->get();
+
+
+
+        return view('userCv.edit.objAndQuesInfo',compact('employeeCareerInfo','employeeCvQuesObjQues','employeeCvQuesObjQuesAns'));
 
 
     }
@@ -124,13 +165,13 @@ class QuestionObjectiveController extends Controller
     public function updateQuesObj(Request $r)
     {
 
-        //return $r;
+
+       // return $r['id'.'1'];
 
         $rules = [
 
-            'objective' => 'required|max:200',
-            'CareerQues1' => 'required|max:200',
-            'CareerQues2' => 'required|max:200',
+            'objective' => 'max:200',
+
 
         ];
 
@@ -140,15 +181,56 @@ class QuestionObjectiveController extends Controller
 
         $this->validate($r, $rules, $customMessages);
 
+        $userId=Auth::user()->userId;
+
+        $employee=Employee::where('fkuserId', '=',$userId)->first()->employeeId;
+
+        $employeeCvQuesObjQues=QuestionObjectiveAndInfo::where('status',1)->orderBy('serial', 'ASC')->count();
+
 
         $employeeCareerInfo=QuestionObjective::findOrFail($r->empQuesObjId);
 
-        $employeeCareerInfo->objective=$r->objective;
-        $employeeCareerInfo->ques_1=$r->CareerQues1;
-        $employeeCareerInfo->ques_2=$r->CareerQues2;
+        if ($r->freshers){
+
+            $employeeCareerInfo->objective=$r->objective;
+            $employeeCareerInfo->currentSalary=$r->currentSalary;
+
+            for ($i=1;$i<=$employeeCvQuesObjQues;$i++){
+
+                try
+                {
+                    $userAggrement=QuestionObjectiveAns::findOrFail($r['id'.$i]);
+                    $userAggrement->ans=$r['CareerQues'.$i];
+                    $userAggrement->save();
+                }
+                    // catch(Exception $e) catch any exception
+                catch(ModelNotFoundException $e)
+                {
+                   // return 'qesId'.$i;
+
+                    $userAggrement=new QuestionObjectiveAns();
+
+                    $userAggrement->fkemployeeId=$employee;
+                    $userAggrement->fkqusId=$r['qesId'.$i];
+                    $userAggrement->ans=$r['CareerQues'.$i];
+                    $userAggrement->save();
+
+                }
+
+
+            }
+
+
+
+        }
+        $employeeCareerInfo->expectedSalary=$r->expectedSalary;
+        $employeeCareerInfo->readyToJoinAfter=$r->readyToJoinAfter;
+
+        $employeeCareerInfo->empId=$employee;
 
 
         $employeeCareerInfo->save();
+
 
 
         Session::flash('message', 'Career Info Updated Successfully');

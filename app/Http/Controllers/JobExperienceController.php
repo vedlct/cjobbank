@@ -31,36 +31,89 @@ class JobExperienceController extends Controller
         });
     }
    public function index(){
-       $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
-       $experiences=JobExperience::where('fkemployeeId',$employee->employeeId)
-           ->leftJoin('organizationtype','organizationtype.organizationTypeId','jobexperience.fkOrganizationType')
-           ->get();
+
+       $employee=Employee::select('employeeId','hasJobExp')->where('fkuserId',Auth::user()->userId)->first();
+
+
        $companyType=DB::table('organizationtype')->where('status',1)->get();
 
-       if($experiences->isEmpty()){
+       if (is_null($employee->hasJobExp)) {
 
-           return view('userCv.insert.jobExperience',compact('companyType'));
+           $hasProfCertificate = null;
+
+           return view('userCv.insert.jobExperience',compact('companyType','hasProfCertificate'));
+
+
        }
+       elseif ($employee->hasJobExp == 0){
 
-       return view('userCv.update.jobExperience',compact('experiences','companyType'));
+           $hasProfCertificate=0;
+
+           return view('userCv.insert.jobExperience',compact('companyType','hasProfCertificate'));
+
+       }elseif ($employee->hasJobExp == 1){
+
+           $hasProfCertificate=1;
+
+           $experiences=JobExperience::where('fkemployeeId',$employee->employeeId)
+               ->leftJoin('organizationtype','organizationtype.organizationTypeId','jobexperience.fkOrganizationType')
+               ->get();
+
+
+
+           if($experiences->isEmpty()){
+
+               return view('userCv.insert.jobExperience',compact('companyType','hasProfCertificate'));
+           }
+
+           else{
+               return view('userCv.update.jobExperience',compact('experiences','companyType','hasProfCertificate'));
+           }
+
+
+       }
 
    }
 
    public function submitJobExperience(Request $r){
+
+      // return $r;
+
        $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
 
-       for($i=0;$i<count($r->organization);$i++){
+       $emp=Employee::findOrFail($employee->employeeId);
+       if ($r->hasProfCertificate==0){
 
-           $experience=new JobExperience();
-           $experience->organization=$r->organization[$i];
-           $experience->degisnation=$r->degisnation[$i];
-           $experience->startDate=$r->startDate[$i];
-           $experience->endDate=$r->endDate[$i];
-           $experience->address=$r->address[$i];
-           $experience->fkemployeeId=$employee->employeeId;
-           $experience->fkOrganizationType=$r->organizationType[$i];
-           $experience->save();
+           $emp->hasJobExp=0;
+           $emp->save();
+
+       }else {
+           $emp->hasJobExp = 1;
+           $emp->save();
+
+           for ($i = 0; $i < count($r->organization); $i++) {
+
+               $experience = new JobExperience();
+               $experience->organization = $r->organization[$i];
+               $experience->degisnation = $r->degisnation[$i];
+               $experience->startDate = $r->startDate[$i];
+               $experience->endDate = $r->endDate[$i];
+               $experience->address = $r->address[$i];
+               $experience->fkemployeeId = $employee->employeeId;
+               $experience->fkOrganizationType = $r->organizationType[$i];
+
+               $experience->majorResponsibilities = $r->majorResponsibilities[$i];
+               $experience->keyAchivement = $r->keyAchivement[$i];
+               $experience->supervisorName = $r->supervisorName[$i];
+               $experience->reservationContactingEmployer = $r->reservationContactingEmployer[$i];
+
+               $experience->employmentType = $r->employmentType[$i];
+               $experience->employmentTypeText = $r->employmentTypeText[$i];
+
+               $experience->save();
+           }
        }
+
        Session::flash('message', 'Experience Added Successfully');
 
        return redirect()->route('JobExperience.index');
@@ -85,6 +138,14 @@ class JobExperienceController extends Controller
        $experience->address=$r->address;
        $experience->fkOrganizationType=$r->organizationType;
 
+       $experience->majorResponsibilities=$r->majorResponsibilities;
+       $experience->keyAchivement=$r->keyAchivement;
+       $experience->supervisorName=$r->supervisorName;
+       $experience->reservationContactingEmployer=$r->reservationContactingEmployer;
+
+       $experience->employmentType=$r->employmentType;
+       $experience->employmentTypeText=$r->employmentTypeText;
+
        $experience->save();
 
        Session::flash('message', 'Experience Edited Successfully');
@@ -92,7 +153,22 @@ class JobExperienceController extends Controller
    }
 
    public function deleteJobExperience(Request $r){
+
        JobExperience::destroy($r->jobExperienceId);
+       $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
+
+       $count=JobExperience::where('fkemployeeId',$employee->employeeId)
+           ->count();
+
+       if ($count == 0){
+           $emp=Employee::findOrFail($employee->employeeId);
+
+           $emp->hasJobExp=0;
+           $emp->save();
+
+       }
+
+
        Session::flash('message', 'Experience Deleted Successfully');
    }
 }

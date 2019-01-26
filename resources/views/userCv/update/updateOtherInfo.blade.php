@@ -14,7 +14,7 @@
 
                         <div class="tab">
 
-                            <h2 style="margin-bottom: 30px; text-align:center">Career</h2>
+                            <h2 style="margin-bottom: 30px; text-align:center">Other Information</h2>
 
 
                             <div id="edit{{$empOtherInfo->id}}" class="row">
@@ -22,7 +22,7 @@
 
                                 <div class="form-group col-md-10">
 
-                                    <label for="">#extraCurricularActivities</label><br>
+                                    <label for="">Extra Curricular Activities :</label><br>
                                     {{$empOtherInfo->extraCurricularActivities}}
                                 </div>
 
@@ -33,29 +33,31 @@
 
                                 <div class="form-group col-md-12">
 
-                                    <label for="">interests </label><br>
+                                    <label for="">Interests :</label><br>
                                     {{$empOtherInfo->interests}}
 
                                 </div>
 
                                 <div class="form-group col-md-12">
 
-                                    <label for="">awardReceived</label><br>
+                                    <label for="">Awards received :</label><br>
                                     {{$empOtherInfo->awardReceived}}
 
                                 </div>
                                 <div class="form-group col-md-12">
 
-                                    <label for="">researchPublication </label><br>
+                                    <label for="">Research / Publciation :</label><br>
                                     {{$empOtherInfo->researchPublication}}
 
                                 </div>
 
                                 <div class="form-group col-md-12" style="overflow:auto;">
                                     <div style="float:right;">
-                                        <a href="{{route('candidate.cvPersonalInfo')}}"><button type="button" id="btnPevious">Back</button></a>
 
-                                        <a href="{{route('candidate.cvEducation')}}"><button type="button" id="nextBtn" >Next</button></a>
+                                        <a href="{{route('candidate.skill.index')}}"><button type="button" id="btnPevious">Back</button></a>
+
+                                        <a href="{{route('candidate.cvTrainingCertificate')}}"><button type="button" id="nextBtn" >Next</button></a>
+
                                     </div>
                                 </div>
 
@@ -133,5 +135,7 @@
         }
 
     </script>
+
+
 
 @endsection
