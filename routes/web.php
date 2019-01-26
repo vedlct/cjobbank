@@ -361,9 +361,18 @@ Route::post('mailTemplete/update','Admin\MailTamplateController@updateMailTemple
 /* career Objective And Application Information */
 Route::get('manage/career-Objective-And-Application-Information','Admin\SettingsController@careerObjectiveAndApplicationInformation')
     ->name('manage.careerObjectiveAndApplicationInformation');
+
 Route::post('manage/objective-Page-Question/insert','Admin\SettingsController@insertobjectivePageQuestion')
     ->name('manage.objectivePageQuestion.insert');
 Route::post('manage/objective-Page-Question/edit','Admin\SettingsController@editobjectivePageQuestion')
     ->name('manage.objectivePageQuestion.edit');
 Route::post('manage/objective-Page-Question/update/{id}','Admin\SettingsController@updateobjectivePageQuestion')
     ->name('manage.objectivePageQuestion.update');
+
+/* terms and condition */
+Route::get('manage/Tems-condition','Admin\SettingsController@termsConditionShow')
+    ->name('manage.terms_and_condition');
+Route::get('/Tems-condition','TermsAndController@termsConditionShowToUser')
+    ->name('terms_and_condition.show');
+Route::POST('manage/Tems-condition','Admin\SettingsController@termsConditionUpdate')
+    ->name('admin.termsAndCondition.update');

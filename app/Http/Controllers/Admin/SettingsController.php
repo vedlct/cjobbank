@@ -20,6 +20,7 @@ use App\Religion;
 
 use App\OrganizationType;
 
+use App\TermsAndConditions;
 use App\Zone;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -27,7 +28,7 @@ use Session;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class SettingsController extends Controller
 {
@@ -723,6 +724,7 @@ class SettingsController extends Controller
         return view('manage.careerObjectiveAndApplication',compact('questionObj','lastserialnumber'));
     }
 
+
     public function insertobjectivePageQuestion(Request $r){
         $r->validate([
             'qus' => 'required',
@@ -765,6 +767,38 @@ class SettingsController extends Controller
 
         Session::flash('message', 'Updated Successfully!');
         return redirect()->route('manage.careerObjectiveAndApplicationInformation');
+
+    }
+
+    public function termsConditionShow(){
+
+
+        $terms=TermsAndConditions::first();
+        return view('manage.termsAndCondition',compact('terms'));
+    }
+
+
+    public function termsConditionUpdate(Request $r){
+
+        try
+        {
+            $terms=TermsAndConditions::firstOrFail();
+        }
+// catch(Exception $e) catch any exception
+        catch(ModelNotFoundException $e)
+        {
+            $terms=new TermsAndConditions();
+
+        }
+
+        $terms->page_Header=$r->title;
+        $terms->page_content=$r->contents;
+        $terms->save();
+
+
+
+        Session::flash('message', 'Updated Successfully!');
+        return redirect()->route('manage.terms_and_condition');
 
     }
 
