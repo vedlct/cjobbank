@@ -17,7 +17,7 @@
 <div class="row">
     <div class="form-group col-md-8">
         <label for="inputEmail4">Venue <span style="color: red">*</span></label>
-        <input type="text" class="form-control" name="vanue" value="{{$training->vanue}}" id="vanue" placeholder="vanue" required >
+        <input type="text" class="form-control" name="venue" value="{{$training->vanue}}" id="vanue" placeholder="vanue" required >
     </div>
     <div class="form-group col-md-4">
         <label for="inputPassword4">Country<span style="color: red">*</span></label>

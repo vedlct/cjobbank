@@ -60,10 +60,17 @@ class QuestionObjectiveController extends Controller
 
         $employeeCvQuesObjInfo=QuestionObjective::where('empId','=',$employee)->first();
 
-        if ($employeeCvQuesObjInfo){
-            $employeeCvQuesObjQuesAns=QuestionObjectiveAns::where('fkemployeeId',$employee)->get();
+//        return $employeeCvQuesObjInfo;
 
-            return view('userCv.update.objAndQuesInfo',compact('employeeCvQuesObjInfo','employee','employeeCvQuesObjQuesAns'));
+        if ($employeeCvQuesObjInfo){
+            $employeeCvQuesObjQues=QuestionObjectiveAndInfo::where('status',1)->orderBy('serial', 'ASC')->get();
+
+            $employeeCvQuesObjQuesAns=QuestionObjectiveAns::where('fkemployeeId',$employee)
+                ->get();
+
+//            return $employeeCvQuesObjQuesAns;
+
+            return view('userCv.update.objAndQuesInfo',compact('employeeCvQuesObjInfo','employee','employeeCvQuesObjQuesAns','employeeCvQuesObjQues'));
 
         }
         else{
@@ -150,7 +157,8 @@ class QuestionObjectiveController extends Controller
         $employee=Employee::where('fkuserId', '=',$userId)->first()->employeeId;
 
 
-            $employeeCvQuesObjQuesAns=QuestionObjectiveAns::select('emp_ques_objective_and_info.ques','emp_ques_objective_and_info_ans.*')->leftJoin('emp_ques_objective_and_info', 'emp_ques_objective_and_info.id', '=', 'emp_ques_objective_and_info_ans.fkqusId')->where('fkemployeeId',$employee)
+            $employeeCvQuesObjQuesAns=QuestionObjectiveAns::select('emp_ques_objective_and_info.ques','emp_ques_objective_and_info_ans.*')
+                ->leftJoin('emp_ques_objective_and_info', 'emp_ques_objective_and_info.id', '=', 'emp_ques_objective_and_info_ans.fkqusId')->where('fkemployeeId',$employee)
                 ->where('emp_ques_objective_and_info.status', 1)->get();
 
             $employeeCvQuesObjQues=QuestionObjectiveAndInfo::where('status',1)->orderBy('serial', 'ASC')->get();
@@ -164,6 +172,8 @@ class QuestionObjectiveController extends Controller
 
     public function updateQuesObj(Request $r)
     {
+
+//        return $r;
 
 
        // return $r['id'.'1'];
@@ -182,6 +192,7 @@ class QuestionObjectiveController extends Controller
         $this->validate($r, $rules, $customMessages);
 
         $userId=Auth::user()->userId;
+//        return $r;
 
         $employee=Employee::where('fkuserId', '=',$userId)->first()->employeeId;
 
@@ -189,11 +200,12 @@ class QuestionObjectiveController extends Controller
 
 
         $employeeCareerInfo=QuestionObjective::findOrFail($r->empQuesObjId);
+        $employeeCareerInfo->objective=$r->objective;
 
-        if ($r->freshers){
 
-            $employeeCareerInfo->objective=$r->objective;
+        if ($r->freshers==1){
             $employeeCareerInfo->currentSalary=$r->currentSalary;
+
 
             for ($i=1;$i<=$employeeCvQuesObjQues;$i++){
 
@@ -223,6 +235,11 @@ class QuestionObjectiveController extends Controller
 
 
         }
+
+        else if($r->freshers==0){
+            QuestionObjectiveAns::where('fkemployeeId',$employee)->delete();
+        }
+
         $employeeCareerInfo->expectedSalary=$r->expectedSalary;
         $employeeCareerInfo->readyToJoinAfter=$r->readyToJoinAfter;
 

@@ -7,7 +7,7 @@
         <input type="hidden" name="empQuesObjId" value="{{$empOtherInfo->id}}">
 
         <div class="form-group">
-            <label for="">Extra Curricular Activities</label>
+            <label for="">Extra curricular activities</label>
             <textarea type="text" name="extraCurricularActivities"   rows="2" maxlength="300"ww
                       class="form-control{{ $errors->has('extraCurricularActivities') ? ' is-invalid' : '' }}"
                       id="extraCurricularActivities" placeholder="Extra Curricular Activitiese">{{$empOtherInfo->extraCurricularActivities}}</textarea>
@@ -45,7 +45,7 @@
             @endif
         </div>
         <div class="form-group">
-            <label for="">Research / Publciation </label>
+            <label for="">Research / Publication </label>
             <textarea type="text" name="researchPublication" maxlength="300"  rows="3"
                       class="form-control {{ $errors->has('researchPublication') ? ' is-invalid' : '' }}"
                       id="researchPublication" placeholder="Research / Publciation">{{$empOtherInfo->researchPublication}}</textarea>

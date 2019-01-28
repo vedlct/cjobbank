@@ -18,7 +18,18 @@
 
                             <div class="form-group">
                                 <label for="">{{CAREER_QUES['Ques0']}}<span style="color: red">*</span></label>
-                                <input type="checkbox" name="freshers" onclick="checkFreshers(this)">
+                                {{--<input type="checkbox" name="freshers" onclick="checkFreshers(this)">--}}
+                                <div class="row">
+                                    <div class="form-group">
+
+                                        <div class="col-md-10 mb-3">
+                                            <input class="form-check-input" type="radio" required  name="hasOtherSkill" value="1"  onclick="checkFreshers(this)" > Yes&nbsp;&nbsp;
+                                        </div>
+                                        <div class="col-md-10">
+                                            <input class="form-check-input" type="radio" required name="hasOtherSkill" value="0" onclick="hideFresher()"> No&nbsp;&nbsp;
+                                        </div>
+                                    </div>
+                                </div>
 
                                 {{--@if ($errors->has('CareerQues1'))--}}
 
@@ -198,15 +209,16 @@
         function checkFreshers(x) {
             // $('#compulsoryQuestions').show();
             // if($(x).prop("checked") == true){}
-            if($(x).prop("checked")){
+
                 $('#compulsoryQuestions').show();
-            }
-
-            else {
-                $('#compulsoryQuestions').hide();
-            }
 
 
+
+
+        }
+
+        function hideFresher() {
+            $('#compulsoryQuestions').hide();
         }
 
 

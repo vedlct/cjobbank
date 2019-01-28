@@ -18,7 +18,7 @@
 
 
                             <div class="form-group">
-                                <label for="">Extra Curricular Activities</label>
+                                <label for="">Extra curricular activities</label>
                                 <textarea type="text" name="extraCurricularActivities" maxlength="300"  rows="2"
                                           class="form-control{{ $errors->has('extraCurricularActivities') ? ' is-invalid' : '' }}"
                                           id="objective" placeholder="Extra Curricular Activities">{{ old('extraCurricularActivities') }}</textarea>
@@ -54,7 +54,7 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="">Research Publication</label>
+                                <label for="">Research / Publication</label>
                                 <textarea type="text" name="researchPublication" maxlength="300"
                                            rows="3" class="form-control {{ $errors->has('researchPublication') ? ' is-invalid' : '' }}"
                                           id="researchPublication" placeholder="Research Publication">{{ old('researchPublication') }}</textarea>
