@@ -13,7 +13,7 @@
 
 
     <tr>
-        <td colspan="18"><span style="text-align: center"><h4>LIST OF CANDIDATES FOR THE POSITION OF  {{strtoupper($jobTitle['title'])}} FOR CARITAS CENTRAL OFFICE</h4></span></td>
+        <td colspan="18"><span style="text-align: center"><h4>{{strtoupper($jobTitle['title'])}}</h4></span></td>
     </tr>
 
     <tr>
