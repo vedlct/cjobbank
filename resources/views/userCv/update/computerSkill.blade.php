@@ -179,7 +179,7 @@
             var counter = 1;
             $("#removeButton").hide();
 
-
+            $("#submitBtn1").hide();
             $("#addButton").click(function () {
 
 
@@ -230,6 +230,7 @@
                 if(counter>1){
 //                    document.getElementById("removeButton").style.display='block';
                     $("#removeButton").show();
+                    $("#submitBtn1").hide();
                 }
 
             });
@@ -244,6 +245,7 @@
                 counter--;
                 if(counter<2){
                     $("#removeButton").hide();
+                    $("#submitBtn1").hide();
                 }
                 $("#TextBoxDiv" + counter).remove();
             });

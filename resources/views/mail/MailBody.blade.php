@@ -9,6 +9,11 @@ please see the attached file with this email.<br>
 Thanks.
 
 
+<hr>
+For any kind of inquiry please contact support@caritasbd.com.
+
+
+
 
 
 </body>

@@ -104,9 +104,9 @@
                                 <a href="{{route('candidate.membershipInSocialNetwork.index')}}"><button type="button" id="btnPevious" >Back</button></a>
                                 {{--<a id="btnPevious" class="btn btn-success" href="{{route('JobExperience.index')}}">Back</a>--}}
                                 <button type="submit" id="submitBtn">Save</button>
-                                @if($relativeInCB->relativeInCB == '1' || $relativeInCB->relativeInCB== '0' )
-                                    <a href="{{route('refree.index')}}"><button type="button" id="nextBtn" >Next</button></a>
-                                @endif
+                                {{--@if($relativeInCB->relativeInCB == '1' || $relativeInCB->relativeInCB== '0' )--}}
+                                    {{--<a href="{{route('refree.index')}}"><button type="button" id="nextBtn" >Next</button></a>--}}
+                                {{--@endif--}}
 
                             </div>
                         </div>
@@ -175,6 +175,26 @@
 ////            $('#end').datepicker({
 //                format: 'yyyy-m-d'
 //            });
+
+            @if($employee->cvStatus==1)
+
+                $.alert({
+                title: 'Congratulation',
+                type: 'green',
+                content: '{{CV_COMPLITING_MSG}}',
+                buttons: {
+                    tryAgain: {
+                        text: 'Ok',
+                        btnClass: 'btn-green',
+                        action: function () {
+
+                        }
+                    }
+                }
+            });
+
+            @endif
+
         });
 
         $(document).ready(function(){
