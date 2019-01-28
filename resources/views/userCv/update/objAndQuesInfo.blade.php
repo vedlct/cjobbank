@@ -23,16 +23,16 @@
                                 <div id="edit{{$employeeCvQuesObjInfo->id}}" class="row">
 
 
+                                    <div class="form-group col-md-10">
 
+                                        <label for="">#Objective :</label><br>
+                                        {{$employeeCvQuesObjInfo->objective}}
+                                    </div>
 
 
                                     @if(!$employeeCvQuesObjQuesAns->isEmpty())
 
-                                        <div class="form-group col-md-10">
 
-                                            <label for="">#Objective :</label><br>
-                                            {{$employeeCvQuesObjInfo->objective}}
-                                        </div>
 
                                         <div class="form-group col-md-2">
                                             <button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$employeeCvQuesObjInfo->id}})"><i class="fa fa-edit"></i></button>

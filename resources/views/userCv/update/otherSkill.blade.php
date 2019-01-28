@@ -64,10 +64,10 @@
                                         <div class="form-group col-md-4">
                                             <label>Percentage of Skill (out of 100) :</label>{{$empSkill->ratiing}}
 
-                                            <div class="slidecontainer">
-                                                <input type="range" min="1" max="100" value="{{$empSkill->ratiing}}" class="slider" name="skillPercentage[]" id="myRange" required>
+                                            {{--<div class="slidecontainer">--}}
+                                                {{--<input type="range" min="1" max="100" value="{{$empSkill->ratiing}}" class="slider" name="skillPercentage[]" id="myRange" required>--}}
 
-                                            </div>
+                                            {{--</div>--}}
 
 
                                         </div>

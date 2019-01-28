@@ -41,7 +41,7 @@
                                 <div class="row">
                                     <div class="form-group col-md-8">
                                         <label for="inputEmail4">Venue <span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" name="vanue[]" id="vanue" placeholder="vanue" >
+                                        <input type="text" class="form-control" name="vanue[]" id="vanue" placeholder="venue" >
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="inputPassword4">Country<span style="color: red">*</span></label>
@@ -499,7 +499,7 @@
 
                     '<div class="form-group col-md-8"> ' +
                     '<label for="inputEmail4">Venue <span style="color: red">*</span></label> ' +
-                    '<input type="text" class="form-control" name="vanue[]" id="vanue'+counter+'" placeholder="vanue" required> ' +
+                    '<input type="text" class="form-control" name="vanue[]" id="vanue'+counter+'" placeholder="venue" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
                     '<label for="inputPassword4">Country<span style="color: red">*</span></label>' +
