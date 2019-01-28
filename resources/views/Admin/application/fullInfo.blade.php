@@ -25,8 +25,8 @@
 
     <tr>
 
-        <td colspan="24" style="text-align: center;height: 15;">List of candidates for the position Of
-            <span id="red" style="color: #FF0000">Finance & Admin Officer For USAID's Improving Nutration Through Community- Based Approach (INCA)</span>
+        <td colspan="24" style="text-align: center;height: 15;">
+            <span id="red" style="color: #FF0000">{{strtoupper($jobTitle['title'])}}</span>
             <b>- {{$excelName}}</b>
         </td>
 
