@@ -103,10 +103,26 @@
                                     </select>
                                 </div>
 
+                                <div class="form-group col-md-3">
+                                    <label for="">Status<span style="color: red">*</span></label>
+                                    <select  name="status[]"class="form-control" required id="educationStatus">
+                                        <option value="">Select Status</option>
+                                        @foreach(COMPLETING_STATUS as $key=>$value)
+                                            <option value="{{$value}}">{{$key}}</option>
+                                        @endforeach
+
+                                    </select>
+                                </div>
+
 
                                 <div class="form-group col-md-3">
+<<<<<<< HEAD
                                     <label for="">Passing year<span style="color: red">*</span></label>
                                     <input name="passingYear[]" type="text" class="form-control date" id="passingYear" required placeholder="passing year">
+=======
+                                    <label for="">Passing Year</label>
+                                    <input name="passingYear[]" type="text" class="form-control date" id="passingYear"  placeholder="passing Year">
+>>>>>>> bac11ad63bcb4b43bbfdeedc3a648f271bc68554
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="">Result system<span style="color: red">*</span></label>
@@ -126,24 +142,17 @@
                                 </div>
 
                                 <div class="form-group col-md-3">
-                                    <label for="">CGPA<span style="color: red">*</span></label>
-                                    <input name="result[]" type="text" class="form-control" required id="cgpa" maxlength="10" placeholder="CGPA">
+
+                                    <label for="">CGPA</label>
+                                    <input name="result[]" type="text" class="form-control"  id="cgpa" maxlength="10" placeholder="">
+
                                 </div>
 
                                 <div class="form-group col-md-3">
                                     <label for="">Out of</label>
                                     <input type="text" name="resultOutOf[]" class="form-control" id="resultOutOf" placeholder="CGPA Out of">
                                 </div>
-                                <div class="form-group col-md-3">
-                                    <label for="">Status<span style="color: red">*</span></label>
-                                    <select name="status[]"class="form-control" required id="educationStatus">
-                                        <option value="">Select Status</option>
-                                        @foreach(COMPLETING_STATUS as $key=>$value)
-                                            <option value="{{$value}}">{{$key}}</option>
-                                        @endforeach
 
-                                    </select>
-                                </div>
 
 
                             </div>
@@ -234,6 +243,22 @@
 
 
         });
+        $('#educationStatus').on('change', function() {
+
+            var educationStatus =$('#educationStatus').val();
+            if (educationStatus == '{{COMPLETING_STATUS['OnGoing']}}'){
+
+                $("#cgpa").prop('required',false);
+                $("#passingYear").prop('required',false);
+
+            }else {
+
+                $("#cgpa").prop('required',true);
+                $("#passingYear").prop('required',true);
+            }
+
+
+        });
 
         function checkMajor(x) {
 
@@ -246,6 +271,22 @@
             }else {
                 $("#subjectNameDiv"+x).hide();
             }
+
+        }
+        function checkeducationStatus(x) {
+
+            var educationStatus =$('#educationStatus'+x).val();
+            if (educationStatus == '{{COMPLETING_STATUS['OnGoing']}}'){
+
+                $("#cgpa"+x).prop('required',false);
+                $("#passingYear"+x).prop('required',false);
+
+            }else {
+
+                $("#cgpa"+x).prop('required',true);
+                $("#passingYear"+x).prop('required',true);
+            }
+
 
         }
 
@@ -573,8 +614,19 @@
                    ' </div>'+
 
                     '<div class="form-group col-md-3">'+
-                    '<label for="">Year<span style="color: red">*</span></label>'+
-                   ' <input name="passingYear[]" type="text" class="form-control date" required id="passingYear'+counter+'" placeholder="passing Year">'+
+                    '<label for="">Status<span style="color: red">*</span></label>'+
+                    '<select name="status[]"class="form-control" onchange="checkeducationStatus('+counter+')" required id="educationStatus'+counter+'">'+
+                    '<option value="">Select Status</option>'+
+                        @foreach(COMPLETING_STATUS as $key=>$value)
+                            '<option value="{{$value}}">{{$key}}</option>'+
+                        @endforeach
+
+                            '</select>'+
+                    '</div>'+
+
+                    '<div class="form-group col-md-3">'+
+                    '<label for="">Year</label>'+
+                   ' <input name="passingYear[]" type="text" class="form-control date"  id="passingYear'+counter+'" placeholder="passing Year">'+
                    ' </div>'+
                     '<div class="form-group col-md-3">'+
                     '<label for="">Result System<span style="color: red">*</span></label>'+
@@ -594,23 +646,14 @@
                     '</div>'+
 
                    ' <div class="form-group col-md-3">'+
-                    '<label for="">CGPA<span style="color: red">*</span></label>'+
-                    '<input name="result[]" type="text" class="form-control" id="cgpa'+counter+'" required  placeholder="">'+
+                    '<label for="">CGPA</label>'+
+                    '<input name="result[]" type="text" class="form-control" id="cgpa'+counter+'"   placeholder="">'+
                     '</div>'+
                     '<div class="form-group col-md-3">'+
                     '<label for="">CGPA Out of</label>'+
                 '<input type="text" name="resultOutOf[]" class="form-control" id="resultOutOf'+counter+'" placeholder="CGPA Out of">'+
-                    '</div>'+
-                    '<div class="form-group col-md-3">'+
-                    '<label for="">Status<span style="color: red">*</span></label>'+
-                    '<select name="status[]"class="form-control" required id="educationStatus'+counter+'">'+
-                    '<option value="">Select Status</option>'+
-                        @foreach(COMPLETING_STATUS as $key=>$value)
-                    '<option value="{{$value}}">{{$key}}</option>'+
-                        @endforeach
-
-                    '</select>'+
                     '</div>'
+
                 );
                 newTextBoxDiv.appendTo("#TextBoxesGroup");
                 $('.date').datepicker({

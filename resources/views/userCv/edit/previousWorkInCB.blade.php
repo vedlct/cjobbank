@@ -19,7 +19,7 @@
             <input type="checkbox" class="col-md-4" id="currentlyRunning" name="currentlyRunning" @if($previousWorkInCB->currentlyRunning=='1')checked @endif value="1">Currently running
 
         @if($previousWorkInCB->currentlyRunning=='0')
-                <input type="text" id="endDate"name="endDate col-md-3" placeholder="End Date" value="{{$previousWorkInCB->endDate}}" class="form-control col-md-3 date"/>
+                <input type="text" id="endDate"name="endDate" placeholder="End Date" value="{{$previousWorkInCB->endDate}}" class="form-control col-md-3 date"/>
             @else
                 <input type="text" id="endDate"name="endDate" placeholder="End Date"  class="form-control col-md-3 date"/>
             @endif
@@ -51,7 +51,7 @@
 
         var degisnation=$('#degisnation').val();
         var start=$('#start').val();
-        var end=$('#end').val();
+        var end=$('#endDate').val();
 
         if(degisnation==""){
 
@@ -75,6 +75,8 @@
 
         }
         if(end != "") {
+
+
 
 
             if (Date.parse(end) < Date.parse(start)) {

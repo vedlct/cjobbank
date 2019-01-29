@@ -70,9 +70,11 @@
                                         <label for="inputPassword4">Key achievement </label>
                                         <textarea class="form-control" name="keyAchivement[]" maxlength="300"  id="keyAchivement" placeholder="Key achievement"></textarea>
                                     </div>
-                                    <div class="form-group col-md-6">
+
+                                    <div class="form-group col-md-6" id="supervisorDiv">
                                         <label for="inputEmail4">Name of supervisor</label>
-                                        <input type="text" class="form-control" name="supervisorName[]" id="supervisorName" placeholder="Name of supervisor" >
+                                        <input type="text" class="form-control" name="supervisorName[]" id="supervisorName" placeholder="Name of Supervisor" >
+
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Any reservation contacting your employer?</label>
@@ -87,16 +89,20 @@
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Type of employment</label>
                                         <select class="form-control" id="employmentType" name="employmentType[]" >
+
                                             <option value="" selected>Select employment type</option>
-                                            @foreach(TYPE_OF_EMPLOYMENT as $key=>$value)
-                                                <option value="{{$value}}">{{$key}}</option>
+                                            @foreach($employmentType as $eT)
+                                                <option value="{{$eT->employmentTypeName}}">{{$eT->employmentTypeName}}</option>
+
                                                 @endforeach
                                             <option value="{{OTHERS}}">Others</option>
                                         </select>&nbsp;
                                     </div>
                                     <div style="display: none" id="employmentTypeTextDiv" class="form-group col-md-6">
-                                        <label for="inputEmail4">Write employment type</label>
-                                        <input type="text" class="form-control" name="employmentTypeText[]" id="employmentTypeText" placeholder="Write employment type">
+
+                                        <label for="inputEmail4">Please mention other types</label>
+                                        <input type="text" class="form-control" name="employmentTypeText[]" id="employmentTypeText" placeholder="Write Employment Type">
+
 
                                     </div>
                                 </div>
@@ -201,13 +207,14 @@
 
         function checkJobExperience(){
 
+
             if ($("input[name=hasProfCertificate]:checked").val()=="1") {
 
             var organizationType=document.getElementsByName('organizationType[]');
             var organization=document.getElementsByName('organization[]');
             var degisnation=document.getElementsByName('degisnation[]');
             var start=document.getElementsByName('start[]');
-            var end=document.getElementsByName('end[]');
+            var end=document.getElementsByName('endDate[]');
             var address=document.getElementsByName('address[]');
 
             var majorResponsibilities=document.getElementsByName('majorResponsibilities[]');
@@ -218,6 +225,13 @@
             var employmentTypeText=document.getElementsByName('employmentTypeText[]');
 
             for (i=0;i<organization.length;i++){
+
+                if(end[i].value =="" && supervisorName[i].value==""){
+
+                    var errorMsg='Please insert supervisor name for running job !!';
+                    validationError(errorMsg)
+                    return false;
+                }
 
                 if(organizationType[i].value==""){
 
@@ -733,14 +747,14 @@
                     '<label for="inputEmail4">Type of Employment<span style="color: red">*</span></label>'+
                     '<select class="form-control" id="employmentType'+counter+'" onchange="employmentTypefunc('+counter+')" name="employmentType[]" required>'+
                 '<option value="" selected>Select Employment Type</option>'+
-                @foreach(TYPE_OF_EMPLOYMENT as $key=>$value)
-                '<option value="{{$value}}">{{$key}}</option>'+
+                    @foreach($employmentType as $eT)
+                    '<option value="{{$eT->employmentTypeName}}">{{$eT->employmentTypeName}}</option>'+
                         @endforeach
                     '<option value="{{OTHERS}}">Others</option>'+
                     '</select>'+
                 '</div>'+
                 '<div style="display: none" id="employmentTypeTextDiv'+counter+'" class="form-group col-md-6">'+
-                    '<label for="inputEmail4">Write Employment Type<span style="color: red">*</span></label>'+
+                    '<label for="inputEmail4">Please mention other types<span style="color: red">*</span></label>'+
                     '<input type="text" class="form-control" name="employmentTypeText[]" id="employmentTypeText'+counter+'" placeholder="Write Employment Type">'+
 
                     '</div>'+

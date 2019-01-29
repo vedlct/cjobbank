@@ -18,12 +18,16 @@
 
                             <div class="row">
                                 <div class="form-group">
+<<<<<<< HEAD
                                     <label class="control-label">Previouly work information in caritas bangladesh?<span style="color: red" class="required">*</span>:</label>
+=======
+                                    <label class="control-label">Do you have any work experience in caritas bangladesh?<span style="color: red" class="required">*</span>:</label>
+>>>>>>> bac11ad63bcb4b43bbfdeedc3a648f271bc68554
                                     <div class="col-md-10 mb-3">
-                                        <input class="form-check-input" type="radio" required <?php if ($hasWorkedInCB=='1'){?>checked<?php } ?> name="hasWorkedInCB" value="1"> Yes&nbsp;&nbsp;
+                                        <input class="form-check-input" type="radio" required <?php if ($hasWorkedInCB=='1'){?>checked<?php } ?> id="hasWorkedInCBid" name="hasWorkedInCB" value="1"> Yes&nbsp;&nbsp;
                                     </div>
                                     <div class="col-md-10">
-                                        <input class="form-check-input" type="radio" required <?php if ($hasWorkedInCB=='0'){?>checked<?php } ?> name="hasWorkedInCB" value="0"> No&nbsp;&nbsp;
+                                        <input class="form-check-input" type="radio" required <?php if ($hasWorkedInCB=='0'){?>checked<?php } ?> id="hasWorkedInCBid" name="hasWorkedInCB" value="0"> No&nbsp;&nbsp;
                                     </div>
                                 </div>
                             </div>
@@ -42,9 +46,11 @@
                                         <input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date">
                                     </div>
                                     <div class="form-group col-md-6">
+
                                         <label for="inputPassword4">End date</label> /
                                         <input type="checkbox" class="col-md-2" id="currentlyRunning" name="currentlyRunning[]" value="1">Currenly running
-                                        <input type="text" class="form-control date col-md-4" name="endDate[]" id="end" placeholder="date">
+                                        <input type="text" class="form-control  col-md-4 end" name="endDate[]" id="end" placeholder="date">
+
 
                                     </div>
 
@@ -123,9 +129,12 @@
             $('.date').datepicker({
                 format: 'yyyy-m-d'
             });
-//            $('#end').datepicker({
-//                format: 'yyyy-m-d'
-//            });
+
+            $( ".end" ).datepicker({
+                format: "yyyy-m-d"
+//                useCurrent: false
+//                startDate: $( "#start" ).val(),
+            })
         });
 
         $("input[name=hasWorkedInCB]").click( function () {
@@ -150,10 +159,18 @@
 
         function chkPreviousWork() {
 
-            if ($("input[name=hasOtherSkill]:checked").val()=="1") {
+
+            if ($("input[name=hasWorkedInCB]:checked").val()=="1") {
+
+
 
                 var degisnation=document.getElementsByName('degisnation[]');
                 var startDate=document.getElementsByName('startDate[]');
+
+                var currentlyRunning=document.getElementsByName('currentlyRunning[]');
+
+
+                var endDate=document.getElementsByName('endDate[]');
 
 
                 for (i=0;i<degisnation.length;i++){
@@ -172,6 +189,21 @@
                         return false;
                     }
 
+                    if ($("input[name=currentlyRunning]:checked").val()!=1){
+
+                        if(endDate[i].value!=""){
+
+                            if(startDate[i].value > endDate[i].value){
+
+                                var errorMsg='startDate must be less then endDate';
+                                validationError(errorMsg);
+                                return false;
+                            }
+
+                        }
+
+                    }
+
 
                 }
 
@@ -179,6 +211,7 @@
             }
             else {
                 return true;
+
 
             }
 

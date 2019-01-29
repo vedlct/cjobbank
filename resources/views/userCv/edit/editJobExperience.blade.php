@@ -63,16 +63,20 @@
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">Type of employment<span style="color: red">*</span></label>
                     <select class="form-control" id="employmentType1"  name="employmentType" required>
-                        <option value="" selected>Select employment type</option>
-                        @foreach(TYPE_OF_EMPLOYMENT as $key=>$value)
-                            <option @if($experience->employmentType == $value)selected @endif value="{{$value}}">{{$key}}</option>
+
+                        <option value="" selected>Select Employment Type</option>
+                        @foreach($employmentType as $eT)
+                            <option value="{{$eT->employmentTypeName}}">{{$eT->employmentTypeName}}</option>
+
                         @endforeach
                         <option @if($experience->employmentType == OTHERS)selected @endif value="{{OTHERS}}">Others</option>
                     </select>&nbsp;
                 </div>
 
                 <div @if($experience->employmentType != OTHERS) style="display: none" @endif id="employmentTypeTextDiv" class="form-group col-md-6">
-                    <label for="inputEmail4">Write employment type<span style="color: red">*</span></label>
+
+                    <label for="inputEmail4">Please mention other types<span style="color: red">*</span></label>
+
                     <input type="text" class="form-control" value="{{$experience->employmentTypeText}}" name="employmentTypeText" id="employmentTypeText" placeholder="Write Employment Type">
 
                 </div>

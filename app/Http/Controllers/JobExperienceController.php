@@ -36,12 +36,13 @@ class JobExperienceController extends Controller
 
 
        $companyType=DB::table('organizationtype')->where('status',1)->get();
+       $employmentType=DB::table('type_of_employment')->where('status',1)->get();
 
        if (is_null($employee->hasJobExp)) {
 
            $hasProfCertificate = null;
 
-           return view('userCv.insert.jobExperience',compact('companyType','hasProfCertificate'));
+           return view('userCv.insert.jobExperience',compact('companyType','hasProfCertificate','employmentType'));
 
 
        }
@@ -49,7 +50,7 @@ class JobExperienceController extends Controller
 
            $hasProfCertificate=0;
 
-           return view('userCv.insert.jobExperience',compact('companyType','hasProfCertificate'));
+           return view('userCv.insert.jobExperience',compact('companyType','hasProfCertificate','employmentType'));
 
        }elseif ($employee->hasJobExp == 1){
 
@@ -63,11 +64,11 @@ class JobExperienceController extends Controller
 
            if($experiences->isEmpty()){
 
-               return view('userCv.insert.jobExperience',compact('companyType','hasProfCertificate'));
+               return view('userCv.insert.jobExperience',compact('companyType','hasProfCertificate','employmentType'));
            }
 
            else{
-               return view('userCv.update.jobExperience',compact('experiences','companyType','hasProfCertificate'));
+               return view('userCv.update.jobExperience',compact('experiences','companyType','hasProfCertificate','employmentType'));
            }
 
 

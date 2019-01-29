@@ -15,6 +15,20 @@
                         <div id="" class="tab">
 
                             <h2 style="margin-bottom: 30px;">Certification of membership in professional network/ forum</h2>
+
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label">Has certification of membership in professional network?<span style="color: red" class="required">*</span>:</label>
+                                    <div class="col-md-10 mb-3">
+                                        <input class="form-check-input" type="radio" required name="hasProfCertificate" value="1" onclick="sociaMemberDiv(this)"> Yes&nbsp;&nbsp;
+                                    </div>
+                                    <div class="col-md-10">
+                                        <input class="form-check-input" type="radio" required name="hasProfCertificate" checked onclick="sociaMemberDiv(this)" value="0"> No&nbsp;&nbsp;
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="sociaMemberDiv">
                             <div id="TextBoxesGroup">
 
                                 <div class="row">
@@ -41,13 +55,15 @@
                             <button type="button" id="addButton" class="btn btn-success">Add more</button>
                             <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
+                            </div>
+
                         </div>
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
                                 <a href="{{route('candidate.previousWorkInCB.index')}}"><button type="button" id="btnPevious" >Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
-                                {{--<a href="{{route('refree.index')}}"><button type="button" id="nextBtn" >Next</button></a>--}}
+                                <a href="{{route('refree.index')}}"><button type="button" id="nextBtn" >Next</button></a>
                             </div>
                         </div>
 
@@ -85,6 +101,11 @@
         var currentTab = 0; // Current tab is set to be the first tab (0)
         fixStepIndicator(currentTab); // Display the crurrent tab
 
+        $(function () {
+            $('#sociaMemberDiv').hide();
+            $('#submitBtn').hide();
+        });
+
         function fixStepIndicator(n) {
             // This function removes the "active" class of all steps...
             var x1 = document.getElementsByClassName("tab");
@@ -95,6 +116,22 @@
             }
             //... and adds the "active" class on the current step:
             x[(n+4)].className += " active";
+        }
+
+        function sociaMemberDiv(x) {
+            var value=$(x).val();
+
+            if(value ==1){
+                $('#sociaMemberDiv').show();
+                $('#submitBtn').show();
+            }
+            else if(value ==0){
+                $('#sociaMemberDiv').hide();
+                $('#submitBtn').hide();
+            }
+
+            // alert(value);
+
         }
 
         function chkSocialMemberShip() {
