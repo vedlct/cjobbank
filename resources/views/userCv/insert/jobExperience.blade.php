@@ -70,7 +70,7 @@
                                         <label for="inputPassword4">Key Achievement </label>
                                         <textarea class="form-control" name="keyAchivement[]" maxlength="300"  id="keyAchivement" placeholder="Key Achievement"></textarea>
                                     </div>
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-md-6" id="supervisorDiv">
                                         <label for="inputEmail4">Name of Supervisor</label>
                                         <input type="text" class="form-control" name="supervisorName[]" id="supervisorName" placeholder="Name of Supervisor" >
                                     </div>
@@ -95,7 +95,7 @@
                                         </select>&nbsp;
                                     </div>
                                     <div style="display: none" id="employmentTypeTextDiv" class="form-group col-md-6">
-                                        <label for="inputEmail4">Write Employment Type</label>
+                                        <label for="inputEmail4">Please mention other types</label>
                                         <input type="text" class="form-control" name="employmentTypeText[]" id="employmentTypeText" placeholder="Write Employment Type">
 
                                     </div>
@@ -201,13 +201,14 @@
 
         function checkJobExperience(){
 
+
             if ($("input[name=hasProfCertificate]:checked").val()=="1") {
 
             var organizationType=document.getElementsByName('organizationType[]');
             var organization=document.getElementsByName('organization[]');
             var degisnation=document.getElementsByName('degisnation[]');
             var start=document.getElementsByName('start[]');
-            var end=document.getElementsByName('end[]');
+            var end=document.getElementsByName('endDate[]');
             var address=document.getElementsByName('address[]');
 
             var majorResponsibilities=document.getElementsByName('majorResponsibilities[]');
@@ -218,6 +219,13 @@
             var employmentTypeText=document.getElementsByName('employmentTypeText[]');
 
             for (i=0;i<organization.length;i++){
+
+                if(end[i].value =="" && supervisorName[i].value==""){
+
+                    var errorMsg='Please insert supervisor name for running job !!';
+                    validationError(errorMsg)
+                    return false;
+                }
 
                 if(organizationType[i].value==""){
 
@@ -740,7 +748,7 @@
                     '</select>'+
                 '</div>'+
                 '<div style="display: none" id="employmentTypeTextDiv'+counter+'" class="form-group col-md-6">'+
-                    '<label for="inputEmail4">Write Employment Type<span style="color: red">*</span></label>'+
+                    '<label for="inputEmail4">Please mention other types<span style="color: red">*</span></label>'+
                     '<input type="text" class="form-control" name="employmentTypeText[]" id="employmentTypeText'+counter+'" placeholder="Write Employment Type">'+
 
                     '</div>'+

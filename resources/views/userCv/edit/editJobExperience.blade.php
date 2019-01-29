@@ -72,7 +72,7 @@
                 </div>
 
                 <div @if($experience->employmentType != OTHERS) style="display: none" @endif id="employmentTypeTextDiv" class="form-group col-md-6">
-                    <label for="inputEmail4">Write Employment Type<span style="color: red">*</span></label>
+                    <label for="inputEmail4">Please mention other types<span style="color: red">*</span></label>
                     <input type="text" class="form-control" value="{{$experience->employmentTypeText}}" name="employmentTypeText" id="employmentTypeText" placeholder="Write Employment Type">
 
                 </div>
