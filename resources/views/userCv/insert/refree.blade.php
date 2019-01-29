@@ -1,7 +1,15 @@
 @extends('main')
 
 @section('content')
-
+    <style>
+        strong{
+            color: red;
+            font-style: italic;
+        }
+        /*#imageMsg,#signMsg{*/
+        /*display: none;*/
+        /*}*/
+    </style>
     <div class="row ">
 
         <div class="col-12 ">
@@ -13,6 +21,8 @@
                         {{csrf_field()}}
 
                         <div id="" class="tab">
+                            <strong><span style="color: red">*</span><span style="color: red">*</span>Experience candidate : referee should be present or previous organization/company.</strong><span style="color: red">*</span><span style="color: red">*</span><br>
+                            <strong><span style="color: red">*</span><span style="color: red">*</span>Freshers : referee can be from his/her own preference.</strong><span style="color: red">*</span><span style="color: red">*</span>
 
                             <h2 style="margin-bottom: 30px;">Referee - 1</h2>
                             <div id="TextBoxesGroup1">
@@ -84,18 +94,18 @@
 
 
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Present Position<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" name="presentposition[]" id="presentposition" placeholder="position" required>
+                                        <label for="inputEmail4">Present Position</label>
+                                        <input type="text" class="form-control" name="presentposition[]" id="presentposition" placeholder="position" >
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label for="inputPassword4">Organization<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" required>
+                                        <label for="inputPassword4">Organization</label>
+                                        <input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" >
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label for="inputPassword4">Email<span style="color: red">*</span></label>
-                                        <input type="email" class="form-control" name="email[]" id="email" placeholder="email" required>
+                                        <label for="inputPassword4">Email</label>
+                                        <input type="email" class="form-control" name="email[]" id="email" placeholder="email">
                                     </div>
 
                                     <div class="form-group col-md-6">
@@ -371,13 +381,13 @@
 
                     }
 
-                    if(presentposition==""){
-
-                        var errorMsg='Please Type Present Position First!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
+//                    if(presentposition==""){
+//
+//                        var errorMsg='Please Type Present Position First!!'
+//                        validationError(errorMsg)
+//                        return false;
+//
+//                    }
                     if (presentposition.length > 100){
 
                         var errorMsg='Present Position Should not more than 100 Charecter Length!!';
@@ -385,13 +395,13 @@
                         return false;
 
                     }
-                    if(organization==""){
-
-                        var errorMsg='Please Type Organization First!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
+//                    if(organization==""){
+//
+//                        var errorMsg='Please Type Organization First!!'
+//                        validationError(errorMsg)
+//                        return false;
+//
+//                    }
                     if (organization.length > 100){
 
                         var errorMsg='Organization Should not more than 100 Charecter Length!!';
@@ -437,13 +447,13 @@
 
                     }
 
-                    if(email==""){
-
-                        var errorMsg='Please Type a Email First!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
+//                    if(email==""){
+//
+//                        var errorMsg='Please Type a Email First!!'
+//                        validationError(errorMsg)
+//                        return false;
+//
+//                    }
 
                     if(!email.match(mailformat))
                     {
@@ -473,16 +483,16 @@
                     '<input type="text" class="form-control" name="lastName[]" id="lastName'+counter+'" placeholder="last name" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
-                    '<label for="inputEmail4">Present Position<span style="color: red">*</span></label> ' +
-                    '<input type="text" class="form-control" name="presentposition[]" id="presentposition'+counter+'" placeholder="position" required> ' +
+                    '<label for="inputEmail4">Present Position</label> ' +
+                    '<input type="text" class="form-control" name="presentposition[]" id="presentposition'+counter+'" placeholder="position" > ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
-                    '<label for="inputPassword4">Organization<span style="color: red">*</span></label> ' +
-                    '<input type="text" class="form-control" name="organization[]" id="organization'+counter+'" placeholder="organization" required> ' +
+                    '<label for="inputPassword4">Organization</label> ' +
+                    '<input type="text" class="form-control" name="organization[]" id="organization'+counter+'" placeholder="organization" > ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
-                    '<label for="inputPassword4">Email<span style="color: red">*</span></label> ' +
-                    '<input type="email" class="form-control" name="email[]" id="email'+counter+'" placeholder="email" required> ' +
+                    '<label for="inputPassword4">Email</label> ' +
+                    '<input type="email" class="form-control" name="email[]" id="email'+counter+'" placeholder="email" > ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
                     '<label for="inputPassword4">Phone<span style="color: red">*</span></label> ' +

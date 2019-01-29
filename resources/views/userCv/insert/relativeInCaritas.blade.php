@@ -181,7 +181,7 @@
                 $.alert({
                 title: 'Congratulation',
                 type: 'green',
-                content: '{{CV_COMPLITING_MSG}}',
+                content: '{!! CV_COMPLITING_MSG !!}',
                 buttons: {
                     tryAgain: {
                         text: 'Ok',

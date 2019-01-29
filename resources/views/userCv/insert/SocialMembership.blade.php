@@ -14,7 +14,7 @@
 
                         <div id="" class="tab">
 
-                            <h2 style="margin-bottom: 30px;">Certification of membership in Social network/forum</h2>
+                            <h2 style="margin-bottom: 30px;">Certification of membership in professional network/ forum</h2>
                             <div id="TextBoxesGroup">
 
                                 <div class="row">
