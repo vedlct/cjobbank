@@ -75,11 +75,13 @@
                                                     <label for="inputPassword4">{{$val->endDate}}</label>
                                                     {{--<input type="text" class="form-control date" name="endDate{{$val->professionalQualificationId}}" value="{{$val->endDate}}" id="end" placeholder="date">--}}
                                                 </div>
+                                                @if($val->hour || $val->day || $val->week || $val->month || $val->year)
                                                 <div class="form-group col-md-12">
                                                     <label for="inputEmail4">Duration :</label>
                                                     <label for="inputEmail4">{{"H:".$val->hour." D:".$val->day." W:".$val->week." M:".$val->month." Y:".$val->year}} </label>
                                                     {{--<input type="text" class="form-control" name="vanue[]" id="inputEmail4" placeholder="vanue" required>--}}
                                                 </div>
+                                                @endif
 
                                                 <div class="form-group col-md-4">
                                                     <label for="inputPassword4">Staus :</label>

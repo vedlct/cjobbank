@@ -17,7 +17,7 @@
 <div class="row">
     <div class="form-group col-md-8">
         <label for="inputEmail4">Venue <span style="color: red">*</span></label>
-        <input type="text" class="form-control" name="venue" value="{{$training->vanue}}" id="vanue" placeholder="vanue" required >
+        <input type="text" class="form-control" name="venue" value="{{$training->vanue}}" id="vanue" placeholder="venue" required >
     </div>
     <div class="form-group col-md-4">
         <label for="inputPassword4">Country<span style="color: red">*</span></label>
@@ -42,7 +42,7 @@
     </div>
     <div class="form-group col-md-4">
         <label for="inputPassword4">Staus<span style="color: red">*</span></label>
-        <select required class="form-control"id="trainingCertificateStatus" name="status">
+        <select required class="form-control"id="trainingCertificateStatus" name="status" onchange="selectStatus(this)">
 
             <option value="">Select Status</option>
             @foreach(COMPLETING_STATUS as $key=>$value)
@@ -50,6 +50,11 @@
             @endforeach
         </select>
     </div>
+</div>
+
+    <div id="courseDuration" class="row">
+
+
 
 
         <label>Duration</label>
@@ -103,19 +108,33 @@
             @endfor
         </select>
     </div>
+    </div>
 
-
-    <div class="form-group col-md-12">
+<div class="row">
+    <div class="form-group col-md-12 ">
         <a class="btn btn-danger pull-left" href="{{route('candidate.cvTrainingCertificate')}}">Cancel</a>&nbsp;&nbsp;
         <button  class="btn btn-info pull-right">Update</button>
     </div>
-
-
 </div>
+
+
+
+
 </form>
 
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 <script>
+    $(function () {
+        var value="{{$training->status }}";
+
+        if(value==1){
+            $('#courseDuration').hide();
+        }
+        else if(value==2){
+            $('#courseDuration').show();
+        }
+
+    });
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -218,6 +237,19 @@
                 }
             }
         });
+
+    }
+
+    function selectStatus(x) {
+        var value=$(x).val();
+
+        if(value==1){
+            $('#courseDuration').hide();
+        }
+        else if(value==2){
+            $('#courseDuration').show();
+        }
+        // alert(value);
 
     }
     </script>

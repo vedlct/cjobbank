@@ -43,11 +43,14 @@
                                             {{--<input type="text" class="form-control" name="vanue[]" id="inputEmail4" placeholder="vanue" required>--}}
                                         </div>
 
+                                        @if($training->hour || $training->day || $training->week || $training->month || $training->year)
+
                                         <div class="form-group col-md-12">
                                             <label for="inputEmail4">Duration :</label>
                                             <label for="inputEmail4">{{"H:".$training->hour." D:".$training->day." W:".$training->week." M:".$training->month." Y:".$training->year}} </label>
                                             {{--<input type="text" class="form-control" name="vanue[]" id="inputEmail4" placeholder="vanue" required>--}}
                                         </div>
+                                       @endif
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-6">
@@ -320,7 +323,7 @@
 
                     '<div class="form-group col-md-8"> ' +
                     '<label for="inputEmail4">Venue <span style="color: red">*</span></label> ' +
-                    '<input type="text" class="form-control" name="vanue[]" id="vanue'+counter+'" placeholder="vanue" required> ' +
+                    '<input type="text" class="form-control" name="vanue[]" id="vanue'+counter+'" placeholder="venue" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
                     '<label for="inputPassword4">Country<span style="color: red">*</span></label>' +

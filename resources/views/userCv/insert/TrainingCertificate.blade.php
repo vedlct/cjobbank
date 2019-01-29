@@ -46,7 +46,7 @@
                                     <div class="form-group col-md-4">
                                         <label for="inputPassword4">Country<span style="color: red">*</span></label>
                                         {{--<input type="text" class="form-control"  id="inputPassword4" placeholder="">--}}
-                                        <select  class="form-control" id="country" name="countryId[]">
+                                        <select  class="form-control" id="country" name="countryId[]" >
                                             <option value="">Select Country</option>
                                             @foreach($countries as $country)
                                                 <option value="{{$country->countryId}}">{{$country->countryName}}</option>
@@ -66,7 +66,7 @@
 
                                     <div class="form-group col-md-4">
                                         <label for="inputPassword4">Staus<span style="color: red">*</span></label>
-                                        <select  class="form-control"id="trainingCertificateStatus" name="status[]">
+                                        <select  class="form-control"id="trainingCertificateStatus" name="status[]" onchange="selectStatus(this)">
 
                                             <option value="">Select Status</option>
                                             @foreach(COMPLETING_STATUS as $key=>$value)
@@ -79,7 +79,7 @@
 
                                 </div>
 
-                                <div class="row">
+                                <div class="row" id="courseDuration">
                                     <label>Duration</label>
                                     <div class="form-group col-md-2">
                                         <label for="inputPassword4">Hour</label>
@@ -135,10 +135,12 @@
 
                             </div>
 
-                            <button type="button" id="addButton" class="btn btn-success">Add More</button>
-                            <button type="button" id="removeButton" class="btn btn-success" >remove</button>
+
 
                         </div>
+                                <button type="button" id="addButton" class="btn btn-success">Add More</button>
+                                <button type="button" id="removeButton" class="btn btn-success" >remove</button>
+
                         </div>
 
                         <div style="overflow:auto;">
@@ -233,6 +235,8 @@
 //            $('#end').datepicker({
 //                format: 'yyyy-m-d'
 //            });
+
+            $('#courseDuration').hide();
         });
 
         function chkTrainingCertificate() {
@@ -630,6 +634,20 @@
                     }
                 }
             });
+
+        }
+
+        function selectStatus(x) {
+            var value=$(x).val();
+
+
+            if(value==1){
+                $('#courseDuration').hide();
+            }
+            else if(value==2){
+                $('#courseDuration').show();
+            }
+            // alert(value);
 
         }
 
