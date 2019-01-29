@@ -21,6 +21,7 @@ use App\Religion;
 use App\OrganizationType;
 
 use App\TermsAndConditions;
+use App\TypeOfEmployment;
 use App\Zone;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -770,6 +771,7 @@ class SettingsController extends Controller
 
     }
 
+
     public function termsConditionShow(){
 
 
@@ -799,6 +801,48 @@ class SettingsController extends Controller
 
         Session::flash('message', 'Updated Successfully!');
         return redirect()->route('manage.terms_and_condition');
+
+    }
+
+    public function typeOfEmploymentShow(){
+
+
+        $type=TypeOfEmployment::get();
+        return view('manage.typeOfEmployment',compact('type'));
+    }
+    public function inserttypeOfEmployment(Request $r)
+    {
+
+
+        $type = new TypeOfEmployment();
+        $type->employmentTypeName = $r->employmentTypeName;
+        $type->status = $r->status;
+        $type->save();
+
+
+        Session::flash('message', 'Inserted Successfully!');
+        return redirect()->route('manage.typeOfEmployment');
+    }
+    public function edittypeOfEmployment(Request $r)
+    {
+
+        $type =TypeOfEmployment::findOrFail($r->id);
+
+        return view('manage.editTypeOfEmployment',compact('type'));
+
+    }
+
+    public function updatetypeOfEmployment($id,Request $r){
+
+
+
+        $type =TypeOfEmployment::findOrFail($id);
+        $type->employmentTypeName = $r->employmentTypeName;
+        $type->status = $r->status;
+        $type->save();
+
+        Session::flash('message', 'Updated Successfully!');
+        return redirect()->route('manage.typeOfEmployment');
 
     }
 

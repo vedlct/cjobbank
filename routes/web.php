@@ -346,8 +346,11 @@ Route::get('rumiTest/mail','Admin\MailTamplateController@testPdf');
 //Zone
 Route::get('manage/skill','Admin\ComputerSkillController@skill')->name('manage.skill');
 Route::post('manage/skill/insert','Admin\ComputerSkillController@insertSkill')->name('admin.skill.insert');
+
 Route::post('manage/skill/updateZone/{id}','Admin\ComputerSkillController@updateSkill')->name('admin.skill.update');
+
 Route::post('manage/skill/editZone','Admin\ComputerSkillController@editSkill')->name('admin.edit.skill');
+
 
 //mail Tamplate
 Route::get('manage/Mail-Tamplate','Admin\MailTamplateController@show')->name('manage.mailTamplate');
@@ -372,7 +375,15 @@ Route::post('manage/objective-Page-Question/update/{id}','Admin\SettingsControll
 /* terms and condition */
 Route::get('manage/Tems-condition','Admin\SettingsController@termsConditionShow')
     ->name('manage.terms_and_condition');
+
 Route::get('/Tems-condition','TermsAndController@termsConditionShowToUser')
     ->name('terms_and_condition.show');
 Route::POST('manage/Tems-condition','Admin\SettingsController@termsConditionUpdate')
     ->name('admin.termsAndCondition.update');
+
+/*type of employment*/
+Route::get('manage/Type-of-employment','Admin\SettingsController@typeOfEmploymentShow')
+    ->name('manage.typeOfEmployment');
+Route::post('manage/Type-of-employment/insert','Admin\SettingsController@inserttypeOfEmployment')->name('manage.typeOfEmployment.insert');
+Route::post('manage/Type-of-employment/edit','Admin\SettingsController@edittypeOfEmployment')->name('manage.typeOfEmployment.edit');
+Route::post('manage/Type-of-employment/update/{id}','Admin\SettingsController@updatetypeOfEmployment')->name('manage.typeOfEmployment.update');

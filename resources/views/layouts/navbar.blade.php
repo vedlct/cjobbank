@@ -78,6 +78,7 @@
         {{--<li><a href="{{route('manage.mailTamplate')}}">Manage Mail Tamplate</a></li>--}}
         <li><a href="{{route('manage.careerObjectiveAndApplicationInformation')}}">career objective and application information</a></li>
         <li><a href="{{route('manage.terms_and_condition')}}">Terms And Condition</a></li>
+        <li><a href="{{route('manage.typeOfEmployment')}}">Type of Employment</a></li>
         </ul>
     </li>
     @endif
