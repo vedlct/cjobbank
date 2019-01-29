@@ -461,8 +461,8 @@
                     '<label for="inputEmail4">Type of Employment<span style="color: red">*</span></label>'+
                     '<select class="form-control" id="employmentType'+counter+'" onchange="employmentTypefunc('+counter+')" name="employmentType[]" required>'+
                     '<option value="" selected>Select Employment Type</option>'+
-                    @foreach(TYPE_OF_EMPLOYMENT as $key=>$value)
-                        '<option value="{{$value}}">{{$key}}</option>'+
+                    @foreach($employmentType as $eT)
+                        '<option value="{{$eT->employmentTypeName}}">{{$eT->employmentTypeName}}</option>'+
                     @endforeach
                         '<option value="{{OTHERS}}">Others</option>'+
                     '</select>'+

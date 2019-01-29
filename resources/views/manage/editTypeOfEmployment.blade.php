@@ -3,7 +3,7 @@
 
     <div class="form-group">
         <label for="">Employement type Name<span style="color: red">*</span></label>
-        <input type="text" maxlength="255" class="form-control" value="{{$type->employmentTypeName}}"  name="employmentTypeName" required>
+        <input type="text" maxlength="45" class="form-control" value="{{$type->employmentTypeName}}"  name="employmentTypeName" required>
     </div>
     {{--<div class="form-group">--}}
     {{--<label for="">Serial &nbsp;</label><label>(last serial number: <span style="color: red">{{$lastserialnumber->serial}}</span>)</label>--}}

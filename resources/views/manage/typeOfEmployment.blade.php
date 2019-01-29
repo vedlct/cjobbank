@@ -21,7 +21,7 @@
 
                             <label for="">Employement type Name<span style="color: red">*</span></label>
 
-                            <input class="form-control" name="employmentTypeName" maxlength="50" required type="text">
+                            <input class="form-control" name="employmentTypeName" maxlength="45" required type="text">
 
                         </div>
                         <div class="form-group">
