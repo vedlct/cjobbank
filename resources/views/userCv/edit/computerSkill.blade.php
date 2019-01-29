@@ -10,7 +10,7 @@
                     <?php $skillId= array();
                     $skillTitle=array();?>
                     <select name="computerSkillId" id="" class="form-control" required>
-                        <option value="">Select Skill</option>
+                        <option value="">Select skill</option>
                         @foreach($allComputerSkills as $skill)
                             <option @if($skill->id==$computerSkill->computerSkillId)selected @endif value="{{$skill->id}}">{{$skill->computerSkillName}}</option>
 
@@ -21,9 +21,9 @@
 
                 <div class="form-group col-md-6">
 
-                    <label for="inputEmail4">Skill-Level<span style="color: red">*</span></label>
+                    <label for="inputEmail4">Skill-level<span style="color: red">*</span></label>
                     <select name="SkillAchievement" id="" class="form-control" required>
-                        <option value="">Select Level</option>
+                        <option value="">Select level</option>
                         @foreach(ComputerSkillAchievement as $key=>$value)
                             <option @if($computerSkill->SkillAchievement== $value) selected @endif value="{{$value}}">{{$key}}</option>
                         @endforeach

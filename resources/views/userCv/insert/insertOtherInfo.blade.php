@@ -21,7 +21,7 @@
                                 <label for="">Extra curricular activities</label>
                                 <textarea type="text" name="extraCurricularActivities" maxlength="300"  rows="2"
                                           class="form-control{{ $errors->has('extraCurricularActivities') ? ' is-invalid' : '' }}"
-                                          id="objective" placeholder="Extra Curricular Activities">{{ old('extraCurricularActivities') }}</textarea>
+                                          id="objective" placeholder="Extra curricular activities">{{ old('extraCurricularActivities') }}</textarea>
                                 @if ($errors->has('extraCurricularActivities'))
 
                                     <span class="">
@@ -42,10 +42,10 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="">Award Received</label>
+                                <label for="">Award received</label>
                                 <textarea type="text" name="awardReceived" maxlength="300"  rows="3"
                                           class="form-control {{ $errors->has('awardReceived') ? ' is-invalid' : '' }}"
-                                          id="awardReceived" placeholder="Award Received">{{ old('awardReceived') }}</textarea>
+                                          id="awardReceived" placeholder="Award received">{{ old('awardReceived') }}</textarea>
                                 @if ($errors->has('awardReceived'))
 
                                     <span class="">
@@ -57,7 +57,7 @@
                                 <label for="">Research / Publication</label>
                                 <textarea type="text" name="researchPublication" maxlength="300"
                                            rows="3" class="form-control {{ $errors->has('researchPublication') ? ' is-invalid' : '' }}"
-                                          id="researchPublication" placeholder="Research Publication">{{ old('researchPublication') }}</textarea>
+                                          id="researchPublication" placeholder="Research / Publication">{{ old('researchPublication') }}</textarea>
                                 @if ($errors->has('researchPublication'))
 
                                     <span class="">

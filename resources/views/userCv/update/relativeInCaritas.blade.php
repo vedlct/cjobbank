@@ -23,7 +23,7 @@
                                 <div id="edit{{$relative->relativeId}}">
                                     <div class="row">
                                         <div class="form-group col-md-5">
-                                            <label for="inputEmail4">First Name: </label>
+                                            <label for="inputEmail4">First name: </label>
                                             {{$relative->firstName}}
                                             {{--<input type="text" class="form-control" name="firstName[]" id="inputEmail4" placeholder="first name" required>--}}
                                         </div>
@@ -31,7 +31,7 @@
 
 
                                         <div class="form-group col-md-5">
-                                            <label for="inputEmail4">Last Name: </label>
+                                            <label for="inputEmail4">Last name: </label>
                                             {{$relative->lastName}}
                                             {{--<input type="text" class="form-control" name="lastName[]" id="inputEmail4" placeholder="last name" required>--}}
                                         </div>
@@ -68,7 +68,7 @@
 
                                 {{--</div>--}}
 
-                                <button type="button" id="addButton" class="btn btn-success">Add More</button>
+                                <button type="button" id="addButton" class="btn btn-success">Add more</button>
                                 <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
 

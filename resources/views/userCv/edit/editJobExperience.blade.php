@@ -5,9 +5,9 @@
 
             <div class="row">
                 <div class="form-group col-md-6">
-                    <label for="inputEmail4">Organization Type<span style="color: red">*</span></label>
+                    <label for="inputEmail4">Organization type<span style="color: red">*</span></label>
                     <select required name="organizationType" class="form-control" id="organizationType">
-                        <option selected value="">Select Organization Type</option>
+                        <option selected value="">Select organization type</option>
                         @foreach($companyType as $natio)
                             <option @if($experience->fkOrganizationType == $natio->organizationTypeId ) selected @endif value="{{$natio->organizationTypeId}}">{{$natio->organizationTypeName}}</option>
                         @endforeach
@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="form-group col-md-10">
-                    <label for="inputEmail4">Organization Name<span style="color: red">*</span></label>
+                    <label for="inputEmail4">Organization name<span style="color: red">*</span></label>
                     <input type="text" class="form-control" name="organization" value="{{$experience->organization}}" id="organization" placeholder="organization" required>
                 </div>
 
@@ -26,15 +26,15 @@
                     <input type="text" class="form-control" name="degisnation" value="{{$experience->degisnation}}"  id="degisnation" placeholder="designation" required>
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="inputPassword4">Start Date<span style="color: red">*</span></label>
+                    <label for="inputPassword4">Start date<span style="color: red">*</span></label>
                     <input type="text" class="form-control date" name="startDate" value="{{$experience->startDate}}"  id="start" placeholder="date" required>
                 </div>
                 <div class="form-group col-md-4">
-                    <label for="inputPassword4">End Date</label>
+                    <label for="inputPassword4">End date</label>
                     <input type="text" class="form-control date" name="endDate" value="{{$experience->endDate}}"  id="end" placeholder="date">
                 </div>
                 <div class="form-group col-md-12">
-                    <label for="inputPassword4">Organization Address<span style="color: red">*</span></label>
+                    <label for="inputPassword4">Organization address<span style="color: red">*</span></label>
                     <textarea required class="form-control" name="address"id="address" placeholder="address">{{$experience->address}} </textarea>
                 </div>
 
@@ -43,17 +43,17 @@
                     <textarea class="form-control" name="majorResponsibilities" maxlength="300" required id="majorResponsibilities" placeholder="Major responsibilities">{{$experience->majorResponsibilities}}</textarea>
                 </div>
                 <div class="form-group col-md-12">
-                    <label for="inputPassword4">Key Achievement<span style="color: red">*</span> </label>
+                    <label for="inputPassword4">Key achievement<span style="color: red">*</span> </label>
                     <textarea class="form-control" name="keyAchivement" maxlength="300" required id="keyAchivement" placeholder="Key Achievement">{{$experience->keyAchivement}}</textarea>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="inputEmail4">Name of Supervisor<span style="color: red">*</span></label>
+                    <label for="inputEmail4">Name of supervisor<span style="color: red">*</span></label>
                     <input type="text" class="form-control" name="supervisorName" value="{{$experience->supervisorName}}" id="supervisorName" placeholder="Name of Supervisor" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">Any reservation contacting your employer?<span style="color: red">*</span></label>
                     <select class="form-control" id="reservationContactingEmployer" name="reservationContactingEmployer" required>
-                        <option value="" selected>Select Option</option>
+                        <option value="" selected>Select option</option>
                         @foreach(YES_NO as $key=>$value)
                             <option @if($experience->reservationContactingEmployer == $value) selected @endif value="{{$value}}">{{$key}}</option>
                         @endforeach
@@ -61,9 +61,9 @@
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label for="inputEmail4">Type of Employment<span style="color: red">*</span></label>
+                    <label for="inputEmail4">Type of employment<span style="color: red">*</span></label>
                     <select class="form-control" id="employmentType1"  name="employmentType" required>
-                        <option value="" selected>Select Employment Type</option>
+                        <option value="" selected>Select employment type</option>
                         @foreach(TYPE_OF_EMPLOYMENT as $key=>$value)
                             <option @if($experience->employmentType == $value)selected @endif value="{{$value}}">{{$key}}</option>
                         @endforeach
@@ -72,7 +72,7 @@
                 </div>
 
                 <div @if($experience->employmentType != OTHERS) style="display: none" @endif id="employmentTypeTextDiv" class="form-group col-md-6">
-                    <label for="inputEmail4">Write Employment Type<span style="color: red">*</span></label>
+                    <label for="inputEmail4">Write employment type<span style="color: red">*</span></label>
                     <input type="text" class="form-control" value="{{$experience->employmentTypeText}}" name="employmentTypeText" id="employmentTypeText" placeholder="Write Employment Type">
 
                 </div>

@@ -37,15 +37,15 @@
 
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label>Start Date</label>
+                                            <label>Start date</label>
                                             {{$previousWorkInCB->startDate}}
                                         </div>
                                         <div class="col-md-6">
-                                            <label>End Date</label>
+                                            <label>End date</label>
                                             @if($previousWorkInCB->currentlyRunning=='0')
                                                 {{$previousWorkInCB->endDate}}
                                             @else
-                                                Currently Running
+                                                Currently running
                                             @endif
 
 
@@ -69,7 +69,7 @@
                             </div>
 
 
-                            <button type="button" id="addButton" class="btn btn-success">Add More</button>
+                            <button type="button" id="addButton" class="btn btn-success">Add more</button>
                             <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
 

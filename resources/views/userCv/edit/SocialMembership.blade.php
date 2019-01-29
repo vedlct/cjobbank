@@ -9,12 +9,12 @@
 
 
             <div class="form-group col-md-12">
-                <label for="inputEmail4">Name of Network<span style="color: red">*</span></label>
-                <input type="text" class="form-control" name="networkName" value="{{$socialMembership->networkName}}" id="networkName" placeholder="networkName" required>
+                <label for="inputEmail4">Name of network<span style="color: red">*</span></label>
+                <input type="text" class="form-control" name="networkName" value="{{$socialMembership->networkName}}" id="networkName" placeholder="network name" required>
             </div>
 
             <div class="form-group col-md-6">
-                <label for="inputEmail4">Type of Membership<span style="color: red">*</span></label>
+                <label for="inputEmail4">Type of membership<span style="color: red">*</span></label>
                 <input type="text" class="form-control" name="membershipType" value="{{$socialMembership->membershipType}}" id="membershipType" placeholder="membership Type" required>
             </div>
             <div class="form-group col-md-6">
@@ -55,41 +55,41 @@
 
         if(networkName==""){
 
-            var errorMsg='Please Type Network Name First!!';
+            var errorMsg='Please type network name first!!';
             validationError(errorMsg);
             return false;
         }
         if (networkName.length > 255){
 
-            var errorMsg='Network Name Should not more than 255 Charecter Length!!';
+            var errorMsg='Network name should not more than 255 charecter length!!';
             validationError(errorMsg);
             return false;
 
         }
         if(membershipType==""){
 
-            var errorMsg='Please Type Membership-Type First!!'
+            var errorMsg='Please type membership-type first!!'
             validationError(errorMsg)
             return false;
 
         }
         if (membershipType.length > 255){
 
-            var errorMsg='Membership-Type Should not more than 255 Charecter Length!!';
+            var errorMsg='Membership-type should not more than 255 charecter length!!';
             validationError(errorMsg);
             return false;
 
         }
         if(duration==""){
 
-            var errorMsg='Please Duration First!!';
+            var errorMsg='Please duration first!!';
             validationError(errorMsg);
             return false;
 
         }
         if (duration.length > 10){
 
-            var errorMsg='Duration Should not more than 10 Charecter Length!!';
+            var errorMsg='Duration should not more than 10 charecter length!!';
             validationError(errorMsg);
             return false;
 

@@ -89,7 +89,7 @@
 
 
                                         <div class="form-group col-md-5">
-                                            <label>Expected Salary :</label>
+                                            <label>Expected salary :</label>
                                             {{$employeeCvQuesObjInfo->expectedSalary}}
                                         </div>
 
@@ -98,7 +98,7 @@
 
 
                                         <div class="form-group col-md-5">
-                                            <label>Possible Joining Date :</label>
+                                            <label>Possible joining date :</label>
                                             {{$employeeCvQuesObjInfo->readyToJoinAfter}}
                                         </div>
 

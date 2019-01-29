@@ -19,12 +19,12 @@
                             </div>
 
                             <div class="form-group col-md-6">
-                                <label>Expected Salary</label>
+                                <label>Expected salary</label>
                                 <input type="text"  onkeypress="return isNumberKey(event)" placeholder="expected salary" value="{{$employeeCareerInfo->expectedSalary}}" name="expectedSalary">
                             </div>
 
                             <div class="form-group col-md-6">
-                                <label>Possible Joining Date</label>
+                                <label>Possible joining date</label>
                                 <input type="text" class="date" onkeypress="return isNumberKey(event)" placeholder="Possible Joining Date" value="{{$employeeCareerInfo->readyToJoinAfter}}" name="readyToJoinAfter">
                             </div>
 
@@ -188,7 +188,7 @@
             '                            @php $nt=$st; @endphp\n' +
             '                            <div class="row">\n' +
             '                                <div class="form-group col-md-6">\n' +
-            '                                    <label>Current Salary</label>\n' +
+            '                                    <label>Current salary</label>\n' +
             '                                    <input type="text"  onkeypress="return isNumberKey(event)" placeholder="current salary" value="{{$employeeCareerInfo->currentSalary}}" name="currentSalary">\n' +
             '                                </div>\n' +
             '                            </div>');

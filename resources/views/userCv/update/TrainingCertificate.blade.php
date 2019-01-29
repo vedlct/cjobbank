@@ -23,7 +23,7 @@
                                     <div class="row">
                                         <div class="form-group col-md-10">
 
-                                            <label for="inputEmail4">Name Of The Training :</label>
+                                            <label for="inputEmail4">Name Of the training :</label>
                                             <label for="inputEmail4">{{$training->trainingName}}</label>
                                         </div>
 
@@ -60,14 +60,14 @@
                                         </div>
 
                                         <div class="form-group col-md-6">
-                                            <label for="inputPassword4">Start Date :</label>
+                                            <label for="inputPassword4">Start date :</label>
                                             <label for="inputEmail4">{{$training->startDate}} </label>
                                             {{--<input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" required>--}}
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-6">
-                                            <label for="inputPassword4">End Date :</label>
+                                            <label for="inputPassword4">End date :</label>
                                             <label for="inputEmail4">{{$training->endDate}} </label>
                                             {{--<input type="text" class="form-control date" name="endDate[]" id="end" placeholder="date">--}}
                                         </div>
@@ -105,7 +105,7 @@
                             </div>
 
 
-                            <button type="button" id="addButton" class="btn btn-success">Add More</button>
+                            <button type="button" id="addButton" class="btn btn-success">Add more</button>
                             <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
 

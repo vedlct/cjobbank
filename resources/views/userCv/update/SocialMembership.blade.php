@@ -23,7 +23,7 @@
 
 
                                         <div class="form-group col-md-10">
-                                            <label for="inputEmail4">Name of Network :</label>
+                                            <label for="inputEmail4">Name of network :</label>
                                             {{$socialMembership->networkName}}
 
                                         </div>
@@ -36,7 +36,7 @@
 
 
                                         <div class="form-group col-md-6">
-                                            <label for="inputEmail4">Type of Membership :</label>
+                                            <label for="inputEmail4">Type of membership :</label>
                                             {{$socialMembership->membershipType}}
 
                                         </div>
@@ -59,7 +59,7 @@
 
 
 
-                                <button type="button" id="addButton" class="btn btn-success">Add More</button>
+                                <button type="button" id="addButton" class="btn btn-success">Add more</button>
                                 <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
                         </div>

@@ -10,7 +10,7 @@
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">Skill<span style="color: red">*</span></label>
                     <select required name="skill" class="form-control" id="skill1">
-                        <option selected value="">Select Skill Type</option>
+                        <option selected value="">Select skill type</option>
                         @foreach($skills as $skill)
                             <option @if($skill->id==$empSkills->otherSkillId) selected @endif value="{{$skill->id}}">{{$skill->skillName}}</option>
                         @endforeach
@@ -19,12 +19,12 @@
 
                 </div>
                 <div style="display: none" id="otherSkillNameDiv" class="form-group col-md-6">
-                    <label for="">Other Skill Name</label>
+                    <label for="">Other skill name</label>
                     <input type="text" maxlength="255" name="otherSkillName" class="form-control" id="otherSkillName"  placeholder="">
 
                 </div>
                 <div class="form-group col-md-6">
-                    <label>Percentage of Skill (out of 100)</label>
+                    <label>Percentage of skill (out of 100)</label>
                     <div class="slidecontainer">
                         <input type="range" min="1" max="100" value="{{$empSkills->ratiing}}" class="slider" name="skillPercentage" id="myRange1" required>
                         <p>Value: <span id="demo1">{{$empSkills->ratiing}}</span> %</p>

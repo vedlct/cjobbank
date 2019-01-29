@@ -20,7 +20,7 @@
                             <div id="TextBoxesGroup" class="row">
                                 <div class="form-group col-md-4">
 
-                                    <label for="">Education Exam/level<span style="color: red">*</span></label>
+                                    <label for="">Education exam/level<span style="color: red">*</span></label>
                                     <select name="educationLevel[]" class="form-control" required="" id="educationLevel">
                                         <option value="">Select Education Level</option>
                                         @foreach($educationLevel as $edulevel)
@@ -31,29 +31,29 @@
                                 </div>
                                 <div class="form-group col-md-8">
 
-                                    <label for="">Education Degree<span style="color: red">*</span></label>
+                                    <label for="">Education degree<span style="color: red">*</span></label>
                                     <select  name="degree[]" class="form-control" required id="degree">
-                                        <option value="">Select Degree</option>
+                                        <option value="">Select degree</option>
 
                                     </select>
 
                                 </div>
 
                                 <div style="display: none" id="degreeNameDiv" class="form-group col-md-12">
-                                    <label for="">Degree Name</label>
+                                    <label for="">Degree name</label>
                                     <input type="text" maxlength="255" name="degreeName[]" class="form-control" id="degreeName"  placeholder="">
 
                                 </div>
 
 
                                 <div id="instituteNameDiv" class="form-group col-md-12">
-                                    <label for="">Institute Name</label>
-                                    <input type="text" name="instituteName[]" class="form-control" id="instituteName" placeholder="">
+                                    <label for="">Institute name</label>
+                                    <input type="text" name="instituteName[]" class="form-control" id="instituteName" placeholder="Institute name">
                                 </div>
                                 <div id="boardDiv" class="form-group col-md-3">
                                     <label for="">Board/University</label>
                                     <select name="board[]" class="form-control" id="board">
-                                        <option value="" >Select Board</option>
+                                        <option value="" >Select board</option>
                                         @foreach($boards as $board)
                                             <option value="{{$board->boardId}}" >{{$board->boardName}}</option>
                                         @endforeach
@@ -61,14 +61,14 @@
                                     </select>
                                 </div>
                                 <div style="display: none" id="boardNameDiv" class="form-group col-md-3">
-                                    <label for="">Board Name</label>
-                                    <input type="text" maxlength="255" name="boardName[]" class="form-control" id="boardName"  placeholder="">
+                                    <label for="">Board name</label>
+                                    <input type="text" maxlength="255" name="boardName[]" class="form-control" id="boardName"  placeholder="Board name">
 
                                 </div>
 
 
                                 <div style="display: none" id="universityTypeDiv" class="form-group col-md-3">
-                                    <label for="">University Type</label>
+                                    <label for="">University type</label>
                                     <select name="universityType[]" class="form-control" id="universityType">
                                         <option value="" >Select Type</option>
                                         @foreach(UNIVERSITY_TYPE as $key=>$value)
@@ -85,8 +85,8 @@
                                     </select>
                                 </div>
                                 <div style="display: none" id="subjectNameDiv" class="form-group col-md-6">
-                                    <label for="">Subject Name</label>
-                                    <input type="text" maxlength="255" name="subjectName[]" class="form-control" id="subjectName"  placeholder="">
+                                    <label for="">Subject name</label>
+                                    <input type="text" maxlength="255" name="subjectName[]" class="form-control" id="subjectName"  placeholder="Subject name">
 
                                 </div>
 
@@ -95,7 +95,7 @@
                                 <div class="form-group col-md-3">
                                     <label for="">Country<span style="color: red">*</span></label>
                                     <select name="country[]" class="form-control" required id="country">
-                                        <option value="">Select Country</option>
+                                        <option value="">Select country</option>
                                         @foreach($country as $coun)
                                             <option value="{{$coun->countryId}}">{{$coun->countryName}}</option>
                                         @endforeach
@@ -105,13 +105,13 @@
 
 
                                 <div class="form-group col-md-3">
-                                    <label for="">Passing Year<span style="color: red">*</span></label>
-                                    <input name="passingYear[]" type="text" class="form-control date" id="passingYear" required placeholder="passing Year">
+                                    <label for="">Passing year<span style="color: red">*</span></label>
+                                    <input name="passingYear[]" type="text" class="form-control date" id="passingYear" required placeholder="passing year">
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label for="">Result System<span style="color: red">*</span></label>
+                                    <label for="">Result system<span style="color: red">*</span></label>
                                     <select name="resultSystem[]" class="form-control" required id="resultSydtem">
-                                        <option value="">Select System</option>
+                                        <option value="">Select system</option>
                                         @foreach(RESULT_SYSTEM as $key=>$value)
                                             <option value="{{$value}}">{{$key}}</option>
                                         @endforeach
@@ -120,14 +120,14 @@
                                 </div>
 
                                 <div style="display: none" id="resultSydtemNameDiv" class="form-group col-md-3">
-                                    <label for="">Result System Name</label>
-                                    <input type="text" maxlength="255" name="resultSydtemName[]" class="form-control" id="resultSydtemName"  placeholder="">
+                                    <label for="">Result system name</label>
+                                    <input type="text" maxlength="255" name="resultSydtemName[]" class="form-control" id="resultSydtemName"  placeholder="Result system name">
 
                                 </div>
 
                                 <div class="form-group col-md-3">
                                     <label for="">CGPA<span style="color: red">*</span></label>
-                                    <input name="result[]" type="text" class="form-control" required id="cgpa" maxlength="10" placeholder="">
+                                    <input name="result[]" type="text" class="form-control" required id="cgpa" maxlength="10" placeholder="CGPA">
                                 </div>
 
                                 <div class="form-group col-md-3">

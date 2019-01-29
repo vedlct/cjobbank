@@ -29,26 +29,26 @@
 
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">First Name<span style="color: red">*</span></label>
+                                        <label for="inputEmail4">First name<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" name="firstName[]" id="firstName" placeholder="first name" required>
                                     </div>
 
 
 
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Last Name<span style="color: red">*</span></label>
+                                        <label for="inputEmail4">Last name<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" name="lastName[]" id="lastName" placeholder="last name" required>
                                     </div>
 
 
 
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Present Position<span style="color: red"></span></label>
+                                        <label for="inputEmail4">Present position<span style="color: red"></span></label>
                                         <input type="text" class="form-control" name="presentposition[]" id="presentposition" placeholder="position" >
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label for="inputPassword4">Name Of Organization<span style="color: red"></span></label>
+                                        <label for="inputPassword4">Name of organization<span style="color: red"></span></label>
                                         <input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" >
                                     </div>
 
@@ -80,21 +80,21 @@
 
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">First Name<span style="color: red">*</span></label>
+                                        <label for="inputEmail4">First name<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" name="firstName[]" id="firstName" placeholder="first name" required>
                                     </div>
 
 
 
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Last Name<span style="color: red">*</span></label>
+                                        <label for="inputEmail4">Last name<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" name="lastName[]" id="lastName" placeholder="last name" required>
                                     </div>
 
 
 
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Present Position</label>
+                                        <label for="inputEmail4">Present position</label>
                                         <input type="text" class="form-control" name="presentposition[]" id="presentposition" placeholder="position" >
                                     </div>
 
@@ -126,7 +126,7 @@
 
                             </div>
 
-                            <button type="button" id="addButton" class="btn btn-success">Add More</button>
+                            <button type="button" id="addButton" class="btn btn-success">Add more</button>
                             <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
                         </div>

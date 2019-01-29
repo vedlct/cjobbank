@@ -26,7 +26,7 @@
 
                                     <div class="form-group col-md-4">
 
-                                        <label for="">Education Exam/Degree :</label>
+                                        <label for="">Education exam/degree :</label>
                                         {{$educationInfo->educationLevelName}}
                                     </div>
 
@@ -45,7 +45,7 @@
                                 @if($educationInfo->eduLvlUnder ==2 || $educationInfo->eduLvlUnder==null )
 
                                 <div class="form-group col-md-12">
-                                    <label for="">Institute Name :</label>
+                                    <label for="">Institute name :</label>
                                     <label for="">{{$educationInfo->institutionName}}</label>
                                     {{--<input type="text" name="instituteName[]" required class="form-control" id="" placeholder="">--}}
                                 </div>
@@ -53,7 +53,7 @@
 
                                 @if (($educationInfo->eduLvlUnder == 2 || $educationInfo->eduLvlUnder==null) && $educationInfo->universityType != null )
                                     <div class="form-group col-md-3">
-                                        <label for="">University Type :</label>
+                                        <label for="">University type :</label>
                                         @foreach(UNIVERSITY_TYPE as $key=>$value)
                                             @if($value==$educationInfo->universityType) {{$key}} @endif
                                         @endforeach
@@ -90,13 +90,13 @@
 
 
                                 <div class="form-group col-md-3">
-                                    <label for="">Passing Year :</label>
+                                    <label for="">Passing year :</label>
                                     {{$educationInfo->passingYear}}
 
                                     {{--<input name="passingYear[]" type="text" class="form-control date" id="" required placeholder="passing Year">--}}
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label for="">Result System :</label>
+                                    <label for="">Result system :</label>
                             @if($educationInfo->resultSystem!=4)
 
                                             @foreach(RESULT_SYSTEM as $key=>$value)

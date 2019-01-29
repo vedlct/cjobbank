@@ -17,7 +17,7 @@
                             <h2 style="margin-bottom: 30px;text-align: center">Professional Certification </h2>
                             <div class="row">
                             <div class="form-group">
-                                <label class="control-label">Has Professional Certification?<span style="color: red" class="required">*</span>:</label>
+                                <label class="control-label">Has professional certification?<span style="color: red" class="required">*</span>:</label>
                                 <div class="col-md-10 mb-3">
                                     <input class="form-check-input"  type="radio" required <?php if ($hasProfCertificate=='1'){?>checked<?php } ?> name="hasProfCertificate" value="1"> Yes&nbsp;&nbsp;
                                 </div>
@@ -33,20 +33,20 @@
 
                                 <div class="row">
                                 <div class="form-group col-md-12">
-                                    <label for="inputEmail4">Certificate Name<span style="color: red">*</span></label>
+                                    <label for="inputEmail4">Certificate name<span style="color: red">*</span></label>
                                     <input type="text" class="form-control" name="certificateName[]" id="certificateName" placeholder="certificate" >
                                 </div>
                             </div>
 
                                 <div class="row">
                                 <div class="form-group col-md-8">
-                                    <label for="inputEmail4">Institute Name</label>
+                                    <label for="inputEmail4">Institute name</label>
                                     <input type="text" class="form-control" name="institutionName[]" id="institutionName" placeholder="institution">
                                 </div>
                                     <div class="form-group col-md-4">
-                                        <label for="">Result System<span style="color: red">*</span></label>
+                                        <label for="">Result system<span style="color: red">*</span></label>
                                         <select name="resultSystem[]" class="form-control"  id="resultSydtem">
-                                            <option value="">Select System</option>
+                                            <option value="">Select system</option>
                                             @foreach(RESULT_SYSTEM as $key=>$value)
                                                 <option value="{{$value}}">{{$key}}</option>
                                             @endforeach
@@ -58,11 +58,11 @@
                                 </div>
 
                                 <div class="form-group col-md-4">
-                                    <label for="inputPassword4">Start Date</label>
+                                    <label for="inputPassword4">Start date</label>
                                     <input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" >
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="inputPassword4">End Date</label>
+                                    <label for="inputPassword4">End date</label>
                                     <input type="text" class="form-control date" name="endDate[]" id="end" placeholder="date">
                                 </div>
 
@@ -74,7 +74,7 @@
                                             <label for="inputPassword4">Hour</label>
                                             <select  class="form-control"id="trainingCertificatehour" name="hour[]">
 
-                                                <option value="">Select Hour</option>
+                                                <option value="">Select hour</option>
                                                 @for($i = 1 ; $i <51 ; $i++)
                                                     <option value="{{$i}}">{{$i}}</option>
                                                 @endfor
@@ -84,7 +84,7 @@
                                             <label for="inputPassword4">Day</label>
                                             <select  class="form-control"id="trainingCertificateday" name="day[]">
 
-                                                <option value="">Select Day</option>
+                                                <option value="">Select day</option>
                                                 @for($i = 1 ; $i <51 ; $i++)
                                                     <option value="{{$i}}">{{$i}}</option>
                                                 @endfor
@@ -94,7 +94,7 @@
                                             <label for="inputPassword4">Week</label>
                                             <select  class="form-control"id="trainingCertificateweek" name="week[]">
 
-                                                <option value="">Select Week</option>
+                                                <option value="">Select week</option>
                                                 @for($i = 1 ; $i <51 ; $i++)
                                                     <option value="{{$i}}">{{$i}}</option>
                                                 @endfor
@@ -104,7 +104,7 @@
                                             <label for="inputPassword4">Month</label>
                                             <select  class="form-control"id="trainingCertificatemonth" name="month[]">
 
-                                                <option value="">Select Month</option>
+                                                <option value="">Select month</option>
                                                 @for($i = 1 ; $i <51 ; $i++)
                                                     <option value="{{$i}}">{{$i}}</option>
                                                 @endfor
@@ -114,7 +114,7 @@
                                             <label for="inputPassword4">Year</label>
                                             <select  class="form-control"id="trainingCertificateyear" name="year[]">
 
-                                                <option value="">Select Year</option>
+                                                <option value="">Select year</option>
                                                 @for($i = 1 ; $i <51 ; $i++)
                                                     <option value="{{$i}}">{{$i}}</option>
                                                 @endfor
@@ -128,7 +128,7 @@
                                     <label for="inputPassword4">Staus<span style="color: red">*</span></label>
                                     <select  class="form-control"id="professinalCertificateStatus" name="status[]">
 
-                                        <option value="">Select Status</option>
+                                        <option value="">Select status</option>
                                         @foreach(COMPLETING_STATUS as $key=>$value)
                                             <option value="{{$value}}">{{$key}}</option>
                                         @endforeach
@@ -139,7 +139,7 @@
 
                             </div>
 
-                            <button type="button" id="addButton" class="btn btn-success">Add More</button>
+                            <button type="button" id="addButton" class="btn btn-success">Add more</button>
                             <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
                             </div>

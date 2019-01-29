@@ -17,7 +17,7 @@
                             <h2 style="margin-bottom: 30px;">Job Experience</h2>
                             <div class="row">
                                 <div class="form-group">
-                                    <label class="control-label">Has Employment History?<span style="color: red" class="required">*</span>:</label>
+                                    <label class="control-label">Has employment history?<span style="color: red" class="required">*</span>:</label>
                                     <div class="col-md-10 mb-3">
                                         <input class="form-check-input" type="radio" required <?php if ($hasProfCertificate=='1'){?>checked<?php } ?> name="hasProfCertificate" value="1"> Yes&nbsp;&nbsp;
                                     </div>
@@ -31,9 +31,9 @@
 
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Organization Type</label>
+                                        <label for="inputEmail4">Organization type</label>
                                         <select  name="organizationType[]" class="form-control" id="organizationType">
-                                            <option selected value="">Select Organization Type</option>
+                                            <option selected value="">Select organization type</option>
                                             @foreach($companyType as $natio)
                                                 <option value="{{$natio->organizationTypeId}}">{{$natio->organizationTypeName}}</option>
                                             @endforeach
@@ -42,7 +42,7 @@
                                         {{--<input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" required>--}}
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <label for="inputEmail4">Organization Name</label>
+                                        <label for="inputEmail4">Organization name</label>
                                         <input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" >
                                     </div>
 
@@ -51,15 +51,15 @@
                                         <input type="text" class="form-control" name="degisnation[]" id="degisnation" placeholder="designation" >
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="inputPassword4">Start Date</label>
+                                        <label for="inputPassword4">Start date</label>
                                         <input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" >
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="inputPassword4">End Date</label>
+                                        <label for="inputPassword4">End date</label>
                                         <input type="text" class="form-control date" name="endDate[]" id="end" placeholder="date">
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <label for="inputPassword4">Organization Address </label>
+                                        <label for="inputPassword4">Organization address </label>
                                         <textarea class="form-control" name="address[]"  id="address" placeholder="address"></textarea>
                                     </div>
                                     <div class="form-group col-md-12">
@@ -67,12 +67,12 @@
                                         <textarea class="form-control" name="majorResponsibilities[]" maxlength="300"  id="majorResponsibilities" placeholder="Major responsibilities"></textarea>
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <label for="inputPassword4">Key Achievement </label>
-                                        <textarea class="form-control" name="keyAchivement[]" maxlength="300"  id="keyAchivement" placeholder="Key Achievement"></textarea>
+                                        <label for="inputPassword4">Key achievement </label>
+                                        <textarea class="form-control" name="keyAchivement[]" maxlength="300"  id="keyAchivement" placeholder="Key achievement"></textarea>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Name of Supervisor</label>
-                                        <input type="text" class="form-control" name="supervisorName[]" id="supervisorName" placeholder="Name of Supervisor" >
+                                        <label for="inputEmail4">Name of supervisor</label>
+                                        <input type="text" class="form-control" name="supervisorName[]" id="supervisorName" placeholder="Name of supervisor" >
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Any reservation contacting your employer?</label>
@@ -85,9 +85,9 @@
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Type of Employment</label>
+                                        <label for="inputEmail4">Type of employment</label>
                                         <select class="form-control" id="employmentType" name="employmentType[]" >
-                                            <option value="" selected>Select Employment Type</option>
+                                            <option value="" selected>Select employment type</option>
                                             @foreach(TYPE_OF_EMPLOYMENT as $key=>$value)
                                                 <option value="{{$value}}">{{$key}}</option>
                                                 @endforeach
@@ -95,8 +95,8 @@
                                         </select>&nbsp;
                                     </div>
                                     <div style="display: none" id="employmentTypeTextDiv" class="form-group col-md-6">
-                                        <label for="inputEmail4">Write Employment Type</label>
-                                        <input type="text" class="form-control" name="employmentTypeText[]" id="employmentTypeText" placeholder="Write Employment Type">
+                                        <label for="inputEmail4">Write employment type</label>
+                                        <input type="text" class="form-control" name="employmentTypeText[]" id="employmentTypeText" placeholder="Write employment type">
 
                                     </div>
                                 </div>
@@ -104,7 +104,7 @@
 
                             </div>
 
-                            <button type="button" id="addButton" class="btn btn-success">Add More</button>
+                            <button type="button" id="addButton" class="btn btn-success">Add more</button>
                             <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
                         </div>

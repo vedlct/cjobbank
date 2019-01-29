@@ -18,7 +18,7 @@
 
                             <div class="row">
                                 <div class="form-group">
-                                    <label class="control-label">Previouly work information in Caritas Bangladesh?<span style="color: red" class="required">*</span>:</label>
+                                    <label class="control-label">Previouly work information in caritas bangladesh?<span style="color: red" class="required">*</span>:</label>
                                     <div class="col-md-10 mb-3">
                                         <input class="form-check-input" type="radio" required <?php if ($hasWorkedInCB=='1'){?>checked<?php } ?> name="hasWorkedInCB" value="1"> Yes&nbsp;&nbsp;
                                     </div>
@@ -38,12 +38,12 @@
                                         <input type="text" class="form-control" name="degisnation[]" id="degisnation" placeholder="designation" >
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="inputPassword4">Start Date<span style="color: red">*</span></label>
+                                        <label for="inputPassword4">Start date<span style="color: red">*</span></label>
                                         <input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date">
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="inputPassword4">End Date</label> /
-                                        <input type="checkbox" class="col-md-2" id="currentlyRunning" name="currentlyRunning[]" value="1">Currenly Running
+                                        <label for="inputPassword4">End date</label> /
+                                        <input type="checkbox" class="col-md-2" id="currentlyRunning" name="currentlyRunning[]" value="1">Currenly running
                                         <input type="text" class="form-control date col-md-4" name="endDate[]" id="end" placeholder="date">
 
                                     </div>
@@ -53,7 +53,7 @@
 
                             </div>
 
-                            <button type="button" id="addButton" class="btn btn-success">Add More</button>
+                            <button type="button" id="addButton" class="btn btn-success">Add more</button>
                             <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
                         </div>
