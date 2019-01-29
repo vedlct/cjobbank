@@ -101,7 +101,7 @@
                                             </div>
                                             @if($experience->employmentType== OTHERS)
                                             <div class="form-group col-md-6">
-                                                <label for="inputPassword4">Write Employment Type :</label>
+                                                <label for="inputPassword4">Employment type (other) :</label>
                                                 {{$experience->employmentTypeText}}
 
                                             </div>

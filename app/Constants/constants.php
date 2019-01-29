@@ -61,7 +61,8 @@ define('UNIVERSITY_TYPE',array(
 define('RESULT_SYSTEM',array(
     "grade"=>'1',
     "division"=>'2',
-    "class"=>'3'
+    "class"=>'3',
+    "other"=>'4'
 ));
 
 define('USER_TYPE',array(
