@@ -924,7 +924,7 @@ CKEDITOR.config.toolbar = [
                         type: 'POST',
                         url: "{!! route('jobAppliedCadidate.admin.Exportxls') !!}",
                         cache: false,
-                        data: {'jobApply': products,'excelName':$('#excelName').val(),_token:"{{csrf_token()}}"},
+                        data: {'jobApply': products,'excelName':$('#excelName').val(),_token:"{{csrf_token()}}",jobTitle:$('#jobTitle').val()},
                         success: function (data) {
                            // console.log(data);
 

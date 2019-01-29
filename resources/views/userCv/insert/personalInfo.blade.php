@@ -6,9 +6,9 @@
         strong{
             color: red;
         }
-        #imageMsg,#signMsg{
-            display: none;
-        }
+        /*#imageMsg,#signMsg{*/
+            /*display: none;*/
+        /*}*/
     </style>
 
     <div class="row ">
@@ -27,7 +27,7 @@
                             <h2 style="margin-bottom: 40px; text-align: center;">Personal Details </h2>
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="">First Name<span style="color: red">*</span></label>
+                                    <label for="">First name<span style="color: red">*</span></label>
                                     <input type="text" name="firstName" class="form-control {{ $errors->has('firstName') ? ' is-invalid' : '' }}" value="{{ old('firstName') }}" id="" required placeholder="First Name">
                                     @if ($errors->has('firstName'))
 
@@ -37,7 +37,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="inputPassword4">Last Name<span style="color: red">*</span></label>
+                                    <label for="inputPassword4">Last name<span style="color: red">*</span></label>
                                     <input type="text" name="lastName" class="form-control {{ $errors->has('lastName') ? ' is-invalid' : '' }}" value="{{ old('lastName') }}" id="" required placeholder="Last Name">
                                     @if ($errors->has('lastName'))
 
@@ -49,7 +49,7 @@
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="">Father Name<span style="color: red">*</span></label>
+                                    <label for="">Father name<span style="color: red">*</span></label>
                                     <input type="text" name="fathersName" class="form-control {{ $errors->has('fathersName') ? ' is-invalid' : '' }}" value="{{ old('fathersName') }}" id="" required placeholder="Father's Name">
                                     @if ($errors->has('fathersName'))
 
@@ -59,7 +59,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="inputPassword4">Mother Name<span style="color: red">*</span></label>
+                                    <label for="inputPassword4">Mother name<span style="color: red">*</span></label>
                                     <input type="text" name="mothersName" class="form-control {{ $errors->has('mothersName') ? ' is-invalid' : '' }}" value="{{ old('mothersName') }}" required id="" placeholder="Mother's Name">
                                     @if ($errors->has('mothersName'))
 
@@ -117,7 +117,7 @@
 
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="">Date of Birth<span style="color: red">*</span></label>
+                                    <label for="">Date of birth<span style="color: red">*</span></label>
                                     <input type="text" name="dob" required class="form-control {{ $errors->has('dob') ? ' is-invalid' : '' }}" value="{{ old('dob') }}" id="dob" placeholder="Date of Birth">
                                     @if ($errors->has('dob'))
 
@@ -145,7 +145,7 @@
                                 </div>
 
                                 <div class="form-group col-md-6">
-                                    <label for="">Marital Status<span style="color: red">*</span></label>
+                                    <label for="">Marital status<span style="color: red">*</span></label>
                                     <select class="form-control" name="maritalStatus" required>
                                         <option value="">Select Status</option>
                                         @foreach(MARITAL_STATUS as $key=>$value)
@@ -161,7 +161,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="">Name Of Spouse</label>
+                                    <label for="">Name of spouse</label>
                                     <input type="text"  name="spouse" class="form-control" value="{{old('spouse')}}"  id="" placeholder="Husband / Wife">
                                     @if ($errors->has('spouse'))
                                         <span class="">
@@ -221,7 +221,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="">Alternate Email</label>
+                                    <label for="">Alternate email</label>
                                     <input type="text" name="alternateEmail"  class="form-control {{ $errors->has('alternateEmail') ? ' is-invalid' : '' }}" value="{{ old('alternateEmail') }}" id="" placeholder="Alternate Email">
                                     @if ($errors->has('alternateEmail'))
 
@@ -245,7 +245,7 @@
                             <div class="row">
 
                                 <div class="form-group col-md-6">
-                                    <label for="">Telephone No.</label>
+                                    <label for="">Telephone no.</label>
                                     <input type="text"  maxlength="20" onkeypress="return isNumberKey(event)" name="telephone" class="form-control {{ $errors->has('telephone') ? ' is-invalid' : '' }}" value="{{ old('telephone') }}" id="" placeholder="Telephone number">
                                     @if ($errors->has('telephone'))
 
@@ -268,7 +268,7 @@
                                 </div>
 
                                 <div class="form-group col-md-6">
-                                    <label for="">Alternative phone no</label>
+                                    <label for="">Alternative phone no.</label>
                                     <input  type="text" maxlength="20" onkeypress="return isNumberKey(event)" name="alternativePhoneNo" class="form-control {{ $errors->has('alternativePhoneNo') ? ' is-invalid' : '' }}" value="{{ old('alternativePhoneNo') }}" id="" placeholder="">
                                     @if ($errors->has('alternativePhoneNo'))
 
@@ -283,7 +283,7 @@
 
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="">Home Telephone</label>
+                                    <label for="">Home telephone</label>
                                     <input type="text" name="homeTelephone" onkeypress="return isNumberKey(event)" maxlength="20" class="form-control {{ $errors->has('homeTelephone') ? ' is-invalid' : '' }}" value="{{ old('homeTelephone') }}" id="" placeholder="Home Telephone Number">
                                     @if ($errors->has('homeTelephone'))
 
@@ -293,7 +293,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="">Office Telephone</label>
+                                    <label for="">Office telephone</label>
                                     <input type="text" maxlength="20" onkeypress="return isNumberKey(event)" name="officeTelephone" class="form-control {{ $errors->has('officeTelephone') ? ' is-invalid' : '' }}" value="{{ old('officeTelephone') }}" id="" placeholder="Office Telephone Number">
                                     @if ($errors->has('officeTelephone'))
 
@@ -311,7 +311,7 @@
 
                             <div class="row">
                                 <div class="form-group col-md-12">
-                                    <label for="">Current Address<span style="color: red">*</span></label>
+                                    <label for="">Current address<span style="color: red">*</span></label>
                                     <textarea required placeholder="Current Address" rows="3" name="currentAddress" class="form-control {{ $errors->has('currentAddress') ? ' is-invalid' : '' }}">{{ old('currentAddress') }}</textarea>
                                     {{--<input type="text" name="currentAddress" class="form-control {{ $errors->has('currentAddress') ? ' is-invalid' : '' }}" value="{{ old('currentAddress') }}" id="" placeholder="">--}}
                                     @if ($errors->has('currentAddress'))
@@ -329,7 +329,7 @@
                             <div class="row">
 
                                 <div class="form-group col-md-12">
-                                    <label for="">Permanent Address<span style="color: red">*</span></label>
+                                    <label for="">Permanent address<span style="color: red">*</span></label>
                                     <textarea required placeholder="" rows="3" name="permanentAddress" class="form-control {{ $errors->has('permanentAddress') ? ' is-invalid' : '' }}">{{ old('permanentAddress') }}</textarea>
                                     {{--<input type="text" name="permanentAddress" class="form-control {{ $errors->has('permanentAddress') ? ' is-invalid' : '' }}" value="{{ old('permanentAddress') }}" id="" placeholder="">--}}
                                     @if ($errors->has('permanentAddress'))

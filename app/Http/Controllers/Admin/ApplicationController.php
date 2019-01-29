@@ -161,7 +161,7 @@ class ApplicationController extends Controller
             $application= $application->where(DB::raw("TIMESTAMPDIFF(YEAR,`employee`.`dateOfBirth`,CURDATE())"),'<=',$r->ageToFilter);
         }
         if ($r->jobTitle){
-            $application= $application->where('job.title',$r->jobTitle);;
+            $application= $application->where('job.title',$r->jobTitle);
         }
         if ($r->applyDate){
             $application= $application->where('jobapply.applydate',$r->applyDate);;
@@ -209,6 +209,8 @@ class ApplicationController extends Controller
 
         $appliedList=$r->jobApply;
         $excelName=$r->excelName;
+        $jobTitle=$r->jobTitle;
+
         $filePath=public_path ()."/exportedExcel";
 //        $fileName="AppliedCandidateList".date("Y-m-d_H-i-s");
         $fileName=$excelName." Info".date("Y-m-d_H-i-s");
@@ -294,10 +296,10 @@ class ApplicationController extends Controller
 
 
 
-        $check=Excel::create($fileName,function($excel)use ($empQuestionAns,$employee,$excelName,$social,$education,$pQualification,$training,$jobExperience,$reference,$empQuestion,$extraCurriculumn,$computerSkill,$languageHead,$language) {
+        $check=Excel::create($fileName,function($excel)use ($empQuestionAns,$employee,$excelName,$social,$education,$pQualification,$training,$jobExperience,$reference,$empQuestion,$extraCurriculumn,$computerSkill,$languageHead,$language,$jobTitle) {
 
 
-            $excel->sheet('First sheet', function($sheet) use ($empQuestionAns,$employee,$excelName,$social,$education,$pQualification,$training,$jobExperience,$reference,$empQuestion,$extraCurriculumn,$computerSkill,$languageHead,$language) {
+            $excel->sheet('First sheet', function($sheet) use ($empQuestionAns,$employee,$excelName,$social,$education,$pQualification,$training,$jobExperience,$reference,$empQuestion,$extraCurriculumn,$computerSkill,$languageHead,$language,$jobTitle) {
 
                 $sheet->setStyle(array(
                     'font' => array(
@@ -309,7 +311,7 @@ class ApplicationController extends Controller
 
                 $sheet->loadView('Admin.application.fullInfo',
                     compact('employee','social','education','pQualification','training','jobExperience','reference',
-                        'empQuestion','extraCurriculumn','computerSkill','languageHead','language','excelName','empQuestionAns'));
+                        'empQuestion','extraCurriculumn','computerSkill','languageHead','language','excelName','empQuestionAns','jobTitle'));
             });
 
         })->store('xls',$filePath);
@@ -441,7 +443,7 @@ class ApplicationController extends Controller
                     Mail::send('mail.MailBody',['employeeInfo' => $employeeInfo], function($message) use ($pdf,$employeeInfo)
                     {
 
-                        $message->from('support@caritasbd.com', 'CARITAS BD');
+//                        $message->from('support@caritasbd.com', 'CARITAS BD');
 
                         $message->to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)->subject('INTERVIEW CARD From CARITAS BD');
 
@@ -469,7 +471,7 @@ class ApplicationController extends Controller
                     Mail::send('mail.MailBody',['employeeInfo' => $employeeInfo], function($message) use ($pdf,$employeeInfo)
                     {
 
-                        $message->from('support@caritasbd.com', 'CARITAS BD');
+//                        $message->from('support@caritasbd.com', 'CARITAS BD');
 
                         $message->to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)->subject('APOLOGY LETTER From CARITAS BD');
 
@@ -497,7 +499,7 @@ class ApplicationController extends Controller
                     Mail::send('mail.MailBody',['employeeInfo' => $employeeInfo], function($message) use ($pdf,$employeeInfo)
                     {
 
-                        $message->from('support@caritasbd.com', 'CARITAS BD');
+//                        $message->from('support@caritasbd.com', 'CARITAS BD');
 
                         $message->to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)->subject('PANEL-LIST LETTER From CARITAS BD');
 

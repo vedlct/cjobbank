@@ -83,6 +83,7 @@ define('STATUS',array(
     "0"=>'Inactive',
 ));
 define('OTHERS',"others");
+define('CV_COMPLITING_MSG',"Thank you for submiting your cv. All the data submitted here are only for caritas bd");
 
 //ComputerSkillAchievement
 define('ComputerSkillAchievement',array(

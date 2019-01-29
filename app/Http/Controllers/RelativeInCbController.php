@@ -42,16 +42,16 @@ class RelativeInCbController extends Controller
     public function getRelationInfo()
     {
 
-        $employee = Employee::select('employeeId')->where('fkuserId', Auth::user()->userId)->first();
+        $employee = Employee::select('employeeId','cvStatus')->where('fkuserId', Auth::user()->userId)->first();
         $relativeInCB = Employee::select('relativeInCB')->where('employeeId',$employee->employeeId)->first();
 
         $relativeInCaritas = RelativeInCb::where('fkemployeeId', $employee->employeeId)->get();
 
 
         if ($relativeInCaritas->isEmpty()) {
-            return view('userCv.insert.relativeInCaritas' , compact('relativeInCB'));
+            return view('userCv.insert.relativeInCaritas' , compact('relativeInCB','employee'));
         } else {
-            return view('userCv.update.relativeInCaritas', compact('relativeInCaritas', 'relativeInCB'));
+            return view('userCv.update.relativeInCaritas', compact('relativeInCaritas', 'relativeInCB','employee'));
         }
 
 
@@ -66,6 +66,7 @@ class RelativeInCbController extends Controller
 
 
         for ($i = 0; $i < count($r->firstName); $i++) {
+
             $relative = new RelativeInCb();
             $relative->firstName = $r->firstName[$i];
             $relative->lastName = $r->lastName[$i];

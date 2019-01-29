@@ -12,7 +12,7 @@
 
                         <div id="" class="tab">
 
-                            <h2 style="margin-bottom: 30px;">Certification of membership in Social network/forum</h2>
+                            <h2 style="margin-bottom: 30px;">Certification of membership in professional network/ forum</h2>
                             @php($tempHr=0)
                             @foreach($socialMembership as $socialMembership)
                                 @if($tempHr>0)
@@ -37,7 +37,7 @@
 
                                         <div class="form-group col-md-6">
                                             <label for="inputEmail4">Type of Membership :</label>
-                                            {{$socialMembership->networkName}}
+                                            {{$socialMembership->membershipType}}
 
                                         </div>
                                         <div class="form-group col-md-6">

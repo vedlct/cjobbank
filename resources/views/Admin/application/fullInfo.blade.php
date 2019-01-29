@@ -26,7 +26,7 @@
     <tr>
 
         <td colspan="24" style="text-align: center;height: 15;">
-            <span id="red" style="color: #FF0000">{{strtoupper($jobTitle['title'])}}</span>
+            <span id="red" style="color: #FF0000">{{strtoupper($jobTitle)}}</span>
             <b>- {{$excelName}}</b>
         </td>
 

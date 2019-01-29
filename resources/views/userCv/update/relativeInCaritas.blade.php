@@ -184,6 +184,24 @@
 ////            $('#end').datepicker({
 //                format: 'yyyy-m-d'
 //            });
+            @if($employee->cvStatus==1)
+
+                $.alert({
+                title: 'Congratulation',
+                type: 'green',
+                content: '{{CV_COMPLITING_MSG}}',
+                buttons: {
+                    tryAgain: {
+                        text: 'Ok',
+                        btnClass: 'btn-green',
+                        action: function () {
+
+                        }
+                    }
+                }
+            });
+
+            @endif
         });
 
         $(document).ready(function(){

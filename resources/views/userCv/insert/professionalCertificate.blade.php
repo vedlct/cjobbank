@@ -150,7 +150,7 @@
                             <div style="float:right;">
                                 <a href="{{route('candidate.cvTrainingCertificate')}}"><button type="button" id="btnPevious">Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
-                                @if($hasProfCertificate == 1 || $hasProfCertificate == 0 )
+                                @if($hasProfCertificate == 1 || $hasProfCertificate == 0)
                                 <a href="{{route('JobExperience.index')}}"><button type="button" id="nextBtn" >Next</button></a>
                                 @endif
                             </div>
@@ -351,6 +351,7 @@
 
             var counter = 1;
             $("#removeButton").hide();
+            $("#submitBtn").hide();
 
 
             $("#addButton").click(function () {
@@ -663,6 +664,7 @@
                 if(counter>1){
 //                    document.getElementById("removeButton").style.display='block';
                     $("#removeButton").show();
+                    $("#submitBtn").show();
                 }
                 $('.date').datepicker({
                     format: 'yyyy-m-d'
@@ -681,6 +683,7 @@
                 counter--;
                 if(counter<2){
                     $("#removeButton").hide();
+                    $("#submitBtn").hide();
                 }
                 $("#TextBoxDiv" + counter).remove();
             });

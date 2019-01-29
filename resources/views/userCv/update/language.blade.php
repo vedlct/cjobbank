@@ -269,6 +269,7 @@
             var limit = '<?php echo count($languagehead)?>';
             $("#removeButton").hide();
 
+            $("#submitBtn").hide();
 
             $("#addButton").click(function () {
 
@@ -350,6 +351,7 @@
                 counter++;
                 if(counter>1){
                     $("#removeButton").show();
+                    $("#submitBtn").show();
                 }
 
             });
@@ -364,6 +366,7 @@
                 counter--;
                 if(counter<2){
                     $("#removeButton").hide();
+                    $("#submitBtn").hide();
                 }
                 $("#TextBoxDiv" + counter).remove();
             });
