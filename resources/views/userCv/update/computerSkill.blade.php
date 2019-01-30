@@ -185,7 +185,7 @@
 
 
                 if(counter>10){
-                    alert("Only 10 Section allow per Time!!");
+                    alert("Only 10 section allow per time!!");
                     return false;
                 }
 
@@ -213,7 +213,7 @@
                     '\n' +
                     '                                    <div class="form-group col-md-6">\n' +
                     '\n' +
-                    '                                        <label for="inputEmail4">Skill-Level<span style="color: red">*</span></label>\n' +
+                    '                                        <label for="inputEmail4">Skill-level<span style="color: red">*</span></label>\n' +
                     '                                        <select name="SkillAchievement[]" id="" class="form-control" required>\n' +
                     '                                            <option value="">Select Level</option>\n' +
                     '                                            @foreach(ComputerSkillAchievement as $key=>$value)\n' +
@@ -239,7 +239,7 @@
 
 
                 if(counter=='1'){
-                    alert("Atleast One Course Section is needed!!");
+                    alert("Atleast one course section is needed!!");
                     return false;
                 }
                 counter--;
@@ -278,7 +278,7 @@
 
             $.confirm({
                 title: 'Confirm!',
-                content: 'Are you sure To delete this Computer Skill?',
+                content: 'Are you sure to delete this computer skill?',
                 icon: 'fa fa-warning',
                 type: 'red',
                 typeAnimated: true,
@@ -297,7 +297,7 @@
                                     $.alert({
                                         title: 'Success!',
                                         type: 'green',
-                                        content: 'Computer Skill Deleted successfully',
+                                        content: 'Computer skill deleted successfully',
                                         buttons: {
                                             tryAgain: {
                                                 text: 'Ok',

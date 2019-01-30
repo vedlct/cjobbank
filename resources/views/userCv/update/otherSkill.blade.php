@@ -266,7 +266,7 @@
 
             $("#addButton").click(function () {
                 if(counter>10){
-                    alert("Only 10 Section allow per Time!!");
+                    alert("Only 10 section allow per time!!");
                     return false;
                 }
 
@@ -277,14 +277,14 @@
 
                     if(skill==""){
 
-                        var errorMsg='Please Select a Sill Name First!!';
+                        var errorMsg='Please select a sill name first!!';
                         validationError(errorMsg);
                         return false;
                     }
 
                     if(myRange==""){
 
-                        var errorMsg='Please Select a myRange First!!';
+                        var errorMsg='Please select a myRange first!!';
                         validationError(errorMsg);
                         return false;
 
@@ -305,12 +305,12 @@
                     '</select> ' +
                     '</div>' +
                     '<div style="display: none" id="otherSkillNameDiv'+counter+'" class="form-group col-md-6">'+
-                    '<label for="">Other Skill Name</label>'+
+                    '<label for="">Other skill name</label>'+
                     '<input type="text" maxlength="255" name="otherSkillName[]" class="form-control" id="otherSkillName'+counter+'"  placeholder="">'+
 
                     '</div>'+
                     '<div class="form-group col-md-6"> ' +
-                    '<label>Percentage of Skill (out of 100)</label> ' +
+                    '<label>Percentage of skill (out of 100)</label> ' +
                     '<div class="slidecontainer"> ' +
                     '<input type="range" min="1" max="100" onchange="myRangeChanged('+counter+')" value="0" class="slider" name="skillPercentage[]" id="myRange'+counter+'" required> ' +
                     '<p>Value: <span id="demo'+counter+'"></span> %</p> ' +
@@ -337,7 +337,7 @@
 
 
                 if(counter=='1'){
-                    alert("Atleast One Course Section is needed!!");
+                    alert("Atleast one course section is needed!!");
                     return false;
                 }
                 counter--;

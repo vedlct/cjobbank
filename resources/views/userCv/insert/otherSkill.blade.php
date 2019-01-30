@@ -193,7 +193,7 @@
 
             if(values.length != unique.length){
 
-                alert("Already Inserted");
+                alert("Already inserted");
                 $(x).val('');
 
             }
@@ -253,14 +253,14 @@
 
                     if(skill[i].value==""){
 
-                        var errorMsg='Please Select a Skill First!!';
+                        var errorMsg='Please select a skill first!!';
                         validationError(errorMsg);
                         return false;
                     }
 
                     if(skillPercentage[i].value==""){
 
-                        var errorMsg='Please Type Skill Percentage First!!';
+                        var errorMsg='Please type skill percentage first!!';
                         validationError(errorMsg);
                         return false;
                     }
@@ -299,13 +299,13 @@
 
                     if (skill == "") {
 
-                        var errorMsg = 'Please Select a Skill First!!';
+                        var errorMsg = 'Please select a skill first!!';
                         validationError(errorMsg);
                         return false;
                     }
                     if (myRange == "") {
 
-                        var errorMsg = 'Please Select Skill Level First!!';
+                        var errorMsg = 'Please select skill level first!!';
                         validationError(errorMsg);
                         return false;
                     }
@@ -317,13 +317,13 @@
 
                     if (skill == "") {
 
-                        var errorMsg = 'Please Select a Skill First!!';
+                        var errorMsg = 'Please select a skill first!!';
                         validationError(errorMsg);
                         return false;
                     }
                     if (myRange == "") {
 
-                        var errorMsg = 'Please Select Skill Level First!!';
+                        var errorMsg = 'Please select skill level first!!';
                         validationError(errorMsg);
                         return false;
                     }
@@ -339,7 +339,7 @@
                     '<div class="form-group col-md-6"> ' +
                     '<label for="inputEmail4">Skill<span style="color: red">*</span></label> ' +
                     '<select required name="skill[]" onchange="checkUnique(this);skillchange('+counter+')"   class="form-control" id="skill'+counter+'"> ' +
-                    '<option selected value="">Select Skill Type</option>'+
+                    '<option selected value="">Select skill type</option>'+
                 '@foreach($skills as $skill)'+
                 '<option value="{{$skill->id}}">{{$skill->skillName}}</option>'+
                  '@endforeach'+
@@ -347,12 +347,12 @@
                     '</select>' +
                     '</div>' +
                         '<div style="display: none" id="otherSkillNameDiv'+counter+'" class="form-group col-md-6">'+
-                    '<label for="">Other Skill Name</label>'+
-                '<input type="text" maxlength="255" name="otherSkillName[]" class="form-control" id="otherSkillName'+counter+'"  placeholder="">'+
+                    '<label for="">Other skill name</label>'+
+                '<input type="text" maxlength="255" name="otherSkillName[]" class="form-control" id="otherSkillName'+counter+'"  placeholder="Other skill name">'+
 
                     '</div>'+
                     '<div class="form-group col-md-6"> ' +
-                    '<label>Percentage of Skill (out of 100)</label> ' +
+                    '<label>Percentage of skill (out of 100)</label> ' +
                     '<div class="slidecontainer"> ' +
                     '<input type="range" min="1" max="100" onchange="myRangeChanged('+counter+')" value="0" class="slider" name="skillPercentage[]" id="myRange'+counter+'" required> ' +
                     '<p>Value: <span id="demo'+counter+'"></span> %</p> ' +
@@ -377,7 +377,7 @@
 
 
                 if(counter=='1'){
-                    alert("Atleast One Course Section is needed!!");
+                    alert("Atleast One course section is needed!!");
                     return false;
                 }
                 counter--;

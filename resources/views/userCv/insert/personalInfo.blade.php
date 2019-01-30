@@ -450,13 +450,13 @@
                 default:
                     $(this).val('');
                     // error message here
-                    var errorMsg="Please Select a valid Image";
+                    var errorMsg="Please select a valid image";
                     validationError(errorMsg);
                     break;
             }
             var picsize = (this.files[0].size);
             if ((picsize/1024) > 100){
-                var errorMsg="Image Size Should be less then 100 KB";
+                var errorMsg="Image size should be less then 100 KB";
                 validationError(errorMsg);
                 $(this).val('');
 
@@ -474,13 +474,13 @@
                 default:
                     $(this).val('');
                     // error message here
-                    var errorMsg="Please Select a valid Image";
+                    var errorMsg="Please select a valid image";
                     validationError(picsize);
                     break;
             }
             var picsize = (this.files[0].size);
             if ((picsize/1024) > 50){
-                var errorMsg="Image Size Should be less then 50 KB";
+                var errorMsg="Image size should be less then 50 KB";
                 validationError(errorMsg);
                 $(this).val('');
 

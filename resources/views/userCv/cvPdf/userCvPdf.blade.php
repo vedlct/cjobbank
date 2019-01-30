@@ -96,7 +96,7 @@
                         <tr>
                             <th style="text-align: center" >Degree</th>
                             <th style="text-align: center" >Institution / Board</th>
-                            <th style="text-align: center" >Passing Year</th>
+                            <th style="text-align: center" >Passing year</th>
                             <th style="text-align: center" >Result</th>
                         </tr>
                         </thead>
@@ -127,7 +127,7 @@
 
                     <table border="0" style="width:100%; margin-top: 15px; border: none;">
                         <tr>
-                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Job Experience</b> </td>
+                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Job experience</b> </td>
                         </tr>
                     </table>
 
@@ -145,10 +145,10 @@
 
                                 <td style="border: none;">
 
-                                    <span class="bold"> Company Name : </span> &nbsp;&nbsp {{$exp->organization}}  &nbsp;&nbsp;
+                                    <span class="bold"> Company name : </span> &nbsp;&nbsp {{$exp->organization}}  &nbsp;&nbsp;
                                     <div class="pull-right"><span class="bold">Position:</span>&nbsp;&nbsp;&nbsp; {{$exp->degisnation}} </div><br>
 
-                                    <span class="bold"> Major Responsibilities :</span>&nbsp;&nbsp;&nbsp; {{$exp->majorResponsibilities}} <br>
+                                    <span class="bold"> Major responsibilities :</span>&nbsp;&nbsp;&nbsp; {{$exp->majorResponsibilities}} <br>
                                     <span class="bold"> Address:</span>&nbsp;&nbsp;&nbsp; {{$exp->address}} <br>
                                     <span class="bold"> Duration:</span>&nbsp;&nbsp;&nbsp; {{$exp->startDate}} -  @if($exp->endDate) {{$exp->endDate}} @else
                                         Continuing
@@ -168,7 +168,7 @@
 
                     <table border="0" style="width:100%; margin-top: 15px; border: none;">
                         <tr>
-                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000; background-color: #eff0f1;" ><b>Training Certificate</b> </td>
+                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000; background-color: #eff0f1;" ><b>Training certificate</b> </td>
                         </tr>
                     </table>
 
@@ -184,7 +184,7 @@
                                     <span class="bold">{{$count++}}.</span>
                                 </td>
                                 <td style="border: none;">
-                                    <span class="bold"> Training Name :</span> &nbsp;&nbsp;&nbsp;{{$certificate->trainingName}} <br>
+                                    <span class="bold"> Training name :</span> &nbsp;&nbsp;&nbsp;{{$certificate->trainingName}} <br>
                                     <span class="bold"> Vanue:</span> &nbsp;&nbsp;&nbsp;{{$certificate->vanue}} <br>
                                     <span class="bold"> Duration:</span> &nbsp;&nbsp;&nbsp;{{$certificate->startDate}} -  @if($certificate->endDate) {{$certificate->endDate}} @else
                                         Continuing
@@ -203,7 +203,7 @@
 
                     <table border="0" style="width:100%;border: none;">
                         <tr>
-                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"> <b>Professional Certificate</b> </td>
+                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"> <b>Professional certificate</b> </td>
                         </tr>
                     </table>
 
@@ -213,13 +213,13 @@
                     @foreach($professionalCertificate as $certificate)
                             <tr>
 
-                                <td style="border: none; width: 20%"><span class="bold">Certificate Name</span></td>
+                                <td style="border: none; width: 20%"><span class="bold">Certificate name</span></td>
                                 <td style="border: none; width: 5%"><span class="bold">:</span></td>
                                 <td style="border: none;"><b>{{$certificate->certificateName}}</b> </td>
                             </tr>
                             <tr>
 
-                                <td style="border: none; width: 20%"><span class="bold">Institution Name</span></td>
+                                <td style="border: none; width: 20%"><span class="bold">Institution name</span></td>
                                 <td style="border: none; width: 5%"><span class="bold">:</span></td>
                                 <td style="border: none;">{{$certificate->institutionName}} </td>
                             </tr>
@@ -254,7 +254,7 @@
 
                     <table border="0" style="width:100%; margin-top: 25px; border: none;">
                         <tr>
-                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Other Skill</b> </td>
+                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Other skill</b> </td>
                         </tr>
                     </table>
                     <table border="0" style="width:100%; margin-top: 10px; border: none;">
@@ -282,7 +282,7 @@
 
                     <table border="0" style="width:100%; margin-top: 25px; border: none;">
                         <tr>
-                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Computer Skill</b> </td>
+                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Computer skill</b> </td>
                         </tr>
                     </table>
                     <table border="0" style="width:100%; margin-top: 10px; border: none;">
@@ -309,7 +309,7 @@
 
                     <table border="0" style="width:100%; margin-top: 25px; border: none;">
                         <tr>
-                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Personal Info</b> </td>
+                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Personal info</b> </td>
                         </tr>
                     </table>
 
@@ -322,12 +322,12 @@
 
                         <tr>
                             <td  style="border: none;">
-                                <label>Father Name : </label>{{$personalInfo->fathersName}}
+                                <label>Father name : </label>{{$personalInfo->fathersName}}
                             </td>
 
 
                             <td style="border: none;">
-                                <label> Mother Name :</label> {{$personalInfo->mothersName}}
+                                <label> Mother name :</label> {{$personalInfo->mothersName}}
                             </td>
                         </tr>
                         <tr>
@@ -343,7 +343,7 @@
 
 
                             <td style="border: none;">
-                                <label>Date Of Birth :</label> {{$personalInfo->dateOfBirth}}
+                                <label>Date of birth :</label> {{$personalInfo->dateOfBirth}}
                             </td>
                         </tr>
                         <tr>
@@ -384,7 +384,7 @@
                         </tr>
                         <tr>
                             <td  style="border: none;">
-                                <label>Permanent Address :</label> {{$personalInfo->parmanentAddress}}
+                                <label>Permanent address :</label> {{$personalInfo->parmanentAddress}}
                             </td>
                         </tr>
 
@@ -396,7 +396,7 @@
 
                     <table border="0" style="width:100%; margin-top: 5px; border: none;">
                         <tr>
-                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Relative in Caritas</b> </td>
+                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Relative in caritas</b> </td>
                         </tr>
                     </table>
 

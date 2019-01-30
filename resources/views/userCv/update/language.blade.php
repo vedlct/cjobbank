@@ -282,13 +282,13 @@
 
                     if (skill == "") {
 
-                        var errorMsg = 'Please Select a Skill First!!';
+                        var errorMsg = 'Please select a skill first!!';
                         validationError(errorMsg);
                         return false;
                     }
                     if (myRange == "") {
 
-                        var errorMsg = 'Please Select Skill Level First!!';
+                        var errorMsg = 'Please select skill level first!!';
                         validationError(errorMsg);
                         return false;
                     }
@@ -300,13 +300,13 @@
 
                     if (skill == "") {
 
-                        var errorMsg = 'Please Select a Skill First!!';
+                        var errorMsg = 'Please select a skill first!!';
                         validationError(errorMsg);
                         return false;
                     }
                     if (myRange == "") {
 
-                        var errorMsg = 'Please Select Skill Level First!!';
+                        var errorMsg = 'Please select skill level first!!';
                         validationError(errorMsg);
                         return false;
                     }
@@ -334,7 +334,7 @@
                     '<label>{{$ls->languageSkillName}}</label>'+
                     '</div>'+
                     '<div class="form-group col-md-6">'+
-                    '<label>Percentage of Skill (out of 100)</label>'+
+                    '<label>Percentage of skill (out of 100)</label>'+
                     '<div class="slidecontainer">'+
                     '<input type="range" min="0" max="100" value="0" class="slider" onchange="myRangeChanged3('+'{{$ls->id}},'+counter+')" name="languageskill[]" id="myRange1'+'<?php echo $ls->id?>'+counter+'">'+
                     '<p>Value: <span id="demo1'+'<?php echo $ls->id?>'+'"></span> %</p>'+
@@ -360,7 +360,7 @@
 
 
                 if(counter=='1'){
-                    alert("Atleast One Language is needed!!");
+                    alert("Atleast one language is needed!!");
                     return false;
                 }
                 counter--;

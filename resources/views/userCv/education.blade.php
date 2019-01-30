@@ -23,7 +23,7 @@
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-5">
-                                    <label for="">Institute Name</label>
+                                    <label for="">Institute name</label>
                                     <input type="text" class="form-control" id="" placeholder="">
                                 </div>
                                 <div class="form-group col-md-3">
@@ -52,7 +52,7 @@
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-5">
-                                    <label for="">Institute Name</label>
+                                    <label for="">Institute name</label>
                                     <input type="text" class="form-control" id="" placeholder="">
                                 </div>
                                 <div class="form-group col-md-3">
@@ -82,7 +82,7 @@
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-5">
-                                    <label for="">Institute Name</label>
+                                    <label for="">Institute name</label>
                                     <input type="text" class="form-control" id="" placeholder="">
                                 </div>
                                 <div class="form-group col-md-3">
@@ -113,7 +113,7 @@
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-5">
-                                    <label for="">Institute Name</label>
+                                    <label for="">Institute name</label>
                                     <input type="text" class="form-control" id="" placeholder="">
                                 </div>
                                 <div class="form-group col-md-3">

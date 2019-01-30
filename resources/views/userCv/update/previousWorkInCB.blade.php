@@ -209,21 +209,21 @@
 
                     if(degisnation==""){
 
-                        var errorMsg='Please Type Designation First!!'
+                        var errorMsg='Please type designation first!!'
                         validationError(errorMsg)
                         return false;
 
                     }
                     if (degisnation.length > 255){
 
-                        var errorMsg='Designation Should not more than 255 Charecter Length!!';
+                        var errorMsg='Designation should not more than 255 charecter length!!';
                         validationError(errorMsg);
                         return false;
 
                     }
                     if(start==""){
 
-                        var errorMsg='Please Select a Start Date First!!';
+                        var errorMsg='Please select a start date first!!';
                         validationError(errorMsg);
                         return false;
 
@@ -233,7 +233,7 @@
 
                         if (Date.parse(end) < Date.parse(start)) {
 
-                            var errorMsg = 'End date should after Start Date!!';
+                            var errorMsg = 'End date should after start date!!';
                             validationError(errorMsg);
                             return false;
 
@@ -241,7 +241,7 @@
                     }else {
                         if ($("#currentlyRunning"+(counter-1)).prop('checked') != true){
 
-                            var errorMsg = 'Either End date or Currently Running Should be Selected!!';
+                            var errorMsg = 'Either end date or currently running should be selected!!';
                             validationError(errorMsg);
                             return false;
 
@@ -263,12 +263,12 @@
                     '<input type="text" class="form-control" name="degisnation[]" id="degisnation'+counter+'" placeholder="designation" > ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
-                    '<label for="inputPassword4">Start Date</label> ' +
+                    '<label for="inputPassword4">Start date</label> ' +
                     '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date"> ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
-                    '<label for="inputPassword4">End Date</label> ' +
-                    '/ <input type="checkbox" id="currentlyRunning'+counter+'" name="currentlyRunning[]" value="1">Currenly Running'+
+                    '<label for="inputPassword4">End date</label> ' +
+                    '/ <input type="checkbox" id="currentlyRunning'+counter+'" name="currentlyRunning[]" value="1">Currenly running'+
                     '<input type="text" class="form-control date" name="endDate[]" id="end'+counter+'" placeholder="date"> ' +
 
                     '</div> ' +
@@ -292,7 +292,7 @@
 
 
                 if(counter=='1'){
-                    alert("Atleast One Course Section is needed!!");
+                    alert("Atleast one course section is needed!!");
                     return false;
                 }
                 counter--;
@@ -326,14 +326,14 @@
 
                     if(degisnation[i].value==""){
 
-                        var errorMsg='Please Type a Designation First!!';
+                        var errorMsg='Please type a designation first!!';
                         validationError(errorMsg);
                         return false;
                     }
 
                     if(startDate[i].value==""){
 
-                        var errorMsg='Please Type Start Date First!!';
+                        var errorMsg='Please type start date first!!';
                         validationError(errorMsg);
                         return false;
                     }

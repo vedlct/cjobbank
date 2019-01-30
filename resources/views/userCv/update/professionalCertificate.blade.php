@@ -9,11 +9,10 @@
                 <div style="background-color: #F1F1F1" class="card-body">
 
 
-<div id="regForm">
+                    <div id="regForm">
                         <div id="" class="tab">
 
                             <h2 style="margin-bottom: 30px;">Professional Certification </h2>
-
 
                             <div  id="profCertificateDiv">
 
@@ -240,7 +239,7 @@
             $("#addButton").click(function () {
 
                 if(counter>10){
-                    alert("Only 10 Section allow per Time!!");
+                    alert("Only 10 section allow per time!!");
                     return false;
                 }
 
@@ -256,27 +255,27 @@
 
                     if(certificateName==""){
 
-                        var errorMsg='Please Type certificateName First!!'
+                        var errorMsg='Please type certificate name first!!'
                         validationError(errorMsg)
                         return false;
                     }
                     if (certificateName.length > 100){
 
-                        var errorMsg='certificateName Should not more than 100 Charecter Length!!'
+                        var errorMsg='certificate name should not more than 100 charecter length!!'
                         validationError(errorMsg)
                         return false;
 
                     }
                     if(institutionName==""){
 
-                        var errorMsg='Please Type instituteName First!!'
+                        var errorMsg='Please type institute name first!!'
                         validationError(errorMsg)
                         return false;
 
                     }
                     if (institutionName.length > 255){
 
-                        var errorMsg='Institute Name Should not more than 255 Charecter Length!!'
+                        var errorMsg='Institute name should not more than 255 charecter length!!'
                         validationError(errorMsg)
                         return false;
 
@@ -297,7 +296,7 @@
 //                    }
                     if(start==""){
 
-                        var errorMsg='Please Select a Strat Date First!!'
+                        var errorMsg='Please select a start date first!!'
                         validationError(errorMsg)
                         return false;
 
@@ -411,7 +410,7 @@
                     '<label for="inputPassword4">Month</label>'+
                     '<select  class="form-control"id="trainingCertificatemonth" name="month[]">'+
 
-                    '<option value="">Select Month</option>'+
+                    '<option value="">Select month</option>'+
                         @for($i = 1 ; $i <51 ; $i++)
                             '<option value="{{$i}}">{{$i}}</option>'+
                         @endfor
@@ -421,7 +420,7 @@
                     '<label for="inputPassword4">Year</label>'+
                     '<select  class="form-control"id="trainingCertificateyear" name="year[]">'+
 
-                    '<option value="">Select Year</option>'+
+                    '<option value="">Select year</option>'+
                         @for($i = 1 ; $i <51 ; $i++)
                             '<option value="{{$i}}">{{$i}}</option>'+
                         @endfor
@@ -456,7 +455,7 @@
 
 
                 if(counter=='1'){
-                    alert("Atleast One Section is needed!!");
+                    alert("Atleast one section is needed!!");
                     return false;
                 }
                 counter--;

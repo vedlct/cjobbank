@@ -258,26 +258,26 @@
 
                     if(certificateName[i].value==""){
 
-                        var errorMsg='Please Type certificateName First!!';
+                        var errorMsg='Please type certificate name first!!';
                         validationError(errorMsg);
                         return false;
                     }
                     if(resultSystem[i].value==""){
 
-                        var errorMsg='Please Select resultSystem First!!';
+                        var errorMsg='Please select result system first!!';
                         validationError(errorMsg);
                         return false;
                     }
                     if (certificateName[i].value.length > 100){
 
-                        var errorMsg='certificateName Should not more than 100 Charecter Length!!';
+                        var errorMsg='certificate name should not more than 100 charecter length!!';
                         validationError(errorMsg);
                         return false;
 
                     }
                     if(institutionName[i].value==""){
 
-                        var errorMsg='Please Type instituteName First!!';
+                        var errorMsg='Please type instituteName first!!';
                         validationError(errorMsg);
                         return false;
 
@@ -322,7 +322,7 @@
 
                         if (Date.parse(end[i].value) < Date.parse(start[i].value)) {
 
-                            var errorMsg = 'End date should after Start Date!!'
+                            var errorMsg = 'End date should after start date!!'
                             validationError(errorMsg)
                             return false;
 
@@ -331,7 +331,7 @@
 
                     if(status[i].value==""){
 
-                        var errorMsg='Please Select a status First!!';
+                        var errorMsg='Please select a status first!!';
                         validationError(errorMsg);
                         return false;
 
@@ -358,7 +358,7 @@
 
             $("#addButton").click(function () {
                 if(counter>10){
-                    alert("Only 10 Section allow per Time!!");
+                    alert("Only 10 section allow per time!!");
                     return false;
                 }
 
@@ -375,33 +375,33 @@
 
                     if(certificateName==""){
 
-                        var errorMsg='Please Type certificateName First!!';
+                        var errorMsg='Please type certificate name first!!';
                         validationError(errorMsg);
                         return false;
                     }
                     if(resultSystem==""){
 
-                        var errorMsg='Please Select resultSystem First!!';
+                        var errorMsg='Please select result system first!!';
                         validationError(errorMsg);
                         return false;
                     }
                     if (certificateName.length > 100){
 
-                        var errorMsg='certificateName Should not more than 100 Charecter Length!!';
+                        var errorMsg='certificate name should not more than 100 charecter length!!';
                         validationError(errorMsg);
                         return false;
 
                     }
                     if(institutionName==""){
 
-                        var errorMsg='Please Type instituteName First!!';
+                        var errorMsg='Please type instituteName first!!';
                         validationError(errorMsg);
                         return false;
 
                     }
                     if (institutionName.length > 255){
 
-                        var errorMsg='Institute Name Should not more than 255 Charecter Length!!';
+                        var errorMsg='Institute name should not more than 255 charecter length!!';
                         validationError(errorMsg);
                         return false;
 
@@ -422,7 +422,7 @@
 //                    }
                     if(start==""){
 
-                        var errorMsg='Please Select a Strat Date First!!';
+                        var errorMsg='Please select a strat date first!!';
                         validationError(errorMsg);
                         return false;
 
@@ -448,7 +448,7 @@
 
                     if(status==""){
 
-                        var errorMsg='Please Select a status First!!';
+                        var errorMsg='Please select a status first!!';
                         validationError(errorMsg);
                         return false;
 
@@ -471,27 +471,27 @@
 
                     if(certificateName==""){
 
-                        var errorMsg='Please Type certificateName First!!'
+                        var errorMsg='Please type certificate name first!!'
                         validationError(errorMsg)
                         return false;
                     }
                     if (certificateName.length > 100){
 
-                        var errorMsg='certificateName Should not more than 100 Charecter Length!!'
+                        var errorMsg='certificate name should not more than 100 charecter length!!'
                         validationError(errorMsg)
                         return false;
 
                     }
                     if(institutionName==""){
 
-                        var errorMsg='Please Type instituteName First!!'
+                        var errorMsg='Please type institute name first!!'
                         validationError(errorMsg)
                         return false;
 
                     }
                     if (institutionName.length > 255){
 
-                        var errorMsg='Institute Name Should not more than 255 Charecter Length!!'
+                        var errorMsg='Institute name should not more than 255 charecter length!!'
                         validationError(errorMsg)
                         return false;
 
@@ -499,7 +499,7 @@
 
                     if(resultSystem==""){
 
-                        var errorMsg='Please Select resultSystem First!!'
+                        var errorMsg='Please select result system first!!'
                         validationError(errorMsg)
                         return false;
                     }
@@ -520,7 +520,7 @@
 //                    }
                     if(start==""){
 
-                        var errorMsg='Please Select a Strat Date First!!'
+                        var errorMsg='Please select a strat date first!!'
                         validationError(errorMsg)
                         return false;
 
@@ -538,7 +538,7 @@
 
                         if (Date.parse(end) < Date.parse(start)) {
 
-                            var errorMsg = 'End date should after Start Date!!'
+                            var errorMsg = 'End date should after start date!!'
                             validationError(errorMsg)
                             return false;
 
@@ -547,7 +547,7 @@
 
                     if(status==""){
 
-                        var errorMsg='Please Select a status First!!'
+                        var errorMsg='Please select a status first!!'
                         validationError(errorMsg)
                         return false;
 
@@ -563,19 +563,19 @@
                     '<div id="TextBoxesGroup">'+
                     '<div class="row">'+
                     '<div class="form-group col-md-12">'+
-                    '<label for="inputEmail4">Certificate Name<span style="color: red">*</span></label>'+
+                    '<label for="inputEmail4">Certificate name<span style="color: red">*</span></label>'+
                 '<input type="text" class="form-control" name="certificateName[]" id="certificateName'+counter+'" placeholder="certificate" >'+
                 '</div>'+
                 '</div>'+
                 '<div class="row" >'+
                     '<div class="form-group col-md-8">'+
-                    '<label for="inputEmail4">Institute Name<span style="color: red">*</span></label>'+
+                    '<label for="inputEmail4">Institute name<span style="color: red">*</span></label>'+
                 '<input type="text" class="form-control" name="institutionName[]" id="institutionName'+counter+'" placeholder="institution" >'+
                 '</div>'+
                     '<div class="form-group col-md-4">'+
                     '<label for="">Result System<span style="color: red">*</span></label>'+
                     '<select name="resultSystem[]" class="form-control"  id="resultSydtem'+counter+'">'+
-                    '<option value="">Select System</option>'+
+                    '<option value="">Select system</option>'+
                 @foreach(RESULT_SYSTEM as $key=>$value)
                 '<option value="{{$value}}">{{$key}}</option>'+
                         @endforeach
@@ -587,11 +587,11 @@
                     '</div>'+
 
                     '<div class="form-group col-md-4">'+
-                    '<label for="inputPassword4">Start Date<span style="color: red">*</span></label>'+
+                    '<label for="inputPassword4">Start date<span style="color: red">*</span></label>'+
                 '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date" >'+
                 '</div>'+
                 '<div class="form-group col-md-4">'+
-                    '<label for="inputPassword4">End Date</label>'+
+                    '<label for="inputPassword4">End date</label>'+
                 '<input type="text" class="form-control date" name="endDate[]" id="end'+counter+'"  placeholder="date">'+
                     '</div>'+
 
@@ -612,7 +612,7 @@
                 '<label for="inputPassword4">Hour</label>'+
                 '<select  class="form-control"id="trainingCertificatehour" name="hour[]">'+
 
-                '<option value="">Select Hour</option>'+
+                '<option value="">Select hour</option>'+
                 @for($i = 1 ; $i <51 ; $i++)
                     '<option value="{{$i}}">{{$i}}</option>'+
                 @endfor
@@ -622,7 +622,7 @@
                 '<label for="inputPassword4">Day</label>'+
                 '<select  class="form-control"id="trainingCertificateday" name="day[]">'+
 
-                '<option value="">Select Day</option>'+
+                '<option value="">Select day</option>'+
                 @for($i = 1 ; $i <51 ; $i++)
                     '<option value="{{$i}}">{{$i}}</option>'+
                 @endfor
@@ -632,7 +632,7 @@
                 '<label for="inputPassword4">Week</label>' +
                 '<select  class="form-control"id="trainingCertificateweek" name="week[]">'+
 
-                '<option value="">Select Week</option>'+
+                '<option value="">Select week</option>'+
                 @for($i = 1 ; $i <51 ; $i++)
                     '<option value="{{$i}}">{{$i}}</option>'+
                 @endfor
@@ -642,7 +642,7 @@
                 '<label for="inputPassword4">Month</label>'+
                 '<select  class="form-control"id="trainingCertificatemonth" name="month[]">'+
 
-                '<option value="">Select Month</option>'+
+                '<option value="">Select month</option>'+
                 @for($i = 1 ; $i <51 ; $i++)
                     '<option value="{{$i}}">{{$i}}</option>'+
                 @endfor
@@ -652,7 +652,7 @@
                 '<label for="inputPassword4">Year</label>'+
                 '<select  class="form-control"id="trainingCertificateyear" name="year[]">'+
 
-                '<option value="">Select Year</option>'+
+                '<option value="">Select year</option>'+
                 @for($i = 1 ; $i <51 ; $i++)
                     '<option value="{{$i}}">{{$i}}</option>'+
                 @endfor
@@ -679,7 +679,7 @@
 
 
                 if(counter=='1'){
-                    alert("Atleast One Course Section is needed!!");
+                    alert("Atleast one course section is needed!!");
                     return false;
                 }
                 counter--;

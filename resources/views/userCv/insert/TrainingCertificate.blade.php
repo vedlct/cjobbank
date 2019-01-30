@@ -18,7 +18,7 @@
 
                             <div class="row">
                                 <div class="form-group">
-                                    <label class="control-label">Has Training Certification?<span style="color: red" class="required">*</span>:</label>
+                                    <label class="control-label">Do you have any training certificate?<span style="color: red" class="required">*</span>:</label>
                                     <div class="col-md-10 mb-3">
                                         <input class="form-check-input" type="radio" required <?php if ($hasTrainingInfo=='1'){?>checked<?php } ?> name="hasTrainingInfo" value="1"> Yes&nbsp;&nbsp;
                                     </div>
@@ -258,13 +258,13 @@
 
                     if (trainingName[i].value == "") {
 
-                        var errorMsg = 'Please Type a Training Name First!!'
+                        var errorMsg = 'Please type a training name first!!'
                         validationError(errorMsg)
                         return false;
                     }
                     if (trainingName[i].value.length > 100) {
 
-                        var errorMsg = 'Training Name Should not more than 100 Charecter Length!!'
+                        var errorMsg = 'Training name should not more than 100 charecter length!!'
                         validationError(errorMsg)
                         return false;
 
@@ -278,7 +278,7 @@
                     // }
                     if (vanue[i].value.length > 255) {
 
-                        var errorMsg = 'value Should not more than 255 Charecter Length!!';
+                        var errorMsg = 'value should not more than 255 charecter length!!';
                         validationError(errorMsg)
                         return false;
 
@@ -303,7 +303,7 @@
 //        }
 
                     if (trainingCertificateStatus[i].value == "") {
-                        var errorMsg = 'Please Select a Status First!!';
+                        var errorMsg = 'Please select a status first!!';
                         validationError(errorMsg)
                         return false;
                     }
@@ -312,7 +312,7 @@
 
 
                         if (Date.parse(end[i].value) < Date.parse(start[i].value)) {
-                            var errorMsg = 'End date should after Start Date!!';
+                            var errorMsg = 'End date should after start date!!';
                             validationError(errorMsg);
                             return false;
                         }
@@ -333,7 +333,7 @@
 
             $("#addButton").click(function () {
                 if(counter>10){
-                    alert("Only 10 Section allow per Time!!");
+                    alert("Only 10 Section allow per time!!");
                     return false;
                 }
 
@@ -351,46 +351,46 @@
 
                     if(trainingName==""){
 
-                        var errorMsg='Please Type a Training Name First!!'
+                        var errorMsg='Please type a training name first!!'
                         validationError(errorMsg)
                         return false;
                     }
                     if (trainingName.length > 100){
 
-                        var errorMsg='Training Name Should not more than 100 Charecter Length!!'
+                        var errorMsg='Training name Should not more than 100 charecter length!!'
                         validationError(errorMsg)
                         return false;
 
                     }
                     if(vanue==""){
 
-                        var errorMsg='Please Type a Venue First!!'
+                        var errorMsg='Please type a venue first!!'
                         validationError(errorMsg)
                         return false;
 
                     }
                     if (vanue.length > 255){
 
-                        var errorMsg='value Should not more than 255 Charecter Length!!';
+                        var errorMsg='value should not more than 255 charecter length!!';
                         validationError(errorMsg)
                         return false;
 
                     }
                     if(country==""){
 
-                        var errorMsg='Please Select a Country First!!';
+                        var errorMsg='Please select a country first!!';
                         validationError(errorMsg)
                         return false;
 
                     }
 
                     if(start==""){
-                        var errorMsg='Please Select a Strat Date First!!';
+                        var errorMsg='Please select a strat date first!!';
                         validationError(errorMsg)
                         return false;
                     }
                     if(trainingCertificateStatus==""){
-                        var errorMsg='Please Select a Status First!!';
+                        var errorMsg='Please select a status first!!';
                         validationError(errorMsg)
                         return false;
                     }
@@ -404,7 +404,7 @@
 
 
                         if (Date.parse(end) < Date.parse(start)) {
-                            var errorMsg = 'End date should after Start Date!!';
+                            var errorMsg = 'End date should after start date!!';
                             validationError(errorMsg);
                             return false;
                         }
@@ -426,46 +426,46 @@
 
                     if(trainingName==""){
 
-                        var errorMsg='Please Type a Training Name First!!'
+                        var errorMsg='Please type a training name first!!'
                         validationError(errorMsg)
                         return false;
                     }
                     if (trainingName.length > 100){
 
-                        var errorMsg='Training Name Should not more than 100 Charecter Length!!'
+                        var errorMsg='Training name should not more than 100 charecter length!!'
                         validationError(errorMsg)
                         return false;
 
                     }
                     if(vanue==""){
 
-                        var errorMsg='Please Type a Venue First!!'
+                        var errorMsg='Please type a venue first!!'
                         validationError(errorMsg)
                         return false;
 
                     }
                     if (vanue.length > 255){
 
-                        var errorMsg='value Should not more than 255 Charecter Length!!';
+                        var errorMsg='value should not more than 255 charecter length!!';
                         validationError(errorMsg)
                         return false;
 
                     }
                     if(country==""){
 
-                        var errorMsg='Please Select a Country First!!';
+                        var errorMsg='Please select a country first!!';
                         validationError(errorMsg)
                         return false;
 
                     }
                     if(trainingCertificateStatus==""){
-                        var errorMsg='Please Select a Status First!!';
+                        var errorMsg='Please select a status first!!';
                         validationError(errorMsg)
                         return false;
                     }
 
                     if(start==""){
-                        var errorMsg='Please Select a Strat Date First!!';
+                        var errorMsg='Please select a strat date first!!';
                         validationError(errorMsg)
                         return false;
                     }
@@ -497,7 +497,7 @@
                     '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>'+
 
                     '<div class="form-group col-md-12"> ' +
-                    '<label for="inputEmail4">Name Of The Training<span style="color: red">*</span></label> ' +
+                    '<label for="inputEmail4">Name Of the training<span style="color: red">*</span></label> ' +
                     '<input type="text" class="form-control" name="trainingName[]" id="trainingName'+counter+'" placeholder="training name" required> ' +
                     '</div> ' +
 
@@ -515,18 +515,18 @@
                     '</select>'+
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
-                    '<label for="inputPassword4">Start Date<span style="color: red">*</span></label> ' +
+                    '<label for="inputPassword4">Start date<span style="color: red">*</span></label> ' +
                     '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
-                    '<label for="inputPassword4">End Date</label> ' +
+                    '<label for="inputPassword4">End date</label> ' +
                     '<input type="text" class="form-control date" name="endDate[]" id="end'+counter+'" placeholder="date"> ' +
                     '</div>'+
                     '<div class="form-group col-md-4">'+
                     '<label for="inputPassword4">Staus<span style="color: red">*</span></label>'+
                     '<select required class="form-control"id="trainingCertificateStatus" name="status[]">'+
 
-                    '<option value="">Select Status</option>'+
+                    '<option value="">Select status</option>'+
                 @foreach(COMPLETING_STATUS as $key=>$value)
                 '<option value="{{$value}}">{{$key}}</option>'+
                         @endforeach
@@ -538,7 +538,7 @@
                     '<label for="inputPassword4">Hour</label>'+
                     '<select  class="form-control"id="trainingCertificatehour" name="hour[]">'+
 
-                    '<option value="">Select Hour</option>'+
+                    '<option value="">Select hour</option>'+
                     @for($i = 1 ; $i <51 ; $i++)
                     '<option value="{{$i}}">{{$i}}</option>'+
                         @endfor
@@ -548,7 +548,7 @@
                     '<label for="inputPassword4">Day</label>'+
                     '<select  class="form-control"id="trainingCertificateday" name="day[]">'+
 
-                    '<option value="">Select Day</option>'+
+                    '<option value="">Select day</option>'+
                     @for($i = 1 ; $i <51 ; $i++)
                     '<option value="{{$i}}">{{$i}}</option>'+
                         @endfor
@@ -558,7 +558,7 @@
                     '<label for="inputPassword4">Week</label>' +
                     '<select  class="form-control"id="trainingCertificateweek" name="week[]">'+
 
-                    '<option value="">Select Week</option>'+
+                    '<option value="">Select week</option>'+
                     @for($i = 1 ; $i <51 ; $i++)
                     '<option value="{{$i}}">{{$i}}</option>'+
                         @endfor
@@ -568,7 +568,7 @@
                     '<label for="inputPassword4">Month</label>'+
                     '<select  class="form-control"id="trainingCertificatemonth" name="month[]">'+
 
-                    '<option value="">Select Month</option>'+
+                    '<option value="">Select month</option>'+
                 @for($i = 1 ; $i <51 ; $i++)
                 '<option value="{{$i}}">{{$i}}</option>'+
                         @endfor
@@ -578,14 +578,12 @@
                     '<label for="inputPassword4">Year</label>'+
                     '<select  class="form-control"id="trainingCertificateyear" name="year[]">'+
 
-                    '<option value="">Select Year</option>'+
+                    '<option value="">Select year</option>'+
                 @for($i = 1 ; $i <51 ; $i++)
                '<option value="{{$i}}">{{$i}}</option>'+
                         @endfor
                     '</select>'+
                     '</div>'+
-
-
                     '</div>'
 
                 );
@@ -605,7 +603,7 @@
 
 
                 if(counter=='1'){
-                    alert("Atleast One Course Section is needed!!");
+                    alert("Atleast one course section is needed!!");
                     return false;
                 }
                 counter--;
