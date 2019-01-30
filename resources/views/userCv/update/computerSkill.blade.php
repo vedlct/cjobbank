@@ -20,17 +20,17 @@
                                         <label for="inputEmail4">Skill : </label>
 
 
-                                            @foreach($computerSkills as $skill)
-                                            @if($skill->id==$skills->computerSkillId)
-                                                {{$skill->computerSkillName}}
-                                            @endif
+                                            {{--@foreach($computerSkills as $skill)--}}
+                                            {{--@if($skill->id==$skills->computerSkillId)--}}
+                                                {{$skills->computerSkillName}}
+                                            {{--@endif--}}
 
                                                 {{--@php--}}
                                                     {{--array_push($skillId,$skill->id);--}}
                                                     {{--array_push($skillTitle,$skill->computerSkillName );--}}
                                                 {{--@endphp--}}
 
-                                            @endforeach
+                                            {{--@endforeach--}}
 
                                     </div>
 
@@ -230,7 +230,7 @@
                 if(counter>1){
 //                    document.getElementById("removeButton").style.display='block';
                     $("#removeButton").show();
-                    $("#submitBtn1").hide();
+                    $("#submitBtn1").show();
                 }
 
             });
@@ -269,6 +269,29 @@
                     }
                 }
             });
+
+        }
+
+        function  checkUnique(x) {
+
+
+            var values =  $('select[name="computerSkillId[]"]').map(function () {
+                return this.value; // $(this).val()
+            }).get();
+
+
+            var unique = values.filter(function(itm, i, values) {
+                return i == values.indexOf(itm);
+            });
+
+            if(values.length != unique.length){
+
+                alert("Already Inserted");
+                $(x).val('');
+
+            }
+
+            // alert($(x).val());
 
         }
 
