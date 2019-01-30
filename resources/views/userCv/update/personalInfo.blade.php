@@ -172,18 +172,12 @@
                                         {{ $personalInfo->homeNumber }}
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="">office telephone:</label>
+                                        <label for="">Office telephone:</label>
                                         {{$personalInfo->officeNumber }}
                                     </div>
 
 
                                 </div>
-
-
-
-
-
-
 
 
                                 <div class="row">

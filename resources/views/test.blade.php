@@ -162,7 +162,7 @@
 
 
         <table border="0" style="width:100%; margin-top: 10px; border: none;">
-            @if($trainingCertificate->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @endif
+            @if($trainingCertificate->isEmpty())<tr><td style=" border: none; text-align: center"> <strong>None </strong> </td></tr> @endif
 
             @php $count=1;@endphp
 
@@ -187,7 +187,9 @@
 
         </table>
 
-        <p style="page-break-after: always;"></p>
+        {{--@if($trainingCertificate->isEmpty())--}}
+        {{--<p style="page-break-after: always;"></p>--}}
+        {{--@endif--}}
 <br>
         <table border="0" style="width:100%;border: none;">
             <tr>

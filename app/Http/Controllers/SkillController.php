@@ -31,7 +31,13 @@ class SkillController extends Controller
     public function index(){
 
         $employee=Employee::select('employeeId','hasOtherSkill')->where('fkuserId',Auth::user()->userId)->first();
-        $skills=OtherSkillInformation::where('status',1)->get();
+
+
+        $skills=OtherSkillInformation::where('status',1)->whereNotIn('id', function ($query) use ($employee){
+            $query->select('otherSkillId')
+                ->from('emp_otherskill_achievement')
+                ->where('fkemployeeId',$employee->employeeId);
+        })->get();
 
         if (is_null($employee->hasOtherSkill)) {
             $hasOtherSkill = null;
