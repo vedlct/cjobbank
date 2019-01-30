@@ -45,13 +45,19 @@
                                 </div>
                                     <div class="form-group col-md-4">
                                         <label for="">Result System<span style="color: red">*</span></label>
-                                        <select name="resultSystem[]" class="form-control"  id="resultSydtem">
+                                        <select name="resultSystem[]" class="form-control" data-panel-id="0"  id="resultSydtem" onchange="changeResult(this)">
                                             <option value="">Select System</option>
                                             @foreach(RESULT_SYSTEM as $key=>$value)
                                                 <option value="{{$value}}">{{$key}}</option>
                                             @endforeach
                                         </select>
                                     </div>
+
+
+                                    <div class="form-group" id="otherField0">
+
+                                    </div>
+
                                 <div class="form-group col-md-4">
                                     <label for="inputPassword4">Result</label>
                                     <input type="text" class="form-control" name="result[]" id="result" placeholder="">
@@ -68,7 +74,7 @@
 
                                  <!--duration-->
 
-                                    <div class="row" style="margin-left: 10px">
+                                    <div class="row" id="courseDuration" style="margin-left: 10px">
                                         <label>Duration</label>
                                         <div class="form-group col-md-2">
                                             <label for="inputPassword4">Hour</label>
@@ -125,8 +131,8 @@
                                     </div>
 
                                 <div class="form-group col-md-4">
-                                    <label for="inputPassword4">Staus<span style="color: red">*</span></label>
-                                    <select  class="form-control"id="professinalCertificateStatus" name="status[]">
+                                    <label for="inputPassword4">Status<span style="color: red">*</span></label>
+                                    <select  class="form-control" id="professinalCertificateStatus" name="status[]" onchange="selectStatus(this)">
 
                                         <option value="">Select Status</option>
                                         @foreach(COMPLETING_STATUS as $key=>$value)
@@ -219,6 +225,7 @@
 
             if ($(this).val()=='1'){
                 $('#profCertificateDiv').show();
+                $("#submitBtn").show();
             }else {
                 $('#profCertificateDiv').hide();
             }
@@ -280,41 +287,7 @@
                         return false;
 
                     }
-                    // if (institutionName[i].value.length > 255){
-                    //
-                    //     var errorMsg='Institute Name Should not more than 255 Charecter Length!!';
-                    //     validationError(errorMsg);
-                    //     return false;
-                    //
-                    // }
-//                    if(result==""){
-//
-//                        var errorMsg='Please Type a Result First!!';
-//                        validationError(errorMsg);
-//                        return false;
-//
-//                    }
-//                    if (result.length > 10){
-//
-//                        var errorMsg='Result Should not more than 10 Charecter Length!!';
-//                        validationError(errorMsg);
-//                        return false;
-//
-//                    }
-//                     if(start[i].value==""){
-//
-//                         var errorMsg='Please Select a Strat Date First!!';
-//                         validationError(errorMsg);
-//                         return false;
-//
-//                     }
-//                    if(end==""){
-//
-//                        var errorMsg='Please Select a End Date First!!';
-//                        validationError(errorMsg);
-//                        return false;
-//
-//                    }
+
                     if (end[i].value != "") {
 
 
@@ -352,6 +325,7 @@
             var counter = 1;
             $("#removeButton").hide();
             $("#submitBtn").hide();
+            $('#courseDuration').hide();
 
 
             $("#addButton").click(function () {
@@ -572,13 +546,14 @@
                 '</div>'+
                     '<div class="form-group col-md-4">'+
                     '<label for="">Result System<span style="color: red">*</span></label>'+
-                    '<select name="resultSystem[]" class="form-control"  id="resultSydtem'+counter+'">'+
+                    '<select name="resultSystem[]" class="form-control" data-panel-id="'+counter+'" onchange="changeResult(this)"  id="resultSydtem'+counter+'">'+
                     '<option value="">Select System</option>'+
-                @foreach(RESULT_SYSTEM as $key=>$value)
-                '<option value="{{$value}}">{{$key}}</option>'+
+                    @foreach(RESULT_SYSTEM as $key=>$value)
+                    '<option value="{{$value}}">{{$key}}</option>'+
                         @endforeach
                     '</select>'+
                     '</div>'+
+                    '<div class="form-group" id="otherField'+counter+'"></div>'+
                 '<div class="form-group col-md-4">'+
                     '<label for="inputPassword4">Result</label>'+
                     '<input type="text" class="form-control" name="result[]" id="result'+counter+'" placeholder="">'+
@@ -594,7 +569,7 @@
                     '</div>'+
 
                     '<div class="form-group col-md-4">'+
-                    '<label for="inputPassword4">Staus<span style="color: red">*</span></label>'+
+                    '<label for="inputPassword4">Status<span style="color: red">*</span></label>'+
                     '<select  class="form-control" id="professinalCertificateStatus'+counter+'" name="status[]">'+
                     '<option value="">Select Status</option>'+
                     @foreach(COMPLETING_STATUS as $key=>$value)
@@ -707,6 +682,39 @@
                     }
                 }
             });
+
+        }
+
+
+        function selectStatus(x) {
+            var value=$(x).val();
+
+
+            if(value==1){
+                $('#courseDuration').hide();
+            }
+            else if(value==2){
+                $('#courseDuration').show();
+            }
+            // alert(value);
+
+        }
+
+        function changeResult(x) {
+            // alert($(x).val());
+            var value=$(x).val();
+            var id=$(x).data('panel-id');
+
+            if(value==4){
+                $('#otherField'+id).html(' <div class="form-group col-md-12">\n' +
+                    '                                    <label for="inputPassword4">Grade</label>\n' +
+                    '                                    <input type="text" class="form-control" name="grade['+id+']"  placeholder="">\n' +
+                    '                                </div>');
+            }
+
+            else{
+                $('#otherField'+id).html('');
+            }
 
         }
 

@@ -331,6 +331,7 @@
             $("#removeButton").hide();
 
 
+
             $("#addButton").click(function () {
                 if(counter>10){
                     alert("Only 10 Section allow per Time!!");

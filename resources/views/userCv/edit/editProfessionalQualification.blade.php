@@ -23,12 +23,24 @@
 
         <div class="form-group col-md-4">
             <label for="">Result System<span style="color: red">*</span></label>
-            <select name="resultSystem" class="form-control"  id="resultSydtem">
+            <select name="resultSystem" class="form-control"  id="resultSydtem" onchange="changeResult(this)">
                 <option value="">Select System</option>
                 @foreach(RESULT_SYSTEM as $key=>$value)
                     <option @if($value == $professional->resultSystem ) selected @endif value="{{$value}}">{{$key}}</option>
                 @endforeach
             </select>
+        </div>
+
+        <div class="form-group" id="otherField">
+            @if($professional->resultSystem==4)
+                <div class="form-group col-md-12">
+                    <label for="inputPassword4">Grade</label>
+                    <input type="text" class="form-control" name="grade" value="{{$professional->grade}}"  placeholder="">
+                </div>
+
+
+            @endif
+
         </div>
 
         <div class="form-group col-md-4">
@@ -44,7 +56,8 @@
             <label for="inputPassword4">End Date </label>:</label>
             <input type="text" class="form-control date" name="endDate" value="{{$professional->endDate}}" id="end" placeholder="date">
         </div>
-
+    </div>
+<div class="row" id="courseDuration">
         <label>Duration</label>
         <div class="form-group col-md-2">
             <label for="inputPassword4">Hour</label>
@@ -96,10 +109,12 @@
                 @endfor
             </select>
         </div>
+</div>
+    <div class="row">
 
         <div class="form-group col-md-4">
-            <label for="inputPassword4">Staus <span style="color: red">*</span></label>:</label>
-            <select required class="form-control" id="professinalCertificateStatus" name="status">
+            <label for="inputPassword4">Status <span style="color: red">*</span></label>:</label>
+            <select required class="form-control" id="professinalCertificateStatus" name="status"  onchange="selectStatus(this)">
                 <option value="">Select Status</option>
                 @foreach(COMPLETING_STATUS as $key=>$value)
                     <option @if($value == $professional->status) selected @endif value="{{$value}}">{{$key}}</option>
@@ -124,6 +139,16 @@
 
     $('.date').datepicker({
         format: 'yyyy-m-d'
+    });
+
+    $(function () {
+        var status="{{$professional->status}}";
+        if(status==1){
+            $('#courseDuration').hide();
+
+        }
+
+
     });
 
     function checkProfessionalQualification(){
@@ -238,6 +263,39 @@
                 }
             }
         });
+
+    }
+
+    function selectStatus(x) {
+        var value=$(x).val();
+
+
+        if(value==1){
+            $('#courseDuration').hide();
+        }
+        else if(value==2){
+            $('#courseDuration').show();
+        }
+        // alert(value);
+
+    }
+
+
+    function changeResult(x) {
+        // alert($(x).val());
+        var value=$(x).val();
+
+
+        if(value==4){
+            $('#otherField').html(' <div class="form-group col-md-12">\n' +
+                '                                    <label for="inputPassword4">Grade</label>\n' +
+                '                                    <input type="text" class="form-control" name="grade"  placeholder="">\n' +
+                '                                </div>');
+        }
+
+        else{
+            $('#otherField').html('');
+        }
 
     }
 

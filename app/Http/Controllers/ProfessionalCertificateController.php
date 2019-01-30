@@ -92,6 +92,8 @@ class ProfessionalCertificateController extends Controller
 
     public function submitEmployeeCvProfessionalCertificate(Request $r){
 
+//        return $r;
+
         $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
        // return $r->hasProfCertificate;
         $emp=Employee::findOrFail($employee->employeeId);
@@ -114,6 +116,11 @@ class ProfessionalCertificateController extends Controller
                 $professional->resultSystem=$r->resultSystem[$i];
                 $professional->result=$r->result[$i];
                 $professional->status=$r->status[$i];
+                if($r->grade[$i]){
+                    $professional->grade=$r->grade[$i];
+                }
+
+
                 $professional->hour=$r->hour[$i];
                 $professional->day=$r->day[$i];
                 $professional->week=$r->week[$i];
@@ -148,7 +155,12 @@ class ProfessionalCertificateController extends Controller
             $professional->month=$r->month;
             $professional->year=$r->year;
 
-            $professional->save();
+            if($r->grade){
+                $professional->grade=$r->grade;
+            }
+
+
+        $professional->save();
 
 
 

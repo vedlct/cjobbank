@@ -44,18 +44,30 @@
                                                     <label >{{$val->institutionName}}</label>
                                                     {{--<input type="text" class="form-control" name="institutionName{{$val->professionalQualificationId}}" id="inputEmail4" value="{{$val->institutionName}}" placeholder="institution" required>--}}
                                                 </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="inputEmail4">Result System :</label>
 
-                                                    <label >
-                                                        @foreach(RESULT_SYSTEM as $key=>$value)
-                                                            @if($value==$val->resultSystem){{$key}}
-                                                            @endif
-                                                        @endforeach
-                                                    </label>
 
-                                                    {{--<input type="text" class="form-control" name="institutionName{{$val->professionalQualificationId}}" id="inputEmail4" value="{{$val->institutionName}}" placeholder="institution" required>--}}
-                                                </div>
+                                                @if($val->resultSystem)
+                                                    <div class="form-group col-md-4">
+                                                        <label for="inputPassword4">Result System :</label>
+                                                        <label for="inputPassword4">{{$val->grade}}</label>
+                                                    </div>
+
+                                                 @else
+                                                    <div class="form-group col-md-4">
+                                                        <label for="inputEmail4">Result System :</label>
+
+                                                        <label >
+                                                            @foreach(RESULT_SYSTEM as $key=>$value)
+                                                                @if($value==$val->resultSystem){{$key}}
+                                                                @endif
+                                                            @endforeach
+                                                        </label>
+
+                                                        {{--<input type="text" class="form-control" name="institutionName{{$val->professionalQualificationId}}" id="inputEmail4" value="{{$val->institutionName}}" placeholder="institution" required>--}}
+                                                    </div>
+                                                @endif
+
+
 
 
 
@@ -352,13 +364,14 @@
                     '</div>'+
                     '<div class="form-group col-md-4">'+
                     '<label for="">Result System<span style="color: red">*</span></label>'+
-                    '<select name="resultSystem[]" class="form-control"  id="resultSydtem'+counter+'">'+
+                    '<select name="resultSystem[]" class="form-control" id="resultSydtem'+counter+'" data-panel-id="'+counter+'" onchange="changeResult(this)">'+
                     '<option value="">Select System</option>'+
                     @foreach(RESULT_SYSTEM as $key=>$value)
                         '<option value="{{$value}}">{{$key}}</option>'+
                     @endforeach
                         '</select>'+
                     '</div>'+
+                    '<div class="form-group" id="otherField'+counter+'"></div>'+
                     '<div class="form-group col-md-4">'+
                     '<label for="inputPassword4">Result</label>'+
                     '<input type="text" class="form-control" name="result[]" id="result'+counter+'" placeholder="">'+
@@ -486,6 +499,26 @@
                     }
                 }
             });
+
+        }
+
+
+        function changeResult(x) {
+            // alert($(x).val());
+            var value=$(x).val();
+            var id=$(x).data('panel-id');
+            var id2=id-1;
+
+            if(value==4){
+                $('#otherField'+id).html(' <div class="form-group col-md-12">\n' +
+                    '                                    <label for="inputPassword4">Grade</label>\n' +
+                    '                                    <input type="text" class="form-control" name="grade['+id2+']"  placeholder="">\n' +
+                    '                                </div>');
+            }
+
+            else{
+                $('#otherField'+id).html('');
+            }
 
         }
 
