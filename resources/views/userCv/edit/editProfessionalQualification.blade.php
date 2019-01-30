@@ -199,45 +199,6 @@
             return false;
 
         }
-//        if(result==""){
-//
-//            var errorMsg='Please Type a Result First!!'
-//            validationError(errorMsg)
-//            return false;
-//
-//        }
-//        if (result.length > 10){
-//
-//            var errorMsg='Result Should not more than 10 Charecter Length!!'
-//            validationError(errorMsg)
-//            return false;
-//
-//        }
-//         if(start==""){
-//
-//             var errorMsg='Please Select a Strat Date First!!'
-//             validationError(errorMsg)
-//             return false;
-//
-//         }
-//        if(end==""){
-//
-//            var errorMsg='Please Select a End Date First!!'
-//            validationError(errorMsg)
-//            return false;
-//
-//        }
-//         if (end != "") {
-//
-//
-//             if (Date.parse(end) < Date.parse(start)) {
-//
-//                 var errorMsg = 'End date should after Start Date!!'
-//                 validationError(errorMsg)
-//                 return false;
-//
-//             }
-//         }
 
         if(status==""){
 
