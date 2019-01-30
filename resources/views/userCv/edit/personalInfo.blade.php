@@ -497,7 +497,7 @@
             }
             var picsize = (this.files[0].size);
             if ((picsize/1024) > 50){
-                var errorMsg="Image Size Should be less then 50 KB";
+                var errorMsg="Image size should be less then 50 KB";
                 validationError(errorMsg);
                 $(this).val('');
 

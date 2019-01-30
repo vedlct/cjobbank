@@ -33,7 +33,7 @@
                                 <div class="row">
                                     <div class="form-group col-md-12">
 
-                                        <label for="inputEmail4">Name Of The Training<span style="color: red">*</span></label>
+                                        <label for="inputEmail4">Name Of the training<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" name="trainingName[]" id="trainingName" placeholder="training name" >
                                     </div>
                                 </div>
@@ -47,7 +47,7 @@
                                         <label for="inputPassword4">Country<span style="color: red">*</span></label>
                                         {{--<input type="text" class="form-control"  id="inputPassword4" placeholder="">--}}
                                         <select  class="form-control" id="country" name="countryId[]" >
-                                            <option value="">Select Country</option>
+                                            <option value="">Select country</option>
                                             @foreach($countries as $country)
                                                 <option value="{{$country->countryId}}">{{$country->countryName}}</option>
 
@@ -56,11 +56,11 @@
                                     </div>
 
                                     <div class="form-group col-md-4">
-                                        <label for="inputPassword4">Start Date<span style="color: red">*</span></label>
+                                        <label for="inputPassword4">Start date<span style="color: red">*</span></label>
                                         <input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" >
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="inputPassword4">End Date</label>
+                                        <label for="inputPassword4">End date</label>
                                         <input type="text" class="form-control date" name="endDate[]" id="end" placeholder="date">
                                     </div>
 
@@ -68,7 +68,7 @@
                                         <label for="inputPassword4">Staus<span style="color: red">*</span></label>
                                         <select  class="form-control"id="trainingCertificateStatus" name="status[]" onchange="selectStatus(this)">
 
-                                            <option value="">Select Status</option>
+                                            <option value="">Select status</option>
                                             @foreach(COMPLETING_STATUS as $key=>$value)
                                                 <option value="{{$value}}">{{$key}}</option>
                                             @endforeach
@@ -85,7 +85,7 @@
                                         <label for="inputPassword4">Hour</label>
                                         <select  class="form-control"id="trainingCertificatehour" name="hour[]">
 
-                                            <option value="">Select Hour</option>
+                                            <option value="">Select hour</option>
                                             @for($i = 1 ; $i <51 ; $i++)
                                                 <option value="{{$i}}">{{$i}}</option>
                                             @endfor
@@ -95,7 +95,7 @@
                                         <label for="inputPassword4">Day</label>
                                         <select  class="form-control"id="trainingCertificateday" name="day[]">
 
-                                            <option value="">Select Day</option>
+                                            <option value="">Select day</option>
                                             @for($i = 1 ; $i <51 ; $i++)
                                                 <option value="{{$i}}">{{$i}}</option>
                                             @endfor
@@ -105,7 +105,7 @@
                                         <label for="inputPassword4">Week</label>
                                         <select  class="form-control"id="trainingCertificateweek" name="week[]">
 
-                                            <option value="">Select Week</option>
+                                            <option value="">Select week</option>
                                             @for($i = 1 ; $i <51 ; $i++)
                                                 <option value="{{$i}}">{{$i}}</option>
                                             @endfor
@@ -115,7 +115,7 @@
                                         <label for="inputPassword4">Month</label>
                                         <select  class="form-control"id="trainingCertificatemonth" name="month[]">
 
-                                            <option value="">Select Month</option>
+                                            <option value="">Select month</option>
                                             @for($i = 1 ; $i <51 ; $i++)
                                                 <option value="{{$i}}">{{$i}}</option>
                                             @endfor
@@ -125,7 +125,7 @@
                                         <label for="inputPassword4">Year</label>
                                         <select  class="form-control"id="trainingCertificateyear" name="year[]">
 
-                                            <option value="">Select Year</option>
+                                            <option value="">Select year</option>
                                             @for($i = 1 ; $i <51 ; $i++)
                                                 <option value="{{$i}}">{{$i}}</option>
                                             @endfor
@@ -138,7 +138,7 @@
 
 
                         </div>
-                                <button type="button" id="addButton" class="btn btn-success">Add More</button>
+                                <button type="button" id="addButton" class="btn btn-success">Add more</button>
                                 <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
                         </div>

@@ -6,7 +6,7 @@
         <div  class="row">
             <div class="form-group col-md-4">
 
-                <label for="">Education Exam/level<span style="color: red">*</span></label>
+                <label for="">Education exam/level<span style="color: red">*</span></label>
                 <select name="educationLevel" class="form-control" required="" id="educationLevel">
                     <option value="">Select Education Level</option>
                     @foreach($educationLevel as $edulevel)
@@ -19,7 +19,7 @@
 
                 <label for="">Subject/Group<span style="color: red">*</span></label>
                 <select name="degree" class="form-control" required id="degree">
-                    <option value="">Select Degree</option>
+                    <option value="">Select degree</option>
                     <option  selected value="{{$education->degreeId}}">{{$education->degreeName}}</option>
                     <option  value="{{OTHERS}}">{{OTHERS}}</option>
 
@@ -29,7 +29,7 @@
             </div>
 
             <div style="display: none" id="degreeNameDiv" class="form-group col-md-12">
-                <label for="">Degree Name</label>
+                <label for="">Degree name</label>
                 <input type="text" maxlength="255" name="degreeName" class="form-control" id="degreeName"  placeholder="">
 
             </div>
@@ -37,7 +37,7 @@
             {{--@if($education->eduLvlUnder == 2 || $education->eduLvlUnder==null )--}}
 
             <div @if($education->eduLvlUnder == 2 || $education->eduLvlUnder==null ) style=" dispaly:none" @endif id="instituteNameDiv" class="form-group col-md-12">
-                <label for="">Institute Name</label>
+                <label for="">Institute name</label>
                 <input type="text" name="instituteName"  class="form-control" id="instituteName" value="{{$education->institutionName}}" placeholder="">
             </div>
 
@@ -46,9 +46,9 @@
 
 
             <div @if(($education->eduLvlUnder != 2 || $education->eduLvlUnder== null) && $education->universityType == null) style=" display: none" @endif id="instituteNameDiv" class="form-group col-md-3">
-                <label for="">University Type</label>
+                <label for="">University type</label>
                 <select name="universityType" class="form-control" id="universityType">
-                    <option value="" >Select Type</option>
+                    <option value="" >Select type</option>
                     @foreach(UNIVERSITY_TYPE as $key=>$value)
                         <option @if($value == $education->universityType) selected @endif value="{{$value}}" >{{$key}}</option>
                     @endforeach
@@ -63,7 +63,7 @@
             <div @if($education->eduLvlUnder != 1 || $education->eduLvlUnder==null ) style="display: none" @endif id="boardDiv" class="form-group col-md-3">
                 <label for="">Board/University</label>
                 <select name="board" class="form-control" id="board">
-                    <option value="" >Select Board</option>
+                    <option value="" >Select doard</option>
                     @foreach($boards as $board)
                         <option value="{{$board->boardId}}" @if($board->boardId == $education->fkboardId) selected @endif >{{$board->boardName}}</option>
                     @endforeach
@@ -72,7 +72,7 @@
             </div>
 
             <div style="display: none" id="boardNameDiv" class="form-group col-md-3">
-                <label for="">Board Name</label>
+                <label for="">Board name</label>
                 <input type="text" maxlength="255" name="boardName" class="form-control" id="boardName"  placeholder="">
 
             </div>
@@ -87,7 +87,7 @@
                 </select>
             </div>
             <div style="display: none" id="subjectNameDiv" class="form-group col-md-6">
-                <label for="">Subject Name</label>
+                <label for="">Subject name</label>
                 <input type="text" name="subjectName" maxlength="255" class="form-control" id="subjectName"  placeholder="">
 
             </div>
@@ -97,7 +97,7 @@
             <div class="form-group col-md-3">
                 <label for="">Country<span style="color: red">*</span></label>
                 <select name="country" class="form-control" required id="country">
-                    <option value="">Select Country</option>
+                    <option value="">Select country</option>
                     @foreach($country as $coun)
                         <option @if($coun->countryId == $education->fkcountryId )selected @endif value="{{$coun->countryId}}">{{$coun->countryName}}</option>
                     @endforeach
@@ -106,11 +106,11 @@
 
 
             <div class="form-group col-md-3">
-                <label for="">Passing Year<span style="color: red">*</span></label>
+                <label for="">Passing year<span style="color: red">*</span></label>
                 <input name="passingYear" type="text" class="form-control date" value="{{$education->passingYear}}" id="passingYear" required placeholder="passing Year">
             </div>
             <div class="form-group col-md-3">
-                <label for="">Result System<span style="color: red">*</span></label>
+                <label for="">Result system<span style="color: red">*</span></label>
                 <select name="resultSystem" class="form-control" required id="resultSydtem">
                     <option value="">Select System</option>
                     @if($education->resultSystem!=4)
@@ -126,7 +126,7 @@
             </div>
 
             <div @if($education->resultSystem !=4)style="display: none" @endif id="resultSydtemNameDiv" class="form-group col-md-3">
-                <label for="">Result System Name</label>
+                <label for="">Result system name</label>
                 <input type="text" maxlength="255" name="resultSydtemName" value="{{$education->resultSystemName}}" class="form-control" id="resultSydtemName"  placeholder="">
 
             </div>

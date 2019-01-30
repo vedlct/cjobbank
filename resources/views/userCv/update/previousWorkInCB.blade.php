@@ -37,15 +37,15 @@
 
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label>Start Date</label>
+                                            <label>Start date</label>
                                             {{$previousWorkInCB->startDate}}
                                         </div>
                                         <div class="col-md-6">
-                                            <label>End Date</label>
+                                            <label>End date</label>
                                             @if($previousWorkInCB->currentlyRunning=='0')
                                                 {{$previousWorkInCB->endDate}}
                                             @else
-                                                Currently Running
+                                                Currently running
                                             @endif
 
 
@@ -58,7 +58,7 @@
                                 </div>
                             @endforeach
                         </div>
-                        <form action="{{route('candidate.previousWorkInCB.insert')}}" method="post">
+                        <form onsubmit="return chkPreviousWork()"action="{{route('candidate.previousWorkInCB.insert')}}" method="post">
                             <!-- One "tab" for each step in the form: -->
                             <input type="hidden" required name="hasWorkedInCB" value="1">&nbsp;
                             {{csrf_field()}}
@@ -69,7 +69,7 @@
                             </div>
 
 
-                            <button type="button" id="addButton" class="btn btn-success">Add More</button>
+                            <button type="button" id="addButton" class="btn btn-success">Add more</button>
                             <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
 
@@ -200,13 +200,11 @@
                     return false;
                 }
 
-                if (counter >1)
+                if (counter > 1)
                 {
                     var degisnation=$('#degisnation'+(counter-1)).val();
                     var start=$('#start'+(counter-1)).val();
                     var end=$('#end'+(counter-1)).val();
-
-
 
 
                     if(degisnation==""){
@@ -307,6 +305,61 @@
 
 
         });
+
+        function chkPreviousWork() {
+
+
+
+
+
+
+                var degisnation=document.getElementsByName('degisnation[]');
+                var startDate=document.getElementsByName('startDate[]');
+
+                var currentlyRunning=document.getElementsByName('currentlyRunning[]');
+
+
+                var endDate=document.getElementsByName('endDate[]');
+
+
+                for (i=0;i<degisnation.length;i++){
+
+                    if(degisnation[i].value==""){
+
+                        var errorMsg='Please Type a Designation First!!';
+                        validationError(errorMsg);
+                        return false;
+                    }
+
+                    if(startDate[i].value==""){
+
+                        var errorMsg='Please Type Start Date First!!';
+                        validationError(errorMsg);
+                        return false;
+                    }
+
+                    if ($("input[name=currentlyRunning]:checked").val()!=1){
+
+                        if(endDate[i].value!=""){
+
+                            if(startDate[i].value > endDate[i].value){
+
+                                var errorMsg='startDate must be less then endDate';
+                                validationError(errorMsg);
+                                return false;
+                            }
+
+                        }
+
+                    }
+
+
+                }
+
+
+
+
+        }
 
         function validationError(errorMsg){
 

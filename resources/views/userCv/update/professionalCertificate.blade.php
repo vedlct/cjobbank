@@ -26,7 +26,7 @@
                                         <input type="hidden" name="professionalQualificationId[]" value="{{$val->professionalQualificationId}}">
                                             <div class="row">
                                                 <div class="form-group col-md-10">
-                                                    <label for="inputEmail4">Certificate Name :</label>
+                                                    <label for="inputEmail4">Certificate name :</label>
                                                     <label for="inputEmail4">{{$val->certificateName}}</label>
                                                     {{--<input type="text" class="form-control" name="certificateName{{$val->professionalQualificationId}}" id="inputEmail4" value="{{$val->certificateName}}" placeholder="certificate" required>--}}
                                                 </div>
@@ -40,10 +40,15 @@
 
                                             <div class="row">
                                                 <div class="form-group col-md-8">
-                                                    <label for="inputEmail4">Institute Name :</label>
+                                                    <label for="inputEmail4">Institute name :</label>
                                                     <label >{{$val->institutionName}}</label>
                                                     {{--<input type="text" class="form-control" name="institutionName{{$val->professionalQualificationId}}" id="inputEmail4" value="{{$val->institutionName}}" placeholder="institution" required>--}}
                                                 </div>
+<<<<<<< HEAD
+=======
+                                                <div class="form-group col-md-4">
+                                                    <label for="inputEmail4">Result system :</label>
+>>>>>>> 26ea4e2c9bfcc535dc679aaaad0450e1352f9767
 
 
                                                 @if($val->resultSystem)
@@ -78,12 +83,12 @@
                                                 </div>
 
                                                 <div class="form-group col-md-4">
-                                                    <label for="inputPassword4">Start Date :</label>
+                                                    <label for="inputPassword4">Start date :</label>
                                                     <label for="inputPassword4">{{$val->startDate}}</label>
                                                     {{--<input type="text" class="form-control date" name="startDate{{$val->professionalQualificationId}}" value="{{$val->startDate}}" id="start" placeholder="date" required>--}}
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label for="inputPassword4">End Date :</label>
+                                                    <label for="inputPassword4">End date :</label>
                                                     <label for="inputPassword4">{{$val->endDate}}</label>
                                                     {{--<input type="text" class="form-control date" name="endDate{{$val->professionalQualificationId}}" value="{{$val->endDate}}" id="end" placeholder="date">--}}
                                                 </div>
@@ -134,7 +139,7 @@
 
                         </div>
 
-                        <button type="button" id="addButton" class="btn btn-success">Add More</button>
+                        <button type="button" id="addButton" class="btn btn-success">Add more</button>
                         <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
                         <div style="overflow:auto;">

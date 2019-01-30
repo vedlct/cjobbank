@@ -26,7 +26,7 @@
 
                                     <div class="form-group col-md-4">
 
-                                        <label for="">Education Exam/Degree :</label>
+                                        <label for="">Education exam/degree :</label>
                                         {{$educationInfo->educationLevelName}}
                                     </div>
 
@@ -45,7 +45,7 @@
                                 @if($educationInfo->eduLvlUnder ==2 || $educationInfo->eduLvlUnder==null )
 
                                 <div class="form-group col-md-12">
-                                    <label for="">Institute Name :</label>
+                                    <label for="">Institute name :</label>
                                     <label for="">{{$educationInfo->institutionName}}</label>
                                     {{--<input type="text" name="instituteName[]" required class="form-control" id="" placeholder="">--}}
                                 </div>
@@ -53,7 +53,7 @@
 
                                 @if (($educationInfo->eduLvlUnder == 2 || $educationInfo->eduLvlUnder==null) && $educationInfo->universityType != null )
                                     <div class="form-group col-md-3">
-                                        <label for="">University Type :</label>
+                                        <label for="">University type :</label>
                                         @foreach(UNIVERSITY_TYPE as $key=>$value)
                                             @if($value==$educationInfo->universityType) {{$key}} @endif
                                         @endforeach
@@ -90,13 +90,13 @@
 
 
                                 <div class="form-group col-md-3">
-                                    <label for="">Passing Year :</label>
+                                    <label for="">Passing year :</label>
                                     {{$educationInfo->passingYear}}
 
                                     {{--<input name="passingYear[]" type="text" class="form-control date" id="" required placeholder="passing Year">--}}
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label for="">Result System :</label>
+                                    <label for="">Result system :</label>
                             @if($educationInfo->resultSystem!=4)
 
                                             @foreach(RESULT_SYSTEM as $key=>$value)
@@ -443,12 +443,16 @@
                         '</select>'+
 
                         '</div>'+
+                        '<div style="display: none" id="degreeNameDiv'+ counter+'" class="form-group col-md-12">'+
+                        '<label for="">Degree Name</label>'+
+                        '<input type="text" maxlength="255" name="degreeName[]" class="form-control" id="degreeName'+ counter+'"  placeholder="">'+
+
+                        '</div>'+
 
                         '<div id="instituteNameDiv'+counter+'" class="form-group col-md-12">'+
                         '<label for="">Institute Name</label>'+
-                        '<input type="text" name="instituteName[]" class="form-control" id="instituteName'+counter+'" placeholder="">'+
+                        '<input type="text" name="instituteName[]" class="form-control"  id="instituteName'+counter+'" placeholder="">'+
                         '</div>'+
-
                         '<div style="display: none" id="universityTypeDiv'+counter+'" class="form-group col-md-3">'+
                         '<label for="">University Type</label>'+
                         '<select name="universityType[]" class="form-control" id="universityType'+counter+'">'+
@@ -458,26 +462,34 @@
                             @endforeach
                                 '</select>'+
                         '</div>'+
-
-                        '<div id="boardDiv'+counter+'" class="form-group col-md-3">'+
-                        '<label for="">Board/University</label>' +
-                        '<select name="board[]" class="form-control" id="major"> ' +
+                        '<div id="boardDiv'+counter+'"  class="form-group col-md-3">'+
+                        '<label for="">Board</label>' +
+                        '<select name="board[]" class="form-control" onchange="getBoardName('+counter+')" id="board'+counter+'"> ' +
                         '<option value="" >Select Board</option>'+
                             @foreach($boards as $board)
                                 '<option value="{{$board->boardId}}" >{{$board->boardName}}</option>'+
                             @endforeach
-                                '</select>' +
+                                '<option value="{{OTHERS}}" >{{OTHERS}}</option>'+
+                        '</select>' +
                         '</div>'+
+
+                        '<div style="display: none" id="boardNameDiv'+counter+'" class="form-group col-md-3">'+
+                        '<label for="">Board Name</label>'+
+                        '<input type="text" maxlength="255" name="boardName[]" class="form-control" id="boardName'+counter+'"  placeholder="">'+
+
+                        '</div>'+
+
 
                         '<div class="form-group col-md-3">'+
                         '<label for="">Major</label>'+
-                        '<select name="major[]" class="form-control"  onchange="checkMajor('+counter+')" id="majorSub'+counter+'">'+
+                        '<select name="major[]" class="form-control" onchange="checkMajor('+counter+')" id="majorSub'+counter+'">'+
                         '<option value="">Select Major</option>'+
+                        '<option value="{{OTHERS}}" >{{OTHERS}}</option>'+
                         '</select>'+
                         '</div>'+
                         '<div style="display: none" id="subjectNameDiv'+counter+'" class="form-group col-md-6">'+
                         '<label for="">Subject Name</label>'+
-                        '<input type="text" maxlength="255" name="subjectName" class="form-control" id="subjectName'+counter+'"  placeholder="">'+
+                        '<input type="text" maxlength="255" name="subjectName[]" class="form-control" id="subjectName'+counter+'"  placeholder="">'+
 
                         '</div>'+
 
@@ -498,19 +510,27 @@
                         ' </div>'+
                         '<div class="form-group col-md-3">'+
                         '<label for="">Result System<span style="color: red">*</span></label>'+
-                        '<select name="resultSystem[]" class="form-control" required id="resultSydtem'+counter+'">'+
+                        '<select name="resultSystem[]" class="form-control" onchange="getResultSystemName('+counter+')" required id="resultSydtem'+counter+'">'+
                         '<option value="">Select System</option>'+
                             @foreach(RESULT_SYSTEM as $key=>$value)
                                 '<option value="{{$value}}">{{$key}}</option>'+
                             @endforeach
-                                '</select>'+
+                                '<option value="{{OTHERS}}" >{{OTHERS}}</option>'+
+                        '</select>'+
                         '</div>'+
+
+                        '<div style="display: none" id="resultSydtemNameDiv'+counter+'" class="form-group col-md-3">'+
+                        '<label for="">Result System Name</label>'+
+                        '<input type="text" maxlength="255" name="resultSydtemName[]" class="form-control" id="resultSydtemName'+counter+'"  placeholder="">'+
+
+                        '</div>'+
+
                         ' <div class="form-group col-md-3">'+
                         '<label for="">CGPA<span style="color: red">*</span></label>'+
                         '<input name="result[]" type="text" class="form-control" id="cgpa'+counter+'" required  placeholder="">'+
                         '</div>'+
                         '<div class="form-group col-md-3">'+
-                        '<label for="">Out of</label>'+
+                        '<label for="">CGPA Out of</label>'+
                         '<input type="text" name="resultOutOf[]" class="form-control" id="resultOutOf'+counter+'" placeholder="CGPA Out of">'+
                         '</div>'+
                         '<div class="form-group col-md-3">'+
@@ -586,17 +606,55 @@
 
                             $("#instituteNameDiv"+btn).show();
                             $("#boardDiv"+btn).show();
+
                             $("#universityTypeDiv"+btn).hide();
+                            $("#board"+btn).val($("#board"+btn+"option:first").val());
+                            $("#universityType"+btn).val($("#universityType"+btn+"option:first").val());
+                            $("#resultSydtem"+btn).val($("#resultSydtem"+btn+" option:first").val());
+                            $("#resultSydtemNameDiv"+btn).hide();
+                            $("#boardNameDiv"+btn).hide();
+
+                            $("#degreeNameDiv"+btn).hide();
+                            $("#subjectNameDiv"+btn).hide();
+                            $('#majorSub'+btn).children('option:not(:first,:last)').remove();
+                            $("#majorSub"+btn).val($("#majorSub"+btn+"option:first").val());
+
 
                         }else if (data == 1){
                             $("#instituteNameDiv"+btn).show();
                             $("#boardDiv"+btn).show();
                             $("#universityTypeDiv"+btn).hide();
 
+                            $("#board"+btn).val($("#board"+btn+" option:first").val());
+                            $("#universityType"+btn).val($("#universityType"+btn+" option:first").val());
+                            $("#resultSydtem"+btn).val($("#resultSydtem"+btn+" option:first").val());
+                            $("#resultSydtemNameDiv"+btn).hide();
+
+                            $("#boardNameDiv"+btn).hide();
+
+                            $("#degreeNameDiv"+btn).hide();
+                            $("#subjectNameDiv"+btn).hide();
+                            $('#majorSub'+btn).children('option:not(:first,:last)').remove();
+                            $("#majorSub"+btn).val($("#majorSub"+btn+"option:first").val());
+
                         }else if (data == 2){
                             $("#instituteNameDiv"+btn).show();
                             $("#boardDiv"+btn).hide();
                             $("#universityTypeDiv"+btn).show();
+
+
+
+                            $("#board"+btn).val($("#board"+btn+" option:first").val());
+                            $("#universityType"+btn).val($("#universityType"+btn+" option:first").val());
+                            $("#resultSydtem"+btn).val($("#resultSydtem"+btn+" option:first").val());
+                            $("#resultSydtemNameDiv"+btn).hide();
+
+                            $("#boardNameDiv"+btn).hide();
+                            $("#degreeNameDiv"+btn).hide();
+                            $("#subjectNameDiv"+btn).hide();
+                            $('#majorSub'+btn).children('option:not(:first,:last)').remove();
+                            $("#majorSub"+btn).val($("#majorSub"+btn+"option:first").val());
+
                         }
 
                     }
@@ -605,21 +663,92 @@
             }
             function getMajor(x){
 
+                {{--btn = $(x).data('panel-id');--}}
+                {{--var degree=document.getElementById("degree"+btn).value;--}}
+
+                {{--$.ajax({--}}
+                    {{--type:'POST',--}}
+                    {{--url:'{{route('cv.getMajorForEducation')}}',--}}
+                    {{--data:{id:degree},--}}
+                    {{--cache: false,--}}
+                    {{--success:function(data) {--}}
+                        {{--document.getElementById("majorSub"+btn).innerHTML = data;--}}
+
+                    {{--}--}}
+                {{--});--}}
+
                 btn = $(x).data('panel-id');
                 var degree=document.getElementById("degree"+btn).value;
 
-                $.ajax({
-                    type:'POST',
-                    url:'{{route('cv.getMajorForEducation')}}',
-                    data:{id:degree},
-                    cache: false,
-                    success:function(data) {
-                        document.getElementById("majorSub"+btn).innerHTML = data;
 
-                    }
-                });
+                if (degree == "others"){
+
+                    $("#degreeNameDiv"+btn).show();
+                    $("#subjectNameDiv"+btn).show();
+
+                    $('#majorSub'+btn).children('option:not(:first,:last)').remove();
+                    $("#majorSub"+btn+" option[value='{{OTHERS}}']").attr("selected", true);
+                    $("#resultSydtem"+btn).val($("#resultSydtem"+btn+" option:first").val());
+
+                }else {
 
 
+                    $("#degreeNameDiv"+btn).hide();
+                    $("#subjectNameDiv"+btn).hide();
+                    $("#resultSydtem"+btn).val($("#resultSydtem"+btn+" option:first").val());
+
+
+                    $.ajax({
+                        type:'POST',
+                        url:'{{route('cv.getMajorForEducation')}}',
+                        data:{id:degree},
+                        cache: false,
+                        success:function(data) {
+                            document.getElementById("majorSub"+btn).innerHTML = data;
+
+                        }
+                    });
+                }
+
+
+
+            }
+
+            function getBoardName(x){
+
+
+
+
+                var board=document.getElementById("board"+x).value;
+
+
+                if (board == "others"){
+
+                    $("#boardNameDiv"+btn).show();
+                }else {
+
+
+                    $("#boardNameDiv"+btn).hide();
+
+
+                }
+
+            }
+            function getResultSystemName(x){
+
+
+                var resultSydtem=document.getElementById("resultSydtem"+x).value;
+
+                if (resultSydtem == "others"){
+
+                    $("#resultSydtemNameDiv"+btn).show();
+                }else {
+
+
+                    $("#resultSydtemNameDiv"+btn).hide();
+
+
+                }
 
             }
 

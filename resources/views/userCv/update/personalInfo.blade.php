@@ -90,7 +90,7 @@
                                         {{ $personalInfo->dateOfBirth }}
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="">Blood Group</label>
+                                        <label for="">Blood group</label>
                                         @foreach(BLOOD_GROUP as $key=>$value)
                                             @if($personalInfo->bloodGroup == $value) {{$key}} @endif
                                         @endforeach
@@ -103,7 +103,7 @@
                                         @endforeach
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="">Name Of Spouse:</label>
+                                        <label for="">Name of spouse:</label>
                                         {{$personalInfo->spouse}}
                                     </div>
 

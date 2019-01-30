@@ -25,7 +25,7 @@
                                 <form action="{{route('submit.relativeYesOrNo')}}" method="post">
                                     {{csrf_field()}}
                                 <div class="  form-group">
-                                <label>Do you have any relatives working in Caritas Bangladesh ?</label>
+                                <label>Do you have any relatives working in caritas bangladesh ?</label>
                                     <div class="col-md-3 mb-3">
                                         <input class="form-check-input" onclick="myradio()" @if($relativeInCB->relativeInCB =='1') checked @endif class="form-control" type="radio" value="1" name="relativeincb" required> YES
                                     </div>
@@ -68,14 +68,14 @@
 
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">First Name<span style="color: red">*</span></label>
+                                        <label for="inputEmail4">First name<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" name="firstName[]" id="firstName" placeholder="first name" required>
                                     </div>
 
 
 
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Last Name<span style="color: red">*</span></label>
+                                        <label for="inputEmail4">Last name<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" name="lastName[]" id="lastName" placeholder="last name" required>
                                     </div>
 
@@ -94,7 +94,7 @@
 
 
 
-                            <button type="button" id="addButton" class="btn btn-success">Add More</button>
+                            <button type="button" id="addButton" class="btn btn-success">Add more</button>
                             <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
 

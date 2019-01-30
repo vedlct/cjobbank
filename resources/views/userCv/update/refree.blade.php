@@ -41,7 +41,7 @@
                                     </div>
                                         <div class="row">
                                             <div class="form-group col-md-6">
-                                                <label for="inputEmail4">First Name</label>
+                                                <label for="inputEmail4">First name</label>
                                                 {{$refree->firstName}}
                                                 {{--<input type="text" class="form-control" name="firstName[]" id="inputEmail4" placeholder="first name" required>--}}
                                             </div>
@@ -49,7 +49,7 @@
 
 
                                             <div class="form-group col-md-6">
-                                                <label for="inputEmail4">Last Name</label>
+                                                <label for="inputEmail4">Last name</label>
                                                 {{$refree->lastName}}
                                                 {{--<input type="text" class="form-control" name="lastName[]" id="inputEmail4" placeholder="last name" required>--}}
                                             </div>
@@ -58,13 +58,13 @@
 
 
                                             <div class="form-group col-md-6">
-                                                <label for="inputEmail4">Present Position</label>
+                                                <label for="inputEmail4">Present position</label>
                                                 {{$refree->presentposition}}
                                                 {{--<input type="text" class="form-control" name="presentposition[]" id="inputEmail4" placeholder="position" required>--}}
                                             </div>
 
                                             <div class="form-group col-md-6">
-                                                <label for="inputPassword4">Name Of Organization</label>
+                                                <label for="inputPassword4">Name of organization</label>
                                                 {{$refree->organization}}
                                                 {{--<input type="text" class="form-control" name="organization[]" id="inputPassword4" placeholder="organization" required>--}}
                                             </div>
@@ -104,7 +104,7 @@
 
                                    {{--</div>--}}
 
-                            <button type="button" id="addButton" class="btn btn-success">Add More</button>
+                            <button type="button" id="addButton" class="btn btn-success">Add more</button>
                             <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
 

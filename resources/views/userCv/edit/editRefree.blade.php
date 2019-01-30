@@ -3,26 +3,26 @@
     <input type="hidden" name="refereeId" value="{{$refree->refereeId}}">
 <div class="row">
     <div class="form-group col-md-6">
-        <label for="inputEmail4">First Name<span style="color: red">*</span></label>
+        <label for="inputEmail4">First name<span style="color: red">*</span></label>
         <input type="text" class="form-control" name="firstName" value="{{$refree->firstName}}" id="firstName" placeholder="first name" required>
     </div>
 
 
 
     <div class="form-group col-md-6">
-        <label for="inputEmail4">Last Name<span style="color: red">*</span></label>
+        <label for="inputEmail4">Last name<span style="color: red">*</span></label>
         <input type="text" class="form-control" name="lastName" value="{{$refree->lastName}}" id="lastName" placeholder="last name" required>
     </div>
 
 
 
     <div class="form-group col-md-6">
-        <label for="inputEmail4">Present Position<span style="color: red"></span></label>
+        <label for="inputEmail4">Present position<span style="color: red"></span></label>
         <input type="text" class="form-control" name="presentposition" value="{{$refree->presentposition}}" id="presentposition" placeholder="position" >
     </div>
 
     <div class="form-group col-md-6">
-        <label for="inputPassword4">Name Of Organization<span style="color: red"></span></label>
+        <label for="inputPassword4">Name of organization<span style="color: red"></span></label>
         <input type="text" class="form-control" name="organization" value="{{$refree->organization}}" id="organization" placeholder="organization" >
     </div>
 
@@ -114,7 +114,7 @@
         // }
         if (presentposition.length > 100){
 
-            var errorMsg='Present Position Should not more than 100 Charecter Length!!';
+            var errorMsg='Present position should not more than 100 charecter length!!';
             validationError(errorMsg);
             return false;
 
@@ -128,21 +128,21 @@
         // }
         if (organization.length > 100){
 
-            var errorMsg='Organization Should not more than 100 Charecter Length!!';
+            var errorMsg='Organization should not more than 100 charecter length!!';
             validationError(errorMsg);
             return false;
 
         }
         if(relation==""){
 
-            var errorMsg='Please Type Relation First!!'
+            var errorMsg='Please type relation first!!'
             validationError(errorMsg)
             return false;
 
         }
         if (relation.length > 45){
 
-            var errorMsg='Relation Should not more than 45 Charecter Length!!';
+            var errorMsg='Relation should not more than 45 charecter length!!';
             validationError(errorMsg);
             return false;
 
@@ -150,7 +150,7 @@
 
         if(phone==""){
 
-            var errorMsg='Please Type a Phone Number First!!'
+            var errorMsg='Please type a phone number first!!'
             validationError(errorMsg)
             return false;
 
@@ -158,7 +158,7 @@
 
         if(!phone.match(chk)) {
 
-            var errorMsg='Please enter a valid Phone number!!';
+            var errorMsg='Please enter a valid phone number!!';
             validationError(errorMsg);
             return false;
 

@@ -18,7 +18,7 @@
                                     </span>
 
             @endif
-            <span class="error" style="visibility: hidden;">Max Word Limit exceed</span>
+            <span class="error" style="visibility: hidden;">Max word limit exceed</span>
         </div>
         <div class="form-group">
             <label for="">Interests</label>

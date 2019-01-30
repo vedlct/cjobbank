@@ -22,7 +22,7 @@
                                         <div class="row">
 
                                             <div class="form-group col-md-6">
-                                                <label for="inputEmail4">Organization Type :</label>
+                                                <label for="inputEmail4">Organization type :</label>
                                                 {{$experience->organizationTypeName}}
                                                 {{--<select required name="organizationType[]" class="form-control" id="organizationType">--}}
                                                     {{--<option selected value="">Select Company Type</option>--}}
@@ -35,7 +35,7 @@
                                             </div>
 
                                             <div class="form-group col-md-10">
-                                                <label for="inputEmail4">Organization Name :</label>
+                                                <label for="inputEmail4">Organization name :</label>
                                               {{$experience->organization}}
 
                                             </div>
@@ -53,7 +53,7 @@
 
                                             </div>
                                             <div class="form-group col-md-4">
-                                                <label for="inputPassword4">Start Date :</label>
+                                                <label for="inputPassword4">Start date :</label>
                                                 {{$experience->startDate}}
 
                                             </div>
@@ -63,12 +63,12 @@
                                                     <label for="inputPassword4">Status :</label>
                                                     Running
                                                 @else
-                                                    <label for="inputPassword4">End Date :</label>
+                                                    <label for="inputPassword4">End date :</label>
                                                 {{$experience->endDate}}
                                                 @endif
                                             </div>
                                             <div class="form-group col-md-12">
-                                                <label for="inputPassword4">Organization Address :</label>
+                                                <label for="inputPassword4">Organization address :</label>
                                                 {{$experience->address}}
 
                                             </div>
@@ -78,12 +78,12 @@
 
                                             </div>
                                             <div class="form-group col-md-12">
-                                                <label for="inputPassword4">Key Achievement :</label><br>
+                                                <label for="inputPassword4">Key achievement :</label><br>
                                                 {{$experience->keyAchivement}}
 
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label for="inputPassword4">Name of Supervisor :</label>
+                                                <label for="inputPassword4">Name of supervisor :</label>
                                                 {{$experience->supervisorName}}
 
                                             </div>
@@ -95,13 +95,15 @@
 
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label for="inputPassword4">Type of Employment :</label>
+                                                <label for="inputPassword4">Type of employment :</label>
                                                 {{$experience->employmentType}}
 
                                             </div>
                                             @if($experience->employmentType== OTHERS)
                                             <div class="form-group col-md-6">
+
                                                 <label for="inputPassword4">Employment type (other) :</label>
+
                                                 {{$experience->employmentTypeText}}
 
                                             </div>
@@ -120,7 +122,7 @@
 
 
 
-                            <button type="button" id="addButton" class="btn btn-success">Add More</button>
+                            <button type="button" id="addButton" class="btn btn-success">Add more</button>
                             <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
                         </div>
@@ -461,8 +463,8 @@
                     '<label for="inputEmail4">Type of Employment<span style="color: red">*</span></label>'+
                     '<select class="form-control" id="employmentType'+counter+'" onchange="employmentTypefunc('+counter+')" name="employmentType[]" required>'+
                     '<option value="" selected>Select Employment Type</option>'+
-                    @foreach(TYPE_OF_EMPLOYMENT as $key=>$value)
-                        '<option value="{{$value}}">{{$key}}</option>'+
+                    @foreach($employmentType as $eT)
+                        '<option value="{{$eT->employmentTypeName}}">{{$eT->employmentTypeName}}</option>'+
                     @endforeach
                         '<option value="{{OTHERS}}">Others</option>'+
                     '</select>'+

@@ -57,7 +57,7 @@
                                         <div class="form-group col-md-6">
                                             <label for="inputEmail4">Language<span style="color: red">*</span></label>
                                             <select name="languagehead[]" onchange="checkUnique(this)" class="form-control" id="skill" required>
-                                                <option selected value="">Select Language </option>
+                                                <option selected value="">Select language </option>
 
 
                                                 @foreach($languagehead as $languageheads)
@@ -76,7 +76,7 @@
 
                                                 </div>
                                                 <div class="form-group col-md-6">
-                                                    <label>Percentage of Skill (out of 100)</label>
+                                                    <label>Percentage of skill (out of 100)</label>
                                                     <div class="slidecontainer">
                                                         <input type="range" min="0" max="100" value="0" class="slider" onchange="myRangeChanged2('{{$ls->id}}')" name="languageskill[]" id="myRange<?php echo $ls->id?>" >
                                                         <p>Value: <span id="demo<?php echo $ls->id?>"></span> %</p>
@@ -92,7 +92,7 @@
 
                                 </div>
 
-                                <button type="button" id="addButton" class="btn btn-success">Add More</button>
+                                <button type="button" id="addButton" class="btn btn-success">Add more</button>
                                 <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
                             </div>

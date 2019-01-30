@@ -58,11 +58,11 @@
                                     <div class="row">
                                         <div class="form-group col-md-4">
 
-                                            <label for="inputEmail4">Name Of Skill :</label>
+                                            <label for="inputEmail4">Name Of skill :</label>
                                             {{$empSkill->skillName}}
                                         </div>
                                         <div class="form-group col-md-4">
-                                            <label>Percentage of Skill (out of 100) :</label>{{$empSkill->ratiing}}
+                                            <label>Percentage of skill (out of 100) :</label>{{$empSkill->ratiing}}
 
                                             {{--<div class="slidecontainer">--}}
                                                 {{--<input type="range" min="1" max="100" value="{{$empSkill->ratiing}}" class="slider" name="skillPercentage[]" id="myRange" required>--}}
@@ -99,7 +99,7 @@
                             </div>
 
 
-                            <button type="button" id="addButton" class="btn btn-success">Add More</button>
+                            <button type="button" id="addButton" class="btn btn-success">Add more</button>
                             <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
 

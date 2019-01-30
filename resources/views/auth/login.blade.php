@@ -105,7 +105,7 @@
                         </div>
                     </div>
                     <div align="center" class="form-group m-t-10 mb-0">
-                        <a href="{{route('account.activationResend')}}" class="text-muted"><i class="mdi mdi-email"></i> Resend Activation Mail</a>
+                        <a href="{{route('account.activationResend')}}" class="text-muted"><i class="mdi mdi-email"></i> Resend activation Mail</a>
                     </div>
 
 
@@ -117,7 +117,7 @@
         <div class="card-footer">
 
             <div style="text-align: center">
-                © {{date('Y')}} caritas job bank .
+                © {{date('Y')}} caritas job bank
             </div>
 
 

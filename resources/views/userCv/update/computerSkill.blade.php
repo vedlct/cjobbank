@@ -37,7 +37,7 @@
 
                                     <div class="form-group col-md-5">
 
-                                        <label for="inputEmail4">Skill-Level : </label>
+                                        <label for="inputEmail4">Skill-level : </label>
 
                                             @foreach(ComputerSkillAchievement as $key=>$value)
                                              @if($value==$skills->SkillAchievement)
@@ -73,7 +73,7 @@
 
                             </div>
 
-                            <button type="button" id="addButton" class="btn btn-success">Add More</button>
+                            <button type="button" id="addButton" class="btn btn-success">Add more</button>
                             <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
 

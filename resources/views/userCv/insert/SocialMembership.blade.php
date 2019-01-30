@@ -34,13 +34,13 @@
                                 <div class="row">
 
                                     <div class="form-group col-md-12">
-                                        <label for="inputEmail4">Name of Network<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" name="networkName[]" id="networkName" placeholder="networkName" required>
+                                        <label for="inputEmail4">Name of network<span style="color: red">*</span></label>
+                                        <input type="text" class="form-control" name="networkName[]" id="networkName" placeholder="network name" required>
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Type of Membership<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" name="membershipType[]" id="membershipType" placeholder="membership Type" required>
+                                        <label for="inputEmail4">Type of membership<span style="color: red">*</span></label>
+                                        <input type="text" class="form-control" name="membershipType[]" id="membershipType" placeholder="membership type" required>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputPassword4">Duration<span style="color: red">*</span></label>
@@ -52,7 +52,7 @@
 
                             </div>
 
-                            <button type="button" id="addButton" class="btn btn-success">Add More</button>
+                            <button type="button" id="addButton" class="btn btn-success">Add more</button>
                             <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
                             </div>

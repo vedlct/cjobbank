@@ -33,7 +33,7 @@
 
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label>Percentage of Skill (out of 100)</label>
+                                        <label>Percentage of skill (out of 100)</label>
                                         <div class="slidecontainer">
                                             <input type="range" min="0" max="100" value="{{$lan->rate}}" class="slider" onchange="myRangeChanged2('{{$ls->id}}')" name="languageskill[]" id="myRange<?php echo $ls->id?>" >
                                             <p>Value: <span id="demo<?php echo $ls->id ?>">{{$lan->rate}}</span> %</p>
