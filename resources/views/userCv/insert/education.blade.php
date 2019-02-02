@@ -94,7 +94,7 @@
 
                                 <div class="form-group col-md-3">
                                     <label for="">Country<span style="color: red">*</span></label>
-                                    <select name="country[]" class="form-control" required id="country">
+                                    <select name="country[]" class="form-control js-example-basic-single" required id="country">
                                         <option value="">Select country</option>
                                         @foreach($country as $coun)
                                             <option value="{{$coun->countryId}}">{{$coun->countryName}}</option>
@@ -243,7 +243,7 @@
         $('#educationStatus').on('change', function() {
 
             var educationStatus =$('#educationStatus').val();
-            if (educationStatus == '{{COMPLETING_STATUS['OnGoing']}}'){
+            if (educationStatus == '{{COMPLETING_STATUS['Ongoing']}}'){
 
                 $("#cgpa").prop('required',false);
                 $("#passingYear").prop('required',false);
@@ -273,7 +273,7 @@
         function checkeducationStatus(x) {
 
             var educationStatus =$('#educationStatus'+x).val();
-            if (educationStatus == '{{COMPLETING_STATUS['OnGoing']}}'){
+            if (educationStatus == '{{COMPLETING_STATUS['Ongoing']}}'){
 
                 $("#cgpa"+x).prop('required',false);
                 $("#passingYear"+x).prop('required',false);
@@ -602,7 +602,7 @@
 
                 '<div class="form-group col-md-3">'+
                     '<label for="">Country<span style="color: red">*</span></label>'+
-                   ' <select name="country[]" class="form-control" required id="country'+counter+'">'+
+                   ' <select name="country[]" class="form-control js-example-basic-single" required id="country'+counter+'">'+
                     '<option value="">Select country</option>'+
                         @foreach($country as $coun)
                     '<option value="{{$coun->countryId}}">{{$coun->countryName}}</option>'+
@@ -666,7 +666,7 @@
                     $("#btnPevious").show();
 
                 }
-
+                $('.js-example-basic-single').select2();
                 counter++;
             });
 
@@ -1003,8 +1003,7 @@
         }
 
 
-
+        $('.js-example-basic-single').select2();
     </script>
-
 
     @endsection

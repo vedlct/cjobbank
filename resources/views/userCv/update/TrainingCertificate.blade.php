@@ -327,7 +327,7 @@
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
                     '<label for="inputPassword4">Country<span style="color: red">*</span></label>' +
-                    '<select required class="form-control" id="country'+counter+'" name="countryId[]">'+
+                    '<select required class="form-control js-example-basic-single" id="country'+counter+'" name="countryId[]">'+
                     '<option value="">Select Country</option>'+
                     '@foreach($countries as $country)'+
                     '<option value="{{$country->countryId}}">{{$country->countryName}}</option>'+
@@ -417,8 +417,9 @@
                 $('.date').datepicker({
                     format: 'yyyy-m-d'
                 });
+                $('.js-example-basic-single').select2();
             });
-
+            $('.js-example-basic-single').select2();
             $("#removeButton").click(function () {
 
 

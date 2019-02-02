@@ -43,11 +43,6 @@
                                                     <label >{{$val->institutionName}}</label>
                                                     {{--<input type="text" class="form-control" name="institutionName{{$val->professionalQualificationId}}" id="inputEmail4" value="{{$val->institutionName}}" placeholder="institution" required>--}}
                                                 </div>
-<<<<<<< HEAD
-=======
-                                                <div class="form-group col-md-4">
-                                                    <label for="inputEmail4">Result system :</label>
->>>>>>> 26ea4e2c9bfcc535dc679aaaad0450e1352f9767
 
 
                                                 @if($val->resultSystem)

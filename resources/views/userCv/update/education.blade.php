@@ -496,7 +496,7 @@
 
                         '<div class="form-group col-md-3">'+
                         '<label for="">Country<span style="color: red">*</span></label>'+
-                        ' <select name="country[]" class="form-control" required id="country'+counter+'">'+
+                        ' <select name="country[]" class="form-control js-example-basic-single" required id="country'+counter+'">'+
                         '<option value="">Select country</option>'+
                             @foreach($country as $coun)
                                 '<option value="{{$coun->countryId}}">{{$coun->countryName}}</option>'+
@@ -505,7 +505,18 @@
                         ' </div>'+
 
                         '<div class="form-group col-md-3">'+
-                        '<label for="">Year<span style="color: red">*</span></label>'+
+                        '<label for="">Status<span style="color: red">*</span></label>'+
+                        '<select name="status[]"class="form-control" required id="educationStatus'+counter+'">'+
+                        '<option value="">Select status</option>'+
+                            @foreach(COMPLETING_STATUS as $key=>$value)
+                                '<option value="{{$value}}">{{$key}}</option>'+
+                            @endforeach
+
+                                '</select>'+
+                        '</div>'+
+
+                        '<div class="form-group col-md-3">'+
+                        '<label for="">Year</label>'+
                         ' <input name="passingYear[]" type="text" class="form-control date" required id="passingYear'+counter+'" placeholder="passing year">'+
                         ' </div>'+
                         '<div class="form-group col-md-3">'+
@@ -526,23 +537,14 @@
                         '</div>'+
 
                         ' <div class="form-group col-md-3">'+
-                        '<label for="">CGPA<span style="color: red">*</span></label>'+
+                        '<label for="">CGPA</label>'+
                         '<input name="result[]" type="text" class="form-control" id="cgpa'+counter+'" required  placeholder="CGPA">'+
                         '</div>'+
                         '<div class="form-group col-md-3">'+
                         '<label for="">CGPA Out of</label>'+
                         '<input type="text" name="resultOutOf[]" class="form-control" id="resultOutOf'+counter+'" placeholder="CGPA Out of">'+
-                        '</div>'+
-                        '<div class="form-group col-md-3">'+
-                        '<label for="">Status<span style="color: red">*</span></label>'+
-                        '<select name="status[]"class="form-control" required id="educationStatus'+counter+'">'+
-                        '<option value="">Select status</option>'+
-                            @foreach(COMPLETING_STATUS as $key=>$value)
-                                '<option value="{{$value}}">{{$key}}</option>'+
-                            @endforeach
-
-                                '</select>'+
                         '</div>'
+
                     );
                     newTextBoxDiv.appendTo("#TextBoxesGroup");
                     $('.date').datepicker({
@@ -562,7 +564,7 @@
 
                     counter++;
 
-
+                    $('.js-example-basic-single').select2();
 
                 });
 
@@ -770,7 +772,24 @@
                 });
 
             }
+            $('.js-example-basic-single').select2();
 
+            function checkeducationStatus(x) {
+
+                var educationStatus =$('#educationStatus'+x).val();
+                if (educationStatus == '{{COMPLETING_STATUS['Ongoing']}}'){
+
+                    $("#cgpa"+x).prop('required',false);
+                    $("#passingYear"+x).prop('required',false);
+
+                }else {
+
+                    $("#cgpa"+x).prop('required',true);
+                    $("#passingYear"+x).prop('required',true);
+                }
+
+
+            }
         </script>
 
 
