@@ -179,7 +179,7 @@
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label for="">Nationality<span style="color: red">*</span></label>
-                                        <select required name="nationality" class="form-control" id="sel1">
+                                        <select required name="nationality" class="form-control js-example-basic-single" id="sel1">
                                             <option selected value="">Select Nationality</option>
                                             @foreach($natinality as $natio)
                                                 <option @if($personalInfo->fknationalityId == $natio->nationalityId ) selected @endif value="{{$natio->nationalityId}}">{{$natio->nationalityName}}</option>
@@ -525,6 +525,6 @@
         }
 
 
-
+        $('.js-example-basic-single').select2();
     </script>
 @endsection

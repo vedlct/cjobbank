@@ -17,7 +17,7 @@
 
     <div class="row">
         <div class="form-group col-md-8">
-            <label for="inputEmail4">Institute name</label> :</label>
+            <label for="inputEmail4">Institution</label> :</label>
             <input type="text" class="form-control" name="institutionName" id="institutionName" value="{{$professional->institutionName}}" placeholder="institution" required>
         </div>
 

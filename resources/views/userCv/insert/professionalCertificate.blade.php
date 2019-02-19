@@ -42,7 +42,7 @@
 
                                 <div class="row">
                                 <div class="form-group col-md-8">
-                                    <label for="inputEmail4">Institute name</label>
+                                    <label for="inputEmail4">Institution</label>
                                     <input type="text" class="form-control" name="institutionName[]" id="institutionName" placeholder="institution">
                                 </div>
                                     <div class="form-group col-md-4">
@@ -543,7 +543,7 @@
                 '</div>'+
                 '<div class="row" >'+
                     '<div class="form-group col-md-8">'+
-                    '<label for="inputEmail4">Institute name<span style="color: red">*</span></label>'+
+                    '<label for="inputEmail4">Institution<span style="color: red">*</span></label>'+
                 '<input type="text" class="form-control" name="institutionName[]" id="institutionName'+counter+'" placeholder="institution" >'+
                 '</div>'+
                     '<div class="form-group col-md-4">'+

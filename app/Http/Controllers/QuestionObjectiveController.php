@@ -173,20 +173,17 @@ class QuestionObjectiveController extends Controller
     public function updateQuesObj(Request $r)
     {
 
-//        return $r;
 
-
-       // return $r['id'.'1'];
 
         $rules = [
 
-            'objective' => 'max:200',
+            'objective' => 'max:300',
 
 
         ];
 
         $customMessages = [
-//            'unique' => 'This User is already been registered.Please Login !'
+//            'objective' => 'This User is already been registered.Please Login !'
         ];
 
         $this->validate($r, $rules, $customMessages);
@@ -253,6 +250,7 @@ class QuestionObjectiveController extends Controller
         Session::flash('message', 'Career Info Updated Successfully');
 
         return redirect()->route('candidate.cvQuesObj');
+
 
 
     }

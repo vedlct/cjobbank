@@ -67,7 +67,7 @@
                                     </div>
 
                                     <div class="form-group col-md-4">
-                                        <label for="inputPassword4">Staus<span style="color: red">*</span></label>
+                                        <label for="inputPassword4">Status<span style="color: red">*</span></label>
                                         <select  class="form-control"id="trainingCertificateStatus" name="status[]" onchange="selectStatus(this)">
 
                                             <option value="">Select status</option>
@@ -500,7 +500,7 @@
                     '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>'+
 
                     '<div class="form-group col-md-12"> ' +
-                    '<label for="inputEmail4">Name Of the training<span style="color: red">*</span></label> ' +
+                    '<label for="inputEmail4">Name of the training<span style="color: red">*</span></label> ' +
                     '<input type="text" class="form-control" name="trainingName[]" id="trainingName'+counter+'" placeholder="training name" required> ' +
                     '</div> ' +
 
@@ -526,7 +526,7 @@
                     '<input type="text" class="form-control date" name="endDate[]" id="end'+counter+'" placeholder="date"> ' +
                     '</div>'+
                     '<div class="form-group col-md-4">'+
-                    '<label for="inputPassword4">Staus<span style="color: red">*</span></label>'+
+                    '<label for="inputPassword4">Status<span style="color: red">*</span></label>'+
                     '<select required class="form-control"id="trainingCertificateStatus" name="status[]">'+
 
                     '<option value="">Select status</option>'+

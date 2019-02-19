@@ -390,12 +390,14 @@
                             return false;
 
                         }
-                        if(year==""){
+                        if(year!="") {
+                            if (year == "") {
 
-                            var errorMsg='Please select a year first!!'
-                            validationError(errorMsg)
-                            return false;
+                                var errorMsg = 'Please select a year first!!'
+                                validationError(errorMsg)
+                                return false;
 
+                            }
                         }
                         if(resultSydtem==""){
 
@@ -404,12 +406,14 @@
                             return false;
 
                         }
-                        if(cgpa==""){
+                        if(cgpa!="") {
+                            if (cgpa == "") {
 
-                            var errorMsg='Please type your result/CGPA first!!'
-                            validationError(errorMsg)
-                            return false;
+                                var errorMsg = 'Please type your result/CGPA first!!'
+                                validationError(errorMsg)
+                                return false;
 
+                            }
                         }
                         if(status==""){
 
@@ -517,7 +521,7 @@
 
                         '<div class="form-group col-md-3">'+
                         '<label for="">Year</label>'+
-                        ' <input name="passingYear[]" type="text" class="form-control date" required id="passingYear'+counter+'" placeholder="passing year">'+
+                        ' <input name="passingYear[]" type="text" class="form-control date" id="passingYear'+counter+'" placeholder="passing year">'+
                         ' </div>'+
                         '<div class="form-group col-md-3">'+
                         '<label for="">Result system<span style="color: red">*</span></label>'+
@@ -538,7 +542,7 @@
 
                         ' <div class="form-group col-md-3">'+
                         '<label for="">CGPA</label>'+
-                        '<input name="result[]" type="text" class="form-control" id="cgpa'+counter+'" required  placeholder="CGPA">'+
+                        '<input name="result[]" type="text" class="form-control" id="cgpa'+counter+'"   placeholder="CGPA">'+
                         '</div>'+
                         '<div class="form-group col-md-3">'+
                         '<label for="">CGPA Out of</label>'+
