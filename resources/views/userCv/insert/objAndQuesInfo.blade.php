@@ -8,7 +8,7 @@
             <div style="background-color: #F1F1F1" class="card">
                 <div class="card-body">
 
-                    <form id="regForm" method="post" action="{{route('cv.insertQuesObj')}}">
+                    <form id="regForm" method="post" action="{{route('cv.insertQuesObj')}}" onsubmit="return submitForm()">
                         <!-- One "tab" for each step in the form: -->
 
                         {{csrf_field()}}
@@ -177,6 +177,37 @@
             });
             $('#compulsoryQuestions').hide();
         });
+
+
+        function submitForm() {
+            // objective
+            var obj=$('#objective').val();
+            // alert(obj.length);
+            //
+            // return false;
+            if(obj.length>300){
+
+                $.alert({
+                    title: 'Error',
+                    type: 'red',
+                    content: "Objective should not exceed more than 300 character",
+                    buttons: {
+                        tryAgain: {
+                            text: 'Ok',
+                            btnClass: 'btn-green',
+                            action: function () {
+
+                            }
+                        }
+                    }
+                });
+
+                return false;
+            }
+            return true;
+        }
+
+
         function isNumberKey(evt)
         {
             var charCode = (evt.which) ? evt.which : event.keyCode

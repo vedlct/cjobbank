@@ -2,14 +2,14 @@
 <div class="col-md-12">
 
 
-                    <form method="post" action="{{route('cv.updateQuesObj')}}">
+                    <form method="post" action="{{route('cv.updateQuesObj')}}" onsubmit="return submitForm()">
                         {{csrf_field()}}
                         <input type="hidden" name="empQuesObjId" value="{{$employeeCareerInfo->id}}">
 
                         <div class="row">
                             <div class="form-group col-md-12">
                                 <label for="">Career objective</label>
-                                <textarea type="text" name="objective" maxlength="300"   rows="2" class="form-control{{ $errors->has('objective') ? ' is-invalid' : '' }}"  id="objective" placeholder="Career Objective">{{$employeeCareerInfo->objective}}</textarea>
+                                <textarea type="text" name="objective" maxlength="300"  rows="2" class="form-control{{ $errors->has('objective') ? ' is-invalid' : '' }}"  id="objective" placeholder="Career Objective">{{$employeeCareerInfo->objective}}</textarea>
                                 @if ($errors->has('objective'))
 
                                     <span class="">
@@ -144,6 +144,34 @@
 
 
     });
+
+    function submitForm() {
+        // objective
+        var obj=$('#objective').val();
+        // alert(obj.length);
+        //
+        // return false;
+        if(obj.length>300){
+
+            $.alert({
+                title: 'Error',
+                type: 'red',
+                content: "Objective should not exceed more than 300 character",
+                buttons: {
+                    tryAgain: {
+                        text: 'Ok',
+                        btnClass: 'btn-green',
+                        action: function () {
+
+                        }
+                    }
+                }
+            });
+
+            return false;
+        }
+        return true;
+    }
 
     function isNumberKey(evt)
     {

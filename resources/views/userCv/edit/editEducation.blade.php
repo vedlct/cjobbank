@@ -37,8 +37,8 @@
             {{--@if($education->eduLvlUnder == 2 || $education->eduLvlUnder==null )--}}
 
             <div @if($education->eduLvlUnder == 2 || $education->eduLvlUnder==null ) style=" dispaly:none" @endif id="instituteNameDiv" class="form-group col-md-12">
-                <label for="">Institute name</label>
-                <input type="text" name="instituteName"  class="form-control" id="instituteName" value="{{$education->institutionName}}" placeholder="">
+                <label for="">Institution<span style="color: red">*</span></label>
+                <input type="text" name="instituteName"  class="form-control" required id="instituteName" value="{{$education->institutionName}}" placeholder="">
             </div>
 
             {{--@endif--}}

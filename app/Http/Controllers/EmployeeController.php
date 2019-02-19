@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Education;
 use App\Employee;
 use App\EmployeeComputerSkill;
+use App\EmployeeOtherInfo;
 use App\EmpOtherSkill;
 use App\Ethnicity;
 use App\Jobapply;
@@ -160,9 +161,13 @@ class EmployeeController extends Controller
                 $relativeCb = RelativeInCb::where('fkemployeeId', $empId)
                     ->get();
 
+                $empOtherInfo=EmployeeOtherInfo::where('fk_empId', $empId)
+                    ->first();
+
+//                return $empOtherInfo;
                 return view('userCv.cvPdf.userCvPdf', compact('allEmp', 'personalInfo', 'education',
                     'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree',
-                    'relativeCb','empOtherSkillls','empComputerSkill'));
+                    'relativeCb','empOtherSkillls','empComputerSkill','empOtherInfo'));
 
 
             }

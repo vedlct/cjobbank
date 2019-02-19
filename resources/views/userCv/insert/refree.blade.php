@@ -17,7 +17,7 @@
                 <div style="background-color: #F1F1F1" class="card-body">
 
                     <form id="regForm" action="{{route('submit.refree')}}" method="post">
-                        <!-- One "tab" for each step in the form: -->
+
                         {{csrf_field()}}
 
                         <div id="" class="tab">

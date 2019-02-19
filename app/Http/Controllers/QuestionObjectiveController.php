@@ -173,14 +173,11 @@ class QuestionObjectiveController extends Controller
     public function updateQuesObj(Request $r)
     {
 
-//        return $r;
 
-
-       // return $r['id'.'1'];
 
         $rules = [
 
-            'objective' => 'max:200',
+            'objective' => 'max:300',
 
 
         ];

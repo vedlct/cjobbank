@@ -18,7 +18,7 @@
 
 
                             <div class="form-group">
-                                <label for="">Extra curricular activities</label>
+                                <label for="">Extracurricular activities</label>
                                 <textarea type="text" name="extraCurricularActivities" maxlength="300"  rows="2"
                                           class="form-control{{ $errors->has('extraCurricularActivities') ? ' is-invalid' : '' }}"
                                           id="objective" placeholder="Extra curricular activities">{{ old('extraCurricularActivities') }}</textarea>
@@ -42,7 +42,7 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="">Award received</label>
+                                <label for="">Award Received</label>
                                 <textarea type="text" name="awardReceived" maxlength="300"  rows="3"
                                           class="form-control {{ $errors->has('awardReceived') ? ' is-invalid' : '' }}"
                                           id="awardReceived" placeholder="Award received">{{ old('awardReceived') }}</textarea>
