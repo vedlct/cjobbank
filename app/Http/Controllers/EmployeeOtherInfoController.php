@@ -29,6 +29,7 @@ class EmployeeOtherInfoController extends Controller
     }
 
     public function insertOtherInfo(Request $r){
+//        return $r;
         $userId=Auth::user()->userId;
 
         $employee=Employee::where('fkuserId', '=',$userId)->first()->employeeId;
@@ -58,6 +59,8 @@ class EmployeeOtherInfoController extends Controller
 
     }
     public  function updateOtherInfo(Request $r){
+
+//        return $r;
                 $this->validate($r, [
                     'extraCurricularActivities' => 'max:200',
                     'interests' => 'max:200',
@@ -68,7 +71,7 @@ class EmployeeOtherInfoController extends Controller
                 $empInfo->extraCurricularActivities = $r->extraCurricularActivities;
                 $empInfo->interests = $r->interests;
                 $empInfo->awardReceived = $r->awardReceived;
-                $empInfo->awardReceived = $r->awardReceived;
+                $empInfo->researchPublication = $r->researchPublication;
                 $empInfo->save();
         Session::flash('message', 'Other Info Updated Successfully');
                 return redirect()->route('cv.OthersInfo');

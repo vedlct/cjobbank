@@ -454,8 +454,8 @@
                         '</div>'+
 
                         '<div id="instituteNameDiv'+counter+'" class="form-group col-md-12">'+
-                        '<label for="">Institute name</label>'+
-                        '<input type="text" name="instituteName[]" class="form-control"  id="instituteName'+counter+'" placeholder="">'+
+                        '<label for="">Institution<span style="color: red">*</span></label>'+
+                        '<input type="text" name="instituteName[]" class="form-control"  id="instituteName'+counter+'" placeholder="" required>'+
                         '</div>'+
                         '<div style="display: none" id="universityTypeDiv'+counter+'" class="form-group col-md-3">'+
                         '<label for="">University type</label>'+

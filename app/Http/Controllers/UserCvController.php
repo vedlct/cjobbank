@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Employee;
 use App\Education;
 use App\EmployeeComputerSkill;
+use App\EmployeeOtherInfo;
 use App\EmpOtherSkill;
 use App\JobExperience;
 use App\ProfessionalQualification;
@@ -237,9 +238,13 @@ class UserCvController extends Controller
        $relativeCb = RelativeInCb::where('fkemployeeId', $empId)
            ->get();
 
+       $empOtherInfo=EmployeeOtherInfo::where('fk_empId', $empId)
+           ->first();
+
+
         $pdf = PDF::loadView('test',compact('allEmp', 'personalInfo', 'education',
             'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree',
-            'relativeCb','empOtherSkillls','empComputerSkill'));
+            'relativeCb','empOtherSkillls','empComputerSkill','empOtherInfo'));
 
        return $pdf->download('Curriculam Vitae of '.$personalInfo->firstName." ".$personalInfo->lastName.'.pdf',array('Attachment'=>false));
 

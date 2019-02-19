@@ -18,7 +18,7 @@
                             <div class="row">
                             <div class="form-group">
 
-                                <label class="control-label">Do you have professional certification? <span style="color: red" class="required">*</span>:</label>
+                                <label class="control-label">Do you have professional certification? <span style="color: red" class="required">*</span></label>
 
                                 <div class="col-md-10 mb-3">
                                     <input class="form-check-input"  type="radio" required <?php if ($hasProfCertificate=='1'){?>checked<?php } ?> name="hasProfCertificate" value="1"> Yes&nbsp;&nbsp;

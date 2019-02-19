@@ -129,7 +129,7 @@
 
                                 <div class="form-group col-md-6">
                                     <label for="">Blood group<span style="color: red">*</span></label>
-                                    <select class="form-control" name="blood group" required>
+                                    <select class="form-control" name="bloodGroup" required>
                                         <option value="">Select Group</option>
                                         @foreach(BLOOD_GROUP as $key=>$value)
                                             {{--<option @if($personalInfo->disability == $value) selected @endif value="{{$value}}">{{$key}}</option>--}}

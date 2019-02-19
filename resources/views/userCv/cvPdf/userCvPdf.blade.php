@@ -127,7 +127,7 @@
 
                     <table border="0" style="width:100%; margin-top: 15px; border: none;">
                         <tr>
-                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Job experience</b> </td>
+                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Job Experience</b> </td>
                         </tr>
                     </table>
 
@@ -168,7 +168,7 @@
 
                     <table border="0" style="width:100%; margin-top: 15px; border: none;">
                         <tr>
-                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000; background-color: #eff0f1;" ><b>Training certificate</b> </td>
+                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000; background-color: #eff0f1;" ><b>Training Certificate</b> </td>
                         </tr>
                     </table>
 
@@ -203,7 +203,7 @@
 
                     <table border="0" style="width:100%;border: none;">
                         <tr>
-                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"> <b>Professional certificate</b> </td>
+                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"> <b>Professional Certificate</b> </td>
                         </tr>
                     </table>
 
@@ -254,7 +254,7 @@
 
                     <table border="0" style="width:100%; margin-top: 25px; border: none;">
                         <tr>
-                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Other skill</b> </td>
+                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Other Skill</b> </td>
                         </tr>
                     </table>
                     <table border="0" style="width:100%; margin-top: 10px; border: none;">
@@ -282,7 +282,7 @@
 
                     <table border="0" style="width:100%; margin-top: 25px; border: none;">
                         <tr>
-                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Computer skill</b> </td>
+                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Computer Skill</b> </td>
                         </tr>
                     </table>
                     <table border="0" style="width:100%; margin-top: 10px; border: none;">
@@ -297,7 +297,7 @@
 
                                 <td style="text-align: center">{{$skills->computerSkillName}}</td>
 
-                                <td style="text-align: center">{{$skills->SkillAchievement}}</td>
+                                <td style="text-align: center">@if($skills->SkillAchievement==1)General @elseif($skills->SkillAchievement==2)Advance @endif</td>
 
                             </tr>
                         @endforeach
@@ -309,7 +309,7 @@
 
                     <table border="0" style="width:100%; margin-top: 25px; border: none;">
                         <tr>
-                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Personal info</b> </td>
+                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Personal Info</b> </td>
                         </tr>
                     </table>
 
@@ -394,9 +394,45 @@
 
                     </table>
 
+                    @if($empOtherInfo)
+                    <table border="0" style="width:100%; margin-top: 25px; border: none;">
+                        <tr>
+                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Other Info</b> </td>
+                        </tr>
+                    </table>
+
+                    <table border="0" style="width:100%; margin-top: 10px; border: none;">
+
+                        <tr>
+                            <td  style="border: none;">
+                                <label>Extracurricular activities :</label>{{$empOtherInfo->extraCurricularActivities}}
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td style="border: none;">
+                                <label> Interests :</label>{{$empOtherInfo->interests}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: none;">
+                                <label> Awards received :</label>{{$empOtherInfo->awardReceived}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: none;">
+                                <label> Research / Publication :</label>{{$empOtherInfo->researchPublication}}
+                            </td>
+                        </tr>
+                    </table>
+                    @endif
+
+                    <table border="0" style="width:100%; margin-top: 10px; border: none;">
+                    </table>
+
                     <table border="0" style="width:100%; margin-top: 5px; border: none;">
                         <tr>
-                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Relative in caritas</b> </td>
+                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Relative in Caritas</b> </td>
                         </tr>
                     </table>
 

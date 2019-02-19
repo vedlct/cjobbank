@@ -22,7 +22,7 @@
 
                                 <div class="form-group col-md-10">
 
-                                    <label for="">Extra curricular activities :</label><br>
+                                    <label for="">Extracurricular activities :</label><br>
                                     {{$empOtherInfo->extraCurricularActivities}}
                                 </div>
 
@@ -40,7 +40,7 @@
 
                                 <div class="form-group col-md-12">
 
-                                    <label for="">Awards received :</label><br>
+                                    <label for="">Awards Received :</label><br>
                                     {{$empOtherInfo->awardReceived}}
 
                                 </div>
