@@ -14,6 +14,10 @@
                         @foreach($allComputerSkills as $skill)
                             <option @if($skill->id==$computerSkill->computerSkillId)selected @endif value="{{$skill->id}}">{{$skill->computerSkillName}}</option>
 
+                            {{--@php--}}
+                            {{--array_push($skillId,$skill->id);--}}
+                            {{--array_push($skillTitle,$skill->computerSkillName );--}}
+                            {{--@endphp--}}
                         @endforeach
                     </select>
                 </div>
@@ -48,4 +52,5 @@
 
 
 </form>
+
 

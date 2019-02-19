@@ -18,11 +18,9 @@
 
                             <div class="row">
                                 <div class="form-group">
-<<<<<<< HEAD
-                                    <label class="control-label">Previouly work information in caritas bangladesh?<span style="color: red" class="required">*</span>:</label>
-=======
+
                                     <label class="control-label">Do you have any work experience in caritas bangladesh?<span style="color: red" class="required">*</span>:</label>
->>>>>>> bac11ad63bcb4b43bbfdeedc3a648f271bc68554
+
                                     <div class="col-md-10 mb-3">
                                         <input class="form-check-input" type="radio" required <?php if ($hasWorkedInCB=='1'){?>checked<?php } ?> id="hasWorkedInCBid" name="hasWorkedInCB" value="1"> Yes&nbsp;&nbsp;
                                     </div>
@@ -177,14 +175,14 @@
 
                     if(degisnation[i].value==""){
 
-                        var errorMsg='Please Type a Designation First!!';
+                        var errorMsg='Please type a designation first!!';
                         validationError(errorMsg);
                         return false;
                     }
 
                     if(startDate[i].value==""){
 
-                        var errorMsg='Please Type Start Date First!!';
+                        var errorMsg='Please type start date first!!';
                         validationError(errorMsg);
                         return false;
                     }
@@ -195,7 +193,7 @@
 
                             if(startDate[i].value > endDate[i].value){
 
-                                var errorMsg='startDate must be less then endDate';
+                                var errorMsg='start date must be less then end date';
                                 validationError(errorMsg);
                                 return false;
                             }
@@ -225,7 +223,7 @@
 
             $("#addButton").click(function () {
                 if(counter>10){
-                    alert("Only 10 Section allow per Time!!");
+                    alert("Only 10 section allow per Time!!");
                     return false;
                 }
 
@@ -240,21 +238,21 @@
 
                     if(degisnation==""){
 
-                        var errorMsg='Please Type Designation First!!'
+                        var errorMsg='Please type designation first!!'
                         validationError(errorMsg)
                         return false;
 
                     }
                     if (degisnation.length > 255){
 
-                        var errorMsg='Designation Should not more than 255 Charecter Length!!';
+                        var errorMsg='Designation should not more than 255 charecter length!!';
                         validationError(errorMsg);
                         return false;
 
                     }
                     if(start==""){
 
-                        var errorMsg='Please Select a Start Date First!!';
+                        var errorMsg='Please select a start date first!!';
                         validationError(errorMsg);
                         return false;
 
@@ -264,7 +262,7 @@
 
                         if (Date.parse(end) < Date.parse(start)) {
 
-                            var errorMsg = 'End date should after Start Date!!';
+                            var errorMsg = 'End date should after start date!!';
                             validationError(errorMsg);
                             return false;
 
@@ -273,7 +271,7 @@
                     else {
                         if ($("#currentlyRunning").prop('checked') != true){
 
-                            var errorMsg = 'Either End date or Currently Running Should be Selected!!';
+                            var errorMsg = 'Either end date or currently running should be selected!!';
                             validationError(errorMsg);
                             return false;
 
@@ -296,21 +294,21 @@
 
                     if(degisnation==""){
 
-                        var errorMsg='Please Type Designation First!!'
+                        var errorMsg='Please type designation first!!'
                         validationError(errorMsg)
                         return false;
 
                     }
                     if (degisnation.length > 255){
 
-                        var errorMsg='Designation Should not more than 255 Charecter Length!!';
+                        var errorMsg='Designation should not more than 255 charecter length!!';
                         validationError(errorMsg);
                         return false;
 
                     }
                     if(start==""){
 
-                        var errorMsg='Please Select a Start Date First!!';
+                        var errorMsg='Please select a start date first!!';
                         validationError(errorMsg);
                         return false;
 
@@ -320,7 +318,7 @@
 
                         if (Date.parse(end) < Date.parse(start)) {
 
-                            var errorMsg = 'End date should after Start Date!!';
+                            var errorMsg = 'End date should after start date!!';
                             validationError(errorMsg);
                             return false;
 
@@ -329,7 +327,7 @@
                     else {
                         if ($("#currentlyRunning"+(counter-1)).prop('checked') != true){
 
-                            var errorMsg = 'Either End date or Currently Running Should be Selected!!';
+                            var errorMsg = 'Either end date or currently running should be selected!!';
                             validationError(errorMsg);
                             return false;
 
@@ -354,13 +352,13 @@
                     '<input type="text" class="form-control" name="degisnation[]" id="degisnation'+counter+'" placeholder="designation" > ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
-                    '<label for="inputPassword4">Start Date</label> ' +
+                    '<label for="inputPassword4">Start date</label> ' +
                     '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date"> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
-                    '<label for="inputPassword4">End Date</label> ' +
+                    '<label for="inputPassword4">End date</label> ' +
                     '<input type="text" class="form-control date" name="endDate[]" id="end'+counter+'" placeholder="date"> ' +
-                    '/ <input type="checkbox" id="currentlyRunning'+counter+'" name="currentlyRunning[]" value="1">Currenly Running'+
+                    '/ <input type="checkbox" id="currentlyRunning'+counter+'" name="currentlyRunning[]" value="1">Currenly running'+
                 '</div> ' +
                     '</div>'
 
@@ -381,7 +379,7 @@
 
 
                 if(counter=='1'){
-                    alert("Atleast One Course Section is needed!!");
+                    alert("Atleast one course section is needed!!");
                     return false;
                 }
                 counter--;

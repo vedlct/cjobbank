@@ -23,7 +23,7 @@
         <label for="inputPassword4">Country<span style="color: red">*</span></label>
         {{--<input type="text" class="form-control"  id="inputPassword4" placeholder="">--}}
 
-        <select required class="form-control" id="country" name="countryId">
+        <select required class="form-control js-example-basic-single" id="country" name="countryId">
             <option value="">Select country</option>
             @foreach($countries as $country)
                 <option value="{{$country->countryId}}" @if($training->countryId == $country->countryId) selected @endif>{{$country->countryName}}</option>
@@ -124,6 +124,7 @@
 
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 <script>
+    $('.js-example-basic-single').select2();
     $(function () {
         var value="{{$training->status }}";
 

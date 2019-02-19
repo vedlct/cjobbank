@@ -33,10 +33,15 @@ class ComputerSkillController extends Controller
     }
     public function index(){
 
-        $computerSkills=ComputerSkill::where('status',1)
-            ->get();
         $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
-        $empComputerSkills=EmployeeComputerSkill::where('fk_empId',$employee->employeeId)->get();
+        $computerSkills=ComputerSkill::where('status',1)->whereNotIn('id', function ($query) use ($employee){
+            $query->select('computerSkillId')
+                ->from('empcomputerskill')
+                ->where('fk_empId',$employee->employeeId);
+        })
+            ->get();
+
+        $empComputerSkills=EmployeeComputerSkill::select('computerskill.computerSkillName','empcomputerskill.*')->leftJoin('computerskill','computerskill.id','empcomputerskill.computerSkillId')->where('fk_empId',$employee->employeeId)->get();
 
         if ($empComputerSkills->isEmpty()) {
             return view('userCv.insert.computerSkill',compact('computerSkills'));
@@ -91,9 +96,15 @@ public function update(Request $r){
 
     public function edit(Request $r){
 
+        $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
         $computerSkill=EmployeeComputerSkill::findOrFail($r->id);
-        $allComputerSkills=ComputerSkill::where('status',1)
-            ->get();
+
+        $allComputerSkills=ComputerSkill::where('status',1)->whereNotIn('id', function ($query) use ($employee,$computerSkill){
+            $query->select('computerSkillId')
+                ->from('empcomputerskill')
+                ->where('fk_empId',$employee->employeeId)
+                ->whereNotIn('id',[$computerSkill->id]);
+        })->get();
 
 
         return view('userCv.edit.computerSkill',compact('computerSkill','allComputerSkills'));

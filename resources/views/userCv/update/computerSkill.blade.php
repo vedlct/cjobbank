@@ -20,17 +20,17 @@
                                         <label for="inputEmail4">Skill : </label>
 
 
-                                            @foreach($computerSkills as $skill)
-                                            @if($skill->id==$skills->computerSkillId)
-                                                {{$skill->computerSkillName}}
-                                            @endif
+                                            {{--@foreach($computerSkills as $skill)--}}
+                                            {{--@if($skill->id==$skills->computerSkillId)--}}
+                                                {{$skills->computerSkillName}}
+                                            {{--@endif--}}
 
                                                 {{--@php--}}
                                                     {{--array_push($skillId,$skill->id);--}}
                                                     {{--array_push($skillTitle,$skill->computerSkillName );--}}
                                                 {{--@endphp--}}
 
-                                            @endforeach
+                                            {{--@endforeach--}}
 
                                     </div>
 
@@ -185,7 +185,7 @@
 
 
                 if(counter>10){
-                    alert("Only 10 Section allow per Time!!");
+                    alert("Only 10 section allow per time!!");
                     return false;
                 }
 
@@ -213,7 +213,7 @@
                     '\n' +
                     '                                    <div class="form-group col-md-6">\n' +
                     '\n' +
-                    '                                        <label for="inputEmail4">Skill-Level<span style="color: red">*</span></label>\n' +
+                    '                                        <label for="inputEmail4">Skill-level<span style="color: red">*</span></label>\n' +
                     '                                        <select name="SkillAchievement[]" id="" class="form-control" required>\n' +
                     '                                            <option value="">Select Level</option>\n' +
                     '                                            @foreach(ComputerSkillAchievement as $key=>$value)\n' +
@@ -230,7 +230,7 @@
                 if(counter>1){
 //                    document.getElementById("removeButton").style.display='block';
                     $("#removeButton").show();
-                    $("#submitBtn1").hide();
+                    $("#submitBtn1").show();
                 }
 
             });
@@ -239,7 +239,7 @@
 
 
                 if(counter=='1'){
-                    alert("Atleast One Course Section is needed!!");
+                    alert("Atleast one course section is needed!!");
                     return false;
                 }
                 counter--;
@@ -272,13 +272,36 @@
 
         }
 
+        function  checkUnique(x) {
+
+
+            var values =  $('select[name="computerSkillId[]"]').map(function () {
+                return this.value; // $(this).val()
+            }).get();
+
+
+            var unique = values.filter(function(itm, i, values) {
+                return i == values.indexOf(itm);
+            });
+
+            if(values.length != unique.length){
+
+                alert("Already Inserted");
+                $(x).val('');
+
+            }
+
+            // alert($(x).val());
+
+        }
+
 
 
         function deleteSkill(x) {
 
             $.confirm({
                 title: 'Confirm!',
-                content: 'Are you sure To delete this Computer Skill?',
+                content: 'Are you sure to delete this computer skill?',
                 icon: 'fa fa-warning',
                 type: 'red',
                 typeAnimated: true,
@@ -297,7 +320,7 @@
                                     $.alert({
                                         title: 'Success!',
                                         type: 'green',
-                                        content: 'Computer Skill Deleted successfully',
+                                        content: 'Computer skill deleted successfully',
                                         buttons: {
                                             tryAgain: {
                                                 text: 'Ok',

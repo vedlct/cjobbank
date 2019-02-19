@@ -250,26 +250,26 @@
 
                     if(firstName==""){
 
-                        var errorMsg='Please Type First Name First!!';
+                        var errorMsg='Please type first name first!!';
                         validationError(errorMsg);
                         return false;
                     }
                     if (firstName.length > 45){
 
-                        var errorMsg='First Name Should not more than 45 Charecter Length!!';
+                        var errorMsg='First name should not more than 45 charecter length!!';
                         validationError(errorMsg);
                         return false;
 
                     }
                     if(lastName==""){
 
-                        var errorMsg='Please Type Last Name First!!'
+                        var errorMsg='Please type last name first!!'
                         validationError(errorMsg)
                         return false;
                     }
                     if (lastName.length > 45){
 
-                        var errorMsg='Last Name Should not more than 45 Charecter Length!!'
+                        var errorMsg='Last name should not more than 45 charecter length!!'
                         validationError(errorMsg)
                         return false;
 
@@ -284,7 +284,7 @@
 //                    }
                     if (presentposition.length > 100){
 
-                        var errorMsg='Present Position Should not more than 100 Charecter Length!!';
+                        var errorMsg='Present position should not more than 100 charecter length!!';
                         validationError(errorMsg);
                         return false;
 
@@ -298,21 +298,21 @@
 //                    }
                     if (organization.length > 100){
 
-                        var errorMsg='Organization Should not more than 100 Charecter Length!!';
+                        var errorMsg='Organization should not more than 100 charecter length!!';
                         validationError(errorMsg);
                         return false;
 
                     }
                     if(relation==""){
 
-                        var errorMsg='Please Type Relation First!!'
+                        var errorMsg='Please type relation first!!'
                         validationError(errorMsg)
                         return false;
 
                     }
                     if (relation.length > 45){
 
-                        var errorMsg='Relation Should not more than 45 Charecter Length!!';
+                        var errorMsg='Relation should not more than 45 charecter length!!';
                         validationError(errorMsg);
                         return false;
 
@@ -320,7 +320,7 @@
 
                     if(phone==""){
 
-                        var errorMsg='Please Type a Phone Number First!!'
+                        var errorMsg='Please type a phone number first!!'
                         validationError(errorMsg)
                         return false;
 
@@ -328,7 +328,7 @@
 
                     if(!phone.match(chk)) {
 
-                        var errorMsg='Please enter a valid Phone number!!';
+                        var errorMsg='Please enter a valid phone number!!';
                         validationError(errorMsg);
                         return false;
 
@@ -368,15 +368,15 @@
                     '<h2 style="margin-bottom: 30px;">Referee - '+(counter+2)+'</h2>'+
                     '  <div class="row"> ' +
                     '<div class="form-group col-md-6"> ' +
-                    '<label for="inputEmail4">First Name<span style="color: red">*</span></label> ' +
+                    '<label for="inputEmail4">First name<span style="color: red">*</span></label> ' +
                     '<input type="text" class="form-control" name="firstName[]" id="firstName'+counter+'" placeholder="first name" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
-                    '<label for="inputEmail4">Last Name<span style="color: red">*</span></label> ' +
+                    '<label for="inputEmail4">Last name<span style="color: red">*</span></label> ' +
                     '<input type="text" class="form-control" name="lastName[]" id="lastName'+counter+'" placeholder="last name" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
-                    '<label for="inputEmail4">Present Position</label> ' +
+                    '<label for="inputEmail4">Present position</label> ' +
                     '<input type="text" class="form-control" name="presentposition[]" id="presentposition'+counter+'" placeholder="position" > ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
@@ -410,7 +410,7 @@
 
 
                 if(counter=='1'){
-                    alert("Atleast One Course Section is needed!!");
+                    alert("Atleast one course section is needed!!");
                     return false;
                 }
                 counter--;

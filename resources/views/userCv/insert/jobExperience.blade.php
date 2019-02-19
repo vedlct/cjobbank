@@ -235,41 +235,41 @@
 
                 if(organizationType[i].value==""){
 
-                    var errorMsg='Please Select a Organization Type First!!'
+                    var errorMsg='Please select a organization type first!!'
                     validationError(errorMsg)
                     return false;
                 }
 
                 if(organization[i].value==""){
 
-                    var errorMsg='Please Type Organization Name First!!'
+                    var errorMsg='Please type organization name first!!'
                     validationError(errorMsg)
                     return false;
                 }
                 if (organization[i].value.length > 100){
 
-                    var errorMsg='Organization Name Should not more than 100 Charecter Length!!'
+                    var errorMsg='Organization name should not more than 100 charecter length!!'
                     validationError(errorMsg)
                     return false;
 
                 }
                 if(degisnation[i].value==""){
 
-                    var errorMsg='Please Type Designation First!!'
+                    var errorMsg='Please type designation first!!'
                     validationError(errorMsg)
                     return false;
 
                 }
                 if (degisnation[i].value.length > 100){
 
-                    var errorMsg='Designation Should not more than 100 Charecter Length!!';
+                    var errorMsg='Designation should not more than 100 charecter length!!';
                     validationError(errorMsg);
                     return false;
 
                 }
                 if(start[i].value==""){
 
-                    var errorMsg='Please Select a Strat Date First!!';
+                    var errorMsg='Please select a strat date first!!';
                     validationError(errorMsg);
                     return false;
 
@@ -279,7 +279,7 @@
 
                     if (Date.parse(end[i].value) < Date.parse(start[i].value)) {
 
-                        var errorMsg = 'End date should after Start Date!!';
+                        var errorMsg = 'End date should after start date!!';
                         validationError(errorMsg);
                         return false;
 
@@ -288,7 +288,7 @@
 
                 if($.trim(address[i].value)==""){
 
-                    var errorMsg='Please Type address First!!';
+                    var errorMsg='Please type address first!!';
                     validationError(errorMsg);
                     return false;
 
@@ -296,39 +296,39 @@
 
                 if(majorResponsibilities[i].value==""){
 
-                    var errorMsg='Please Type Major Responsibilities First!!';
+                    var errorMsg='Please type major responsibilities first!!';
                     validationError(errorMsg);
                     return false;
                 }
                 if (majorResponsibilities[i].value.length > 200){
 
-                    var errorMsg='Major Responsibilities Should not more than 200 Charecter Length!!'
+                    var errorMsg='Major responsibilities should not more than 200 charecter length!!'
                     validationError(errorMsg)
                     return false;
 
                 }
                 if(keyAchivement[i].value==""){
 
-                    var errorMsg='Please Type Key Achivement First!!'
+                    var errorMsg='Please type key achivement first!!'
                     validationError(errorMsg)
                     return false;
                 }
                 if (keyAchivement[i].value.length > 200){
 
-                    var errorMsg='Key Achivement Should not more than 200 Charecter Length!!'
+                    var errorMsg='Key achivement should not more than 200 charecter length!!'
                     validationError(errorMsg)
                     return false;
 
                 }
                 if(supervisorName[i].value==""){
 
-                    var errorMsg='Please Type Supervisor Name First!!'
+                    var errorMsg='Please type supervisor name first!!'
                     validationError(errorMsg)
                     return false;
                 }
                 if (supervisorName[i].value.length > 200){
 
-                    var errorMsg='Supervisor Name Should not more than 200 Charecter Length!!'
+                    var errorMsg='Supervisor name should not more than 200 charecter length!!'
                     validationError(errorMsg)
                     return false;
 
@@ -336,14 +336,14 @@
 
                 if(reservationContactingEmployer[i].value==""){
 
-                    var errorMsg='Please Select reservation of Contacting Employer First!!'
+                    var errorMsg='Please select reservation of contacting employer first!!'
                     validationError(errorMsg)
                     return false;
                 }
 
                 if(employmentType[i].value==""){
 
-                    var errorMsg='Please Select Employment Type First!!'
+                    var errorMsg='Please select employment type first!!'
                     validationError(errorMsg)
                     return false;
                 }
@@ -351,7 +351,7 @@
 
                     if (employmentType[i].value == "{{OTHERS}}" && employmentTypeText[i].value != "" ){
 
-                        var errorMsg='Please Write Employement Other Text First!!';
+                        var errorMsg='Please write employement other text first!!';
                         validationError(errorMsg);
                         return false;
 
@@ -405,41 +405,41 @@
 
                     if(organizationType==""){
 
-                        var errorMsg='Please Select organizationType First!!'
+                        var errorMsg='Please select organization type first!!'
                         validationError(errorMsg)
                         return false;
                     }
 
                     if(organization==""){
 
-                        var errorMsg='Please Type Organization Name First!!'
+                        var errorMsg='Please type organization name first!!'
                         validationError(errorMsg)
                         return false;
                     }
                     if (organization.length > 100){
 
-                        var errorMsg='Organization Name Should not more than 100 Charecter Length!!'
+                        var errorMsg='Organization name should not more than 100 charecter length!!'
                         validationError(errorMsg)
                         return false;
 
                     }
                     if(degisnation==""){
 
-                        var errorMsg='Please Type Designation First!!'
+                        var errorMsg='Please type designation first!!'
                         validationError(errorMsg)
                         return false;
 
                     }
                     if (degisnation.length > 100){
 
-                        var errorMsg='Designation Should not more than 100 Charecter Length!!';
+                        var errorMsg='Designation should not more than 100 charecter length!!';
                         validationError(errorMsg);
                         return false;
 
                     }
                     if(start==""){
 
-                        var errorMsg='Please Select a Start Date First!!';
+                        var errorMsg='Please select a start date first!!';
                         validationError(errorMsg);
                         return false;
 
@@ -449,7 +449,7 @@
 
                         if (Date.parse(end) < Date.parse(start)) {
 
-                            var errorMsg = 'End date should after Start Date!!';
+                            var errorMsg = 'End date should after start date!!';
                             validationError(errorMsg);
                             return false;
 
@@ -458,7 +458,7 @@
 
                     if($.trim(address)==""){
 
-                        var errorMsg='Please Type address First!!';
+                        var errorMsg='Please type address first!!';
                         validationError(errorMsg);
                         return false;
 
@@ -466,39 +466,39 @@
 
                     if(majorResponsibilities==""){
 
-                        var errorMsg='Please Type Major Responsibilities First!!';
+                        var errorMsg='Please type major responsibilities first!!';
                         validationError(errorMsg);
                         return false;
                     }
                     if (majorResponsibilities.length > 200){
 
-                        var errorMsg='Major Responsibilities Should not more than 200 Charecter Length!!'
+                        var errorMsg='Major responsibilities should not more than 200 charecter length!!'
                         validationError(errorMsg)
                         return false;
 
                     }
                     if(keyAchivement==""){
 
-                        var errorMsg='Please Type Key Achivement First!!'
+                        var errorMsg='Please type key achivement first!!'
                         validationError(errorMsg)
                         return false;
                     }
                     if (keyAchivement.length > 200){
 
-                        var errorMsg='Key Achivement Should not more than 200 Charecter Length!!'
+                        var errorMsg='Key achivement should not more than 200 charecter length!!'
                         validationError(errorMsg)
                         return false;
 
                     }
                     if(supervisorName==""){
 
-                        var errorMsg='Please Type Supervisor Name First!!'
+                        var errorMsg='Please type supervisor name first!!'
                         validationError(errorMsg)
                         return false;
                     }
                     if (supervisorName.length > 200){
 
-                        var errorMsg='Supervisor Name Should not more than 200 Charecter Length!!'
+                        var errorMsg='Supervisor name should not more than 200 charecter length!!'
                         validationError(errorMsg)
                         return false;
 
@@ -506,14 +506,14 @@
 
                     if(reservationContactingEmployer==""){
 
-                        var errorMsg='Please Select reservation of Contacting Employer First!!'
+                        var errorMsg='Please select reservation of contacting employer first!!'
                         validationError(errorMsg)
                         return false;
                     }
 
                     if(employmentType==""){
 
-                        var errorMsg='Please Select Employment Type First!!'
+                        var errorMsg='Please select employment type first!!'
                         validationError(errorMsg)
                         return false;
                     }
@@ -521,7 +521,7 @@
 
                         if (employmentType == "{{OTHERS}}" && employmentTypeText != "" ){
 
-                            var errorMsg='Please Write Employement Other Text First!!';
+                            var errorMsg='Please write employement other text first!!';
                             validationError(errorMsg);
                             return false;
 
@@ -552,7 +552,7 @@
 
                     if(organizationType==""){
 
-                        var errorMsg='Please Select organizationType First!!'
+                        var errorMsg='Please select organization type first!!'
                         validationError(errorMsg)
                         return false;
                     }
@@ -561,34 +561,34 @@
 
                     if(organization==""){
 
-                        var errorMsg='Please Type Organization Name First!!'
+                        var errorMsg='Please type organization name first!!'
                         validationError(errorMsg)
                         return false;
                     }
                     if (organization.length > 100){
 
-                        var errorMsg='Organization Name Should not more than 100 Charecter Length!!'
+                        var errorMsg='Organization name should not more than 100 charecter length!!'
                         validationError(errorMsg)
                         return false;
 
                     }
                     if(degisnation==""){
 
-                        var errorMsg='Please Type Designation First!!'
+                        var errorMsg='Please type designation first!!'
                         validationError(errorMsg)
                         return false;
 
                     }
                     if (degisnation.length > 100){
 
-                        var errorMsg='Designation Should not more than 100 Charecter Length!!';
+                        var errorMsg='Designation should not more than 100 charecter length!!';
                         validationError(errorMsg);
                         return false;
 
                     }
                     if(start==""){
 
-                        var errorMsg='Please Select a Start Date First!!';
+                        var errorMsg='Please select a start date first!!';
                         validationError(errorMsg);
                         return false;
 
@@ -598,7 +598,7 @@
 
                         if (Date.parse(end) < Date.parse(start)) {
 
-                            var errorMsg = 'End date should after Start Date!!';
+                            var errorMsg = 'End date should after start date!!';
                             validationError(errorMsg);
                             return false;
 
@@ -607,7 +607,7 @@
 
                     if($.trim(address)==""){
 
-                        var errorMsg='Please Type address First!!';
+                        var errorMsg='Please type address first!!';
                         validationError(errorMsg);
                         return false;
 
@@ -615,39 +615,39 @@
 
                     if(majorResponsibilities==""){
 
-                        var errorMsg='Please Type Major Responsibilities First!!';
+                        var errorMsg='Please type major responsibilities first!!';
                         validationError(errorMsg);
                         return false;
                     }
                     if (majorResponsibilities.length > 200){
 
-                        var errorMsg='Major Responsibilities Should not more than 200 Charecter Length!!'
+                        var errorMsg='Major responsibilities should not more than 200 charecter length!!'
                         validationError(errorMsg)
                         return false;
 
                     }
                     if(keyAchivement==""){
 
-                        var errorMsg='Please Type Key Achivement First!!'
+                        var errorMsg='Please type key achivement First!!'
                         validationError(errorMsg)
                         return false;
                     }
                     if (keyAchivement.length > 200){
 
-                        var errorMsg='Key Achivement Should not more than 200 Charecter Length!!'
+                        var errorMsg='Key achivement should not more than 200 charecter length!!'
                         validationError(errorMsg)
                         return false;
 
                     }
                     if(supervisorName==""){
 
-                        var errorMsg='Please Type Supervisor Name First!!'
+                        var errorMsg='Please type supervisor name first!!'
                         validationError(errorMsg)
                         return false;
                     }
                     if (supervisorName.length > 200){
 
-                        var errorMsg='Supervisor Name Should not more than 200 Charecter Length!!'
+                        var errorMsg='Supervisor name should not more than 200 charecter length!!'
                         validationError(errorMsg)
                         return false;
 
@@ -655,14 +655,14 @@
 
                     if(reservationContactingEmployer==""){
 
-                        var errorMsg='Please Select reservation of Contacting Employer First!!'
+                        var errorMsg='Please select reservation of contacting employer first!!'
                         validationError(errorMsg)
                         return false;
                     }
 
                     if(employmentType==""){
 
-                        var errorMsg='Please Select Employment Type First!!'
+                        var errorMsg='Please select employment type first!!'
                         validationError(errorMsg)
                         return false;
                     }
@@ -670,7 +670,7 @@
 
                         if (employmentType == "{{OTHERS}}" && employmentTypeText != "" ){
 
-                            var errorMsg='Please Write Employement Other Text First!!';
+                            var errorMsg='Please write employement other text first!!';
                             validationError(errorMsg);
                             return false;
 
@@ -691,9 +691,9 @@
                     '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>' +
                     '<div class="row"> ' +
                         '<div class="form-group col-md-6">'+
-                    '<label for="inputEmail4">Organization Type<span style="color: red">*</span></label>'+
+                    '<label for="inputEmail4">Organization type<span style="color: red">*</span></label>'+
                     '<select required name="organizationType[]" class="form-control" id="sel1">'+
-                    '<option selected value="">Select Organization Type</option>'+
+                    '<option selected value="">Select organization Type</option>'+
                 @foreach($companyType as $natio)
                 '<option value="{{$natio->organizationTypeId}}">{{$natio->organizationTypeName}}</option>'+
                         @endforeach
@@ -702,7 +702,7 @@
                         {{--<input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" required>--}}
                     '</div>'+
                     '<div class="form-group col-md-12"> ' +
-                    '<label for="inputEmail4">Organization Name</label> ' +
+                    '<label for="inputEmail4">Organization name</label> ' +
                     '<input type="text" class="form-control" name="organization[]" id="organization'+counter+'" placeholder="organization" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
@@ -710,11 +710,11 @@
                     '<input type="text" class="form-control" name="degisnation[]" id="degisnation'+counter+'" placeholder="designation" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
-                    '<label for="inputPassword4">Start Date</label> ' +
+                    '<label for="inputPassword4">Start date</label> ' +
                     '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
-                    '<label for="inputPassword4">End Date</label> ' +
+                    '<label for="inputPassword4">End date</label> ' +
                     '<input type="text" class="form-control date" name="endDate[]" id="end'+counter+'" placeholder="date"> ' +
                     '</div> ' +
                     '<div class="form-group col-md-12"> ' +
@@ -726,17 +726,17 @@
                     '<textarea class="form-control" name="majorResponsibilities[]" maxlength="200" required id="majorResponsibilities'+counter+'" placeholder="Major responsibilities"></textarea>'+
                     '</div>'+
                     '<div class="form-group col-md-12">'+
-                    '<label for="inputPassword4">Key Achievement<span style="color: red">*</span> </label>'+
-                    '<textarea class="form-control" name="keyAchivement[]" maxlength="200" required id="keyAchivement'+counter+'" placeholder="Key Achievement"></textarea>'+
+                    '<label for="inputPassword4">Key achievement<span style="color: red">*</span> </label>'+
+                    '<textarea class="form-control" name="keyAchivement[]" maxlength="200" required id="keyAchivement'+counter+'" placeholder="Key achievement"></textarea>'+
                     '</div>'+
                     '<div class="form-group col-md-6">'+
-                    '<label for="inputEmail4">Name of Supervisor<span style="color: red">*</span></label>'+
-                    '<input type="text" class="form-control" name="supervisorName[]" id="supervisorName'+counter+'" placeholder="Name of Supervisor" required>'+
+                    '<label for="inputEmail4">Name of supervisor<span style="color: red">*</span></label>'+
+                    '<input type="text" class="form-control" name="supervisorName[]" id="supervisorName'+counter+'" placeholder="Name of supervisor" required>'+
                 '</div>'+
                 '<div class="form-group col-md-6">'+
                     '<label for="inputEmail4">Any reservation contacting your employer?<span style="color: red">*</span></label>'+
                     '<select class="form-control" id="reservationContactingEmployer'+counter+'" name="reservationContactingEmployer[]" required>'+
-                '<option value="" selected>Select Option</option>'+
+                '<option value="" selected>Select option</option>'+
                 @foreach(YES_NO as $key=>$value)
                 '<option value="{{$value}}">{{$key}}</option>'+
                         @endforeach
@@ -744,9 +744,9 @@
                 '</div>'+
 
                 '<div class="form-group col-md-6">'+
-                    '<label for="inputEmail4">Type of Employment<span style="color: red">*</span></label>'+
+                    '<label for="inputEmail4">Type of employment<span style="color: red">*</span></label>'+
                     '<select class="form-control" id="employmentType'+counter+'" onchange="employmentTypefunc('+counter+')" name="employmentType[]" required>'+
-                '<option value="" selected>Select Employment Type</option>'+
+                '<option value="" selected>Select employment type</option>'+
                     @foreach($employmentType as $eT)
                     '<option value="{{$eT->employmentTypeName}}">{{$eT->employmentTypeName}}</option>'+
                         @endforeach
@@ -777,7 +777,7 @@
 
 
                 if(counter=='1'){
-                    alert("Atleast One Course Section is needed!!");
+                    alert("Atleast one course section is needed!!");
                     return false;
                 }
                 counter--;
