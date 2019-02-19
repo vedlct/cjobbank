@@ -62,7 +62,7 @@ define('RESULT_SYSTEM',array(
     "grade"=>'1',
     "division"=>'2',
     "class"=>'3',
-    "other"=>'4'
+
 ));
 
 define('USER_TYPE',array(
@@ -83,7 +83,7 @@ define('STATUS',array(
     "0"=>'Inactive',
 ));
 define('OTHERS',"others");
-define('CV_COMPLITING_MSG',"Thank you for submiting your cv. All the data submitted here are only for caritas bd");
+define('CV_COMPLITING_MSG',"Thank you for submiting your CV. All the data submitted here are only for Caritas Bangladesh");
 
 //ComputerSkillAchievement
 define('ComputerSkillAchievement',array(
