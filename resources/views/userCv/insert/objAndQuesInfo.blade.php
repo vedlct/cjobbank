@@ -15,12 +15,11 @@
                         <div class="tab">
 
                             <h2 style="margin-bottom: 40px; text-align: center;">Career Objective and Application Information</h2>
-
                             <div class="form-group">
                                 <label for="">{{CAREER_QUES['Ques0']}}<span style="color: red">*</span></label>
                                 {{--<input type="checkbox" name="freshers" onclick="checkFreshers(this)">--}}
                                 <div class="row">
-                                    <div class="form-group">
+                                    <div class="form-group col-md-12">
 
                                         <div class="col-md-10 mb-3">
                                             <input class="form-check-input" type="radio" required  name="hasOtherSkill" value="1"  onclick="checkFreshers(this)" > Yes&nbsp;&nbsp;
