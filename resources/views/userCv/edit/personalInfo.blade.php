@@ -200,7 +200,7 @@
 
                                     <div class="form-group col-md-6">
                                         <label for="">Passport (if any)</label>
-                                        <input type="text" placeholder="If any" onkeypress="return isNumberKey(event)" class="form-control" value="{{$personalInfo->passport}}" name="passport">
+                                        <input type="text" placeholder="If any" onkeypress="return isAlfaNumberKey(event)" class="form-control" value="{{$personalInfo->passport}}" name="passport">
                                         @if ($errors->has('passport'))
 
                                             <span class="">
@@ -522,6 +522,18 @@
                 }
             });
 
+        }
+
+        function isAlfaNumberKey(evt)
+        {
+            var code = (evt.which) ? evt.which : event.keyCode;
+
+            if (!(code > 47 && code < 58) && // numeric (0-9)
+                !(code > 64 && code < 91) && // upper alpha (A-Z)
+                !(code > 96 && code < 123)) { // lower alpha (a-z)
+                return false;
+            }
+            return true;
         }
 
 
