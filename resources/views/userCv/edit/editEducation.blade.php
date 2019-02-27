@@ -142,7 +142,7 @@
             </div>
 
             <div class="form-group col-md-3">
-                <label for="">CGPA</label>
+                <label for="">Result/Cgpa/Score</label>
                 <input name="result" type="text" class="form-control" value="{{$education->result}}"  id="cgpa" maxlength="10" placeholder="">
             </div>
             <div class="form-group col-md-3">
@@ -463,7 +463,7 @@
     $('#educationStatus').on('change', function() {
 
         var educationStatus =$('#educationStatus').val();
-        if (educationStatus == '{{COMPLETING_STATUS['Ongoing']}}'){
+        if (educationStatus == '{{COMPLETING_STATUS['On going']}}'){
 
             $("#cgpa").prop('required',false);
             $("#passingYear").prop('required',false);

@@ -58,7 +58,7 @@
                                     <div class="row">
                                         <div class="form-group col-md-4">
 
-                                            <label for="inputEmail4">Name Of skill :</label>
+                                            <label for="inputEmail4">Name of skill :</label>
                                             {{$empSkill->skillName}}
                                         </div>
                                         <div class="form-group col-md-4">

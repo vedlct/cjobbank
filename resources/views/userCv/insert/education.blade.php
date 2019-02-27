@@ -140,7 +140,7 @@
 
                                 <div class="form-group col-md-3">
 
-                                    <label for="">CGPA</label>
+                                    <label for="">Result/Cgpa/Score</label>
                                     <input name="result[]" type="text" class="form-control"  id="cgpa" maxlength="10" placeholder="CGPA">
 
                                 </div>
@@ -243,7 +243,8 @@
         $('#educationStatus').on('change', function() {
 
             var educationStatus =$('#educationStatus').val();
-            if (educationStatus == '{{COMPLETING_STATUS['Ongoing']}}'){
+
+            if (educationStatus == '{{COMPLETING_STATUS['On going']}}'){
 
                 $("#cgpa").prop('required',false);
                 $("#passingYear").prop('required',false);
@@ -270,10 +271,13 @@
             }
 
         }
+
+
         function checkeducationStatus(x) {
 
             var educationStatus =$('#educationStatus'+x).val();
-            if (educationStatus == '{{COMPLETING_STATUS['Ongoing']}}'){
+
+            if (educationStatus == '{{COMPLETING_STATUS['On going']}}'){
 
                 $("#cgpa"+x).prop('required',false);
                 $("#passingYear"+x).prop('required',false);
@@ -630,7 +634,7 @@
                     '</div>'+
 
                     '<div class="form-group col-md-3">'+
-                    '<label for="">Year</label>'+
+                    '<label for="">Passing year</label>'+
                    ' <input name="passingYear[]" type="text" class="form-control date"  id="passingYear'+counter+'" placeholder="passing year">'+
                    ' </div>'+
                     '<div class="form-group col-md-3">'+
@@ -651,7 +655,7 @@
                     '</div>'+
 
                    ' <div class="form-group col-md-3">'+
-                    '<label for="">CGPA</label>'+
+                    '<label for="">Result/Cgpa/Score</label>'+
                     '<input name="result[]" type="text" class="form-control" id="cgpa'+counter+'"   placeholder="">'+
                     '</div>'+
                     '<div class="form-group col-md-3">'+
