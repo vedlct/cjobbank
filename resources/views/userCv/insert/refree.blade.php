@@ -207,8 +207,8 @@
 
 
             $("#addButton").click(function () {
-                if(counter>10){
-                    alert("Only 10 section allow per time!!");
+                if(counter>3){
+                    alert("Only 3 section allow max!!");
                     return false;
                 }
                 $("#btnPevious").hide();

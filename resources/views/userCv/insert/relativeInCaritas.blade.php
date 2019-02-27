@@ -13,19 +13,19 @@
 
 
 
-                        <div id="regForm" class="tab">
+                    <div id="regForm" class="tab">
 
-                            <h2 style="margin-bottom: 30px;">Do you have any relatives working in Caritas Bangladesh?</h2>
-
-
-
-                            <div >
+                        <h2 style="margin-bottom: 30px;">Do you have any relatives working in Caritas Bangladesh?</h2>
 
 
-                                <form action="{{route('submit.relativeYesOrNo')}}" method="post">
-                                    {{csrf_field()}}
+
+                        <div >
+
+
+                            <form action="{{route('submit.relativeYesOrNo')}}" method="post">
+                                {{csrf_field()}}
                                 <div class="  form-group">
-                                <label>Do you have any relatives working in caritas bangladesh ?</label>
+                                    <label>Do you have any relatives working in Caritas Bangladesh ?</label>
                                     <div class="col-md-3 mb-3">
                                         <input class="form-check-input" onclick="myradio()" @if($relativeInCB->relativeInCB =='1') checked @endif class="form-control" type="radio" value="1" name="relativeincb" required> YES
                                     </div>
@@ -44,20 +44,20 @@
                                         <button type="submit" >Save</button>
 
                                         {{--@if($relativeInCB->relativeInCB == '1' || $relativeInCB->relativeInCB== '0' )--}}
-                                            {{--<a href="{{route('refree.index')}}"><button type="button" id="nextBtn" >Next</button></a>--}}
+                                        {{--<a href="{{route('refree.index')}}"><button type="button" id="nextBtn" >Next</button></a>--}}
                                         {{--@endif--}}
 
                                     </div>
                                 </div>
 
 
-                                </form>
+                            </form>
 
-                            </div>
+                        </div>
 
 
 
-                            <div id="insertfull" style="display: none">
+                        <div id="insertfull" style="display: none">
                             <form  action="{{route('submit.relative')}}" method="post">
                                 <!-- One "tab" for each step in the form: -->
                                 {{csrf_field()}}
@@ -66,50 +66,50 @@
 
                                 <div id="TextBoxesGroup">
 
-                                <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label for="inputEmail4">First name<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" name="firstName[]" id="firstName" placeholder="first name" required>
-                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label for="inputEmail4">First name<span style="color: red">*</span></label>
+                                            <input type="text" class="form-control" name="firstName[]" id="firstName" placeholder="first name" required>
+                                        </div>
 
 
 
-                                    <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Last name<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" name="lastName[]" id="lastName" placeholder="last name" required>
-                                    </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputEmail4">Last name<span style="color: red">*</span></label>
+                                            <input type="text" class="form-control" name="lastName[]" id="lastName" placeholder="last name" required>
+                                        </div>
 
 
 
-                                    <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Designation<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" name="degisnation[]" id="degisnation" placeholder="degisnation" required>
+                                        <div class="form-group col-md-6">
+                                            <label for="inputEmail4">Designation<span style="color: red">*</span></label>
+                                            <input type="text" class="form-control" name="degisnation[]" id="degisnation" placeholder="degisnation" required>
+                                        </div>
+
+
                                     </div>
 
 
                                 </div>
 
 
-                            </div>
+
+                                <button type="button" id="addButton" class="btn btn-success">Add more</button>
+                                <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
 
 
-                            <button type="button" id="addButton" class="btn btn-success">Add more</button>
-                            <button type="button" id="removeButton" class="btn btn-success" >remove</button>
+                                <div style="overflow:auto;">
+                                    <div style="float:right;">
+                                        <a href="{{route('candidate.membershipInSocialNetwork.index')}}"><button type="button" id="btnPevious" >Back</button></a>
+                                        {{--<a id="btnPevious" class="btn btn-success" href="{{route('JobExperience.index')}}">Back</a>--}}
+                                        <button type="submit" id="submitBtn">Save</button>
+                                        {{--@if($relativeInCB->relativeInCB == '1' || $relativeInCB->relativeInCB== '0' )--}}
+                                        {{--<a href="{{route('refree.index')}}"><button type="button" id="nextBtn" >Next</button></a>--}}
+                                        {{--@endif--}}
 
-
-
-                        <div style="overflow:auto;">
-                            <div style="float:right;">
-                                <a href="{{route('candidate.membershipInSocialNetwork.index')}}"><button type="button" id="btnPevious" >Back</button></a>
-                                {{--<a id="btnPevious" class="btn btn-success" href="{{route('JobExperience.index')}}">Back</a>--}}
-                                <button type="submit" id="submitBtn">Save</button>
-                                {{--@if($relativeInCB->relativeInCB == '1' || $relativeInCB->relativeInCB== '0' )--}}
-                                    {{--<a href="{{route('refree.index')}}"><button type="button" id="nextBtn" >Next</button></a>--}}
-                                {{--@endif--}}
-
-                            </div>
-                        </div>
+                                    </div>
+                                </div>
 
                             </form>
                         </div>
@@ -126,7 +126,7 @@
                             <span class="step"></span>
                         </div>
 
-                        </div>
+                    </div>
 
 
 
@@ -178,7 +178,7 @@
 
             @if($employee->cvStatus==1)
 
-                $.alert({
+            $.alert({
                 title: 'Congratulation',
                 type: 'green',
                 content: '{!! CV_COMPLITING_MSG !!}',
@@ -330,22 +330,22 @@
 
 
                 var newTextBoxDiv = $(document.createElement('div'))
-                        .attr("id", 'TextBoxDiv' + counter).attr("class", 'row');
+                    .attr("id", 'TextBoxDiv' + counter).attr("class", 'row');
                 newTextBoxDiv.after().html(
-                        '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>'+
-                        '  <div class="row"> ' +
-                        '<div class="form-group col-md-6"> ' +
-                        '<label for="inputEmail4">First name<span style="color: red">*</span></label> ' +
-                        '<input type="text" class="form-control" name="firstName[]" id="firstName'+counter+'" placeholder="first name" required> ' +
-                        '</div> ' +
-                        '<div class="form-group col-md-6"> ' +
-                        '<label for="inputEmail4">Last name<span style="color: red">*</span></label> ' +
-                        '<input type="text" class="form-control" name="lastName[]" id="lastName'+counter+'" placeholder="last name" required> ' +
-                        '</div> ' +
-                        '<div class="form-group col-md-6"> ' +
-                        '<label for="inputEmail4">Present position<span style="color: red">*</span></label> ' +
-                        '<input type="text" class="form-control" name="degisnation[]" id="degisnation'+counter+'" placeholder="degisnation" required> ' +
-                        '</div> '
+                    '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>'+
+                    '  <div class="row"> ' +
+                    '<div class="form-group col-md-6"> ' +
+                    '<label for="inputEmail4">First name<span style="color: red">*</span></label> ' +
+                    '<input type="text" class="form-control" name="firstName[]" id="firstName'+counter+'" placeholder="first name" required> ' +
+                    '</div> ' +
+                    '<div class="form-group col-md-6"> ' +
+                    '<label for="inputEmail4">Last name<span style="color: red">*</span></label> ' +
+                    '<input type="text" class="form-control" name="lastName[]" id="lastName'+counter+'" placeholder="last name" required> ' +
+                    '</div> ' +
+                    '<div class="form-group col-md-6"> ' +
+                    '<label for="inputEmail4">Present position<span style="color: red">*</span></label> ' +
+                    '<input type="text" class="form-control" name="degisnation[]" id="degisnation'+counter+'" placeholder="degisnation" required> ' +
+                    '</div> '
 
                 );
                 newTextBoxDiv.appendTo("#TextBoxesGroup");
@@ -394,13 +394,13 @@
 
         }
 
-       function myradio()
+        function myradio()
         {
             x = document.querySelector('input[name="relativeincb"]:checked').value;
 
             if (x==1){
-            document.getElementById('ques').style.display= "none";
-            document.getElementById('insertfull').style.display= "block";
+                document.getElementById('ques').style.display= "none";
+                document.getElementById('insertfull').style.display= "block";
 
             }else {
                 document.getElementById('ques').style.display= "block";
