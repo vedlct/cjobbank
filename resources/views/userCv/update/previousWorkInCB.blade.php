@@ -45,7 +45,7 @@
                                             @if($previousWorkInCB->currentlyRunning=='0')
                                                 {{$previousWorkInCB->endDate}}
                                             @else
-                                                Currently running
+                                                Running
                                             @endif
 
 
@@ -268,7 +268,7 @@
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
                     '<label for="inputPassword4">End date</label> ' +
-                    '/ <input type="checkbox" id="currentlyRunning'+counter+'" name="currentlyRunning[]" value="1">Currenly running'+
+                    '/ <input type="checkbox" id="currentlyRunning'+counter+'" name="currentlyRunning[]" value="1">Running'+
                     '<input type="text" class="form-control date" name="endDate[]" id="end'+counter+'" placeholder="date"> ' +
 
                     '</div> ' +

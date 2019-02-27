@@ -34,10 +34,10 @@ class EmployeeOtherInfoController extends Controller
 
         $employee=Employee::where('fkuserId', '=',$userId)->first()->employeeId;
         $this->validate($r, [
-            'extraCurricularActivities' => 'max:200',
-            'interests' => 'max:200',
-            'awardReceived' => 'max:200',
-            'researchPublication' => 'max:200',
+            'extraCurricularActivities' => 'max:300',
+            'interests' => 'max:300',
+            'awardReceived' => 'max:300',
+            'researchPublication' => 'max:300',
         ]);
         $empOtherInfo = new EmployeeOtherInfo();
         $empOtherInfo->extraCurricularActivities = $r->extraCurricularActivities;
@@ -62,10 +62,10 @@ class EmployeeOtherInfoController extends Controller
 
 //        return $r;
                 $this->validate($r, [
-                    'extraCurricularActivities' => 'max:200',
-                    'interests' => 'max:200',
-                    'awardReceived' => 'max:200',
-                    'researchPublication' => 'max:200',
+                    'extraCurricularActivities' => 'max:300',
+                    'interests' => 'max:300',
+                    'awardReceived' => 'max:300',
+                    'researchPublication' => 'max:300',
                 ]);
                 $empInfo = EmployeeOtherInfo::findOrFail($r->empQuesObjId);
                 $empInfo->extraCurricularActivities = $r->extraCurricularActivities;

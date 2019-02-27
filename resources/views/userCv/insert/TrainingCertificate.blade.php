@@ -48,7 +48,7 @@
                                     <div class="form-group col-md-4">
                                         <label for="inputPassword4">Country<span style="color: red">*</span></label>
                                         {{--<input type="text" class="form-control"  id="inputPassword4" placeholder="">--}}
-                                        <select  class="form-control js-example-basic-single" id="country" name="countryId[]" >
+                                        <select  class="form-control" id="country" name="countryId[]" >
                                             <option value="">Select country</option>
                                             @foreach($countries as $country)
                                                 <option value="{{$country->countryId}}">{{$country->countryName}}</option>

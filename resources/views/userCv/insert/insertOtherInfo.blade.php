@@ -18,7 +18,7 @@
 
 
                             <div class="form-group">
-                                <label for="">Extracurricular activities</label>
+                                <label for="">Extracurricular activities (Max Limit 300)</label>
                                 <textarea type="text" name="extraCurricularActivities" maxlength="300"  rows="2"
                                           class="form-control{{ $errors->has('extraCurricularActivities') ? ' is-invalid' : '' }}"
                                           id="objective" placeholder="Extra curricular activities">{{ old('extraCurricularActivities') }}</textarea>
@@ -30,7 +30,7 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="">Interests</label>
+                                <label for="">Interests (Max Limit 300)</label>
                                 <textarea type="text" name="interests" maxlength="300"  rows="3"
                                           class="form-control {{ $errors->has('interests') ? ' is-invalid' : '' }}"
                                           id="interests" placeholder="Interests">{{ old('interests') }}</textarea>
@@ -42,7 +42,7 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="">Award Received</label>
+                                <label for="">Award Received (Max Limit 300)</label>
                                 <textarea type="text" name="awardReceived" maxlength="300"  rows="3"
                                           class="form-control {{ $errors->has('awardReceived') ? ' is-invalid' : '' }}"
                                           id="awardReceived" placeholder="Award received">{{ old('awardReceived') }}</textarea>
@@ -54,7 +54,7 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="">Research / Publication</label>
+                                <label for="">Research / Publication (Max Limit 300)</label>
                                 <textarea type="text" name="researchPublication" maxlength="300"
                                            rows="3" class="form-control {{ $errors->has('researchPublication') ? ' is-invalid' : '' }}"
                                           id="researchPublication" placeholder="Research / Publication">{{ old('researchPublication') }}</textarea>
