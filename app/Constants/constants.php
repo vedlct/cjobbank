@@ -1,8 +1,9 @@
 <?php
 
 define('GENDER',array(
-    "Male"=>'M',
-    "Female"=>'F'
+    "Man"=>'M',
+    "Women"=>'F',
+    "Transgender"=>'T'
 ));
 define('DISABILITY',array(
     "Yes"=>'Y',
