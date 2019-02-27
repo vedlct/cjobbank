@@ -183,7 +183,7 @@ class QuestionObjectiveController extends Controller
         ];
 
         $customMessages = [
-//            'unique' => 'This User is already been registered.Please Login !'
+//            'objective' => 'This User is already been registered.Please Login !'
         ];
 
         $this->validate($r, $rules, $customMessages);
@@ -250,6 +250,7 @@ class QuestionObjectiveController extends Controller
         Session::flash('message', 'Career Info Updated Successfully');
 
         return redirect()->route('candidate.cvQuesObj');
+
 
 
     }

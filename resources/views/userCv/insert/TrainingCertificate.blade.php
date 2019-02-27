@@ -66,6 +66,8 @@
                                             <input type="text" class="form-control date" name="endDate[]" id="end" placeholder="date">
                                         </div>
 
+
+
                                         <div class="form-group col-md-4">
                                             <label for="inputPassword4">Status<span style="color: red">*</span></label>
                                             <select  class="form-control"id="trainingCertificateStatus" name="status[]" onchange="selectStatus(this)">
@@ -79,6 +81,9 @@
 
 
 
+                                    <div class="form-group col-md-4">
+                                        <label for="inputPassword4">Status<span style="color: red">*</span></label>
+                                        <select  class="form-control"id="trainingCertificateStatus" name="status[]" onchange="selectStatus(this)">
                                     </div>
 
                                     <div class="row" id="courseDuration">

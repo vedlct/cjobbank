@@ -117,7 +117,7 @@
 
             <div class="form-group col-md-3">
                 <label for="">Passing year</label>
-                <input name="passingYear" type="text" class="form-control date" value="{{$education->passingYear}}" id="passingYear" required placeholder="passing Year">
+                <input name="passingYear" type="text" class="form-control date" value="{{$education->passingYear}}" id="passingYear"  placeholder="passing Year">
             </div>
             <div class="form-group col-md-3">
                 <label for="">Result system<span style="color: red">*</span></label>
@@ -143,7 +143,7 @@
 
             <div class="form-group col-md-3">
                 <label for="">CGPA</label>
-                <input name="result" type="text" class="form-control" value="{{$education->result}}" required id="cgpa" maxlength="10" placeholder="">
+                <input name="result" type="text" class="form-control" value="{{$education->result}}"  id="cgpa" maxlength="10" placeholder="">
             </div>
             <div class="form-group col-md-3">
                 <label for="">Out of</label>
@@ -405,12 +405,14 @@
             return false;
 
         }
-        if(year==""){
+        if(year!="") {
+            if (year == "") {
 
-            var errorMsg='Please Select a Year First!!';
-            validationError(errorMsg);
-            return false;
+                var errorMsg = 'Please Select a Year First!!';
+                validationError(errorMsg);
+                return false;
 
+            }
         }
         if(resultSydtem==""){
 
@@ -419,12 +421,14 @@
             return false;
 
         }
-        if(cgpa==""){
+        if(cgpa!="") {
+            if (cgpa == "") {
 
-            var errorMsg='Please Type Your Result/CGPA First!!';
-            validationError(errorMsg);
-            return false;
+                var errorMsg = 'Please Type Your Result/CGPA First!!';
+                validationError(errorMsg);
+                return false;
 
+            }
         }
         if(status==""){
 

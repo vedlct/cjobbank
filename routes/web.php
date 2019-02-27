@@ -15,7 +15,7 @@
 //    return view('auth.login');
 //});
 //sleep(2);
-Route::get('/','Auth\LoginController@loginForm');
+Route::get('/','Auth\LoginController@loginForm')->name('/');
 Auth::routes();
 
 //Change password

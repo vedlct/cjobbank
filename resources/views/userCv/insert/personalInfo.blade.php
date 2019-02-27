@@ -76,7 +76,7 @@
                                     <select required name="gender" class="form-control" id="sel1">
                                         <option selected value="">Select gender</option>
                                         @foreach(GENDER as $key=>$value)
-                                        <option value="{{$value}}">{{$key}}</option>
+                                        <option @if (old('gender') == $value) selected @endif value="{{$value}}">{{$key}}</option>
                                         @endforeach
 
                                     </select>
@@ -86,7 +86,7 @@
                                     <select required name="religion"class="form-control" id="sel1">
                                         <option selected value="">Select religion</option>
                                         @foreach($religion as $reli)
-                                        <option value="{{$reli->religionId}}">{{$reli->religionName}}</option>
+                                        <option @if (old('religion') == $value) selected @endif value="{{$reli->religionId}}">{{$reli->religionName}}</option>
                                         @endforeach
 
                                     </select>
@@ -98,7 +98,7 @@
                                     <select required name="ethnicity" class="form-control" id="sel1">
                                         <option selected value="">Select ethnicity</option>
                                         @foreach($ethnicity as $ethi)
-                                            <option value="{{$ethi->ethnicityId}}">{{$ethi->ethnicityName}}</option>
+                                            <option @if (old('ethnicity') == $value) selected @endif value="{{$ethi->ethnicityId}}">{{$ethi->ethnicityName}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -107,7 +107,7 @@
                                     <select required name="disability" class="form-control" id="sel1">
                                         <option selected value="">Select disability</option>
                                         @foreach(DISABILITY as $key=>$value)
-                                            <option value="{{$value}}">{{$key}}</option>
+                                            <option @if (old('disability') == $value) selected @endif value="{{$value}}">{{$key}}</option>
                                         @endforeach
 
                                     </select>
@@ -133,7 +133,7 @@
                                         <option value="">Select Group</option>
                                         @foreach(BLOOD_GROUP as $key=>$value)
                                             {{--<option @if($personalInfo->disability == $value) selected @endif value="{{$value}}">{{$key}}</option>--}}
-                                            <option  value="{{$value}}">{{$key}}</option>
+                                            <option  @if (old('bloodGroup') == $value) selected @endif value="{{$value}}">{{$key}}</option>
                                         @endforeach
                                     </select>
                                     @if ($errors->has('bloodGroup'))
@@ -150,7 +150,7 @@
                                         <option value="">Select status</option>
                                         @foreach(MARITAL_STATUS as $key=>$value)
                                             {{--<option @if($personalInfo->disability == $value) selected @endif value="{{$value}}">{{$key}}</option>--}}
-                                            <option  value="{{$value}}">{{$key}}</option>
+                                            <option @if (old('maritalStatus') == $value) selected @endif value="{{$value}}">{{$key}}</option>
                                         @endforeach
                                     </select>
                                     @if ($errors->has('maritalStatus'))
@@ -176,10 +176,10 @@
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="">Nationality<span style="color: red">*</span></label>
-                                    <select required name="nationality" class="form-control" id="sel1">
+                                    <select required name="nationality" class="form-control js-example-basic-single" id="sel1">
                                         <option selected value="">Select nationality</option>
                                         @foreach($natinality as $natio)
-                                            <option value="{{$natio->nationalityId}}">{{$natio->nationalityName}}</option>
+                                            <option @if (old('nationality') == $value) selected @endif value="{{$natio->nationalityId}}">{{$natio->nationalityName}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -507,7 +507,7 @@
 
         }
 
-
+        $('.js-example-basic-single').select2();
 
     </script>
 

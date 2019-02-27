@@ -393,12 +393,14 @@
                         return false;
 
                     }
-                    if(year==""){
+                    if(year!="") {
+                        if (year == "") {
 
-                        var errorMsg='Please select a year first!!'
-                        validationError(errorMsg)
-                        return false;
+                            var errorMsg = 'Please select a year first!!'
+                            validationError(errorMsg)
+                            return false;
 
+                        }
                     }
                     if(resultSydtem==""){
 
@@ -407,12 +409,14 @@
                         return false;
 
                     }
-                    if(cgpa==""){
+                    if(cgpa!="") {
+                        if (cgpa == "") {
 
-                        var errorMsg='Please type your result/CGPA first!!'
-                        validationError(errorMsg)
-                        return false;
+                            var errorMsg = 'Please type your result/CGPA first!!'
+                            validationError(errorMsg)
+                            return false;
 
+                        }
                     }
                     if(status==""){
 
@@ -494,12 +498,14 @@
                         return false;
 
                     }
-                    if(year==""){
+                    if(year!="") {
+                        if (year == "") {
 
-                        var errorMsg='Please select a year first!!'
-                        validationError(errorMsg)
-                        return false;
+                            var errorMsg = 'Please select a year first!!'
+                            validationError(errorMsg)
+                            return false;
 
+                        }
                     }
                     if(resultSydtem==""){
 
@@ -508,12 +514,14 @@
                         return false;
 
                     }
-                    if(cgpa==""){
+                    if(cgpa!="") {
+                        if (cgpa == "") {
 
-                        var errorMsg='Please type your result/CGPA first!!'
-                        validationError(errorMsg)
-                        return false;
+                            var errorMsg = 'Please type your result/CGPA first!!'
+                            validationError(errorMsg)
+                            return false;
 
+                        }
                     }
                     if(status==""){
 
