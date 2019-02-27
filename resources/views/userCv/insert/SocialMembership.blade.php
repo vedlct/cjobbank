@@ -18,7 +18,7 @@
 
                             <div class="row">
                                 <div class="form-group">
-                                    <label class="control-label">Has certification of membership in professional network?<span style="color: red" class="required">*</span>:</label>
+                                    <label class="control-label">Do you have any certification of membership in professional network?<span style="color: red" class="required">*</span></label>
                                     <div class="col-md-10 mb-3">
                                         <input class="form-check-input" type="radio" required name="hasProfCertificate" value="1" onclick="sociaMemberDiv(this)"> Yes&nbsp;&nbsp;
                                     </div>
