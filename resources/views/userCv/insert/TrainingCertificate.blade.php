@@ -68,9 +68,10 @@
 
 
 
+
                                         <div class="form-group col-md-4">
                                             <label for="inputPassword4">Status<span style="color: red">*</span></label>
-                                            <select  class="form-control"id="trainingCertificateStatus" name="status[]" onchange="selectStatus(this)">
+                                            <select  class="form-control" id="trainingCertificateStatus" name="status[]" onchange="selectStatus(this)">
 
                                                 <option value="">Select status</option>
                                                 @foreach(COMPLETING_STATUS as $key=>$value)
@@ -81,10 +82,6 @@
 
 
 
-                                    <div class="form-group col-md-4">
-                                        <label for="inputPassword4">Status<span style="color: red">*</span></label>
-                                        <select  class="form-control"id="trainingCertificateStatus" name="status[]" onchange="selectStatus(this)">
-                                    </div>
 
                                     <div class="row" id="courseDuration">
                                         <label>Duration</label>
