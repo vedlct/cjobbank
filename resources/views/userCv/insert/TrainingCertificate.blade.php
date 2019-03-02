@@ -81,9 +81,7 @@
                                         </div>
 
 
-
-
-                                    <div class="row" id="courseDuration">
+                                        <div class="row" id="courseDuration">
                                         <label>Duration</label>
                                         <div class="form-group col-md-2">
                                             <label for="inputPassword4">Hour</label>
