@@ -20,10 +20,10 @@
         <input type="text" class="form-control" name="venue" value="{{$training->vanue}}" id="vanue" placeholder="venue" required >
     </div>
     <div class="form-group col-md-4">
-        <label for="inputPassword4">Country<span style="color: red">*</span></label>
+        <label for="inputPassword4" style="display: block">Country<span style="color: red">*</span></label>
         {{--<input type="text" class="form-control"  id="inputPassword4" placeholder="">--}}
 
-        <select required class="form-control js-example-basic-single" id="country" name="countryId">
+        <select required class="form-control " id="country" name="countryId">
             <option value="">Select country</option>
             @foreach($countries as $country)
                 <option value="{{$country->countryId}}" @if($training->countryId == $country->countryId) selected @endif>{{$country->countryName}}</option>
@@ -34,7 +34,7 @@
 
     <div class="form-group col-md-4">
         <label for="inputPassword4">Start date<span style="color: red">*</span></label>
-        <input type="text" class="form-control date" name="startDate" value="{{$training->startDate}}" id="start" placeholder="date" required>
+        <input type="text" class="form-control date" name="startDate" value="{{$training->startDate}}" id="start" placeholder="date">
     </div>
     <div class="form-group col-md-4">
         <label for="inputPassword4">End date</label>
@@ -193,11 +193,11 @@
 
         }
 
-        if(start==""){
-            var errorMsg='Please select a strat date first!!';
-            validationError(errorMsg)
-            return false;
-        }
+//        if(start==""){
+//            var errorMsg='Please select a strat date first!!';
+//            validationError(errorMsg)
+//            return false;
+//        }
 //        if(end==""){
 //            var errorMsg='Please Select a End Date First!!';
 //            validationError(errorMsg)
@@ -210,13 +210,16 @@
             return false;
         }
 
-        if (end != "") {
+        if (start != "") {
+
+            if (end != "") {
 
 
-            if (Date.parse(end) < Date.parse(start)) {
-                var errorMsg = 'End date should after start date!!';
-                validationError(errorMsg);
-                return false;
+                if (Date.parse(end) < Date.parse(start)) {
+                    var errorMsg = 'End date should after start date!!';
+                    validationError(errorMsg);
+                    return false;
+                }
             }
         }
 

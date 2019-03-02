@@ -46,7 +46,7 @@
                                     <div class="form-group col-md-6">
 
                                         <label for="inputPassword4">End date</label> /
-                                        <input type="checkbox" class="col-md-2" id="currentlyRunning" name="currentlyRunning[]" value="1">Currenly running
+                                        <input type="checkbox" class="col-md-2" id="currentlyRunning" name="currentlyRunning[]" value="1">Running
                                         <input type="text" class="form-control  col-md-4 end" name="endDate[]" id="end" placeholder="date">
 
 
@@ -358,7 +358,7 @@
                     '<div class="form-group col-md-4"> ' +
                     '<label for="inputPassword4">End date</label> ' +
                     '<input type="text" class="form-control date" name="endDate[]" id="end'+counter+'" placeholder="date"> ' +
-                    '/ <input type="checkbox" id="currentlyRunning'+counter+'" name="currentlyRunning[]" value="1">Currenly running'+
+                    '/ <input type="checkbox" id="currentlyRunning'+counter+'" name="currentlyRunning[]" value="1"> Running'+
                 '</div> ' +
                     '</div>'
 

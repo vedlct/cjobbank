@@ -124,8 +124,8 @@ class JobExperienceController extends Controller
 
        $experience=JobExperience::leftJoin('organizationtype','organizationtype.organizationTypeId','jobexperience.fkOrganizationType')->findOrFail($r->jobExperienceId);
        $companyType=DB::table('organizationtype')->where('status',1)->get();
-
-       return view('userCv.edit.editJobExperience',compact('experience','companyType'));
+       $employmentType=DB::table('type_of_employment')->where('status',1)->get();
+       return view('userCv.edit.editJobExperience',compact('experience','companyType', 'employmentType'));
 //       return $r;
    }
 

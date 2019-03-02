@@ -35,6 +35,7 @@
                                     <div class="row">
                                         <div class="form-group col-md-12">
 
+
                                             <label for="inputEmail4">Name of the training<span style="color: red">*</span></label>
                                             <input type="text" class="form-control" name="trainingName[]" id="trainingName" placeholder="training name" >
                                         </div>
@@ -133,6 +134,7 @@
                                                 @endfor
                                             </select>
                                         </div>
+
 
 
                                     </div>
@@ -310,13 +312,16 @@
                         return false;
                     }
 
-                    if (end[i].value != "") {
+                    if (start[i].value != "") {
+
+                        if (end[i].value != "") {
 
 
-                        if (Date.parse(end[i].value) < Date.parse(start[i].value)) {
-                            var errorMsg = 'End date should after start date!!';
-                            validationError(errorMsg);
-                            return false;
+                            if (Date.parse(end[i].value) < Date.parse(start[i].value)) {
+                                var errorMsg = 'End date should after start date!!';
+                                validationError(errorMsg);
+                                return false;
+                            }
                         }
                     }
                 }
@@ -340,60 +345,59 @@
                     return false;
                 }
 
-                if (counter == 1 ){
+                if (counter == 1 ) {
 
-                    var trainingName=$('#trainingName').val();
-                    var vanue=$('#vanue').val();
-                    var country=$('#country').val();
+                    var trainingName = $('#trainingName').val();
+                    var vanue = $('#vanue').val();
+                    var country = $('#country').val();
 
-                    var start=$('#start').val();
-                    var end=$('#end').val();
-                    var trainingCertificateStatus=$('#trainingCertificateStatus').val();
+                    var start = $('#start').val();
+                    var end = $('#end').val();
+                    var trainingCertificateStatus = $('#trainingCertificateStatus').val();
 
 
+                    if (trainingName == "") {
 
-                    if(trainingName==""){
-
-                        var errorMsg='Please type a training name first!!'
+                        var errorMsg = 'Please type a training name first!!'
                         validationError(errorMsg)
                         return false;
                     }
-                    if (trainingName.length > 100){
+                    if (trainingName.length > 100) {
 
-                        var errorMsg='Training name Should not more than 100 charecter length!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
-                    if(vanue==""){
-
-                        var errorMsg='Please type a venue first!!'
+                        var errorMsg = 'Training name Should not more than 100 charecter length!!'
                         validationError(errorMsg)
                         return false;
 
                     }
-                    if (vanue.length > 255){
+                    if (vanue == "") {
 
-                        var errorMsg='value should not more than 255 charecter length!!';
+                        var errorMsg = 'Please type a venue first!!'
                         validationError(errorMsg)
                         return false;
 
                     }
-                    if(country==""){
+                    if (vanue.length > 255) {
 
-                        var errorMsg='Please select a country first!!';
+                        var errorMsg = 'value should not more than 255 charecter length!!';
+                        validationError(errorMsg)
+                        return false;
+
+                    }
+                    if (country == "") {
+
+                        var errorMsg = 'Please select a country first!!';
                         validationError(errorMsg)
                         return false;
 
                     }
 
-                    if(start==""){
-                        var errorMsg='Please select a strat date first!!';
-                        validationError(errorMsg)
-                        return false;
-                    }
-                    if(trainingCertificateStatus==""){
-                        var errorMsg='Please select a status first!!';
+//                    if(start==""){
+//                        var errorMsg='Please select a strat date first!!';
+//                        validationError(errorMsg)
+//                        return false;
+//                    }
+                    if (trainingCertificateStatus == "") {
+                        var errorMsg = 'Please select a status first!!';
                         validationError(errorMsg)
                         return false;
                     }
@@ -402,6 +406,10 @@
 //                        validationError(errorMsg)
 //                        return false;
 //                    }
+
+                    if (start != "") {
+
+
 
                     if (end != "") {
 
@@ -412,6 +420,7 @@
                             return false;
                         }
                     }
+                }
 
 
 
@@ -467,24 +476,26 @@
                         return false;
                     }
 
-                    if(start==""){
-                        var errorMsg='Please select a strat date first!!';
-                        validationError(errorMsg)
-                        return false;
-                    }
+//                    if(start==""){
+//                        var errorMsg='Please select a strat date first!!';
+//                        validationError(errorMsg)
+//                        return false;
+//                    }
 //                    if(end==""){
 //                        var errorMsg='Please Select a End Date First!!';
 //                        validationError(errorMsg)
 //                        return false;
 //                    }
 
-                    if (end != "") {
+                    if (start != "") {
+                        if (end != "") {
 
 
-                        if (Date.parse(end) < Date.parse(start)) {
-                            var errorMsg = 'End date should after Start Date!!';
-                            validationError(errorMsg);
-                            return false;
+                            if (Date.parse(end) < Date.parse(start)) {
+                                var errorMsg = 'End date should after Start Date!!';
+                                validationError(errorMsg);
+                                return false;
+                            }
                         }
                     }
 
@@ -519,7 +530,7 @@
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
                     '<label for="inputPassword4">Start date<span style="color: red">*</span></label> ' +
-                    '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date" required> ' +
+                    '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date"> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
                     '<label for="inputPassword4">End date</label> ' +
@@ -527,7 +538,7 @@
                     '</div>'+
                     '<div class="form-group col-md-4">'+
                     '<label for="inputPassword4">Status<span style="color: red">*</span></label>'+
-                    '<select required class="form-control"id="trainingCertificateStatus" name="status[]">'+
+                    '<select required onchange="checkTrainingStatus('+counter+')" class="form-control"id="trainingCertificateStatus'+counter+'" name="status[]">'+
 
                     '<option value="">Select status</option>'+
                         @foreach(COMPLETING_STATUS as $key=>$value)
@@ -535,7 +546,7 @@
                         @endforeach
                             '</select>'+
                     '</div>'+
-                    '<div class="row">'+
+                    '<div id="courseDuration'+counter+'" class="row">'+
                     '<label>Duration</label>'+
                     '<div class="form-group col-md-2">'+
                     '<label for="inputPassword4">Hour</label>'+
@@ -591,6 +602,7 @@
 
                 );
                 newTextBoxDiv.appendTo("#TextBoxesGroup");
+                $('#courseDuration'+counter).hide();
 
                 counter++;
                 if(counter>1){
@@ -601,6 +613,7 @@
                     format: 'yyyy-m-d'
                 });
                 $('.js-example-basic-single').select2();
+
             });
             $('.js-example-basic-single').select2();
             $("#removeButton").click(function () {
@@ -618,7 +631,24 @@
             });
 
 
+
         });
+
+        function checkTrainingStatus(x) {
+
+            var trainingCertificateStatus =$('#trainingCertificateStatus'+x).val();
+
+            if(trainingCertificateStatus==1){
+                $('#courseDuration'+x).hide();
+            }
+            else if(trainingCertificateStatus==2){
+                $('#courseDuration'+x).show();
+            }
+
+
+
+
+        }
 
         function validationError(errorMsg){
 

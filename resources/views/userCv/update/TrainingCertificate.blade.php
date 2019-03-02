@@ -280,11 +280,11 @@
 
                     }
 
-                    if(start==""){
-                        var errorMsg='Please select a strat date first!!';
-                        validationError(errorMsg)
-                        return false;
-                    }
+//                    if(start==""){
+//                        var errorMsg='Please select a strat date first!!';
+//                        validationError(errorMsg)
+//                        return false;
+//                    }
                     if(status==""){
                         var errorMsg='Please select a status first!!';
                         validationError(errorMsg)
@@ -296,13 +296,15 @@
 //                        return false;
 //                    }
 
-                    if(end != "") {
+                    if (start != "") {
+                        if (end != "") {
 
 
-                        if (Date.parse(end) < Date.parse(start)) {
-                            var errorMsg = 'End date should after start Date!!';
-                            validationError(errorMsg);
-                            return false;
+                            if (Date.parse(end) < Date.parse(start)) {
+                                var errorMsg = 'End date should after start Date!!';
+                                validationError(errorMsg);
+                                return false;
+                            }
                         }
                     }
 
@@ -336,7 +338,7 @@
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
                     '<label for="inputPassword4">Start date<span style="color: red">*</span></label> ' +
-                    '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date" required> ' +
+                    '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date"> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
                     '<label for="inputPassword4">End date</label> ' +

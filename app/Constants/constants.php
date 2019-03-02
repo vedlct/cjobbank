@@ -46,7 +46,7 @@ define('MARITAL_STATUS',array(
 ));
 
 define('COMPLETING_STATUS',array(
-    "Ongoing"=>'1',
+    "On going"=>'1',
     "Completed"=>'2'
 ));
 
