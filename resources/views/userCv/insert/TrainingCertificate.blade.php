@@ -146,6 +146,7 @@
                                 <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
                             </div>
+                            </div>
 
                             <div style="overflow:auto;">
                                 <div style="float:right;">
