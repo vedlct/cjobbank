@@ -12,9 +12,38 @@
                         <!-- One "tab" for each step in the form: -->
 
                         {{csrf_field()}}
+
+
                         <div class="tab">
 
                             <h2 style="margin-bottom: 40px; text-align: center;">Career Objective and Application Information</h2>
+
+                            <div class="form-group">
+                                <label for="">Objective <span style="color: red">(Max Limit 300)</span><span style="color: red">*</span></label>
+                                <textarea type="text" name="objective" maxlength="300"  rows="2" class="form-control{{ $errors->has('objective') ? ' is-invalid' : '' }}"  id="objective" placeholder="Career Objective">{{ old('objective') }}</textarea>
+                                @if ($errors->has('objective'))
+
+                                    <span class="">
+                                        <strong>{{ $errors->first('objective') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+
+                            <div class="row">
+
+                                <div class="form-group col-md-6">
+                                    <label>Expected salary</label>
+                                    <input type="text" onkeypress="return isNumberKey(event)" placeholder="expected salary" name="expectedSalary">
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label>Possible joining date</label>
+                                    <input type="text" class="date" onkeypress="return isNumberKey(event)" placeholder="Possible joining date" name="readyToJoinAfter">
+                                </div>
+
+
+                            </div>
+
                             <div class="form-group">
                                 <label for="">{{CAREER_QUES['Ques0']}}<span style="color: red">*</span></label>
                                 {{--<input type="checkbox" name="freshers" onclick="checkFreshers(this)">--}}
@@ -42,16 +71,7 @@
 
                             <div id="compulsoryQuestions">
 
-                                <div class="form-group">
-                                    <label for="">Objective<span style="color: red">*</span></label>
-                                    <textarea type="text" name="objective" maxlength="300"  rows="2" class="form-control{{ $errors->has('objective') ? ' is-invalid' : '' }}"  id="objective" placeholder="Career Objective">{{ old('objective') }}</textarea>
-                                    @if ($errors->has('objective'))
 
-                                        <span class="">
-                                        <strong>{{ $errors->first('objective') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
 
 
 
@@ -91,20 +111,7 @@
 
                             </div>
 
-                            <div class="row">
 
-                                <div class="form-group col-md-6">
-                                    <label>Expected salary</label>
-                                    <input type="text" onkeypress="return isNumberKey(event)" placeholder="expected salary" name="expectedSalary">
-                                </div>
-
-                                <div class="form-group col-md-6">
-                                    <label>Possible joining date</label>
-                                    <input type="text" class="date" onkeypress="return isNumberKey(event)" placeholder="Possible joining date" name="readyToJoinAfter">
-                                </div>
-
-
-                            </div>
 
 
 
