@@ -83,6 +83,7 @@ define('STATUS',array(
     "1"=>'Active',
     "0"=>'Inactive',
 ));
+
 define('OTHERS',"others");
 define('CV_COMPLITING_MSG',"Thank you for submiting your CV. All the data submitted here are only for Caritas Bangladesh");
 

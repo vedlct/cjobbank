@@ -37,6 +37,7 @@
 
                     </select>
                 </div>
+
                 {{--<div class=" form-group">--}}
                     {{--<label>Apply Date</label>--}}
                     {{--<input class="form-control date" type="text">--}}
@@ -61,6 +62,19 @@
 
                     </select>
                 </div>
+
+                <div class=" form-group ">
+                    <label>Cv status</label>
+                    <select name="cvStatusFilter" id="cvStatusFilter" class="form-control">
+                        <option value="">Select Status</option>
+
+                        <option value="complete">Completed cv</option>
+                        <option value="incomplete">Incompleted cv</option>
+
+
+                    </select>
+                </div>
+
                 <hr>
 
 
@@ -142,10 +156,10 @@
 
         $(document).ready(function() {
 
-            @foreach(GENDER as $key=>$value)
-            gend.push('{{$value}}');
+            {{--@foreach(GENDER as $key=>$value)--}}
+            {{--gend.push('{{$value}}');--}}
 
-            @endforeach
+            {{--@endforeach--}}
 
 
             table = $('#managecv').DataTable({
@@ -174,9 +188,9 @@
                         if ($('#ageToFilter').val()!=""){
                             d.ageToFilter=$('#ageToFilter').val();
                         }
-//                        if ($('#zonefilter').val()!=""){
-//                            d.zonefilter=$('#zonefilter').val();
-//                        }
+                        if ($('#cvStatusFilter').val()!=""){
+                            d.cvStatusFilter=$('#cvStatusFilter').val();
+                        }
 
 
                     },
@@ -228,6 +242,8 @@
                             return "Male"
                         }else if (data.gender == "F") {
                             return "Female"
+                        }else if (data.gender == "T") {
+                            return "Transgender"
                         }
 
 
@@ -239,7 +255,8 @@
                     { data: 'email', name: 'email', "orderable": false, "searchable":true },
 
                     { "data": function(data){
-                        return '&nbsp;<button class="btn btn-smbtn-info" onclick="getEmpCv('+data.employeeId+')"><i class="fa fa-file-pdf-o"></i></button>'
+                        return '&nbsp;<button class="btn btn-smbtn-info" onclick="getEmpCv('+data.employeeId+')"><i class="fa fa-file-pdf-o"></i></button>'+
+                            '&nbsp;<button class="btn btn-sm btn-danger" onclick="EmpCvDelete('+data.employeeId+')"><i class="fa fa-trash-o"></i></button>'
                             ;},
                         "orderable": false, "searchable":false
                     },
@@ -456,6 +473,20 @@
             }
 
         });
+        $('#cvStatusFilter').change(function(){ //button filter event click
+
+//                table.search("").draw(); //just redraw myTableFilter
+            table.ajax.reload();  //just reload table
+            emptySelect();
+
+            if ($('#cvStatusFilter').val()!=""){
+
+                $('#cvStatusFilter').css("background-color", "#7c9").css('color', 'white');
+            }else {
+                $('#cvStatusFilter').css("background-color", "#FFF").css('color', 'black');
+            }
+
+        });
         $('#religionFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
 
@@ -514,6 +545,25 @@
             var url = "{{ route('userCv.get', ':empId') }}";
             url = url.replace(':empId', id);
             window.open(url,'_blank');
+        }
+        function EmpCvDelete(id) {
+
+            $.ajax({
+                type: 'post',
+                url: "{!! route('userCv.delete') !!}",
+                cache: false,
+                data: {'id': id,_token: "{{csrf_token()}}"},
+                success: function (data) {
+
+                   location.reload();
+
+                }
+            });
+
+            {{--var url = "{{ route('userCv.delete', ':empId') }}";--}}
+            {{--url = url.replace(':empId', id);--}}
+           // location.reload();
+            //window.open(url,'_blank');
         }
 
 
