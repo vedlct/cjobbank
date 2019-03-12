@@ -78,7 +78,6 @@ class UserCvController extends Controller
 
    public function getFullCv($empId){
 
-
        $personalInfo = Employee::select('emp_ques_obj.objective','firstName', 'lastName',
            'fathersName', 'mothersName', 'gender', 'personalMobile',
            'dateOfBirth', 'email', 'presentAddress', 'image', 'religionName', 'nationalityName','nationalId','parmanentAddress',
@@ -126,11 +125,17 @@ class UserCvController extends Controller
        $relativeCb = RelativeInCb::where('fkemployeeId', $empId)
            ->get();
 
+       $empOtherInfo=EmployeeOtherInfo::where('fk_empId', $empId)
+           ->first();
+
+
+
        $pdf = PDF::loadView('test',compact('allEmp', 'personalInfo', 'education',
            'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree',
-           'relativeCb','empOtherSkillls','empComputerSkill'));
+           'relativeCb','empOtherSkillls','empComputerSkill','empOtherInfo'));
 
-       return $pdf->stream('Curriculam Vitae of '.$personalInfo->firstName." ".$personalInfo->lastName.'.pdf',array('Attachment'=>false));
+       return $pdf->download('Curriculam Vitae of '.$personalInfo->firstName." ".$personalInfo->lastName.'.pdf',array('Attachment'=>false));
+
 
 
    }
@@ -246,6 +251,7 @@ class UserCvController extends Controller
 
        $empOtherInfo=EmployeeOtherInfo::where('fk_empId', $empId)
            ->first();
+
 
 
         $pdf = PDF::loadView('test',compact('allEmp', 'personalInfo', 'education',
