@@ -2,16 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Aggrement;
 use App\Employee;
 use App\Education;
 use App\EmployeeComputerSkill;
+use App\EmployeeLanguage;
 use App\EmployeeOtherInfo;
 use App\EmpOtherSkill;
+use App\Jobapply;
 use App\JobExperience;
+use App\MembershipInSocialNetwork;
+use App\PreviousWorkInCB;
 use App\ProfessionalQualification;
+use App\QuestionObjective;
+use App\QuestionObjectiveAns;
 use App\Refree;
 use App\RelativeInCb;
 use App\Traning;
+use App\User;
 use Illuminate\Http\Request;
 use PDF;
 use Auth;
@@ -370,6 +378,71 @@ class UserCvController extends Controller
 
 //        $personalInfo = Employee::where()
 //            ->get();
+    }
+    public function FullCvDelete(Request $r){
+        $empId=$r->id;
+        $check=Jobapply::where('fkemployeeId', $empId)->count();
+        if ($check > 0){
+            return $check;
+        }else{
+
+            RelativeInCb::where('fkemployeeId', $empId)->delete();
+            Refree::where('fkemployeeId', $empId)->delete();
+            Refree::where('fkemployeeId', $empId)->delete();
+            MembershipInSocialNetwork::where('fkemployeeId', $empId)->delete();
+            PreviousWorkInCB::where('fkemployeeId', $empId)->delete();
+            JobExperience::where('fkemployeeId', $empId)->delete();
+            ProfessionalQualification::where('fkemployeeId', $empId)->delete();
+            Traning::where('fkemployeeId', $empId)->delete();
+            EmployeeOtherInfo::where('fk_empId', $empId)->delete();
+            EmpOtherSkill::where('fkemployeeId', $empId)->delete();
+            EmployeeComputerSkill::where('fk_empId', $empId)->delete();
+            EmployeeLanguage::where('fkemployeeId', $empId)->delete();
+            Education::where('fkemployeeId', $empId)->delete();
+            QuestionObjective::where('empId', $empId)->delete();
+            QuestionObjectiveAns::where('fkemployeeId', $empId)->delete();
+            Jobapply::where('fkemployeeId', $empId)->delete();
+            $userId=Employee::find($empId)->fkuserId;
+
+            Employee::destroy($empId);
+            Aggrement::where('fkuserId', $userId)->delete();
+            User::destroy($userId);
+            return 0;
+
+        }
+
+
+
+
+
+    }
+    public function FullCvCompleteDelete(Request $r){
+        $empId=$r->id;
+
+
+            RelativeInCb::where('fkemployeeId', $empId)->delete();
+            Refree::where('fkemployeeId', $empId)->delete();
+            Refree::where('fkemployeeId', $empId)->delete();
+            MembershipInSocialNetwork::where('fkemployeeId', $empId)->delete();
+            PreviousWorkInCB::where('fkemployeeId', $empId)->delete();
+            JobExperience::where('fkemployeeId', $empId)->delete();
+            ProfessionalQualification::where('fkemployeeId', $empId)->delete();
+            Traning::where('fkemployeeId', $empId)->delete();
+            EmployeeOtherInfo::where('fk_empId', $empId)->delete();
+            EmpOtherSkill::where('fkemployeeId', $empId)->delete();
+            EmployeeComputerSkill::where('fk_empId', $empId)->delete();
+            EmployeeLanguage::where('fkemployeeId', $empId)->delete();
+            Education::where('fkemployeeId', $empId)->delete();
+            QuestionObjective::where('empId', $empId)->delete();
+            QuestionObjectiveAns::where('fkemployeeId', $empId)->delete();
+            Jobapply::where('fkemployeeId', $empId)->delete();
+            $userId=Employee::find($empId)->fkuserId;
+            Employee::destroy($empId);
+            Aggrement::where('fkuserId', $userId)->delete();
+            User::destroy($userId);
+            return 0;
+
+
     }
 
 }

@@ -231,6 +231,8 @@ Route::post('Admin-Manage-User/changeUserStatus','Admin\UserManagementController
 Route::post('Admin-Manage-User/update/{id}','Admin\UserManagementController@update')->name('admin.manageUser.update');
 /*----------------------Get CV ------------------------ */
 Route::get('user/cv/{empId}','UserCvController@getFullCv')->name('userCv.get');
+Route::post('user/cv-delete','UserCvController@FullCvDelete')->name('userCv.delete');
+Route::post('user/cv-confirm-delete','UserCvController@FullCvCompleteDelete')->name('userCv.confirm.delete');
 
 Route::post('user/cv/select','UserCvController@getSelectedCv')->name('userCv.select');
 

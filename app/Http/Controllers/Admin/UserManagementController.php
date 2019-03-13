@@ -122,8 +122,8 @@ class UserManagementController extends Controller
         $r->validate([
             'firstName' => 'required|max:45',
             'lastName' => 'required|max:45',
-            'email' => 'email|required|max:45',
-            'phone' => 'required|max:25',
+            'email' => 'email|required|max:45|unique:user',
+            'phone' => 'required|regex:/^[0-9]{11}+$/|min:11',
             'designationId' => 'required',
             'zoneId' => 'required',
             'address' => 'required|max:255',
@@ -162,8 +162,8 @@ class UserManagementController extends Controller
         $r->validate([
             'firstName' => 'required|max:45',
             'lastName' => 'required|max:45',
-            'email' => 'email|required|max:45',
-            'phone' => 'required|max:25',
+            'email' => 'email|required|max:45|unique:user,email,'.$id.',userId',
+            'phone' => 'required|regex:/^[0-9]{11}+$/|min:11',
             'designationId' => 'required',
             'zoneId' => 'required',
             'address' => 'required|max:255',

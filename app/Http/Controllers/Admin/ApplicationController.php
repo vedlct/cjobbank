@@ -90,6 +90,7 @@ class ApplicationController extends Controller
 
     public function manageApplication()
     {
+
         $religion=Religion::where('status',1)->get();
         $ethnicity=Ethnicity::where('status',1)->get();
         $natinality=Nationality::where('status',1)->get();
@@ -466,11 +467,22 @@ class ApplicationController extends Controller
 
     public function showAllMajorForEducation(Request $r)
     {
-         $major=Degree::select('educationMajorId','educationMajorName')
-            ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'degree.educationLevelId')
+//         $major=Degree::select('educationMajorId','educationMajorName')
+//            ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'degree.educationLevelId')
+//            ->where('degree.educationLevelId', '=',$r->id)
+//            ->where('degree.status',1)
+//            ->where('educationmajor.status',1)
+//            ->groupBy('educationMajorId')
+//            ->get();
+
+        $major = Educationmajor::select('educationMajorId','educationMajorName')
+            ->leftJoin('degree', 'degree.degreeId', 'educationmajor.fkDegreeId')
+            ->leftJoin('educationlevel', 'educationlevel.educationLevelId', 'degree.educationLevelId')
             ->where('degree.educationLevelId', '=',$r->id)
+            ->where('educationlevel.status',1)
             ->where('degree.status',1)
             ->where('educationmajor.status',1)
+
             ->groupBy('educationMajorId')
             ->get();
 
