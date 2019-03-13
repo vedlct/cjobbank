@@ -206,7 +206,12 @@
                         "name": "image",
                         "data": "image",
                         "render": function (data, type, full, meta) {
-                            return "<img src=\"{{url('public/candidateImages/thumb')}}"+"/"+ data + "\" height=\"50\"/>";
+                            if (data==null){
+                                return "<img src=\"{{url('public/candidateImages/thumb/dummyImage.png')}}" +"\" height=\"50\"/>";
+                            }else {
+                                return "<img src=\"{{url('public/candidateImages/thumb')}}"+"/"+ data + "\" height=\"50\"/>";
+                            }
+
                         },
                         "title": "Image",
                         "orderable": false,
@@ -219,6 +224,7 @@
                     { data: 'lastName', name: 'lastName',"orderable": false, "searchable":true },
 
                     { "data": function(data){
+
                         if(data.age1 > 0){
 
                             return data.age1+"."+parseInt((data.age2)/(12*data.age1));
@@ -236,16 +242,18 @@
 
                     { "data": function(data){
 
+                        if (data.gender != null){
+                            if( data.gender == "M"){
+                                return "Male"
+                            }else if (data.gender == "F") {
+                                return "Female"
+                            }else if (data.gender == "T") {
+                                return "Transgender"
+                            }
 
-
-                        if( data.gender == "M"){
-                            return "Male"
-                        }else if (data.gender == "F") {
-                            return "Female"
-                        }else if (data.gender == "T") {
-                            return "Transgender"
+                        }else {
+                            return '';
                         }
-
 
 
                         },
@@ -555,7 +563,69 @@
                 data: {'id': id,_token: "{{csrf_token()}}"},
                 success: function (data) {
 
-                   location.reload();
+                    console.log(data);
+
+                    if (data!=0){
+
+
+                        $.confirm({
+                            title: 'Confirm!',
+                            content: 'This user allready applied for '+data+' job',
+                            buttons: {
+                                confirm: function () {
+                                    $.ajax({
+                                        type: 'post',
+                                        url: "{!! route('userCv.confirm.delete') !!}",
+                                        cache: false,
+                                        data: {'id': id,_token: "{{csrf_token()}}"},
+                                        success: function (data) {
+                                            $.alert({
+                                                title: 'Success',
+                                                type: 'green',
+                                                content: 'This user deleted successfully',
+                                                buttons: {
+                                                    tryAgain: {
+                                                        text: 'Ok',
+                                                        btnClass: 'btn-green',
+                                                        action: function () {
+
+                                                            location.reload();
+
+                                                        }
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    });
+                                },
+                                cancel: function () {
+                                    //$.alert('Canceled!');
+                                },
+
+                            }
+                        });
+
+                    }else {
+
+                        $.alert({
+                            title: 'Success',
+                            type: 'green',
+                            content: 'This user deleted successfully',
+                            buttons: {
+                                tryAgain: {
+                                    text: 'Ok',
+                                    btnClass: 'btn-green',
+                                    action: function () {
+
+                                        location.reload();
+
+                                    }
+                                }
+                            }
+                        });
+                    }
+
+                  // location.reload();
 
                 }
             });

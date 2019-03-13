@@ -95,3 +95,7 @@
 
 <div id="display_dialog"></div>
 
+@if(Session::has('message'))
+    <p class="alert alert-info" style="text-align: center">{{ Session::get('message') }}</p>
+@endif
+
