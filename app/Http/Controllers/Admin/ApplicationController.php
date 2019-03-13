@@ -336,43 +336,129 @@ class ApplicationController extends Controller
     public function export()
     {
 
-        $appliedList=array(1);
+
+
+        $ethnicity=Ethnicity::get();
+//        $appliedList=$r->jobApply;
+        $appliedId=7;
         $filePath=public_path ()."/exportedExcel";
         $fileName="AppliedCandidateList".date("Y-m-d_H-i-s");
-
         $fileInfo=array(
             'fileName'=>$fileName,
             'filePath'=>$fileName,
         );
-
         $list=array();
         $eduList=array();
-        for ($i=0;$i<count($appliedList);$i++) {
-            $appliedId = $appliedList[$i];
+        $qualificationList=array();
+        $trainingList=array();
+        $jobExperienceList=array();
+        $salaryList=array();
+        $refreeList=array();
+        $relativeList=array();
 
-            $empId = Jobapply::where('jobapply', $appliedId)->first()->fkemployeeId;
 
-            $newlist = Employee::select('employee.*', DB::raw("TIMESTAMPDIFF(YEAR,`employee`.`dateOfBirth`,CURDATE()) as AgeYear"), DB::raw("TIMESTAMPDIFF(MONTH,`employee`.`dateOfBirth`,CURDATE()) as AgeMonth"))
-//                ->leftJoin('education', 'education.fkemployeeId', '=', 'employee.employeeId')
 
-                ->where('employee.employeeId', $empId)
-                ->get()
-                ->toArray();
+         $jobTitle=Jobapply::select('job.title','job.deadline')
+                ->leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')->where('jobapply',$appliedId)->first();
 
-            $education = Education::select('education.institutionName', 'education.status', 'education.resultSystem', 'education.result', 'educationlevel.educationLevelName',
-                'educationmajor.educationMajorName', 'education.fkMajorId')
-                ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
-                ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
-                ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
-                ->where('fkemployeeId', $empId)->get()->toArray();
+        $empIds=Jobapply::select('fkemployeeId')->where('fkjobId',$appliedId)
+            ->get()
+            ->toArray();
 
-            $list = array_merge($list, $newlist);
-            $educationList = array_merge($eduList, $education);
+        $newlist=Employee::select('employee.*',DB::raw("TIMESTAMPDIFF(YEAR,`employee`.`dateOfBirth`,CURDATE()) as AgeYear"),DB::raw("MONTH(`employee`.`dateOfBirth`)-MONTH(CURDATE()) as AgeMonth"))
+                ->whereIn('employee.employeeId',$empIds)
+                ->get();
+
+        $education=Education::select('education.institutionName','board.boardName','education.fkemployeeId','education.status','education.resultSystem','education.result','educationlevel.educationLevelName',
+            'educationmajor.educationMajorName','education.fkMajorId')
+            ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
+            ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
+            ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
+            ->leftJoin('board', 'board.boardId', '=', 'education.fkboardId')
+            ->whereIn('fkemployeeId',$empIds)
+            ->get();
+
+
+        $pQualification=ProfessionalQualification::whereIn('professionalqualification.fkemployeeId',$empIds)
+            ->get();
+
+        $training=Traning::whereIn('fkemployeeId',$empIds)
+            ->get();
+
+
+        $jobExperience=JobExperience::whereIn('fkemployeeId',$empIds)
+            ->get();
+
+        $salaryInfo=Jobapply::whereIn('fkemployeeId',$empIds)
+            ->where('fkjobId',$appliedId)
+            ->get();
+
+        $refree=Refree::whereIn('fkemployeeId',$empIds)
+            ->get();
+
+        $relativeList=RelativeInCb::whereIn('fkemployeeId',$empIds)
+            ->get();
+
+
+
+//        return $relativeList;
+
+//        return view('Admin.application.AppliedCandidateList')
+//            ->with('AppliedCandidateList',$newlist)
+//            ->with('ethnicity',$ethnicity)
+//            ->with('educationList',$education)
+//            ->with('qualificationList',$pQualification)
+//            ->with('trainingList',$training)
+//            ->with('jobExperienceList',$jobExperience)
+//            ->with('salaryList',$salaryInfo)
+//            ->with('refreeList',$refree)
+//            ->with('jobTitle',$jobTitle)
+//            ->with('relativeList',$relativeList);
+
+        $check=Excel::create($fileName,function($excel) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle) {
+            $excel->sheet('First sheet', function($sheet) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle) {
+                $sheet->loadView('Admin.application.AppliedCandidateList')
+                    ->with('AppliedCandidateList',$newlist)
+                    ->with('ethnicity',$ethnicity)
+                    ->with('educationList',$education)
+                    ->with('qualificationList',$pQualification)
+                    ->with('trainingList',$training)
+                    ->with('jobExperienceList',$jobExperience)
+                    ->with('salaryList',$salaryInfo)
+                    ->with('refreeList',$refree)
+                    ->with('jobTitle',$jobTitle)
+                    ->with('relativeList',$relativeList);
+
+            });
+        })->export('xls');
+
+        return "done";
+
+        $check=Excel::create($fileName,function($excel) use($list,$filePath,$ethnicity,$eduList,$qualificationList,$trainingList,$jobExperienceList,$salaryList,$refreeList,$relativeList,$jobTitle) {
+            $excel->sheet('First sheet', function($sheet) use($list,$ethnicity,$eduList,$qualificationList,$trainingList,$jobExperienceList,$salaryList,$refreeList,$relativeList,$jobTitle) {
+                $sheet->loadView('Admin.application.AppliedCandidateList')
+                    ->with('AppliedCandidateList',$list)
+                    ->with('ethnicity',$ethnicity)
+                    ->with('educationList',$eduList)
+                    ->with('qualificationList',$qualificationList)
+                    ->with('trainingList',$trainingList)
+                    ->with('jobExperienceList',$jobExperienceList)
+                    ->with('salaryList',$salaryList)
+                    ->with('refreeList',$refreeList)
+                    ->with('jobTitle',$jobTitle)
+                    ->with('relativeList',$relativeList);
+            });
+        })->store('xls',$filePath);
+        if ($check){
+            $message=array('message'=>$fileName .'.xls has been downloaded',
+                'success'=>'1');
+            $fileInfo=array_merge($fileInfo,$message);
+        }else{
+            $message=array('message'=>'Someting went wrong',
+                'success'=>'0');
+            $fileInfo=array_merge($fileInfo,$message);
         }
-
-        $ethnicity=Ethnicity::get();
-
-        return view('Admin.application.AppliedCandidateList')->with('AppliedCandidateList',$list)->with('ethnicity',$ethnicity)->with('educationList',$educationList);
+        return $fileInfo;
 
 
 
