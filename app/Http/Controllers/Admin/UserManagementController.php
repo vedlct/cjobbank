@@ -122,7 +122,7 @@ class UserManagementController extends Controller
         $r->validate([
             'firstName' => 'required|max:45',
             'lastName' => 'required|max:45',
-            'email' => 'email|required|max:45|unique:user',
+            'email' => 'email|required|max:45|unique:user|unique:hr',
             'phone' => 'required|regex:/^[0-9]{11}+$/|min:11',
             'designationId' => 'required',
             'zoneId' => 'required',
@@ -159,10 +159,13 @@ class UserManagementController extends Controller
     }
 
     public function update($id,Request $r){
+
+
+        $hr=HR::findOrFail($id);
         $r->validate([
             'firstName' => 'required|max:45',
             'lastName' => 'required|max:45',
-            'email' => 'email|required|max:45|unique:user,email,'.$id.',userId',
+            'email' => 'email|required|max:45|unique:hr,email,'.$id.',hrId|unique:user,email,'.$hr->fkuserId.',userId',
             'phone' => 'required|regex:/^[0-9]{11}+$/|min:11',
             'designationId' => 'required',
             'zoneId' => 'required',
@@ -170,7 +173,8 @@ class UserManagementController extends Controller
             'gender' => 'required',
             'password' => 'nullable|confirmed|min:6',
         ]);
-        $hr=HR::findOrFail($id);
+
+
         $hr->firstName=$r->firstName;
         $hr->lastName=$r->lastName;
         $hr->email=$r->email;
@@ -183,6 +187,7 @@ class UserManagementController extends Controller
 
         $user=User::findOrFail($hr->fkuserId);
         $user->fkuserTypeId=$r->userType;
+        $user->email=$r->email;
         if ($r->password !=""){
             $user->password=Hash::make($r->password);
         }
