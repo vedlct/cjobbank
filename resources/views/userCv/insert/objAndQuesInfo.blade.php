@@ -19,8 +19,8 @@
                             <h2 style="margin-bottom: 40px; text-align: center;">Career Objective and Application Information</h2>
 
                             <div class="form-group">
-                                <label for="">Objective <span style="color: red">(Max Limit 300)</span><span style="color: red">*</span></label>
-                                <textarea type="text" name="objective" maxlength="300"  rows="2" class="form-control{{ $errors->has('objective') ? ' is-invalid' : '' }}"  id="objective" placeholder="Career Objective">{{ old('objective') }}</textarea>
+                                <label for="">Objective <span style="color: red">(Max Limit 2500 charecter)</span></label>
+                                <textarea type="text" name="objective" maxlength="2500"  rows="2" class="form-control{{ $errors->has('objective') ? ' is-invalid' : '' }}"  id="objective" placeholder="Career Objective">{{ old('objective') }}</textarea>
                                 @if ($errors->has('objective'))
 
                                     <span class="">

@@ -8,8 +8,8 @@
 
                         <div class="row">
                             <div class="form-group col-md-12">
-                                <label for="">Career objective (Max Limit 300)</label>
-                                <textarea type="text" name="objective" maxlength="300"  rows="2" class="form-control{{ $errors->has('objective') ? ' is-invalid' : '' }}"  id="objective" placeholder="Career Objective">{{$employeeCareerInfo->objective}}</textarea>
+                                <label for="">Career objective (Max Limit 2500 charecter)</label>
+                                <textarea type="text" name="objective" maxlength="2500"  rows="2" class="form-control{{ $errors->has('objective') ? ' is-invalid' : '' }}"  id="objective" placeholder="Career Objective">{{$employeeCareerInfo->objective}}</textarea>
                                 @if ($errors->has('objective'))
 
                                     <span class="">

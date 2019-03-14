@@ -86,7 +86,7 @@
                                     <select required name="religion"class="form-control" id="sel1">
                                         <option selected value="">Select religion</option>
                                         @foreach($religion as $reli)
-                                        <option @if (old('religion') == $value) selected @endif value="{{$reli->religionId}}">{{$reli->religionName}}</option>
+                                        <option @if (old('religion') == $reli->religionId) selected @endif value="{{$reli->religionId}}">{{$reli->religionName}}</option>
                                         @endforeach
 
                                     </select>
@@ -98,7 +98,7 @@
                                     <select required name="ethnicity" class="form-control" id="sel1">
                                         <option selected value="">Select ethnicity</option>
                                         @foreach($ethnicity as $ethi)
-                                            <option @if (old('ethnicity') == $value) selected @endif value="{{$ethi->ethnicityId}}">{{$ethi->ethnicityName}}</option>
+                                            <option @if (old('ethnicity') == $ethi->ethnicityId) selected @endif value="{{$ethi->ethnicityId}}">{{$ethi->ethnicityName}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -179,7 +179,7 @@
                                     <select required name="nationality" class="form-control js-example-basic-single" id="sel1">
                                         <option selected value="">Select nationality</option>
                                         @foreach($natinality as $natio)
-                                            <option @if (old('nationality') == $value) selected @endif value="{{$natio->nationalityId}}">{{$natio->nationalityName}}</option>
+                                            <option @if (old('nationality') == $natio->nationalityId) selected @endif value="{{$natio->nationalityId}}">{{$natio->nationalityName}}</option>
                                         @endforeach
                                     </select>
                                 </div>
