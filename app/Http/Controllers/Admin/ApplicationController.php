@@ -92,6 +92,12 @@ class ApplicationController extends Controller
 
     public function manageApplication()
     {
+//        $agreement=Aggrement::select('aggrement.*','agreementqus.*','employee.employeeId')
+//            ->leftJoin('employee','employee.fkuserId','aggrement.fkuserId')
+//            ->leftJoin('agreementqus','agreementqus.agreementQusId','aggrement.fkaggrementQusId')
+//            ->where('employee.employeeId',7)
+//            ->get();
+//        return $agreement;
 
         $religion=Religion::where('status',1)->get();
         $ethnicity=Ethnicity::where('status',1)->get();

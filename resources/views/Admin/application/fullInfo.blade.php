@@ -287,7 +287,7 @@
         </td>
         <td colspan="3" height="250" style="text-align: center;vertical-align: middle;">
             Answers of declaration form:
-            @foreach($agreement->where('fkemployeeId',$emp->employeeId) as $ag)
+            @foreach($agreement->where('employeeId',$emp->employeeId) as $ag)
             {{--$agreement--}}
                 {{$ag->qus}} : {{$ag->ans}} <br>
 
