@@ -41,7 +41,9 @@
         <th colspan="2">Professional Qualification</th>
         <th colspan="2">Training</th>
         <th colspan="2">Job Experiences/ Employment History </th>
+        @if($withoutsalary != 'true')
         <th colspan="2">Salary</th>
+        @endif
         <th>National ID Card</th>
         <th>Photo</th>
         <th>Name of  two Referees</th>
@@ -127,6 +129,7 @@
                 @endforeach
 
             </td>
+            @if($withoutsalary != 'true')
             <td colspan="2" height="250" style="text-align: center;vertical-align: middle;">
                 @foreach($salaryList->where('fkemployeeId',$emp['employeeId']) as $salary)
                     Current:{{$salary->currentSalary}}<br>
@@ -134,6 +137,7 @@
                 @endforeach
 
             </td>
+            @endif
             <td height="250" style="text-align: center;vertical-align: middle;">
                     {{$emp['nationalId']}}
             </td>
