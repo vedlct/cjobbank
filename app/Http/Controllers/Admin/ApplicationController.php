@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Aggrement;
 use App\Degree;
 use App\Education;
 use App\Educationlevel;
@@ -91,6 +92,12 @@ class ApplicationController extends Controller
 
     public function manageApplication()
     {
+//        $agreement=Aggrement::select('aggrement.*','agreementqus.*','employee.employeeId')
+//            ->leftJoin('employee','employee.fkuserId','aggrement.fkuserId')
+//            ->leftJoin('agreementqus','agreementqus.agreementQusId','aggrement.fkaggrementQusId')
+//            ->where('employee.employeeId',7)
+//            ->get();
+//        return $agreement;
 
         $religion=Religion::where('status',1)->get();
         $ethnicity=Ethnicity::where('status',1)->get();
@@ -295,13 +302,19 @@ class ApplicationController extends Controller
             ->get();
 
 
+        $relative=RelativeInCb::whereIn('fkemployeeId',$employees)->get();
+
+        $agreement=Aggrement::select('aggrement.*','agreementqus.*','employee.employeeId')
+            ->leftJoin('employee','employee.fkuserId','aggrement.fkuserId')
+            ->leftJoin('agreementqus','agreementqus.agreementQusId','aggrement.fkaggrementQusId')
+            ->whereIn('employee.employeeId',$employees)
+            ->get();
 
 
+        $check=Excel::create($fileName,function($excel)use ($agreement,$relative,$previousWorkExperienceInCB,$empQuestionAns,$employee,$excelName,$social,$education,$pQualification,$training,$jobExperience,$reference,$empQuestion,$extraCurriculumn,$computerSkill,$languageHead,$language,$jobTitle) {
 
-        $check=Excel::create($fileName,function($excel)use ($previousWorkExperienceInCB,$empQuestionAns,$employee,$excelName,$social,$education,$pQualification,$training,$jobExperience,$reference,$empQuestion,$extraCurriculumn,$computerSkill,$languageHead,$language,$jobTitle) {
 
-
-            $excel->sheet('First sheet', function($sheet) use ($previousWorkExperienceInCB,$empQuestionAns,$employee,$excelName,$social,$education,$pQualification,$training,$jobExperience,$reference,$empQuestion,$extraCurriculumn,$computerSkill,$languageHead,$language,$jobTitle) {
+            $excel->sheet('First sheet', function($sheet) use ($agreement,$relative,$previousWorkExperienceInCB,$empQuestionAns,$employee,$excelName,$social,$education,$pQualification,$training,$jobExperience,$reference,$empQuestion,$extraCurriculumn,$computerSkill,$languageHead,$language,$jobTitle) {
 
                 $sheet->setStyle(array(
                     'font' => array(
@@ -314,7 +327,7 @@ class ApplicationController extends Controller
                 $sheet->loadView('Admin.application.fullInfo',
                     compact('employee','social','education','pQualification','training','jobExperience','reference',
                         'empQuestion','extraCurriculumn','computerSkill','languageHead','language','excelName','empQuestionAns'
-                        ,'jobTitle','previousWorkExperienceInCB'));
+                        ,'jobTitle','previousWorkExperienceInCB','relative','agreement'));
             });
 
         })->store('xls',$filePath);

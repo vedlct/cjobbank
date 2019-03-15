@@ -232,9 +232,16 @@
             </span></td>
         <td colspan="3" height="250" style="text-align: center;vertical-align: middle;">
             Do you have any relatives working in Caritas Bangladesh?*<br>
-            Name and relation:<br>
 
-            Answers of declaration form:<br>
+            @foreach($relative->where('fkemployeeId',$emp->employeeId) as $rel)
+                {{$rel->firstName}}
+                {{$rel->lastName}}<br>
+                {{$rel->degisnation}}<br>
+                Relation: {{$rel->relation}}<br><br>
+            @endforeach
+
+
+
         </td>
         <td colspan="4" height="250" style="text-align: center;vertical-align: middle;">
             Training information:<br>
@@ -280,6 +287,14 @@
         </td>
         <td colspan="3" height="250" style="text-align: center;vertical-align: middle;">
             Answers of declaration form:
+            @foreach($agreement->where('employeeId',$emp->employeeId) as $ag)
+            {{--$agreement--}}
+                {{$ag->qus}} : {{$ag->ans}} <br>
+
+            @endforeach
+
+
+
         </td>
         <td colspan="4" height="250" style="text-align: center;vertical-align: middle;">
 
