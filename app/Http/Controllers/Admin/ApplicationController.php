@@ -498,7 +498,7 @@ class ApplicationController extends Controller
 //        $appliedList=$r->jobApply;
 //        $appliedId=7;
         $filePath=public_path ()."/exportedExcel";
-        $fileName=$excelName." HR_report03".date("Y-m-d_H-i-s");
+        $fileName=$excelName."_HR_report03_".date("Y-m-d_H-i-s");
 
         $fileInfo=array(
             'fileName'=>$fileName,
@@ -599,7 +599,7 @@ class ApplicationController extends Controller
 //        $appliedList=$r->jobApply;
 //        $appliedId=7;
         $filePath=public_path ()."/exportedExcel";
-        $fileName=$excelName." HR_report03".date("Y-m-d_H-i-s");
+        $fileName=$excelName."_HR_report02_".date("Y-m-d_H-i-s");
 
         $fileInfo=array(
             'fileName'=>$fileName,
