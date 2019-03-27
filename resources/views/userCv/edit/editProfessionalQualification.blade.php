@@ -24,24 +24,42 @@
         <div class="form-group col-md-4">
 
             <label for="">Result system<span style="color: red">*</span></label>
-            <select name="resultSystem" class="form-control"  id="resultSydtem" onchange="changeResult(this)">
+            <select name="resultSystem" class="form-control"  id="resultSydtem" >
                 <option value="">Select System</option>
 
-                @foreach(RESULT_SYSTEM as $key=>$value)
-                    <option @if($value == $professional->resultSystem ) selected @endif value="{{$value}}">{{$key}}</option>
-                @endforeach
+                {{--@foreach(RESULT_SYSTEM as $key=>$value)--}}
+                    {{--<option @if($value == $professional->resultSystem ) selected @endif value="{{$value}}">{{$key}}</option>--}}
+                {{--@endforeach--}}
+                {{--<option value="{{OTHERS}}" >{{OTHERS}}</option>--}}
+
+                @if($professional->resultSystem!=4)
+                    @foreach(RESULT_SYSTEM as $key=>$value)
+                        <option @if($value==$professional->resultSystem)selected @endif value="{{$value}}">{{$key}}</option>
+
+                    @endforeach
+                    <option value="{{OTHERS}}" >{{OTHERS}}</option>
+                @else
+                    <option selected value="{{OTHERS}}" >{{OTHERS}}</option>
+                @endif
+
             </select>
         </div>
 
         <div class="form-group" id="otherField">
-            @if($professional->resultSystem==4)
-                <div class="form-group col-md-12">
-                    <label for="inputPassword4">Grade</label>
-                    <input type="text" class="form-control" name="grade" value="{{$professional->grade}}"  placeholder="">
-                </div>
+            {{--@if($professional->resultSystem==4)--}}
+                {{--<div class="form-group col-md-12">--}}
+                    {{--<label for="inputPassword4">Grade</label>--}}
+                    {{--<input type="text" class="form-control" name="grade" value="{{$professional->grade}}"  placeholder="">--}}
+                {{--</div>--}}
 
 
-            @endif
+            {{--@endif--}}
+
+        </div>
+
+        <div @if($professional->resultSystem !=4)style="display: none" @endif id="resultSydtemNameDiv" class="form-group col-md-4">
+            <label for="">Result system name</label>
+            <input type="text" maxlength="255" name="resultSydtemName" value="{{$professional->resultSystemName}}" class="form-control" id="resultSydtemName"  placeholder="">
 
         </div>
 
@@ -151,6 +169,22 @@
 
         }
 
+
+    });
+
+    $('#resultSydtem').on('change', function() {
+
+        var resultSydtem =$('#resultSydtem').val();
+        if (resultSydtem == "others"){
+
+            $("#resultSydtemNameDiv").show();
+        }else {
+
+
+            $("#resultSydtemNameDiv").hide();
+
+
+        }
 
     });
 

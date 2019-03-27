@@ -106,11 +106,19 @@ class ProfessionalCertificateController extends Controller
                 $professional->institutionName=$r->institutionName[$i];
                 $professional->startDate=$r->startDate[$i];
                 $professional->endDate=$r->endDate[$i];
-                $professional->resultSystem=$r->resultSystem[$i];
+//                $professional->resultSystem=$r->resultSystem[$i];
                 $professional->result=$r->result[$i];
                 $professional->status=$r->status[$i];
                 if($r->grade[$i]){
                     $professional->grade=$r->grade[$i];
+                }
+
+                if ($r->resultSystem[$i]=='others'){
+
+                    $professional->resultSystem=4;
+                    $professional->resultSystemName=$r->resultSydtemName[$i];
+                }else{
+                    $professional->resultSystem=$r->resultSystem[$i];
                 }
 
 
@@ -139,7 +147,14 @@ class ProfessionalCertificateController extends Controller
             $professional->institutionName=$r->institutionName;
             $professional->startDate=$r->startDate;
             $professional->endDate=$r->endDate;
+//            $professional->resultSystem=$r->resultSystem;
+        if ($r->resultSystem=='others'){
+
+            $professional->resultSystem=4;
+            $professional->resultSystemName=$r->resultSydtemName;
+        }else{
             $professional->resultSystem=$r->resultSystem;
+        }
             $professional->result=$r->result;
             $professional->status=$r->status;
             $professional->hour=$r->hour;

@@ -2,7 +2,7 @@
 
 define('GENDER',array(
     "Man"=>'M',
-    "Women"=>'F',
+    "Woman"=>'F',
     "Transgender"=>'T'
 ));
 define('DISABILITY',array(

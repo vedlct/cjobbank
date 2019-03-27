@@ -8,7 +8,7 @@
 
                         <div class="row">
                             <div class="form-group col-md-12">
-                                <label for="">Career objective (Max Limit 2500 charecter)</label>
+                                <label for="">Career objective <span style="color: blue">(Max Limit 2500 character)</span></label>
                                 <textarea type="text" name="objective" maxlength="2500"  rows="2" class="form-control{{ $errors->has('objective') ? ' is-invalid' : '' }}"  id="objective" placeholder="Career Objective">{{$employeeCareerInfo->objective}}</textarea>
                                 @if ($errors->has('objective'))
 
@@ -151,12 +151,12 @@
         // alert(obj.length);
         //
         // return false;
-        if(obj.length>300){
+        if(obj.length>2500){
 
             $.alert({
                 title: 'Error',
                 type: 'red',
-                content: "Objective should not exceed more than 300 character",
+                content: "Objective should not exceed more than 2500 character",
                 buttons: {
                     tryAgain: {
                         text: 'Ok',
@@ -167,7 +167,6 @@
                     }
                 }
             });
-
             return false;
         }
         return true;

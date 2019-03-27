@@ -6,6 +6,9 @@
         strong{
             color: red;
         }
+        notice{
+            color: blue;
+        }
         /*#imageMsg,#signMsg{*/
             /*display: none;*/
         /*}*/
@@ -342,7 +345,7 @@
                                 <div class="row">
 
                                     <div class="form-group col-md-6">
-                                        <label for="">Image</label>&nbsp;<span id="imageMsg"><strong>(Maximum Image Size 100Kb)</strong></span>
+                                        <label for="">Image</label>&nbsp;<span id="imageMsg"><notice>(Maximum Image Size 100Kb)</notice></span>
                                         @if ($errors->has('image'))
 
                                             <span class="">
@@ -359,7 +362,7 @@
                                         @endif
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="">Signature</label>&nbsp;<span id="signMsg"><strong>(Maximum Signature Size 50Kb)</strong></span>
+                                        <label for="">Signature</label>&nbsp;<span id="signMsg"><notice>(Maximum Signature Size 50Kb)</notice></span>
                                         @if ($errors->has('sign'))
 
                                             <span class="">

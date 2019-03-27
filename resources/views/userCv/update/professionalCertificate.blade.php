@@ -45,26 +45,40 @@
                                                 </div>
 
 
-                                                @if($val->resultSystem)
-                                                    <div class="form-group col-md-4">
-                                                        <label for="inputPassword4">Result System :</label>
-                                                        <label for="inputPassword4">{{$val->grade}}</label>
-                                                    </div>
+                                                {{--@if($val->resultSystem)--}}
+                                                    {{--<div class="form-group col-md-4">--}}
+                                                        {{--<label for="inputPassword4">Result System :</label>--}}
+                                                        {{--<label for="inputPassword4">{{$val->grade}}</label>--}}
+                                                    {{--</div>--}}
 
-                                                 @else
+                                                 {{--@else--}}
                                                     <div class="form-group col-md-4">
                                                         <label for="inputEmail4">Result System :</label>
 
                                                         <label >
-                                                            @foreach(RESULT_SYSTEM as $key=>$value)
-                                                                @if($value==$val->resultSystem){{$key}}
+                                                            {{--@foreach(RESULT_SYSTEM as $key=>$value)--}}
+                                                                {{--@if($value==$val->resultSystem){{$key}}--}}
+                                                                {{--@endif--}}
+                                                            {{--@endforeach--}}
+
+                                                                @if($val->resultSystem!=4)
+
+                                                                    @foreach(RESULT_SYSTEM as $key=>$value)
+                                                                        @if($val->resultSystem ==$value)
+                                                                            {{$key}}
+                                                                        @endif
+
+
+                                                                    @endforeach
+                                                                @else
+                                                                    {{$val->resultSystemName}}
                                                                 @endif
-                                                            @endforeach
+
                                                         </label>
 
                                                         {{--<input type="text" class="form-control" name="institutionName{{$val->professionalQualificationId}}" id="inputEmail4" value="{{$val->institutionName}}" placeholder="institution" required>--}}
                                                     </div>
-                                                @endif
+                                                {{--@endif--}}
 
 
 
@@ -239,6 +253,24 @@
             });
         });
 
+        function getResultSystemName(x){
+
+
+            var resultSydtem=document.getElementById("resultSydtem"+x).value;
+
+            if (resultSydtem == "others"){
+
+                $("#resultSydtemNameDiv"+x).show();
+            }else {
+
+
+                $("#resultSydtemNameDiv"+x).hide();
+
+
+            }
+
+        }
+
 
 
         $(document).ready(function(){
@@ -363,12 +395,19 @@
                     '</div>'+
                     '<div class="form-group col-md-4">'+
                     '<label for="">Result System<span style="color: red">*</span></label>'+
-                    '<select name="resultSystem[]" class="form-control" id="resultSydtem'+counter+'" data-panel-id="'+counter+'" onchange="changeResult(this)">'+
+                    '<select name="resultSystem[]" class="form-control" id="resultSydtem'+counter+'" data-panel-id="'+counter+'" onchange="getResultSystemName('+counter+')">'+
                     '<option value="">Select System</option>'+
                     @foreach(RESULT_SYSTEM as $key=>$value)
                         '<option value="{{$value}}">{{$key}}</option>'+
                     @endforeach
+                        '<option value="{{OTHERS}}" >{{OTHERS}}</option>'+
                         '</select>'+
+
+                    '</div>'+
+                    '<div style="display: none" id="resultSydtemNameDiv'+counter+'" class="form-group col-md-4">'+
+                    '<label for="">Result system name</label>'+
+                    '<input type="text" maxlength="255" name="resultSydtemName[]" class="form-control" id="resultSydtemName'+counter+'"  placeholder="">'+
+
                     '</div>'+
                     '<div class="form-group" id="otherField'+counter+'"></div>'+
                     '<div class="form-group col-md-4">'+

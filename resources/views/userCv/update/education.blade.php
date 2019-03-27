@@ -26,7 +26,7 @@
 
                                     <div class="form-group col-md-4">
 
-                                        <label for="">Education exam/degree :</label>
+                                        <label for="">Exam/ Degree :</label>
                                         {{$educationInfo->educationLevelName}}
                                     </div>
 
@@ -45,7 +45,7 @@
                                 @if($educationInfo->eduLvlUnder ==2 || $educationInfo->eduLvlUnder==null )
 
                                 <div class="form-group col-md-12">
-                                    <label for="">Institute name :</label>
+                                    <label for="">School/College/Institution name :</label>
                                     <label for="">{{$educationInfo->institutionName}}</label>
                                     {{--<input type="text" name="instituteName[]" required class="form-control" id="" placeholder="">--}}
                                 </div>
@@ -117,7 +117,7 @@
                                         {{$educationInfo->result}}
                                     </div>
                                     <div class="form-group col-md-3">
-                                        <label for="">Out of :</label>
+                                        <label for="">Scale/ Out of :</label>
                                         <label for="">{{$educationInfo->resultOutOf}}</label>
 
                                     </div>
@@ -152,7 +152,7 @@
                             </div>
 
                             <button type="button" id="addButton" class="btn btn-success">Add more</button>
-                            <button type="button" id="removeButton" class="btn btn-success" >remove</button>
+                            <button type="button" id="removeButton" class="btn btn-success" >Remove</button>
 
                             <div style="overflow:auto;">
                                 <div style="float:right;">
@@ -541,11 +541,11 @@
                         '</div>'+
 
                         ' <div class="form-group col-md-3">'+
-                        '<label for="">Result/Cgpa/Score</label>'+
+                        '<label for="">Result/CGPA/Score</label>'+
                         '<input name="result[]" type="text" class="form-control" id="cgpa'+counter+'"   placeholder="CGPA">'+
                         '</div>'+
                         '<div class="form-group col-md-3">'+
-                        '<label for="">CGPA Out of</label>'+
+                        '<label for="">Scale/ Out of</label>'+
                         '<input type="text" name="resultOutOf[]" class="form-control" id="resultOutOf'+counter+'" placeholder="CGPA Out of">'+
                         '</div>'
 
