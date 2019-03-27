@@ -270,6 +270,17 @@
             }
 
         }
+        function selectStatusAdd(x) {
+
+            var value=$(x).val();
+            var id=$(x).data('panel-id');
+            if(value==1){
+                $('#courseDuration'+id).hide();
+            }
+            else if(value==2){
+                $('#courseDuration'+id).show();
+            }
+        }
 
 
 
@@ -426,7 +437,7 @@
 
 
                     '</div>'+
-                    '<div class="row" style="margin-left: 10px">'+
+                    '<div class="row" style="margin-left: 10px" id="courseDuration'+counter+'">'+
                     '<label>Duration</label>'+
                     '<div class="form-group col-md-2">'+
                     '<label for="inputPassword4">Hour</label>'+
@@ -481,7 +492,7 @@
                     '</div>'+
                     '<div class="form-group col-md-4">'+
                     '<label for="inputPassword4">Staus<span style="color: red">*</span></label>'+
-                    '<select  class="form-control" id="professinalCertificateStatus'+counter+'" name="status[]">'+
+                    '<select  class="form-control" id="professinalCertificateStatus'+counter+'" name="status[]" data-panel-id="'+counter+'" onchange="selectStatusAdd(this)">'+
                     '<option value="">Select Status</option>'+
                         @foreach(COMPLETING_STATUS as $key=>$value)
                             '<option value="{{$value}}">{{$key}}</option>'+
@@ -490,7 +501,7 @@
                     '</div>'
                 );
                 newTextBoxDiv.appendTo("#TextBoxesGroup");
-
+                $('#courseDuration'+counter).hide();
                 counter++;
                 if(counter>1){
 //                    document.getElementById("removeButton").style.display='block';
