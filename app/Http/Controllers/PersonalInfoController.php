@@ -94,7 +94,7 @@ class PersonalInfoController extends Controller
             'bloodGroup' => 'required|max:5',
             'maritalStatus' => 'required|max:15',
             'spouse' => 'max:100',
-            'passport' => 'nullable|alpha_num|max:15',
+            'passport' => 'nullable|alpha_num',
             'fathersName' => 'required|max:50',
             'mothersName' => 'required|max:50',
             'dob' => 'required|date',
@@ -196,13 +196,12 @@ class PersonalInfoController extends Controller
     {
 
         $rules = [
-
             'firstName' => 'required|max:50',
             'lastName' => 'required|max:50',
             'bloodGroup' => 'required|max:5',
             'maritalStatus' => 'required|max:15',
             'spouse' => 'max:100',
-            'passport' => 'nullable|alpha_num|max:15',
+            'passport' => 'nullable|alpha_num',
             'fathersName' => 'required|max:50',
             'mothersName' => 'required|max:50',
             'dob' => 'required|date',

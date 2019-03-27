@@ -52,7 +52,7 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="inputPassword4">Start date</label>
-                                        <input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" >
+                                        <input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" required>
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="inputPassword4">End date</label>
@@ -64,11 +64,11 @@
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="inputPassword4">Major responsibilities </label>
-                                        <textarea class="form-control" name="majorResponsibilities[]" maxlength="300"  id="majorResponsibilities" placeholder="Major responsibilities"></textarea>
+                                        <textarea class="form-control" name="majorResponsibilities[]" maxlength="5000"  id="majorResponsibilities" placeholder="max limit 5000"></textarea>
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="inputPassword4">Key achievement </label>
-                                        <textarea class="form-control" name="keyAchivement[]" maxlength="300"  id="keyAchivement" placeholder="Key achievement"></textarea>
+                                        <textarea class="form-control" name="keyAchivement[]" maxlength="5000"  id="keyAchivement" placeholder="max limit 5000"></textarea>
                                     </div>
 
                                     <div class="form-group col-md-6" id="supervisorDiv">
@@ -723,11 +723,11 @@
                     '</div> ' +
                     '<div class="form-group col-md-12">'+
                     '<label for="inputPassword4">Major responsibilities<span style="color: red">*</span> </label>'+
-                    '<textarea class="form-control" name="majorResponsibilities[]" maxlength="200" required id="majorResponsibilities'+counter+'" placeholder="Major responsibilities"></textarea>'+
+                    '<textarea class="form-control" name="majorResponsibilities[]" maxlength="5000" required id="majorResponsibilities'+counter+'" placeholder="Major responsibilities"></textarea>'+
                     '</div>'+
                     '<div class="form-group col-md-12">'+
                     '<label for="inputPassword4">Key achievement<span style="color: red">*</span> </label>'+
-                    '<textarea class="form-control" name="keyAchivement[]" maxlength="200" required id="keyAchivement'+counter+'" placeholder="Key achievement"></textarea>'+
+                    '<textarea class="form-control" name="keyAchivement[]" maxlength="5000" required id="keyAchivement'+counter+'" placeholder="Key achievement"></textarea>'+
                     '</div>'+
                     '<div class="form-group col-md-6">'+
                     '<label for="inputEmail4">Name of supervisor<span style="color: red">*</span></label>'+
