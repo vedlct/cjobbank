@@ -36,6 +36,7 @@ define('BLOOD_GROUP',array(
     "AB-"=>'ab-',
     "O+"=>'o+',
     "O-"=>'o-',
+    "Don’t know"=>'na',
 ));
 
 define('MARITAL_STATUS',array(

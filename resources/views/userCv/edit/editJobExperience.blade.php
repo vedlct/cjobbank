@@ -40,11 +40,11 @@
 
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Major responsibilities<span style="color: red">*</span> </label>
-                    <textarea class="form-control" name="majorResponsibilities" maxlength="300" required id="majorResponsibilities" placeholder="Major responsibilities">{{$experience->majorResponsibilities}}</textarea>
+                    <textarea class="form-control" name="majorResponsibilities" maxlength="5000" required id="majorResponsibilities" placeholder="Major responsibilities">{{$experience->majorResponsibilities}}</textarea>
                 </div>
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Key achievement<span style="color: red">*</span> </label>
-                    <textarea class="form-control" name="keyAchivement" maxlength="300" required id="keyAchivement" placeholder="Key Achievement">{{$experience->keyAchivement}}</textarea>
+                    <textarea class="form-control" name="keyAchivement" maxlength="5000" required id="keyAchivement" placeholder="Key Achievement">{{$experience->keyAchivement}}</textarea>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">Name of supervisor<span style="color: red">*</span></label>
