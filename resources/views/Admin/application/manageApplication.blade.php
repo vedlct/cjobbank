@@ -203,6 +203,18 @@
 
                     </select>
                 </div>
+
+                <div class=" form-group ">
+                    <label>Marital Status</label>
+                    <select name="maritalStatusFilter" id="maritalStatusFilter" class="form-control">
+                        <option value="">Select marital status</option>
+                        @foreach(MARITAL_STATUS as $key=>$value)
+                            <option value="{{$value}}">{{$key}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+
                 <div class=" form-group ">
                     <label>Nationality</label>
                     <select name="nationalityFilter" id="nationalityFilter" class="form-control">
@@ -335,10 +347,6 @@
                 <div class="card-body">
 
 
-
-
-
-
                     <div style="margin-top: 10px;" class="row">
                         <label class="checkbox-inline"><input style="width: auto;" type="checkbox" id="selectall2" value="">Select all</label>
 
@@ -379,6 +387,7 @@
                         <tr>
 
                             <th style="width: 4%">Select</th>
+                            <th>Marital Status</th>
                             <th>First Name</th>
                             <th>Last Name</th>
 
@@ -455,6 +464,10 @@ CKEDITOR.config.toolbar = [
                     data:function (d){
 
                         d._token="{{csrf_token()}}";
+
+                        if ($('#maritalStatusFilter').val()!=""){
+                            d.maritalStatusFilter=$('#maritalStatusFilter').val();
+                        }
                         if ($('#genderFilter').val()!=""){
                             d.genderFilter=$('#genderFilter').val();
                         }
@@ -525,6 +538,7 @@ CKEDITOR.config.toolbar = [
                             ;},
                         "orderable": false, "searchable":false
                     },
+                    { data: 'maritalStatus', name: 'employee.maritalStatus',"orderable": false, "searchable":true },
                     { data: 'firstName', name: 'employee.firstName',"orderable": false, "searchable":true },
                     { data: 'lastName', name: 'employee.lastName',"orderable": false, "searchable":true },
 
@@ -546,6 +560,17 @@ CKEDITOR.config.toolbar = [
                 ],
             });
 
+            // maritial status
+            $('#maritalStatusFilter').change(function(){
+                table.ajax.reload();
+                emptySelect();
+                if ($('#maritalStatusFilter').val()!=""){
+
+                    $('#maritalStatusFilter').css("background-color", "#7c9").css('color', 'white');
+                }else {
+                    $('#maritalStatusFilter').css("background-color", "#FFF").css('color', 'black');
+                }
+            });
 
             $('#genderFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter

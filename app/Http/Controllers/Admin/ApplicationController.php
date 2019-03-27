@@ -109,11 +109,11 @@ class ApplicationController extends Controller
         $mailTamplate=MailTamplate::select('tamplateName','tamplateId')->get();
 
 
-        return view('Admin.application.manageApplication',compact('religion','ethnicity','natinality','allZone','allJobTitle','allEducationLevel','allEducationMajor','organizationType','mailTamplate'));
+        return view('Admin.application.manageApplication',compact('religion','ethnicity','natinality','allZone','allJobTitle','allEducationLevel','organizationType','mailTamplate'));
     }
     public function showAllApplication(Request $r)
     {
-        $application = Jobapply::select('jobapply.jobapply as applyId', 'jobapply.applydate', 'zone.zoneName','employee.employeeId', 'employee.firstName', 'employee.lastName', 'job.title')
+        $application = Jobapply::select('jobapply.jobapply as applyId', 'jobapply.applydate', 'zone.zoneName','employee.employeeId', 'employee.firstName', 'employee.lastName', 'job.title', 'employee.maritalStatus')
 
             ->leftJoin('employee', 'employee.employeeId', '=', 'jobapply.fkemployeeId')
             ->leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')
@@ -128,6 +128,9 @@ class ApplicationController extends Controller
             ->distinct('educationmajor.fkDegreeId')
         ;
 
+        if ($r->maritalStatusFilter){
+            $application= $application->where('employee.maritalStatus',$r->maritalStatusFilter);
+        }
         if ($r->genderFilter){
             $application= $application->where('employee.gender',$r->genderFilter);
         }
