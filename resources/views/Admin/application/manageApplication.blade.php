@@ -115,9 +115,17 @@
 
 
 
-                                <div class="form-group">
+                                <div style="display: none" id="HRfullreport" class="form-group">
 
                                     <a href="#" onclick="return myfunc()" ><button type="submit" class="btn btn-success">Submit</button></a>
+                                </div>
+                                <div style="display: none" id="HRreport02" class="form-group">
+
+                                    <a href="#" onclick="return myfunchrreport02()" ><button type="submit" class="btn btn-success">Submit</button></a>
+                                </div>
+                                <div style="display: none" id="HRreport03" class="form-group">
+
+                                    <a href="#" onclick="return myfunchrreport03()" ><button type="submit" class="btn btn-success">Submit</button></a>
                                 </div>
 
 
@@ -332,17 +340,28 @@
 
 
                     <div style="margin-top: 10px;" class="row">
-                        <label class="checkbox-inline"><input style="width: auto;" type="checkbox" id="selectall2" value="">Select All</label>
+                        <label class="checkbox-inline"><input style="width: auto;" type="checkbox" id="selectall2" value="">Select all</label>
 
                         <div class="col-md-3">
-                            <a onclick="excelInfomationSubmit()"><button class="btn btn-danger btn-sm">Export Candidates excel</button></a>
+                            <a onclick="excelInfomationSubmit()"><button class="btn btn-danger btn-sm">Export candidates excel</button></a>
+                        </div>
+                        <div class="col-md-3">
+                            <a onclick="excelReport02InfomationSubmit()"><button class="btn btn-primary btn-sm">Export HR report-02</button></a>
+                        </div>
+                        <div class="col-md-3">
+                            <a onclick="excelReport03InfomationSubmit()"><button class="btn btn-primary btn-sm">Export HR report-03</button></a>
                         </div>
 
+
+
+
+
+                    </div>
+                    <div style="margin-top: 10px;" class="row">
 
                         <div class="col-md-3">
                             <a onclick="sendMail()"><button class="btn btn-danger btn-sm">Send Mail</button></a>
                         </div>
-
 
                     </div>
                     {{--<div class="row">--}}
@@ -1044,6 +1063,274 @@ CKEDITOR.config.toolbar = [
             }
 
         }
+        function myfunchrreport03() {
+
+
+            if ($('#jobTitle').val()!=""){
+
+
+                var products=selecteds;
+
+                if (products.length >0) {
+
+                    $.ajax({
+                        type: 'POST',
+                        url: "{!! route('jobAppliedCadidate.admin.Exporthrreport03xls') !!}",
+                        cache: false,
+                        data: {'jobApply': products,'excelName':$('#excelName').val(),_token:"{{csrf_token()}}",jobTitle:$('#jobTitle').val()},
+                        success: function (data) {
+                           // console.log(data);
+
+                            $('#SessionMessage').load(document.URL +  ' #SessionMessage');
+                            table.ajax.reload();  //just reload table
+
+                            selecteds=[];
+
+                            $(':checkbox:checked').prop('checked',false);
+
+                            //alert(data);
+
+//                            location.reload();
+
+                            if (data.success=='1'){
+
+                                $.alert({
+                                    title: 'Success!',
+                                    type: 'green',
+                                    content: data.message,
+                                    buttons: {
+                                        tryAgain: {
+                                            text: 'Ok',
+                                            btnClass: 'btn-blue',
+                                            action: function () {
+
+                                                var link = document.createElement("a");
+                                                link.download = data.fileName+".xls";
+                                                var uri = '{{url("public/exportedExcel")}}'+"/"+data.fileName+".xls";
+                                                link.href = uri;
+                                                document.body.appendChild(link);
+                                                link.click();
+                                                document.body.removeChild(link);
+                                                delete link;
+
+                                                location.reload();
+
+
+
+
+                                            }
+                                        }
+
+                                    }
+                                });
+
+
+                            }else if(data.success=='0'){
+
+                                $.alert({
+                                    title: 'Alert!',
+                                    type: 'Red',
+                                    content: data.message,
+                                    buttons: {
+                                        tryAgain: {
+                                            text: 'Ok',
+                                            btnClass: 'btn-red',
+                                            action: function () {
+                                                location.reload();
+
+                                            }
+                                        }
+
+                                    }
+                                });
+
+
+                            }
+
+
+                        }
+
+                    });
+                }
+                else {
+
+
+                    $.alert({
+                        title: 'Alert!',
+                        type: 'Red',
+                        content: 'Please select Application for exporting CV',
+                        buttons: {
+                            tryAgain: {
+                                text: 'Ok',
+                                btnClass: 'btn-red',
+                                action: function () {
+
+
+                                }
+                            }
+
+                        }
+                    });
+                }
+
+
+
+            }else {
+
+                $.alert({
+                    title: 'Alert!',
+                    type: 'red',
+                    content: 'Please Filter With Job Title First',
+                    buttons: {
+                        tryAgain: {
+                            text: 'Ok',
+                            btnClass: 'btn-blue',
+                            action: function () {
+
+
+                            }
+                        }
+
+                    }
+                });
+
+            }
+
+        }
+        function myfunchrreport02() {
+
+
+            if ($('#jobTitle').val()!=""){
+
+
+                var products=selecteds;
+
+                if (products.length >0) {
+
+                    $.ajax({
+                        type: 'POST',
+                        url: "{!! route('jobAppliedCadidate.admin.Exporthrreport02xls') !!}",
+                        cache: false,
+                        data: {'jobApply': products,'excelName':$('#excelName').val(),_token:"{{csrf_token()}}",jobTitle:$('#jobTitle').val()},
+                        success: function (data) {
+                           // console.log(data);
+
+                            $('#SessionMessage').load(document.URL +  ' #SessionMessage');
+                            table.ajax.reload();  //just reload table
+
+                            selecteds=[];
+
+                            $(':checkbox:checked').prop('checked',false);
+
+                            //alert(data);
+
+//                            location.reload();
+
+                            if (data.success=='1'){
+
+                                $.alert({
+                                    title: 'Success!',
+                                    type: 'green',
+                                    content: data.message,
+                                    buttons: {
+                                        tryAgain: {
+                                            text: 'Ok',
+                                            btnClass: 'btn-blue',
+                                            action: function () {
+
+                                                var link = document.createElement("a");
+                                                link.download = data.fileName+".xls";
+                                                var uri = '{{url("public/exportedExcel")}}'+"/"+data.fileName+".xls";
+                                                link.href = uri;
+                                                document.body.appendChild(link);
+                                                link.click();
+                                                document.body.removeChild(link);
+                                                delete link;
+
+                                                location.reload();
+
+
+
+
+                                            }
+                                        }
+
+                                    }
+                                });
+
+
+                            }else if(data.success=='0'){
+
+                                $.alert({
+                                    title: 'Alert!',
+                                    type: 'Red',
+                                    content: data.message,
+                                    buttons: {
+                                        tryAgain: {
+                                            text: 'Ok',
+                                            btnClass: 'btn-red',
+                                            action: function () {
+                                                location.reload();
+
+                                            }
+                                        }
+
+                                    }
+                                });
+
+
+                            }
+
+
+                        }
+
+                    });
+                }
+                else {
+
+
+                    $.alert({
+                        title: 'Alert!',
+                        type: 'Red',
+                        content: 'Please select Application for exporting CV',
+                        buttons: {
+                            tryAgain: {
+                                text: 'Ok',
+                                btnClass: 'btn-red',
+                                action: function () {
+
+
+                                }
+                            }
+
+                        }
+                    });
+                }
+
+
+
+            }else {
+
+                $.alert({
+                    title: 'Alert!',
+                    type: 'red',
+                    content: 'Please Filter With Job Title First',
+                    buttons: {
+                        tryAgain: {
+                            text: 'Ok',
+                            btnClass: 'btn-blue',
+                            action: function () {
+
+
+                            }
+                        }
+
+                    }
+                });
+
+            }
+
+        }
         function sendMail() {
 
 
@@ -1364,6 +1651,122 @@ CKEDITOR.config.toolbar = [
                 if (products.length >0) {
 
                     $('#excel_info').modal({show: true});
+                    $("#HRfullreport").show();
+                    $("#HRreport02").hide();
+                    $("#HRreport03").hide();
+                }
+                else {
+
+
+                    $.alert({
+                        title: 'Alert!',
+                        type: 'Red',
+                        content: 'Please select Application for Export',
+                        buttons: {
+                            tryAgain: {
+                                text: 'Ok',
+                                btnClass: 'btn-red',
+                                action: function () {
+
+
+                                }
+                            }
+
+                        }
+                    });
+                }
+
+            }
+            else {
+
+                $.alert({
+                    title: 'Alert!',
+                    type: 'red',
+                    content: 'Please Filter With Job Title First',
+                    buttons: {
+                        tryAgain: {
+                            text: 'Ok',
+                            btnClass: 'btn-blue',
+                            action: function () {
+
+
+                            }
+                        }
+
+                    }
+                });
+
+            }
+        }
+        function excelReport03InfomationSubmit()
+        {
+            if ($('#jobTitle').val()!=""){
+
+
+                var products=selecteds;
+
+                if (products.length >0) {
+
+                    $('#excel_info').modal({show: true});
+                    $("#HRfullreport").hide();
+                    $("#HRreport03").show();
+                }
+                else {
+
+
+                    $.alert({
+                        title: 'Alert!',
+                        type: 'Red',
+                        content: 'Please select Application for Export',
+                        buttons: {
+                            tryAgain: {
+                                text: 'Ok',
+                                btnClass: 'btn-red',
+                                action: function () {
+
+
+                                }
+                            }
+
+                        }
+                    });
+                }
+
+            }
+            else {
+
+                $.alert({
+                    title: 'Alert!',
+                    type: 'red',
+                    content: 'Please Filter With Job Title First',
+                    buttons: {
+                        tryAgain: {
+                            text: 'Ok',
+                            btnClass: 'btn-blue',
+                            action: function () {
+
+
+                            }
+                        }
+
+                    }
+                });
+
+            }
+        }
+        function excelReport02InfomationSubmit()
+        {
+            if ($('#jobTitle').val()!=""){
+
+
+                var products=selecteds;
+
+                if (products.length >0) {
+
+                    $('#excel_info').modal({show: true});
+                    $("#HRfullreport").hide();
+                    $("#HRreport03").hide();
+                    $("#HRreport02").show();
                 }
                 else {
 
