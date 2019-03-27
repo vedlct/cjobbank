@@ -109,9 +109,6 @@ class UserCvController extends Controller
            ->get();
 
 
-
-
-
        $professionalCertificate = ProfessionalQualification::where('fkemployeeId', $empId)
            ->get();
 
@@ -175,9 +172,6 @@ class UserCvController extends Controller
            ->get();
 
 
-
-
-
        $professionalCertificate = ProfessionalQualification::where('fkemployeeId', $empId)
            ->get();
 
@@ -193,14 +187,19 @@ class UserCvController extends Controller
        $relativeCb = RelativeInCb::where('fkemployeeId', $empId)
            ->get();
 
-        $pdf = PDF::loadView('test',compact('allEmp', 'personalInfo', 'education',
-            'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree',
-            'relativeCb','empOtherSkillls','empComputerSkill'));
+       $empOtherInfo=EmployeeOtherInfo::where('fk_empId', $empId)
+           ->first();
 
-       return $pdf->stream('Curriculam Vitae of '.$personalInfo->firstName." ".$personalInfo->lastName.'.pdf',array('Attachment'=>false));
 
+
+       $pdf = PDF::loadView('test',compact('allEmp', 'personalInfo', 'education',
+           'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree',
+           'relativeCb','empOtherSkillls','empComputerSkill','empOtherInfo'));
+
+       return $pdf->download('Curriculam Vitae of '.$personalInfo->firstName." ".$personalInfo->lastName.'.pdf',array('Attachment'=>false));
 
    }
+
    public function getUserFullCvdownload($empId){
 
 
