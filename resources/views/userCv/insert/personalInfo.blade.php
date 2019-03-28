@@ -6,6 +6,9 @@
         strong{
             color: red;
         }
+        notice{
+            color: blue;
+        }
         /*#imageMsg,#signMsg{*/
             /*display: none;*/
         /*}*/
@@ -86,7 +89,7 @@
                                     <select required name="religion"class="form-control" id="sel1">
                                         <option selected value="">Select religion</option>
                                         @foreach($religion as $reli)
-                                        <option @if (old('religion') == $value) selected @endif value="{{$reli->religionId}}">{{$reli->religionName}}</option>
+                                        <option @if (old('religion') == $reli->religionId) selected @endif value="{{$reli->religionId}}">{{$reli->religionName}}</option>
                                         @endforeach
 
                                     </select>
@@ -98,7 +101,7 @@
                                     <select required name="ethnicity" class="form-control" id="sel1">
                                         <option selected value="">Select ethnicity</option>
                                         @foreach($ethnicity as $ethi)
-                                            <option @if (old('ethnicity') == $value) selected @endif value="{{$ethi->ethnicityId}}">{{$ethi->ethnicityName}}</option>
+                                            <option @if (old('ethnicity') == $ethi->ethnicityId) selected @endif value="{{$ethi->ethnicityId}}">{{$ethi->ethnicityName}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -179,7 +182,7 @@
                                     <select required name="nationality" class="form-control js-example-basic-single" id="sel1">
                                         <option selected value="">Select nationality</option>
                                         @foreach($natinality as $natio)
-                                            <option @if (old('nationality') == $value) selected @endif value="{{$natio->nationalityId}}">{{$natio->nationalityName}}</option>
+                                            <option @if (old('nationality') == $natio->nationalityId) selected @endif value="{{$natio->nationalityId}}">{{$natio->nationalityName}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -345,7 +348,7 @@
                             <div class="row">
 
                                 <div class="form-group col-md-6">
-                                    <label for="">Image</label>&nbsp;<strong>(Maximum Image Size 100Kb)</strong>
+                                    <label for="">Image</label>&nbsp;<notice>(Maximum Image Size 100Kb)</notice>
                                     <input type="file" class="form-control" name="image" id="image" placeholder="Image">
                                     @if ($errors->has('image'))
 
@@ -355,7 +358,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="">Signature</label>&nbsp;<strong>(Maximum signature size 50Kb)</strong>
+                                    <label for="">Signature</label>&nbsp;<notice>(Maximum signature size 50Kb)</notice>
                                     @if ($errors->has('sign'))
 
                                         <span class="">

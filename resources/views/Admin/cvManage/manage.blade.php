@@ -8,24 +8,16 @@
 
             <div style="background-color: white;margin-bottom: 20px;" class="card-body">
 
-                {{--<div class=" form-group">--}}
-                    {{--<label>Zone</label>--}}
-                    {{--<select name="zonefilter" id="zonefilter" class="form-control">--}}
-                        {{--<option value="">Select a Zone</option>--}}
-                        {{--@foreach($allZone as $zone)--}}
-                            {{--<option  value="{{$zone->zoneId}}">{{$zone->zoneName}}</option>--}}
-                        {{--@endforeach--}}
-
-                    {{--</select>--}}
-                {{--</div>--}}
 
                 <div class=" form-group ">
                     <label>Age From</label>&nbsp;<span style="color: red">(Year)</span>
-                    <input class="form-control" id="ageFromFilter" name="ageFromFilter" onkeypress="return isNumberKey(event)" type="text">
+                    <input class="form-control" id="ageFromFilter" name="ageFromFilter"
+                           onkeypress="return isNumberKey(event)" type="text">
                 </div>
                 <div class=" form-group ">
                     <label>Age to</label>&nbsp;<span style="color: red">(Year)</span>
-                    <input class="form-control" id="ageToFilter" name="ageToFilter" onkeypress="return isNumberKey(event)" type="text">
+                    <input class="form-control" id="ageToFilter" name="ageToFilter"
+                           onkeypress="return isNumberKey(event)" type="text">
                 </div>
                 <div class=" form-group ">
                     <label>Gender</label>
@@ -37,10 +29,8 @@
 
                     </select>
                 </div>
-                {{--<div class=" form-group">--}}
-                    {{--<label>Apply Date</label>--}}
-                    {{--<input class="form-control date" type="text">--}}
-                {{--</div>--}}
+
+
                 <div class=" form-group">
                     <label>Religion</label>
                     <select name="religionFilter" id="religionFilter" class="form-control">
@@ -61,6 +51,19 @@
 
                     </select>
                 </div>
+
+                <div class=" form-group ">
+                    <label>Cv status</label>
+                    <select name="cvStatusFilter" id="cvStatusFilter" class="form-control">
+                        <option value="">Select Status</option>
+
+                        <option value="complete">Completed cv</option>
+                        <option value="incomplete">Incompleted cv</option>
+
+
+                    </select>
+                </div>
+
                 <hr>
 
 
@@ -71,38 +74,30 @@
             <div class="card m-b-30">
                 <div class="card-header">
                     <h4 class="pull-left">Manage CV</h4>
-                    {{--<a href="#"><button class="btn btn-success pull-right">Add New</button></a>--}}
                 </div>
                 <div class="card-body">
 
-                    {{--<label class="checkbox-inline"><input style="width: auto;" type="checkbox" id="selectall2" value=""> Select All</label>&nbsp;--}}
-                    {{--<button  class="btn btn-danger btn-sm" onclick="exportSelectedCv()">Export CV</button>--}}
-                    {{--<br><br>--}}
 
                     <div class="table table-responsive">
-                    <table id="managecv" class="table table-striped table-bordered" style="width:100%" >
-                        <thead>
-                        <tr>
-                            {{--<th width="4%">Select</th>--}}
-                            <th>Image</th>
+                        <table id="managecv" class="table table-striped table-bordered" style="width:100%">
+                            <thead>
+                            <tr>
 
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th width="8%">Age(Year.Month)</th>
-                            <th>Gender</th>
-                            <th>Email</th>
+                                <th>Image</th>
 
-                            <th width="10%">Action</th>
-                        </tr>
-                        </thead>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th width="8%">Age(Year.Month)</th>
+                                <th>Gender</th>
+                                <th>Email</th>
+
+                                <th width="10%">Action</th>
+                            </tr>
+                            </thead>
 
 
-                    </table>
+                        </table>
                     </div>
-
-
-
-
 
 
                 </div>
@@ -120,13 +115,9 @@
 
     <script src="{{url('public/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{url('public/assets/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
-    <!-- Buttons examples -->
-    {{--<script src="{{url('public/assets/plugins/datatables/dataTables.buttons.min.js')}}"></script>--}}
-    {{--<script src="https://cdn.datatables.net/rowreorder/1.2.3/js/dataTables.rowReorder.min.js"></script>--}}
-    {{--<script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>--}}
     <script src="{{url('public/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
     <script type="text/javascript">
-        var gend=[];
+        var gend = [];
 
         $('.date').datepicker({
             format: 'yyyy-m-d',
@@ -140,12 +131,7 @@
             }
         });
 
-        $(document).ready(function() {
-
-            @foreach(GENDER as $key=>$value)
-            gend.push('{{$value}}');
-
-            @endforeach
+        $(document).ready(function () {
 
 
             table = $('#managecv').DataTable({
@@ -153,46 +139,46 @@
                 serverSide: true,
                 stateSave: true,
                 "ordering": false,
-                "ajax":{
+                "ajax": {
                     "url": "{!! route('cv.admin.manageApplicationData')!!}",
                     "type": "POST",
-                    data:function (d){
+                    data: function (d) {
 
-                        d._token="{{csrf_token()}}";
-                        if ($('#genderFilter').val()!=""){
-                            d.genderFilter=$('#genderFilter').val();
+                        d._token = "{{csrf_token()}}";
+                        if ($('#genderFilter').val() != "") {
+                            d.genderFilter = $('#genderFilter').val();
                         }
-                        if ($('#religionFilter').val()!=""){
-                            d.religionFilter=$('#religionFilter').val();
+                        if ($('#religionFilter').val() != "") {
+                            d.religionFilter = $('#religionFilter').val();
                         }
-                        if ($('#ethnicityFilter').val()!=""){
-                            d.ethnicityFilter=$('#ethnicityFilter').val();
+                        if ($('#ethnicityFilter').val() != "") {
+                            d.ethnicityFilter = $('#ethnicityFilter').val();
                         }
-                        if ($('#ageFromFilter').val()!=""){
-                            d.ageFromFilter=$('#ageFromFilter').val();
+                        if ($('#ageFromFilter').val() != "") {
+                            d.ageFromFilter = $('#ageFromFilter').val();
                         }
-                        if ($('#ageToFilter').val()!=""){
-                            d.ageToFilter=$('#ageToFilter').val();
+                        if ($('#ageToFilter').val() != "") {
+                            d.ageToFilter = $('#ageToFilter').val();
                         }
-//                        if ($('#zonefilter').val()!=""){
-//                            d.zonefilter=$('#zonefilter').val();
-//                        }
+                        if ($('#cvStatusFilter').val() != "") {
+                            d.cvStatusFilter = $('#cvStatusFilter').val();
+                        }
 
 
                     },
                 },
                 columns: [
 
-//                    { "data": function(data){
-//                        return '<input  data-panel-id="'+data.employeeId+'"onclick="selected_rows(this)" type="checkbox" class="chk" name="selected_rows[]" value="'+ data.employeeId +'" />'
-//                            ;},
-//                        "orderable": false, "searchable":false
-//                    },
                     {
                         "name": "image",
                         "data": "image",
                         "render": function (data, type, full, meta) {
-                            return "<img src=\"{{url('public/candidateImages/thumb')}}"+"/"+ data + "\" height=\"50\"/>";
+                            if (data == null) {
+                                return "<img src=\"{{url('public/candidateImages/thumb/dummyImage.png')}}" + "\" height=\"50\"/>";
+                            } else {
+                                return "<img src=\"{{url('public/candidateImages/thumb')}}" + "/" + data + "\" height=\"50\"/>";
+                            }
+
                         },
                         "title": "Image",
                         "orderable": false,
@@ -201,81 +187,89 @@
 
 //                    { data: 'name', name: 'name',"orderable": false, "searchable":true },
 
-                    { data: 'firstName', name: 'firstName',"orderable": false, "searchable":true },
-                    { data: 'lastName', name: 'lastName',"orderable": false, "searchable":true },
+                    {data: 'firstName', name: 'firstName', "orderable": false, "searchable": true},
+                    {data: 'lastName', name: 'lastName', "orderable": false, "searchable": true},
 
-                    { "data": function(data){
-                        if(data.age1 > 0){
+                    {
+                        "data": function (data) {
 
-                            return data.age1+"."+parseInt((data.age2)/(12*data.age1));
+                            if (data.age1 > 0) {
 
-                        }else {
-                            return data.age1+"."+parseInt((data.age2));
-                        }
+                                return data.age1 + "." + parseInt((data.age2) / (12 * data.age1));
+
+                            } else {
+                                return data.age1 + "." + parseInt((data.age2));
+                            }
                         },
-                        "orderable": true, "searchable":true,
+                        "orderable": true, "searchable": true,
                     },
 
 
 //                    { data: 'age1', name: 'age', "orderable": false, "searchable":true },
 //                    { data: 'gender', name: 'gender', "orderable": false, "searchable":true },
 
-                    { "data": function(data){
+                    {
+                        "data": function (data) {
 
+                            if (data.gender != null) {
+                                if (data.gender == "M") {
+                                    return "Male"
+                                } else if (data.gender == "F") {
+                                    return "Female"
+                                } else if (data.gender == "T") {
+                                    return "Transgender"
+                                }
 
-
-                        if( data.gender == "M"){
-                            return "Male"
-                        }else if (data.gender == "F") {
-                            return "Female"
-                        }
-
+                            } else {
+                                return '';
+                            }
 
 
                         },
-                        "orderable": true, "searchable":true,
+                        "orderable": true, "searchable": true,
                     },
 
-                    { data: 'email', name: 'email', "orderable": false, "searchable":true },
+                    {data: 'email', name: 'email', "orderable": false, "searchable": true},
 
-                    { "data": function(data){
-                        return '&nbsp;<button class="btn btn-smbtn-info" onclick="getEmpCv('+data.employeeId+')"><i class="fa fa-file-pdf-o"></i></button>'
-                            ;},
-                        "orderable": false, "searchable":false
+                    {
+                        "data": function (data) {
+                            return '&nbsp;<button class="btn btn-smbtn-info" onclick="getEmpCv(' + data.employeeId + ')"><i class="fa fa-file-pdf-o"></i></button>' +
+                                '&nbsp;<button class="btn btn-sm btn-danger" onclick="EmpCvDelete(' + data.employeeId + ')"><i class="fa fa-trash-o"></i></button>'
+                                ;
+                        },
+                        "orderable": false, "searchable": false
                     },
-
-
-
 
 
                 ],
 
             });
 
-        } );
+        });
         var selecteds = [];
+
         function selected_rows(x) {
 
             btn = $(x).data('panel-id');
             var index = selecteds.indexOf(btn.toString());
 
-            if (index == "-1"){
+            if (index == "-1") {
                 selecteds.push(btn.toString());
-            }else {
+            } else {
 
                 selecteds.splice(index, 1);
             }
 
 
-
         }
+
         $("#selectall2").click(function () {
 
-            if($('#selectall2').is(":checked")) {
-                selecteds=[];
+            if ($('#selectall2').is(":checked")) {
+                selecteds = [];
                 //$('#selectall1').prop('checked',true);
                 checkboxes = document.getElementsByName('selected_rows[]');
-                for(var i in checkboxes) {
+                for (var i in checkboxes) {
                     checkboxes[i].checked = 'TRUE';
                 }
 
@@ -285,10 +279,9 @@
                 });
 
 
-            }
-            else {
-                selecteds=[];
-                $(':checkbox:checked').prop('checked',false);
+            } else {
+                selecteds = [];
+                $(':checkbox:checked').prop('checked', false);
 
             }
 
@@ -296,36 +289,35 @@
 
         function exportSelectedCv() {
 
-            if(selecteds.length >0 ){
-                for (var i=0;i<selecteds.length;i++){
+            if (selecteds.length > 0) {
+                for (var i = 0; i < selecteds.length; i++) {
 //                    console.log(selecteds[i]);
 
                     $.ajax({
-                    type: 'GET',
-                    url: "{!! route('userCv.post') !!}",
-                    cache: false,
-                    data: {'id': selecteds[i]},
-                    success: function (data) {
+                        type: 'GET',
+                        url: "{!! route('userCv.post') !!}",
+                        cache: false,
+                        data: {'id': selecteds[i]},
+                        success: function (data) {
 
-                    // console.log(data);
+                            // console.log(data);
 
-                    }
+                        }
                     });
 
                 }
                 {{--$.ajax({--}}
-                    {{--type: 'POST',--}}
-                    {{--url: "{!! route('userCv.select') !!}",--}}
-                    {{--cache: false,--}}
-                    {{--data: {_token: "{{csrf_token()}}",'ids': selecteds},--}}
-                    {{--success: function (data) {--}}
+                {{--type: 'POST',--}}
+                {{--url: "{!! route('userCv.select') !!}",--}}
+                {{--cache: false,--}}
+                {{--data: {_token: "{{csrf_token()}}",'ids': selecteds},--}}
+                {{--success: function (data) {--}}
 
-                       {{--// console.log(data);--}}
+                {{--// console.log(data);--}}
 
-                    {{--}--}}
+                {{--}--}}
                 {{--});--}}
-            }
-            else {
+            } else {
 
                 $.alert({
                     title: 'Alert',
@@ -344,38 +336,36 @@
             }
 
 
-
-
-
         }
-//        $('#genderFilter').change(function(){ //button filter event click
-////                table.search("").draw(); //just redraw myTableFilter
-//            table.ajax.reload();  //just reload table
-//        });
-//        $('#religionFilter').change(function(){ //button filter event click
-////                table.search("").draw(); //just redraw myTableFilter
-//            table.ajax.reload();  //just reload table
-//
-//        });
-//        $('#ethnicityFilter').change(function(){ //button filter event click
-////                table.search("").draw(); //just redraw myTableFilter
-//            table.ajax.reload();  //just reload table
-//        });
 
-//        $("#ageFromFilter").keyup(function(){
-//            // table.search("").draw(); //just redraw myTableFilter
-//            table.ajax.reload();  //just reload table
-//        });
-//        $("#ageToFilter").keyup(function(){
-//            // table.search("").draw(); //just redraw myTableFilter
-//            table.ajax.reload();  //just reload table
-//        });
+        //        $('#genderFilter').change(function(){ //button filter event click
+        ////                table.search("").draw(); //just redraw myTableFilter
+        //            table.ajax.reload();  //just reload table
+        //        });
+        //        $('#religionFilter').change(function(){ //button filter event click
+        ////                table.search("").draw(); //just redraw myTableFilter
+        //            table.ajax.reload();  //just reload table
+        //
+        //        });
+        //        $('#ethnicityFilter').change(function(){ //button filter event click
+        ////                table.search("").draw(); //just redraw myTableFilter
+        //            table.ajax.reload();  //just reload table
+        //        });
 
-        $("#ageFromFilter").keyup(function(){
+        //        $("#ageFromFilter").keyup(function(){
+        //            // table.search("").draw(); //just redraw myTableFilter
+        //            table.ajax.reload();  //just reload table
+        //        });
+        //        $("#ageToFilter").keyup(function(){
+        //            // table.search("").draw(); //just redraw myTableFilter
+        //            table.ajax.reload();  //just reload table
+        //        });
+
+        $("#ageFromFilter").keyup(function () {
             // table.search("").draw(); //just redraw myTableFilter
             emptySelect();
 
-            if ($('#ageFromFilter').val()!="") {
+            if ($('#ageFromFilter').val() != "") {
 
 
                 if ($('#ageToFilter').val() != "") {
@@ -399,19 +389,19 @@
 
 
                 }
-            }else {
+            } else {
                 table.ajax.reload();  //just reload table
                 $('#ageFromFilter').css("background-color", "#FFF").css('color', 'black');
             }
 
 
         });
-        $("#ageToFilter").keyup(function(){
+        $("#ageToFilter").keyup(function () {
             // table.search("").draw(); //just redraw myTableFilter
             // table.ajax.reload();  //just reload table
             emptySelect();
 
-            if ($('#ageToFilter').val()!="") {
+            if ($('#ageToFilter').val() != "") {
 
                 if ($('#ageFromFilter').val() != "") {
 
@@ -435,7 +425,7 @@
                     table.ajax.reload();
 
                 }
-            }else {
+            } else {
                 table.ajax.reload();  //just reload table
                 $('#ageToFilter').css("background-color", "#FFF").css('color', 'black');
             }
@@ -443,89 +433,182 @@
         });
 
 
-        $('#genderFilter').change(function(){ //button filter event click
+        $('#genderFilter').change(function () { //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
             table.ajax.reload();  //just reload table
             emptySelect();
 
-            if ($('#genderFilter').val()!=""){
+            if ($('#genderFilter').val() != "") {
 
                 $('#genderFilter').css("background-color", "#7c9").css('color', 'white');
-            }else {
+            } else {
                 $('#genderFilter').css("background-color", "#FFF").css('color', 'black');
             }
 
         });
-        $('#religionFilter').change(function(){ //button filter event click
+        $('#cvStatusFilter').change(function () { //button filter event click
+
+//                table.search("").draw(); //just redraw myTableFilter
+            table.ajax.reload();  //just reload table
+            emptySelect();
+
+            if ($('#cvStatusFilter').val() != "") {
+
+                $('#cvStatusFilter').css("background-color", "#7c9").css('color', 'white');
+            } else {
+                $('#cvStatusFilter').css("background-color", "#FFF").css('color', 'black');
+            }
+
+        });
+        $('#religionFilter').change(function () { //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
 
             table.ajax.reload();  //just reload table
 
             emptySelect();
 
-            if ($('#religionFilter').val()!=""){
+            if ($('#religionFilter').val() != "") {
 
                 $('#religionFilter').css("background-color", "#7c9").css('color', 'white');
-            }else {
+            } else {
                 $('#religionFilter').css("background-color", "#FFF").css('color', 'black');
             }
 
 
-
         });
-        $('#ethnicityFilter').change(function(){ //button filter event click
+        $('#ethnicityFilter').change(function () { //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
 
             table.ajax.reload();  //just reload table
             emptySelect();
-            if ($('#ethnicityFilter').val()!=""){
+            if ($('#ethnicityFilter').val() != "") {
 
                 $('#ethnicityFilter').css("background-color", "#7c9").css('color', 'white');
-            }else {
+            } else {
                 $('#ethnicityFilter').css("background-color", "#FFF").css('color', 'black');
             }
         });
 
-        $("#ageFromFilter").keyup(function(){
+        $("#ageFromFilter").keyup(function () {
             // table.search("").draw(); //just redraw myTableFilter
             table.ajax.reload();  //just reload table
             emptySelect();
         });
-        $("#ageToFilter").keyup(function(){
+        $("#ageToFilter").keyup(function () {
             // table.search("").draw(); //just redraw myTableFilter
             table.ajax.reload();  //just reload table
             emptySelect();
 
-            if ($('#ethnicityFilter').val()!=""){
+            if ($('#ethnicityFilter').val() != "") {
 
                 $('#ethnicityFilter').css("background-color", "#7c9").css('color', 'white');
-            }else {
+            } else {
                 $('#ethnicityFilter').css("background-color", "#FFF").css('color', 'black');
             }
 
 
         });
-
-
 
 
         function getEmpCv(id) {
 
             var url = "{{ route('userCv.get', ':empId') }}";
             url = url.replace(':empId', id);
-            window.open(url,'_blank');
+            window.open(url, '_blank');
+        }
+
+        function EmpCvDelete(id) {
+
+            $.ajax({
+                type: 'post',
+                url: "{!! route('userCv.delete') !!}",
+                cache: false,
+                data: {'id': id, _token: "{{csrf_token()}}"},
+                success: function (data) {
+
+                    console.log(data);
+
+                    if (data != 0) {
+
+
+                        $.confirm({
+                            title: 'Confirm!',
+                            content: 'This user allready applied for ' + data + ' job',
+                            buttons: {
+                                confirm: function () {
+                                    $.ajax({
+                                        type: 'post',
+                                        url: "{!! route('userCv.confirm.delete') !!}",
+                                        cache: false,
+                                        data: {'id': id, _token: "{{csrf_token()}}"},
+                                        success: function (data) {
+                                            $.alert({
+                                                title: 'Success',
+                                                type: 'green',
+                                                content: 'This user deleted successfully',
+                                                buttons: {
+                                                    tryAgain: {
+                                                        text: 'Ok',
+                                                        btnClass: 'btn-green',
+                                                        action: function () {
+
+                                                            location.reload();
+
+                                                        }
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    });
+                                },
+                                cancel: function () {
+                                    //$.alert('Canceled!');
+                                },
+
+                            }
+                        });
+
+                    } else {
+
+                        $.alert({
+                            title: 'Success',
+                            type: 'green',
+                            content: 'This user deleted successfully',
+                            buttons: {
+                                tryAgain: {
+                                    text: 'Ok',
+                                    btnClass: 'btn-green',
+                                    action: function () {
+
+                                        location.reload();
+
+                                    }
+                                }
+                            }
+                        });
+                    }
+
+                    // location.reload();
+
+                }
+            });
+
+            {{--var url = "{{ route('userCv.delete', ':empId') }}";--}}
+            {{--url = url.replace(':empId', id);--}}
+            // location.reload();
+            //window.open(url,'_blank');
         }
 
 
-        function emptySelect(){
+        function emptySelect() {
 
-            selecteds=[];
-            $(':checkbox:checked').prop('checked',false);
+            selecteds = [];
+            $(':checkbox:checked').prop('checked', false);
 
         }
 
 
-        function validationError(errorMsg){
+        function validationError(errorMsg) {
 
             $.alert({
                 title: 'Error',
@@ -544,8 +627,7 @@
 
         }
 
-        function isNumberKey(evt)
-        {
+        function isNumberKey(evt) {
             var charCode = (evt.which) ? evt.which : event.keyCode
             if (charCode > 31 && (charCode < 48 || charCode > 57))
                 return false;

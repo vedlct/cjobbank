@@ -1,9 +1,14 @@
 @extends('main')
 
 @section('content')
+
     <style>
         strong{
             color: red;
+            font-style: italic;
+        }
+        #notice{
+            color: blue;
             font-style: italic;
         }
         /*#imageMsg,#signMsg{*/
@@ -21,8 +26,8 @@
                         {{csrf_field()}}
 
                         <div id="" class="tab">
-                            <strong><span style="color: red">*</span><span style="color: red">*</span>Experience candidate : referee should be present or previous organization/company.</strong><span style="color: red">*</span><span style="color: red">*</span><br>
-                            <strong><span style="color: red">*</span><span style="color: red">*</span>Freshers : referee can be from his/her own preference.</strong><span style="color: red">*</span><span style="color: red">*</span>
+                            <span id="notice"><span style="color: red">*</span><span style="color: red">*</span>Experience candidate : referee should be present or previous organization/company.</span><span style="color: red">*</span><span style="color: red">*</span><br>
+                            <span id="notice"><span style="color: red">*</span><span style="color: red">*</span>Freshers : referee can be from his/her own preference.</span><span style="color: red">*</span><span style="color: red">*</span>
 
                             <h2 style="margin-bottom: 30px;">Referee - 1</h2>
                             <div id="TextBoxesGroup1">
@@ -207,7 +212,7 @@
 
 
             $("#addButton").click(function () {
-                if(counter>3){
+                if((counter+2)>3){
                     alert("Only 3 section allow max!!");
                     return false;
                 }

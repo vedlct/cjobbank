@@ -87,7 +87,7 @@ class QuestionObjectiveController extends Controller
 
         $rules = [
 
-            'objective' => 'max:300',
+            'objective' => 'max:2500',
 
 
         ];
@@ -107,9 +107,11 @@ class QuestionObjectiveController extends Controller
 
         $employeeCareerInfo=new QuestionObjective();
 
+        $employeeCareerInfo->objective=$r->objective;
+
         if ($r->freshers){
 
-            $employeeCareerInfo->objective=$r->objective;
+
             $employeeCareerInfo->currentSalary=$r->currentSalary;
 
             for ($i=1;$i<=$employeeCvQuesObjQues;$i++){
@@ -177,7 +179,7 @@ class QuestionObjectiveController extends Controller
 
         $rules = [
 
-            'objective' => 'max:300',
+            'objective' => 'max:2500',
 
 
         ];

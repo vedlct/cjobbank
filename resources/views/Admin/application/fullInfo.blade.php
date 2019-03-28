@@ -89,14 +89,12 @@
             {{++$temp}}. Position: {{$job->degisnation}}<br>
             Organization name: {{$job->organization}}<br>
             Organizarion type: {{$job->organizationTypeName}}<br>
-            {{--Total experience: {{$job->organization}}<br>--}}
-            {{--Department: {{$job->organization}}<br>--}}
+
             Type of Employment: {{$job->employmentType}}<br>
             Served From /To: {{$job->startDate}} - {{$job->endDate}}<br>
             Job location/Address: {{$job->address}}<br>
             Name of Supervisor: {{$job->supervisorName}}<br>
-            {{--Present Salary: {{$job->organization}}<br>--}}
-            {{--Ready to join after(Days):--}}
+
                 <br><br>
             @endforeach
         </td>
@@ -186,21 +184,29 @@
             @endforeach
         </td>
         <td colspan="4" height="250"   style="text-align: center;vertical-align: middle;">
-            Major Job responsibility:<br>
-            Key Achievement<br>
+            @foreach($jobExperience->where('fkemployeeId',$emp->employeeId) as $job)
+                Major Job responsibility: {{$job->majorResponsibilities}}<br>
+                Key Achievement: {{$job->keyAchivement}}<br>
+                <br><br>
+            @endforeach
+
+
 
 
             Previous work information in Caritas Bangladesh (If )<br>
-            Position in Caritas:<br>
-            Served from/to<br>
+
+                @foreach($previousWorkExperienceInCB->where('fkemployeeId',$emp->employeeId) as $pExp)
+                            Position in Caritas: {{$pExp->designation}}<br>
+                            Served from/to: {{$pExp->startDate}}  To {{$pExp->endDate}}<br>
+                @endforeach
         </td>
         <td colspan="4" height="250" style="text-align: center;vertical-align: middle;">
 
         </td>
         <td colspan="3" height="250" style="text-align: center;vertical-align: middle;">
 
-            1. Name of Referees, Designation, Organization, adress, mobile number and email number, Relation<br>
-            2. Name of Referees, Designation, Organization, adress, mobile number and email number, Relation
+            {{--1. Name of Referees, Designation, Organization, adress, mobile number and email number, Relation<br>--}}
+            {{--2. Name of Referees, Designation, Organization, adress, mobile number and email number, Relation--}}
 
 
 
@@ -226,9 +232,16 @@
             </span></td>
         <td colspan="3" height="250" style="text-align: center;vertical-align: middle;">
             Do you have any relatives working in Caritas Bangladesh?*<br>
-            Name and relation:<br>
 
-            Answers of declaration form:<br>
+            @foreach($relative->where('fkemployeeId',$emp->employeeId) as $rel)
+                {{$rel->firstName}}
+                {{$rel->lastName}}<br>
+                {{$rel->degisnation}}<br>
+                Relation: {{$rel->relation}}<br><br>
+            @endforeach
+
+
+
         </td>
         <td colspan="4" height="250" style="text-align: center;vertical-align: middle;">
             Training information:<br>
@@ -241,6 +254,10 @@
         </td>
         <td colspan="4" height="250"   style="text-align: center;vertical-align: middle;">
             Do you have any reservation contacting your employer?
+            @foreach($jobExperience->where('fkemployeeId',$emp->employeeId)->where('endDate',null) as $job)
+                    {{$job->reservationContactingEmployer}}
+                <br><br>
+            @endforeach
         </td>
         <td colspan="4" height="250" style="text-align: center;vertical-align: middle;">
 
@@ -270,6 +287,14 @@
         </td>
         <td colspan="3" height="250" style="text-align: center;vertical-align: middle;">
             Answers of declaration form:
+            @foreach($agreement->where('employeeId',$emp->employeeId) as $ag)
+            {{--$agreement--}}
+                {{$ag->qus}} : {{$ag->ans}} <br>
+
+            @endforeach
+
+
+
         </td>
         <td colspan="4" height="250" style="text-align: center;vertical-align: middle;">
 

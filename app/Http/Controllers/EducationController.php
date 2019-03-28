@@ -58,7 +58,7 @@ class EducationController extends Controller
         $educationLevel=Educationlevel::where('status',1)->get();
 
         $country=Country::get();
-        $boards=Board::where('status',1)->get();
+        $boards=Board::where('status',1)->orderBy('boardName', 'ASC')->get();
 //        return $employeeCvEducationInfo;
 
 
@@ -74,7 +74,7 @@ class EducationController extends Controller
     }
     public function getDegreePerEducation(Request $r)
     {
-        $degree=Degree::select('degreeId','degreeName')->where('educationLevelId', '=',$r->id)->where('status',1)->get();
+        $degree=Degree::select('degreeId','degreeName')->where('educationLevelId', '=',$r->id)->where('status',1)->orderBy('degreeName', 'ASC')->get();
 
         if ($degree == null) {
             echo "<option value='' selected>Select Degree</option>";
@@ -107,7 +107,7 @@ class EducationController extends Controller
     }
     public function getMajorPerEducation(Request $r)
     {
-        $major=Educationmajor::select('educationMajorId','educationMajorName')->where('fkDegreeId', '=',$r->id)->groupBy('educationMajorId')->get();
+        $major=Educationmajor::select('educationMajorId','educationMajorName')->where('fkDegreeId', '=',$r->id)->where('status',1)->groupBy('educationMajorId')->orderBy('educationMajorName', 'ASC')->get();
 
         if ($major == null) {
             echo "<option value='' selected>Select Major</option>";
@@ -221,7 +221,7 @@ class EducationController extends Controller
 
         $educationLevel=Educationlevel::where('status',1)->get();
         $country=Country::get();
-        $boards=Board::where('status',1)->get();
+        $boards=Board::where('status',1)->orderBy('boardName', 'ASC')->get();
 
 
 

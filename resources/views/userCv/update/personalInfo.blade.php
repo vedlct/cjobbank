@@ -6,6 +6,9 @@
         strong{
             color: red;
         }
+        notice{
+            color: blue;
+        }
         #imageMsg,#signMsg{
             display: none;
         }

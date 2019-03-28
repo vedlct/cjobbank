@@ -47,12 +47,19 @@
                                 </div>
                                     <div class="form-group col-md-4">
                                         <label for="">Result system<span style="color: red">*</span></label>
-                                        <select name="resultSystem[]" class="form-control" data-panel-id="0"  id="resultSydtem" onchange="changeResult(this)">
+                                        <select name="resultSystem[]" class="form-control" data-panel-id="0"  id="resultSydtem">
                                             <option value="">Select System</option>
                                             @foreach(RESULT_SYSTEM as $key=>$value)
                                                 <option value="{{$value}}">{{$key}}</option>
                                             @endforeach
+                                            <option  value="{{OTHERS}}" >{{OTHERS}}</option>
                                         </select>
+                                    </div>
+
+                                    <div style="display: none" id="resultSydtemNameDiv" class="form-group col-md-4">
+                                        <label for="">Result system name</label>
+                                        <input type="text" maxlength="255" name="resultSydtemName[]" class="form-control" id="resultSydtemName"  placeholder="Result system name">
+
                                     </div>
 
 
@@ -222,6 +229,43 @@
 //                format: 'yyyy-m-d'
 //            });
         });
+
+
+        $('#resultSydtem').on('change', function() {
+
+            var resultSydtem =$('#resultSydtem').val();
+            if (resultSydtem == "others"){
+
+                $("#resultSydtemNameDiv").show();
+            }else {
+
+
+                $("#resultSydtemNameDiv").hide();
+
+
+            }
+
+
+
+        });
+
+        function getResultSystemName(x){
+
+
+            var resultSydtem=document.getElementById("resultSydtem"+x).value;
+
+            if (resultSydtem == "others"){
+
+                $("#resultSydtemNameDiv"+x).show();
+            }else {
+
+
+                $("#resultSydtemNameDiv"+x).hide();
+
+
+            }
+
+        }
 
         $("input[name=hasProfCertificate]").click( function () {
 
@@ -394,13 +438,13 @@
 //                        return false;
 //
 //                    }
-                    if(start==""){
-
-                        var errorMsg='Please select a strat date first!!';
-                        validationError(errorMsg);
-                        return false;
-
-                    }
+//                    if(start==""){
+//
+//                        var errorMsg='Please select a strat date first!!';
+//                        validationError(errorMsg);
+//                        return false;
+//
+//                    }
 //                    if(end==""){
 //
 //                        var errorMsg='Please Select a End Date First!!';
@@ -408,7 +452,7 @@
 //                        return false;
 //
 //                    }
-                    if (end != "") {
+                    if (start!="" && end != "") {
 
 
                         if (Date.parse(end) < Date.parse(start)) {
@@ -492,13 +536,13 @@
 //                        return false;
 //
 //                    }
-                    if(start==""){
-
-                        var errorMsg='Please select a strat date first!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
+//                    if(start==""){
+//
+//                        var errorMsg='Please select a strat date first!!'
+//                        validationError(errorMsg)
+//                        return false;
+//
+//                    }
 //                    if(end==""){
 //
 //                        var errorMsg='Please Select a End Date First!!'
@@ -507,7 +551,7 @@
 //
 //                    }
 
-                    if (end != "") {
+                    if (start !="" && end != "") {
 
 
                         if (Date.parse(end) < Date.parse(start)) {
@@ -549,12 +593,18 @@
                     '<div class="form-group col-md-4">'+
                     '<label for="">Result system<span style="color: red">*</span></label>'+
 
-                    '<select name="resultSystem[]" class="form-control" data-panel-id="'+counter+'" onchange="changeResult(this)"  id="resultSydtem'+counter+'">'+
+                    '<select name="resultSystem[]" class="form-control" data-panel-id="'+counter+'"  onchange="getResultSystemName('+counter+')"  id="resultSydtem'+counter+'">'+
                     '<option value="">Select system</option>'+
                     @foreach(RESULT_SYSTEM as $key=>$value)
                     '<option value="{{$value}}">{{$key}}</option>'+
-                        @endforeach
+                    @endforeach
+                    '<option  value="{{OTHERS}}" >{{OTHERS}}</option>'+
                     '</select>'+
+                    '</div>'+
+                    '<div style="display: none" id="resultSydtemNameDiv'+counter+'" class="form-group col-md-4">'+
+                    '<label for="">Result system name</label>'+
+                    '<input type="text" maxlength="255" name="resultSydtemName[]" class="form-control" id="resultSydtemName'+counter+'"  placeholder="">'+
+
                     '</div>'+
                     '<div class="form-group" id="otherField'+counter+'"></div>'+
                 '<div class="form-group col-md-4">'+
@@ -573,7 +623,7 @@
 
                     '<div class="form-group col-md-4">'+
                     '<label for="inputPassword4">Status<span style="color: red">*</span></label>'+
-                    '<select  class="form-control" id="professinalCertificateStatus'+counter+'" name="status[]">'+
+                    '<select  class="form-control" id="professinalCertificateStatus'+counter+'" name="status[]" data-panel-id="'+counter+'" onchange="selectStatusAdd(this)">'+
                     '<option value="">Select Status</option>'+
                     @foreach(COMPLETING_STATUS as $key=>$value)
                     '<option value="{{$value}}">{{$key}}</option>'+
@@ -582,7 +632,7 @@
                     '</div>'+
                     '</div>'+
                     '</div>'+
-                '<div class="row" style="margin-left: 10px">'+
+                '<div class="row" id="courseDuration'+counter+'" style="margin-left: 10px">'+
                 '<label>Duration</label>'+
                 '<div class="form-group col-md-2">'+
                 '<label for="inputPassword4">Hour</label>'+
@@ -638,11 +688,13 @@
                 );
                 newTextBoxDiv.appendTo("#TextBoxesGroup");
 
+                $('#courseDuration'+counter).hide();
                 counter++;
                 if(counter>1){
 //                    document.getElementById("removeButton").style.display='block';
                     $("#removeButton").show();
                     $("#submitBtn").show();
+
                 }
                 $('.date').datepicker({
                     format: 'yyyy-m-d'
@@ -661,7 +713,7 @@
                 counter--;
                 if(counter<2){
                     $("#removeButton").hide();
-                    $("#submitBtn").hide();
+//                    $("#submitBtn").hide();
                 }
                 $("#TextBoxDiv" + counter).remove();
             });
@@ -689,6 +741,18 @@
         }
 
 
+        function selectStatusAdd(x) {
+
+            var value=$(x).val();
+            var id=$(x).data('panel-id');
+            if(value==1){
+                $('#courseDuration'+id).hide();
+            }
+            else if(value==2){
+                $('#courseDuration'+id).show();
+            }
+        }
+
         function selectStatus(x) {
             var value=$(x).val();
 
@@ -703,23 +767,23 @@
 
         }
 
-        function changeResult(x) {
-            // alert($(x).val());
-            var value=$(x).val();
-            var id=$(x).data('panel-id');
-
-            if(value==4){
-                $('#otherField'+id).html(' <div class="form-group col-md-12">\n' +
-                    '                                    <label for="inputPassword4">Grade</label>\n' +
-                    '                                    <input type="text" class="form-control" name="grade['+id+']"  placeholder="">\n' +
-                    '                                </div>');
-            }
-
-            else{
-                $('#otherField'+id).html('');
-            }
-
-        }
+//        function changeResult(x) {
+//            // alert($(x).val());
+//            var value=$(x).val();
+//            var id=$(x).data('panel-id');
+//
+//            if(value==4){
+//                $('#otherField'+id).html(' <div class="form-group col-md-12">\n' +
+//                    '                                    <label for="inputPassword4">Grade</label>\n' +
+//                    '                                    <input type="text" class="form-control" name="grade['+id+']"  placeholder="">\n' +
+//                    '                                </div>');
+//            }
+//
+//            else{
+//                $('#otherField'+id).html('');
+//            }
+//
+//        }
 
     </script>
 

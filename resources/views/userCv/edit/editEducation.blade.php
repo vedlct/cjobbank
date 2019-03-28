@@ -37,7 +37,7 @@
             {{--@if($education->eduLvlUnder == 2 || $education->eduLvlUnder==null )--}}
 
             <div @if($education->eduLvlUnder == 2 || $education->eduLvlUnder==null ) style=" dispaly:none" @endif id="instituteNameDiv" class="form-group col-md-12">
-                <label for="">Institution<span style="color: red">*</span></label>
+                <label for="">School/College/Institution name<span style="color: red">*</span></label>
                 <input type="text" name="instituteName"  class="form-control" required id="instituteName" value="{{$education->institutionName}}" placeholder="">
             </div>
 
@@ -142,7 +142,7 @@
             </div>
 
             <div class="form-group col-md-3">
-                <label for="">Result/Cgpa/Score</label>
+                <label for="">Result/CGPA/Score</label>
                 <input name="result" type="text" class="form-control" value="{{$education->result}}"  id="cgpa" maxlength="10" placeholder="">
             </div>
             <div class="form-group col-md-3">

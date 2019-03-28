@@ -191,6 +191,9 @@ Route::get('Candidate-Applications','EmployeeApplicationController@getAllApplica
 
 
 /*-------------------------------Admin---------------------------------*/
+Route::get('Admin-DB-Backup','Admin\BackupController@wholeDbBackup')->name('backup.wholeDbBackup');
+
+
 Route::get('Admin-Dashboard','Admin\DashboardController@home')->name('admin.dashboard');
 
 Route::get('Admin-Manage-CV','Admin\CvManagementController@manage')->name('cv.admin.manage');
@@ -214,7 +217,9 @@ Route::post('Admin-Change-Job-Status','Admin\JobController@jobStatusUpdate')->na
 Route::get('Admin-Manage-Application','Admin\ApplicationController@manageApplication')->name('application.admin.manage');
 Route::post('Admin-Show-All-Application','Admin\ApplicationController@showAllApplication')->name('application.admin.showAll');
 Route::post('Admin-Show-All-Major-For Education','Admin\ApplicationController@showAllMajorForEducation')->name('application.admin.getMajorFromEducationlvl');
-Route::post('Admin-Export-All-AppliedCandidate','Admin\ApplicationController@exportAppliedCandidate')->name('jobAppliedCadidate.admin.Exportxls');
+Route::post('Admin-Export-All-AppliedCandidate-Hr-report01','Admin\ApplicationController@exportAppliedCandidate')->name('jobAppliedCadidate.admin.Exportxls');
+Route::post('Admin-Export-All-AppliedCandidate-Hr-report03','Admin\ApplicationController@exportAppliedCandidateHrReport03')->name('jobAppliedCadidate.admin.Exporthrreport03xls');
+Route::post('Admin-Export-All-AppliedCandidate-Hr-report02','Admin\ApplicationController@exportAppliedCandidateHrReport02')->name('jobAppliedCadidate.admin.Exporthrreport02xls');
 Route::post('Admin-Send-Mail-AppliedCandidate','Admin\ApplicationController@sendMailtoAppliedCandidate')->name('jobAppliedCadidate.admin.sendMail');
 
 
@@ -231,6 +236,8 @@ Route::post('Admin-Manage-User/changeUserStatus','Admin\UserManagementController
 Route::post('Admin-Manage-User/update/{id}','Admin\UserManagementController@update')->name('admin.manageUser.update');
 /*----------------------Get CV ------------------------ */
 Route::get('user/cv/{empId}','UserCvController@getFullCv')->name('userCv.get');
+Route::post('user/cv-delete','UserCvController@FullCvDelete')->name('userCv.delete');
+Route::post('user/cv-confirm-delete','UserCvController@FullCvCompleteDelete')->name('userCv.confirm.delete');
 
 Route::post('user/cv/select','UserCvController@getSelectedCv')->name('userCv.select');
 

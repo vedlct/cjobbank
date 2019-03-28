@@ -2,7 +2,7 @@
 
 define('GENDER',array(
     "Man"=>'M',
-    "Women"=>'F',
+    "Woman"=>'F',
     "Transgender"=>'T'
 ));
 define('DISABILITY',array(
@@ -36,6 +36,7 @@ define('BLOOD_GROUP',array(
     "AB-"=>'ab-',
     "O+"=>'o+',
     "O-"=>'o-',
+    "Don’t know"=>'na',
 ));
 
 define('MARITAL_STATUS',array(
@@ -83,6 +84,7 @@ define('STATUS',array(
     "1"=>'Active',
     "0"=>'Inactive',
 ));
+
 define('OTHERS',"others");
 define('CV_COMPLITING_MSG',"Thank you for submiting your CV. All the data submitted here are only for Caritas Bangladesh");
 

@@ -47,7 +47,7 @@
 
 
                                 <div id="instituteNameDiv" class="form-group col-md-12">
-                                    <label for="">Institution <span style="color: red">*</span></label>
+                                    <label for="">School/College/Institution name <span style="color: red">*</span></label>
                                     <input type="text" name="instituteName[]" class="form-control" id="instituteName" placeholder="Institute name" required>
                                 </div>
                                 <div id="boardDiv" class="form-group col-md-3">
@@ -140,13 +140,13 @@
 
                                 <div class="form-group col-md-3">
 
-                                    <label for="">Result/Cgpa/Score</label>
+                                    <label for="">Result/CGPA/Score</label>
                                     <input name="result[]" type="text" class="form-control"  id="cgpa" maxlength="10" placeholder="CGPA">
 
                                 </div>
 
                                 <div class="form-group col-md-3">
-                                    <label for="">Out of</label>
+                                    <label for="">Scale/ Out of</label>
                                     <input type="text" name="resultOutOf[]" class="form-control" id="resultOutOf" placeholder="CGPA out of">
                                 </div>
 
@@ -157,7 +157,7 @@
 
 
                             <button type="button" id="addButton" class="btn btn-success">Add more</button>
-                            <button type="button" id="removeButton" class="btn btn-success" >remove</button>
+                            <button type="button" id="removeButton" class="btn btn-success" >Remove</button>
                         </div>
 
                         <div style="overflow:auto;">
@@ -655,11 +655,11 @@
                     '</div>'+
 
                    ' <div class="form-group col-md-3">'+
-                    '<label for="">Result/Cgpa/Score</label>'+
+                    '<label for="">Result/CGPA/Score</label>'+
                     '<input name="result[]" type="text" class="form-control" id="cgpa'+counter+'"   placeholder="">'+
                     '</div>'+
                     '<div class="form-group col-md-3">'+
-                    '<label for="">CGPA out of</label>'+
+                    '<label for="">Scale/ Out of</label>'+
                 '<input type="text" name="resultOutOf[]" class="form-control" id="resultOutOf'+counter+'" placeholder="CGPA out of">'+
                     '</div>'
 

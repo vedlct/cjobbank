@@ -7,6 +7,10 @@
             color: red;
             font-style: italic;
         }
+        #notice{
+            color: blue;
+            font-style: italic;
+        }
         /*#imageMsg,#signMsg{*/
         /*display: none;*/
         /*}*/
@@ -19,8 +23,8 @@
                 <div style="background-color: #F1F1F1" class="card-body">
                     <div id="regForm">
 
-                        <strong><span style="color: red">*</span><span style="color: red">*</span>Experience candidate : referee should be present or previous organization/company.</strong><span style="color: red">*</span><span style="color: red">*</span><br>
-                        <strong><span style="color: red">*</span><span style="color: red">*</span>Freshers : referee can be from his/her own preference.</strong><span style="color: red">*</span><span style="color: red">*</span>
+                        <span id="notice"><span style="color: red">*</span><span style="color: red">*</span>Experience candidate : referee should be present or previous organization/company.</span><span style="color: red">*</span><span style="color: red">*</span><br>
+                        <span id="notice"><span style="color: red">*</span><span style="color: red">*</span>Freshers : referee can be from his/her own preference.</span><span style="color: red">*</span><span style="color: red">*</span>
 
                         <div id="" class="tab">
 
@@ -220,16 +224,21 @@
         });
 
         $(document).ready(function(){
-
+            var tempCounter='{{count($refrees)}}';
+            tempCounter++;
             var counter = 1;
+
             $("#removeButton").hide();
             $("#submitBtn").hide();
 
 
             $("#addButton").click(function () {
 //                $("#btnPevious").hide();
-                if(counter>10){
-                    alert("Only 10 Section allow per Time!!");
+
+                console.log(tempCounter);
+
+                if(tempCounter>3){
+                    alert("Only 3 Section allow per Time!!");
                     return false;
                 }
 
@@ -365,7 +374,7 @@
                     .attr("id", 'TextBoxDiv' + counter).attr("class", 'row');
                 newTextBoxDiv.after().html(
                     '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>'+
-                    '<h2 style="margin-bottom: 30px;">Referee - '+(counter+2)+'</h2>'+
+                    '<h2 style="margin-bottom: 30px;">Referee - '+(tempCounter)+'</h2>'+
                     '  <div class="row"> ' +
                     '<div class="form-group col-md-6"> ' +
                     '<label for="inputEmail4">First name<span style="color: red">*</span></label> ' +
@@ -399,6 +408,7 @@
                 newTextBoxDiv.appendTo("#TextBoxesGroup");
 
                 counter++;
+                tempCounter++;
                 if(counter>1){
                     $("#removeButton").show();
                     $("#submitBtn").show();
@@ -414,6 +424,7 @@
                     return false;
                 }
                 counter--;
+                tempCounter--;
                 if(counter<2){
                     $("#removeButton").hide();
                     $("#submitBtn").hide();

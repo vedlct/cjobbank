@@ -82,9 +82,7 @@
                                         </div>
 
 
-
-
-                                    <div class="row" id="courseDuration">
+                                        <div class="row" id="courseDuration">
                                         <label>Duration</label>
                                         <div class="form-group col-md-2">
                                             <label for="inputPassword4">Hour</label>
@@ -147,6 +145,7 @@
                                 <button type="button" id="addButton" class="btn btn-success">Add more</button>
                                 <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
+                            </div>
                             </div>
 
                             <div style="overflow:auto;">
