@@ -30,6 +30,16 @@
                     </select>
                 </div>
 
+                <div class=" form-group ">
+                    <label>Marital Status</label>
+                    <select name="maritalStatusFilter" id="maritalStatusFilter" class="form-control">
+                        <option value="">Select marital status</option>
+                        @foreach(MARITAL_STATUS as $key=>$value)
+                            <option value="{{$value}}">{{$key}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
 
                 <div class=" form-group">
                     <label>Religion</label>
@@ -84,7 +94,6 @@
                             <tr>
 
                                 <th>Image</th>
-
                                 <th>First Name</th>
                                 <th>Last Name</th>
                                 <th width="8%">Age(Year.Month)</th>
@@ -145,6 +154,10 @@
                     data: function (d) {
 
                         d._token = "{{csrf_token()}}";
+
+                        if ($('#maritalStatusFilter').val()!=""){
+                            d.maritalStatusFilter=$('#maritalStatusFilter').val();
+                        }
                         if ($('#genderFilter').val() != "") {
                             d.genderFilter = $('#genderFilter').val();
                         }
@@ -186,6 +199,7 @@
                     },
 
 //                    { data: 'name', name: 'name',"orderable": false, "searchable":true },
+
 
                     {data: 'firstName', name: 'firstName', "orderable": false, "searchable": true},
                     {data: 'lastName', name: 'lastName', "orderable": false, "searchable": true},
@@ -286,6 +300,8 @@
             }
 
         });
+
+
 
         function exportSelectedCv() {
 
@@ -432,6 +448,17 @@
 
         });
 
+        // maritial status
+        $('#maritalStatusFilter').change(function(){
+            table.ajax.reload();
+            emptySelect();
+            if ($('#maritalStatusFilter').val()!=""){
+
+                $('#maritalStatusFilter').css("background-color", "#7c9").css('color', 'white');
+            }else {
+                $('#maritalStatusFilter').css("background-color", "#FFF").css('color', 'black');
+            }
+        });
 
         $('#genderFilter').change(function () { //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter

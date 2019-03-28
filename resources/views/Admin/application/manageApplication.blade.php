@@ -387,7 +387,6 @@
                         <tr>
 
                             <th style="width: 4%">Select</th>
-                            <th>Marital Status</th>
                             <th>First Name</th>
                             <th>Last Name</th>
 
@@ -538,7 +537,6 @@ CKEDITOR.config.toolbar = [
                             ;},
                         "orderable": false, "searchable":false
                     },
-                    { data: 'maritalStatus', name: 'employee.maritalStatus',"orderable": false, "searchable":true },
                     { data: 'firstName', name: 'employee.firstName',"orderable": false, "searchable":true },
                     { data: 'lastName', name: 'employee.lastName',"orderable": false, "searchable":true },
 

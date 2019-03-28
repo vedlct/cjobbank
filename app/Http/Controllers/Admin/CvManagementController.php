@@ -86,12 +86,15 @@ class CvManagementController extends Controller
     {
 
 
-        $cvData=DB::table('employee')->select('employeeId','employee.dateOfBirth as birthDate','gender', 'email','image','firstName','lastName',
+        $cvData=DB::table('employee')->select('employeeId','employee.dateOfBirth as birthDate','gender', 'maritalStatus', 'email','image','firstName','lastName',
             DB::raw("TIMESTAMPDIFF(YEAR,`employee`.`dateOfBirth`,CURDATE()) as age1"),
             DB::raw("TIMESTAMPDIFF(MONTH,`employee`.`dateOfBirth`,CURDATE()) as age2"));
 //            ->leftJoin('zone', 'zone.zoneId', '=', 'employee.fkzoneId')
 //            ->where('cvStatus',1);
 
+        if ($r->maritalStatusFilter){
+            $cvData= $cvData->where('employee.maritalStatus',$r->maritalStatusFilter);
+        }
         if ($r->genderFilter){
             $cvData= $cvData->where('employee.gender',$r->genderFilter);
         }
