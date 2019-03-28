@@ -185,72 +185,72 @@
             return false;
 
         }
-        if(end != "") {
+        // if(end != "") {
+        //
+        //
+        //     if (Date.parse(end) < Date.parse(start)) {
+        //
+        //         var errorMsg = 'End date should after Start Date!!';
+        //         validationError(errorMsg);
+        //         return false;
+        //
+        //     }
+        // }
 
+        // if($.trim(address)==""){
+        //
+        //     var errorMsg='Please Type address First!!';
+        //     validationError(errorMsg);
+        //     return false;
+        //
+        // }
+        //
+        // if(majorResponsibilities==""){
+        //
+        //     var errorMsg='Please Type Major Responsibilities First!!';
+        //     validationError(errorMsg);
+        //     return false;
+        // }
+        if (majorResponsibilities.length > 500){
 
-            if (Date.parse(end) < Date.parse(start)) {
-
-                var errorMsg = 'End date should after Start Date!!';
-                validationError(errorMsg);
-                return false;
-
-            }
-        }
-
-        if($.trim(address)==""){
-
-            var errorMsg='Please Type address First!!';
-            validationError(errorMsg);
-            return false;
-
-        }
-
-        if(majorResponsibilities==""){
-
-            var errorMsg='Please Type Major Responsibilities First!!';
-            validationError(errorMsg);
-            return false;
-        }
-        if (majorResponsibilities.length > 200){
-
-            var errorMsg='Major Responsibilities Should not more than 200 Charecter Length!!'
+            var errorMsg='Major Responsibilities Should not more than 5000 Charecter Length!!'
             validationError(errorMsg)
             return false;
 
         }
-        if(keyAchivement==""){
-
-            var errorMsg='Please Type Key Achivement First!!'
-            validationError(errorMsg)
-            return false;
-        }
+        // if(keyAchivement==""){
+        //
+        //     var errorMsg='Please Type Key Achivement First!!'
+        //     validationError(errorMsg)
+        //     return false;
+        // }
         if (keyAchivement.length > 200){
 
-            var errorMsg='Key Achivement Should not more than 200 Charecter Length!!'
+            var errorMsg='Key Achivement Should not more than 5000 Charecter Length!!'
             validationError(errorMsg)
             return false;
 
         }
-        if(supervisorName==""){
+        // if(supervisorName==""){
+        //
+        //     var errorMsg='Please Type Supervisor Name First!!'
+        //     validationError(errorMsg)
+        //     return false;
+        // }
+        // if (supervisorName.length > 200){
+        //
+        //     var errorMsg='Supervisor Name Should not more than 200 Charecter Length!!'
+        //     validationError(errorMsg)
+        //     return false;
+        //
+        // }
 
-            var errorMsg='Please Type Supervisor Name First!!'
-            validationError(errorMsg)
-            return false;
-        }
-        if (supervisorName.length > 200){
-
-            var errorMsg='Supervisor Name Should not more than 200 Charecter Length!!'
-            validationError(errorMsg)
-            return false;
-
-        }
-
-        if(reservationContactingEmployer==""){
-
-            var errorMsg='Please Select reservation of Contacting Employer First!!'
-            validationError(errorMsg)
-            return false;
-        }
+        // if(reservationContactingEmployer==""){
+        //
+        //     var errorMsg='Please Select reservation of Contacting Employer First!!'
+        //     validationError(errorMsg)
+        //     return false;
+        // }
 
         if(employmentType==""){
 
