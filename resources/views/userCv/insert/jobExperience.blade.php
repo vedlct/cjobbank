@@ -2,6 +2,12 @@
 
 @section('content')
 
+    <style>
+        #notice{
+            color: blue;
+        }
+    </style>
+
     <div class="row ">
 
         <div class="col-12 ">
@@ -63,11 +69,11 @@
                                         <textarea class="form-control" name="address[]"  id="address" placeholder="address"></textarea>
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <label for="inputPassword4">Major responsibilities </label>
+                                        <label for="inputPassword4">Major responsibilities <span id="notice">Max limit 5000 character</span></label>
                                         <textarea class="form-control" name="majorResponsibilities[]" maxlength="5000"  id="majorResponsibilities" placeholder="max limit 5000"></textarea>
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <label for="inputPassword4">Key achievement </label>
+                                        <label for="inputPassword4">Key achievement <span id="notice">Max limit 5000 character</span></label>
                                         <textarea class="form-control" name="keyAchivement[]" maxlength="5000"  id="keyAchivement" placeholder="max limit 5000"></textarea>
                                     </div>
 

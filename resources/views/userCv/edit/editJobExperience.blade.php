@@ -1,3 +1,9 @@
+<style>
+    #notice{
+        color: blue;
+    }
+</style>
+
 <form  action="{{route('update.jobExperience')}}" onsubmit="return checkJobExperience()" method="post">
     <!-- One "tab" for each step in the form: -->
     {{csrf_field()}}
@@ -39,11 +45,11 @@
                 </div>
 
                 <div class="form-group col-md-12">
-                    <label for="inputPassword4">Major responsibilities<span style="color: red">*</span> </label>
+                    <label for="inputPassword4">Major responsibilities<span id="notice">Max limit 5000 character</span>< </label>
                     <textarea class="form-control" name="majorResponsibilities" maxlength="5000" required id="majorResponsibilities" placeholder="Major responsibilities">{{$experience->majorResponsibilities}}</textarea>
                 </div>
                 <div class="form-group col-md-12">
-                    <label for="inputPassword4">Key achievement<span style="color: red">*</span> </label>
+                    <label for="inputPassword4">Key achievement<span id="notice">Max limit 5000 character</span>< </label>
                     <textarea class="form-control" name="keyAchivement" maxlength="5000" required id="keyAchivement" placeholder="Key Achievement">{{$experience->keyAchivement}}</textarea>
                 </div>
                 <div class="form-group col-md-6">
