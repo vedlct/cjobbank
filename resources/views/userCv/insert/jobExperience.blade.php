@@ -37,8 +37,8 @@
 
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Organization type</label>
-                                        <select  name="organizationType[]" class="form-control" id="organizationType">
+                                        <label for="inputEmail4">Organization type<span style="color: red">*</span></label>
+                                        <select name="organizationType[]" class="form-control" id="organizationType">
                                             <option selected value="">Select organization type</option>
                                             @foreach($companyType as $natio)
                                                 <option value="{{$natio->organizationTypeId}}">{{$natio->organizationTypeName}}</option>
@@ -48,16 +48,16 @@
                                         {{--<input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" required>--}}
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <label for="inputEmail4">Organization name</label>
+                                        <label for="inputEmail4">Organization name<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" >
                                     </div>
 
                                     <div class="form-group col-md-4">
-                                        <label for="inputEmail4">Designation</label>
+                                        <label for="inputEmail4">Designation<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" name="degisnation[]" id="degisnation" placeholder="designation" >
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="inputPassword4">Start date</label>
+                                        <label for="inputPassword4">Start date<span style="color: red">*</span></label>
                                         <input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" required>
                                     </div>
                                     <div class="form-group col-md-4">
@@ -292,52 +292,58 @@
                     }
                 }
 
-                if($.trim(address[i].value)==""){
+//                if($.trim(address[i].value)==""){
+//
+//                    var errorMsg='Please type address first!!';
+//                    validationError(errorMsg);
+//                    return false;
+//
+//                }
 
-                    var errorMsg='Please type address first!!';
-                    validationError(errorMsg);
-                    return false;
+//                if(majorResponsibilities[i].value==""){
+//
+//                    var errorMsg='Please type major responsibilities first!!';
+//                    validationError(errorMsg);
+//                    return false;
+//                }
+                if(majorResponsibilities[i].value!="") {
+                    if (majorResponsibilities[i].value.length > 5000) {
 
+                        var errorMsg = 'Major responsibilities should not more than 5000 charecter length!!'
+                        validationError(errorMsg)
+                        return false;
+
+                    }
                 }
+//                if(keyAchivement[i].value==""){
+//
+//                    var errorMsg='Please type key achivement first!!'
+//                    validationError(errorMsg)
+//                    return false;
+//                }
+                if(keyAchivement[i].value!="") {
+                    if (keyAchivement[i].value.length > 5000) {
 
-                if(majorResponsibilities[i].value==""){
+                        var errorMsg = 'Key achivement should not more than 5000 charecter length!!'
+                        validationError(errorMsg)
+                        return false;
 
-                    var errorMsg='Please type major responsibilities first!!';
-                    validationError(errorMsg);
-                    return false;
+                    }
                 }
-                if (majorResponsibilities[i].value.length > 200){
+//                if(supervisorName[i].value==""){
+//
+//                    var errorMsg='Please type supervisor name first!!';
+//                    validationError(errorMsg)
+//                    return false;
+//                }
+                if(supervisorName[i].value!="") {
+                    if (supervisorName[i].value.length > 200) {
 
-                    var errorMsg='Major responsibilities should not more than 200 charecter length!!'
-                    validationError(errorMsg)
-                    return false;
+                        var errorMsg = 'Supervisor name should not more than 200 charecter length!!'
+                        validationError(errorMsg)
+                        return false;
 
-                }
-                if(keyAchivement[i].value==""){
-
-                    var errorMsg='Please type key achivement first!!'
-                    validationError(errorMsg)
-                    return false;
-                }
-                if (keyAchivement[i].value.length > 200){
-
-                    var errorMsg='Key achivement should not more than 200 charecter length!!'
-                    validationError(errorMsg)
-                    return false;
-
-                }
-                if(supervisorName[i].value==""){
-
-                    var errorMsg='Please type supervisor name first!!'
-                    validationError(errorMsg)
-                    return false;
-                }
-                if (supervisorName[i].value.length > 200){
-
-                    var errorMsg='Supervisor name should not more than 200 charecter length!!'
-                    validationError(errorMsg)
-                    return false;
-
+                    }
                 }
 
                 if(reservationContactingEmployer[i].value==""){
