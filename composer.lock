@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "40c196b7f5b4d234cff9efa3d5e22b67",
+    "content-hash": "888f75f412696cda7afc9b5c834c0824",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -384,6 +384,60 @@
                 "url"
             ],
             "time": "2017-03-20T17:10:46+00:00"
+        },
+        {
+            "name": "ifsnop/mysqldump-php",
+            "version": "v2.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ifsnop/mysqldump-php.git",
+                "reference": "d830857e93c3f309fd63768c0fe6d13d9240fc70"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ifsnop/mysqldump-php/zipball/d830857e93c3f309fd63768c0fe6d13d9240fc70",
+                "reference": "d830857e93c3f309fd63768c0fe6d13d9240fc70",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "squizlabs/php_codesniffer": "1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ifsnop\\": "src/Ifsnop/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Diego Torres",
+                    "homepage": "https://github.com/ifsnop",
+                    "role": "Developer"
+                }
+            ],
+            "description": "PHP version of mysqldump cli that comes with MySQL",
+            "homepage": "https://github.com/ifsnop/mysqldump-php",
+            "keywords": [
+                "PHP7",
+                "database",
+                "hhvm",
+                "mariadb",
+                "mysql",
+                "mysql-backup",
+                "mysqldump",
+                "pdo",
+                "php",
+                "php5",
+                "sql"
+            ],
+            "time": "2018-12-27T00:33:19+00:00"
         },
         {
             "name": "intervention/image",
@@ -4105,6 +4159,7 @@
                 "mock",
                 "xunit"
             ],
+            "abandoned": true,
             "time": "2018-08-09T05:50:03+00:00"
         },
         {

@@ -3,15 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Ifsnop\Mysqldump as IMysqldump;
+use Illuminate\Support\Facades\Session;
 
-
-use Illuminate\Support\Facades\DB;
-use PHPUnit\Framework\TestCase;
-use Spatie\DbDumper\Databases\MySql as MySql;
-use Spatie\DbDumper\Compressors\GzipCompressor;
-use Spatie\DbDumper\Exceptions\CannotStartDump;
-use Spatie\DbDumper\Exceptions\CannotSetParameter;
 
 class BackupController extends Controller
 {
@@ -67,21 +64,33 @@ class BackupController extends Controller
         $dbuser = env('DB_USERNAME');
         $dbpass = env('DB_PASSWORD');
 
-        shell_exec('mysqldump '.$dbname.' > dump.sql');
-
-//        $backup_file = $dbname . date("Y-m-d-H-i-s") . '.gz';
-//        $command = "mysqldump --opt -h $dbhost -u $dbuser -p $dbpass ". "test_db | gzip > $backup_file";
-
-//        return DB::raw("mysqldump --opt -h $dbhost -u $dbuser -p $dbpass ". "test_db | gzip > $backup_file");
-
-       //return system($command);
+        try {
 
 
-        $table_name = "aggrement";
-        $backup_file  = url('public/DBbackup/dump.sql');
-//        $sql = "";
-        return DB::raw("mysqldump -u ".$dbuser." -p ".$dbpass." ".$dbname." > ".$backup_file."");
-//        return  1;
+            $dump = new IMysqldump\Mysqldump('mysql:host='.$dbhost.';dbname='.$dbname.'', ''.$dbuser.'', ''.$dbpass.'');
+            $dump->start('public/DBbackup/dump.sql');
+
+            Session::flash('message', 'dump created successfully');
+            $fileName='dump'.date("Y-m-d_H-i-s");
+            $file=public_path('DBbackup/'.$fileName.'.sql');
+            if(!is_file($file)){
+                fopen($file, "w");
+            }
+
+
+
+            return response()->download($file);
+
+
+
+        }
+        catch (\Exception $e) {
+//            return 'mysqldump-php error: ' . $e->getMessage();
+            Session::flash('message', 'Error');
+            return back();
+        }
+
+
 
     }
 

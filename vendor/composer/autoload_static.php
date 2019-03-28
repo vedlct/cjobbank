@@ -103,6 +103,7 @@ class ComposerStaticInit16100a6e5f6f98c88104df9dc2c1bdf4
         array (
             'Intervention\\Image\\' => 19,
             'Illuminate\\' => 11,
+            'Ifsnop\\' => 7,
         ),
         'G' => 
         array (
@@ -305,6 +306,10 @@ class ComposerStaticInit16100a6e5f6f98c88104df9dc2c1bdf4
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
         ),
+        'Ifsnop\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ifsnop/mysqldump-php/src/Ifsnop',
+        ),
         'GuzzleHttp\\Psr7\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
@@ -410,6 +415,7 @@ class ComposerStaticInit16100a6e5f6f98c88104df9dc2c1bdf4
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\HR' => __DIR__ . '/../..' . '/app/HR.php',
         'App\\Http\\Controllers\\Admin\\ApplicationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ApplicationController.php',
+        'App\\Http\\Controllers\\Admin\\BackupController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/BackupController.php',
         'App\\Http\\Controllers\\Admin\\ComputerSkillController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ComputerSkillController.php',
         'App\\Http\\Controllers\\Admin\\CvManagementController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/CvManagementController.php',
         'App\\Http\\Controllers\\Admin\\DashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/DashboardController.php',
@@ -1144,6 +1150,18 @@ class ComposerStaticInit16100a6e5f6f98c88104df9dc2c1bdf4
         'Hamcrest\\Type\\IsString' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Type/IsString.php',
         'Hamcrest\\Util' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Util.php',
         'Hamcrest\\Xml\\HasXPath' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest/Xml/HasXPath.php',
+        'Ifsnop\\Mysqldump\\CompressBzip2' => __DIR__ . '/..' . '/ifsnop/mysqldump-php/src/Ifsnop/Mysqldump/Mysqldump.php',
+        'Ifsnop\\Mysqldump\\CompressGzip' => __DIR__ . '/..' . '/ifsnop/mysqldump-php/src/Ifsnop/Mysqldump/Mysqldump.php',
+        'Ifsnop\\Mysqldump\\CompressManagerFactory' => __DIR__ . '/..' . '/ifsnop/mysqldump-php/src/Ifsnop/Mysqldump/Mysqldump.php',
+        'Ifsnop\\Mysqldump\\CompressMethod' => __DIR__ . '/..' . '/ifsnop/mysqldump-php/src/Ifsnop/Mysqldump/Mysqldump.php',
+        'Ifsnop\\Mysqldump\\CompressNone' => __DIR__ . '/..' . '/ifsnop/mysqldump-php/src/Ifsnop/Mysqldump/Mysqldump.php',
+        'Ifsnop\\Mysqldump\\Mysqldump' => __DIR__ . '/..' . '/ifsnop/mysqldump-php/src/Ifsnop/Mysqldump/Mysqldump.php',
+        'Ifsnop\\Mysqldump\\TypeAdapter' => __DIR__ . '/..' . '/ifsnop/mysqldump-php/src/Ifsnop/Mysqldump/Mysqldump.php',
+        'Ifsnop\\Mysqldump\\TypeAdapterDblib' => __DIR__ . '/..' . '/ifsnop/mysqldump-php/src/Ifsnop/Mysqldump/Mysqldump.php',
+        'Ifsnop\\Mysqldump\\TypeAdapterFactory' => __DIR__ . '/..' . '/ifsnop/mysqldump-php/src/Ifsnop/Mysqldump/Mysqldump.php',
+        'Ifsnop\\Mysqldump\\TypeAdapterMysql' => __DIR__ . '/..' . '/ifsnop/mysqldump-php/src/Ifsnop/Mysqldump/Mysqldump.php',
+        'Ifsnop\\Mysqldump\\TypeAdapterPgsql' => __DIR__ . '/..' . '/ifsnop/mysqldump-php/src/Ifsnop/Mysqldump/Mysqldump.php',
+        'Ifsnop\\Mysqldump\\TypeAdapterSqlite' => __DIR__ . '/..' . '/ifsnop/mysqldump-php/src/Ifsnop/Mysqldump/Mysqldump.php',
         'Illuminate\\Auth\\Access\\AuthorizationException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/AuthorizationException.php',
         'Illuminate\\Auth\\Access\\Gate' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/Gate.php',
         'Illuminate\\Auth\\Access\\HandlesAuthorization' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Auth/Access/HandlesAuthorization.php',
