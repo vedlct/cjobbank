@@ -7,6 +7,10 @@
             color: red;
             font-style: italic;
         }
+        #notice{
+            color: blue;
+            font-style: italic;
+        }
         /*#imageMsg,#signMsg{*/
         /*display: none;*/
         /*}*/
@@ -19,8 +23,8 @@
                 <div style="background-color: #F1F1F1" class="card-body">
                     <div id="regForm">
 
-                        <strong><span style="color: red">*</span><span style="color: red">*</span>Experience candidate : referee should be present or previous organization/company.</strong><span style="color: red">*</span><span style="color: red">*</span><br>
-                        <strong><span style="color: red">*</span><span style="color: red">*</span>Freshers : referee can be from his/her own preference.</strong><span style="color: red">*</span><span style="color: red">*</span>
+                        <span id="notice"><span style="color: red">*</span><span style="color: red">*</span>Experience candidate : referee should be present or previous organization/company.</span><span style="color: red">*</span><span style="color: red">*</span><br>
+                        <span id="notice"><span style="color: red">*</span><span style="color: red">*</span>Freshers : referee can be from his/her own preference.</span><span style="color: red">*</span><span style="color: red">*</span>
 
                         <div id="" class="tab">
 

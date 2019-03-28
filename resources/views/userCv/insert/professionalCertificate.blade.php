@@ -438,13 +438,13 @@
 //                        return false;
 //
 //                    }
-                    if(start==""){
-
-                        var errorMsg='Please select a strat date first!!';
-                        validationError(errorMsg);
-                        return false;
-
-                    }
+//                    if(start==""){
+//
+//                        var errorMsg='Please select a strat date first!!';
+//                        validationError(errorMsg);
+//                        return false;
+//
+//                    }
 //                    if(end==""){
 //
 //                        var errorMsg='Please Select a End Date First!!';
@@ -452,7 +452,7 @@
 //                        return false;
 //
 //                    }
-                    if (end != "") {
+                    if (start!="" && end != "") {
 
 
                         if (Date.parse(end) < Date.parse(start)) {
@@ -536,13 +536,13 @@
 //                        return false;
 //
 //                    }
-                    if(start==""){
-
-                        var errorMsg='Please select a strat date first!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
+//                    if(start==""){
+//
+//                        var errorMsg='Please select a strat date first!!'
+//                        validationError(errorMsg)
+//                        return false;
+//
+//                    }
 //                    if(end==""){
 //
 //                        var errorMsg='Please Select a End Date First!!'
@@ -551,7 +551,7 @@
 //
 //                    }
 
-                    if (end != "") {
+                    if (start !="" && end != "") {
 
 
                         if (Date.parse(end) < Date.parse(start)) {

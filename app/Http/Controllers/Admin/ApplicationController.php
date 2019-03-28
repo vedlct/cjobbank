@@ -104,7 +104,7 @@ class ApplicationController extends Controller
         $natinality=Nationality::where('status',1)->get();
         $allZone=DB::table('zone')->where('status',1)->get();
         $organizationType=DB::table('organizationtype')->where('status',1)->get();
-        $allJobTitle=Job::select('title')->get();
+        $allJobTitle=Job::select('title')->where('status','!=',0)->get();
         $allEducationLevel=Educationlevel::where('status',1)->get();
         $mailTamplate=MailTamplate::select('tamplateName','tamplateId')->get();
 

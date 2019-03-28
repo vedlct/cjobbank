@@ -164,7 +164,6 @@ class JobController extends Controller
            ->update(['status' => 0]);
 
 
-
    }
 
    public function jobUpdate(Request $r){
