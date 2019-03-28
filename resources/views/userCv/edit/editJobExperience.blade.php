@@ -40,25 +40,25 @@
                     <input type="text" class="form-control date" name="endDate" value="{{$experience->endDate}}"  id="end" placeholder="date">
                 </div>
                 <div class="form-group col-md-12">
-                    <label for="inputPassword4">Organization address<span style="color: red">*</span></label>
-                    <textarea required class="form-control" name="address"id="address" placeholder="address">{{$experience->address}} </textarea>
+                    <label for="inputPassword4">Organization address</label>
+                    <textarea  class="form-control" name="address"id="address" placeholder="address">{{$experience->address}} </textarea>
                 </div>
 
                 <div class="form-group col-md-12">
-                    <label for="inputPassword4">Major responsibilities<span id="notice">Max limit 5000 character</span>< </label>
-                    <textarea class="form-control" name="majorResponsibilities" maxlength="5000" required id="majorResponsibilities" placeholder="Major responsibilities">{{$experience->majorResponsibilities}}</textarea>
+                    <label for="inputPassword4">Major responsibilities<span id="notice">Max limit 5000 character</span> </label>
+                    <textarea class="form-control" name="majorResponsibilities" maxlength="5000"  id="majorResponsibilities" placeholder="Major responsibilities">{{$experience->majorResponsibilities}}</textarea>
                 </div>
                 <div class="form-group col-md-12">
-                    <label for="inputPassword4">Key achievement<span id="notice">Max limit 5000 character</span>< </label>
-                    <textarea class="form-control" name="keyAchivement" maxlength="5000" required id="keyAchivement" placeholder="Key Achievement">{{$experience->keyAchivement}}</textarea>
+                    <label for="inputPassword4">Key achievement<span id="notice">Max limit 5000 character</span> </label>
+                    <textarea class="form-control" name="keyAchivement" maxlength="5000"  id="keyAchivement" placeholder="Key Achievement">{{$experience->keyAchivement}}</textarea>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="inputEmail4">Name of supervisor<span style="color: red">*</span></label>
-                    <input type="text" class="form-control" name="supervisorName" value="{{$experience->supervisorName}}" id="supervisorName" placeholder="Name of Supervisor" required>
+                    <label for="inputEmail4">Name of supervisor</label>
+                    <input type="text" class="form-control" name="supervisorName" value="{{$experience->supervisorName}}" id="supervisorName" placeholder="Name of Supervisor">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="inputEmail4">Any reservation contacting your employer?<span style="color: red">*</span></label>
-                    <select class="form-control" id="reservationContactingEmployer" name="reservationContactingEmployer" required>
+                    <label for="inputEmail4">Any reservation contacting your employer?</label>
+                    <select class="form-control" id="reservationContactingEmployer" name="reservationContactingEmployer" >
                         <option value="" selected>Select option</option>
                         @foreach(YES_NO as $key=>$value)
                             <option @if($experience->reservationContactingEmployer == $value) selected @endif value="{{$value}}">{{$key}}</option>
@@ -211,7 +211,7 @@
         //     validationError(errorMsg);
         //     return false;
         // }
-        if (majorResponsibilities.length > 500){
+        if (majorResponsibilities.length > 5000){
 
             var errorMsg='Major Responsibilities Should not more than 5000 Charecter Length!!'
             validationError(errorMsg)
@@ -224,7 +224,7 @@
         //     validationError(errorMsg)
         //     return false;
         // }
-        if (keyAchivement.length > 200){
+        if (keyAchivement.length > 5000){
 
             var errorMsg='Key Achivement Should not more than 5000 Charecter Length!!'
             validationError(errorMsg)

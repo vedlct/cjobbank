@@ -93,8 +93,8 @@
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Type of employment</label>
-                                        <select class="form-control" id="employmentType" name="employmentType[]" >
+                                        <label for="inputEmail4">Type of employment<span style="color: red">*</span></label>
+                                        <select class="form-control" required id="employmentType" name="employmentType[]" >
 
                                             <option value="" selected>Select employment type</option>
                                             @foreach($employmentType as $eT)
@@ -117,7 +117,7 @@
                             </div>
 
                             <button type="button" id="addButton" class="btn btn-success">Add more</button>
-                            <button type="button" id="removeButton" class="btn btn-success" >remove</button>
+                            <button type="button" id="removeButton" class="btn btn-success" >Remove</button>
 
                         </div>
                         </div>
@@ -498,6 +498,13 @@
 
                     }
 
+                    if(end =="" && supervisorName==""){
+
+                        var errorMsg='Please insert supervisor name for running job !!';
+                        validationError(errorMsg);
+                        return false;
+                    }
+
                 }
                 else {
 
@@ -645,6 +652,13 @@
 
                     }
 
+                    if(end =="" && supervisorName==""){
+
+                        var errorMsg='Please insert supervisor name for running job !!';
+                        validationError(errorMsg)
+                        return false;
+                    }
+
 
                 }
 
@@ -668,15 +682,15 @@
                         {{--<input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" required>--}}
                     '</div>'+
                     '<div class="form-group col-md-12"> ' +
-                    '<label for="inputEmail4">Organization name</label> ' +
+                    '<label for="inputEmail4">Organization name<span style="color: red">*</span></label> ' +
                     '<input type="text" class="form-control" name="organization[]" id="organization'+counter+'" placeholder="organization" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
-                    '<label for="inputEmail4">Designation</label> ' +
+                    '<label for="inputEmail4">Designation<span style="color: red">*</span></label> ' +
                     '<input type="text" class="form-control" name="degisnation[]" id="degisnation'+counter+'" placeholder="designation" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
-                    '<label for="inputPassword4">Start date</label> ' +
+                    '<label for="inputPassword4">Start date<span style="color: red">*</span></label> ' +
                     '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
@@ -688,20 +702,20 @@
                     '<textarea class="form-control" name="address[]" id="address'+counter+'" placeholder="address"></textarea> ' +
                     '</div> ' +
                     '<div class="form-group col-md-12">'+
-                    '<label for="inputPassword4">Major responsibilities<span style="color: red">*</span> </label>'+
-                    '<textarea class="form-control" name="majorResponsibilities[]" maxlength="5000" required id="majorResponsibilities'+counter+'" placeholder="Major responsibilities"></textarea>'+
+                    '<label for="inputPassword4">Major responsibilities </label>'+
+                    '<textarea class="form-control" name="majorResponsibilities[]" maxlength="5000"  id="majorResponsibilities'+counter+'" placeholder="Major responsibilities"></textarea>'+
                     '</div>'+
                     '<div class="form-group col-md-12">'+
-                    '<label for="inputPassword4">Key achievement<span style="color: red">*</span> </label>'+
-                    '<textarea class="form-control" name="keyAchivement[]" maxlength="5000" required id="keyAchivement'+counter+'" placeholder="Key achievement"></textarea>'+
+                    '<label for="inputPassword4">Key achievement </label>'+
+                    '<textarea class="form-control" name="keyAchivement[]" maxlength="5000"  id="keyAchivement'+counter+'" placeholder="Key achievement"></textarea>'+
                     '</div>'+
                     '<div class="form-group col-md-6">'+
-                    '<label for="inputEmail4">Name of supervisor<span style="color: red">*</span></label>'+
-                    '<input type="text" class="form-control" name="supervisorName[]" id="supervisorName'+counter+'" placeholder="Name of supervisor" required>'+
+                    '<label for="inputEmail4">Name of supervisor</label>'+
+                    '<input type="text" class="form-control" name="supervisorName[]" id="supervisorName'+counter+'" placeholder="Name of supervisor" >'+
                 '</div>'+
                 '<div class="form-group col-md-6">'+
-                    '<label for="inputEmail4">Any reservation contacting your employer?<span style="color: red">*</span></label>'+
-                    '<select class="form-control" id="reservationContactingEmployer'+counter+'" name="reservationContactingEmployer[]" required>'+
+                    '<label for="inputEmail4">Any reservation contacting your employer?</label>'+
+                    '<select class="form-control" id="reservationContactingEmployer'+counter+'" name="reservationContactingEmployer[]" >'+
                 '<option value="" selected>Select option</option>'+
                 @foreach(YES_NO as $key=>$value)
                 '<option value="{{$value}}">{{$key}}</option>'+
@@ -711,7 +725,7 @@
 
                 '<div class="form-group col-md-6">'+
                     '<label for="inputEmail4">Type of employment<span style="color: red">*</span></label>'+
-                    '<select class="form-control" id="employmentType'+counter+'" onchange="employmentTypefunc('+counter+')" name="employmentType[]" required>'+
+                    '<select required class="form-control" id="employmentType'+counter+'" onchange="employmentTypefunc('+counter+')" name="employmentType[]" >'+
                 '<option value="" selected>Select employment type</option>'+
                     @foreach($employmentType as $eT)
                     '<option value="{{$eT->employmentTypeName}}">{{$eT->employmentTypeName}}</option>'+
@@ -720,7 +734,7 @@
                     '</select>'+
                 '</div>'+
                 '<div style="display: none" id="employmentTypeTextDiv'+counter+'" class="form-group col-md-6">'+
-                    '<label for="inputEmail4">Please mention other types<span style="color: red">*</span></label>'+
+                    '<label for="inputEmail4">Please mention other types</label>'+
                     '<input type="text" class="form-control" name="employmentTypeText[]" id="employmentTypeText'+counter+'" placeholder="Write Employment Type">'+
 
                     '</div>'+
