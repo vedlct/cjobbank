@@ -190,7 +190,6 @@ return [
         niklasravnsborg\LaravelPdf\PdfServiceProvider::class,
 
 
-
     ],
 
     /*

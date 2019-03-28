@@ -6,7 +6,7 @@
         <div  class="row">
             <div class="form-group col-md-4">
 
-                <label for="">Education Exam/level<span style="color: red">*</span></label>
+                <label for="">Education exam/level<span style="color: red">*</span></label>
                 <select name="educationLevel" class="form-control" required="" id="educationLevel">
                     <option value="">Select Education Level</option>
                     @foreach($educationLevel as $edulevel)
@@ -19,7 +19,7 @@
 
                 <label for="">Subject/Group<span style="color: red">*</span></label>
                 <select name="degree" class="form-control" required id="degree">
-                    <option value="">Select Degree</option>
+                    <option value="">Select degree</option>
                     <option  selected value="{{$education->degreeId}}">{{$education->degreeName}}</option>
                     <option  value="{{OTHERS}}">{{OTHERS}}</option>
 
@@ -29,7 +29,7 @@
             </div>
 
             <div style="display: none" id="degreeNameDiv" class="form-group col-md-12">
-                <label for="">Degree Name</label>
+                <label for="">Degree name</label>
                 <input type="text" maxlength="255" name="degreeName" class="form-control" id="degreeName"  placeholder="">
 
             </div>
@@ -37,8 +37,8 @@
             {{--@if($education->eduLvlUnder == 2 || $education->eduLvlUnder==null )--}}
 
             <div @if($education->eduLvlUnder == 2 || $education->eduLvlUnder==null ) style=" dispaly:none" @endif id="instituteNameDiv" class="form-group col-md-12">
-                <label for="">Institute Name</label>
-                <input type="text" name="instituteName"  class="form-control" id="instituteName" value="{{$education->institutionName}}" placeholder="">
+                <label for="">School/College/Institution name<span style="color: red">*</span></label>
+                <input type="text" name="instituteName"  class="form-control" required id="instituteName" value="{{$education->institutionName}}" placeholder="">
             </div>
 
             {{--@endif--}}
@@ -46,9 +46,9 @@
 
 
             <div @if(($education->eduLvlUnder != 2 || $education->eduLvlUnder== null) && $education->universityType == null) style=" display: none" @endif id="instituteNameDiv" class="form-group col-md-3">
-                <label for="">University Type</label>
+                <label for="">University type</label>
                 <select name="universityType" class="form-control" id="universityType">
-                    <option value="" >Select Type</option>
+                    <option value="" >Select type</option>
                     @foreach(UNIVERSITY_TYPE as $key=>$value)
                         <option @if($value == $education->universityType) selected @endif value="{{$value}}" >{{$key}}</option>
                     @endforeach
@@ -63,7 +63,7 @@
             <div @if($education->eduLvlUnder != 1 || $education->eduLvlUnder==null ) style="display: none" @endif id="boardDiv" class="form-group col-md-3">
                 <label for="">Board/University</label>
                 <select name="board" class="form-control" id="board">
-                    <option value="" >Select Board</option>
+                    <option value="" >Select doard</option>
                     @foreach($boards as $board)
                         <option value="{{$board->boardId}}" @if($board->boardId == $education->fkboardId) selected @endif >{{$board->boardName}}</option>
                     @endforeach
@@ -72,7 +72,7 @@
             </div>
 
             <div style="display: none" id="boardNameDiv" class="form-group col-md-3">
-                <label for="">Board Name</label>
+                <label for="">Board name</label>
                 <input type="text" maxlength="255" name="boardName" class="form-control" id="boardName"  placeholder="">
 
             </div>
@@ -80,14 +80,14 @@
 
             <div class="form-group col-md-3">
                 <label for="">Major</label>
-                <select name="major" class="form-control" id="majorSub">
+                <select name="major" class="form-control js-example-basic-single" id="majorSub">
                     <option value="">Select Major</option>
                     <option selected value="{{$education->educationMajorId}}">{{$education->educationMajorName}}</option>
                     <option value="{{OTHERS}}">{{OTHERS}}</option>
                 </select>
             </div>
             <div style="display: none" id="subjectNameDiv" class="form-group col-md-6">
-                <label for="">Subject Name</label>
+                <label for="">Subject name</label>
                 <input type="text" name="subjectName" maxlength="255" class="form-control" id="subjectName"  placeholder="">
 
             </div>
@@ -96,21 +96,31 @@
 
             <div class="form-group col-md-3">
                 <label for="">Country<span style="color: red">*</span></label>
-                <select name="country" class="form-control" required id="country">
-                    <option value="">Select Country</option>
+                <select name="country" class="form-control js-example-basic-single" required id="country">
+                    <option value="">Select country</option>
                     @foreach($country as $coun)
                         <option @if($coun->countryId == $education->fkcountryId )selected @endif value="{{$coun->countryId}}">{{$coun->countryName}}</option>
                     @endforeach
                 </select>
             </div>
 
+            <div class="form-group col-md-3">
+                <label for="">Status<span style="color: red">*</span></label>
+                <select name="status"class="form-control" required id="educationStatus">
+                    @foreach(COMPLETING_STATUS as $key=>$value)
+                        <option @if($value == $education->status) selected @endif value="{{$value}}">{{$key}}</option>
+                    @endforeach
+
+                </select>
+            </div>
+
 
             <div class="form-group col-md-3">
-                <label for="">Passing Year<span style="color: red">*</span></label>
-                <input name="passingYear" type="text" class="form-control date" value="{{$education->passingYear}}" id="passingYear" required placeholder="passing Year">
+                <label for="">Passing year</label>
+                <input name="passingYear" type="text" class="form-control date" value="{{$education->passingYear}}" id="passingYear"  placeholder="passing Year">
             </div>
             <div class="form-group col-md-3">
-                <label for="">Result System<span style="color: red">*</span></label>
+                <label for="">Result system<span style="color: red">*</span></label>
                 <select name="resultSystem" class="form-control" required id="resultSydtem">
                     <option value="">Select System</option>
                     @if($education->resultSystem!=4)
@@ -126,28 +136,20 @@
             </div>
 
             <div @if($education->resultSystem !=4)style="display: none" @endif id="resultSydtemNameDiv" class="form-group col-md-3">
-                <label for="">Result System Name</label>
+                <label for="">Result system name</label>
                 <input type="text" maxlength="255" name="resultSydtemName" value="{{$education->resultSystemName}}" class="form-control" id="resultSydtemName"  placeholder="">
 
             </div>
 
             <div class="form-group col-md-3">
-                <label for="">CGPA<span style="color: red">*</span></label>
-                <input name="result" type="text" class="form-control" value="{{$education->result}}" required id="cgpa" maxlength="10" placeholder="">
+                <label for="">Result/CGPA/Score</label>
+                <input name="result" type="text" class="form-control" value="{{$education->result}}"  id="cgpa" maxlength="10" placeholder="">
             </div>
             <div class="form-group col-md-3">
                 <label for="">Out of</label>
                 <input type="text" name="resultOutOf" class="form-control" id="resultOutOf"  value="{{$education->resultOutOf}}"placeholder="CGPA Out of">
             </div>
-            <div class="form-group col-md-3">
-                <label for="">Status<span style="color: red">*</span></label>
-                <select name="status"class="form-control" required id="educationStatus">
-                    @foreach(COMPLETING_STATUS as $key=>$value)
-                        <option @if($value == $education->status) selected @endif value="{{$value}}">{{$key}}</option>
-                    @endforeach
 
-                </select>
-            </div>
 
 
         </div>
@@ -162,7 +164,7 @@
 
 <meta name="csrf-token" content="{{ csrf_token() }}" />
 <script>
-
+    $('.js-example-basic-single').select2();
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -403,12 +405,14 @@
             return false;
 
         }
-        if(year==""){
+        if(year!="") {
+            if (year == "") {
 
-            var errorMsg='Please Select a Year First!!';
-            validationError(errorMsg);
-            return false;
+                var errorMsg = 'Please Select a Year First!!';
+                validationError(errorMsg);
+                return false;
 
+            }
         }
         if(resultSydtem==""){
 
@@ -417,12 +421,14 @@
             return false;
 
         }
-        if(cgpa==""){
+        if(cgpa!="") {
+            if (cgpa == "") {
 
-            var errorMsg='Please Type Your Result/CGPA First!!';
-            validationError(errorMsg);
-            return false;
+                var errorMsg = 'Please Type Your Result/CGPA First!!';
+                validationError(errorMsg);
+                return false;
 
+            }
         }
         if(status==""){
 
@@ -453,5 +459,22 @@
         });
 
     }
+
+    $('#educationStatus').on('change', function() {
+
+        var educationStatus =$('#educationStatus').val();
+        if (educationStatus == '{{COMPLETING_STATUS['On going']}}'){
+
+            $("#cgpa").prop('required',false);
+            $("#passingYear").prop('required',false);
+
+        }else {
+
+            $("#cgpa").prop('required',true);
+            $("#passingYear").prop('required',true);
+        }
+
+
+    });
 
 </script>

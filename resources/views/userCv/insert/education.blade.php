@@ -20,9 +20,9 @@
                             <div id="TextBoxesGroup" class="row">
                                 <div class="form-group col-md-4">
 
-                                    <label for="">Education Exam/level<span style="color: red">*</span></label>
+                                    <label for="">Education exam/level<span style="color: red">*</span></label>
                                     <select name="educationLevel[]" class="form-control" required="" id="educationLevel">
-                                        <option value="">Select Education Level</option>
+                                        <option value="">Select education level</option>
                                         @foreach($educationLevel as $edulevel)
                                             <option value="{{$edulevel->educationLevelId}}">{{$edulevel->educationLevelName}}</option>
                                         @endforeach
@@ -31,29 +31,29 @@
                                 </div>
                                 <div class="form-group col-md-8">
 
-                                    <label for="">Education Degree<span style="color: red">*</span></label>
+                                    <label for="">Education degree<span style="color: red">*</span></label>
                                     <select  name="degree[]" class="form-control" required id="degree">
-                                        <option value="">Select Degree</option>
+                                        <option value="">Select degree</option>
 
                                     </select>
 
                                 </div>
 
                                 <div style="display: none" id="degreeNameDiv" class="form-group col-md-12">
-                                    <label for="">Degree Name</label>
-                                    <input type="text" maxlength="255" name="degreeName[]" class="form-control" id="degreeName"  placeholder="">
+                                    <label for="">Degree name</label>
+                                    <input type="text" maxlength="255" name="degreeName[]" class="form-control" id="degreeName"  placeholder="Degree name">
 
                                 </div>
 
 
                                 <div id="instituteNameDiv" class="form-group col-md-12">
-                                    <label for="">Institute Name</label>
-                                    <input type="text" name="instituteName[]" class="form-control" id="instituteName" placeholder="">
+                                    <label for="">School/College/Institution name <span style="color: red">*</span></label>
+                                    <input type="text" name="instituteName[]" class="form-control" id="instituteName" placeholder="Institute name" required>
                                 </div>
                                 <div id="boardDiv" class="form-group col-md-3">
                                     <label for="">Board/University</label>
                                     <select name="board[]" class="form-control" id="board">
-                                        <option value="" >Select Board</option>
+                                        <option value="" >Select board</option>
                                         @foreach($boards as $board)
                                             <option value="{{$board->boardId}}" >{{$board->boardName}}</option>
                                         @endforeach
@@ -61,16 +61,16 @@
                                     </select>
                                 </div>
                                 <div style="display: none" id="boardNameDiv" class="form-group col-md-3">
-                                    <label for="">Board Name</label>
-                                    <input type="text" maxlength="255" name="boardName[]" class="form-control" id="boardName"  placeholder="">
+                                    <label for="">Board name</label>
+                                    <input type="text" maxlength="255" name="boardName[]" class="form-control" id="boardName"  placeholder="Board name">
 
                                 </div>
 
 
                                 <div style="display: none" id="universityTypeDiv" class="form-group col-md-3">
-                                    <label for="">University Type</label>
+                                    <label for="">University type</label>
                                     <select name="universityType[]" class="form-control" id="universityType">
-                                        <option value="" >Select Type</option>
+                                        <option value="" >Select type</option>
                                         @foreach(UNIVERSITY_TYPE as $key=>$value)
                                             <option value="{{$value}}" >{{$key}}</option>
                                         @endforeach
@@ -79,14 +79,14 @@
 
                                 <div class="form-group col-md-3">
                                     <label for="">Major</label>
-                                    <select name="major[]" class="form-control" id="majorSub">
-                                        <option value="" >Select Major</option>
+                                    <select name="major[]" class="form-control js-example-basic-single" id="majorSub">
+                                        <option value="" >Select major</option>
                                         <option value="{{OTHERS}}" >{{OTHERS}}</option>
                                     </select>
                                 </div>
                                 <div style="display: none" id="subjectNameDiv" class="form-group col-md-6">
-                                    <label for="">Subject Name</label>
-                                    <input type="text" maxlength="255" name="subjectName[]" class="form-control" id="subjectName"  placeholder="">
+                                    <label for="">Subject name</label>
+                                    <input type="text" maxlength="255" name="subjectName[]" class="form-control" id="subjectName"  placeholder="Subject name">
 
                                 </div>
 
@@ -94,8 +94,8 @@
 
                                 <div class="form-group col-md-3">
                                     <label for="">Country<span style="color: red">*</span></label>
-                                    <select name="country[]" class="form-control" required id="country">
-                                        <option value="">Select Country</option>
+                                    <select name="country[]" class="form-control js-example-basic-single" required id="country">
+                                        <option value="">Select country</option>
                                         @foreach($country as $coun)
                                             <option value="{{$coun->countryId}}">{{$coun->countryName}}</option>
                                         @endforeach
@@ -103,41 +103,10 @@
                                     </select>
                                 </div>
 
-
-                                <div class="form-group col-md-3">
-                                    <label for="">Passing Year<span style="color: red">*</span></label>
-                                    <input name="passingYear[]" type="text" class="form-control date" id="passingYear" required placeholder="passing Year">
-                                </div>
-                                <div class="form-group col-md-3">
-                                    <label for="">Result System<span style="color: red">*</span></label>
-                                    <select name="resultSystem[]" class="form-control" required id="resultSydtem">
-                                        <option value="">Select System</option>
-                                        @foreach(RESULT_SYSTEM as $key=>$value)
-                                            <option value="{{$value}}">{{$key}}</option>
-                                        @endforeach
-                                        <option value="{{OTHERS}}" >{{OTHERS}}</option>
-                                    </select>
-                                </div>
-
-                                <div style="display: none" id="resultSydtemNameDiv" class="form-group col-md-3">
-                                    <label for="">Result System Name</label>
-                                    <input type="text" maxlength="255" name="resultSydtemName[]" class="form-control" id="resultSydtemName"  placeholder="">
-
-                                </div>
-
-                                <div class="form-group col-md-3">
-                                    <label for="">CGPA<span style="color: red">*</span></label>
-                                    <input name="result[]" type="text" class="form-control" required id="cgpa" maxlength="10" placeholder="">
-                                </div>
-
-                                <div class="form-group col-md-3">
-                                    <label for="">Out of</label>
-                                    <input type="text" name="resultOutOf[]" class="form-control" id="resultOutOf" placeholder="CGPA Out of">
-                                </div>
                                 <div class="form-group col-md-3">
                                     <label for="">Status<span style="color: red">*</span></label>
-                                    <select name="status[]"class="form-control" required id="educationStatus">
-                                        <option value="">Select Status</option>
+                                    <select  name="status[]"class="form-control" required id="educationStatus">
+                                        <option value="">Select status</option>
                                         @foreach(COMPLETING_STATUS as $key=>$value)
                                             <option value="{{$value}}">{{$key}}</option>
                                         @endforeach
@@ -146,12 +115,49 @@
                                 </div>
 
 
+                                <div class="form-group col-md-3">
+
+                                    <label for="">Passing year</label>
+                                    <input name="passingYear[]" type="text" class="form-control date" id="passingYear"  placeholder="passing year">
+
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="">Result system<span style="color: red">*</span></label>
+                                    <select name="resultSystem[]" class="form-control" required id="resultSydtem">
+                                        <option value="">Select system</option>
+                                        @foreach(RESULT_SYSTEM as $key=>$value)
+                                            <option value="{{$value}}">{{$key}}</option>
+                                        @endforeach
+                                        <option value="{{OTHERS}}" >{{OTHERS}}</option>
+                                    </select>
+                                </div>
+
+                                <div style="display: none" id="resultSydtemNameDiv" class="form-group col-md-3">
+                                    <label for="">Result system name</label>
+                                    <input type="text" maxlength="255" name="resultSydtemName[]" class="form-control" id="resultSydtemName"  placeholder="Result system name">
+
+                                </div>
+
+                                <div class="form-group col-md-3">
+
+                                    <label for="">Result/CGPA/Score</label>
+                                    <input name="result[]" type="text" class="form-control"  id="cgpa" maxlength="10" placeholder="CGPA">
+
+                                </div>
+
+                                <div class="form-group col-md-3">
+                                    <label for="">Scale/ Out of</label>
+                                    <input type="text" name="resultOutOf[]" class="form-control" id="resultOutOf" placeholder="CGPA out of">
+                                </div>
+
+
+
                             </div>
                             <br>
 
 
-                            <button type="button" id="addButton" class="btn btn-success">Add More</button>
-                            <button type="button" id="removeButton" class="btn btn-success" >remove</button>
+                            <button type="button" id="addButton" class="btn btn-success">Add more</button>
+                            <button type="button" id="removeButton" class="btn btn-success" >Remove</button>
                         </div>
 
                         <div style="overflow:auto;">
@@ -159,7 +165,7 @@
 
                                 <a href="{{route('candidate.cvQuesObj')}}"><button type="button" id="btnPevious">Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
-                                <a href="{{route('candidate.language.index')}}"><button type="button" id="nextBtn" >Next</button></a>
+                                {{--<a href="{{route('candidate.language.index')}}"><button type="button" id="nextBtn" >Next</button></a>--}}
                             </div>
                         </div>
 
@@ -234,6 +240,23 @@
 
 
         });
+        $('#educationStatus').on('change', function() {
+
+            var educationStatus =$('#educationStatus').val();
+
+            if (educationStatus == '{{COMPLETING_STATUS['On going']}}'){
+
+                $("#cgpa").prop('required',false);
+                $("#passingYear").prop('required',false);
+
+            }else {
+
+                $("#cgpa").prop('required',true);
+                $("#passingYear").prop('required',true);
+            }
+
+
+        });
 
         function checkMajor(x) {
 
@@ -246,6 +269,25 @@
             }else {
                 $("#subjectNameDiv"+x).hide();
             }
+
+        }
+
+
+        function checkeducationStatus(x) {
+
+            var educationStatus =$('#educationStatus'+x).val();
+
+            if (educationStatus == '{{COMPLETING_STATUS['On going']}}'){
+
+                $("#cgpa"+x).prop('required',false);
+                $("#passingYear"+x).prop('required',false);
+
+            }else {
+
+                $("#cgpa"+x).prop('required',true);
+                $("#passingYear"+x).prop('required',true);
+            }
+
 
         }
 
@@ -284,7 +326,7 @@
             $("#addButton").click(function () {
 
                 if(counter>10){
-                    alert("Only 10 Section allow per Time!!");
+                    alert("Only 10 section allow per time!!");
                     return false;
                 }
 
@@ -304,20 +346,20 @@
                     var universityType=$('#universityType').val();
 
                     if(major=="others" && $("#subjectName").val()=="" ){
-                        var errorMsg='Please Type a Subject Name First!!'
+                        var errorMsg='Please type a subject name first!!'
                         validationError(errorMsg);
                         return false;
                     }
 
                     if(educationLevel==""){
 
-                        var errorMsg='Please Select a Education Level First!!'
+                        var errorMsg='Please select a education level first!!'
                        validationError(errorMsg)
                         return false;
                     }
                     if(degree==""){
 
-                        var errorMsg='Please Select Degree First!!'
+                        var errorMsg='Please select degree first!!'
                         validationError(errorMsg)
                         return false;
 
@@ -325,14 +367,14 @@
                     if(instituteName!="") {
                         if (instituteName == "") {
 
-                            var errorMsg = 'Please Type instituteName First!!'
+                            var errorMsg = 'Please type institute name first!!'
                             validationError(errorMsg)
                             return false;
 
                         }
                         if (instituteName.length > 255) {
 
-                            var errorMsg = 'Institute Name Should not more than 255 Charecter Length!!'
+                            var errorMsg = 'Institute name should not more than 255 charecter length!!'
                             validationError(errorMsg)
                             return false;
 
@@ -341,7 +383,7 @@
                     if(universityType!="") {
                         if (universityType == "") {
 
-                            var errorMsg = 'Please Type universityType First!!';
+                            var errorMsg = 'Please type university type first!!';
                             validationError(errorMsg);
                             return false;
 
@@ -350,35 +392,39 @@
                     }
                     if(country==""){
 
-                        var errorMsg='Please Select a Country First!!'
+                        var errorMsg='Please select a country first!!'
                         validationError(errorMsg)
                         return false;
 
                     }
-                    if(year==""){
+                    if(year!="") {
+                        if (year == "") {
 
-                        var errorMsg='Please Select a Year First!!'
-                        validationError(errorMsg)
-                        return false;
+                            var errorMsg = 'Please select a year first!!'
+                            validationError(errorMsg)
+                            return false;
 
+                        }
                     }
                     if(resultSydtem==""){
 
-                        var errorMsg='Please Select a Result System First!!'
+                        var errorMsg='Please select a result system first!!'
                         validationError(errorMsg)
                         return false;
 
                     }
-                    if(cgpa==""){
+                    if(cgpa!="") {
+                        if (cgpa == "") {
 
-                        var errorMsg='Please Type Your Result/CGPA First!!'
-                        validationError(errorMsg)
-                        return false;
+                            var errorMsg = 'Please type your result/CGPA first!!'
+                            validationError(errorMsg)
+                            return false;
 
+                        }
                     }
                     if(status==""){
 
-                        var errorMsg='Please Select a status First!!'
+                        var errorMsg='Please select a status first!!'
                         validationError(errorMsg)
                         return false;
 
@@ -413,13 +459,13 @@
 
                     if(educationLevel==""){
 
-                        var errorMsg='Please Select a Education Level First!!'
+                        var errorMsg='Please select a education level first!!'
                         validationError(errorMsg)
                         return false;
                     }
                     if(degree==""){
 
-                        var errorMsg='Please Select Degree First!!'
+                        var errorMsg='Please select degree first!!'
                         validationError(errorMsg)
                         return false;
 
@@ -427,14 +473,14 @@
                     if(instituteName!="") {
                         if (instituteName == "") {
 
-                            var errorMsg = 'Please Type instituteName First!!'
+                            var errorMsg = 'Please type instituteName first!!'
                             validationError(errorMsg)
                             return false;
 
                         }
                         if (instituteName.length > 255) {
 
-                            var errorMsg = 'Institute Name Should not more than 255 Charecter Length!!'
+                            var errorMsg = 'Institute name should not more than 255 charecter length!!'
                             validationError(errorMsg)
                             return false;
                         }
@@ -442,7 +488,7 @@
                     if(universityType!="") {
                         if (universityType == "") {
 
-                            var errorMsg = 'Please Type universityType First!!';
+                            var errorMsg = 'Please type universityType first!!';
                             validationError(errorMsg);
                             return false;
 
@@ -451,35 +497,39 @@
                     }
                     if(country==""){
 
-                        var errorMsg='Please Select a Country First!!'
+                        var errorMsg='Please select a country first!!'
                         validationError(errorMsg)
                         return false;
 
                     }
-                    if(year==""){
+                    if(year!="") {
+                        if (year == "") {
 
-                        var errorMsg='Please Select a Year First!!'
-                        validationError(errorMsg)
-                        return false;
+                            var errorMsg = 'Please select a year first!!'
+                            validationError(errorMsg)
+                            return false;
 
+                        }
                     }
                     if(resultSydtem==""){
 
-                        var errorMsg='Please Select a Result System First!!'
+                        var errorMsg='Please select a result system first!!'
                         validationError(errorMsg)
                         return false;
 
                     }
-                    if(cgpa==""){
+                    if(cgpa!="") {
+                        if (cgpa == "") {
 
-                        var errorMsg='Please Type Your Result/CGPA First!!'
-                        validationError(errorMsg)
-                        return false;
+                            var errorMsg = 'Please type your result/CGPA first!!'
+                            validationError(errorMsg)
+                            return false;
 
+                        }
                     }
                     if(status==""){
 
-                        var errorMsg='Please Select a status First!!'
+                        var errorMsg='Please select a status first!!'
                         validationError(errorMsg)
                         return false;
 
@@ -493,9 +543,9 @@
                     .attr("id", 'TextBoxDiv' + counter).attr("class", 'row');
                 newTextBoxDiv.after().html('<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>'
                     +'<div class="form-group col-md-4">'+
-                '<label for="">Education Level<span style="color: red">*</span></label>'+
+                '<label for="">Education level<span style="color: red">*</span></label>'+
                 '<select name="educationLevel[]" class="form-control" data-panel-id="'+ counter+'" required onchange="getDegree(this)"id="educationLevel'+counter+'">'+
-                    '<option value="">Select Education Level</option>'+
+                    '<option value="">Select education level</option>'+
                 @foreach($educationLevel as $edulevel)
                 '<option value="{{$edulevel->educationLevelId}}">{{$edulevel->educationLevelName}}</option>'+
                         @endforeach
@@ -506,25 +556,25 @@
 
                     '<label for="">Degree<span style="color: red">*</span></label>'+
                     '<select name="degree[]" class="form-control" data-panel-id="'+ counter+'" required onchange="getMajor(this)" id="degree'+counter+'">'+
-                    '<option value="">Select Degree</option>'+
+                    '<option value="">Select degree</option>'+
 
                 '</select>'+
 
                 '</div>'+
                     '<div style="display: none" id="degreeNameDiv'+ counter+'" class="form-group col-md-12">'+
-                    '<label for="">Degree Name</label>'+
-                '<input type="text" maxlength="255" name="degreeName[]" class="form-control" id="degreeName'+ counter+'"  placeholder="">'+
+                    '<label for="">Degree name</label>'+
+                '<input type="text" maxlength="255" name="degreeName[]" class="form-control" id="degreeName'+ counter+'"  placeholder="Degree name">'+
 
                     '</div>'+
 
                 '<div id="instituteNameDiv'+counter+'" class="form-group col-md-12">'+
-                    '<label for="">Institute Name</label>'+
-                '<input type="text" name="instituteName[]" class="form-control"  id="instituteName'+counter+'" placeholder="">'+
+                    '<label for="">Institution<span style="color: red">*</span></label>'+
+                '<input type="text" name="instituteName[]" class="form-control" required  id="instituteName'+counter+'" placeholder="Institute name">'+
                     '</div>'+
                     '<div style="display: none" id="universityTypeDiv'+counter+'" class="form-group col-md-3">'+
-                    '<label for="">University Type</label>'+
+                    '<label for="">University type</label>'+
                 '<select name="universityType[]" class="form-control" id="universityType'+counter+'">'+
-                    '<option value="" >Select Type</option>'+
+                    '<option value="" >Select type</option>'+
                 @foreach(UNIVERSITY_TYPE as $key=>$value)
                 '<option value="{{$value}}" >{{$key}}</option>'+
                         @endforeach
@@ -533,7 +583,7 @@
                     '<div id="boardDiv'+counter+'"  class="form-group col-md-3">'+
                     '<label for="">Board</label>' +
                     '<select name="board[]" class="form-control" onchange="getBoardName('+counter+')" id="board'+counter+'"> ' +
-                    '<option value="" >Select Board</option>'+
+                    '<option value="" >Select board</option>'+
                         @foreach($boards as $board)
                             '<option value="{{$board->boardId}}" >{{$board->boardName}}</option>'+
                         @endforeach
@@ -542,7 +592,7 @@
                     '</div>'+
 
                     '<div style="display: none" id="boardNameDiv'+counter+'" class="form-group col-md-3">'+
-                    '<label for="">Board Name</label>'+
+                    '<label for="">Board name</label>'+
                 '<input type="text" maxlength="255" name="boardName[]" class="form-control" id="boardName'+counter+'"  placeholder="">'+
 
                     '</div>'+
@@ -550,22 +600,22 @@
 
                     '<div class="form-group col-md-3">'+
                     '<label for="">Major</label>'+
-                    '<select name="major[]" class="form-control" onchange="checkMajor('+counter+')" id="majorSub'+counter+'">'+
-                    '<option value="">Select Major</option>'+
+                    '<select name="major[]" class="form-control js-example-basic-single" onchange="checkMajor('+counter+')" id="majorSub'+counter+'">'+
+                    '<option value="">Select major</option>'+
                     '<option value="{{OTHERS}}" >{{OTHERS}}</option>'+
                 '</select>'+
                 '</div>'+
                     '<div style="display: none" id="subjectNameDiv'+counter+'" class="form-group col-md-6">'+
-                    '<label for="">Subject Name</label>'+
-                '<input type="text" maxlength="255" name="subjectName[]" class="form-control" id="subjectName'+counter+'"  placeholder="">'+
+                    '<label for="">Subject name</label>'+
+                '<input type="text" maxlength="255" name="subjectName[]" class="form-control" id="subjectName'+counter+'"  placeholder="Subject name">'+
 
                     '</div>'+
 
 
                 '<div class="form-group col-md-3">'+
                     '<label for="">Country<span style="color: red">*</span></label>'+
-                   ' <select name="country[]" class="form-control" required id="country'+counter+'">'+
-                    '<option value="">Select Country</option>'+
+                   ' <select name="country[]" class="form-control js-example-basic-single" required id="country'+counter+'">'+
+                    '<option value="">Select country</option>'+
                         @foreach($country as $coun)
                     '<option value="{{$coun->countryId}}">{{$coun->countryName}}</option>'+
                         @endforeach
@@ -573,13 +623,24 @@
                    ' </div>'+
 
                     '<div class="form-group col-md-3">'+
-                    '<label for="">Year<span style="color: red">*</span></label>'+
-                   ' <input name="passingYear[]" type="text" class="form-control date" required id="passingYear'+counter+'" placeholder="passing Year">'+
+                    '<label for="">Status<span style="color: red">*</span></label>'+
+                    '<select name="status[]"class="form-control" onchange="checkeducationStatus('+counter+')" required id="educationStatus'+counter+'">'+
+                    '<option value="">Select status</option>'+
+                        @foreach(COMPLETING_STATUS as $key=>$value)
+                            '<option value="{{$value}}">{{$key}}</option>'+
+                        @endforeach
+
+                            '</select>'+
+                    '</div>'+
+
+                    '<div class="form-group col-md-3">'+
+                    '<label for="">Passing year</label>'+
+                   ' <input name="passingYear[]" type="text" class="form-control date"  id="passingYear'+counter+'" placeholder="passing year">'+
                    ' </div>'+
                     '<div class="form-group col-md-3">'+
-                    '<label for="">Result System<span style="color: red">*</span></label>'+
+                    '<label for="">Result system<span style="color: red">*</span></label>'+
                 '<select name="resultSystem[]" class="form-control" onchange="getResultSystemName('+counter+')" required id="resultSydtem'+counter+'">'+
-                    '<option value="">Select System</option>'+
+                    '<option value="">Select system</option>'+
                 @foreach(RESULT_SYSTEM as $key=>$value)
                 '<option value="{{$value}}">{{$key}}</option>'+
                         @endforeach
@@ -588,29 +649,20 @@
                     '</div>'+
 
                     '<div style="display: none" id="resultSydtemNameDiv'+counter+'" class="form-group col-md-3">'+
-                    '<label for="">Result System Name</label>'+
+                    '<label for="">Result system name</label>'+
                 '<input type="text" maxlength="255" name="resultSydtemName[]" class="form-control" id="resultSydtemName'+counter+'"  placeholder="">'+
 
                     '</div>'+
 
                    ' <div class="form-group col-md-3">'+
-                    '<label for="">CGPA<span style="color: red">*</span></label>'+
-                    '<input name="result[]" type="text" class="form-control" id="cgpa'+counter+'" required  placeholder="">'+
+                    '<label for="">Result/CGPA/Score</label>'+
+                    '<input name="result[]" type="text" class="form-control" id="cgpa'+counter+'"   placeholder="">'+
                     '</div>'+
                     '<div class="form-group col-md-3">'+
-                    '<label for="">CGPA Out of</label>'+
-                '<input type="text" name="resultOutOf[]" class="form-control" id="resultOutOf'+counter+'" placeholder="CGPA Out of">'+
-                    '</div>'+
-                    '<div class="form-group col-md-3">'+
-                    '<label for="">Status<span style="color: red">*</span></label>'+
-                    '<select name="status[]"class="form-control" required id="educationStatus'+counter+'">'+
-                    '<option value="">Select Status</option>'+
-                        @foreach(COMPLETING_STATUS as $key=>$value)
-                    '<option value="{{$value}}">{{$key}}</option>'+
-                        @endforeach
-
-                    '</select>'+
+                    '<label for="">Scale/ Out of</label>'+
+                '<input type="text" name="resultOutOf[]" class="form-control" id="resultOutOf'+counter+'" placeholder="CGPA out of">'+
                     '</div>'
+
                 );
                 newTextBoxDiv.appendTo("#TextBoxesGroup");
                 $('.date').datepicker({
@@ -626,13 +678,13 @@
                     $("#btnPevious").show();
 
                 }
-
+                $('.js-example-basic-single').select2();
                 counter++;
             });
 
             $("#removeButton").click(function () {
                 if(counter=='1'){
-                    alert("Atleast One Course Section is needed!!");
+                    alert("Atleast one course section is needed!!");
                     return false;
                 }
                 if(counter<=2){
@@ -963,8 +1015,7 @@
         }
 
 
-
+        $('.js-example-basic-single').select2();
     </script>
-
 
     @endsection

@@ -6,9 +6,12 @@
         strong{
             color: red;
         }
-        #imageMsg,#signMsg{
-            display: none;
+        notice{
+            color: blue;
         }
+        /*#imageMsg,#signMsg{*/
+            /*display: none;*/
+        /*}*/
     </style>
 
     <div class="row ">
@@ -27,8 +30,8 @@
                             <h2 style="margin-bottom: 40px; text-align: center;">Personal Details </h2>
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="">First Name<span style="color: red">*</span></label>
-                                    <input type="text" name="firstName" class="form-control {{ $errors->has('firstName') ? ' is-invalid' : '' }}" value="{{ old('firstName') }}" id="" required placeholder="First Name">
+                                    <label for="">First name<span style="color: red">*</span></label>
+                                    <input type="text" name="firstName" class="form-control {{ $errors->has('firstName') ? ' is-invalid' : '' }}" value="{{ old('firstName') }}" id="" required placeholder="First name">
                                     @if ($errors->has('firstName'))
 
                                         <span class="">
@@ -37,8 +40,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="inputPassword4">Last Name<span style="color: red">*</span></label>
-                                    <input type="text" name="lastName" class="form-control {{ $errors->has('lastName') ? ' is-invalid' : '' }}" value="{{ old('lastName') }}" id="" required placeholder="Last Name">
+                                    <label for="inputPassword4">Last name<span style="color: red">*</span></label>
+                                    <input type="text" name="lastName" class="form-control {{ $errors->has('lastName') ? ' is-invalid' : '' }}" value="{{ old('lastName') }}" id="" required placeholder="Last name">
                                     @if ($errors->has('lastName'))
 
                                         <span class="">
@@ -49,8 +52,8 @@
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="">Father Name<span style="color: red">*</span></label>
-                                    <input type="text" name="fathersName" class="form-control {{ $errors->has('fathersName') ? ' is-invalid' : '' }}" value="{{ old('fathersName') }}" id="" required placeholder="Father's Name">
+                                    <label for="">Father name<span style="color: red">*</span></label>
+                                    <input type="text" name="fathersName" class="form-control {{ $errors->has('fathersName') ? ' is-invalid' : '' }}" value="{{ old('fathersName') }}" id="" required placeholder="Father's name">
                                     @if ($errors->has('fathersName'))
 
                                         <span class="">
@@ -59,8 +62,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="inputPassword4">Mother Name<span style="color: red">*</span></label>
-                                    <input type="text" name="mothersName" class="form-control {{ $errors->has('mothersName') ? ' is-invalid' : '' }}" value="{{ old('mothersName') }}" required id="" placeholder="Mother's Name">
+                                    <label for="inputPassword4">Mother name<span style="color: red">*</span></label>
+                                    <input type="text" name="mothersName" class="form-control {{ $errors->has('mothersName') ? ' is-invalid' : '' }}" value="{{ old('mothersName') }}" required id="" placeholder="Mother's name">
                                     @if ($errors->has('mothersName'))
 
                                         <span class="">
@@ -74,9 +77,9 @@
                                 <div class="form-group col-md-6">
                                     <label for="">Gender<span style="color: red">*</span></label>
                                     <select required name="gender" class="form-control" id="sel1">
-                                        <option selected value="">Select Gender</option>
+                                        <option selected value="">Select gender</option>
                                         @foreach(GENDER as $key=>$value)
-                                        <option value="{{$value}}">{{$key}}</option>
+                                        <option @if (old('gender') == $value) selected @endif value="{{$value}}">{{$key}}</option>
                                         @endforeach
 
                                     </select>
@@ -84,9 +87,9 @@
                                 <div class="form-group col-md-6">
                                     <label for="">Religion<span style="color: red">*</span></label>
                                     <select required name="religion"class="form-control" id="sel1">
-                                        <option selected value="">Select Religion</option>
+                                        <option selected value="">Select religion</option>
                                         @foreach($religion as $reli)
-                                        <option value="{{$reli->religionId}}">{{$reli->religionName}}</option>
+                                        <option @if (old('religion') == $reli->religionId) selected @endif value="{{$reli->religionId}}">{{$reli->religionName}}</option>
                                         @endforeach
 
                                     </select>
@@ -96,18 +99,18 @@
                                 <div class="form-group col-md-6">
                                     <label for="">Ethnicity<span style="color: red">*</span></label>
                                     <select required name="ethnicity" class="form-control" id="sel1">
-                                        <option selected value="">Select Ethnicity</option>
+                                        <option selected value="">Select ethnicity</option>
                                         @foreach($ethnicity as $ethi)
-                                            <option value="{{$ethi->ethnicityId}}">{{$ethi->ethnicityName}}</option>
+                                            <option @if (old('ethnicity') == $ethi->ethnicityId) selected @endif value="{{$ethi->ethnicityId}}">{{$ethi->ethnicityName}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="">Disability<span style="color: red">*</span></label>
                                     <select required name="disability" class="form-control" id="sel1">
-                                        <option selected value="">Select Disability</option>
+                                        <option selected value="">Select disability</option>
                                         @foreach(DISABILITY as $key=>$value)
-                                            <option value="{{$value}}">{{$key}}</option>
+                                            <option @if (old('disability') == $value) selected @endif value="{{$value}}">{{$key}}</option>
                                         @endforeach
 
                                     </select>
@@ -117,8 +120,8 @@
 
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="">Date of Birth<span style="color: red">*</span></label>
-                                    <input type="text" name="dob" required class="form-control {{ $errors->has('dob') ? ' is-invalid' : '' }}" value="{{ old('dob') }}" id="dob" placeholder="Date of Birth">
+                                    <label for="">Date of birth<span style="color: red">*</span></label>
+                                    <input type="text" name="dob" required class="form-control {{ $errors->has('dob') ? ' is-invalid' : '' }}" value="{{ old('dob') }}" id="dob" placeholder="Date of birth">
                                     @if ($errors->has('dob'))
 
                                         <span class="">
@@ -128,12 +131,12 @@
                                 </div>
 
                                 <div class="form-group col-md-6">
-                                    <label for="">Blood Group<span style="color: red">*</span></label>
+                                    <label for="">Blood group<span style="color: red">*</span></label>
                                     <select class="form-control" name="bloodGroup" required>
                                         <option value="">Select Group</option>
                                         @foreach(BLOOD_GROUP as $key=>$value)
                                             {{--<option @if($personalInfo->disability == $value) selected @endif value="{{$value}}">{{$key}}</option>--}}
-                                            <option  value="{{$value}}">{{$key}}</option>
+                                            <option  @if (old('bloodGroup') == $value) selected @endif value="{{$value}}">{{$key}}</option>
                                         @endforeach
                                     </select>
                                     @if ($errors->has('bloodGroup'))
@@ -145,12 +148,12 @@
                                 </div>
 
                                 <div class="form-group col-md-6">
-                                    <label for="">Marital Status<span style="color: red">*</span></label>
+                                    <label for="">Marital status<span style="color: red">*</span></label>
                                     <select class="form-control" name="maritalStatus" required>
-                                        <option value="">Select Status</option>
+                                        <option value="">Select status</option>
                                         @foreach(MARITAL_STATUS as $key=>$value)
                                             {{--<option @if($personalInfo->disability == $value) selected @endif value="{{$value}}">{{$key}}</option>--}}
-                                            <option  value="{{$value}}">{{$key}}</option>
+                                            <option @if (old('maritalStatus') == $value) selected @endif value="{{$value}}">{{$key}}</option>
                                         @endforeach
                                     </select>
                                     @if ($errors->has('maritalStatus'))
@@ -161,7 +164,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="">Name Of Spouse</label>
+                                    <label for="">Name of spouse</label>
                                     <input type="text"  name="spouse" class="form-control" value="{{old('spouse')}}"  id="" placeholder="Husband / Wife">
                                     @if ($errors->has('spouse'))
                                         <span class="">
@@ -176,10 +179,10 @@
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="">Nationality<span style="color: red">*</span></label>
-                                    <select required name="nationality" class="form-control" id="sel1">
-                                        <option selected value="">Select Nationality</option>
+                                    <select required name="nationality" class="form-control js-example-basic-single" id="sel1">
+                                        <option selected value="">Select nationality</option>
                                         @foreach($natinality as $natio)
-                                            <option value="{{$natio->nationalityId}}">{{$natio->nationalityName}}</option>
+                                            <option @if (old('nationality') == $natio->nationalityId) selected @endif value="{{$natio->nationalityId}}">{{$natio->nationalityName}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -196,7 +199,7 @@
 
                                 <div class="form-group col-md-6">
                                     <label for="">Passport</label>
-                                    <input type="text" placeholder="If any" onkeypress="return isNumberKey(event)" class="form-control" value="{{old('passport')}}" name="passport">
+                                    <input type="text" placeholder="If any" onkeypress="return isAlfaNumberKey(event)" class="form-control" value="{{old('passport')}}" name="passport">
                                     @if ($errors->has('passport'))
 
                                         <span class="">
@@ -221,8 +224,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="">Alternate Email</label>
-                                    <input type="text" name="alternateEmail"  class="form-control {{ $errors->has('alternateEmail') ? ' is-invalid' : '' }}" value="{{ old('alternateEmail') }}" id="" placeholder="Alternate Email">
+                                    <label for="">Alternate email</label>
+                                    <input type="text" name="alternateEmail"  class="form-control {{ $errors->has('alternateEmail') ? ' is-invalid' : '' }}" value="{{ old('alternateEmail') }}" id="" placeholder="Alternate email">
                                     @if ($errors->has('alternateEmail'))
 
                                         <span class="">
@@ -245,7 +248,7 @@
                             <div class="row">
 
                                 <div class="form-group col-md-6">
-                                    <label for="">Telephone No.</label>
+                                    <label for="">Telephone no.</label>
                                     <input type="text"  maxlength="20" onkeypress="return isNumberKey(event)" name="telephone" class="form-control {{ $errors->has('telephone') ? ' is-invalid' : '' }}" value="{{ old('telephone') }}" id="" placeholder="Telephone number">
                                     @if ($errors->has('telephone'))
 
@@ -258,7 +261,7 @@
 
                                 <div class="form-group col-md-6">
                                     <label for="">Personal phone number<span style="color: red">*</span></label>
-                                    <input type="text" maxlength="20" onkeypress="return isNumberKey(event)"name="personalMobile" class="form-control {{ $errors->has('personalMobile') ? ' is-invalid' : '' }}" value="{{ old('personalMobile') }}" id="" placeholder="Personal Mobile Number">
+                                    <input type="text" maxlength="20" onkeypress="return isNumberKey(event)"name="personalMobile" class="form-control {{ $errors->has('personalMobile') ? ' is-invalid' : '' }}" value="{{ old('personalMobile') }}" id="" placeholder="Personal mobile number">
                                     @if ($errors->has('personalMobile'))
 
                                         <span class="">
@@ -268,8 +271,8 @@
                                 </div>
 
                                 <div class="form-group col-md-6">
-                                    <label for="">Alternative phone no</label>
-                                    <input  type="text" maxlength="20" onkeypress="return isNumberKey(event)" name="alternativePhoneNo" class="form-control {{ $errors->has('alternativePhoneNo') ? ' is-invalid' : '' }}" value="{{ old('alternativePhoneNo') }}" id="" placeholder="">
+                                    <label for="">Alternative phone no.</label>
+                                    <input  type="text" maxlength="20" onkeypress="return isNumberKey(event)" name="alternativePhoneNo" class="form-control {{ $errors->has('alternativePhoneNo') ? ' is-invalid' : '' }}" value="{{ old('alternativePhoneNo') }}" id="" placeholder="Alternative no">
                                     @if ($errors->has('alternativePhoneNo'))
 
                                         <span class="">
@@ -283,8 +286,8 @@
 
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="">Home Telephone</label>
-                                    <input type="text" name="homeTelephone" onkeypress="return isNumberKey(event)" maxlength="20" class="form-control {{ $errors->has('homeTelephone') ? ' is-invalid' : '' }}" value="{{ old('homeTelephone') }}" id="" placeholder="Home Telephone Number">
+                                    <label for="">Home telephone</label>
+                                    <input type="text" name="homeTelephone" onkeypress="return isNumberKey(event)" maxlength="20" class="form-control {{ $errors->has('homeTelephone') ? ' is-invalid' : '' }}" value="{{ old('homeTelephone') }}" id="" placeholder="Home telephone number">
                                     @if ($errors->has('homeTelephone'))
 
                                         <span class="">
@@ -293,8 +296,8 @@
                                     @endif
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="">Office Telephone</label>
-                                    <input type="text" maxlength="20" onkeypress="return isNumberKey(event)" name="officeTelephone" class="form-control {{ $errors->has('officeTelephone') ? ' is-invalid' : '' }}" value="{{ old('officeTelephone') }}" id="" placeholder="Office Telephone Number">
+                                    <label for="">Office telephone</label>
+                                    <input type="text" maxlength="20" onkeypress="return isNumberKey(event)" name="officeTelephone" class="form-control {{ $errors->has('officeTelephone') ? ' is-invalid' : '' }}" value="{{ old('officeTelephone') }}" id="" placeholder="Office telephone number">
                                     @if ($errors->has('officeTelephone'))
 
                                         <span class="">
@@ -311,7 +314,7 @@
 
                             <div class="row">
                                 <div class="form-group col-md-12">
-                                    <label for="">Current Address<span style="color: red">*</span></label>
+                                    <label for="">Current address<span style="color: red">*</span></label>
                                     <textarea required placeholder="Current Address" rows="3" name="currentAddress" class="form-control {{ $errors->has('currentAddress') ? ' is-invalid' : '' }}">{{ old('currentAddress') }}</textarea>
                                     {{--<input type="text" name="currentAddress" class="form-control {{ $errors->has('currentAddress') ? ' is-invalid' : '' }}" value="{{ old('currentAddress') }}" id="" placeholder="">--}}
                                     @if ($errors->has('currentAddress'))
@@ -329,7 +332,7 @@
                             <div class="row">
 
                                 <div class="form-group col-md-12">
-                                    <label for="">Permanent Address<span style="color: red">*</span></label>
+                                    <label for="">Permanent address<span style="color: red">*</span></label>
                                     <textarea required placeholder="" rows="3" name="permanentAddress" class="form-control {{ $errors->has('permanentAddress') ? ' is-invalid' : '' }}">{{ old('permanentAddress') }}</textarea>
                                     {{--<input type="text" name="permanentAddress" class="form-control {{ $errors->has('permanentAddress') ? ' is-invalid' : '' }}" value="{{ old('permanentAddress') }}" id="" placeholder="">--}}
                                     @if ($errors->has('permanentAddress'))
@@ -345,8 +348,8 @@
                             <div class="row">
 
                                 <div class="form-group col-md-6">
-                                    <label for="">Image</label>&nbsp;<strong>(Maximum Image Size 100Kb)</strong>
-                                    <input type="file" class="form-control" name="image" id="image" placeholder="">
+                                    <label for="">Image</label>&nbsp;<notice>(Maximum Image Size 100Kb)</notice>
+                                    <input type="file" class="form-control" name="image" id="image" placeholder="Image">
                                     @if ($errors->has('image'))
 
                                         <span class="">
@@ -355,14 +358,14 @@
                                     @endif
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="">Signature</label>&nbsp;<strong>(Maximum Signature Size 50Kb)</strong>
+                                    <label for="">Signature</label>&nbsp;<notice>(Maximum signature size 50Kb)</notice>
                                     @if ($errors->has('sign'))
 
                                         <span class="">
                                         <strong>{{ $errors->first('sign') }}</strong>
                                     </span>
                                     @endif
-                                    <input type="file" class="form-control" name="sign" id="sign" placeholder="">
+                                    <input type="file" class="form-control" name="sign" id="sign" placeholder="Signature">
 
                                 </div>
 
@@ -432,10 +435,21 @@
 
         function isNumberKey(evt)
         {
-            var charCode = (evt.which) ? evt.which : event.keyCode
+            var charCode = (evt.which) ? evt.which : event.keyCode;
             if (charCode > 31 && (charCode < 48 || charCode > 57))
                 return false;
 
+            return true;
+        }
+        function isAlfaNumberKey(evt)
+        {
+            var code = (evt.which) ? evt.which : event.keyCode;
+
+            if (!(code > 47 && code < 58) && // numeric (0-9)
+                !(code > 64 && code < 91) && // upper alpha (A-Z)
+                !(code > 96 && code < 123)) { // lower alpha (a-z)
+                return false;
+            }
             return true;
         }
 
@@ -450,13 +464,13 @@
                 default:
                     $(this).val('');
                     // error message here
-                    var errorMsg="Please Select a valid Image";
+                    var errorMsg="Please select a valid image";
                     validationError(errorMsg);
                     break;
             }
             var picsize = (this.files[0].size);
             if ((picsize/1024) > 100){
-                var errorMsg="Image Size Should be less then 100 KB";
+                var errorMsg="Image size should be less then 100 KB";
                 validationError(errorMsg);
                 $(this).val('');
 
@@ -474,13 +488,13 @@
                 default:
                     $(this).val('');
                     // error message here
-                    var errorMsg="Please Select a valid Image";
+                    var errorMsg="Please select a valid image";
                     validationError(picsize);
                     break;
             }
             var picsize = (this.files[0].size);
             if ((picsize/1024) > 50){
-                var errorMsg="Image Size Should be less then 50 KB";
+                var errorMsg="Image size should be less then 50 KB";
                 validationError(errorMsg);
                 $(this).val('');
 
@@ -507,7 +521,7 @@
 
         }
 
-
+        $('.js-example-basic-single').select2();
 
     </script>
 

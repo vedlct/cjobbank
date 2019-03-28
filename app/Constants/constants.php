@@ -1,8 +1,9 @@
 <?php
 
 define('GENDER',array(
-    "Male"=>'M',
-    "Female"=>'F'
+    "Man"=>'M',
+    "Woman"=>'F',
+    "Transgender"=>'T'
 ));
 define('DISABILITY',array(
     "Yes"=>'Y',
@@ -35,6 +36,7 @@ define('BLOOD_GROUP',array(
     "AB-"=>'ab-',
     "O+"=>'o+',
     "O-"=>'o-',
+    "Don’t know"=>'na',
 ));
 
 define('MARITAL_STATUS',array(
@@ -45,7 +47,7 @@ define('MARITAL_STATUS',array(
 ));
 
 define('COMPLETING_STATUS',array(
-    "OnGoing"=>'1',
+    "On going"=>'1',
     "Completed"=>'2'
 ));
 
@@ -61,7 +63,8 @@ define('UNIVERSITY_TYPE',array(
 define('RESULT_SYSTEM',array(
     "grade"=>'1',
     "division"=>'2',
-    "class"=>'3'
+    "class"=>'3',
+
 ));
 
 define('USER_TYPE',array(
@@ -73,7 +76,7 @@ define('USER_TYPE',array(
 define('CAREER_QUES',array(
     "Ques1"=>'What are the reasons behind leaving you current or last job?',
     "Ques2"=>'Why you are intersted for the position applied for?',
-    "Ques0"=>'Are you currently working for any organization?',
+    "Ques0"=>'Do you have any work experience?',
 
 ));
 
@@ -81,7 +84,9 @@ define('STATUS',array(
     "1"=>'Active',
     "0"=>'Inactive',
 ));
+
 define('OTHERS',"others");
+define('CV_COMPLITING_MSG',"Thank you for submiting your CV. All the data submitted here are only for Caritas Bangladesh");
 
 //ComputerSkillAchievement
 define('ComputerSkillAchievement',array(

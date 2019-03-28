@@ -17,6 +17,13 @@
       'Image' => 'Intervention\\Image\\Facades\\Image',
     ),
   ),
+  'laravel/tinker' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Tinker\\TinkerServiceProvider',
+    ),
+  ),
   'maatwebsite/excel' => 
   array (
     'providers' => 
@@ -28,11 +35,11 @@
       'Excel' => 'Maatwebsite\\Excel\\Facades\\Excel',
     ),
   ),
-  'laravel/tinker' => 
+  'nesbot/carbon' => 
   array (
     'providers' => 
     array (
-      0 => 'Laravel\\Tinker\\TinkerServiceProvider',
+      0 => 'Carbon\\Laravel\\ServiceProvider',
     ),
   ),
   'niklasravnsborg/laravel-pdf' => 
@@ -44,13 +51,6 @@
     'aliases' => 
     array (
       'PDF' => 'niklasravnsborg\\LaravelPdf\\Facades\\Pdf',
-    ),
-  ),
-  'nesbot/carbon' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Carbon\\Laravel\\ServiceProvider',
     ),
   ),
   'yajra/laravel-datatables-oracle' => 

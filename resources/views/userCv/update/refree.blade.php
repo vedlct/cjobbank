@@ -2,6 +2,20 @@
 
 @section('content')
 
+    <style>
+        strong{
+            color: red;
+            font-style: italic;
+        }
+        #notice{
+            color: blue;
+            font-style: italic;
+        }
+        /*#imageMsg,#signMsg{*/
+        /*display: none;*/
+        /*}*/
+    </style>
+
     <div class="row ">
 
         <div class="col-12 ">
@@ -9,7 +23,8 @@
                 <div style="background-color: #F1F1F1" class="card-body">
                     <div id="regForm">
 
-
+                        <span id="notice"><span style="color: red">*</span><span style="color: red">*</span>Experience candidate : referee should be present or previous organization/company.</span><span style="color: red">*</span><span style="color: red">*</span><br>
+                        <span id="notice"><span style="color: red">*</span><span style="color: red">*</span>Freshers : referee can be from his/her own preference.</span><span style="color: red">*</span><span style="color: red">*</span>
 
                         <div id="" class="tab">
 
@@ -30,7 +45,7 @@
                                     </div>
                                         <div class="row">
                                             <div class="form-group col-md-6">
-                                                <label for="inputEmail4">First Name</label>
+                                                <label for="inputEmail4">First name</label>
                                                 {{$refree->firstName}}
                                                 {{--<input type="text" class="form-control" name="firstName[]" id="inputEmail4" placeholder="first name" required>--}}
                                             </div>
@@ -38,7 +53,7 @@
 
 
                                             <div class="form-group col-md-6">
-                                                <label for="inputEmail4">Last Name</label>
+                                                <label for="inputEmail4">Last name</label>
                                                 {{$refree->lastName}}
                                                 {{--<input type="text" class="form-control" name="lastName[]" id="inputEmail4" placeholder="last name" required>--}}
                                             </div>
@@ -47,13 +62,13 @@
 
 
                                             <div class="form-group col-md-6">
-                                                <label for="inputEmail4">Present Position</label>
+                                                <label for="inputEmail4">Present position</label>
                                                 {{$refree->presentposition}}
                                                 {{--<input type="text" class="form-control" name="presentposition[]" id="inputEmail4" placeholder="position" required>--}}
                                             </div>
 
                                             <div class="form-group col-md-6">
-                                                <label for="inputPassword4">Name Of Organization</label>
+                                                <label for="inputPassword4">Name of organization</label>
                                                 {{$refree->organization}}
                                                 {{--<input type="text" class="form-control" name="organization[]" id="inputPassword4" placeholder="organization" required>--}}
                                             </div>
@@ -93,7 +108,7 @@
 
                                    {{--</div>--}}
 
-                            <button type="button" id="addButton" class="btn btn-success">Add More</button>
+                            <button type="button" id="addButton" class="btn btn-success">Add more</button>
                             <button type="button" id="removeButton" class="btn btn-success" >remove</button>
 
 
@@ -209,16 +224,21 @@
         });
 
         $(document).ready(function(){
-
+            var tempCounter='{{count($refrees)}}';
+            tempCounter++;
             var counter = 1;
+
             $("#removeButton").hide();
             $("#submitBtn").hide();
 
 
             $("#addButton").click(function () {
 //                $("#btnPevious").hide();
-                if(counter>10){
-                    alert("Only 10 Section allow per Time!!");
+
+                console.log(tempCounter);
+
+                if(tempCounter>3){
+                    alert("Only 3 Section allow per Time!!");
                     return false;
                 }
 
@@ -239,69 +259,69 @@
 
                     if(firstName==""){
 
-                        var errorMsg='Please Type First Name First!!';
+                        var errorMsg='Please type first name first!!';
                         validationError(errorMsg);
                         return false;
                     }
                     if (firstName.length > 45){
 
-                        var errorMsg='First Name Should not more than 45 Charecter Length!!';
+                        var errorMsg='First name should not more than 45 charecter length!!';
                         validationError(errorMsg);
                         return false;
 
                     }
                     if(lastName==""){
 
-                        var errorMsg='Please Type Last Name First!!'
+                        var errorMsg='Please type last name first!!'
                         validationError(errorMsg)
                         return false;
                     }
                     if (lastName.length > 45){
 
-                        var errorMsg='Last Name Should not more than 45 Charecter Length!!'
+                        var errorMsg='Last name should not more than 45 charecter length!!'
                         validationError(errorMsg)
                         return false;
 
                     }
 
-                    if(presentposition==""){
-
-                        var errorMsg='Please Type Present Position First!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
+//                    if(presentposition==""){
+//
+//                        var errorMsg='Please Type Present Position First!!'
+//                        validationError(errorMsg)
+//                        return false;
+//
+//                    }
                     if (presentposition.length > 100){
 
-                        var errorMsg='Present Position Should not more than 100 Charecter Length!!';
+                        var errorMsg='Present position should not more than 100 charecter length!!';
                         validationError(errorMsg);
                         return false;
 
                     }
-                    if(organization==""){
-
-                        var errorMsg='Please Type Organization First!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
+//                    if(organization==""){
+//
+//                        var errorMsg='Please Type Organization First!!'
+//                        validationError(errorMsg)
+//                        return false;
+//
+//                    }
                     if (organization.length > 100){
 
-                        var errorMsg='Organization Should not more than 100 Charecter Length!!';
+                        var errorMsg='Organization should not more than 100 charecter length!!';
                         validationError(errorMsg);
                         return false;
 
                     }
                     if(relation==""){
 
-                        var errorMsg='Please Type Relation First!!'
+                        var errorMsg='Please type relation first!!'
                         validationError(errorMsg)
                         return false;
 
                     }
                     if (relation.length > 45){
 
-                        var errorMsg='Relation Should not more than 45 Charecter Length!!';
+                        var errorMsg='Relation should not more than 45 charecter length!!';
                         validationError(errorMsg);
                         return false;
 
@@ -309,7 +329,7 @@
 
                     if(phone==""){
 
-                        var errorMsg='Please Type a Phone Number First!!'
+                        var errorMsg='Please type a phone number first!!'
                         validationError(errorMsg)
                         return false;
 
@@ -317,7 +337,7 @@
 
                     if(!phone.match(chk)) {
 
-                        var errorMsg='Please enter a valid Phone number!!';
+                        var errorMsg='Please enter a valid phone number!!';
                         validationError(errorMsg);
                         return false;
 
@@ -330,13 +350,13 @@
 
                     }
 
-                    if(email==""){
-
-                        var errorMsg='Please Type a Email First!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
+//                    if(email==""){
+//
+//                        var errorMsg='Please Type a Email First!!'
+//                        validationError(errorMsg)
+//                        return false;
+//
+//                    }
 
                     if(!email.match(mailformat))
                     {
@@ -354,27 +374,27 @@
                     .attr("id", 'TextBoxDiv' + counter).attr("class", 'row');
                 newTextBoxDiv.after().html(
                     '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>'+
-                    '<h2 style="margin-bottom: 30px;">Referee - '+(counter+2)+'</h2>'+
+                    '<h2 style="margin-bottom: 30px;">Referee - '+(tempCounter)+'</h2>'+
                     '  <div class="row"> ' +
                     '<div class="form-group col-md-6"> ' +
-                    '<label for="inputEmail4">First Name<span style="color: red">*</span></label> ' +
+                    '<label for="inputEmail4">First name<span style="color: red">*</span></label> ' +
                     '<input type="text" class="form-control" name="firstName[]" id="firstName'+counter+'" placeholder="first name" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
-                    '<label for="inputEmail4">Last Name<span style="color: red">*</span></label> ' +
+                    '<label for="inputEmail4">Last name<span style="color: red">*</span></label> ' +
                     '<input type="text" class="form-control" name="lastName[]" id="lastName'+counter+'" placeholder="last name" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
-                    '<label for="inputEmail4">Present Position<span style="color: red">*</span></label> ' +
-                    '<input type="text" class="form-control" name="presentposition[]" id="presentposition'+counter+'" placeholder="position" required> ' +
+                    '<label for="inputEmail4">Present position</label> ' +
+                    '<input type="text" class="form-control" name="presentposition[]" id="presentposition'+counter+'" placeholder="position" > ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
-                    '<label for="inputPassword4">Organization<span style="color: red">*</span></label> ' +
-                    '<input type="text" class="form-control" name="organization[]" id="organization'+counter+'" placeholder="organization" required> ' +
+                    '<label for="inputPassword4">Organization</label> ' +
+                    '<input type="text" class="form-control" name="organization[]" id="organization'+counter+'" placeholder="organization" > ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
-                    '<label for="inputPassword4">Email<span style="color: red">*</span></label> ' +
-                    '<input type="email" class="form-control" name="email[]" id="email'+counter+'" placeholder="email" required> ' +
+                    '<label for="inputPassword4">Email</label> ' +
+                    '<input type="email" class="form-control" name="email[]" id="email'+counter+'" placeholder="email" > ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
                     '<label for="inputPassword4">Phone<span style="color: red">*</span></label> ' +
@@ -388,6 +408,7 @@
                 newTextBoxDiv.appendTo("#TextBoxesGroup");
 
                 counter++;
+                tempCounter++;
                 if(counter>1){
                     $("#removeButton").show();
                     $("#submitBtn").show();
@@ -399,10 +420,11 @@
 
 
                 if(counter=='1'){
-                    alert("Atleast One Course Section is needed!!");
+                    alert("Atleast one course section is needed!!");
                     return false;
                 }
                 counter--;
+                tempCounter--;
                 if(counter<2){
                     $("#removeButton").hide();
                     $("#submitBtn").hide();

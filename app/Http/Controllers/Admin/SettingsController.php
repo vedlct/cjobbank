@@ -20,6 +20,8 @@ use App\Religion;
 
 use App\OrganizationType;
 
+use App\TermsAndConditions;
+use App\TypeOfEmployment;
 use App\Zone;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -27,7 +29,7 @@ use Session;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class SettingsController extends Controller
 {
@@ -582,8 +584,9 @@ class SettingsController extends Controller
     public function major(){
 
         $major=Educationmajor::select('educationmajor.educationMajorName','degree.degreeName','educationmajor.educationMajorId','educationmajor.status')
-        ->leftjoin('degree','degree.degreeId','educationmajor.fkDegreeId')
-        ->get();
+            ->leftjoin('degree','degree.degreeId','educationmajor.fkDegreeId')
+            ->orderBy('educationmajor.educationMajorName')
+            ->get();
         $degree = Degree::where('status','!=',0)->get();
         return view('manage.major',compact('major', 'degree'));
     }
@@ -723,6 +726,7 @@ class SettingsController extends Controller
         return view('manage.careerObjectiveAndApplication',compact('questionObj','lastserialnumber'));
     }
 
+
     public function insertobjectivePageQuestion(Request $r){
         $r->validate([
             'qus' => 'required',
@@ -765,6 +769,81 @@ class SettingsController extends Controller
 
         Session::flash('message', 'Updated Successfully!');
         return redirect()->route('manage.careerObjectiveAndApplicationInformation');
+
+    }
+
+
+    public function termsConditionShow(){
+
+
+        $terms=TermsAndConditions::first();
+        return view('manage.termsAndCondition',compact('terms'));
+    }
+
+
+    public function termsConditionUpdate(Request $r){
+
+        try
+        {
+            $terms=TermsAndConditions::firstOrFail();
+        }
+// catch(Exception $e) catch any exception
+        catch(ModelNotFoundException $e)
+        {
+            $terms=new TermsAndConditions();
+
+        }
+
+        $terms->page_Header=$r->title;
+        $terms->page_content=$r->contents;
+        $terms->save();
+
+
+
+        Session::flash('message', 'Updated Successfully!');
+        return redirect()->route('manage.terms_and_condition');
+
+    }
+
+    public function typeOfEmploymentShow(){
+
+
+        $type=TypeOfEmployment::get();
+        return view('manage.typeOfEmployment',compact('type'));
+    }
+    public function inserttypeOfEmployment(Request $r)
+    {
+
+
+        $type = new TypeOfEmployment();
+        $type->employmentTypeName = $r->employmentTypeName;
+        $type->status = $r->status;
+        $type->save();
+
+
+        Session::flash('message', 'Inserted Successfully!');
+        return redirect()->route('manage.typeOfEmployment');
+    }
+    public function edittypeOfEmployment(Request $r)
+    {
+
+        $type =TypeOfEmployment::findOrFail($r->id);
+
+        return view('manage.editTypeOfEmployment',compact('type'));
+
+    }
+
+    public function updatetypeOfEmployment($id,Request $r){
+
+
+
+        $type =TypeOfEmployment::findOrFail($id);
+        $type->employmentTypeName = $r->employmentTypeName;
+        $type->status = $r->status;
+        $type->save();
+
+        Session::flash('message', 'Updated Successfully!');
+        return redirect()->route('manage.typeOfEmployment');
 
     }
 

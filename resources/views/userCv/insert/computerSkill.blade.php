@@ -26,7 +26,7 @@
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Skill<span style="color: red">*</span></label>
                                         <select name="computerSkillId[]" id="" class="form-control req" onchange="checkUnique(this)" required>
-                                            <option value="">Select Skill</option>
+                                            <option value="">Select skill</option>
                                             @foreach($computerSkills as $skill)
                                                 <option value="{{$skill->id}}">{{$skill->computerSkillName}}</option>
                                             @endforeach
@@ -36,9 +36,9 @@
 
                                     <div class="form-group col-md-6">
 
-                                        <label for="inputEmail4">Skill-Level<span style="color: red">*</span></label>
+                                        <label for="inputEmail4">Skill-level<span style="color: red">*</span></label>
                                         <select name="SkillAchievement[]" id="" class="form-control" required>
-                                            <option value="">Select Level</option>
+                                            <option value="">Select level</option>
                                             @foreach(ComputerSkillAchievement as $key=>$value)
                                                 <option value="{{$value}}">{{$key}}</option>
                                             @endforeach
@@ -55,8 +55,8 @@
 
                             </div>
 
-                            <button type="button" id="addButton" class="btn btn-success">Add More</button>
-                            <button type="button" id="removeButton" class="btn btn-success" >remove</button>
+                            <button type="button" id="addButton" class="btn btn-success">Add more</button>
+                            <button type="button" id="removeButton" class="btn btn-success" >Remove</button>
 
                         </div>
 
@@ -144,7 +144,7 @@
 
             if(values.length != unique.length){
 
-                alert("Already Inserted");
+                alert("Already inserted");
                 $(x).val('');
 
             }
@@ -164,14 +164,14 @@
 
                     if(computerSkillId[i].value==""){
 
-                        var errorMsg='Please Select a Computer Skill First!!';
+                        var errorMsg='Please select a computer skill first!!';
                         validationError(errorMsg);
                         return false;
                     }
 
                     if(SkillAchievement[i].value==""){
 
-                        var errorMsg='Please Type Skill Achievement First!!';
+                        var errorMsg='Please type skill achievement first!!';
                         validationError(errorMsg);
                         return false;
                     }
@@ -194,7 +194,7 @@
 
             $("#addButton").click(function () {
                 if(counter>10){
-                    alert("Only 10 Section allow per Time!!");
+                    alert("Only 10 section allow per Time!!");
                     return false;
                 }
                 $("#btnPevious").hide();
@@ -209,7 +209,7 @@
                     '                                    <div class="form-group col-md-6">\n' +
                     '                                        <label for="inputEmail4">Skill<span style="color: red">*</span></label>\n' +
                     '                                        <select name="computerSkillId[]" id="" class="form-control" onchange="checkUnique(this)" required>\n' +
-                    '                                            <option value="">Select Skill</option>\n' +
+                    '                                            <option value="">Select skill</option>\n' +
                     '                                            @foreach($computerSkills as $skill)\n' +
                     '                                                <option value="{{$skill->id}}">{{$skill->computerSkillName}}</option>\n' +
                     '                                            @endforeach\n' +
@@ -219,9 +219,9 @@
                     '\n' +
                     '                                    <div class="form-group col-md-6">\n' +
                     '\n' +
-                    '                                        <label for="inputEmail4">Skill-Level<span style="color: red">*</span></label>\n' +
+                    '                                        <label for="inputEmail4">Skill-level<span style="color: red">*</span></label>\n' +
                     '                                        <select name="SkillAchievement[]" id="" class="form-control" required>\n' +
-                    '                                            <option value="">Select Level</option>\n' +
+                    '                                            <option value="">Select level</option>\n' +
                     '                                            @foreach(ComputerSkillAchievement as $key=>$value)\n' +
                     '                                                <option value="{{$value}}">{{$key}}</option>\n' +
                     '                                            @endforeach\n' +
@@ -244,7 +244,7 @@
 
 
                 if(counter=='1'){
-                    alert("Atleast One Course Section is needed!!");
+                    alert("Atleast one course section is needed!!");
                     return false;
                 }
                 counter--;

@@ -57,7 +57,7 @@
                                         <div class="form-group col-md-6">
                                             <label for="inputEmail4">Language<span style="color: red">*</span></label>
                                             <select name="languagehead[]" onchange="checkUnique(this)" class="form-control" id="skill" required>
-                                                <option selected value="">Select Language </option>
+                                                <option selected value="">Select language </option>
 
 
                                                 @foreach($languagehead as $languageheads)
@@ -76,7 +76,7 @@
 
                                                 </div>
                                                 <div class="form-group col-md-6">
-                                                    <label>Percentage of Skill (out of 100)</label>
+                                                    <label>Percentage of skill (out of 100)</label>
                                                     <div class="slidecontainer">
                                                         <input type="range" min="0" max="100" value="0" class="slider" onchange="myRangeChanged2('{{$ls->id}}')" name="languageskill[]" id="myRange<?php echo $ls->id?>" >
                                                         <p>Value: <span id="demo<?php echo $ls->id?>"></span> %</p>
@@ -92,8 +92,8 @@
 
                                 </div>
 
-                                <button type="button" id="addButton" class="btn btn-success">Add More</button>
-                                <button type="button" id="removeButton" class="btn btn-success" >remove</button>
+                                <button type="button" id="addButton" class="btn btn-success">Add more</button>
+                                <button type="button" id="removeButton" class="btn btn-success" >Remove</button>
 
                             </div>
                         </div>
@@ -207,14 +207,14 @@
                 if(counter == 1)
                 {
                     var id=document.getElementById("skill").value;
-                    if(id==""){alert("Please Select a Language First!!");
+                    if(id==""){alert("Please select a language first!!");
                         return false;
                     }
                 }
                 else{
                     var id=$('#skill'+(counter-1)).val();
                     if(id=="") {
-                        alert("Please Select a Language First!!");
+                        alert("Please select a language first!!");
                         return false;
                     }
                 }
@@ -222,12 +222,12 @@
                     var skill = $('#skill').val();
                     var myRange = $('#myRange').val();
                     if (skill == "") {
-                        var errorMsg = 'Please Select a Skill First!!';
+                        var errorMsg = 'Please select a skill first!!';
                         validationError(errorMsg);
                         return false;
                     }
                     if (myRange == "") {
-                        var errorMsg = 'Please Select Skill Level First!!';
+                        var errorMsg = 'Please select skill level first!!';
                         validationError(errorMsg);
                         return false;
                     }
@@ -235,12 +235,12 @@
                     var skill = $('#skill'+counter).val();
                     var myRange = $('#myRange'+counter).val();
                     if (skill == "") {
-                        var errorMsg = 'Please Select a Skill First!!';
+                        var errorMsg = 'Please select a skill first!!';
                         validationError(errorMsg);
                         return false;
                     }
                     if (myRange == "") {
-                        var errorMsg = 'Please Select Skill Level First!!';
+                        var errorMsg = 'Please select skill level first!!';
                         validationError(errorMsg);
                         return false;
                     }
@@ -252,7 +252,7 @@
                     '<div class="form-group col-md-6"> ' +
                     '<label for="inputEmail4">Language<span style="color: red">*</span></label> ' +
                     '<select required name="languagehead[]" onchange="checkUnique(this)" class="form-control" id="skill'+counter+'"> ' +
-                    '<option selected value="">Select Language</option>'+
+                    '<option selected value="">Select language</option>'+
                     '@foreach($languagehead as $languageheads)'+
                     '<option value="{{$languageheads->id}}">{{$languageheads->languagename}}</option>'+
                     '@endforeach'+
@@ -264,7 +264,7 @@
                     '<label>{{$ls->languageSkillName}}</label>'+
                     '</div>'+
                     '<div class="form-group col-md-6">'+
-                    '<label>Percentage of Skill (out of 100)</label>'+
+                    '<label>Percentage of skill (out of 100)</label>'+
                     '<div class="slidecontainer">'+
                     '<input type="range" min="0" max="100" value="0" class="slider" onchange="myRangeChanged3('+'{{$ls->id}},'+counter+')" name="languageskill[]" id="myRange1'+'<?php echo $ls->id?>'+counter+'" >'+
                     '<p>Value: <span id="demo1'+'<?php echo $ls->id?>'+counter+'"></span> %</p>'+
@@ -288,7 +288,7 @@
             $("#removeButton").click(function () {
                 if(counter==1){
                     var id=document.getElementById("skill").value;
-                    alert("Atleast One Language is needed!!");
+                    alert("Atleast one language is needed!!");
                     document.getElementById("skill").selectedIndex= 0;
                     return false;
                 }
@@ -309,25 +309,7 @@
                 $("#TextBoxDiv" + counter).remove();
             });
         });
-        // $('#skill').on('change', function() {
-        //
-        //     var id=document.getElementById("skill").value;
-        //
-        //             if (newArray.indexOf(id)== '-1'){
-        //                 newArray.push(id);
-        //             }else {
-        //
-        //                 var errorMsg = 'Allready selected this Language!!';
-        //                 document.getElementById("skill").selectedIndex= 0;
-        //                 validationError(errorMsg);
-        //                 return false;
-        //
-        //
-        //             }
-        //
-        //
-        //
-        // });
+
         function myRangeChanged2(x){
             var slider = document.getElementById("myRange"+x);
             var output = document.getElementById("demo"+x);
@@ -337,22 +319,7 @@
                 $("#skillPercentage"+x).val(this.value);
             }
         }
-        // function checkLanguage(x){
-        //
-        //         var id=$('#skill'+(x)).val();
-        //
-        //         if (newArray.indexOf(id)== '-1'){
-        //             newArray.push(id);
-        //         }else {
-        //             var errorMsg = 'Allready selected this Language!!';
-        //             document.getElementById("skill"+x).selectedIndex= 0;
-        //             validationError(errorMsg);
-        //             return false;
-        //         }
-        //
-        //
-        //
-        // }
+
         function myRangeChanged3(x,y){
             var slider = document.getElementById("myRange1"+x+y);
             var output = document.getElementById("demo1"+x+y);

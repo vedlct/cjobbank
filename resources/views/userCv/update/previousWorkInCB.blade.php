@@ -37,15 +37,15 @@
 
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label>Start Date</label>
+                                            <label>Start date</label>
                                             {{$previousWorkInCB->startDate}}
                                         </div>
                                         <div class="col-md-6">
-                                            <label>End Date</label>
+                                            <label>End date</label>
                                             @if($previousWorkInCB->currentlyRunning=='0')
                                                 {{$previousWorkInCB->endDate}}
                                             @else
-                                                Currently Running
+                                                Running
                                             @endif
 
 
@@ -58,7 +58,7 @@
                                 </div>
                             @endforeach
                         </div>
-                        <form action="{{route('candidate.previousWorkInCB.insert')}}" method="post">
+                        <form onsubmit="return chkPreviousWork()"action="{{route('candidate.previousWorkInCB.insert')}}" method="post">
                             <!-- One "tab" for each step in the form: -->
                             <input type="hidden" required name="hasWorkedInCB" value="1">&nbsp;
                             {{csrf_field()}}
@@ -69,8 +69,8 @@
                             </div>
 
 
-                            <button type="button" id="addButton" class="btn btn-success">Add More</button>
-                            <button type="button" id="removeButton" class="btn btn-success" >remove</button>
+                            <button type="button" id="addButton" class="btn btn-success">Add more</button>
+                            <button type="button" id="removeButton" class="btn btn-success" >Remove</button>
 
 
 
@@ -200,32 +200,30 @@
                     return false;
                 }
 
-                if (counter >1)
+                if (counter > 1)
                 {
                     var degisnation=$('#degisnation'+(counter-1)).val();
                     var start=$('#start'+(counter-1)).val();
                     var end=$('#end'+(counter-1)).val();
 
 
-
-
                     if(degisnation==""){
 
-                        var errorMsg='Please Type Designation First!!'
+                        var errorMsg='Please type designation first!!'
                         validationError(errorMsg)
                         return false;
 
                     }
                     if (degisnation.length > 255){
 
-                        var errorMsg='Designation Should not more than 255 Charecter Length!!';
+                        var errorMsg='Designation should not more than 255 charecter length!!';
                         validationError(errorMsg);
                         return false;
 
                     }
                     if(start==""){
 
-                        var errorMsg='Please Select a Start Date First!!';
+                        var errorMsg='Please select a start date first!!';
                         validationError(errorMsg);
                         return false;
 
@@ -235,7 +233,7 @@
 
                         if (Date.parse(end) < Date.parse(start)) {
 
-                            var errorMsg = 'End date should after Start Date!!';
+                            var errorMsg = 'End date should after start date!!';
                             validationError(errorMsg);
                             return false;
 
@@ -243,7 +241,7 @@
                     }else {
                         if ($("#currentlyRunning"+(counter-1)).prop('checked') != true){
 
-                            var errorMsg = 'Either End date or Currently Running Should be Selected!!';
+                            var errorMsg = 'Either end date or currently running should be selected!!';
                             validationError(errorMsg);
                             return false;
 
@@ -265,12 +263,12 @@
                     '<input type="text" class="form-control" name="degisnation[]" id="degisnation'+counter+'" placeholder="designation" > ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
-                    '<label for="inputPassword4">Start Date</label> ' +
+                    '<label for="inputPassword4">Start date</label> ' +
                     '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date"> ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
-                    '<label for="inputPassword4">End Date</label> ' +
-                    '/ <input type="checkbox" id="currentlyRunning'+counter+'" name="currentlyRunning[]" value="1">Currenly Running'+
+                    '<label for="inputPassword4">End date</label> ' +
+                    '/ <input type="checkbox" id="currentlyRunning'+counter+'" name="currentlyRunning[]" value="1">Running'+
                     '<input type="text" class="form-control date" name="endDate[]" id="end'+counter+'" placeholder="date"> ' +
 
                     '</div> ' +
@@ -294,7 +292,7 @@
 
 
                 if(counter=='1'){
-                    alert("Atleast One Course Section is needed!!");
+                    alert("Atleast one course section is needed!!");
                     return false;
                 }
                 counter--;
@@ -307,6 +305,61 @@
 
 
         });
+
+        function chkPreviousWork() {
+
+
+
+
+
+
+                var degisnation=document.getElementsByName('degisnation[]');
+                var startDate=document.getElementsByName('startDate[]');
+
+                var currentlyRunning=document.getElementsByName('currentlyRunning[]');
+
+
+                var endDate=document.getElementsByName('endDate[]');
+
+
+                for (i=0;i<degisnation.length;i++){
+
+                    if(degisnation[i].value==""){
+
+                        var errorMsg='Please type a designation first!!';
+                        validationError(errorMsg);
+                        return false;
+                    }
+
+                    if(startDate[i].value==""){
+
+                        var errorMsg='Please type start date first!!';
+                        validationError(errorMsg);
+                        return false;
+                    }
+
+                    if ($("input[name=currentlyRunning]:checked").val()!=1){
+
+                        if(endDate[i].value!=""){
+
+                            if(startDate[i].value > endDate[i].value){
+
+                                var errorMsg='startDate must be less then endDate';
+                                validationError(errorMsg);
+                                return false;
+                            }
+
+                        }
+
+                    }
+
+
+                }
+
+
+
+
+        }
 
         function validationError(errorMsg){
 

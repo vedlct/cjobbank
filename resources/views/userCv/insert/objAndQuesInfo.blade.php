@@ -8,17 +8,56 @@
             <div style="background-color: #F1F1F1" class="card">
                 <div class="card-body">
 
-                    <form id="regForm" method="post" action="{{route('cv.insertQuesObj')}}">
+                    <form id="regForm" method="post" action="{{route('cv.insertQuesObj')}}" onsubmit="return submitForm()">
                         <!-- One "tab" for each step in the form: -->
 
                         {{csrf_field()}}
+
+
                         <div class="tab">
 
                             <h2 style="margin-bottom: 40px; text-align: center;">Career Objective and Application Information</h2>
 
                             <div class="form-group">
+                                <label for="">Objective <span style="color: blue">(Max Limit 2500 character)</span></label>
+                                <textarea type="text" name="objective" maxlength="2500"  rows="2" class="form-control{{ $errors->has('objective') ? ' is-invalid' : '' }}"  id="objective" placeholder="Career Objective">{{ old('objective') }}</textarea>
+                                @if ($errors->has('objective'))
+
+                                    <span class="">
+                                        <strong>{{ $errors->first('objective') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+
+                            <div class="row">
+
+                                <div class="form-group col-md-6">
+                                    <label>Expected salary</label>
+                                    <input type="text" onkeypress="return isNumberKey(event)" placeholder="expected salary" name="expectedSalary">
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label>Possible joining date</label>
+                                    <input type="text" class="date" onkeypress="return isNumberKey(event)" placeholder="Possible joining date" name="readyToJoinAfter">
+                                </div>
+
+
+                            </div>
+
+                            <div class="form-group">
                                 <label for="">{{CAREER_QUES['Ques0']}}<span style="color: red">*</span></label>
-                                <input type="checkbox" name="freshers" onclick="checkFreshers(this)">
+                                {{--<input type="checkbox" name="freshers" onclick="checkFreshers(this)">--}}
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+
+                                        <div class="col-md-10 mb-3">
+                                            <input class="form-check-input" type="radio" required  name="hasOtherSkill" value="1"  onclick="checkFreshers(this)" > Yes&nbsp;&nbsp;
+                                        </div>
+                                        <div class="col-md-10">
+                                            <input class="form-check-input" type="radio" required name="hasOtherSkill" value="0" onclick="hideFresher()"> No&nbsp;&nbsp;
+                                        </div>
+                                    </div>
+                                </div>
 
                                 {{--@if ($errors->has('CareerQues1'))--}}
 
@@ -32,16 +71,7 @@
 
                             <div id="compulsoryQuestions">
 
-                                <div class="form-group">
-                                    <label for="">Objective<span style="color: red">*</span></label>
-                                    <textarea type="text" name="objective" maxlength="300"  rows="2" class="form-control{{ $errors->has('objective') ? ' is-invalid' : '' }}"  id="objective" placeholder="Career Objective">{{ old('objective') }}</textarea>
-                                    @if ($errors->has('objective'))
 
-                                        <span class="">
-                                        <strong>{{ $errors->first('objective') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
 
 
 
@@ -72,49 +102,16 @@
 
 
 
-                            {{--<div class="form-group">--}}
-                                {{--<label for="">Ques-1: {{CAREER_QUES['Ques1']}}<span style="color: red">*</span></label>--}}
-                                {{--<textarea type="text" name="CareerQues1" maxlength="300" required rows="3" class="form-control {{ $errors->has('CareerQues1') ? ' is-invalid' : '' }}" id="CareerQues1" placeholder="Career Question">{{ old('CareerQues1') }}</textarea>--}}
-                                {{--@if ($errors->has('CareerQues1'))--}}
-
-                                    {{--<span class="">--}}
-                                        {{--<strong>{{ $errors->first('CareerQues1') }}</strong>--}}
-                                    {{--</span>--}}
-                                {{--@endif--}}
-                            {{--</div>--}}
-                            {{--<div class="form-group">--}}
-                                {{--<label for="">Ques-2: {{CAREER_QUES['Ques2']}}<span style="color: red">*</span></label>--}}
-                                {{--<textarea type="text" name="CareerQues2" maxlength="300" required rows="3" class="form-control {{ $errors->has('CareerQues2') ? ' is-invalid' : '' }}" id="CareerQues2" placeholder="Career Question">{{ old('CareerQues2') }}</textarea>--}}
-                                {{--@if ($errors->has('CareerQues2'))--}}
-
-                                    {{--<span class="">--}}
-                                        {{--<strong>{{ $errors->first('CareerQues2') }}</strong>--}}
-                                    {{--</span>--}}
-                                {{--@endif--}}
-                            {{--</div>--}}
                                 <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label>Current Salary</label>
+                                    <label>Current salary</label>
                                     <input type="text" onkeypress="return isNumberKey(event)" placeholder="current salary" name="currentSalary">
                                 </div>
                                 </div>
 
                             </div>
 
-                            <div class="row">
 
-                                <div class="form-group col-md-6">
-                                    <label>Expected Salary</label>
-                                    <input type="text" onkeypress="return isNumberKey(event)" placeholder="expected salary" name="expectedSalary">
-                                </div>
-
-                                <div class="form-group col-md-6">
-                                    <label>Possible Joining Date</label>
-                                    <input type="text" class="date" onkeypress="return isNumberKey(event)" placeholder="Possible Joining Date" name="readyToJoinAfter">
-                                </div>
-
-
-                            </div>
 
 
 
@@ -186,6 +183,37 @@
             });
             $('#compulsoryQuestions').hide();
         });
+
+
+        function submitForm() {
+            // objective
+            var obj=$('#objective').val();
+            // alert(obj.length);
+            //
+            // return false;
+            if(obj.length>2500){
+
+                $.alert({
+                    title: 'Error',
+                    type: 'red',
+                    content: "Objective should not exceed more than 2500 character",
+                    buttons: {
+                        tryAgain: {
+                            text: 'Ok',
+                            btnClass: 'btn-green',
+                            action: function () {
+
+                            }
+                        }
+                    }
+                });
+
+                return false;
+            }
+            return true;
+        }
+
+
         function isNumberKey(evt)
         {
             var charCode = (evt.which) ? evt.which : event.keyCode
@@ -198,15 +226,16 @@
         function checkFreshers(x) {
             // $('#compulsoryQuestions').show();
             // if($(x).prop("checked") == true){}
-            if($(x).prop("checked")){
+
                 $('#compulsoryQuestions').show();
-            }
-
-            else {
-                $('#compulsoryQuestions').hide();
-            }
 
 
+
+
+        }
+
+        function hideFresher() {
+            $('#compulsoryQuestions').hide();
         }
 
 

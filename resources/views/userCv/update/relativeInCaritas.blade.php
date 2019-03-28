@@ -23,7 +23,7 @@
                                 <div id="edit{{$relative->relativeId}}">
                                     <div class="row">
                                         <div class="form-group col-md-5">
-                                            <label for="inputEmail4">First Name: </label>
+                                            <label for="inputEmail4">First name: </label>
                                             {{$relative->firstName}}
                                             {{--<input type="text" class="form-control" name="firstName[]" id="inputEmail4" placeholder="first name" required>--}}
                                         </div>
@@ -31,7 +31,7 @@
 
 
                                         <div class="form-group col-md-5">
-                                            <label for="inputEmail4">Last Name: </label>
+                                            <label for="inputEmail4">Last name: </label>
                                             {{$relative->lastName}}
                                             {{--<input type="text" class="form-control" name="lastName[]" id="inputEmail4" placeholder="last name" required>--}}
                                         </div>
@@ -68,8 +68,8 @@
 
                                 {{--</div>--}}
 
-                                <button type="button" id="addButton" class="btn btn-success">Add More</button>
-                                <button type="button" id="removeButton" class="btn btn-success" >remove</button>
+                                <button type="button" id="addButton" class="btn btn-success">Add more</button>
+                                <button type="button" id="removeButton" class="btn btn-success" >Remove</button>
 
 
 
@@ -184,6 +184,24 @@
 ////            $('#end').datepicker({
 //                format: 'yyyy-m-d'
 //            });
+            @if($employee->cvStatus==1)
+
+                $.alert({
+                title: 'Congratulation',
+                type: 'green',
+                content: '{{CV_COMPLITING_MSG}}',
+                buttons: {
+                    tryAgain: {
+                        text: 'Ok',
+                        btnClass: 'btn-green',
+                        action: function () {
+
+                        }
+                    }
+                }
+            });
+
+            @endif
         });
 
         $(document).ready(function(){
@@ -196,7 +214,7 @@
             $("#addButton").click(function () {
 //                $("#btnPevious").hide();
                 if(counter>10){
-                    alert("Only 10 Section allow per Time!!");
+                    alert("Only 10 section allow per time!!");
                     return false;
                 }
 
@@ -213,26 +231,26 @@
 
                     if(firstName==""){
 
-                        var errorMsg='Please Type First Name First!!';
+                        var errorMsg='Please type first name first!!';
                         validationError(errorMsg);
                         return false;
                     }
                     if (firstName.length > 45){
 
-                        var errorMsg='First Name Should not more than 45 Charecter Length!!';
+                        var errorMsg='First name should not more than 45 charecter length!!';
                         validationError(errorMsg);
                         return false;
 
                     }
                     if(lastName==""){
 
-                        var errorMsg='Please Type Last Name First!!'
+                        var errorMsg='Please type last name first!!'
                         validationError(errorMsg)
                         return false;
                     }
                     if (lastName.length > 45){
 
-                        var errorMsg='Last Name Should not more than 45 Charecter Length!!'
+                        var errorMsg='Last name should not more than 45 charecter length!!'
                         validationError(errorMsg)
                         return false;
 
@@ -240,7 +258,7 @@
 
                     if(degisnation==""){
 
-                        var errorMsg='Please Type Present Position First!!'
+                        var errorMsg='Please type present position first!!'
                         validationError(errorMsg)
                         return false;
 
@@ -264,11 +282,11 @@
                         '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>'+
                         '  <div class="row"> ' +
                         '<div class="form-group col-md-6"> ' +
-                        '<label for="inputEmail4">First Name<span style="color: red">*</span></label> ' +
+                        '<label for="inputEmail4">First name<span style="color: red">*</span></label> ' +
                         '<input type="text" class="form-control" name="firstName[]" id="firstName'+counter+'" placeholder="first name" required> ' +
                         '</div> ' +
                         '<div class="form-group col-md-6"> ' +
-                        '<label for="inputEmail4">Last Name<span style="color: red">*</span></label> ' +
+                        '<label for="inputEmail4">Last name<span style="color: red">*</span></label> ' +
                         '<input type="text" class="form-control" name="lastName[]" id="lastName'+counter+'" placeholder="last name" required> ' +
                         '</div> ' +
                         '<div class="form-group col-md-6"> ' +

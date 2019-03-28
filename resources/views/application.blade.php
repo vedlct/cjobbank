@@ -19,7 +19,7 @@
                                 <div class=" form-group col-lg-2">
                                     <label>Zone</label>
                                     <select class="form-control">
-                                        <option>Select a Zone</option>
+                                        <option>Select a zone</option>
                                         <option>Dhaka</option>
                                         <option>Khulna</option>
                                         <option>Barishal</option>
@@ -38,20 +38,20 @@
                                 <div class=" form-group col-lg-2">
                                     <label>Gender</label>
                                     <select class="form-control">
-                                        <option>Select a Gender</option>
+                                        <option>Select a gender</option>
                                         <option>Male</option>
                                         <option>Female</option>
 
                                     </select>
                                 </div>
                                 <div class=" form-group col-lg-2">
-                                    <label>Apply Date</label>
+                                    <label>Apply date</label>
                                     <input class="form-control" type="date">
                                 </div>
                                 <div class=" form-group col-lg-2">
                                     <label>Religion</label>
                                     <select class="form-control">
-                                        <option>Select a Religion</option>
+                                        <option>Select a religion</option>
                                         <option>Islam</option>
                                         <option>Hindu</option>
                                         <option>Christian</option>
@@ -60,7 +60,7 @@
                                 </div>
 
                                 <div class=" form-group col-lg-2">
-                                    <label>Job Title</label>
+                                    <label>Job title</label>
                                     <input class="form-control" type="text">
                                 </div>
 
@@ -71,9 +71,9 @@
                                 <tr>
                                     <th width="4%">Select</th>
                                     <th>Name</th>
-                                    <th>Job Title</th>
+                                    <th>Job title</th>
                                     <th>Zone</th>
-                                    <th>Apply Date</th>
+                                    <th>Apply date</th>
 
                                     <th width="8%">Action</th>
                                 </tr>

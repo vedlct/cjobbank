@@ -2,6 +2,18 @@
 
 @section('content')
 
+    <style>
+        strong{
+            color: red;
+        }
+        notice{
+            color: blue;
+        }
+        /*#imageMsg,#signMsg{*/
+        /*display: none;*/
+        /*}*/
+    </style>
+
     <div class="row">
 
         <div class="col-12 ">
@@ -18,10 +30,10 @@
 
 
                             <div class="form-group">
-                                <label for="">Extra Curricular Activities</label>
-                                <textarea type="text" name="extraCurricularActivities" maxlength="300"  rows="2"
+                                <label for="">Extracurricular activities <notice>(Max Limit 2500)</notice></label>
+                                <textarea type="text" name="extraCurricularActivities" maxlength="2500"  rows="2"
                                           class="form-control{{ $errors->has('extraCurricularActivities') ? ' is-invalid' : '' }}"
-                                          id="objective" placeholder="Extra Curricular Activities">{{ old('extraCurricularActivities') }}</textarea>
+                                          id="objective" placeholder="Extra curricular activities">{{ old('extraCurricularActivities') }}</textarea>
                                 @if ($errors->has('extraCurricularActivities'))
 
                                     <span class="">
@@ -30,8 +42,8 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="">Interests</label>
-                                <textarea type="text" name="interests" maxlength="300"  rows="3"
+                                <label for="">Interests <notice>(Max Limit 2500)</notice></label>
+                                <textarea type="text" name="interests" maxlength="2500"  rows="3"
                                           class="form-control {{ $errors->has('interests') ? ' is-invalid' : '' }}"
                                           id="interests" placeholder="Interests">{{ old('interests') }}</textarea>
                                 @if ($errors->has('interests'))
@@ -42,10 +54,10 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="">Award Received</label>
-                                <textarea type="text" name="awardReceived" maxlength="300"  rows="3"
+                                <label for="">Award Received <notice>(Max Limit 2500)</notice></label>
+                                <textarea type="text" name="awardReceived" maxlength="2500"  rows="3"
                                           class="form-control {{ $errors->has('awardReceived') ? ' is-invalid' : '' }}"
-                                          id="awardReceived" placeholder="Award Received">{{ old('awardReceived') }}</textarea>
+                                          id="awardReceived" placeholder="Award received">{{ old('awardReceived') }}</textarea>
                                 @if ($errors->has('awardReceived'))
 
                                     <span class="">
@@ -54,10 +66,10 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label for="">Research Publication</label>
-                                <textarea type="text" name="researchPublication" maxlength="300"
+                                <label for="">Research / Publication <notice>(Max Limit 2500)</notice></label>
+                                <textarea type="text" name="researchPublication" maxlength="2500"
                                            rows="3" class="form-control {{ $errors->has('researchPublication') ? ' is-invalid' : '' }}"
-                                          id="researchPublication" placeholder="Research Publication">{{ old('researchPublication') }}</textarea>
+                                          id="researchPublication" placeholder="Research / Publication">{{ old('researchPublication') }}</textarea>
                                 @if ($errors->has('researchPublication'))
 
                                     <span class="">

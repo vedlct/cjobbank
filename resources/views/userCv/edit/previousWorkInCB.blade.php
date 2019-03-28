@@ -10,16 +10,16 @@
             <input type="text" class="form-control" name="degisnation" value="{{$previousWorkInCB->designation}}" id="degisnation" placeholder="designation" >
         </div>
         <div class="form-group col-md-6">
-            <label for="inputPassword4">Start Date<span style="color: red">*</span></label>
+            <label for="inputPassword4">Start date<span style="color: red">*</span></label>
             <input type="text" class="form-control date" name="startDate" value="{{$previousWorkInCB->startDate}}" id="start" placeholder="date">
         </div>
         <div class="form-group col-md-6">
-            <label for="inputPassword4">End Date</label>
+            <label for="inputPassword4">End date</label>
             /
-            <input type="checkbox" class="col-md-4" id="currentlyRunning" name="currentlyRunning" @if($previousWorkInCB->currentlyRunning=='1')checked @endif value="1">Currently Running
+            <input type="checkbox" class="col-md-4" id="currentlyRunning" name="currentlyRunning" @if($previousWorkInCB->currentlyRunning=='1')checked @endif value="1"> Running
 
         @if($previousWorkInCB->currentlyRunning=='0')
-                <input type="text" id="endDate"name="endDate col-md-3" placeholder="End Date" value="{{$previousWorkInCB->endDate}}" class="form-control col-md-3 date"/>
+                <input type="text" id="endDate"name="endDate" placeholder="End Date" value="{{$previousWorkInCB->endDate}}" class="form-control col-md-3 date"/>
             @else
                 <input type="text" id="endDate"name="endDate" placeholder="End Date"  class="form-control col-md-3 date"/>
             @endif
@@ -51,7 +51,7 @@
 
         var degisnation=$('#degisnation').val();
         var start=$('#start').val();
-        var end=$('#end').val();
+        var end=$('#endDate').val();
 
         if(degisnation==""){
 
@@ -75,6 +75,8 @@
 
         }
         if(end != "") {
+
+
 
 
             if (Date.parse(end) < Date.parse(start)) {

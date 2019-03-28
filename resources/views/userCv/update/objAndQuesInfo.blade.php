@@ -12,6 +12,8 @@
                         <!-- One "tab" for each step in the form: -->
 
 
+
+
                         <div class="tab">
 
                             <h2 style="margin-bottom: 30px; text-align:center">Career Objective and Application Information</h2>
@@ -19,24 +21,23 @@
 
 
 
-
                                 <div id="edit{{$employeeCvQuesObjInfo->id}}" class="row">
 
 
+                                    <div class="form-group col-md-10">
 
+                                        <label for="">#Objective :</label><br>
+                                        {{$employeeCvQuesObjInfo->objective}}
+                                    </div>
 
 
                                     @if(!$employeeCvQuesObjQuesAns->isEmpty())
 
-                                        <div class="form-group col-md-10">
 
-                                            <label for="">#Objective :</label><br>
-                                            {{$employeeCvQuesObjInfo->objective}}
-                                        </div>
 
                                         <div class="form-group col-md-2">
                                             <button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$employeeCvQuesObjInfo->id}})"><i class="fa fa-edit"></i></button>
-                                            {{--<button type="button" class="btn btn-danger btn-sm " onclick="deleteProfession({{$employeeCvQuesObjInfo->id}})"><i class="fa fa-trash"></i></button>--}}
+                                            <button type="button" class="btn btn-danger btn-sm " onclick="deleteProfession({{$employeeCvQuesObjInfo->id}})"><i class="fa fa-trash"></i></button>
 
                                         </div>
 
@@ -89,7 +90,7 @@
 
 
                                         <div class="form-group col-md-5">
-                                            <label>Expected Salary :</label>
+                                            <label>Expected salary :</label>
                                             {{$employeeCvQuesObjInfo->expectedSalary}}
                                         </div>
 
@@ -98,7 +99,7 @@
 
 
                                         <div class="form-group col-md-5">
-                                            <label>Possible Joining Date :</label>
+                                            <label>Possible joining date :</label>
                                             {{$employeeCvQuesObjInfo->readyToJoinAfter}}
                                         </div>
 
@@ -106,7 +107,7 @@
 
                                         <div class="form-group col-md-2">
                                             <button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$employeeCvQuesObjInfo->id}})"><i class="fa fa-edit"></i></button>
-                                            <button type="button" class="btn btn-danger btn-sm " onclick="deleteProfession({{$employeeCvQuesObjInfo->id}})"><i class="fa fa-trash"></i></button>
+                                            {{--<button type="button" class="btn btn-danger btn-sm " onclick="deleteProfession({{$employeeCvQuesObjInfo->id}})"><i class="fa fa-trash"></i></button>--}}
 
                                         </div>
                                         @endif

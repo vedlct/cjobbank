@@ -43,7 +43,7 @@
                             <input type="password" class="form-control" id="password_again" name="password_again" />
                         </div>
 
-                </div>
+
                 <div class="col-md-2">
                     <button type="submit" style="" class="btn btn-success mt-4" >Change</button>
 

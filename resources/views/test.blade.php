@@ -77,7 +77,7 @@
         </table>
 
 
-        {{--Education--}}
+        Education
 
         <table border="0" style="width:100%; margin-top: 10px; ">
             <thead>
@@ -120,7 +120,7 @@
         </table>
 
         <table border="0" style="width:100%; margin-top: 10px; border: none;">
-            @if($jobExperience->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @else
+            @if($jobExperience->isEmpty())<tr><td style=" border: none; text-align: center"> <strong>None </strong> </td> </tr>@else
 
             @php $count=1;@endphp
             @foreach($jobExperience as $exp)
@@ -162,7 +162,7 @@
 
 
         <table border="0" style="width:100%; margin-top: 10px; border: none;">
-            @if($trainingCertificate->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @endif
+            @if($trainingCertificate->isEmpty())<tr><td style=" border: none; text-align: center"> <strong>None </strong> </td></tr> @endif
 
             @php $count=1;@endphp
 
@@ -187,8 +187,10 @@
 
         </table>
 
-        <p style="page-break-after: always;"></p>
-<br>
+        {{--@if($trainingCertificate->isEmpty())--}}
+        {{--<p style="page-break-after: always;"></p>--}}
+        {{--@endif--}}
+
         <table border="0" style="width:100%;border: none;">
             <tr>
                 <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"> <b>Professional Certificate</b> </td>
@@ -298,7 +300,7 @@
 
                     <td style="text-align: center">{{$skills->computerSkillName}}</td>
 
-                    <td style="text-align: center">{{$skills->SkillAchievement}}</td>
+                    <td style="text-align: center">@if($skills->SkillAchievement==1)General @elseif($skills->SkillAchievement==2)Advance @endif</td>
 
                 </tr>
             @endforeach
@@ -390,6 +392,39 @@
 
 
         </table>
+
+        @if($empOtherInfo)
+            <table border="0" style="width:100%; margin-top: 25px; border: none;">
+                <tr>
+                    <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Other info</b> </td>
+                </tr>
+            </table>
+
+            <table border="0" style="width:100%; margin-top: 10px; border: none;">
+
+                <tr>
+                    <td  style="border: none;">
+                        <label>Extracurricular activities :</label>{{$empOtherInfo->extraCurricularActivities}}
+                    </td>
+                </tr>
+                <tr>
+
+                    <td style="border: none;">
+                        <label> Interests :</label>{{$empOtherInfo->interests}}
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: none;">
+                        <label> Awards received :</label>{{$empOtherInfo->awardReceived}}
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: none;">
+                        <label> Research / Publication :</label>{{$empOtherInfo->researchPublication}}
+                    </td>
+                </tr>
+            </table>
+        @endif
 
 
         <table border="0" style="width:100%; margin-top: 5px; border: none;">

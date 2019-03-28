@@ -29,14 +29,15 @@ class EmployeeOtherInfoController extends Controller
     }
 
     public function insertOtherInfo(Request $r){
+//        return $r;
         $userId=Auth::user()->userId;
 
         $employee=Employee::where('fkuserId', '=',$userId)->first()->employeeId;
         $this->validate($r, [
-            'extraCurricularActivities' => 'max:200',
-            'interests' => 'max:200',
-            'awardReceived' => 'max:200',
-            'researchPublication' => 'max:200',
+            'extraCurricularActivities' => 'nullable|max:2500',
+            'interests' => 'nullable|max:2500',
+            'awardReceived' => 'nullable|max:2500',
+            'researchPublication' => 'nullable|max:2500',
         ]);
         $empOtherInfo = new EmployeeOtherInfo();
         $empOtherInfo->extraCurricularActivities = $r->extraCurricularActivities;
@@ -58,17 +59,19 @@ class EmployeeOtherInfoController extends Controller
 
     }
     public  function updateOtherInfo(Request $r){
+
+//        return $r;
                 $this->validate($r, [
-                    'extraCurricularActivities' => 'max:200',
-                    'interests' => 'max:200',
-                    'awardReceived' => 'max:200',
-                    'researchPublication' => 'max:200',
+                    'extraCurricularActivities' => 'nullable|max:2500',
+                    'interests' => 'nullable|max:2500',
+                    'awardReceived' => 'nullable|max:2500',
+                    'researchPublication' => 'nullable|max:2500',
                 ]);
                 $empInfo = EmployeeOtherInfo::findOrFail($r->empQuesObjId);
                 $empInfo->extraCurricularActivities = $r->extraCurricularActivities;
                 $empInfo->interests = $r->interests;
                 $empInfo->awardReceived = $r->awardReceived;
-                $empInfo->awardReceived = $r->awardReceived;
+                $empInfo->researchPublication = $r->researchPublication;
                 $empInfo->save();
         Session::flash('message', 'Other Info Updated Successfully');
                 return redirect()->route('cv.OthersInfo');

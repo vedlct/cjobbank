@@ -9,11 +9,10 @@
                 <div style="background-color: #F1F1F1" class="card-body">
 
 
-<div id="regForm">
+                    <div id="regForm">
                         <div id="" class="tab">
 
                             <h2 style="margin-bottom: 30px;">Professional Certification </h2>
-
 
                             <div  id="profCertificateDiv">
 
@@ -26,7 +25,7 @@
                                         <input type="hidden" name="professionalQualificationId[]" value="{{$val->professionalQualificationId}}">
                                             <div class="row">
                                                 <div class="form-group col-md-10">
-                                                    <label for="inputEmail4">Certificate Name :</label>
+                                                    <label for="inputEmail4">Certificate name :</label>
                                                     <label for="inputEmail4">{{$val->certificateName}}</label>
                                                     {{--<input type="text" class="form-control" name="certificateName{{$val->professionalQualificationId}}" id="inputEmail4" value="{{$val->certificateName}}" placeholder="certificate" required>--}}
                                                 </div>
@@ -40,22 +39,48 @@
 
                                             <div class="row">
                                                 <div class="form-group col-md-8">
-                                                    <label for="inputEmail4">Institute Name :</label>
+                                                    <label for="inputEmail4">Institute name :</label>
                                                     <label >{{$val->institutionName}}</label>
                                                     {{--<input type="text" class="form-control" name="institutionName{{$val->professionalQualificationId}}" id="inputEmail4" value="{{$val->institutionName}}" placeholder="institution" required>--}}
                                                 </div>
-                                                <div class="form-group col-md-4">
-                                                    <label for="inputEmail4">Result System :</label>
 
-                                                    <label >
-                                                        @foreach(RESULT_SYSTEM as $key=>$value)
-                                                            @if($value==$val->resultSystem){{$key}}
-                                                            @endif
-                                                        @endforeach
-                                                    </label>
 
-                                                    {{--<input type="text" class="form-control" name="institutionName{{$val->professionalQualificationId}}" id="inputEmail4" value="{{$val->institutionName}}" placeholder="institution" required>--}}
-                                                </div>
+                                                {{--@if($val->resultSystem)--}}
+                                                    {{--<div class="form-group col-md-4">--}}
+                                                        {{--<label for="inputPassword4">Result System :</label>--}}
+                                                        {{--<label for="inputPassword4">{{$val->grade}}</label>--}}
+                                                    {{--</div>--}}
+
+                                                 {{--@else--}}
+                                                    <div class="form-group col-md-4">
+                                                        <label for="inputEmail4">Result System :</label>
+
+                                                        <label >
+                                                            {{--@foreach(RESULT_SYSTEM as $key=>$value)--}}
+                                                                {{--@if($value==$val->resultSystem){{$key}}--}}
+                                                                {{--@endif--}}
+                                                            {{--@endforeach--}}
+
+                                                                @if($val->resultSystem!=4)
+
+                                                                    @foreach(RESULT_SYSTEM as $key=>$value)
+                                                                        @if($val->resultSystem ==$value)
+                                                                            {{$key}}
+                                                                        @endif
+
+
+                                                                    @endforeach
+                                                                @else
+                                                                    {{$val->resultSystemName}}
+                                                                @endif
+
+                                                        </label>
+
+                                                        {{--<input type="text" class="form-control" name="institutionName{{$val->professionalQualificationId}}" id="inputEmail4" value="{{$val->institutionName}}" placeholder="institution" required>--}}
+                                                    </div>
+                                                {{--@endif--}}
+
+
 
 
 
@@ -66,20 +91,22 @@
                                                 </div>
 
                                                 <div class="form-group col-md-4">
-                                                    <label for="inputPassword4">Start Date :</label>
+                                                    <label for="inputPassword4">Start date :</label>
                                                     <label for="inputPassword4">{{$val->startDate}}</label>
                                                     {{--<input type="text" class="form-control date" name="startDate{{$val->professionalQualificationId}}" value="{{$val->startDate}}" id="start" placeholder="date" required>--}}
                                                 </div>
                                                 <div class="form-group col-md-4">
-                                                    <label for="inputPassword4">End Date :</label>
+                                                    <label for="inputPassword4">End date :</label>
                                                     <label for="inputPassword4">{{$val->endDate}}</label>
                                                     {{--<input type="text" class="form-control date" name="endDate{{$val->professionalQualificationId}}" value="{{$val->endDate}}" id="end" placeholder="date">--}}
                                                 </div>
+                                                @if($val->hour || $val->day || $val->week || $val->month || $val->year)
                                                 <div class="form-group col-md-12">
                                                     <label for="inputEmail4">Duration :</label>
                                                     <label for="inputEmail4">{{"H:".$val->hour." D:".$val->day." W:".$val->week." M:".$val->month." Y:".$val->year}} </label>
                                                     {{--<input type="text" class="form-control" name="vanue[]" id="inputEmail4" placeholder="vanue" required>--}}
                                                 </div>
+                                                @endif
 
                                                 <div class="form-group col-md-4">
                                                     <label for="inputPassword4">Staus :</label>
@@ -120,8 +147,8 @@
 
                         </div>
 
-                        <button type="button" id="addButton" class="btn btn-success">Add More</button>
-                        <button type="button" id="removeButton" class="btn btn-success" >remove</button>
+                        <button type="button" id="addButton" class="btn btn-success">Add more</button>
+                        <button type="button" id="removeButton" class="btn btn-success" >Remove</button>
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
@@ -226,6 +253,35 @@
             });
         });
 
+        function getResultSystemName(x){
+
+
+            var resultSydtem=document.getElementById("resultSydtem"+x).value;
+
+            if (resultSydtem == "others"){
+
+                $("#resultSydtemNameDiv"+x).show();
+            }else {
+
+
+                $("#resultSydtemNameDiv"+x).hide();
+
+
+            }
+
+        }
+        function selectStatusAdd(x) {
+
+            var value=$(x).val();
+            var id=$(x).data('panel-id');
+            if(value==1){
+                $('#courseDuration'+id).hide();
+            }
+            else if(value==2){
+                $('#courseDuration'+id).show();
+            }
+        }
+
 
 
         $(document).ready(function(){
@@ -238,7 +294,7 @@
             $("#addButton").click(function () {
 
                 if(counter>10){
-                    alert("Only 10 Section allow per Time!!");
+                    alert("Only 10 section allow per time!!");
                     return false;
                 }
 
@@ -254,27 +310,27 @@
 
                     if(certificateName==""){
 
-                        var errorMsg='Please Type certificateName First!!'
+                        var errorMsg='Please type certificate name first!!'
                         validationError(errorMsg)
                         return false;
                     }
                     if (certificateName.length > 100){
 
-                        var errorMsg='certificateName Should not more than 100 Charecter Length!!'
+                        var errorMsg='certificate name should not more than 100 charecter length!!'
                         validationError(errorMsg)
                         return false;
 
                     }
                     if(institutionName==""){
 
-                        var errorMsg='Please Type instituteName First!!'
+                        var errorMsg='Please type institute name first!!'
                         validationError(errorMsg)
                         return false;
 
                     }
                     if (institutionName.length > 255){
 
-                        var errorMsg='Institute Name Should not more than 255 Charecter Length!!'
+                        var errorMsg='Institute name should not more than 255 charecter length!!'
                         validationError(errorMsg)
                         return false;
 
@@ -293,13 +349,13 @@
 //                        return false;
 //
 //                    }
-                    if(start==""){
-
-                        var errorMsg='Please Select a Strat Date First!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
+//                    if(start==""){
+//
+//                        var errorMsg='Please select a start date first!!'
+//                        validationError(errorMsg)
+//                        return false;
+//
+//                    }
 //                    if(end==""){
 //
 //                        var errorMsg='Please Select a End Date First!!'
@@ -308,7 +364,7 @@
 //
 //                    }
 
-                    if (end != "") {
+                    if (start !="" && end != "") {
 
 
                         if (Date.parse(end) < Date.parse(start)) {
@@ -345,18 +401,26 @@
                     '</div>'+
                     '<div class="row">'+
                     '<div class="form-group col-md-8">'+
-                    '<label for="inputEmail4">Institute Name<span style="color: red">*</span></label>'+
+                    '<label for="inputEmail4">Institution<span style="color: red">*</span></label>'+
                     '<input type="text" class="form-control" name="institutionName[]" id="institutionName'+counter+'" placeholder="institution" >'+
                     '</div>'+
                     '<div class="form-group col-md-4">'+
                     '<label for="">Result System<span style="color: red">*</span></label>'+
-                    '<select name="resultSystem[]" class="form-control"  id="resultSydtem'+counter+'">'+
+                    '<select name="resultSystem[]" class="form-control" id="resultSydtem'+counter+'" data-panel-id="'+counter+'" onchange="getResultSystemName('+counter+')">'+
                     '<option value="">Select System</option>'+
                     @foreach(RESULT_SYSTEM as $key=>$value)
                         '<option value="{{$value}}">{{$key}}</option>'+
                     @endforeach
+                        '<option value="{{OTHERS}}" >{{OTHERS}}</option>'+
                         '</select>'+
+
                     '</div>'+
+                    '<div style="display: none" id="resultSydtemNameDiv'+counter+'" class="form-group col-md-4">'+
+                    '<label for="">Result system name</label>'+
+                    '<input type="text" maxlength="255" name="resultSydtemName[]" class="form-control" id="resultSydtemName'+counter+'"  placeholder="">'+
+
+                    '</div>'+
+                    '<div class="form-group" id="otherField'+counter+'"></div>'+
                     '<div class="form-group col-md-4">'+
                     '<label for="inputPassword4">Result</label>'+
                     '<input type="text" class="form-control" name="result[]" id="result'+counter+'" placeholder="">'+
@@ -373,7 +437,7 @@
 
 
                     '</div>'+
-                    '<div class="row" style="margin-left: 10px">'+
+                    '<div class="row" style="margin-left: 10px" id="courseDuration'+counter+'">'+
                     '<label>Duration</label>'+
                     '<div class="form-group col-md-2">'+
                     '<label for="inputPassword4">Hour</label>'+
@@ -409,7 +473,7 @@
                     '<label for="inputPassword4">Month</label>'+
                     '<select  class="form-control"id="trainingCertificatemonth" name="month[]">'+
 
-                    '<option value="">Select Month</option>'+
+                    '<option value="">Select month</option>'+
                         @for($i = 1 ; $i <51 ; $i++)
                             '<option value="{{$i}}">{{$i}}</option>'+
                         @endfor
@@ -419,7 +483,7 @@
                     '<label for="inputPassword4">Year</label>'+
                     '<select  class="form-control"id="trainingCertificateyear" name="year[]">'+
 
-                    '<option value="">Select Year</option>'+
+                    '<option value="">Select year</option>'+
                         @for($i = 1 ; $i <51 ; $i++)
                             '<option value="{{$i}}">{{$i}}</option>'+
                         @endfor
@@ -428,7 +492,7 @@
                     '</div>'+
                     '<div class="form-group col-md-4">'+
                     '<label for="inputPassword4">Staus<span style="color: red">*</span></label>'+
-                    '<select  class="form-control" id="professinalCertificateStatus'+counter+'" name="status[]">'+
+                    '<select  class="form-control" id="professinalCertificateStatus'+counter+'" name="status[]" data-panel-id="'+counter+'" onchange="selectStatusAdd(this)">'+
                     '<option value="">Select Status</option>'+
                         @foreach(COMPLETING_STATUS as $key=>$value)
                             '<option value="{{$value}}">{{$key}}</option>'+
@@ -437,7 +501,7 @@
                     '</div>'
                 );
                 newTextBoxDiv.appendTo("#TextBoxesGroup");
-
+                $('#courseDuration'+counter).hide();
                 counter++;
                 if(counter>1){
 //                    document.getElementById("removeButton").style.display='block';
@@ -454,7 +518,7 @@
 
 
                 if(counter=='1'){
-                    alert("Atleast One Section is needed!!");
+                    alert("Atleast one section is needed!!");
                     return false;
                 }
                 counter--;
@@ -484,6 +548,26 @@
                     }
                 }
             });
+
+        }
+
+
+        function changeResult(x) {
+            // alert($(x).val());
+            var value=$(x).val();
+            var id=$(x).data('panel-id');
+            var id2=id-1;
+
+            if(value==4){
+                $('#otherField'+id).html(' <div class="form-group col-md-12">\n' +
+                    '                                    <label for="inputPassword4">Grade</label>\n' +
+                    '                                    <input type="text" class="form-control" name="grade['+id2+']"  placeholder="">\n' +
+                    '                                </div>');
+            }
+
+            else{
+                $('#otherField'+id).html('');
+            }
 
         }
 

@@ -123,12 +123,13 @@ class TrainingController extends Controller
    }
 
    public function updateCvTraning(Request $r){
+//        return $r;
 
        $training=Traning::findOrFail($r->traningId);
        $training->trainingName=$r->trainingName;
        $training->startDate=$r->startDate;
        $training->endDate=$r->endDate;
-       $training->vanue=$r->vanue;
+       $training->vanue=$r->venue;
        $training->countryId=$r->countryId;
        $training->status=$r->status;
        $training->hour=$r->hour;

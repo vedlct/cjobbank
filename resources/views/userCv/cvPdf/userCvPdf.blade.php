@@ -96,7 +96,7 @@
                         <tr>
                             <th style="text-align: center" >Degree</th>
                             <th style="text-align: center" >Institution / Board</th>
-                            <th style="text-align: center" >Passing Year</th>
+                            <th style="text-align: center" >Passing year</th>
                             <th style="text-align: center" >Result</th>
                         </tr>
                         </thead>
@@ -145,10 +145,10 @@
 
                                 <td style="border: none;">
 
-                                    <span class="bold"> Company Name : </span> &nbsp;&nbsp {{$exp->organization}}  &nbsp;&nbsp;
+                                    <span class="bold"> Company name : </span> &nbsp;&nbsp {{$exp->organization}}  &nbsp;&nbsp;
                                     <div class="pull-right"><span class="bold">Position:</span>&nbsp;&nbsp;&nbsp; {{$exp->degisnation}} </div><br>
 
-                                    <span class="bold"> Major Responsibilities :</span>&nbsp;&nbsp;&nbsp; {{$exp->majorResponsibilities}} <br>
+                                    <span class="bold"> Major responsibilities :</span>&nbsp;&nbsp;&nbsp; {{$exp->majorResponsibilities}} <br>
                                     <span class="bold"> Address:</span>&nbsp;&nbsp;&nbsp; {{$exp->address}} <br>
                                     <span class="bold"> Duration:</span>&nbsp;&nbsp;&nbsp; {{$exp->startDate}} -  @if($exp->endDate) {{$exp->endDate}} @else
                                         Continuing
@@ -184,7 +184,7 @@
                                     <span class="bold">{{$count++}}.</span>
                                 </td>
                                 <td style="border: none;">
-                                    <span class="bold"> Training Name :</span> &nbsp;&nbsp;&nbsp;{{$certificate->trainingName}} <br>
+                                    <span class="bold"> Training name :</span> &nbsp;&nbsp;&nbsp;{{$certificate->trainingName}} <br>
                                     <span class="bold"> Vanue:</span> &nbsp;&nbsp;&nbsp;{{$certificate->vanue}} <br>
                                     <span class="bold"> Duration:</span> &nbsp;&nbsp;&nbsp;{{$certificate->startDate}} -  @if($certificate->endDate) {{$certificate->endDate}} @else
                                         Continuing
@@ -213,13 +213,13 @@
                     @foreach($professionalCertificate as $certificate)
                             <tr>
 
-                                <td style="border: none; width: 20%"><span class="bold">Certificate Name</span></td>
+                                <td style="border: none; width: 20%"><span class="bold">Certificate name</span></td>
                                 <td style="border: none; width: 5%"><span class="bold">:</span></td>
                                 <td style="border: none;"><b>{{$certificate->certificateName}}</b> </td>
                             </tr>
                             <tr>
 
-                                <td style="border: none; width: 20%"><span class="bold">Institution Name</span></td>
+                                <td style="border: none; width: 20%"><span class="bold">Institution name</span></td>
                                 <td style="border: none; width: 5%"><span class="bold">:</span></td>
                                 <td style="border: none;">{{$certificate->institutionName}} </td>
                             </tr>
@@ -297,7 +297,7 @@
 
                                 <td style="text-align: center">{{$skills->computerSkillName}}</td>
 
-                                <td style="text-align: center">{{$skills->SkillAchievement}}</td>
+                                <td style="text-align: center">@if($skills->SkillAchievement==1)General @elseif($skills->SkillAchievement==2)Advance @endif</td>
 
                             </tr>
                         @endforeach
@@ -322,12 +322,12 @@
 
                         <tr>
                             <td  style="border: none;">
-                                <label>Father Name : </label>{{$personalInfo->fathersName}}
+                                <label>Father name : </label>{{$personalInfo->fathersName}}
                             </td>
 
 
                             <td style="border: none;">
-                                <label> Mother Name :</label> {{$personalInfo->mothersName}}
+                                <label> Mother name :</label> {{$personalInfo->mothersName}}
                             </td>
                         </tr>
                         <tr>
@@ -343,7 +343,7 @@
 
 
                             <td style="border: none;">
-                                <label>Date Of Birth :</label> {{$personalInfo->dateOfBirth}}
+                                <label>Date of birth :</label> {{$personalInfo->dateOfBirth}}
                             </td>
                         </tr>
                         <tr>
@@ -384,7 +384,7 @@
                         </tr>
                         <tr>
                             <td  style="border: none;">
-                                <label>Permanent Address :</label> {{$personalInfo->parmanentAddress}}
+                                <label>Permanent address :</label> {{$personalInfo->parmanentAddress}}
                             </td>
                         </tr>
 
@@ -392,6 +392,42 @@
                         {{--maritalStatus--}}
 
 
+                    </table>
+
+                    @if($empOtherInfo)
+                    <table border="0" style="width:100%; margin-top: 25px; border: none;">
+                        <tr>
+                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Other Info</b> </td>
+                        </tr>
+                    </table>
+
+                    <table border="0" style="width:100%; margin-top: 10px; border: none;">
+
+                        <tr>
+                            <td  style="border: none;">
+                                <label>Extracurricular activities :</label>{{$empOtherInfo->extraCurricularActivities}}
+                            </td>
+                        </tr>
+                        <tr>
+
+                            <td style="border: none;">
+                                <label> Interests :</label>{{$empOtherInfo->interests}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: none;">
+                                <label> Awards received :</label>{{$empOtherInfo->awardReceived}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: none;">
+                                <label> Research / Publication :</label>{{$empOtherInfo->researchPublication}}
+                            </td>
+                        </tr>
+                    </table>
+                    @endif
+
+                    <table border="0" style="width:100%; margin-top: 10px; border: none;">
                     </table>
 
                     <table border="0" style="width:100%; margin-top: 5px; border: none;">

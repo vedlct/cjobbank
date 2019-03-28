@@ -14,19 +14,33 @@
 
                         <div id="" class="tab">
 
-                            <h2 style="margin-bottom: 30px;">Certification of membership in Social network/forum</h2>
+                            <h2 style="margin-bottom: 30px;">Certification of membership in professional network/ forum</h2>
+
+                            <div class="row">
+                                <div class="form-group">
+                                    <label class="control-label">Do you have any certification of membership in professional network?<span style="color: red" class="required">*</span></label>
+                                    <div class="col-md-10 mb-3">
+                                        <input class="form-check-input" type="radio" required name="hasProfCertificate" value="1" onclick="sociaMemberDiv(this)"> Yes&nbsp;&nbsp;
+                                    </div>
+                                    <div class="col-md-10">
+                                        <input class="form-check-input" type="radio" required name="hasProfCertificate" checked onclick="sociaMemberDiv(this)" value="0"> No&nbsp;&nbsp;
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="sociaMemberDiv">
                             <div id="TextBoxesGroup">
 
                                 <div class="row">
 
                                     <div class="form-group col-md-12">
-                                        <label for="inputEmail4">Name of Network<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" name="networkName[]" id="networkName" placeholder="networkName" required>
+                                        <label for="inputEmail4">Name of network<span style="color: red">*</span></label>
+                                        <input type="text" class="form-control" name="networkName[]" id="networkName" placeholder="network name" required>
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Type of Membership<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" name="membershipType[]" id="membershipType" placeholder="membership Type" required>
+                                        <label for="inputEmail4">Type of membership<span style="color: red">*</span></label>
+                                        <input type="text" class="form-control" name="membershipType[]" id="membershipType" placeholder="membership type" required>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputPassword4">Duration<span style="color: red">*</span></label>
@@ -38,8 +52,10 @@
 
                             </div>
 
-                            <button type="button" id="addButton" class="btn btn-success">Add More</button>
-                            <button type="button" id="removeButton" class="btn btn-success" >remove</button>
+                            <button type="button" id="addButton" class="btn btn-success">Add more</button>
+                            <button type="button" id="removeButton" class="btn btn-success" >Remove</button>
+
+                            </div>
 
                         </div>
 
@@ -47,7 +63,7 @@
                             <div style="float:right;">
                                 <a href="{{route('candidate.previousWorkInCB.index')}}"><button type="button" id="btnPevious" >Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
-                                {{--<a href="{{route('refree.index')}}"><button type="button" id="nextBtn" >Next</button></a>--}}
+                                <a href="{{route('refree.index')}}"><button type="button" id="nextBtn" >Next</button></a>
                             </div>
                         </div>
 
@@ -85,6 +101,11 @@
         var currentTab = 0; // Current tab is set to be the first tab (0)
         fixStepIndicator(currentTab); // Display the crurrent tab
 
+        $(function () {
+            $('#sociaMemberDiv').hide();
+            $('#submitBtn').hide();
+        });
+
         function fixStepIndicator(n) {
             // This function removes the "active" class of all steps...
             var x1 = document.getElementsByClassName("tab");
@@ -95,6 +116,22 @@
             }
             //... and adds the "active" class on the current step:
             x[(n+4)].className += " active";
+        }
+
+        function sociaMemberDiv(x) {
+            var value=$(x).val();
+
+            if(value ==1){
+                $('#sociaMemberDiv').show();
+                $('#submitBtn').show();
+            }
+            else if(value ==0){
+                $('#sociaMemberDiv').hide();
+                $('#submitBtn').hide();
+            }
+
+            // alert(value);
+
         }
 
         function chkSocialMemberShip() {
@@ -110,20 +147,20 @@
 
                     if(networkName[i].value==""){
 
-                        var errorMsg='Please Type a Network First!!';
+                        var errorMsg='Please type a network first!!';
                         validationError(errorMsg);
                         return false;
                     }
 
                     if(membershipType[i].value==""){
 
-                        var errorMsg='Please Type Membership Type First!!';
+                        var errorMsg='Please type membership type first!!';
                         validationError(errorMsg);
                         return false;
                     }
                     if(duration[i].value==""){
 
-                        var errorMsg='Please Type Membership Duration First!!';
+                        var errorMsg='Please type membership duration first!!';
                         validationError(errorMsg);
                         return false;
                     }
@@ -155,7 +192,7 @@
 
             $("#addButton").click(function () {
                 if(counter>10){
-                    alert("Only 10 Section allow per Time!!");
+                    alert("Only 10 section allow per time!!");
                     return false;
                 }
 
@@ -170,41 +207,41 @@
 
                     if(networkName==""){
 
-                        var errorMsg='Please Type Network Name First!!';
+                        var errorMsg='Please type network name first!!';
                         validationError(errorMsg);
                         return false;
                     }
                     if (networkName.length > 255){
 
-                        var errorMsg='Network Name Should not more than 255 Charecter Length!!';
+                        var errorMsg='Network name should not more than 255 charecter length!!';
                         validationError(errorMsg);
                         return false;
 
                     }
                     if(membershipType==""){
 
-                        var errorMsg='Please Type Membership-Type First!!'
+                        var errorMsg='Please type membership-type first!!'
                         validationError(errorMsg)
                         return false;
 
                     }
                     if (membershipType.length > 255){
 
-                        var errorMsg='Membership-Type Should not more than 255 Charecter Length!!';
+                        var errorMsg='Membership-type should not more than 255 charecter length!!';
                         validationError(errorMsg);
                         return false;
 
                     }
                     if(duration==""){
 
-                        var errorMsg='Please Duration First!!';
+                        var errorMsg='Please duration first!!';
                         validationError(errorMsg);
                         return false;
 
                     }
                     if (duration.length > 10){
 
-                        var errorMsg='Duration Should not more than 10 Charecter Length!!';
+                        var errorMsg='Duration should not more than 10 charecter length!!';
                         validationError(errorMsg);
                         return false;
 
@@ -224,41 +261,41 @@
 
                     if(networkName==""){
 
-                        var errorMsg='Please Type Network Name First!!';
+                        var errorMsg='Please type network name first!!';
                         validationError(errorMsg);
                         return false;
                     }
                     if (networkName.length > 255){
 
-                        var errorMsg='Network Name Should not more than 255 Charecter Length!!';
+                        var errorMsg='Network name should not more than 255 charecter length!!';
                         validationError(errorMsg);
                         return false;
 
                     }
                     if(membershipType==""){
 
-                        var errorMsg='Please Type Membership-Type First!!'
+                        var errorMsg='Please type membership-type first!!'
                         validationError(errorMsg)
                         return false;
 
                     }
                     if (membershipType.length > 255){
 
-                        var errorMsg='Membership-Type Should not more than 255 Charecter Length!!';
+                        var errorMsg='Membership-type should not more than 255 charecter length!!';
                         validationError(errorMsg);
                         return false;
 
                     }
                     if(duration==""){
 
-                        var errorMsg='Please Duration First!!';
+                        var errorMsg='Please duration first!!';
                         validationError(errorMsg);
                         return false;
 
                     }
                     if (duration.length > 10){
 
-                        var errorMsg='Duration Should not more than 10 Charecter Length!!';
+                        var errorMsg='Duration should not more than 10 charecter length!!';
                         validationError(errorMsg);
                         return false;
 
@@ -274,13 +311,13 @@
                     '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>' +
                     '<div class="row"> ' +
                     '<div class="form-group col-md-12">'+
-                    '<label for="inputEmail4">Name of Network<span style="color: red">*</span></label>'+
-                    '<input type="text" class="form-control" name="networkName[]" id="networkName'+counter+'" placeholder="networkName" required>'+
+                    '<label for="inputEmail4">Name of network<span style="color: red">*</span></label>'+
+                    '<input type="text" class="form-control" name="networkName[]" id="networkName'+counter+'" placeholder="network name" required>'+
                     '</div>'+
 
                 '<div class="form-group col-md-6">'+
-                    '<label for="inputEmail4">Type of Membership<span style="color: red">*</span></label>'+
-                    '<input type="text" class="form-control" name="membershipType[]" id="membershipType'+counter+'" placeholder="membership Type" required>'+
+                    '<label for="inputEmail4">Type of membership<span style="color: red">*</span></label>'+
+                    '<input type="text" class="form-control" name="membershipType[]" id="membershipType'+counter+'" placeholder="membership type" required>'+
                 '</div>'+
                 '<div class="form-group col-md-6">'+
                     '<label for="inputPassword4">Duration<span style="color: red">*</span></label>'+
@@ -305,7 +342,7 @@
 
 
                 if(counter=='1'){
-                    alert("Atleast One Course Section is needed!!");
+                    alert("Atleast one course section is needed!!");
                     return false;
                 }
                 counter--;

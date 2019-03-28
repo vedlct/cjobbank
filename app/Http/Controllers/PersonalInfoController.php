@@ -94,7 +94,7 @@ class PersonalInfoController extends Controller
             'bloodGroup' => 'required|max:5',
             'maritalStatus' => 'required|max:15',
             'spouse' => 'max:100',
-            'passport' => 'max:12',
+            'passport' => 'nullable|alpha_num',
             'fathersName' => 'required|max:50',
             'mothersName' => 'required|max:50',
             'dob' => 'required|date',
@@ -103,11 +103,11 @@ class PersonalInfoController extends Controller
             'ethnicity' => 'required',
             'disability' => 'required',
             'nId' => 'required',
-            'homeTelephone' => 'nullable|max:20',
-            'officeTelephone' => 'nullable|max:20',
-            'telephone' => 'nullable|max:20',
-            'alternativePhoneNo' => 'nullable|max:20',
-            'personalMobile' => 'required|max:20',
+            'homeTelephone' => 'nullable|max:20|regex:/^([0-9\s\-\+\(\)]*)$/',
+            'officeTelephone' => 'nullable|max:20|regex:/^([0-9\s\-\+\(\)]*)$/',
+            'telephone' => 'nullable|max:20|regex:/^([0-9\s\-\+\(\)]*)$/',
+            'alternativePhoneNo' => 'nullable|max:20|regex:/^([0-9\s\-\+\(\)]*)$/',
+            'personalMobile' => 'required|max:20|regex:/^([0-9\s\-\+\(\)]*)$/|min:11',
             'email' => 'required|max:255|email',
             'nationality' => 'required|max:25',
             'skype' => 'nullable|max:255',
@@ -121,7 +121,7 @@ class PersonalInfoController extends Controller
         ];
 
         $customMessages = [
-//            'unique' => 'This User is already been registered.Please Login !'
+            'regex' => 'please write correct phone number without country code,special charecters and max length 11 number',
         ];
 
         $this->validate($r, $rules, $customMessages);
@@ -196,13 +196,12 @@ class PersonalInfoController extends Controller
     {
 
         $rules = [
-
             'firstName' => 'required|max:50',
             'lastName' => 'required|max:50',
             'bloodGroup' => 'required|max:5',
             'maritalStatus' => 'required|max:15',
             'spouse' => 'max:100',
-            'passport' => 'max:12',
+            'passport' => 'nullable|alpha_num',
             'fathersName' => 'required|max:50',
             'mothersName' => 'required|max:50',
             'dob' => 'required|date',
@@ -211,11 +210,11 @@ class PersonalInfoController extends Controller
             'ethnicity' => 'required',
             'disability' => 'required',
             'nId' => 'required',
-            'homeTelephone' => 'nullable|max:20',
-            'officeTelephone' => 'nullable|max:20',
-            'telephone' => 'nullable|max:20',
-            'alternativePhoneNo' => 'nullable|max:20',
-            'personalMobile' => 'required|max:20',
+            'homeTelephone' => 'nullable|max:20|regex:/^([0-9\s\-\+\(\)]*)$/',
+            'officeTelephone' => 'nullable|max:20|regex:/^([0-9\s\-\+\(\)]*)$/',
+            'telephone' => 'nullable|max:20|regex:/^([0-9\s\-\+\(\)]*)$/',
+            'alternativePhoneNo' => 'nullable|max:20|regex:/^([0-9\s\-\+\(\)]*)$/',
+            'personalMobile' => 'required|max:20|regex:/^([0-9\s\-\+\(\)]*)$/|min:11',
             'email' => 'required|max:255|email',
             'nationality' => 'required|max:25',
             'skype' => 'nullable|max:255',
@@ -229,7 +228,7 @@ class PersonalInfoController extends Controller
         ];
 
         $customMessages = [
-//            'unique' => 'This User is already been registered.Please Login !'
+            'regex' => 'please write correct phone number without country code,special charecters and max length 11 number',
         ];
 
         $this->validate($r, $rules, $customMessages);

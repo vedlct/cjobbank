@@ -15,7 +15,7 @@
 //    return view('auth.login');
 //});
 //sleep(2);
-Route::get('/','Auth\LoginController@loginForm');
+Route::get('/','Auth\LoginController@loginForm')->name('/');
 Auth::routes();
 
 //Change password
@@ -191,6 +191,9 @@ Route::get('Candidate-Applications','EmployeeApplicationController@getAllApplica
 
 
 /*-------------------------------Admin---------------------------------*/
+Route::get('Admin-DB-Backup','Admin\BackupController@wholeDbBackup')->name('backup.wholeDbBackup');
+
+
 Route::get('Admin-Dashboard','Admin\DashboardController@home')->name('admin.dashboard');
 
 Route::get('Admin-Manage-CV','Admin\CvManagementController@manage')->name('cv.admin.manage');
@@ -214,7 +217,9 @@ Route::post('Admin-Change-Job-Status','Admin\JobController@jobStatusUpdate')->na
 Route::get('Admin-Manage-Application','Admin\ApplicationController@manageApplication')->name('application.admin.manage');
 Route::post('Admin-Show-All-Application','Admin\ApplicationController@showAllApplication')->name('application.admin.showAll');
 Route::post('Admin-Show-All-Major-For Education','Admin\ApplicationController@showAllMajorForEducation')->name('application.admin.getMajorFromEducationlvl');
-Route::post('Admin-Export-All-AppliedCandidate','Admin\ApplicationController@exportAppliedCandidate')->name('jobAppliedCadidate.admin.Exportxls');
+Route::post('Admin-Export-All-AppliedCandidate-Hr-report01','Admin\ApplicationController@exportAppliedCandidate')->name('jobAppliedCadidate.admin.Exportxls');
+Route::post('Admin-Export-All-AppliedCandidate-Hr-report03','Admin\ApplicationController@exportAppliedCandidateHrReport03')->name('jobAppliedCadidate.admin.Exporthrreport03xls');
+Route::post('Admin-Export-All-AppliedCandidate-Hr-report02','Admin\ApplicationController@exportAppliedCandidateHrReport02')->name('jobAppliedCadidate.admin.Exporthrreport02xls');
 Route::post('Admin-Send-Mail-AppliedCandidate','Admin\ApplicationController@sendMailtoAppliedCandidate')->name('jobAppliedCadidate.admin.sendMail');
 
 
@@ -231,6 +236,8 @@ Route::post('Admin-Manage-User/changeUserStatus','Admin\UserManagementController
 Route::post('Admin-Manage-User/update/{id}','Admin\UserManagementController@update')->name('admin.manageUser.update');
 /*----------------------Get CV ------------------------ */
 Route::get('user/cv/{empId}','UserCvController@getFullCv')->name('userCv.get');
+Route::post('user/cv-delete','UserCvController@FullCvDelete')->name('userCv.delete');
+Route::post('user/cv-confirm-delete','UserCvController@FullCvCompleteDelete')->name('userCv.confirm.delete');
 
 Route::post('user/cv/select','UserCvController@getSelectedCv')->name('userCv.select');
 
@@ -346,8 +353,11 @@ Route::get('rumiTest/mail','Admin\MailTamplateController@testPdf');
 //Zone
 Route::get('manage/skill','Admin\ComputerSkillController@skill')->name('manage.skill');
 Route::post('manage/skill/insert','Admin\ComputerSkillController@insertSkill')->name('admin.skill.insert');
+
 Route::post('manage/skill/updateZone/{id}','Admin\ComputerSkillController@updateSkill')->name('admin.skill.update');
+
 Route::post('manage/skill/editZone','Admin\ComputerSkillController@editSkill')->name('admin.edit.skill');
+
 
 //mail Tamplate
 Route::get('manage/Mail-Tamplate','Admin\MailTamplateController@show')->name('manage.mailTamplate');
@@ -361,9 +371,26 @@ Route::post('mailTemplete/update','Admin\MailTamplateController@updateMailTemple
 /* career Objective And Application Information */
 Route::get('manage/career-Objective-And-Application-Information','Admin\SettingsController@careerObjectiveAndApplicationInformation')
     ->name('manage.careerObjectiveAndApplicationInformation');
+
 Route::post('manage/objective-Page-Question/insert','Admin\SettingsController@insertobjectivePageQuestion')
     ->name('manage.objectivePageQuestion.insert');
 Route::post('manage/objective-Page-Question/edit','Admin\SettingsController@editobjectivePageQuestion')
     ->name('manage.objectivePageQuestion.edit');
 Route::post('manage/objective-Page-Question/update/{id}','Admin\SettingsController@updateobjectivePageQuestion')
     ->name('manage.objectivePageQuestion.update');
+
+/* terms and condition */
+Route::get('manage/Tems-condition','Admin\SettingsController@termsConditionShow')
+    ->name('manage.terms_and_condition');
+
+Route::get('/Tems-condition','TermsAndController@termsConditionShowToUser')
+    ->name('terms_and_condition.show');
+Route::POST('manage/Tems-condition','Admin\SettingsController@termsConditionUpdate')
+    ->name('admin.termsAndCondition.update');
+
+/*type of employment*/
+Route::get('manage/Type-of-employment','Admin\SettingsController@typeOfEmploymentShow')
+    ->name('manage.typeOfEmployment');
+Route::post('manage/Type-of-employment/insert','Admin\SettingsController@inserttypeOfEmployment')->name('manage.typeOfEmployment.insert');
+Route::post('manage/Type-of-employment/edit','Admin\SettingsController@edittypeOfEmployment')->name('manage.typeOfEmployment.edit');
+Route::post('manage/Type-of-employment/update/{id}','Admin\SettingsController@updatetypeOfEmployment')->name('manage.typeOfEmployment.update');

@@ -91,7 +91,7 @@
                         <div class="col-12">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" name="terms" required id="customCheck1">
-                                <label class="custom-control-label font-weight-normal" for="customCheck1">I accept <a href="#" class="text-muted">Terms and Conditions</a></label>
+                                <label class="custom-control-label font-weight-normal" for="customCheck1">I accept <a href="{{route('terms_and_condition.show')}}" target="_blank" class="text-muted">Terms and Conditions</a></label>
                             </div>
                         </div>
                     </div>

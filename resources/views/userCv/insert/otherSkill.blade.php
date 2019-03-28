@@ -58,7 +58,7 @@
 
                             <div class="row">
                                 <div class="form-group">
-                                    <label class="control-label">Has Other Skill Information?<span style="color: red" class="required">*</span>:</label>
+                                    <label class="control-label">Do you have  other skills?<span style="color: red" class="required">*</span>:</label>
                                     <div class="col-md-10 mb-3">
                                         <input class="form-check-input" type="radio" required <?php if ($hasOtherSkill=='1'){?>checked<?php } ?> name="hasOtherSkill" value="1"> Yes&nbsp;&nbsp;
                                     </div>
@@ -75,7 +75,7 @@
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Skill<span style="color: red">*</span></label>
                                         <select name="skill[]" class="form-control" id="skill" onchange="checkUnique(this)">
-                                            <option selected value="">Select Skill Type</option>
+                                            <option selected value="">Select skill type</option>
                                             @foreach($skills as $skill)
                                                 <option value="{{$skill->id}}">{{$skill->skillName}}</option>
                                             @endforeach
@@ -84,12 +84,12 @@
 
                                     </div>
                                     <div style="display: none" id="otherSkillNameDiv" class="form-group col-md-6">
-                                        <label for="">Other Skill Name</label>
-                                        <input type="text" maxlength="255" name="otherSkillName[]" class="form-control" id="otherSkillName"  placeholder="">
+                                        <label for="">Other skill name</label>
+                                        <input type="text" maxlength="255" name="otherSkillName[]" class="form-control" id="otherSkillName"  placeholder="Other skill name">
 
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label>Percentage of Skill (out of 100)</label>
+                                        <label>Percentage of skill (out of 100)</label>
                                         <div class="slidecontainer">
                                             <input type="range" min="1" max="100" value="0" class="slider" name="skillPercentage[]" id="myRange" >
                                             <p>Value: <span id="demo"></span> %</p>
@@ -102,8 +102,8 @@
 
                             </div>
 
-                            <button type="button" id="addButton" class="btn btn-success">Add More</button>
-                            <button type="button" id="removeButton" class="btn btn-success" >remove</button>
+                            <button type="button" id="addButton" class="btn btn-success">Add more</button>
+                            <button type="button" id="removeButton" class="btn btn-success" >Remove</button>
 
                         </div>
                         </div>
@@ -193,7 +193,7 @@
 
             if(values.length != unique.length){
 
-                alert("Already Inserted");
+                alert("Already inserted");
                 $(x).val('');
 
             }
@@ -253,14 +253,14 @@
 
                     if(skill[i].value==""){
 
-                        var errorMsg='Please Select a Skill First!!';
+                        var errorMsg='Please select a skill first!!';
                         validationError(errorMsg);
                         return false;
                     }
 
                     if(skillPercentage[i].value==""){
 
-                        var errorMsg='Please Type Skill Percentage First!!';
+                        var errorMsg='Please type skill percentage first!!';
                         validationError(errorMsg);
                         return false;
                     }
@@ -299,13 +299,13 @@
 
                     if (skill == "") {
 
-                        var errorMsg = 'Please Select a Skill First!!';
+                        var errorMsg = 'Please select a skill first!!';
                         validationError(errorMsg);
                         return false;
                     }
                     if (myRange == "") {
 
-                        var errorMsg = 'Please Select Skill Level First!!';
+                        var errorMsg = 'Please select skill level first!!';
                         validationError(errorMsg);
                         return false;
                     }
@@ -317,13 +317,13 @@
 
                     if (skill == "") {
 
-                        var errorMsg = 'Please Select a Skill First!!';
+                        var errorMsg = 'Please select a skill first!!';
                         validationError(errorMsg);
                         return false;
                     }
                     if (myRange == "") {
 
-                        var errorMsg = 'Please Select Skill Level First!!';
+                        var errorMsg = 'Please select skill level first!!';
                         validationError(errorMsg);
                         return false;
                     }
@@ -339,7 +339,7 @@
                     '<div class="form-group col-md-6"> ' +
                     '<label for="inputEmail4">Skill<span style="color: red">*</span></label> ' +
                     '<select required name="skill[]" onchange="checkUnique(this);skillchange('+counter+')"   class="form-control" id="skill'+counter+'"> ' +
-                    '<option selected value="">Select Skill Type</option>'+
+                    '<option selected value="">Select skill type</option>'+
                 '@foreach($skills as $skill)'+
                 '<option value="{{$skill->id}}">{{$skill->skillName}}</option>'+
                  '@endforeach'+
@@ -347,12 +347,12 @@
                     '</select>' +
                     '</div>' +
                         '<div style="display: none" id="otherSkillNameDiv'+counter+'" class="form-group col-md-6">'+
-                    '<label for="">Other Skill Name</label>'+
-                '<input type="text" maxlength="255" name="otherSkillName[]" class="form-control" id="otherSkillName'+counter+'"  placeholder="">'+
+                    '<label for="">Other skill name</label>'+
+                '<input type="text" maxlength="255" name="otherSkillName[]" class="form-control" id="otherSkillName'+counter+'"  placeholder="Other skill name">'+
 
                     '</div>'+
                     '<div class="form-group col-md-6"> ' +
-                    '<label>Percentage of Skill (out of 100)</label> ' +
+                    '<label>Percentage of skill (out of 100)</label> ' +
                     '<div class="slidecontainer"> ' +
                     '<input type="range" min="1" max="100" onchange="myRangeChanged('+counter+')" value="0" class="slider" name="skillPercentage[]" id="myRange'+counter+'" required> ' +
                     '<p>Value: <span id="demo'+counter+'"></span> %</p> ' +
@@ -377,7 +377,7 @@
 
 
                 if(counter=='1'){
-                    alert("Atleast One Course Section is needed!!");
+                    alert("Atleast One course section is needed!!");
                     return false;
                 }
                 counter--;

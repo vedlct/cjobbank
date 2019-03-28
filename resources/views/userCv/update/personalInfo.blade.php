@@ -6,6 +6,9 @@
         strong{
             color: red;
         }
+        notice{
+            color: blue;
+        }
         #imageMsg,#signMsg{
             display: none;
         }
@@ -34,20 +37,20 @@
 
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="">First Name:</label>{{$personalInfo->firstName}}
+                                        <label for="">First name:</label>{{$personalInfo->firstName}}
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="inputPassword4">Last Name:</label>{{$personalInfo->lastName}}
+                                        <label for="inputPassword4">Last name:</label>{{$personalInfo->lastName}}
 
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="">Father Name:</label>{{ $personalInfo->fathersName }}
+                                        <label for="">Father name:</label>{{ $personalInfo->fathersName }}
 
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="inputPassword4">Mother Name:</label>{{ $personalInfo->mothersName }}
+                                        <label for="inputPassword4">Mother name:</label>{{ $personalInfo->mothersName }}
 
                                     </div>
                                 </div>
@@ -86,24 +89,24 @@
 
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="">Date of Birth:</label>
+                                        <label for="">Date of birth:</label>
                                         {{ $personalInfo->dateOfBirth }}
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="">Blood Group</label>
+                                        <label for="">Blood group</label>
                                         @foreach(BLOOD_GROUP as $key=>$value)
                                             @if($personalInfo->bloodGroup == $value) {{$key}} @endif
                                         @endforeach
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label for="">Marital Status:</label>
+                                        <label for="">Marital status:</label>
                                         @foreach(MARITAL_STATUS as $key=>$value)
                                            @if($personalInfo->maritalStatus == $value) {{$key}} @endif
                                         @endforeach
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="">Name Of Spouse:</label>
+                                        <label for="">Name of spouse:</label>
                                         {{$personalInfo->spouse}}
                                     </div>
 
@@ -140,7 +143,7 @@
                                         {{$personalInfo->email }}
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="">Alternate Email:</label>
+                                        <label for="">Alternate email:</label>
                                         {{$personalInfo->alternativeEmail }}
                                     </div>
                                 </div>
@@ -151,7 +154,7 @@
                                         {{$personalInfo->skype }}
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="">Telephone No:</label>
+                                        <label for="">Telephone no:</label>
                                         {{ $personalInfo->telephone }}
                                     </div>
                                     <div class="form-group col-md-6">
@@ -168,11 +171,11 @@
 
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="">Home Telephone:</label>
+                                        <label for="">Home telephone:</label>
                                         {{ $personalInfo->homeNumber }}
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="">office Telephone:</label>
+                                        <label for="">Office telephone:</label>
                                         {{$personalInfo->officeNumber }}
                                     </div>
 
@@ -180,15 +183,9 @@
                                 </div>
 
 
-
-
-
-
-
-
                                 <div class="row">
                                     <div class="form-group col-md-12">
-                                        <label for="">Current Address</label>
+                                        <label for="">Current address</label>
                                         <br>
                                         {{$personalInfo->presentAddress }}
                                     </div>
@@ -200,7 +197,7 @@
                                 <div class="row">
 
                                     <div class="form-group col-md-12">
-                                        <label for="">Permanent Address</label>
+                                        <label for="">Permanent address</label>
                                         <br>
                                         {{$personalInfo->parmanentAddress }}
                                     </div>

@@ -85,12 +85,26 @@ class CvManagementController extends Controller
     public function manageCvData(Request $r)
     {
 
-        $cvData=Employee::select('employeeId','employee.dateOfBirth as birthDate','gender', 'email','image','firstName','lastName',DB::raw("TIMESTAMPDIFF(YEAR,`employee`.`dateOfBirth`,CURDATE()) as age1"),DB::raw("TIMESTAMPDIFF(MONTH,`employee`.`dateOfBirth`,CURDATE()) as age2"))
-//            ->leftJoin('zone', 'zone.zoneId', '=', 'employee.fkzoneId')
-            ->where('cvStatus',1);
 
+        $cvData=DB::table('employee')->select('employeeId','employee.dateOfBirth as birthDate','gender', 'maritalStatus', 'email','image','firstName','lastName',
+            DB::raw("TIMESTAMPDIFF(YEAR,`employee`.`dateOfBirth`,CURDATE()) as age1"),
+            DB::raw("TIMESTAMPDIFF(MONTH,`employee`.`dateOfBirth`,CURDATE()) as age2"));
+//            ->leftJoin('zone', 'zone.zoneId', '=', 'employee.fkzoneId')
+//            ->where('cvStatus',1);
+
+        if ($r->maritalStatusFilter){
+            $cvData= $cvData->where('employee.maritalStatus',$r->maritalStatusFilter);
+        }
         if ($r->genderFilter){
             $cvData= $cvData->where('employee.gender',$r->genderFilter);
+        }
+        if ($r->cvStatusFilter){
+            if ($r->cvStatusFilter == 'complete'){
+                $cvData= $cvData->where('cvStatus',1);
+            }else{
+                 $cvData= $cvData->whereNull('cvStatus');
+            }
+
         }
         if ($r->religionFilter){
             $cvData= $cvData->where('employee.fkreligionId',$r->religionFilter);

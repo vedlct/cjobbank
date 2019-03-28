@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Employee;
+use App\TermsAndConditions;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
@@ -72,4 +73,5 @@ class HomeController extends Controller
         Session::flash('message', 'Password Did not Match!');
         return back();
     }
+
 }
