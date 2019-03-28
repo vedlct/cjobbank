@@ -584,8 +584,9 @@ class SettingsController extends Controller
     public function major(){
 
         $major=Educationmajor::select('educationmajor.educationMajorName','degree.degreeName','educationmajor.educationMajorId','educationmajor.status')
-        ->leftjoin('degree','degree.degreeId','educationmajor.fkDegreeId')
-        ->get();
+            ->leftjoin('degree','degree.degreeId','educationmajor.fkDegreeId')
+            ->orderBy('educationmajor.educationMajorName')
+            ->get();
         $degree = Degree::where('status','!=',0)->get();
         return view('manage.major',compact('major', 'degree'));
     }

@@ -1,3 +1,9 @@
+<style>
+    #notice{
+        color: blue;
+    }
+</style>
+
 <form  action="{{route('update.jobExperience')}}" onsubmit="return checkJobExperience()" method="post">
     <!-- One "tab" for each step in the form: -->
     {{csrf_field()}}
@@ -39,11 +45,11 @@
                 </div>
 
                 <div class="form-group col-md-12">
-                    <label for="inputPassword4">Major responsibilities<span style="color: red">*</span> </label>
+                    <label for="inputPassword4">Major responsibilities<span id="notice">Max limit 5000 character</span>< </label>
                     <textarea class="form-control" name="majorResponsibilities" maxlength="5000" required id="majorResponsibilities" placeholder="Major responsibilities">{{$experience->majorResponsibilities}}</textarea>
                 </div>
                 <div class="form-group col-md-12">
-                    <label for="inputPassword4">Key achievement<span style="color: red">*</span> </label>
+                    <label for="inputPassword4">Key achievement<span id="notice">Max limit 5000 character</span>< </label>
                     <textarea class="form-control" name="keyAchivement" maxlength="5000" required id="keyAchivement" placeholder="Key Achievement">{{$experience->keyAchivement}}</textarea>
                 </div>
                 <div class="form-group col-md-6">
@@ -179,72 +185,72 @@
             return false;
 
         }
-        if(end != "") {
+        // if(end != "") {
+        //
+        //
+        //     if (Date.parse(end) < Date.parse(start)) {
+        //
+        //         var errorMsg = 'End date should after Start Date!!';
+        //         validationError(errorMsg);
+        //         return false;
+        //
+        //     }
+        // }
 
+        // if($.trim(address)==""){
+        //
+        //     var errorMsg='Please Type address First!!';
+        //     validationError(errorMsg);
+        //     return false;
+        //
+        // }
+        //
+        // if(majorResponsibilities==""){
+        //
+        //     var errorMsg='Please Type Major Responsibilities First!!';
+        //     validationError(errorMsg);
+        //     return false;
+        // }
+        if (majorResponsibilities.length > 500){
 
-            if (Date.parse(end) < Date.parse(start)) {
-
-                var errorMsg = 'End date should after Start Date!!';
-                validationError(errorMsg);
-                return false;
-
-            }
-        }
-
-        if($.trim(address)==""){
-
-            var errorMsg='Please Type address First!!';
-            validationError(errorMsg);
-            return false;
-
-        }
-
-        if(majorResponsibilities==""){
-
-            var errorMsg='Please Type Major Responsibilities First!!';
-            validationError(errorMsg);
-            return false;
-        }
-        if (majorResponsibilities.length > 200){
-
-            var errorMsg='Major Responsibilities Should not more than 200 Charecter Length!!'
+            var errorMsg='Major Responsibilities Should not more than 5000 Charecter Length!!'
             validationError(errorMsg)
             return false;
 
         }
-        if(keyAchivement==""){
-
-            var errorMsg='Please Type Key Achivement First!!'
-            validationError(errorMsg)
-            return false;
-        }
+        // if(keyAchivement==""){
+        //
+        //     var errorMsg='Please Type Key Achivement First!!'
+        //     validationError(errorMsg)
+        //     return false;
+        // }
         if (keyAchivement.length > 200){
 
-            var errorMsg='Key Achivement Should not more than 200 Charecter Length!!'
+            var errorMsg='Key Achivement Should not more than 5000 Charecter Length!!'
             validationError(errorMsg)
             return false;
 
         }
-        if(supervisorName==""){
+        // if(supervisorName==""){
+        //
+        //     var errorMsg='Please Type Supervisor Name First!!'
+        //     validationError(errorMsg)
+        //     return false;
+        // }
+        // if (supervisorName.length > 200){
+        //
+        //     var errorMsg='Supervisor Name Should not more than 200 Charecter Length!!'
+        //     validationError(errorMsg)
+        //     return false;
+        //
+        // }
 
-            var errorMsg='Please Type Supervisor Name First!!'
-            validationError(errorMsg)
-            return false;
-        }
-        if (supervisorName.length > 200){
-
-            var errorMsg='Supervisor Name Should not more than 200 Charecter Length!!'
-            validationError(errorMsg)
-            return false;
-
-        }
-
-        if(reservationContactingEmployer==""){
-
-            var errorMsg='Please Select reservation of Contacting Employer First!!'
-            validationError(errorMsg)
-            return false;
-        }
+        // if(reservationContactingEmployer==""){
+        //
+        //     var errorMsg='Please Select reservation of Contacting Employer First!!'
+        //     validationError(errorMsg)
+        //     return false;
+        // }
 
         if(employmentType==""){
 

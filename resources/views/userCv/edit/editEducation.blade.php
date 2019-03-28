@@ -80,7 +80,7 @@
 
             <div class="form-group col-md-3">
                 <label for="">Major</label>
-                <select name="major" class="form-control" id="majorSub">
+                <select name="major" class="form-control js-example-basic-single" id="majorSub">
                     <option value="">Select Major</option>
                     <option selected value="{{$education->educationMajorId}}">{{$education->educationMajorName}}</option>
                     <option value="{{OTHERS}}">{{OTHERS}}</option>

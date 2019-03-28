@@ -486,7 +486,7 @@
 
                         '<div class="form-group col-md-3">'+
                         '<label for="">Major</label>'+
-                        '<select name="major[]" class="form-control" onchange="checkMajor('+counter+')" id="majorSub'+counter+'">'+
+                        '<select name="major[]" class="form-control js-example-basic-single" onchange="checkMajor('+counter+')" id="majorSub'+counter+'">'+
                         '<option value="">Select Major</option>'+
                         '<option value="{{OTHERS}}" >{{OTHERS}}</option>'+
                         '</select>'+

@@ -2,6 +2,12 @@
 
 @section('content')
 
+    <style>
+        #notice{
+            color: blue;
+        }
+    </style>
+
     <div class="row ">
 
         <div class="col-12 ">
@@ -31,8 +37,8 @@
 
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Organization type</label>
-                                        <select  name="organizationType[]" class="form-control" id="organizationType">
+                                        <label for="inputEmail4">Organization type<span style="color: red">*</span></label>
+                                        <select name="organizationType[]" class="form-control" id="organizationType">
                                             <option selected value="">Select organization type</option>
                                             @foreach($companyType as $natio)
                                                 <option value="{{$natio->organizationTypeId}}">{{$natio->organizationTypeName}}</option>
@@ -42,16 +48,16 @@
                                         {{--<input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" required>--}}
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <label for="inputEmail4">Organization name</label>
+                                        <label for="inputEmail4">Organization name<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" >
                                     </div>
 
                                     <div class="form-group col-md-4">
-                                        <label for="inputEmail4">Designation</label>
+                                        <label for="inputEmail4">Designation<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" name="degisnation[]" id="degisnation" placeholder="designation" >
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="inputPassword4">Start date</label>
+                                        <label for="inputPassword4">Start date<span style="color: red">*</span></label>
                                         <input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" required>
                                     </div>
                                     <div class="form-group col-md-4">
@@ -63,11 +69,11 @@
                                         <textarea class="form-control" name="address[]"  id="address" placeholder="address"></textarea>
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <label for="inputPassword4">Major responsibilities </label>
+                                        <label for="inputPassword4">Major responsibilities <span id="notice">Max limit 5000 character</span></label>
                                         <textarea class="form-control" name="majorResponsibilities[]" maxlength="5000"  id="majorResponsibilities" placeholder="max limit 5000"></textarea>
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <label for="inputPassword4">Key achievement </label>
+                                        <label for="inputPassword4">Key achievement <span id="notice">Max limit 5000 character</span></label>
                                         <textarea class="form-control" name="keyAchivement[]" maxlength="5000"  id="keyAchivement" placeholder="max limit 5000"></textarea>
                                     </div>
 
@@ -240,12 +246,12 @@
                     return false;
                 }
 
-                if(organization[i].value==""){
-
-                    var errorMsg='Please type organization name first!!'
-                    validationError(errorMsg)
-                    return false;
-                }
+                // if(organization[i].value==""){
+                //
+                //     var errorMsg='Please type organization name first!!'
+                //     validationError(errorMsg)
+                //     return false;
+                // }
                 if (organization[i].value.length > 100){
 
                     var errorMsg='Organization name should not more than 100 charecter length!!'
@@ -274,72 +280,68 @@
                     return false;
 
                 }
-                if(end[i].value != "") {
+                // if(end[i].value != "") {
+                //
+                //
+                //     if (Date.parse(end[i].value) < Date.parse(start[i].value)) {
+                //
+                //         var errorMsg = 'End date should after start date!!';
+                //         validationError(errorMsg);
+                //         return false;
+                //
+                //     }
+                // }
 
+//                if($.trim(address[i].value)==""){
+//
+//                    var errorMsg='Please type address first!!';
+//                    validationError(errorMsg);
+//                    return false;
+//
+//                }
 
-                    if (Date.parse(end[i].value) < Date.parse(start[i].value)) {
+               // if(majorResponsibilities[i].value==""){
+               //
+               //     var errorMsg='Please type major responsibilities first!!';
+               //     validationError(errorMsg);
+               //     return false;
+               // }
+                if(majorResponsibilities[i].value!="") {
+                    if (majorResponsibilities[i].value.length > 5000) {
 
-                        var errorMsg = 'End date should after start date!!';
-                        validationError(errorMsg);
+                        var errorMsg = 'Major responsibilities should not more than 5000 charecter length!!'
+                        validationError(errorMsg)
                         return false;
 
                     }
                 }
 
-                if($.trim(address[i].value)==""){
+                if(keyAchivement[i].value!="") {
+                    if (keyAchivement[i].value.length > 5000) {
 
-                    var errorMsg='Please type address first!!';
-                    validationError(errorMsg);
-                    return false;
+                        var errorMsg = 'Key achivement should not more than 5000 charecter length!!'
+                        validationError(errorMsg)
+                        return false;
 
+                    }
                 }
 
-                if(majorResponsibilities[i].value==""){
+                // if(supervisorName[i].value!="") {
+                //     if (supervisorName[i].value.length > 200) {
+                //
+                //         var errorMsg = 'Supervisor name should not more than 200 charecter length!!'
+                //         validationError(errorMsg)
+                //         return false;
+                //
+                //     }
+                // }
 
-                    var errorMsg='Please type major responsibilities first!!';
-                    validationError(errorMsg);
-                    return false;
-                }
-                if (majorResponsibilities[i].value.length > 200){
-
-                    var errorMsg='Major responsibilities should not more than 200 charecter length!!'
-                    validationError(errorMsg)
-                    return false;
-
-                }
-                if(keyAchivement[i].value==""){
-
-                    var errorMsg='Please type key achivement first!!'
-                    validationError(errorMsg)
-                    return false;
-                }
-                if (keyAchivement[i].value.length > 200){
-
-                    var errorMsg='Key achivement should not more than 200 charecter length!!'
-                    validationError(errorMsg)
-                    return false;
-
-                }
-                if(supervisorName[i].value==""){
-
-                    var errorMsg='Please type supervisor name first!!'
-                    validationError(errorMsg)
-                    return false;
-                }
-                if (supervisorName[i].value.length > 200){
-
-                    var errorMsg='Supervisor name should not more than 200 charecter length!!'
-                    validationError(errorMsg)
-                    return false;
-
-                }
-
-                if(reservationContactingEmployer[i].value==""){
-
-                    var errorMsg='Please select reservation of contacting employer first!!'
-                    validationError(errorMsg)
-                    return false;
-                }
+                // if(reservationContactingEmployer[i].value==""){
+                //
+                //     var errorMsg='Please select reservation of contacting employer first!!'
+                //     validationError(errorMsg)
+                //     return false;
+                // }
 
                 if(employmentType[i].value==""){
 
@@ -357,11 +359,9 @@
 
                     }
 
-
                 }
 
             }
-
 
         }
         else {
@@ -444,72 +444,41 @@
                         return false;
 
                     }
-                    if(end != "") {
 
+                    // if(majorResponsibilities==""){
+                    //
+                    //     var errorMsg='Please type major responsibilities first!!';
+                    //     validationError(errorMsg);
+                    //     return false;
+                    // }
+                    if (majorResponsibilities.length > 5000){
 
-                        if (Date.parse(end) < Date.parse(start)) {
-
-                            var errorMsg = 'End date should after start date!!';
-                            validationError(errorMsg);
-                            return false;
-
-                        }
-                    }
-
-                    if($.trim(address)==""){
-
-                        var errorMsg='Please type address first!!';
-                        validationError(errorMsg);
-                        return false;
-
-                    }
-
-                    if(majorResponsibilities==""){
-
-                        var errorMsg='Please type major responsibilities first!!';
-                        validationError(errorMsg);
-                        return false;
-                    }
-                    if (majorResponsibilities.length > 200){
-
-                        var errorMsg='Major responsibilities should not more than 200 charecter length!!'
+                        var errorMsg='Major responsibilities should not more than 5000 charecter length!!'
                         validationError(errorMsg)
                         return false;
 
                     }
-                    if(keyAchivement==""){
+                    // if(keyAchivement==""){
+                    //
+                    //     var errorMsg='Please type key achivement first!!'
+                    //     validationError(errorMsg)
+                    //     return false;
+                    // }
+                    if (keyAchivement.length > 5000){
 
-                        var errorMsg='Please type key achivement first!!'
-                        validationError(errorMsg)
-                        return false;
-                    }
-                    if (keyAchivement.length > 200){
-
-                        var errorMsg='Key achivement should not more than 200 charecter length!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
-                    if(supervisorName==""){
-
-                        var errorMsg='Please type supervisor name first!!'
-                        validationError(errorMsg)
-                        return false;
-                    }
-                    if (supervisorName.length > 200){
-
-                        var errorMsg='Supervisor name should not more than 200 charecter length!!'
+                        var errorMsg='Key achivement should not more than 5000 charecter length!!'
                         validationError(errorMsg)
                         return false;
 
                     }
 
-                    if(reservationContactingEmployer==""){
 
-                        var errorMsg='Please select reservation of contacting employer first!!'
-                        validationError(errorMsg)
-                        return false;
-                    }
+                    // if(reservationContactingEmployer==""){
+                    //
+                    //     var errorMsg='Please select reservation of contacting employer first!!'
+                    //     validationError(errorMsg)
+                    //     return false;
+                    // }
 
                     if(employmentType==""){
 
@@ -527,10 +496,7 @@
 
                         }
 
-
                     }
-
-
 
                 }
                 else {
@@ -593,72 +559,72 @@
                         return false;
 
                     }
-                    if(end != "") {
+                    // if(end != "") {
+                    //
+                    //
+                    //     if (Date.parse(end) < Date.parse(start)) {
+                    //
+                    //         var errorMsg = 'End date should after start date!!';
+                    //         validationError(errorMsg);
+                    //         return false;
+                    //
+                    //     }
+                    // }
+                    //
+                    // if($.trim(address)==""){
+                    //
+                    //     var errorMsg='Please type address first!!';
+                    //     validationError(errorMsg);
+                    //     return false;
+                    //
+                    // }
 
+                    // if(majorResponsibilities==""){
+                    //
+                    //     var errorMsg='Please type major responsibilities first!!';
+                    //     validationError(errorMsg);
+                    //     return false;
+                    // }
+                    if (majorResponsibilities.length > 5000){
 
-                        if (Date.parse(end) < Date.parse(start)) {
-
-                            var errorMsg = 'End date should after start date!!';
-                            validationError(errorMsg);
-                            return false;
-
-                        }
-                    }
-
-                    if($.trim(address)==""){
-
-                        var errorMsg='Please type address first!!';
-                        validationError(errorMsg);
-                        return false;
-
-                    }
-
-                    if(majorResponsibilities==""){
-
-                        var errorMsg='Please type major responsibilities first!!';
-                        validationError(errorMsg);
-                        return false;
-                    }
-                    if (majorResponsibilities.length > 200){
-
-                        var errorMsg='Major responsibilities should not more than 200 charecter length!!'
+                        var errorMsg='Major responsibilities should not more than 5000 charecter length!!'
                         validationError(errorMsg)
                         return false;
 
                     }
-                    if(keyAchivement==""){
+                    // if(keyAchivement==""){
+                    //
+                    //     var errorMsg='Please type key achivement First!!'
+                    //     validationError(errorMsg)
+                    //     return false;
+                    // }
+                    if (keyAchivement.length > 5000){
 
-                        var errorMsg='Please type key achivement First!!'
-                        validationError(errorMsg)
-                        return false;
-                    }
-                    if (keyAchivement.length > 200){
-
-                        var errorMsg='Key achivement should not more than 200 charecter length!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
-                    if(supervisorName==""){
-
-                        var errorMsg='Please type supervisor name first!!'
-                        validationError(errorMsg)
-                        return false;
-                    }
-                    if (supervisorName.length > 200){
-
-                        var errorMsg='Supervisor name should not more than 200 charecter length!!'
+                        var errorMsg='Key achivement should not more than 5000 charecter length!!'
                         validationError(errorMsg)
                         return false;
 
                     }
+                    // if(supervisorName==""){
+                    //
+                    //     var errorMsg='Please type supervisor name first!!'
+                    //     validationError(errorMsg)
+                    //     return false;
+                    // }
+                    // if (supervisorName.length > 200){
+                    //
+                    //     var errorMsg='Supervisor name should not more than 200 charecter length!!'
+                    //     validationError(errorMsg)
+                    //     return false;
+                    //
+                    // }
 
-                    if(reservationContactingEmployer==""){
-
-                        var errorMsg='Please select reservation of contacting employer first!!'
-                        validationError(errorMsg)
-                        return false;
-                    }
+                    // if(reservationContactingEmployer==""){
+                    //
+                    //     var errorMsg='Please select reservation of contacting employer first!!'
+                    //     validationError(errorMsg)
+                    //     return false;
+                    // }
 
                     if(employmentType==""){
 
