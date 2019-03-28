@@ -69,6 +69,7 @@ class ComposerStaticInit16100a6e5f6f98c88104df9dc2c1bdf4
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
             'SuperClosure\\' => 13,
+            'Spatie\\DbDumper\\' => 16,
         ),
         'R' => 
         array (
@@ -240,6 +241,10 @@ class ComposerStaticInit16100a6e5f6f98c88104df9dc2c1bdf4
         array (
             0 => __DIR__ . '/..' . '/jeremeamia/SuperClosure/src',
         ),
+        'Spatie\\DbDumper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/db-dumper/src',
+        ),
         'Ramsey\\Uuid\\' => 
         array (
             0 => __DIR__ . '/..' . '/ramsey/uuid/src',
@@ -395,6 +400,8 @@ class ComposerStaticInit16100a6e5f6f98c88104df9dc2c1bdf4
         'App\\Educationlevel' => __DIR__ . '/../..' . '/app/Educationlevel.php',
         'App\\Educationmajor' => __DIR__ . '/../..' . '/app/Educationmajor.php',
         'App\\EmpOtherSkill' => __DIR__ . '/../..' . '/app/EmpOtherSkill.php',
+        'App\\EmpQuestionObj' => __DIR__ . '/../..' . '/app/EmpQuestionObj.php',
+        'App\\EmpQuestionObjAns' => __DIR__ . '/../..' . '/app/EmpQuestionObjAns.php',
         'App\\Employee' => __DIR__ . '/../..' . '/app/Employee.php',
         'App\\EmployeeComputerSkill' => __DIR__ . '/../..' . '/app/EmployeeComputerSkill.php',
         'App\\EmployeeLanguage' => __DIR__ . '/../..' . '/app/EmployeeLanguage.php',
@@ -433,6 +440,7 @@ class ComposerStaticInit16100a6e5f6f98c88104df9dc2c1bdf4
         'App\\Http\\Controllers\\RefreeController' => __DIR__ . '/../..' . '/app/Http/Controllers/RefreeController.php',
         'App\\Http\\Controllers\\RelativeInCbController' => __DIR__ . '/../..' . '/app/Http/Controllers/RelativeInCbController.php',
         'App\\Http\\Controllers\\SkillController' => __DIR__ . '/../..' . '/app/Http/Controllers/SkillController.php',
+        'App\\Http\\Controllers\\TermsAndController' => __DIR__ . '/../..' . '/app/Http/Controllers/TermsAndController.php',
         'App\\Http\\Controllers\\TrainingController' => __DIR__ . '/../..' . '/app/Http/Controllers/TrainingController.php',
         'App\\Http\\Controllers\\UserCvController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserCvController.php',
         'App\\Http\\Controllers\\testController' => __DIR__ . '/../..' . '/app/Http/Controllers/testController.php',
@@ -460,10 +468,14 @@ class ComposerStaticInit16100a6e5f6f98c88104df9dc2c1bdf4
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\QuestionObjective' => __DIR__ . '/../..' . '/app/QuestionObjective.php',
+        'App\\QuestionObjectiveAndInfo' => __DIR__ . '/../..' . '/app/QuestionObjectiveAndInfo.php',
+        'App\\QuestionObjectiveAns' => __DIR__ . '/../..' . '/app/QuestionObjectiveAns.php',
         'App\\Refree' => __DIR__ . '/../..' . '/app/Refree.php',
         'App\\RelativeInCb' => __DIR__ . '/../..' . '/app/RelativeInCb.php',
         'App\\Religion' => __DIR__ . '/../..' . '/app/Religion.php',
+        'App\\TermsAndConditions' => __DIR__ . '/../..' . '/app/TermsAndConditions.php',
         'App\\Traning' => __DIR__ . '/../..' . '/app/Traning.php',
+        'App\\TypeOfEmployment' => __DIR__ . '/../..' . '/app/TypeOfEmployment.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\Zone' => __DIR__ . '/../..' . '/app/Zone.php',
         'ArithmeticError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/ArithmeticError.php',
@@ -3746,6 +3758,16 @@ class ComposerStaticInit16100a6e5f6f98c88104df9dc2c1bdf4
         'SebastianBergmann\\ResourceOperations\\ResourceOperations' => __DIR__ . '/..' . '/sebastian/resource-operations/src/ResourceOperations.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
         'SessionUpdateTimestampHandlerInterface' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/SessionUpdateTimestampHandlerInterface.php',
+        'Spatie\\DbDumper\\Compressors\\Compressor' => __DIR__ . '/..' . '/spatie/db-dumper/src/Compressors/Compressor.php',
+        'Spatie\\DbDumper\\Compressors\\GzipCompressor' => __DIR__ . '/..' . '/spatie/db-dumper/src/Compressors/GzipCompressor.php',
+        'Spatie\\DbDumper\\Databases\\MongoDb' => __DIR__ . '/..' . '/spatie/db-dumper/src/Databases/MongoDb.php',
+        'Spatie\\DbDumper\\Databases\\MySql' => __DIR__ . '/..' . '/spatie/db-dumper/src/Databases/MySql.php',
+        'Spatie\\DbDumper\\Databases\\PostgreSql' => __DIR__ . '/..' . '/spatie/db-dumper/src/Databases/PostgreSql.php',
+        'Spatie\\DbDumper\\Databases\\Sqlite' => __DIR__ . '/..' . '/spatie/db-dumper/src/Databases/Sqlite.php',
+        'Spatie\\DbDumper\\DbDumper' => __DIR__ . '/..' . '/spatie/db-dumper/src/DbDumper.php',
+        'Spatie\\DbDumper\\Exceptions\\CannotSetParameter' => __DIR__ . '/..' . '/spatie/db-dumper/src/Exceptions/CannotSetParameter.php',
+        'Spatie\\DbDumper\\Exceptions\\CannotStartDump' => __DIR__ . '/..' . '/spatie/db-dumper/src/Exceptions/CannotStartDump.php',
+        'Spatie\\DbDumper\\Exceptions\\DumpFailed' => __DIR__ . '/..' . '/spatie/db-dumper/src/Exceptions/DumpFailed.php',
         'SuperClosure\\Analyzer\\AstAnalyzer' => __DIR__ . '/..' . '/jeremeamia/SuperClosure/src/Analyzer/AstAnalyzer.php',
         'SuperClosure\\Analyzer\\ClosureAnalyzer' => __DIR__ . '/..' . '/jeremeamia/SuperClosure/src/Analyzer/ClosureAnalyzer.php',
         'SuperClosure\\Analyzer\\Token' => __DIR__ . '/..' . '/jeremeamia/SuperClosure/src/Analyzer/Token.php',
