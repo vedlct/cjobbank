@@ -1579,7 +1579,8 @@
         "keywords": [
             "mock",
             "xunit"
-        ]
+        ],
+        "abandoned": true
     },
     {
         "name": "psr/container",
@@ -4905,5 +4906,57 @@
             "xlsx"
         ],
         "abandoned": "phpoffice/phpspreadsheet"
+    },
+    {
+        "name": "spatie/db-dumper",
+        "version": "2.13.1",
+        "version_normalized": "2.13.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/spatie/db-dumper.git",
+            "reference": "8f88e6f772ddf6c5a71ec9c0b5682ebca3323377"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/spatie/db-dumper/zipball/8f88e6f772ddf6c5a71ec9c0b5682ebca3323377",
+            "reference": "8f88e6f772ddf6c5a71ec9c0b5682ebca3323377",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^7.0",
+            "symfony/process": "^3.0|^4.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^6.0"
+        },
+        "time": "2019-03-01T15:46:17+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Spatie\\DbDumper\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Freek Van der Herten",
+                "email": "freek@spatie.be",
+                "homepage": "https://spatie.be",
+                "role": "Developer"
+            }
+        ],
+        "description": "Dump databases",
+        "homepage": "https://github.com/spatie/db-dumper",
+        "keywords": [
+            "database",
+            "db-dumper",
+            "dump",
+            "mysqldump",
+            "spatie"
+        ]
     }
 ]

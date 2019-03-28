@@ -79,6 +79,7 @@
         <li><a href="{{route('manage.careerObjectiveAndApplicationInformation')}}">Career Objective and Application Information</a></li>
         <li><a href="{{route('manage.terms_and_condition')}}">Terms and Condition</a></li>
         <li><a href="{{route('manage.typeOfEmployment')}}">Type of Employment</a></li>
+        <li><a href="{{route('backup.wholeDbBackup')}}">Database backup</a></li>
         </ul>
     </li>
     @endif
