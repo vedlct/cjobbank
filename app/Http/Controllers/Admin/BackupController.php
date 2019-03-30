@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Ifsnop\Mysqldump as IMysqldump;
+use Illuminate\Support\Facades\Session;
 
-
-use PHPUnit\Framework\TestCase;
-use Spatie\DbDumper\Databases\MySql as MySql;
-use Spatie\DbDumper\Compressors\GzipCompressor;
-use Spatie\DbDumper\Exceptions\CannotStartDump;
-use Spatie\DbDumper\Exceptions\CannotSetParameter;
 
 class BackupController extends Controller
 {
@@ -60,43 +58,45 @@ class BackupController extends Controller
 
     public function wholeDbBackup()
     {
-        \Spatie\DbDumper\Databases\MySql::create()
-//            ->setDumpBinaryPath(url('public/DBbackup/'))
-            ->setDbName(env('DB_DATABASE'))
-            ->setUserName(env('DB_USERNAME'))
-            ->setPassword(env('DB_PASSWORD'))
-            ->dumpToFile('dump.sql');
-//        \Spatie\DbDumper\Databases\MySql::create()
-//            ->setDbName('caritasbd')
-//            ->setUserName('root')
-//            ->setPassword('')
-//            ->dumpToFile('dump.sql');
 
-        return "done";
+        $dbhost = env('DB_HOST');
+        $dbname = env('DB_DATABASE');
+        $dbuser = env('DB_USERNAME');
+        $dbpass = env('DB_PASSWORD');
+
+        try {
+
+
+            $dump = new IMysqldump\Mysqldump('mysql:host='.$dbhost.';dbname='.$dbname.'', ''.$dbuser.'', ''.$dbpass.'');
+
+
+            Session::flash('message', 'dump created successfully');
+            $fileName='dump'.date("Y-m-d_H-i-s");
+            $file=public_path('DBbackup/'.$fileName.'.sql');
+            if(!is_file($file)){
+                fopen($file, "w");
+            }
+
+            $dump->start($file);
+
+
+
+            return response()->download($file);
+
+
+
+        }
+        catch (\Exception $e) {
+//            return 'mysqldump-php error: ' . $e->getMessage();
+            Session::flash('message', 'Error');
+            return back();
+        }
+
+
 
     }
 
-//    public function it_provides_a_factory_method()
-//    {
-//        $this->assertInstanceOf(MySql::class, MySql::create());
-//    }
-//    /** @test */
-//    public function it_will_throw_an_exception_when_no_credentials_are_set()
-//    {
-//        $this->expectException(CannotStartDump::class);
-//        MySql::create()->dumpToFile('test.sql');
-//    }
-//    /** @test */
-//    public function it_can_generate_a_dump_command()
-//    {
-//        $dumpCommand = MySql::create()
-//            ->setDumpBinaryPath(url('public/DBbackup/'))
-//            ->setDbName(env('DB_DATABASE'))
-//            ->setUserName(env('DB_USERNAME'))
-//            ->setPassword(env('DB_PASSWORD'))
-//            ->getDumpCommand('dump.sql', 'credentials.txt');
-//        $this->assertSame('\'mysqldump\' --defaults-extra-file="credentials.txt" --skip-comments --extended-insert dbname > "dump.sql"', $dumpCommand);
-//    }
+
 
 
 

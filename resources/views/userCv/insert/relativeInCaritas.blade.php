@@ -95,7 +95,7 @@
 
 
                                 <button type="button" id="addButton" class="btn btn-success">Add more</button>
-                                <button type="button" id="removeButton" class="btn btn-success" >remove</button>
+                                <button type="button" id="removeButton" class="btn btn-success" >Remove</button>
 
 
 

@@ -2,6 +2,12 @@
 
 @section('content')
 
+    <style>
+        #notice{
+            color: blue;
+        }
+    </style>
+
     <div class="row ">
 
         <div class="col-12 ">
@@ -31,8 +37,8 @@
 
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Organization type</label>
-                                        <select  name="organizationType[]" class="form-control" id="organizationType">
+                                        <label for="inputEmail4">Organization type<span style="color: red">*</span></label>
+                                        <select name="organizationType[]" class="form-control" id="organizationType">
                                             <option selected value="">Select organization type</option>
                                             @foreach($companyType as $natio)
                                                 <option value="{{$natio->organizationTypeId}}">{{$natio->organizationTypeName}}</option>
@@ -42,16 +48,16 @@
                                         {{--<input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" required>--}}
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <label for="inputEmail4">Organization name</label>
+                                        <label for="inputEmail4">Organization name<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" >
                                     </div>
 
                                     <div class="form-group col-md-4">
-                                        <label for="inputEmail4">Designation</label>
+                                        <label for="inputEmail4">Designation<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" name="degisnation[]" id="degisnation" placeholder="designation" >
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <label for="inputPassword4">Start date</label>
+                                        <label for="inputPassword4">Start date<span style="color: red">*</span></label>
                                         <input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" required>
                                     </div>
                                     <div class="form-group col-md-4">
@@ -63,11 +69,11 @@
                                         <textarea class="form-control" name="address[]"  id="address" placeholder="address"></textarea>
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <label for="inputPassword4">Major responsibilities </label>
+                                        <label for="inputPassword4">Major responsibilities <span id="notice">Max limit 5000 character</span></label>
                                         <textarea class="form-control" name="majorResponsibilities[]" maxlength="5000"  id="majorResponsibilities" placeholder="max limit 5000"></textarea>
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <label for="inputPassword4">Key achievement </label>
+                                        <label for="inputPassword4">Key achievement <span id="notice">Max limit 5000 character</span></label>
                                         <textarea class="form-control" name="keyAchivement[]" maxlength="5000"  id="keyAchivement" placeholder="max limit 5000"></textarea>
                                     </div>
 
@@ -87,8 +93,8 @@
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Type of employment</label>
-                                        <select class="form-control" id="employmentType" name="employmentType[]" >
+                                        <label for="inputEmail4">Type of employment<span style="color: red">*</span></label>
+                                        <select class="form-control" required id="employmentType" name="employmentType[]" >
 
                                             <option value="" selected>Select employment type</option>
                                             @foreach($employmentType as $eT)
@@ -111,7 +117,7 @@
                             </div>
 
                             <button type="button" id="addButton" class="btn btn-success">Add more</button>
-                            <button type="button" id="removeButton" class="btn btn-success" >remove</button>
+                            <button type="button" id="removeButton" class="btn btn-success" >Remove</button>
 
                         </div>
                         </div>
@@ -240,12 +246,12 @@
                     return false;
                 }
 
-                if(organization[i].value==""){
-
-                    var errorMsg='Please type organization name first!!'
-                    validationError(errorMsg)
-                    return false;
-                }
+                // if(organization[i].value==""){
+                //
+                //     var errorMsg='Please type organization name first!!'
+                //     validationError(errorMsg)
+                //     return false;
+                // }
                 if (organization[i].value.length > 100){
 
                     var errorMsg='Organization name should not more than 100 charecter length!!'
@@ -274,72 +280,68 @@
                     return false;
 
                 }
-                if(end[i].value != "") {
+                // if(end[i].value != "") {
+                //
+                //
+                //     if (Date.parse(end[i].value) < Date.parse(start[i].value)) {
+                //
+                //         var errorMsg = 'End date should after start date!!';
+                //         validationError(errorMsg);
+                //         return false;
+                //
+                //     }
+                // }
 
+//                if($.trim(address[i].value)==""){
+//
+//                    var errorMsg='Please type address first!!';
+//                    validationError(errorMsg);
+//                    return false;
+//
+//                }
 
-                    if (Date.parse(end[i].value) < Date.parse(start[i].value)) {
+               // if(majorResponsibilities[i].value==""){
+               //
+               //     var errorMsg='Please type major responsibilities first!!';
+               //     validationError(errorMsg);
+               //     return false;
+               // }
+                if(majorResponsibilities[i].value!="") {
+                    if (majorResponsibilities[i].value.length > 5000) {
 
-                        var errorMsg = 'End date should after start date!!';
-                        validationError(errorMsg);
+                        var errorMsg = 'Major responsibilities should not more than 5000 charecter length!!'
+                        validationError(errorMsg)
                         return false;
 
                     }
                 }
 
-                if($.trim(address[i].value)==""){
+                if(keyAchivement[i].value!="") {
+                    if (keyAchivement[i].value.length > 5000) {
 
-                    var errorMsg='Please type address first!!';
-                    validationError(errorMsg);
-                    return false;
+                        var errorMsg = 'Key achivement should not more than 5000 charecter length!!'
+                        validationError(errorMsg)
+                        return false;
 
+                    }
                 }
 
-                if(majorResponsibilities[i].value==""){
+                // if(supervisorName[i].value!="") {
+                //     if (supervisorName[i].value.length > 200) {
+                //
+                //         var errorMsg = 'Supervisor name should not more than 200 charecter length!!'
+                //         validationError(errorMsg)
+                //         return false;
+                //
+                //     }
+                // }
 
-                    var errorMsg='Please type major responsibilities first!!';
-                    validationError(errorMsg);
-                    return false;
-                }
-                if (majorResponsibilities[i].value.length > 200){
-
-                    var errorMsg='Major responsibilities should not more than 200 charecter length!!'
-                    validationError(errorMsg)
-                    return false;
-
-                }
-                if(keyAchivement[i].value==""){
-
-                    var errorMsg='Please type key achivement first!!'
-                    validationError(errorMsg)
-                    return false;
-                }
-                if (keyAchivement[i].value.length > 200){
-
-                    var errorMsg='Key achivement should not more than 200 charecter length!!'
-                    validationError(errorMsg)
-                    return false;
-
-                }
-                if(supervisorName[i].value==""){
-
-                    var errorMsg='Please type supervisor name first!!'
-                    validationError(errorMsg)
-                    return false;
-                }
-                if (supervisorName[i].value.length > 200){
-
-                    var errorMsg='Supervisor name should not more than 200 charecter length!!'
-                    validationError(errorMsg)
-                    return false;
-
-                }
-
-                if(reservationContactingEmployer[i].value==""){
-
-                    var errorMsg='Please select reservation of contacting employer first!!'
-                    validationError(errorMsg)
-                    return false;
-                }
+                // if(reservationContactingEmployer[i].value==""){
+                //
+                //     var errorMsg='Please select reservation of contacting employer first!!'
+                //     validationError(errorMsg)
+                //     return false;
+                // }
 
                 if(employmentType[i].value==""){
 
@@ -357,11 +359,9 @@
 
                     }
 
-
                 }
 
             }
-
 
         }
         else {
@@ -444,72 +444,41 @@
                         return false;
 
                     }
-                    if(end != "") {
 
+                    // if(majorResponsibilities==""){
+                    //
+                    //     var errorMsg='Please type major responsibilities first!!';
+                    //     validationError(errorMsg);
+                    //     return false;
+                    // }
+                    if (majorResponsibilities.length > 5000){
 
-                        if (Date.parse(end) < Date.parse(start)) {
-
-                            var errorMsg = 'End date should after start date!!';
-                            validationError(errorMsg);
-                            return false;
-
-                        }
-                    }
-
-                    if($.trim(address)==""){
-
-                        var errorMsg='Please type address first!!';
-                        validationError(errorMsg);
-                        return false;
-
-                    }
-
-                    if(majorResponsibilities==""){
-
-                        var errorMsg='Please type major responsibilities first!!';
-                        validationError(errorMsg);
-                        return false;
-                    }
-                    if (majorResponsibilities.length > 200){
-
-                        var errorMsg='Major responsibilities should not more than 200 charecter length!!'
+                        var errorMsg='Major responsibilities should not more than 5000 charecter length!!'
                         validationError(errorMsg)
                         return false;
 
                     }
-                    if(keyAchivement==""){
+                    // if(keyAchivement==""){
+                    //
+                    //     var errorMsg='Please type key achivement first!!'
+                    //     validationError(errorMsg)
+                    //     return false;
+                    // }
+                    if (keyAchivement.length > 5000){
 
-                        var errorMsg='Please type key achivement first!!'
-                        validationError(errorMsg)
-                        return false;
-                    }
-                    if (keyAchivement.length > 200){
-
-                        var errorMsg='Key achivement should not more than 200 charecter length!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
-                    if(supervisorName==""){
-
-                        var errorMsg='Please type supervisor name first!!'
-                        validationError(errorMsg)
-                        return false;
-                    }
-                    if (supervisorName.length > 200){
-
-                        var errorMsg='Supervisor name should not more than 200 charecter length!!'
+                        var errorMsg='Key achivement should not more than 5000 charecter length!!'
                         validationError(errorMsg)
                         return false;
 
                     }
 
-                    if(reservationContactingEmployer==""){
 
-                        var errorMsg='Please select reservation of contacting employer first!!'
-                        validationError(errorMsg)
-                        return false;
-                    }
+                    // if(reservationContactingEmployer==""){
+                    //
+                    //     var errorMsg='Please select reservation of contacting employer first!!'
+                    //     validationError(errorMsg)
+                    //     return false;
+                    // }
 
                     if(employmentType==""){
 
@@ -527,10 +496,14 @@
 
                         }
 
-
                     }
 
+                    if(end =="" && supervisorName==""){
 
+                        var errorMsg='Please insert supervisor name for running job !!';
+                        validationError(errorMsg);
+                        return false;
+                    }
 
                 }
                 else {
@@ -593,72 +566,72 @@
                         return false;
 
                     }
-                    if(end != "") {
+                    // if(end != "") {
+                    //
+                    //
+                    //     if (Date.parse(end) < Date.parse(start)) {
+                    //
+                    //         var errorMsg = 'End date should after start date!!';
+                    //         validationError(errorMsg);
+                    //         return false;
+                    //
+                    //     }
+                    // }
+                    //
+                    // if($.trim(address)==""){
+                    //
+                    //     var errorMsg='Please type address first!!';
+                    //     validationError(errorMsg);
+                    //     return false;
+                    //
+                    // }
 
+                    // if(majorResponsibilities==""){
+                    //
+                    //     var errorMsg='Please type major responsibilities first!!';
+                    //     validationError(errorMsg);
+                    //     return false;
+                    // }
+                    if (majorResponsibilities.length > 5000){
 
-                        if (Date.parse(end) < Date.parse(start)) {
-
-                            var errorMsg = 'End date should after start date!!';
-                            validationError(errorMsg);
-                            return false;
-
-                        }
-                    }
-
-                    if($.trim(address)==""){
-
-                        var errorMsg='Please type address first!!';
-                        validationError(errorMsg);
-                        return false;
-
-                    }
-
-                    if(majorResponsibilities==""){
-
-                        var errorMsg='Please type major responsibilities first!!';
-                        validationError(errorMsg);
-                        return false;
-                    }
-                    if (majorResponsibilities.length > 200){
-
-                        var errorMsg='Major responsibilities should not more than 200 charecter length!!'
+                        var errorMsg='Major responsibilities should not more than 5000 charecter length!!'
                         validationError(errorMsg)
                         return false;
 
                     }
-                    if(keyAchivement==""){
+                    // if(keyAchivement==""){
+                    //
+                    //     var errorMsg='Please type key achivement First!!'
+                    //     validationError(errorMsg)
+                    //     return false;
+                    // }
+                    if (keyAchivement.length > 5000){
 
-                        var errorMsg='Please type key achivement First!!'
-                        validationError(errorMsg)
-                        return false;
-                    }
-                    if (keyAchivement.length > 200){
-
-                        var errorMsg='Key achivement should not more than 200 charecter length!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
-                    if(supervisorName==""){
-
-                        var errorMsg='Please type supervisor name first!!'
-                        validationError(errorMsg)
-                        return false;
-                    }
-                    if (supervisorName.length > 200){
-
-                        var errorMsg='Supervisor name should not more than 200 charecter length!!'
+                        var errorMsg='Key achivement should not more than 5000 charecter length!!'
                         validationError(errorMsg)
                         return false;
 
                     }
+                    // if(supervisorName==""){
+                    //
+                    //     var errorMsg='Please type supervisor name first!!'
+                    //     validationError(errorMsg)
+                    //     return false;
+                    // }
+                    // if (supervisorName.length > 200){
+                    //
+                    //     var errorMsg='Supervisor name should not more than 200 charecter length!!'
+                    //     validationError(errorMsg)
+                    //     return false;
+                    //
+                    // }
 
-                    if(reservationContactingEmployer==""){
-
-                        var errorMsg='Please select reservation of contacting employer first!!'
-                        validationError(errorMsg)
-                        return false;
-                    }
+                    // if(reservationContactingEmployer==""){
+                    //
+                    //     var errorMsg='Please select reservation of contacting employer first!!'
+                    //     validationError(errorMsg)
+                    //     return false;
+                    // }
 
                     if(employmentType==""){
 
@@ -677,6 +650,13 @@
                         }
 
 
+                    }
+
+                    if(end =="" && supervisorName==""){
+
+                        var errorMsg='Please insert supervisor name for running job !!';
+                        validationError(errorMsg)
+                        return false;
                     }
 
 
@@ -702,15 +682,15 @@
                         {{--<input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" required>--}}
                     '</div>'+
                     '<div class="form-group col-md-12"> ' +
-                    '<label for="inputEmail4">Organization name</label> ' +
+                    '<label for="inputEmail4">Organization name<span style="color: red">*</span></label> ' +
                     '<input type="text" class="form-control" name="organization[]" id="organization'+counter+'" placeholder="organization" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
-                    '<label for="inputEmail4">Designation</label> ' +
+                    '<label for="inputEmail4">Designation<span style="color: red">*</span></label> ' +
                     '<input type="text" class="form-control" name="degisnation[]" id="degisnation'+counter+'" placeholder="designation" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
-                    '<label for="inputPassword4">Start date</label> ' +
+                    '<label for="inputPassword4">Start date<span style="color: red">*</span></label> ' +
                     '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
@@ -722,20 +702,20 @@
                     '<textarea class="form-control" name="address[]" id="address'+counter+'" placeholder="address"></textarea> ' +
                     '</div> ' +
                     '<div class="form-group col-md-12">'+
-                    '<label for="inputPassword4">Major responsibilities<span style="color: red">*</span> </label>'+
-                    '<textarea class="form-control" name="majorResponsibilities[]" maxlength="5000" required id="majorResponsibilities'+counter+'" placeholder="Major responsibilities"></textarea>'+
+                    '<label for="inputPassword4">Major responsibilities </label>'+
+                    '<textarea class="form-control" name="majorResponsibilities[]" maxlength="5000"  id="majorResponsibilities'+counter+'" placeholder="Major responsibilities"></textarea>'+
                     '</div>'+
                     '<div class="form-group col-md-12">'+
-                    '<label for="inputPassword4">Key achievement<span style="color: red">*</span> </label>'+
-                    '<textarea class="form-control" name="keyAchivement[]" maxlength="5000" required id="keyAchivement'+counter+'" placeholder="Key achievement"></textarea>'+
+                    '<label for="inputPassword4">Key achievement </label>'+
+                    '<textarea class="form-control" name="keyAchivement[]" maxlength="5000"  id="keyAchivement'+counter+'" placeholder="Key achievement"></textarea>'+
                     '</div>'+
                     '<div class="form-group col-md-6">'+
-                    '<label for="inputEmail4">Name of supervisor<span style="color: red">*</span></label>'+
-                    '<input type="text" class="form-control" name="supervisorName[]" id="supervisorName'+counter+'" placeholder="Name of supervisor" required>'+
+                    '<label for="inputEmail4">Name of supervisor</label>'+
+                    '<input type="text" class="form-control" name="supervisorName[]" id="supervisorName'+counter+'" placeholder="Name of supervisor" >'+
                 '</div>'+
                 '<div class="form-group col-md-6">'+
-                    '<label for="inputEmail4">Any reservation contacting your employer?<span style="color: red">*</span></label>'+
-                    '<select class="form-control" id="reservationContactingEmployer'+counter+'" name="reservationContactingEmployer[]" required>'+
+                    '<label for="inputEmail4">Any reservation contacting your employer?</label>'+
+                    '<select class="form-control" id="reservationContactingEmployer'+counter+'" name="reservationContactingEmployer[]" >'+
                 '<option value="" selected>Select option</option>'+
                 @foreach(YES_NO as $key=>$value)
                 '<option value="{{$value}}">{{$key}}</option>'+
@@ -745,7 +725,7 @@
 
                 '<div class="form-group col-md-6">'+
                     '<label for="inputEmail4">Type of employment<span style="color: red">*</span></label>'+
-                    '<select class="form-control" id="employmentType'+counter+'" onchange="employmentTypefunc('+counter+')" name="employmentType[]" required>'+
+                    '<select required class="form-control" id="employmentType'+counter+'" onchange="employmentTypefunc('+counter+')" name="employmentType[]" >'+
                 '<option value="" selected>Select employment type</option>'+
                     @foreach($employmentType as $eT)
                     '<option value="{{$eT->employmentTypeName}}">{{$eT->employmentTypeName}}</option>'+
@@ -754,7 +734,7 @@
                     '</select>'+
                 '</div>'+
                 '<div style="display: none" id="employmentTypeTextDiv'+counter+'" class="form-group col-md-6">'+
-                    '<label for="inputEmail4">Please mention other types<span style="color: red">*</span></label>'+
+                    '<label for="inputEmail4">Please mention other types</label>'+
                     '<input type="text" class="form-control" name="employmentTypeText[]" id="employmentTypeText'+counter+'" placeholder="Write Employment Type">'+
 
                     '</div>'+
