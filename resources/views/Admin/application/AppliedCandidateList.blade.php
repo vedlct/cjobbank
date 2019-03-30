@@ -150,10 +150,20 @@
             </td>
             @endif
             <td height="250" style="text-align: center;vertical-align: middle;">
-                    {{$emp['nationalId']}}
+
+                @if($emp['nationalId'])
+                    Yes
+                @else
+                    No
+                @endif
             </td>
             <td height="250" style="text-align: center;vertical-align: middle;">
-                {{$emp['image']}}
+
+                @if($emp['image'] && $emp['sign'])
+                    Yes
+                @else
+                    No
+                @endif
             </td>
             <td height="250" style="text-align: center;vertical-align: middle;">
                 @foreach($refreeList->where('fkemployeeId',$emp['employeeId']) as $ref)
