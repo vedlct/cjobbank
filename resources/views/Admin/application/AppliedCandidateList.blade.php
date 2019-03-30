@@ -1,13 +1,16 @@
 
 <html>
 
-<style>
+{{--<style>--}}
 
-    table, th, td {
-        border: 2px solid ;
-    }
+    {{----}}
 
-</style>
+{{--</style>--}}
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="{{url('public/css/exceltable.css')}}" rel="stylesheet">
+</head>
 
 <table class="table">
 

@@ -327,6 +327,10 @@ class ApplicationController extends Controller
                     )
                 ));
 
+                $sheet->setpaperSize(2);
+                $sheet->setOrientation('landscape');
+//                $sheet->getStyle()->getAlignment()->setWrapText(true);
+
                 $sheet->loadView('Admin.application.fullInfo',
                     compact('employee','social','education','pQualification','training','jobExperience','reference',
                         'empQuestion','extraCurriculumn','computerSkill','languageHead','language','excelName','empQuestionAns'
@@ -554,6 +558,10 @@ class ApplicationController extends Controller
 
         $check=Excel::create($fileName,function($excel) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle,$withoutSalaryInfo) {
             $excel->sheet('First sheet', function($sheet) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle,$withoutSalaryInfo) {
+
+                $sheet->setpaperSize(6);
+                $sheet->setOrientation('landscape');
+
                 $sheet->loadView('Admin.application.AppliedCandidateList')
                     ->with('AppliedCandidateList',$newlist)
                     ->with('ethnicity',$ethnicity)
@@ -656,6 +664,10 @@ class ApplicationController extends Controller
 
         $check=Excel::create($fileName,function($excel) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle,$withoutSalaryInfo) {
             $excel->sheet('First sheet', function($sheet) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle,$withoutSalaryInfo) {
+
+                $sheet->setpaperSize(6);
+                $sheet->setOrientation('landscape');
+                
                 $sheet->loadView('Admin.application.AppliedCandidateList')
                     ->with('AppliedCandidateList',$newlist)
                     ->with('ethnicity',$ethnicity)
