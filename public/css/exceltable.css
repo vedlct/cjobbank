@@ -2,6 +2,7 @@ table, th, td {
     border: 2px solid ;
 }
 
+
 td{
 wrap-text:true;
     vertical-align: top;

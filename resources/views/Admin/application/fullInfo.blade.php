@@ -17,12 +17,12 @@
 
     </tr>
     <tr >
-        <td colspan="24" style="text-align: center;vertical-align: center;height: 20;"><span style="text-align: left"><h4>CARITAS BANGLADESH</h4></span></td>
+        <td colspan="24" style="text-align: center;vertical-align: top;height: 20"><span style="font-weight: bold">CARITAS BANGLADESH</span></td>
     </tr>
 
     <tr>
 
-        <td colspan="24" style="text-align: center;height: 15;">
+        <td colspan="24" style="text-align: center;">
             <span id="red" style="color: #FF0000">{{strtoupper($jobTitle)}}</span>
             <b>- {{$excelName}}</b>
         </td>
@@ -34,14 +34,14 @@
 
 <table class="table" style="font-size:10">
     <tr style="font-weight: bold">
-        <td colspan="1" style="text-align: left">Sl No.</td>
-        <td colspan="4" style="text-align: left">Name and personal information</td>
-        <td colspan="3" style="text-align: left">Questionnaire</td>
-        <td colspan="4" style="text-align: left">Educational/ professional/Training Information</td>
-        <td colspan="4" style="text-align: left">Job Experiences/ Employment History</td>
-        <td colspan="4" style="text-align: left">Extracurricular activities/ other skills</td>
-        <td colspan="3" style="text-align: left">References</td>
-        <td colspan="1" style="text-align: left">Remarks</td>
+        <td colspan="1" style="text-align: center">Sl No.</td>
+        <td colspan="4" style="text-align: center">Name and personal information</td>
+        <td colspan="3" style="text-align: center">Questionnaire</td>
+        <td colspan="4" style="text-align: center">Educational/ professional/Training Information</td>
+        <td colspan="4" style="text-align: center">Job Experiences/ Employment History</td>
+        <td colspan="4" style="text-align: center">Extracurricular activities/ other skills</td>
+        <td colspan="3" style="text-align: center">References</td>
+        <td colspan="1" style="text-align: center">Remarks</td>
     </tr>
     <?php $sl=0; ?>
     @foreach($employee as $emp)

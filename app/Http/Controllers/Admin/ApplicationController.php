@@ -322,7 +322,7 @@ class ApplicationController extends Controller
                 $sheet->setStyle(array(
                     'font' => array(
                         'name'      =>  'Calibri',
-                        'size'      =>  10,
+                        'size'      =>  15,
                         'bold'      =>  false
                     )
                 ));
@@ -667,7 +667,7 @@ class ApplicationController extends Controller
 
                 $sheet->setpaperSize(6);
                 $sheet->setOrientation('landscape');
-                
+
                 $sheet->loadView('Admin.application.AppliedCandidateList')
                     ->with('AppliedCandidateList',$newlist)
                     ->with('ethnicity',$ethnicity)
