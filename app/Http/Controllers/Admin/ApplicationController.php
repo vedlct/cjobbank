@@ -528,6 +528,14 @@ class ApplicationController extends Controller
         $check=Excel::create($fileName,function($excel) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle,$withoutSalaryInfo) {
             $excel->sheet('First sheet', function($sheet) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle,$withoutSalaryInfo) {
 
+                $sheet->setStyle(array(
+                    'font' => array(
+                        'name'      =>  'Calibri',
+                        'size'      =>  15,
+                        'bold'      =>  false
+                    )
+                ));
+
                 $sheet->setpaperSize(6);
                 $sheet->setOrientation('landscape');
 
@@ -634,6 +642,13 @@ class ApplicationController extends Controller
         $check=Excel::create($fileName,function($excel) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle,$withoutSalaryInfo) {
             $excel->sheet('First sheet', function($sheet) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle,$withoutSalaryInfo) {
 
+                $sheet->setStyle(array(
+                    'font' => array(
+                        'name'      =>  'Calibri',
+                        'size'      =>  15,
+                        'bold'      =>  false
+                    )
+                ));
                 $sheet->setpaperSize(6);
                 $sheet->setOrientation('landscape');
 

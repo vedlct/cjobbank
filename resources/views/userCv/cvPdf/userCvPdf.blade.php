@@ -55,8 +55,8 @@
                             <td style="text-align: left; border: none;">
                                 <h3 style="">{{$personalInfo->firstName}} {{$personalInfo->lastName}}</h3>
                                 <p style="max-width: 300px"><span class="bold">Cell No:</span> {{$personalInfo->personalMobile}} <br>
-                                    <span class="bold">email:</span> {{$personalInfo->email}} <br>
-                                    <span class="bold">address:</span> {{$personalInfo->presentAddress}}
+                                    <span class="bold">Email:</span> {{$personalInfo->email}} <br>
+                                    <span class="bold">Address:</span> {{$personalInfo->presentAddress}}
                                 </p>
 
                             </td>
