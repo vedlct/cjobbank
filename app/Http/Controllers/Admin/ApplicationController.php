@@ -423,38 +423,7 @@ class ApplicationController extends Controller
 
 
 
-//        return $relativeList;
 
-//        return view('Admin.application.AppliedCandidateList')
-//            ->with('AppliedCandidateList',$newlist)
-//            ->with('ethnicity',$ethnicity)
-//            ->with('educationList',$education)
-//            ->with('qualificationList',$pQualification)
-//            ->with('trainingList',$training)
-//            ->with('jobExperienceList',$jobExperience)
-//            ->with('salaryList',$salaryInfo)
-//            ->with('refreeList',$refree)
-//            ->with('jobTitle',$jobTitle)
-//            ->with('relativeList',$relativeList);
-
-//        $check=Excel::create($fileName,function($excel) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle) {
-//            $excel->sheet('First sheet', function($sheet) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle) {
-//                $sheet->loadView('Admin.application.AppliedCandidateList')
-//                    ->with('AppliedCandidateList',$newlist)
-//                    ->with('ethnicity',$ethnicity)
-//                    ->with('educationList',$education)
-//                    ->with('qualificationList',$pQualification)
-//                    ->with('trainingList',$training)
-//                    ->with('jobExperienceList',$jobExperience)
-//                    ->with('salaryList',$salaryInfo)
-//                    ->with('refreeList',$refree)
-//                    ->with('jobTitle',$jobTitle)
-//                    ->with('relativeList',$relativeList);
-//
-//            });
-//        })->export('xls');
-//
-//        return "done";
 
         $check=Excel::create($fileName,function($excel) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle) {
             $excel->sheet('First sheet', function($sheet) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle) {
