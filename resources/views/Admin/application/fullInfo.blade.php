@@ -11,18 +11,16 @@
 
     <tr>
 
-        <td colspan="8" style="text-align: left"></td>
-        <td colspan="8" style="text-align: left"></td>
-        <td colspan="8" style="text-align: left"></td>
+        <td colspan="34" style="text-align: center;vertical-align: top;height: 20"></td>
 
     </tr>
     <tr >
-        <td colspan="24" style="text-align: center;vertical-align: top;height: 20"><span style="font-weight: bold">CARITAS BANGLADESH</span></td>
+        <td colspan="34" style="text-align: center;vertical-align: top;height: 20"><span style="font-weight: bold">CARITAS BANGLADESH</span></td>
     </tr>
 
     <tr>
 
-        <td colspan="24" style="text-align: center;">
+        <td colspan="34" style="text-align: center;">
             <span id="red" style="color: #FF0000">{{strtoupper($jobTitle)}}</span>
             <b>- {{$excelName}}</b>
         </td>
@@ -36,23 +34,23 @@
     <tr style="font-weight: bold">
         <td colspan="1" style="text-align: center">Sl No.</td>
         <td colspan="4" style="text-align: center">Name and personal information</td>
-        <td colspan="3" style="text-align: center">Questionnaire</td>
+        <td colspan="4" style="text-align: center">Questionnaire</td>
         <td colspan="4" style="text-align: center">Educational/ professional/Training Information</td>
-        <td colspan="4" style="text-align: center">Job Experiences/ Employment History</td>
-        <td colspan="4" style="text-align: center">Extracurricular activities/ other skills</td>
-        <td colspan="3" style="text-align: center">References</td>
-        <td colspan="1" style="text-align: center">Remarks</td>
+        <td colspan="6" style="text-align: center">Job Experiences/ Employment History</td>
+        <td colspan="8" style="text-align: center">Extracurricular activities/ other skills</td>
+        <td colspan="4" style="text-align: center">References</td>
+        <td colspan="3" style="text-align: center">Remarks</td>
     </tr>
     <?php $sl=0; ?>
     @foreach($employee as $emp)
     <tr>
-        <td colspan="1" height="250" style="text-align: left;">{{++$sl}}</td>
-        <td colspan="4" height="250" style="text-align: left;"><span style="text-align: left">{{$emp->firstName}} {{$emp->lastName}}</span></td>
+        <td colspan="1" height="400" style="text-align: left;">{{++$sl}}</td>
+        <td colspan="4" height="400" style="text-align: left;"><span style="text-align: left">{{$emp->firstName}} {{$emp->lastName}}</span></td>
 
 
 
 
-        <td colspan="3" height="250" style="text-align: left;">
+        <td colspan="4" height="400" style="text-align: left;">
             {{--Why Do You Want to Leave Your Current Job?<br>--}}
             {{--@if($empQuestion->where('empId',$emp->employeeId)->first())--}}
             {{--{{$empQuestion->where('empId',$emp->employeeId)->first()->ques_1}}--}}
@@ -66,7 +64,7 @@
 
 
 
-        <td colspan="4" height="250" style="text-align: left;">
+        <td colspan="4" height="400" style="text-align: left;">
             <?php  $temp=0; ?>
             @foreach($education->where('fkemployeeId',$emp->employeeId) as $edu)
                 {{++$temp}}. Degree title : {{$edu->degreeName}}<br>
@@ -80,7 +78,7 @@
 
             @endforeach
         </td>
-        <td colspan="4" height="250"   style="text-align: left;">
+        <td colspan="6" height="400"   style="text-align: left;">
             <?php $temp=0 ?>
             @foreach($jobExperience->where('fkemployeeId',$emp->employeeId) as $job)
             {{++$temp}}. Position: {{$job->degisnation}}<br>
@@ -95,14 +93,17 @@
                 <br><br>
             @endforeach
         </td>
-        <td colspan="4" height="250" style="text-align: left;">
+        <td colspan="8" height="400" style="text-align: left;">
             Extracurricular activities<br>
-            1. Interests<br>
-            2.Awards received<br>
-            3.Research/Publciation<br>
+            1. Interests:<br>
+            {{$emp->interests}}<br>
+            2.Awards received:<br>
+            {{$emp->awardReceived}}<br>
+            3.Research/Publciation:<br>
+            {{$emp->researchPublication}}<br>
 
 
-            Other skills:<br>
+            4.Other skills:<br>
             @foreach($extraCurriculumn->where('fkemployeeId',$emp->employeeId) as $c)
                 Name: {{$c->skillName}} -{{$c->ratiing}}%<br><br>
             @endforeach
@@ -128,7 +129,7 @@
             @endforeach
 
         </td>
-        <td colspan="3" height="250" style="text-align: left;">
+        <td colspan="4" height="400" style="text-align: left;">
             <?php $temp=0;  ?>
             @foreach($reference->where('fkemployeeId',$emp->employeeId) as $ref)
             {{++$temp}}. {{$ref->firstName}} {{$ref->lastName}}<br>
@@ -138,12 +139,12 @@
             Cell Phone: {{$ref->phone}}              E-mail:{{$ref->email}}<br><br>
             @endforeach
         </td>
-        <td colspan="1" height="250" style="text-align: left;"></td>
+        <td colspan="3" height="400" style="text-align: left;"></td>
 
     </tr>
     <tr>
-        <td colspan="1" height="250" style="text-align: left;"></td>
-        <td colspan="4" height="250" style="text-align: left;"><span style="text-align: left">
+        <td colspan="1" height="300" style="text-align: left;"></td>
+        <td colspan="4" height="300" style="text-align: left;"><span style="text-align: left">
                 Telephone: {{$emp->telephone}}<br>
                 Personal Phone no:  {{$emp->personalMobile}}<br>
                 Alternative phone no: {{$emp->alternativePhoneNo}}<br>
@@ -162,13 +163,13 @@
                 Present Adress: {{$emp->presentAddress}}<br>
 
             </span></td>
-        <td colspan="3" height="250" style="text-align: left;">
+        <td colspan="4" height="300" style="text-align: left;">
             {{--Why you are intersted for the position applied for?<br>--}}
             {{--@if($empQuestion->where('empId',$emp->employeeId)->first())--}}
                 {{--{{$empQuestion->where('empId',$emp->employeeId)->first()->ques_2}}--}}
             {{--@endif--}}
         </td>
-        <td colspan="4" height="250" style="text-align: left;">
+        <td colspan="4" height="300" style="text-align: left;">
             Professional Qualification:<br>
             <?php  $temp=0; ?>
             @foreach($pQualification->where('fkemployeeId',$emp->employeeId) as $qualification)
@@ -180,7 +181,7 @@
             Result: {{$qualification->result}}<br>
             @endforeach
         </td>
-        <td colspan="4" height="250"   style="text-align: left;">
+        <td colspan="6" height="300"   style="text-align: left;">
             @foreach($jobExperience->where('fkemployeeId',$emp->employeeId) as $job)
                 Major Job responsibility: {{$job->majorResponsibilities}}<br>
                 Key Achievement: {{$job->keyAchivement}}<br>
@@ -197,10 +198,10 @@
                             Served from/to: {{$pExp->startDate}}  To {{$pExp->endDate}}<br>
                 @endforeach
         </td>
-        <td colspan="4" height="250" style="text-align: left;">
+        <td colspan="8" height="300" style="text-align: left;">
 
         </td>
-        <td colspan="3" height="250" style="text-align: left;">
+        <td colspan="4" height="300" style="text-align: left;">
 
             {{--1. Name of Referees, Designation, Organization, adress, mobile number and email number, Relation<br>--}}
             {{--2. Name of Referees, Designation, Organization, adress, mobile number and email number, Relation--}}
@@ -208,14 +209,14 @@
 
 
         </td>
-        <td colspan="1" height="250" style="text-align: left;"></td>
+        <td colspan="3" height="300" style="text-align: left;"></td>
 
     </tr>
 
     <tr>
 
-        <td colspan="1" height="250" style="text-align: left;"></td>
-        <td colspan="4" height="250" style="text-align: left;"><span style="text-align: left">
+        <td colspan="1" height="300" style="text-align: left;"></td>
+        <td colspan="4" height="300" style="text-align: left;"><span style="text-align: left">
                 Fathers Name: {{$emp->fathersName}}<br>
                 Mothers Name: {{$emp->mothersName}}<br>
                 Spouse Name: {{$emp->spouse}}<br>
@@ -227,7 +228,7 @@
                 Religion: {{$emp->religionName}}<br>
 
             </span></td>
-        <td colspan="3" height="250" style="text-align: left;">
+        <td colspan="4" height="300" style="text-align: left;">
             Do you have any relatives working in Caritas Bangladesh?*<br>
 
             @foreach($relative->where('fkemployeeId',$emp->employeeId) as $rel)
@@ -240,7 +241,7 @@
 
 
         </td>
-        <td colspan="4" height="250" style="text-align: left;">
+        <td colspan="4" height="300" style="text-align: left;">
             Training information:<br>
             @foreach($training->where('fkemployeeId',$emp->employeeId) as $t)
             1. Training title: {{$t->trainingName}}<br>
@@ -249,28 +250,28 @@
             Country: {{$t->countryName}}<br>
             @endforeach
         </td>
-        <td colspan="4" height="250"   style="text-align: left;">
+        <td colspan="6" height="300"   style="text-align: left;">
             Do you have any reservation contacting your employer?
             @foreach($jobExperience->where('fkemployeeId',$emp->employeeId)->where('endDate',null) as $job)
                     {{$job->reservationContactingEmployer}}
                 <br><br>
             @endforeach
         </td>
-        <td colspan="4" height="250" style="text-align: left;">
+        <td colspan="8" height="300" style="text-align: left;">
 
         </td>
-        <td colspan="3" height="250" style="text-align: left;">
+        <td colspan="4" height="300" style="text-align: left;">
 
         </td>
-        <td colspan="1" height="250" style="text-align: left;"></td>
+        <td colspan="3" height="300" style="text-align: left;"></td>
 
     </tr>
 
 
 
     <tr>
-        <td colspan="1" height="250" style="text-align: left;"></td>
-        <td colspan="4" height="250" style="text-align: left;"><span style="text-align: left">
+        <td colspan="1" height="300" style="text-align: left;"></td>
+        <td colspan="4" height="300" style="text-align: left;"><span style="text-align: left">
                 Membership in Social Network :<br>
                 @foreach($social->where('fkemployeeId',$emp->employeeId) as $s)
 
@@ -282,7 +283,7 @@
             </span>
 
         </td>
-        <td colspan="3" height="250" style="text-align: left;">
+        <td colspan="4" height="300" style="text-align: left;">
             Answers of declaration form:
             @foreach($agreement->where('employeeId',$emp->employeeId) as $ag)
             {{--$agreement--}}
@@ -293,19 +294,19 @@
 
 
         </td>
-        <td colspan="4" height="250" style="text-align: left;">
+        <td colspan="4" height="300" style="text-align: left;">
 
         </td>
-        <td colspan="4" height="250"   style="text-align: left;">
+        <td colspan="6" height="300"   style="text-align: left;">
 
         </td>
-        <td colspan="4" height="250" style="text-align: left;">
+        <td colspan="8" height="300" style="text-align: left;">
 
         </td>
-        <td colspan="3" height="250" style="text-align: left;">
+        <td colspan="4" height="300" style="text-align: left;">
 
         </td>
-        <td colspan="1" height="250" style="text-align: left;"></td>
+        <td colspan="3" height="300" style="text-align: left;"></td>
 
     </tr>
 

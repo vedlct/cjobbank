@@ -4,7 +4,7 @@ table, th, td {
 
 
 td{
-wrap-text:true;
+    wrap-text:true;
     vertical-align: top;
 }
 .bold{

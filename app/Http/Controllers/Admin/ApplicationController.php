@@ -242,10 +242,11 @@ class ApplicationController extends Controller
 
 
 
-        $employee=Employee::select('employee.*','nationality.nationalityName','ethnicity.ethnicityName','religion.religionName')
+        $employee=Employee::select('employee.*','emp_other_info.interests','emp_other_info.researchPublication','emp_other_info.awardReceived','nationality.nationalityName','ethnicity.ethnicityName','religion.religionName')
             ->leftJoin('nationality','nationality.nationalityId','employee.fknationalityId')
             ->leftJoin('ethnicity','ethnicity.ethnicityId','employee.ethnicityId')
             ->leftJoin('religion','religion.religionId','employee.fkreligionId')
+            ->leftJoin('emp_other_info','emp_other_info.fk_empId','employee.employeeId')
             ->whereIn('employeeId',$employees)
             ->get();
 
@@ -321,13 +322,13 @@ class ApplicationController extends Controller
 
                 $sheet->setStyle(array(
                     'font' => array(
-                        'name'      =>  'Calibri',
-                        'size'      =>  15,
-                        'bold'      =>  false
+//                        'name'      =>  'Calibri',
+                        'size'      =>  13,
+//                        'bold'      =>  false
                     )
                 ));
 
-                $sheet->setpaperSize(2);
+                $sheet->setpaperSize(5);
                 $sheet->setOrientation('landscape');
 //                $sheet->getStyle()->getAlignment()->setWrapText(true);
 
@@ -525,18 +526,18 @@ class ApplicationController extends Controller
             ->get();
         $withoutSalaryInfo='false';
 
-        $check=Excel::create($fileName,function($excel) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle,$withoutSalaryInfo) {
-            $excel->sheet('First sheet', function($sheet) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle,$withoutSalaryInfo) {
+        $check=Excel::create($fileName,function($excel) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle,$withoutSalaryInfo,$excelName) {
+            $excel->sheet('First sheet', function($sheet) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle,$withoutSalaryInfo,$excelName) {
 
                 $sheet->setStyle(array(
                     'font' => array(
-                        'name'      =>  'Calibri',
-                        'size'      =>  15,
-                        'bold'      =>  false
+//                        'name'      =>  'Calibri',
+                        'size'      =>  13,
+//                        'bold'      =>  false
                     )
                 ));
 
-                $sheet->setpaperSize(6);
+                $sheet->setpaperSize(9);
                 $sheet->setOrientation('landscape');
 
                 $sheet->loadView('Admin.application.AppliedCandidateList')
@@ -550,6 +551,7 @@ class ApplicationController extends Controller
                     ->with('refreeList',$refree)
                     ->with('jobTitle',$jobTitle)
                     ->with('withoutsalary',$withoutSalaryInfo)
+                    ->with('excelName',$excelName)
                     ->with('relativeList',$relativeList);
 
             });
@@ -639,17 +641,18 @@ class ApplicationController extends Controller
 
         $withoutSalaryInfo='true';
 
-        $check=Excel::create($fileName,function($excel) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle,$withoutSalaryInfo) {
-            $excel->sheet('First sheet', function($sheet) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle,$withoutSalaryInfo) {
+        $check=Excel::create($fileName,function($excel) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle,$withoutSalaryInfo,$excelName) {
+            $excel->sheet('First sheet', function($sheet) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle,$withoutSalaryInfo,$excelName) {
 
                 $sheet->setStyle(array(
                     'font' => array(
-                        'name'      =>  'Calibri',
-                        'size'      =>  15,
-                        'bold'      =>  false
+//                        'name'      =>  'Calibri',
+                        'size'      =>  13,
+//                        'bold'      =>  false
                     )
                 ));
-                $sheet->setpaperSize(6);
+
+                $sheet->setpaperSize(9);
                 $sheet->setOrientation('landscape');
 
                 $sheet->loadView('Admin.application.AppliedCandidateList')
@@ -663,6 +666,7 @@ class ApplicationController extends Controller
                     ->with('refreeList',$refree)
                     ->with('jobTitle',$jobTitle)
                     ->with('withoutsalary',$withoutSalaryInfo)
+                    ->with('excelName',$excelName)
                     ->with('relativeList',$relativeList);
 
             });
