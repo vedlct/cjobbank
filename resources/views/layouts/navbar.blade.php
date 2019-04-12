@@ -99,4 +99,7 @@
 @if(Session::has('message'))
     <p class="alert alert-info" style="text-align: center">{{ Session::get('message') }}</p>
 @endif
+@if(Session::has('error-message'))
+    <p class="alert alert-danger" style="text-align: center">{{ Session::get('error-message') }}</p>
+@endif
 

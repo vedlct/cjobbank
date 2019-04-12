@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Refree;
 use App\RelativeInCb;
 use App\User;
 use Illuminate\Http\Request;
@@ -75,11 +76,27 @@ class RelativeInCbController extends Controller
             $relative->save();
         }
 
-        Employee::where('fkuserId',Auth::user()->userId)
-            ->update(['cvStatus'=>1]);
 
-        Employee::where('fkuserId',Auth::user()->userId)
-            ->update(['cvCompletedDate'=>date('Y-m-d')]);
+        $refrees=Refree::where('fkemployeeId',$employee->employeeId)
+            ->count();
+        if ($refrees>=2){
+
+            Employee::where('fkuserId',Auth::user()->userId)
+                ->update(['cvStatus'=>1]);
+
+            Employee::where('fkuserId',Auth::user()->userId)
+                ->update(['cvCompletedDate'=>date('Y-m-d')]);
+
+        }else{
+
+            Employee::where('fkuserId',Auth::user()->userId)
+                ->update(['cvStatus'=>null]);
+
+            Employee::where('fkuserId',Auth::user()->userId)
+                ->update(['cvCompletedDate'=>null]);
+        }
+
+
 
         Employee::where('fkuserId', Auth::user()->userId)
             ->update(['relativeInCB' => 1]);

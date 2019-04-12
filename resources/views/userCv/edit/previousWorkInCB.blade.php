@@ -16,12 +16,12 @@
         <div class="form-group col-md-6">
             <label for="inputPassword4">End date</label>
             /
-            <input type="checkbox" class="col-md-4" id="currentlyRunning" name="currentlyRunning" @if($previousWorkInCB->currentlyRunning=='1')checked @endif value="1"> Running
+            <input type="checkbox" class="col-md-2" id="currentlyRunning" name="currentlyRunning" @if($previousWorkInCB->currentlyRunning=='1')checked @endif value="1"> Running
 
         @if($previousWorkInCB->currentlyRunning=='0')
-                <input type="text" id="endDate"name="endDate" placeholder="End Date" value="{{$previousWorkInCB->endDate}}" class="form-control col-md-3 date"/>
+                <input type="text" id="endDate"name="endDate" placeholder="End Date" value="{{$previousWorkInCB->endDate}}" class="form-control date"/>
             @else
-                <input type="text" id="endDate"name="endDate" placeholder="End Date"  class="form-control col-md-3 date"/>
+                <input type="text" id="endDate"name="endDate" placeholder="End Date"  class="form-control date"/>
             @endif
 
 
@@ -46,6 +46,7 @@
     $('.date').datepicker({
         format: 'yyyy-m-d'
     });
+    $('.date').keydown(false);
 
     function checkTrainingCertificate(){
 

@@ -256,8 +256,8 @@
                 var newTextBoxDiv = $(document.createElement('div'))
                     .attr("id", 'TextBoxDiv' + counter).attr("class", 'row');
                 newTextBoxDiv.after().html(
-                    '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>' +
-                    '<div class="row"> ' +
+                    '<div class="form-group"><hr style="border-top:1px dotted #000;"></div>' +
+//                    '<div class="row"> ' +
                     '<div class="form-group col-md-12"> ' +
                     '<label for="inputEmail4">Designation</label> ' +
                     '<input type="text" class="form-control" name="degisnation[]" id="degisnation'+counter+'" placeholder="designation" > ' +
@@ -268,10 +268,10 @@
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
                     '<label for="inputPassword4">End date</label> ' +
-                    '/ <input type="checkbox" id="currentlyRunning'+counter+'" name="currentlyRunning[]" value="1">Running'+
+                    '/ <input type="checkbox"  class="col-md-2" id="currentlyRunning'+counter+'" name="currentlyRunning[]" value="1">Running'+
                     '<input type="text" class="form-control date" name="endDate[]" id="end'+counter+'" placeholder="date"> ' +
 
-                    '</div> ' +
+//                    '</div> ' +
                     '</div>'
 
                 );
@@ -286,6 +286,7 @@
                 $('.date').datepicker({
                     format: 'yyyy-m-d'
                 });
+                $('.date').keydown(false);
             });
 
             $("#removeButton").click(function () {

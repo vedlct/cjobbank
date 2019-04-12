@@ -212,8 +212,8 @@
 
 
             $("#addButton").click(function () {
-                if((counter+2)>3){
-                    alert("Only 3 section allow max!!");
+                if((counter+2)>5){
+                    alert("Only 5 section allow max!!");
                     return false;
                 }
                 $("#btnPevious").hide();
