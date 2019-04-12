@@ -43,11 +43,11 @@
 
                                     <div class="row">
                                         <div class="form-group col-md-6">
-                                            <label for="inputEmail4">Venue <span style="color: red">*</span></label>
+                                            <label for="inputEmail4">Venue </label>
                                             <input type="text" class="form-control" name="vanue[]" id="vanue" placeholder="venue" >
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="inputPassword4" style="display:block">Country<span style="color: red">*</span></label>
+                                            <label for="inputPassword4" style="display:block">Country</label>
 
                                             <select  class="form-control col-md-12 js-example-basic-single" id="country" name="countryId[]" style="width:100%">
                                                 <option value="">Select country</option>
@@ -59,7 +59,7 @@
                                         </div>
 
                                         <div class="form-group col-md-4">
-                                            <label for="inputPassword4">Start date<span style="color: red">*</span></label>
+                                            <label for="inputPassword4">Start date</label>
                                             <input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" >
                                         </div>
                                         <div class="form-group col-md-4">
@@ -142,10 +142,11 @@
 
 
                                 </div>
-                                <button type="button" id="addButton" class="btn btn-success">Add more</button>
-                                <button type="button" id="removeButton" class="btn btn-success" >Remove</button>
+
 
                             </div>
+                                <button type="button" id="addButton" class="btn btn-success">Add more</button>
+                                <button type="button" id="removeButton" class="btn btn-success" >Remove</button>
                             </div>
 
                             <div style="overflow:auto;">
@@ -370,13 +371,13 @@
                         return false;
 
                     }
-                    if (vanue == "") {
-
-                        var errorMsg = 'Please type a venue first!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
+//                    if (vanue == "") {
+//
+//                        var errorMsg = 'Please type a venue first!!'
+//                        validationError(errorMsg)
+//                        return false;
+//
+//                    }
                     if (vanue.length > 255) {
 
                         var errorMsg = 'value should not more than 255 charecter length!!';
@@ -384,13 +385,13 @@
                         return false;
 
                     }
-                    if (country == "") {
-
-                        var errorMsg = 'Please select a country first!!';
-                        validationError(errorMsg)
-                        return false;
-
-                    }
+//                    if (country == "") {
+//
+//                        var errorMsg = 'Please select a country first!!';
+//                        validationError(errorMsg)
+//                        return false;
+//
+//                    }
 
 //                    if(start==""){
 //                        var errorMsg='Please select a strat date first!!';
@@ -450,13 +451,13 @@
                         return false;
 
                     }
-                    if(vanue==""){
-
-                        var errorMsg='Please type a venue first!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
+//                    if(vanue==""){
+//
+//                        var errorMsg='Please type a venue first!!'
+//                        validationError(errorMsg)
+//                        return false;
+//
+//                    }
                     if (vanue.length > 255){
 
                         var errorMsg='value should not more than 255 charecter length!!';
@@ -464,13 +465,13 @@
                         return false;
 
                     }
-                    if(country==""){
-
-                        var errorMsg='Please select a country first!!';
-                        validationError(errorMsg)
-                        return false;
-
-                    }
+//                    if(country==""){
+//
+//                        var errorMsg='Please select a country first!!';
+//                        validationError(errorMsg)
+//                        return false;
+//
+//                    }
                     if(trainingCertificateStatus==""){
                         var errorMsg='Please select a status first!!';
                         validationError(errorMsg)
@@ -517,11 +518,11 @@
                     '</div> ' +
 
                     '<div class="form-group col-md-8"> ' +
-                    '<label for="inputEmail4">Venue <span style="color: red">*</span></label> ' +
+                    '<label for="inputEmail4">Venue </label> ' +
                     '<input type="text" class="form-control" name="vanue[]" id="vanue'+counter+'" placeholder="venue" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
-                    '<label for="inputPassword4">Country<span style="color: red">*</span></label>' +
+                    '<label for="inputPassword4">Country</label>' +
                     '<select required class="form-control js-example-basic-single" id="country'+counter+'" name="countryId[]">'+
                     '<option value="">Select Country</option>'+
                     '@foreach($countries as $country)'+
@@ -530,7 +531,7 @@
                     '</select>'+
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
-                    '<label for="inputPassword4">Start date<span style="color: red">*</span></label> ' +
+                    '<label for="inputPassword4">Start date</label> ' +
                     '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date"> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +

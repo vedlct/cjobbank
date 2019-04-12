@@ -16,14 +16,14 @@
 
 <div class="row">
     <div class="form-group col-md-8">
-        <label for="inputEmail4">Venue <span style="color: red">*</span></label>
-        <input type="text" class="form-control" name="venue" value="{{$training->vanue}}" id="vanue" placeholder="venue" required >
+        <label for="inputEmail4">Venue </label>
+        <input type="text" class="form-control" name="venue" value="{{$training->vanue}}" id="vanue" placeholder="venue" >
     </div>
     <div class="form-group col-md-4">
-        <label for="inputPassword4" style="display: block">Country<span style="color: red">*</span></label>
+        <label for="inputPassword4" style="display: block">Country</label>
         {{--<input type="text" class="form-control"  id="inputPassword4" placeholder="">--}}
 
-        <select required class="form-control " id="country" name="countryId">
+        <select  class="form-control " id="country" name="countryId">
             <option value="">Select country</option>
             @foreach($countries as $country)
                 <option value="{{$country->countryId}}" @if($training->countryId == $country->countryId) selected @endif>{{$country->countryName}}</option>
@@ -33,7 +33,7 @@
     </div>
 
     <div class="form-group col-md-4">
-        <label for="inputPassword4">Start date<span style="color: red">*</span></label>
+        <label for="inputPassword4">Start date</label>
         <input type="text" class="form-control date" name="startDate" value="{{$training->startDate}}" id="start" placeholder="date">
     </div>
     <div class="form-group col-md-4">
@@ -171,13 +171,13 @@
             return false;
 
         }
-        if(vanue==""){
-
-            var errorMsg='Please type a venue first!!'
-            validationError(errorMsg)
-            return false;
-
-        }
+//        if(vanue==""){
+//
+//            var errorMsg='Please type a venue first!!'
+//            validationError(errorMsg)
+//            return false;
+//
+//        }
         if (vanue.length > 255){
 
             var errorMsg='value should not more than 255 charecter length!!';
@@ -185,13 +185,13 @@
             return false;
 
         }
-        if(country==""){
-
-            var errorMsg='Please select a country first!!';
-            validationError(errorMsg)
-            return false;
-
-        }
+//        if(country==""){
+//
+//            var errorMsg='Please select a country first!!';
+//            validationError(errorMsg)
+//            return false;
+//
+//        }
 
 //        if(start==""){
 //            var errorMsg='Please select a strat date first!!';

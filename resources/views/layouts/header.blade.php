@@ -122,6 +122,18 @@
             width: 50%;
         }
 
+        .select2-container--default .select2-selection--single {
+            height: 36px;
+        }
+
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered{
+            line-height: 35px;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__arrow{
+            top: 5px;
+        }
+
 
 
 
