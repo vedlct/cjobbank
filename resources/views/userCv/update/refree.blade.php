@@ -237,8 +237,8 @@
 
                 console.log(tempCounter);
 
-                if(tempCounter>3){
-                    alert("Only 3 Section allow per Time!!");
+                if(tempCounter>5){
+                    alert("Only 5 Section allow per Time!!");
                     return false;
                 }
 

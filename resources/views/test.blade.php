@@ -44,8 +44,8 @@
                 <td style="text-align: left; border: none;width: 85%; ">
                     <h3 style="">{{$personalInfo->firstName}} {{$personalInfo->lastName}}</h3>
                     <p style="max-width: 300px">Cell No: {{$personalInfo->personalMobile}} <br>
-                        email: {{$personalInfo->email}} <br>
-                        address: {{$personalInfo->presentAddress}}
+                        Email: {{$personalInfo->email}} <br>
+                        Address: {{$personalInfo->presentAddress}}
                     </p>
 
                 </td>
@@ -76,8 +76,6 @@
             </tr>
         </table>
 
-
-        Education
 
         <table border="0" style="width:100%; margin-top: 10px; ">
             <thead>
@@ -134,9 +132,9 @@
                     <td style="border: none;">
 
                         <span class="bold"> Company Name : </span> &nbsp;&nbsp; {{$exp->organization}}  &nbsp;&nbsp;
-                        <div class="pull-right"><span class="bold">Position:</span>&nbsp;&nbsp;&nbsp; {{$exp->degisnation}} </div><br>
+                        <div class="pull-right"><span class="bold">Position:</span>&nbsp;{{$exp->degisnation}} </div><br>
 
-                        <span class="bold"> Major Responsibilities :</span>&nbsp;&nbsp;&nbsp; {{$exp->majorResponsibilities}} <br>
+                        <span class="bold"> Major Responsibilities :</span>&nbsp;&nbsp; {{$exp->majorResponsibilities}} <br>
                         <span class="bold"> Address:</span>&nbsp;&nbsp;&nbsp; {{$exp->address}} <br>
                         <span class="bold"> Duration:</span>&nbsp;&nbsp;&nbsp; {{$exp->startDate}} -  @if($exp->endDate) {{$exp->endDate}} @else
                             Continuing

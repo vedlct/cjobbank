@@ -37,6 +37,29 @@ class RefreeController extends Controller
         $refrees=Refree::where('fkemployeeId',$employee->employeeId)
             ->get();
 
+        $count=Refree::where('fkemployeeId',$employee->employeeId)
+                ->count();
+
+        if($count>=2){
+
+            Employee::where('fkuserId',Auth::user()->userId)
+                ->update(['cvStatus'=>1]);
+
+            Employee::where('fkuserId',Auth::user()->userId)
+                ->update(['cvCompletedDate'=>date('Y-m-d')]);
+
+
+            //Session::flash('error-message', 'Candidate must have atleast 2 reference');
+
+        }else{
+
+            Employee::where('fkuserId',Auth::user()->userId)
+                ->update(['cvStatus'=>null]);
+
+            Employee::where('fkuserId',Auth::user()->userId)
+                ->update(['cvCompletedDate'=>null]);
+        }
+
 
 
         if($refrees->isEmpty()){
@@ -97,19 +120,27 @@ class RefreeController extends Controller
     }
 
     public function deleteRefree(Request $r){
-        Refree::destroy($r->refereeId);
+
 
         $count=Refree::where('employee.fkuserId',Auth::user()->userId)
             ->leftJoin('employee','employee.employeeId','referee.fkemployeeId')
             ->count();
 
-//        if($count<2){
-//            Employee::where('fkuserId',Auth::user()->userId)
-//                ->update(['cvStatus'=>null]);
-//        }
+        if($count<=2){
 
-        Session::flash('message', 'Reference Deleted Successfully');
 
-        return redirect()->route('refree.index');
+
+
+            Session::flash('error-message', 'Candidate must have atleast 2 reference');
+
+        }else{
+            Refree::destroy($r->refereeId);
+
+            Session::flash('message', 'Reference Deleted Successfully');
+        }
+
+
+      //  Session::flash('message', 'Reference Deleted Successfully');
+        //return redirect()->route('refree.index');
     }
 }

@@ -258,13 +258,13 @@
                         return false;
 
                     }
-                    if(vanue==""){
-
-                        var errorMsg='Please type a venue first!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
+//                    if(vanue==""){
+//
+//                        var errorMsg='Please type a venue first!!'
+//                        validationError(errorMsg)
+//                        return false;
+//
+//                    }
                     if (vanue.length > 255){
 
                         var errorMsg='value should not more than 255 charecter length!!';
@@ -272,13 +272,13 @@
                         return false;
 
                     }
-                    if(country==""){
-
-                        var errorMsg='Please select a country first!!';
-                        validationError(errorMsg)
-                        return false;
-
-                    }
+//                    if(country==""){
+//
+//                        var errorMsg='Please select a country first!!';
+//                        validationError(errorMsg)
+//                        return false;
+//
+//                    }
 
 //                    if(start==""){
 //                        var errorMsg='Please select a strat date first!!';
@@ -324,12 +324,12 @@
                     '</div> ' +
 
                     '<div class="form-group col-md-8"> ' +
-                    '<label for="inputEmail4">Venue <span style="color: red">*</span></label> ' +
-                    '<input type="text" class="form-control" name="vanue[]" id="vanue'+counter+'" placeholder="venue" required> ' +
+                    '<label for="inputEmail4">Venue </label> ' +
+                    '<input type="text" class="form-control" name="vanue[]" id="vanue'+counter+'" placeholder="venue" > ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
-                    '<label for="inputPassword4">Country<span style="color: red">*</span></label>' +
-                    '<select required class="form-control js-example-basic-single" id="country'+counter+'" name="countryId[]">'+
+                    '<label for="inputPassword4">Country</label>' +
+                    '<select  class="form-control js-example-basic-single" id="country'+counter+'" name="countryId[]">'+
                     '<option value="">Select Country</option>'+
                     '@foreach($countries as $country)'+
                     '<option value="{{$country->countryId}}">{{$country->countryName}}</option>'+
@@ -337,7 +337,7 @@
                     '</select>'+
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
-                    '<label for="inputPassword4">Start date<span style="color: red">*</span></label> ' +
+                    '<label for="inputPassword4">Start date</label> ' +
                     '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date"> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
@@ -346,7 +346,7 @@
                     '</div>'+
                 '<div class="form-group col-md-4">'+
                 '<label for="inputPassword4">Status<span style="color: red">*</span></label>'+
-                '<select required class="form-control"id="trainingCertificateStatus" name="status[]">'+
+                '<select onchange="checkTrainingStatus('+counter+')" required class="form-control"id="trainingCertificateStatus'+counter+'" name="status[]">'+
 
                 '<option value="">Select status</option>'+
                 @foreach(COMPLETING_STATUS as $key=>$value)
@@ -354,7 +354,7 @@
                 @endforeach
                     '</select>'+
                 '</div>'+
-                '<div class="row">'+
+                '<div id="courseDuration'+counter+'" class="row">'+
                 '<label>Duration</label>'+
                 '<div class="form-group col-md-2">'+
                 '<label for="inputPassword4">Hour</label>'+
@@ -409,6 +409,7 @@
                 '</div>'
                 );
                 newTextBoxDiv.appendTo("#TextBoxesGroup");
+                $('#courseDuration'+counter).hide();
 
                 counter++;
                 if(counter>1){
@@ -456,6 +457,22 @@
                     }
                 }
             });
+
+        }
+
+        function checkTrainingStatus(x) {
+
+            var trainingCertificateStatus =$('#trainingCertificateStatus'+x).val();
+
+            if(trainingCertificateStatus==1){
+                $('#courseDuration'+x).hide();
+            }
+            else if(trainingCertificateStatus==2){
+                $('#courseDuration'+x).show();
+            }
+
+
+
 
         }
 

@@ -2,8 +2,9 @@ table, th, td {
     border: 2px solid ;
 }
 
+
 td{
-wrap-text:true;
+    wrap-text:true;
     vertical-align: top;
 }
 .bold{

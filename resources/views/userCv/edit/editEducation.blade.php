@@ -1,3 +1,4 @@
+
 <form  method="post" action="{{route('cv.updatePersonalEducation')}}" onsubmit="return checkEducation()" >
 
 {{csrf_field()}}
@@ -78,9 +79,9 @@
             </div>
 
 
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-9">
                 <label for="">Major</label>
-                <select name="major" class="form-control js-example-basic-single" id="majorSub">
+                <select name="major"  class="form-control js-example-basic-single" id="majorSub">
                     <option value="">Select Major</option>
                     <option selected value="{{$education->educationMajorId}}">{{$education->educationMajorName}}</option>
                     <option value="{{OTHERS}}">{{OTHERS}}</option>
@@ -96,7 +97,7 @@
 
             <div class="form-group col-md-3">
                 <label for="">Country<span style="color: red">*</span></label>
-                <select name="country" class="form-control js-example-basic-single" required id="country">
+                <select  name="country" class="form-control js-example-basic-single" required id="country">
                     <option value="">Select country</option>
                     @foreach($country as $coun)
                         <option @if($coun->countryId == $education->fkcountryId )selected @endif value="{{$coun->countryId}}">{{$coun->countryName}}</option>

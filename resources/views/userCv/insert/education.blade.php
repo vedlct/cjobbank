@@ -77,7 +77,7 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group col-md-3">
+                                <div class="form-group col-md-9">
                                     <label for="">Major</label>
                                     <select name="major[]" class="form-control js-example-basic-single" id="majorSub">
                                         <option value="" >Select major</option>
@@ -598,7 +598,7 @@
                     '</div>'+
 
 
-                    '<div class="form-group col-md-3">'+
+                    '<div class="form-group col-md-9">'+
                     '<label for="">Major</label>'+
                     '<select name="major[]" class="form-control js-example-basic-single" onchange="checkMajor('+counter+')" id="majorSub'+counter+'">'+
                     '<option value="">Select major</option>'+
