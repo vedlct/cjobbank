@@ -45,16 +45,36 @@
     @foreach($employee as $emp)
     <tr>
         <td colspan="1" height="400" style="text-align: left;">{{++$sl}}</td>
-        <td colspan="4" height="400" style="text-align: left;"><span style="text-align: left">{{$emp->firstName}} {{$emp->lastName}}</span></td>
+        <td colspan="4" height="800" style="text-align: left;">
+            <span style="text-align: left">{{$emp->firstName}} {{$emp->lastName}}</span>
+            <span style="text-align: left">
+                Telephone: {{$emp->telephone}}<br>
+                Personal Phone no:  {{$emp->personalMobile}}<br>
+                Alternative phone no: {{$emp->alternativePhoneNo}}<br>
+                Home Phone: {{$emp->homeNumber}}<br>
+                Office Phone: {{$emp->officeNumber}}<br>
+                Email: {{$emp->email}}<br>
+                Alternative Email: {{$emp->alternativeEmail}}<br>
+                Skype :  {{$emp->skype}}<br>
+                Date Of Birth: {{$emp->dateOfBirth}}<br>
+                National ID Card No: {{$emp->nationalId}}.<br>
+                Passport No:  {{$emp->passport}}<br>
+
+                Permanent Address: {{$emp->parmanentAddress}}<br>
+
+
+                Present Address: {{$emp->presentAddress}}<br>
+
+            </span>
+
+
+        </td>
 
 
 
 
         <td colspan="4" height="400" style="text-align: left;">
-            {{--Why Do You Want to Leave Your Current Job?<br>--}}
-            {{--@if($empQuestion->where('empId',$emp->employeeId)->first())--}}
-            {{--{{$empQuestion->where('empId',$emp->employeeId)->first()->ques_1}}--}}
-            {{--@endif--}}
+
 
             @foreach($empQuestionAns->where('fkemployeeId',$emp->employeeId) as $ans)
                 {{$ans->ques}} <br>  {{$ans->ans}} <br>
@@ -144,25 +164,27 @@
     </tr>
     <tr>
         <td colspan="1" height="300" style="text-align: left;"></td>
-        <td colspan="4" height="300" style="text-align: left;"><span style="text-align: left">
-                Telephone: {{$emp->telephone}}<br>
-                Personal Phone no:  {{$emp->personalMobile}}<br>
-                Alternative phone no: {{$emp->alternativePhoneNo}}<br>
-                Home Phone: {{$emp->homeNumber}}<br>
-                Office Phone: {{$emp->officeNumber}}<br>
-                Email: {{$emp->email}}<br>
-                Alternative Email: {{$emp->alternativeEmail}}<br>
-                Skype :  {{$emp->skype}}<br>
-                Date Of Birth: {{$emp->dateOfBirth}}<br>
-                National ID Card No: {{$emp->nationalId}}.<br>
-                Passport No:  {{$emp->passport}}<br>
+        <td colspan="4" height="300" style="text-align: left;">
+{{--            <span style="text-align: left">--}}
+{{--                Telephone: {{$emp->telephone}}<br>--}}
+{{--                Personal Phone no:  {{$emp->personalMobile}}<br>--}}
+{{--                Alternative phone no: {{$emp->alternativePhoneNo}}<br>--}}
+{{--                Home Phone: {{$emp->homeNumber}}<br>--}}
+{{--                Office Phone: {{$emp->officeNumber}}<br>--}}
+{{--                Email: {{$emp->email}}<br>--}}
+{{--                Alternative Email: {{$emp->alternativeEmail}}<br>--}}
+{{--                Skype :  {{$emp->skype}}<br>--}}
+{{--                Date Of Birth: {{$emp->dateOfBirth}}<br>--}}
+{{--                National ID Card No: {{$emp->nationalId}}.<br>--}}
+{{--                Passport No:  {{$emp->passport}}<br>--}}
 
-                Parmanent Adress: {{$emp->parmanentAddress}}<br>
+{{--                Parmanent Adress: {{$emp->parmanentAddress}}<br>--}}
 
 
-                Present Adress: {{$emp->presentAddress}}<br>
+{{--                Present Adress: {{$emp->presentAddress}}<br>--}}
 
-            </span></td>
+{{--            </span>--}}
+        </td>
         <td colspan="4" height="300" style="text-align: left;">
             {{--Why you are intersted for the position applied for?<br>--}}
             {{--@if($empQuestion->where('empId',$emp->employeeId)->first())--}}
