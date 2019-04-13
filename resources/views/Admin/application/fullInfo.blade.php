@@ -269,7 +269,7 @@
 
 
 
-    <tr>
+    <tr style="page-break-after: always">
         <td colspan="1" height="300" style="text-align: left;"></td>
         <td colspan="4" height="300" style="text-align: left;"><span style="text-align: left">
                 Membership in Social Network :<br>
@@ -309,6 +309,7 @@
         <td colspan="3" height="300" style="text-align: left;"></td>
 
     </tr>
+
 
 @endforeach
 

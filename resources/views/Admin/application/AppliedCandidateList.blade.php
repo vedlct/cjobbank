@@ -59,6 +59,7 @@
     </tr>
     </thead>
     <tbody>
+    @php $c=0;@endphp
     @foreach($AppliedCandidateList as $key=>$emp)
         <tr>
             <td colspan="1"height="300" style="text-align: left;vertical-align: middle;">
@@ -195,6 +196,13 @@
 
 
         </tr>
+        @php
+            $c++;
+
+        @endphp
+        @if($c !=0 && $c%2==0)
+            <p style="page-break-after: always" >&nbsp;</p>
+        @endif
 
     @endforeach
 

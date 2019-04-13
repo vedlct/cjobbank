@@ -327,6 +327,26 @@ class ApplicationController extends Controller
 //                        'bold'      =>  false
                     )
                 ));
+//                $sheet->mergeCells('A6:A7:A8:A9');
+//                $sheet->mergeCells('B6:B7:B8');
+
+//                $sheet->cells('A6:A7:A8:A9', function($cells) {
+//                    $cells->setBorder('thin', 'thin', 'thin', 'thin');
+//                });
+//                $sheet->mergeCells('A6:A7:A8:A9');
+
+//                $sheet->setMergeColumn(array(
+//                    'columns' => array('A'),
+//                    'rows' => array(
+//                        array(6,7,8,9)
+//                    )
+//                ));
+//                $sheet->setMergeColumn(array(
+//                    'columns' => array('B'),
+//                    'rows' => array(
+//                        array(6,7)
+//                    )
+//                ));
 
                 $sheet->setpaperSize(5);
                 $sheet->setOrientation('landscape');
@@ -475,7 +495,7 @@ class ApplicationController extends Controller
 //        $appliedList=$r->jobApply;
 //        $appliedId=7;
         $filePath=public_path ()."/exportedExcel";
-        $fileName=$excelName."_HR_report03_".date("Y-m-d_H-i-s");
+        $fileName=$excelName."_HR_report02_".date("Y-m-d_H-i-s");
 
         $fileInfo=array(
             'fileName'=>$fileName,
@@ -537,6 +557,8 @@ class ApplicationController extends Controller
                     )
                 ));
 
+
+
                 $sheet->setpaperSize(9);
                 $sheet->setOrientation('landscape');
 
@@ -589,7 +611,7 @@ class ApplicationController extends Controller
 //        $appliedList=$r->jobApply;
 //        $appliedId=7;
         $filePath=public_path ()."/exportedExcel";
-        $fileName=$excelName."_HR_report02_".date("Y-m-d_H-i-s");
+        $fileName=$excelName."_HR_report03_".date("Y-m-d_H-i-s");
 
         $fileInfo=array(
             'fileName'=>$fileName,

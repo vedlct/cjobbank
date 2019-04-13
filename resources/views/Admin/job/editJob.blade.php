@@ -52,6 +52,7 @@
                                 <option value="">select Job Status</option>
                                 <option @if($info->jobstatus =='1') selected @endif value="1">Part Time</option>
                                 <option @if($info->jobstatus =='2') selected @endif value="2">Full Time</option>
+                                <option @if($info->jobstatus =='3') selected @endif value="3">Other</option>
 
                             </select>
 
@@ -114,9 +115,9 @@
                     </div>
                       <div class="row">
 
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-12">
                             <label for="jobStatus">Details</label>
-                            <textarea class="form-control" id="jobDetails" name="jobDetails">{{$info->details}}</textarea>
+                            <textarea class="form-control" rows="5" id="jobDetails" name="jobDetails">{{$info->details}}</textarea>
 
                         </div>
 

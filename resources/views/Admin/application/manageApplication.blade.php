@@ -354,11 +354,12 @@
                             <a onclick="excelInfomationSubmit()"><button class="btn btn-danger btn-sm">Export candidates excel</button></a>
                         </div>
                         <div class="col-md-3">
-                            <a onclick="excelReport02InfomationSubmit()"><button class="btn btn-primary btn-sm">Export HR report-02</button></a>
+                            <a onclick="excelReport03InfomationSubmit()"><button class="btn btn-primary btn-sm">Export HR report-02</button></a>
                         </div>
                         <div class="col-md-3">
-                            <a onclick="excelReport03InfomationSubmit()"><button class="btn btn-primary btn-sm">Export HR report-03</button></a>
+                            <a onclick="excelReport02InfomationSubmit()"><button class="btn btn-primary btn-sm">Export HR report-03</button></a>
                         </div>
+
 
 
 
