@@ -47,6 +47,7 @@
         <td colspan="1" height="400" style="text-align: left;">{{++$sl}}</td>
         <td colspan="4" height="800" style="text-align: left;">
             <span style="text-align: left">{{$emp->firstName}} {{$emp->lastName}}</span>
+            <br>
             <span style="text-align: left">
                 Telephone: {{$emp->telephone}}<br>
                 Personal Phone no:  {{$emp->personalMobile}}<br>
@@ -163,7 +164,7 @@
 
     </tr>
     <tr>
-        <td colspan="1" height="300" style="text-align: left;"></td>
+        <td colspan="1" class="noTopBorder" height="300" style="text-align: left;"></td>
         <td colspan="4" height="300" style="text-align: left;">
 {{--            <span style="text-align: left">--}}
 {{--                Telephone: {{$emp->telephone}}<br>--}}
@@ -237,7 +238,7 @@
 
     <tr>
 
-        <td colspan="1" height="300" style="text-align: left;"></td>
+        <td colspan="1" class="noTopBorder" height="300" style="text-align: left;"></td>
         <td colspan="4" height="300" style="text-align: left;"><span style="text-align: left">
                 Fathers Name: {{$emp->fathersName}}<br>
                 Mothers Name: {{$emp->mothersName}}<br>
@@ -291,8 +292,8 @@
 
 
 
-    <tr style="page-break-after: always">
-        <td colspan="1" height="300" style="text-align: left;"></td>
+    <tr>
+        <td colspan="1" class="noTopBorder" height="300" style="text-align: left;"></td>
         <td colspan="4" height="300" style="text-align: left;"><span style="text-align: left">
                 Membership in Social Network :<br>
                 @foreach($social->where('fkemployeeId',$emp->employeeId) as $s)

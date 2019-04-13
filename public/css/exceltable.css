@@ -10,3 +10,7 @@ td{
 .bold{
     font-weight: bold;
 }
+.noTopBorder{
+    border-top: none !important; ;
+    border-bottom: none !important; ;
+}
