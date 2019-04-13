@@ -59,15 +59,15 @@
     </tr>
     </thead>
     <tbody>
-    @php $c=0;@endphp
+
     @foreach($AppliedCandidateList as $key=>$emp)
         <tr>
-            <td colspan="1"height="300" style="text-align: left;vertical-align: middle;">
+            <td colspan="1"height="400" style="text-align: left;vertical-align: middle;">
              {{$key+1}}
 
 
             </td>
-            <td colspan="3"height="300" style="text-align: left;vertical-align: top;">
+            <td colspan="3"height="400" style="text-align: left;vertical-align: top;">
                 {{$emp['firstName']}}   {{$emp['lastName']}}
                 <br>
                 Cell: {{$emp['personalMobile']}} <br>
@@ -80,20 +80,20 @@
                 {{$emp['parmanentAddress']}} <br>
 
             </td>
-            {{--<td height="300" style="text-align: center;vertical-align: middle;">--}}
+            {{--<td height="400" style="text-align: center;vertical-align: middle;">--}}
                 {{--{{$emp['gender']}}--}}
             {{--</td>--}}
-            {{--<td height="300" style="text-align: center;vertical-align: middle;">--}}
+            {{--<td height="400" style="text-align: center;vertical-align: middle;">--}}
                 {{--{{$emp['disability']}}--}}
             {{--</td>--}}
-            {{--<td height="300" style="text-align: center;vertical-align: middle;">--}}
+            {{--<td height="400" style="text-align: center;vertical-align: middle;">--}}
                 {{--{{$ethnicity->where('ethnicityId',$emp['ethnicityId'])->first()->ethnicityName}}--}}
             {{--</td>--}}
-            <td colspan="1" height="300" style="text-align: center;vertical-align: middle;">
+            <td colspan="1" height="400" style="text-align: center;vertical-align: middle;">
 
                 {{$emp['AgeYear']}}.{{substr($emp['AgeMonth'],0,1)}}yrs
             </td>
-            <td colspan="2" height="300" style="text-align: left;vertical-align: top;">
+            <td colspan="2" height="400" style="text-align: left;vertical-align: top;">
 
                 @foreach($educationList->where('fkemployeeId',$emp['employeeId']) as $edu)
                     {{$edu->institutionName}}
@@ -106,7 +106,7 @@
                 @endforeach
             </td>
 
-            {{--<td colspan="2" height="300" style="text-align: center;vertical-align: middle;">--}}
+            {{--<td colspan="2" height="400" style="text-align: center;vertical-align: middle;">--}}
                 {{--@foreach($qualificationList->where('fkemployeeId',$emp['employeeId']) as $qualification)--}}
                     {{--Certification:{{$qualification->certificateName}}<br>--}}
                     {{--Institution:{{$qualification->institutionName}}<br>--}}
@@ -119,7 +119,7 @@
                  {{--@endforeach--}}
 
             {{--</td>--}}
-            {{--<td colspan="2" height="300" style="text-align: center;vertical-align: middle;">--}}
+            {{--<td colspan="2" height="400" style="text-align: center;vertical-align: middle;">--}}
                 {{--@foreach($trainingList->where('fkemployeeId',$emp['employeeId']) as $training)--}}
 
                     {{--{{$training->trainingName}}<br>--}}
@@ -131,7 +131,7 @@
                 {{--@endforeach--}}
 
             {{--</td>--}}
-            <td colspan="2" height="300" style="text-align: left;vertical-align: top;">
+            <td colspan="2" height="400" style="text-align: left;vertical-align: top;">
                 @foreach($jobExperienceList->where('fkemployeeId',$emp['employeeId']) as $job)
                     Designation:<br>{{$job->degisnation}}<br>
                     Name of Organization:<br>{{$job->organization}}<br>
@@ -147,7 +147,7 @@
 
             </td>
             @if($withoutsalary != 'true')
-            <td  height="300" style="text-align: left;vertical-align: middle;">
+            <td  height="400" style="text-align: left;vertical-align: middle;">
                 @foreach($salaryList->where('fkemployeeId',$emp['employeeId']) as $salary)
                     Current:{{$salary->currentSalary}}<br>
                     Expected:{{$salary->expectedSalary}}
@@ -155,7 +155,7 @@
 
             </td>
             @endif
-            <td height="300" style="text-align: center;vertical-align: middle;">
+            <td height="400" style="text-align: center;vertical-align: middle;">
 
                 @if($emp['nationalId'])
                     Yes
@@ -163,7 +163,7 @@
                     No
                 @endif
             </td>
-            <td height="300" style="text-align: center;vertical-align: middle;">
+            <td height="400" style="text-align: center;vertical-align: middle;">
 
                 @if($emp['image'] && $emp['sign'])
                     Yes
@@ -171,7 +171,7 @@
                     No
                 @endif
             </td>
-            <td height="300" style="text-align: center;vertical-align: middle;">
+            <td height="400" style="text-align: center;vertical-align: middle;">
                 @if($refreeList->where('fkemployeeId',$emp['employeeId'])->count()>1)
                     Yes
                 @else
@@ -184,7 +184,7 @@
                 {{--@endforeach--}}
 
             </td>
-            {{--<td height="300" style="text-align: center;vertical-align: middle;">--}}
+            {{--<td height="400" style="text-align: center;vertical-align: middle;">--}}
                 {{--@foreach($relativeList->where('fkemployeeId',$emp['employeeId']) as $relative)--}}
                     {{--{{$relative->firstName}} {{$relative->lastName}}<br>--}}
                     {{--{{$relative->degisnation}}<br>--}}
@@ -192,17 +192,12 @@
                  {{--@endforeach--}}
 
             {{--</td>--}}
-            <td colspan="2" height="300" style="text-align: center;vertical-align: middle;"></td>
+            <td colspan="2" height="400" style="text-align: center;vertical-align: middle;"></td>
 
 
         </tr>
-        @php
-            $c++;
 
-        @endphp
-        @if($c !=0 && $c%2==0)
-            <p style="page-break-after: always" >&nbsp;</p>
-        @endif
+
 
     @endforeach
 

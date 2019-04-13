@@ -250,6 +250,8 @@ class ApplicationController extends Controller
             ->whereIn('employeeId',$employees)
             ->get();
 
+
+
 //        return $employee;
         $social=MembershipInSocialNetwork::whereIn('fkemployeeId',$employees)->get();
 
@@ -327,29 +329,12 @@ class ApplicationController extends Controller
 //                        'bold'      =>  false
                     )
                 ));
-//                $sheet->mergeCells('A6:A7:A8:A9');
-//                $sheet->mergeCells('B6:B7:B8');
 
-//                $sheet->cells('A6:A7:A8:A9', function($cells) {
-//                    $cells->setBorder('thin', 'thin', 'thin', 'thin');
-//                });
-//                $sheet->mergeCells('A6:A7:A8:A9');
-
-//                $sheet->setMergeColumn(array(
-//                    'columns' => array('A'),
-//                    'rows' => array(
-//                        array(6,7,8,9)
-//                    )
-//                ));
-//                $sheet->setMergeColumn(array(
-//                    'columns' => array('B'),
-//                    'rows' => array(
-//                        array(6,7)
-//                    )
-//                ));
 
                 $sheet->setpaperSize(5);
                 $sheet->setOrientation('landscape');
+                $sheet->setScale(40);
+                $sheet->setFitToPage(false);
 //                $sheet->getStyle()->getAlignment()->setWrapText(true);
 
                 $sheet->loadView('Admin.application.fullInfo',
@@ -561,6 +546,8 @@ class ApplicationController extends Controller
 
                 $sheet->setpaperSize(9);
                 $sheet->setOrientation('landscape');
+                $sheet->setScale(62);
+                $sheet->setFitToPage(false);
 
                 $sheet->loadView('Admin.application.AppliedCandidateList')
                     ->with('AppliedCandidateList',$newlist)
@@ -676,6 +663,8 @@ class ApplicationController extends Controller
 
                 $sheet->setpaperSize(9);
                 $sheet->setOrientation('landscape');
+                $sheet->setScale(62);
+                $sheet->setFitToPage(false);
 
                 $sheet->loadView('Admin.application.AppliedCandidateList')
                     ->with('AppliedCandidateList',$newlist)
