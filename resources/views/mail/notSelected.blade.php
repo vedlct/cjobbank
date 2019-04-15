@@ -127,7 +127,7 @@
     <table >
         <tr>
             <td width="100%" align="left">
-                <b>Dear</b>{{$empInfo->firstName.' '.$empInfo->lastName}},
+                <b>Dear </b>{{$empInfo->firstName.' '.$empInfo->lastName}},
             </td>
         </tr>
 
