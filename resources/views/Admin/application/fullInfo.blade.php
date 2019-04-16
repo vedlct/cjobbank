@@ -44,8 +44,8 @@
     <?php $sl=0; ?>
     @foreach($employee as $emp)
     <tr>
-        <td colspan="1" class="Border" height="400" style="text-align: left;border-right: 2px solid black!important">{{++$sl}}</td>
-        <td colspan="4" height="800" class="testStyle" style="text-align: left;border-left: 2px solid black!important">
+        <td colspan="1" class="Border" height="620" style="text-align: left;border-right: 2px solid black!important">{{++$sl}}</td>
+        <td colspan="4" height="620" class="testStyle" style="text-align: left;border-left: 2px solid black!important">
             <span style="text-align: left">{{$emp->firstName}} {{$emp->lastName}}</span>
             <br>
             <span style="text-align: left">
@@ -74,7 +74,7 @@
 
 
 
-        <td colspan="4" class="Border" height="400" style="text-align: left;">
+        <td colspan="4" class="Border" height="620" style="text-align: left;">
 
 
             @foreach($empQuestionAns->where('fkemployeeId',$emp->employeeId) as $ans)
@@ -85,21 +85,19 @@
 
 
 
-        <td colspan="4" class="Border" height="400" style="text-align: left;">
+        <td colspan="4" class="Border" height="620" style="text-align: left;">
             <?php  $temp=0; ?>
             @foreach($education->where('fkemployeeId',$emp->employeeId) as $edu)
                 {{++$temp}}. Degree title : {{$edu->degreeName}}<br>
                 Major Subject: {{$edu->educationMajorName}}<br>
-                Passing Year: {{$edu->passingYear}}<br>
-                Board: {{$edu->boardName}}<br>
+                Passing Year: {{$edu->passingYear}} , Board: {{$edu->boardName}}<br>
                 Name of Institution/school/college/versity: <br>
                     {{$edu->institutionName}}<br>
-                Status : @if($edu->status==1) Ongoing @elseif($edu->status==2) Complete @endif<br>
-                Result: {{$edu->result}}<br><br>
+                Status : @if($edu->status==1) Ongoing @elseif($edu->status==2) Complete @endif , Result: {{$edu->result}}<br><br>
 
             @endforeach
         </td>
-        <td colspan="6" class="Border" height="400"   style="text-align: left;">
+        <td colspan="6" class="Border" height="620"   style="text-align: left;">
             <?php $temp=0 ?>
             @foreach($jobExperience->where('fkemployeeId',$emp->employeeId) as $job)
             {{++$temp}}. Position: {{$job->degisnation}}<br>
@@ -114,7 +112,7 @@
                 <br><br>
             @endforeach
         </td>
-        <td colspan="8" class="Border" height="400" style="text-align: left;">
+        <td colspan="8" class="Border" height="620" style="text-align: left;">
             Extracurricular activities<br>
             1. Interests:<br>
             {{$emp->interests}}<br>
@@ -150,7 +148,7 @@
             @endforeach
 
         </td>
-        <td colspan="4" class="Border" height="400" style="text-align: left;">
+        <td colspan="4" class="Border" height="620" style="text-align: left;">
             <?php $temp=0;  ?>
             @foreach($reference->where('fkemployeeId',$emp->employeeId) as $ref)
             {{++$temp}}. {{$ref->firstName}} {{$ref->lastName}}<br>
@@ -160,12 +158,12 @@
             Cell Phone: {{$ref->phone}}              E-mail:{{$ref->email}}<br><br>
             @endforeach
         </td>
-        <td colspan="3" class="Border" height="400" style="text-align: left;"></td>
+        <td colspan="3" class="Border" height="620" style="text-align: left;"></td>
 
     </tr>
     <tr>
-        <td colspan="1" class="Border" height="300" style="text-align: left;border-right: 2px solid black!important;border-bottom: 2px solid black!important "></td>
-        <td colspan="4" class="testStyle" height="300" style="text-align: left;border-left: 2px solid black!important">
+        <td colspan="1" class="Border" height="450" style="text-align: left;border-right: 2px solid black!important;border-bottom: 2px solid black!important "></td>
+        <td colspan="4" class="testStyle" height="450" style="text-align: left;border-left: 2px solid black!important">
 {{--            <span style="text-align: left">--}}
 {{--                Telephone: {{$emp->telephone}}<br>--}}
 {{--                Personal Phone no:  {{$emp->personalMobile}}<br>--}}
@@ -186,25 +184,26 @@
 
 {{--            </span>--}}
         </td>
-        <td colspan="4" class="Border" height="300" style="text-align: left;">
+        <td colspan="4" class="Border" height="450" style="text-align: left;">
             {{--Why you are intersted for the position applied for?<br>--}}
             {{--@if($empQuestion->where('empId',$emp->employeeId)->first())--}}
                 {{--{{$empQuestion->where('empId',$emp->employeeId)->first()->ques_2}}--}}
             {{--@endif--}}
         </td>
-        <td colspan="4" class="Border" height="300" style="text-align: left;">
+        <td colspan="4" class="Border" height="450" style="text-align: left;">
             Professional Qualification:<br>
-            <?php  $temp=0; ?>
+            <?php  $temp=1; ?>
             @foreach($pQualification->where('fkemployeeId',$emp->employeeId) as $qualification)
 
-            1. Certificate Name: {{$qualification->certificateName}}<br>
+            {{$temp}}. Certificate Name: {{$qualification->certificateName}}<br>
             Institution: {{$qualification->institutionName}}<br>
             Duration: {{$qualification->startDate}} - {{$qualification->endDate}}<br>
 
             Result: {{$qualification->result}}<br>
+                <?php  $temp++; ?>
             @endforeach
         </td>
-        <td colspan="6" class="Border" height="300"   style="text-align: left;">
+        <td colspan="6" class="Border" height="450"   style="text-align: left;">
             @foreach($jobExperience->where('fkemployeeId',$emp->employeeId) as $job)
                 Major Job responsibility: {{$job->majorResponsibilities}}<br>
                 Key Achievement: {{$job->keyAchivement}}<br>
@@ -221,10 +220,10 @@
                             Served from/to: {{$pExp->startDate}}  To {{$pExp->endDate}}<br>
                 @endforeach
         </td>
-        <td colspan="8" class="Border" height="300" style="text-align: left;">
+        <td colspan="8" class="Border" height="450" style="text-align: left;">
 
         </td>
-        <td colspan="4" class="Border" height="300" style="text-align: left;">
+        <td colspan="4" class="Border" height="450" style="text-align: left;">
 
             {{--1. Name of Referees, Designation, Organization, adress, mobile number and email number, Relation<br>--}}
             {{--2. Name of Referees, Designation, Organization, adress, mobile number and email number, Relation--}}
@@ -232,14 +231,14 @@
 
 
         </td>
-        <td colspan="3" class="Border" height="300" style="text-align: left;"></td>
+        <td colspan="3" class="Border" height="450" style="text-align: left;"></td>
 
     </tr>
 
     <tr>
 
-        <td colspan="1" class="Border" height="300" style="text-align: left;"></td>
-        <td colspan="4" class="Border"  height="300" style="text-align: left;"><span style="text-align: left">
+        <td colspan="1" class="Border" height="550" style="text-align: left;"></td>
+        <td colspan="4" class="Border"  height="550" style="text-align: left;"><span style="text-align: left">
                 Fathers Name: {{$emp->fathersName}}<br>
                 Mothers Name: {{$emp->mothersName}}<br>
                 Spouse Name: {{$emp->spouse}}<br>
@@ -251,7 +250,7 @@
                 Religion: {{$emp->religionName}}<br>
 
             </span></td>
-        <td colspan="4" class="Border" height="300" style="text-align: left;">
+        <td colspan="4" class="Border" height="550" style="text-align: left;">
             Do you have any relatives working in Caritas Bangladesh?*<br>
 
             @foreach($relative->where('fkemployeeId',$emp->employeeId) as $rel)
@@ -264,29 +263,31 @@
 
 
         </td>
-        <td colspan="4" class="Border" height="300" style="text-align: left;">
+        <td colspan="4" class="Border" height="550" style="text-align: left;">
             Training information:<br>
+            <?php  $te=1; ?>
             @foreach($training->where('fkemployeeId',$emp->employeeId) as $t)
-            1. Training title: {{$t->trainingName}}<br>
+            {{$te}}. Training title: {{$t->trainingName}}<br>
             Institute: {{$t->vanue}}<br>
             Duration: {{$t->startDate}} - {{$t->endDate}}<br>
             Country: {{$t->countryName}}<br>
+                <?php  $te++; ?>
             @endforeach
         </td>
-        <td colspan="6" class="Border" height="300"   style="text-align: left;">
+        <td colspan="6" class="Border" height="550"   style="text-align: left;">
             Do you have any reservation contacting your employer?
             @foreach($jobExperience->where('fkemployeeId',$emp->employeeId)->where('endDate',null) as $job)
                     {{$job->reservationContactingEmployer}}
                 <br><br>
             @endforeach
         </td>
-        <td colspan="8" class="Border" height="300" style="text-align: left;">
+        <td colspan="8" class="Border" height="550" style="text-align: left;">
 
         </td>
-        <td colspan="4" class="Border" height="300" style="text-align: left;">
+        <td colspan="4" class="Border" height="550" style="text-align: left;">
 
         </td>
-        <td colspan="3" class="Border" height="300" style="text-align: left;"></td>
+        <td colspan="3" class="Border" height="550" style="text-align: left;"></td>
 
     </tr>
 

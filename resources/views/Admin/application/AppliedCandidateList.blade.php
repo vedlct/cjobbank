@@ -43,10 +43,10 @@
         {{--<th>Disability</th>--}}
         {{--<th>Ethnicity</th>--}}
         <th colspan="1"style="text-align: center" >  AGE  </th>
-        <th style="text-align: center" colspan="2">Educational Qualification</th>
+        <th style="text-align: center" colspan="3">Educational Qualification</th>
         {{--<th colspan="2">Professional Qualification</th>--}}
         {{--<th colspan="2">Training</th>--}}
-        <th style="text-align: center" colspan="2">Job Experiences</th>
+        <th style="text-align: center" colspan="3">Job Experiences</th>
         @if($withoutsalary != 'true')
         <th style="text-align: center">Salary Information</th>
         @endif
@@ -62,12 +62,12 @@
 
     @foreach($AppliedCandidateList as $key=>$emp)
         <tr>
-            <td colspan="1"height="400" style="text-align: left;vertical-align: middle;">
+            <td colspan="1"height="600" style="text-align: left;vertical-align: middle;">
              {{$key+1}}
 
 
             </td>
-            <td colspan="3"height="400" style="text-align: left;vertical-align: top;">
+            <td colspan="3"height="600" style="text-align: left;vertical-align: top;">
                 {{$emp['firstName']}}   {{$emp['lastName']}}
                 <br>
                 Cell: {{$emp['personalMobile']}} <br>
@@ -80,20 +80,20 @@
                 {{$emp['parmanentAddress']}} <br>
 
             </td>
-            {{--<td height="400" style="text-align: center;vertical-align: middle;">--}}
+            {{--<td height="600" style="text-align: center;vertical-align: middle;">--}}
                 {{--{{$emp['gender']}}--}}
             {{--</td>--}}
-            {{--<td height="400" style="text-align: center;vertical-align: middle;">--}}
+            {{--<td height="600" style="text-align: center;vertical-align: middle;">--}}
                 {{--{{$emp['disability']}}--}}
             {{--</td>--}}
-            {{--<td height="400" style="text-align: center;vertical-align: middle;">--}}
+            {{--<td height="600" style="text-align: center;vertical-align: middle;">--}}
                 {{--{{$ethnicity->where('ethnicityId',$emp['ethnicityId'])->first()->ethnicityName}}--}}
             {{--</td>--}}
-            <td colspan="1" height="400" style="text-align: center;vertical-align: middle;">
+            <td colspan="1" height="600" style="text-align: center;vertical-align: middle;">
 
                 {{$emp['AgeYear']}}.{{substr($emp['AgeMonth'],0,1)}}yrs
             </td>
-            <td colspan="2" height="400" style="text-align: left;vertical-align: top;">
+            <td colspan="3" height="600" style="text-align: left;vertical-align: top;">
 
                 @foreach($educationList->where('fkemployeeId',$emp['employeeId']) as $edu)
                     {{$edu->institutionName}}
@@ -106,7 +106,7 @@
                 @endforeach
             </td>
 
-            {{--<td colspan="2" height="400" style="text-align: center;vertical-align: middle;">--}}
+            {{--<td colspan="2" height="600" style="text-align: center;vertical-align: middle;">--}}
                 {{--@foreach($qualificationList->where('fkemployeeId',$emp['employeeId']) as $qualification)--}}
                     {{--Certification:{{$qualification->certificateName}}<br>--}}
                     {{--Institution:{{$qualification->institutionName}}<br>--}}
@@ -119,7 +119,7 @@
                  {{--@endforeach--}}
 
             {{--</td>--}}
-            {{--<td colspan="2" height="400" style="text-align: center;vertical-align: middle;">--}}
+            {{--<td colspan="2" height="600" style="text-align: center;vertical-align: middle;">--}}
                 {{--@foreach($trainingList->where('fkemployeeId',$emp['employeeId']) as $training)--}}
 
                     {{--{{$training->trainingName}}<br>--}}
@@ -131,12 +131,13 @@
                 {{--@endforeach--}}
 
             {{--</td>--}}
-            <td colspan="2" height="400" style="text-align: left;vertical-align: top;">
+            <td colspan="3" height="600" style="text-align: left;vertical-align: top;">
                 @foreach($jobExperienceList->where('fkemployeeId',$emp['employeeId']) as $job)
                     Designation:<br>{{$job->degisnation}}<br>
                     Name of Organization:<br>{{$job->organization}}<br>
                     {{$job->address}}<br>
-                    years:<br>
+
+                    {{--years: <br>--}}
                     Start:{{$job->startDate}}
                     End:{{$job->endDate}}
                     <br>
@@ -147,7 +148,7 @@
 
             </td>
             @if($withoutsalary != 'true')
-            <td  height="400" style="text-align: left;vertical-align: middle;">
+            <td  height="600" style="text-align: left;vertical-align: middle;">
                 @foreach($salaryList->where('fkemployeeId',$emp['employeeId']) as $salary)
                     Current:{{$salary->currentSalary}}<br>
                     Expected:{{$salary->expectedSalary}}
@@ -155,7 +156,7 @@
 
             </td>
             @endif
-            <td height="400" style="text-align: center;vertical-align: middle;">
+            <td height="600" style="text-align: center;vertical-align: middle;">
 
                 @if($emp['nationalId'])
                     Yes
@@ -163,7 +164,7 @@
                     No
                 @endif
             </td>
-            <td height="400" style="text-align: center;vertical-align: middle;">
+            <td height="600" style="text-align: center;vertical-align: middle;">
 
                 @if($emp['image'] && $emp['sign'])
                     Yes
@@ -171,7 +172,7 @@
                     No
                 @endif
             </td>
-            <td height="400" style="text-align: center;vertical-align: middle;">
+            <td height="600" style="text-align: center;vertical-align: middle;">
                 @if($refreeList->where('fkemployeeId',$emp['employeeId'])->count()>1)
                     Yes
                 @else
@@ -184,7 +185,7 @@
                 {{--@endforeach--}}
 
             </td>
-            {{--<td height="400" style="text-align: center;vertical-align: middle;">--}}
+            {{--<td height="600" style="text-align: center;vertical-align: middle;">--}}
                 {{--@foreach($relativeList->where('fkemployeeId',$emp['employeeId']) as $relative)--}}
                     {{--{{$relative->firstName}} {{$relative->lastName}}<br>--}}
                     {{--{{$relative->degisnation}}<br>--}}
@@ -192,7 +193,7 @@
                  {{--@endforeach--}}
 
             {{--</td>--}}
-            <td colspan="2" height="400" style="text-align: center;vertical-align: middle;"></td>
+            <td colspan="2" height="600" style="text-align: center;vertical-align: middle;"></td>
 
 
         </tr>

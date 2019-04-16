@@ -1740,6 +1740,7 @@ CKEDITOR.config.toolbar = [
                     $('#excel_info').modal({show: true});
                     $("#HRfullreport").hide();
                     $("#HRreport03").show();
+                    $("#HRreport02").hide();
                 }
                 else {
 

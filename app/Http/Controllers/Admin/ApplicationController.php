@@ -496,6 +496,7 @@ class ApplicationController extends Controller
             ->get()
             ->toArray();
 
+
         $newlist=Employee::select('employee.*',DB::raw("TIMESTAMPDIFF(YEAR,`employee`.`dateOfBirth`,CURDATE()) as AgeYear"),DB::raw("MONTH(`employee`.`dateOfBirth`)-MONTH(CURDATE()) as AgeMonth"))
                 ->whereIn('employee.employeeId',$empIds)
                 ->get();
@@ -546,8 +547,9 @@ class ApplicationController extends Controller
 
                 $sheet->setpaperSize(9);
                 $sheet->setOrientation('landscape');
-                $sheet->setScale(62);
+                $sheet->setScale(60);
                 $sheet->setFitToPage(false);
+
 
                 $sheet->loadView('Admin.application.AppliedCandidateList')
                     ->with('AppliedCandidateList',$newlist)
@@ -663,7 +665,7 @@ class ApplicationController extends Controller
 
                 $sheet->setpaperSize(9);
                 $sheet->setOrientation('landscape');
-                $sheet->setScale(62);
+                $sheet->setScale(60);
                 $sheet->setFitToPage(false);
 
                 $sheet->loadView('Admin.application.AppliedCandidateList')
