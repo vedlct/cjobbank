@@ -51,7 +51,7 @@
                                     <div id="testDateDiv" class="col-md-6">
 
                                         <label for="">Test Date</label>
-                                        <input class="form-control date" id="testDate" name="testDate" value="">
+                                        <input class="form-control date1" id="testDate" name="testDate" value="">
 
                                     </div>
 
@@ -449,6 +449,12 @@ CKEDITOR.config.toolbar = [
                 format: 'yyyy-m-d',
                 todayHighlight: true,
                 autoclose: true
+            });
+            $('.date1').datepicker({
+                format: 'yyyy-m-d',
+                todayHighlight: true,
+                autoclose: true,
+                startDate: '-0d',
             });
 
 
