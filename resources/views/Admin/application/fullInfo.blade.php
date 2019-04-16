@@ -44,7 +44,7 @@
     <?php $sl=0; ?>
     @foreach($employee as $emp)
     <tr>
-        <td colspan="1" class="testStyle" height="400" style="text-align: left;border-right: 2px solid black!important">{{++$sl}}</td>
+        <td colspan="1" class="Border" height="400" style="text-align: left;border-right: 2px solid black!important">{{++$sl}}</td>
         <td colspan="4" height="800" class="testStyle" style="text-align: left;border-left: 2px solid black!important">
             <span style="text-align: left">{{$emp->firstName}} {{$emp->lastName}}</span>
             <br>
@@ -164,7 +164,7 @@
 
     </tr>
     <tr>
-        <td colspan="1" class="testStyle" height="300" style="text-align: left;border-right: 2px solid black!important;border-bottom: 2px solid black!important "></td>
+        <td colspan="1" class="Border" height="300" style="text-align: left;border-right: 2px solid black!important;border-bottom: 2px solid black!important "></td>
         <td colspan="4" class="testStyle" height="300" style="text-align: left;border-left: 2px solid black!important">
 {{--            <span style="text-align: left">--}}
 {{--                Telephone: {{$emp->telephone}}<br>--}}
