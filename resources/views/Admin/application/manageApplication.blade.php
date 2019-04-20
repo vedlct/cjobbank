@@ -80,6 +80,7 @@
                                     <div class="form-group">
 
                                         <button type="submit" onclick="sendMailToJobApplied()" class="btn btn-success">Submit</button>
+                                        <button type="button" onclick="downloadmailDoc()" class="btn btn-success">Download as doc</button>
                                     </div>
 
                                 {{--</form>--}}
@@ -1493,6 +1494,118 @@ CKEDITOR.config.toolbar = [
                             }
 
 
+                        }
+
+                    });
+
+
+
+            }
+
+            else {
+
+                $.alert({
+                    title: 'Alert!',
+                    type: 'red',
+                    content: 'Please Select a Tamplate First',
+                    buttons: {
+                        tryAgain: {
+                            text: 'Ok',
+                            btnClass: 'btn-blue',
+                            action: function () {
+
+
+                            }
+                        }
+
+                    }
+                });
+
+            }
+
+
+
+        }
+        function downloadmailDoc() {
+
+
+            if ($('#mailTamplate').val() !=""){
+
+                $("#wait").css("display", "block");
+
+                var products=selecteds;
+
+
+                    $.ajax({
+                        type: 'POST',
+                        url: "{!! route('jobAppliedCadidate.admin.downloadMailDoc') !!}",
+                        cache: false,
+                        data: {'jobApply': products,_token:"{{csrf_token()}}",'tamplateId':$('#mailTamplate').val(),'testDate':$('#testDate').val(),
+                            'testAddress':$('#testAddress').val(),'testDetails':$('#tamplateBody').val(),'footerAndSign':CKEDITOR.instances['ckBox'].getData(),
+                            'subjectLine':$('#subjectLine').val(),'refNo':$('#refNo').val()},
+                        success: function (data) {
+
+                            $("#wait").css("display", "none");
+//
+                            $('#SessionMessage').load(document.URL +  ' #SessionMessage');
+                            table.ajax.reload();  //just reload table
+
+                            selecteds=[];
+
+                          //  console.log(data);
+
+                            $(':checkbox:checked').prop('checked',false);
+
+                            win = window.open("", "_blank");
+                            win.document.body.innerHTML = data;
+
+                           // console.log(data);
+
+
+
+//                            if (data =='1'){
+//
+//                                $.alert({
+//                                    title: 'Alert!',
+//                                    type: 'green',
+//                                    content: 'Mail Send successfully',
+//                                    buttons: {
+//                                        tryAgain: {
+//                                            text: 'Ok',
+//                                            btnClass: 'btn-blue',
+//                                            action: function(){
+//
+//                                                location.reload();
+//                                            }
+//                                        }
+//                                    }
+//                                });
+//
+//
+//                            }
+//                            else if(data=='0'){
+//
+//                                $.alert({
+//                                    title: 'Alert!',
+//                                    type: 'Red',
+//                                    content: 'There is something wrong with the mail',
+//                                    buttons: {
+//                                        tryAgain: {
+//                                            text: 'Ok',
+//                                            btnClass: 'btn-red',
+//                                            action: function () {
+//                                                location.reload();
+//
+//                                            }
+//                                        }
+//
+//                                    }
+//                                });
+//
+//
+//                            }
+//
+//
                         }
 
                     });

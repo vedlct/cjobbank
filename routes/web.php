@@ -221,6 +221,7 @@ Route::post('Admin-Export-All-AppliedCandidate-Hr-report01','Admin\ApplicationCo
 Route::post('Admin-Export-All-AppliedCandidate-Hr-report03','Admin\ApplicationController@exportAppliedCandidateHrReport03')->name('jobAppliedCadidate.admin.Exporthrreport03xls');
 Route::post('Admin-Export-All-AppliedCandidate-Hr-report02','Admin\ApplicationController@exportAppliedCandidateHrReport02')->name('jobAppliedCadidate.admin.Exporthrreport02xls');
 Route::post('Admin-Send-Mail-AppliedCandidate','Admin\ApplicationController@sendMailtoAppliedCandidate')->name('jobAppliedCadidate.admin.sendMail');
+Route::post('Admin-Preview-Mail-AppliedCandidate','Admin\ApplicationController@downloadMailDoc')->name('jobAppliedCadidate.admin.downloadMailDoc');
 
 
 

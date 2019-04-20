@@ -858,6 +858,85 @@ class ApplicationController extends Controller
 
 
     }
+    public function downloadMailDoc(Request $r){
+
+
+        $appliedList=$r->jobApply;
+        $template=$r->tamplateId;
+        $testDate=$r->testDate;
+        $testAddress=$r->testAddress;
+        $testDetails=$r->testDetails;
+        $footerAndSign=$r->footerAndSign;
+        $subjectLine=$r->subjectLine;
+        $refNo=$r->refNo;
+
+//        $list=array();
+
+        for ($i=0;$i<count($appliedList);$i++) {
+
+            $appliedId = $appliedList[$i];
+
+
+//            $jobInfo=Jobapply::select('job.title','job.position','jobapply.fkemployeeId','interviewCallDate')->where('jobapply',$appliedId)
+            $jobInfo=Jobapply::leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')->findOrFail($appliedId);
+
+
+
+
+            $employeeInfo=Employee::select('employee.*')
+                ->where('employee.employeeId',$jobInfo->fkemployeeId)
+                ->first();
+
+            //  return $template;
+
+            /* make invoice pdf*/
+
+            if ($template=='1'){
+
+
+
+                $word = new \PhpOffice\PhpWord\PhpWord();
+
+                $newSection = $word->addSection();
+
+                $html = view('mail.mailPreview.interviewCard',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
+                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo]);
+
+
+                \PhpOffice\PhpWord\Shared\Html::addHtml( $newSection, $html, false, false);
+
+                header('Content-Type: application/octet-stream');
+                header('Content-Disposition: attachment;filename="helloWorld.docx"');
+
+                $objectWriter = \PhpOffice\PhpWord\IOFactory::createWriter($word, 'Word2007');
+
+                $objectWriter->save('helloWorld.docx');
+
+
+
+            }
+            if ($template=='2'){
+
+
+
+
+            }
+            if ($template=='3'){
+
+
+
+            }
+
+
+
+
+
+
+        }
+
+
+
+    }
 
 
 
