@@ -1,14 +1,12 @@
 
 <p style="margin-top: 500pt;"></p>
-
 <table style="width: 100%;" >
     <tr>
-        <td align="left" style="width: 50%;">
-            <b>Ref No: </b>{{$refNo}}
-
+        <td align="left" style="width: 50%;text-align: left">
+            <b>Ref No:</b> {{$refNo}}
         </td>
-        <td style="width: 50%;text-align: center"align="center">
-            <b>Date: </b>{{date('d-m-Y')}}
+        <td style="width: 50%;text-align: center">
+            <b>Date:</b> {{date('d-m-Y')}}
         </td>
     </tr>
 </table>
@@ -22,15 +20,13 @@
 <p style="margin-top: 50pt;"></p>
 <table style="width: 100%">
     <tr>
-        <td style="width: 10%" align="left">
+        <td style="width: 10%">
             <b>Subject:</b>
         </td>
         <td style="width: 90%" align="left"> <b>{{$subjectLine.' for the post of '}}{{$jobInfo->position}}</b></td>
     </tr>
-
 </table>
 <p style="margin-top: 100pt;"></p>
-
 <table style="width: 100%">
     <tr>
         <td style="width: 100%" align="left">
@@ -62,8 +58,4 @@
             {!! $footerAndSign !!}
         </td>
     </tr>
-
 </table>
-
-
-

@@ -881,8 +881,6 @@ class ApplicationController extends Controller
             $jobInfo=Jobapply::leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')->findOrFail($appliedId);
 
 
-
-
             $employeeInfo=Employee::select('employee.*')
                 ->where('employee.employeeId',$jobInfo->fkemployeeId)
                 ->first();
@@ -906,31 +904,56 @@ class ApplicationController extends Controller
                 \PhpOffice\PhpWord\Shared\Html::addHtml( $newSection, $html, false, false);
 
                 header('Content-Type: application/octet-stream');
-                header('Content-Disposition: attachment;filename="helloWorld.docx"');
+                header('Content-Disposition: attachment;filename="interviewCard.docx"');
 
                 $objectWriter = \PhpOffice\PhpWord\IOFactory::createWriter($word, 'Word2007');
 
-                $objectWriter->save('helloWorld.docx');
+                $objectWriter->save(public_path('mailPreview'."/").'interviewCard.docx');
 
 
 
             }
             if ($template=='2'){
 
+                $word = new \PhpOffice\PhpWord\PhpWord();
+
+                $newSection = $word->addSection();
+
+                $html = view('mail.mailPreview.notSelected',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
+                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo]);
 
 
+                \PhpOffice\PhpWord\Shared\Html::addHtml( $newSection, $html, false, false);
+
+                header('Content-Type: application/octet-stream');
+                header('Content-Disposition: attachment;filename="notSelected.docx"');
+
+                $objectWriter = \PhpOffice\PhpWord\IOFactory::createWriter($word, 'Word2007');
+
+                $objectWriter->save(public_path('mailPreview'."/").'notSelected.docx');
 
             }
             if ($template=='3'){
 
+                $word = new \PhpOffice\PhpWord\PhpWord();
+
+                $newSection = $word->addSection();
+
+                $html = view('mail.mailPreview.panelListed',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
+                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo]);
+
+
+                \PhpOffice\PhpWord\Shared\Html::addHtml( $newSection, $html, false, false);
+
+                header('Content-Type: application/octet-stream');
+                header('Content-Disposition: attachment;filename="panelListed.docx"');
+
+                $objectWriter = \PhpOffice\PhpWord\IOFactory::createWriter($word, 'Word2007');
+
+                $objectWriter->save(public_path('mailPreview'."/").'panelListed.docx');
 
 
             }
-
-
-
-
-
 
         }
 
