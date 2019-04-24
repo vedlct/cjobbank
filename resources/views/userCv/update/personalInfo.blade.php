@@ -12,6 +12,63 @@
         #imageMsg,#signMsg{
             display: none;
         }
+
+        .sidenav {
+        width: 350px;
+        position: fixed;
+        z-index: 1;
+        /* top: 20px;
+        left: 10px; */
+        background: #D3D3D3;
+        overflow-x: hidden;
+        padding: 0;
+        margin-top: 12px;
+        }
+
+        .sidenav a {
+        padding: 15px 8px 15px 16px;
+        text-decoration: none;
+        color: #000;
+        display: block;
+        transition: all 0.3s;
+        border-bottom:1px solid #FBFBFB;
+        }
+
+        .sidenav a:hover {
+        color: #fff;
+        background: #1FB0E5;
+        }
+
+        .sidenav .activeNav {
+        color: #fff;
+        background: #1FB0E5;
+        }
+
+        @media only screen and (max-width: 1300px) and (min-width: 801px) {
+            .sidenav {
+            width: 250px;
+        }
+        }
+
+        @media screen and (max-width: 800px) {
+        .sidenav {
+            width: 100%;
+            height: auto;
+            position: relative;
+        }
+        .sidenav a {
+            text-align: center;
+            float: none;
+        }
+        @media screen and (max-width: 500px) {
+            .sidenav {
+            width: 100%;
+        }
+        .sidenav a {
+            text-align: center;
+            float: none;
+        }
+        }
     </style>
 
     
@@ -21,11 +78,23 @@
         <div class="col-12">
             <div style="background-color: #F1F1F1" class="card">
                 <div class="card-body">
-                    <div class="col-md-3">asdsdfsdfhgskjdfhgskjdfhgsjdhf</div>
+                    <div class="col-md-">
+
+                            <div class="sidenav">
+                                <a href="#" class="activeNav">Personal Details</a>
+                                <a href="#">Career Objective and Application Information</a>
+                                <a href="#">Step 3</a>
+                                <a href="#">Step 4</a>
+                                <a href="#">Step 5</a>
+                                <a href="#">Step 6</a>
+                                <a href="#">Step 7</a>
+                            </div>
+                    
+                    </div>
 
 
 
-                        <div class="col-md-9" id="regForm">
+                        <div class="col-md-" id="regForm">
 
                             <h2 style="margin-bottom: 40px; text-align: center;">Personal Details</h2>
                             <div id="edit">
@@ -256,7 +325,7 @@
 
                         </div>
 
-                    <div class="col-md-3">asdasdasdasdad</div>
+
 
 
                 </div>
