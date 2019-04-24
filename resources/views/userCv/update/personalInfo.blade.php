@@ -18,14 +18,14 @@
 
     <div style="position: relative;" class="row ">
 
-
-
-        <div class="col-12 ">
+        <div class="col-12">
             <div style="background-color: #F1F1F1" class="card">
                 <div class="card-body">
+                    <div class="col-md-3">asdsdfsdfhgskjdfhgskjdfhgsjdhf</div>
 
 
-                        <div id="regForm">
+
+                        <div class="col-md-9" id="regForm">
 
                             <h2 style="margin-bottom: 40px; text-align: center;">Personal Details</h2>
                             <div id="edit">
@@ -255,6 +255,8 @@
                             </div>
 
                         </div>
+
+                    <div class="col-md-3">asdasdasdasdad</div>
 
 
                 </div>
