@@ -1552,60 +1552,51 @@ CKEDITOR.config.toolbar = [
 
                             selecteds=[];
 
-                          //  console.log(data);
+                           // console.log(data);
 
                             $(':checkbox:checked').prop('checked',false);
 
-                            win = window.open("", "_blank");
-                            win.document.body.innerHTML = data;
+//                            win = window.open("", "_blank");
+//                            win.document.body.innerHTML = data;
+
+
+                            for (var i=0; i<data.length;i++){
+
+
+                                var link = document.createElement("a");
+                                link.download = data[i]['Name'];
+                                var uri = '{{url("public/mailPreview")}}'+"/"+data[i]['Name'];
+                                link.href = uri;
+                                document.body.appendChild(link);
+                                link.click();
+                                document.body.removeChild(link);
+                                delete link;
+
+                            }
+
+                            $.alert({
+                                title: 'Alert!',
+                                type: 'green',
+                                content: 'Mail Preview is Downloaded successfully',
+                                buttons: {
+                                    tryAgain: {
+                                        text: 'Ok',
+                                        btnClass: 'btn-blue',
+                                        action: function(){
+
+                                            location.reload();
+                                        }
+                                    }
+                                }
+                            });
+
+
+
+                          //  location.reload();
 
                            // console.log(data);
 
 
-
-//                            if (data =='1'){
-//
-//                                $.alert({
-//                                    title: 'Alert!',
-//                                    type: 'green',
-//                                    content: 'Mail Send successfully',
-//                                    buttons: {
-//                                        tryAgain: {
-//                                            text: 'Ok',
-//                                            btnClass: 'btn-blue',
-//                                            action: function(){
-//
-//                                                location.reload();
-//                                            }
-//                                        }
-//                                    }
-//                                });
-//
-//
-//                            }
-//                            else if(data=='0'){
-//
-//                                $.alert({
-//                                    title: 'Alert!',
-//                                    type: 'Red',
-//                                    content: 'There is something wrong with the mail',
-//                                    buttons: {
-//                                        tryAgain: {
-//                                            text: 'Ok',
-//                                            btnClass: 'btn-red',
-//                                            action: function () {
-//                                                location.reload();
-//
-//                                            }
-//                                        }
-//
-//                                    }
-//                                });
-//
-//
-//                            }
-//
-//
                         }
 
                     });

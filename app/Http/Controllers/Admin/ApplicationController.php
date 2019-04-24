@@ -872,6 +872,8 @@ class ApplicationController extends Controller
 
 //        $list=array();
 
+        $data=array();
+
         for ($i=0;$i<count($appliedList);$i++) {
 
             $appliedId = $appliedList[$i];
@@ -909,11 +911,10 @@ class ApplicationController extends Controller
                 $objectWriter = \PhpOffice\PhpWord\IOFactory::createWriter($word, 'Word2007');
 
                 $objectWriter->save(public_path('mailPreview'."/").'interviewCard_'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx');
-                $data=array(
+                $data1=array(
                     'Name'=>'interviewCard_'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx',
                 );
-
-
+                array_push($data,$data1);
 
             }
             if ($template=='2'){
@@ -929,14 +930,15 @@ class ApplicationController extends Controller
                 \PhpOffice\PhpWord\Shared\Html::addHtml( $newSection, $html, false, false);
 
                 header('Content-Type: application/octet-stream');
-                header('Content-Disposition: attachment;filename="notSelected.docx"');
+                header('Content-Disposition: attachment;filename="notSelected'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx"');
 
                 $objectWriter = \PhpOffice\PhpWord\IOFactory::createWriter($word, 'Word2007');
 
                 $objectWriter->save(public_path('mailPreview'."/").'notSelected'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx');
-                $data=array(
+                $data2=array(
                     'Name'=>'notSelected'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx',
             );
+                array_push($data,$data2);
 
             }
             if ($template=='3'){
@@ -952,16 +954,22 @@ class ApplicationController extends Controller
                 \PhpOffice\PhpWord\Shared\Html::addHtml( $newSection, $html, false, false);
 
                 header('Content-Type: application/octet-stream');
-                header('Content-Disposition: attachment;filename="panelListed.docx"');
+                header('Content-Disposition: attachment;filename="panelListed'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx"');
 
                 $objectWriter = \PhpOffice\PhpWord\IOFactory::createWriter($word, 'Word2007');
 
-                $objectWriter->save(public_path('mailPreview'."/").'panelListed.docx');
+                $objectWriter->save(public_path('mailPreview'."/").'panelListed'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx');
+
+                $data3=array(
+                    'Name'=>'panelListed'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx',
+                );
+                array_push($data,$data3);
 
 
             }
 
         }
+        return $data;
 
 
 
