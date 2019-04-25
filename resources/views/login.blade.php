@@ -17,6 +17,7 @@
     <link href="{{url('public/assets/css/icons.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{url('public/assets/css/style.css')}}" rel="stylesheet" type="text/css" />
 
+
 </head>
 
 

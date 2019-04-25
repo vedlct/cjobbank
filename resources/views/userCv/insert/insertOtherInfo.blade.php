@@ -20,7 +20,28 @@
             <div style="background-color: #F1F1F1" class="card">
                 <div class="card-body">
 
-                    <form id="regForm" method="post" action="{{route('insert.OthersInfo')}}">
+                    <div class="col-md-3">
+
+                        <div class="sidenav">
+                            <a href="{{route('candidate.cvPersonalInfo')}}">Personal Details</a>
+                            <a href="{{route('candidate.cvQuesObj')}}">Career Objective and Application Information</a>
+                            <a href="{{route('candidate.cvEducation')}}">Education</a>
+                            <a href="{{route('candidate.language.index')}}" >Language</a>
+                            <a href="{{route('candidate.computerSkill.index')}}" >Computer-Skill</a>
+                            <a href="{{route('candidate.skill.index')}}" >Other Skill Information</a>
+                            <a href="{{route('cv.OthersInfo')}}" class="activeNav">Other Information</a>
+                            <a onclick="return false;" href="{{route('candidate.cvTrainingCertificate')}}">Training Certification</a>
+                            <a onclick="return false;" href="{{route('candidate.cvProfessionalCertificate')}}">Professional Certification</a>
+                            <a onclick="return false;" href="{{route('JobExperience.index')}}">Job Experience</a>
+                            <a onclick="return false;" href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
+                            <a onclick="return false;" href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
+                            <a onclick="return false;" href="{{route('refree.index')}}">Referee</a>
+                            <a onclick="return false;" href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas Bangladesh</a>
+                        </div>
+
+                    </div>
+
+                    <form class="col-md-9" id="regForm" method="post" action="{{route('insert.OthersInfo')}}">
                         <!-- One "tab" for each step in the form: -->
 
                         {{csrf_field()}}
