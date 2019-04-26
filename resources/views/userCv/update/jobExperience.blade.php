@@ -5,7 +5,7 @@
     <div class="row ">
 
         <div class="col-12 ">
-            <div class="card">
+            <div class="card updateCard">
                 <div style="background-color: #F1F1F1" class="card-body">
 
                     <div class="col-md-3">
@@ -22,9 +22,9 @@
                             <a href="{{route('candidate.cvProfessionalCertificate')}}">Professional Certification</a>
                             <a class="activeNav" href="{{route('JobExperience.index')}}">Job Experience</a>
                             <a href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
-                            <a onclick="return false;" href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
-                            <a onclick="return false;" href="{{route('refree.index')}}">Referee</a>
-                            <a onclick="return false;" href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas Bangladesh</a>
+                            <a  href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
+                            <a  href="{{route('refree.index')}}">Referee</a>
+                            <a  href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas Bangladesh</a>
                         </div>
 
                     </div>

@@ -37,7 +37,7 @@
     <div class="row ">
 
         <div class="col-12 ">
-            <div class="card">
+            <div class="card updateCard">
                 <div style="background-color: #F1F1F1" class="card-body">
 
                     <div class="col-md-3">

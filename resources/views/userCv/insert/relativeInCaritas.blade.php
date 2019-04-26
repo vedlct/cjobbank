@@ -6,7 +6,7 @@
 
         <div class="col-12 ">
 
-            <div class="card" style="display: block">
+            <div class="card updateCard" style="display: block">
 
 
 

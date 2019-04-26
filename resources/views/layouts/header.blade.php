@@ -146,7 +146,7 @@
         }
 
         .sidenav a {
-            padding: 15px 8px 15px 16px;
+            padding: 8px 8px 8px 16px;
             text-decoration: none;
             color: #000;
             display: block;
@@ -194,6 +194,10 @@
                 }
             }
 
+        }
+
+        .updateCard {
+            height:1500px;
         }
 
 
