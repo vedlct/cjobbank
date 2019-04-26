@@ -20,7 +20,7 @@
                             <a href="{{route('cv.OthersInfo')}}" >Other Information</a>
                             <a href="{{route('candidate.cvTrainingCertificate')}}">Training Certification</a>
                             <a class="activeNav" href="{{route('candidate.cvProfessionalCertificate')}}">Professional Certification</a>
-                            <a onclick="return false;" href="{{route('JobExperience.index')}}">Job Experience</a>
+                            <a <?php if ($hasProfCertificate!='0'){?> onclick="return false;"<?php } ?> href="{{route('JobExperience.index')}}">Job Experience</a>
                             <a onclick="return false;" href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
                             <a onclick="return false;" href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
                             <a onclick="return false;" href="{{route('refree.index')}}">Referee</a>

@@ -53,7 +53,7 @@
                             <a href="{{route('candidate.language.index')}}" >Language</a>
                             <a href="{{route('candidate.computerSkill.index')}}" >Computer-Skill</a>
                             <a href="{{route('candidate.skill.index')}}" class="activeNav">Other Skill Information</a>
-                            <a onclick="return false;" href="{{route('cv.OthersInfo')}}">Other Information</a>
+                            <a <?php if ($hasOtherSkill!='0'){?> onclick="return false;"<?php } ?> href="{{route('cv.OthersInfo')}}">Other Information</a>
                             <a onclick="return false;" href="{{route('candidate.cvTrainingCertificate')}}">Training Certification</a>
                             <a onclick="return false;" href="{{route('candidate.cvProfessionalCertificate')}}">Professional Certification</a>
                             <a onclick="return false;" href="{{route('JobExperience.index')}}">Job Experience</a>
@@ -227,6 +227,7 @@
 
             if ($(this).val()=='1'){
                 $('#otherSkillDiv').show();
+                $("#submitBtn").show();
             }else {
                 $('#otherSkillDiv').hide();
             }
@@ -236,9 +237,11 @@
             if ('<?php echo $hasOtherSkill?>'== '0'){
 
                 $('#otherSkillDiv').hide();
+                $("#submitBtn").hide();
 
             }else if ('<?php echo $hasOtherSkill?>'== '1'){
                 $('#otherSkillDiv').show();
+
 
             }
         });

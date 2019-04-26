@@ -163,16 +163,16 @@ class RelativeInCbController extends Controller
 
         RelativeInCb::destroy($r->relativeId);
 
+
+
         $count=RelativeInCb::where('relativeincb.fkemployeeId',$empId)
 //            ->leftJoin('employee','employee.employeeId','relativeincb.fkemployeeId')
             ->count();
 
         if($count<1){
             Employee::where('employeeId',$empId)
-                ->update(['cvStatus'=>null,'cvCompletedDate' =>null,'relativeInCB'=>0]);
+                ->update(['cvCompletedDate' =>date('Y-m-d'),'relativeInCB'=>0]);
 
-//            Employee::where('fkuserId',Auth::user()->userId)
-//                ->update(['cvCompletedDate'=>null]);
 
 
         }

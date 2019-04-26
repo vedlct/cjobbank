@@ -27,7 +27,7 @@
                             <a href="{{route('candidate.cvTrainingCertificate')}}">Training Certification</a>
                             <a href="{{route('candidate.cvProfessionalCertificate')}}">Professional Certification</a>
                             <a class="activeNav" href="{{route('JobExperience.index')}}">Job Experience</a>
-                            <a onclick="return false;" href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
+                            <a <?php if ($hasProfCertificate!='0'){?> onclick="return false;"<?php } ?> href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
                             <a onclick="return false;" href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
                             <a onclick="return false;" href="{{route('refree.index')}}">Referee</a>
                             <a onclick="return false;" href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas Bangladesh</a>
@@ -79,7 +79,7 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="inputPassword4">Start date<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" required>
+                                        <input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" >
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="inputPassword4">End date</label>
@@ -115,7 +115,7 @@
 
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Type of employment<span style="color: red">*</span></label>
-                                        <select class="form-control" required id="employmentType" name="employmentType[]" >
+                                        <select class="form-control"  id="employmentType" name="employmentType[]" >
 
                                             <option value="" selected>Select employment type</option>
                                             @foreach($employmentType as $eT)
@@ -216,6 +216,7 @@
 
             if ($(this).val()=='1'){
                 $('#EmploymentDiv').show();
+                $("#submitBtn").show();
             }else {
                 $('#EmploymentDiv').hide();
             }
@@ -225,6 +226,7 @@
             if ('<?php echo $hasProfCertificate?>'== '0'){
 
                 $('#EmploymentDiv').hide();
+                $("#submitBtn").hide();
 
             }else if ('<?php echo $hasProfCertificate?>'== '1'){
                 $('#EmploymentDiv').show();
@@ -240,7 +242,7 @@
             var organizationType=document.getElementsByName('organizationType[]');
             var organization=document.getElementsByName('organization[]');
             var degisnation=document.getElementsByName('degisnation[]');
-            var start=document.getElementsByName('start[]');
+            var start=document.getElementsByName('startDate[]');
             var end=document.getElementsByName('endDate[]');
             var address=document.getElementsByName('address[]');
 

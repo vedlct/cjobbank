@@ -41,6 +41,7 @@ class MembershipInSocialNetworkController extends Controller
            ->get();
 
        if($socialMembership->isEmpty()){
+
            return view('userCv.insert.SocialMembership');
        }
 

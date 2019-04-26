@@ -23,7 +23,7 @@
                             <a  href="{{route('JobExperience.index')}}">Job Experience</a>
                             <a  href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
                             <a  class="activeNav" href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
-                            <a  onclick="return false;" href="{{route('refree.index')}}">Referee</a>
+                            <a  id="addfalse" href="{{route('refree.index')}}">Referee</a>
                             <a onclick="return false;" href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas Bangladesh</a>
                         </div>
 
@@ -125,6 +125,19 @@
         $(function () {
             $('#sociaMemberDiv').hide();
             $('#submitBtn').hide();
+
+//            var value=$('input[name=hasProfCertificate]:checked').val();;
+//
+//            console.log(value);
+//            if(value ==1){
+//                $('#sociaMemberDiv').show();
+//                $('#submitBtn').show();
+//            }
+//            else if(value ==0){
+//                $('#sociaMemberDiv').hide();
+//                $('#submitBtn').hide();
+//            }
+
         });
 
         function fixStepIndicator(n) {

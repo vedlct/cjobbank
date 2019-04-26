@@ -22,7 +22,7 @@
                             <a href="{{route('candidate.cvProfessionalCertificate')}}">Professional Certification</a>
                             <a  href="{{route('JobExperience.index')}}">Job Experience</a>
                             <a class="activeNav" href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
-                            <a onclick="return false;" href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
+                            <a <?php if ($hasWorkedInCB!='0'){?> onclick="return false;"<?php } ?> href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
                             <a onclick="return false;" href="{{route('refree.index')}}">Referee</a>
                             <a onclick="return false;" href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas Bangladesh</a>
                         </div>
@@ -162,6 +162,7 @@
 
             if ($(this).val()=='1'){
                 $('#PreviousWorkInCBDiv').show();
+                $("#submitBtn").show();
             }else {
                 $('#PreviousWorkInCBDiv').hide();
             }
@@ -171,6 +172,7 @@
             if ('<?php echo $hasWorkedInCB?>'== '0'){
 
                 $('#PreviousWorkInCBDiv').hide();
+                $("#submitBtn").hide();
 
             }else if ('<?php echo $hasWorkedInCB?>'== '1'){
                 $('#PreviousWorkInCBDiv').show();

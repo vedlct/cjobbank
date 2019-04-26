@@ -36,7 +36,7 @@
 
 
 
-                    <div class="col-md-9" id="regForm" class="tab">
+                    <div  id="regForm" class="tab col-md-9">
 
                         <h2 style="margin-bottom: 30px;">Do you have any relatives working in Caritas Bangladesh?</h2>
 
@@ -63,8 +63,12 @@
                                 <div style="overflow:auto;" id="ques">
                                     <div style="float:right;">
                                         <a href="{{route('refree.index')}}"><button type="button" id="btnPevious" >Back</button></a>
-                                        <a href="{{route('candidate.viewUserCv')}}"><button type="button" id="btnPevious" >Done</button></a>
-                                        <button type="submit" >Save</button>
+                                        @if($employee->cvStatus == 1)
+                                        <a href="{{route('candidate.viewUserCv')}}"><button type="button" id="btntes" >Done</button></a>
+                                        @endif
+
+                                        <button id="submitBtn" type="submit" >Save</button>
+
 
                                         {{--@if($relativeInCB->relativeInCB == '1' || $relativeInCB->relativeInCB== '0' )--}}
                                         {{--<a href="{{route('refree.index')}}"><button type="button" id="nextBtn" >Next</button></a>--}}
@@ -124,7 +128,7 @@
 
                                 <div style="overflow:auto;">
                                     <div style="float:right;">
-                                        <a href="{{route('candidate.membershipInSocialNetwork.index')}}"><button type="button" id="btnPevious" >Back</button></a>
+                                        <a href="{{route('refree.index')}}"><button type="button" id="btnPevious" >Back</button></a>
                                         {{--<a id="btnPevious" class="btn btn-success" href="{{route('JobExperience.index')}}">Back</a>--}}
                                         <button type="submit" id="submitBtn">Save</button>
                                         {{--@if($relativeInCB->relativeInCB == '1' || $relativeInCB->relativeInCB== '0' )--}}
@@ -215,8 +219,12 @@
                     }
                 }
             });
-
+            $("#submitBtn").hide();
             @endif
+            @if($employee->cvStatus != 1)
+            $("#submitBtn").show();
+            @endif
+
 
         });
 
@@ -226,12 +234,14 @@
             $("#removeButton").hide();
 
 
+
             $("#addButton").click(function () {
                 if(counter>10){
                     alert("Only 10 section allow per time!!");
                     return false;
                 }
                 $("#btnPevious").hide();
+
 
                 if (counter == 1 ){
 
@@ -424,10 +434,15 @@
             if (x==1){
                 document.getElementById('ques').style.display= "none";
                 document.getElementById('insertfull').style.display= "block";
+                $("#submitBtn").show();
+                $("#btntes").hide();
+
 
             }else {
                 document.getElementById('ques').style.display= "block";
                 document.getElementById('insertfull').style.display= "none";
+                $("#btntes").hide();
+                $("#submitBtn").show();
             }
         }
     </script>
