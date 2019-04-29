@@ -37,7 +37,7 @@
     <div class="row ">
 
         <div class="col-12 ">
-            <div class="card updateCard">
+            <div class="card updateCardclass="incomplete" ">
                 <div style="background-color: #F1F1F1" class="card-body">
 
                     <div class="col-md-3">
@@ -47,16 +47,16 @@
                             <a href="{{route('candidate.cvQuesObj')}}">Career Objective and Application Information</a>
                             <a href="{{route('candidate.cvEducation')}}">Education</a>
                             <a href="{{route('candidate.language.index')}}" class="activeNav">Language</a>
-                            <a onclick="return false;" href="{{route('candidate.computerSkill.index')}}">Computer-Skill</a>
-                            <a onclick="return false;" href="{{route('candidate.skill.index')}}">Other Skill Information</a>
-                            <a onclick="return false;" href="{{route('cv.OthersInfo')}}">Other Information</a>
-                            <a onclick="return false;" href="{{route('candidate.cvTrainingCertificate')}}">Training Certification</a>
-                            <a onclick="return false;" href="{{route('candidate.cvProfessionalCertificate')}}">Professional Certification</a>
-                            <a onclick="return false;" href="{{route('JobExperience.index')}}">Job Experience</a>
-                            <a onclick="return false;" href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
-                            <a onclick="return false;" href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
-                            <a onclick="return false;" href="{{route('refree.index')}}">Referee</a>
-                            <a onclick="return false;" href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas Bangladesh</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.computerSkill.index')}}">Computer-Skill</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.skill.index')}}">Other Skill Information</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('cv.OthersInfo')}}">Other Information</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.cvTrainingCertificate')}}">Training Certification</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.cvProfessionalCertificate')}}">Professional Certification</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('JobExperience.index')}}">Job Experience</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('refree.index')}}">Referee</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas Bangladesh</a>
                         </div>
 
                     </div>

@@ -20,11 +20,11 @@
                             <a href="{{route('cv.OthersInfo')}}" >Other Information</a>
                             <a href="{{route('candidate.cvTrainingCertificate')}}">Training Certification</a>
                             <a class="activeNav" href="{{route('candidate.cvProfessionalCertificate')}}">Professional Certification</a>
-                            <a <?php if ($hasProfCertificate!='0'){?> onclick="return false;"<?php } ?> href="{{route('JobExperience.index')}}">Job Experience</a>
-                            <a onclick="return false;" href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
-                            <a onclick="return false;" href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
-                            <a onclick="return false;" href="{{route('refree.index')}}">Referee</a>
-                            <a onclick="return false;" href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas Bangladesh</a>
+                            <a <?php if ($hasProfCertificate!='0'){?> onclick="return false;" class="incomplete" <?php } ?> href="{{route('JobExperience.index')}}">Job Experience</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('refree.index')}}">Referee</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas Bangladesh</a>
                         </div>
 
                     </div>

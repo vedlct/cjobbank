@@ -510,24 +510,24 @@
 
 <script>
 
-    @if(Session::has('message') && $allEmp != null &&  $allEmp->cvStatus == null)
+    {{--@if(Session::has('message') && $allEmp != null &&  $allEmp->cvStatus == null)--}}
 
-    $.alert({
-        title: 'Error',
-        type: 'red',
-        content: 'Your CV is not Completed yet,Please Complete First',
-        buttons: {
-            tryAgain: {
-                text: 'Ok',
-                btnClass: 'btn-green',
-                action: function () {
+    {{--$.alert({--}}
+        {{--title: 'Error',--}}
+        {{--type: 'red',--}}
+        {{--content: 'Your CV is not Completed yet,Please Complete First',--}}
+        {{--buttons: {--}}
+            {{--tryAgain: {--}}
+                {{--text: 'Ok',--}}
+                {{--btnClass: 'btn-green',--}}
+                {{--action: function () {--}}
 
-                }
-            }
-        }
-    });
+                {{--}--}}
+            {{--}--}}
+        {{--}--}}
+    {{--});--}}
 
-    @endif
+    {{--@endif--}}
     @if(Session::has('message') && $msg != null)
 
     $.alert({

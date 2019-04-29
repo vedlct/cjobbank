@@ -164,7 +164,12 @@
             background: #1FB0E5;
         }
 
-        @media only screen and (max-width: 1300px) and (min-width: 801px) {
+        .sidenav .incomplete:hover {
+            background: transparent;
+            color:#000;
+        }
+
+        @media only screen and (max-width: 1450px) and (min-width: 801px) {
             .sidenav {
                 width: 250px;
             }
@@ -182,7 +187,7 @@
                 text-align: center;
                 float: none;
             }
-
+        }
             @media screen and (max-width: 500px) {
                 .sidenav {
                     width: 100%;
@@ -194,13 +199,19 @@
                 }
             }
 
-        }
 
-        .updateCard {
+
+        @media screen and (min-width: 1000px) {
+            .updateCard {
             height:1500px;
+            }
         }
 
-
+        /*@media screen and (max-width: 500px) {*/
+            /*.updateCard {*/
+                /*height:3000px;*/
+            /*}*/
+        /*}*/
 
 
 

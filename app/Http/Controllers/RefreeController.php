@@ -128,9 +128,6 @@ class RefreeController extends Controller
 
         if($count<=2){
 
-
-
-
             Session::flash('error-message', 'Candidate must have atleast 2 reference');
 
         }else{
