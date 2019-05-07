@@ -133,7 +133,7 @@ class EmployeeController extends Controller
                 $personalInfo = Employee::select('emp_ques_obj.objective', 'firstName', 'lastName',
                     'fathersName', 'mothersName', 'gender', 'personalMobile',
                     'dateOfBirth', 'email', 'presentAddress', 'image', 'religionName', 'nationalityName', 'nationalId', 'parmanentAddress',
-                    'passport', 'bloodGroup', 'maritalStatus')
+                    'passport', 'bloodGroup', 'maritalStatus','sign')
                     ->leftJoin('religion', 'religion.religionId', 'fkreligionId')
                     ->leftJoin('nationality', 'nationality.nationalityId', 'fknationalityId')
                     ->leftJoin('emp_ques_obj', 'emp_ques_obj.empId', 'employee.employeeId')

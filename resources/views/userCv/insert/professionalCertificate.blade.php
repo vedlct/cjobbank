@@ -255,7 +255,7 @@
         $('#resultSydtem').on('change', function() {
 
             var resultSydtem =$('#resultSydtem').val();
-            if (resultSydtem == "others"){
+            if (resultSydtem == "{{OTHERS}}"){
 
                 $("#resultSydtemNameDiv").show();
             }else {
@@ -275,7 +275,7 @@
 
             var resultSydtem=document.getElementById("resultSydtem"+x).value;
 
-            if (resultSydtem == "others"){
+            if (resultSydtem == "{{OTHERS}}"){
 
                 $("#resultSydtemNameDiv"+x).show();
             }else {

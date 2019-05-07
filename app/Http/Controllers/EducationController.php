@@ -140,7 +140,7 @@ class EducationController extends Controller
         for($i=0;$i<count($r->degree);$i++){
             $professional=new Education();
 
-            if ($r->degree[$i]=='others'){
+            if ($r->degree[$i]==OTHERS){
                 $degreeName=new Degree();
                 $degreeName->degreeName=$r->degreeName[$i];
                 $degreeName->educationLevelId=$r->educationLevel[$i];
@@ -154,7 +154,7 @@ class EducationController extends Controller
 
             }
 
-            if ($r->board[$i]=='others'){
+            if ($r->board[$i]==OTHERS){
 
                 $boardName=new Board();
                 $boardName->boardName=$r->boardName[$i];
@@ -167,7 +167,7 @@ class EducationController extends Controller
             }
 
 
-            if ($r->resultSystem[$i]=='others'){
+            if ($r->resultSystem[$i]==OTHERS){
 
                 $professional->resultSystem=4;
                 $professional->resultSystemName=$r->resultSydtemName[$i];
@@ -180,7 +180,7 @@ class EducationController extends Controller
                 $eduMajor=new Educationmajor();
                 $eduMajor->educationMajorName=$r->subjectName[$i];
 
-                if ($r->degree[$i]=='others'){
+                if ($r->degree[$i]==OTHERS){
                     $eduMajor->fkDegreeId=$degreeName->degreeId;
                 }else{
                     $eduMajor->fkDegreeId=$r->degree[$i];
@@ -244,7 +244,7 @@ class EducationController extends Controller
     {
         $personalEducation=Education::findOrFail($r->educationId);
 
-        if ($r->degree=='others'){
+        if ($r->degree==OTHERS){
             $degreeName=new Degree();
             $degreeName->degreeName=$r->degreeName;
             $degreeName->educationLevelId=$r->educationLevel;
@@ -258,7 +258,7 @@ class EducationController extends Controller
 
         }
 
-        if ($r->board=='others'){
+        if ($r->board==OTHERS){
 
             $boardName=new Board();
             $boardName->boardName=$r->boardName;
@@ -270,7 +270,7 @@ class EducationController extends Controller
             $personalEducation->fkboardId=$r->board;
         }
 
-        if ($r->resultSystem=='others'){
+        if ($r->resultSystem==OTHERS){
 
             $personalEducation->resultSystem=4;
             $personalEducation->resultSystemName=$r->resultSydtemName;
@@ -284,7 +284,7 @@ class EducationController extends Controller
             $eduMajor=new Educationmajor();
             $eduMajor->educationMajorName=$r->subjectName;
 
-            if ($r->degree=='others'){
+            if ($r->degree==OTHERS){
                 $eduMajor->fkDegreeId=$degreeName->degreeId;
             }else{
                 $eduMajor->fkDegreeId=$r->degree;

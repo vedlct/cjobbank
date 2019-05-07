@@ -436,7 +436,7 @@
         $('#skill').on('change', function() {
 
             var skill =$('#skill').val();
-            if (skill == "others"){
+            if (skill == "{{OTHERS}}"){
 
                 $("#otherSkillNameDiv").show();
             }else {
@@ -455,7 +455,7 @@
 
 
             var skill =$('#skill'+x).val();
-            if (skill == "others"){
+            if (skill == "{{OTHERS}}"){
 
                 $("#otherSkillNameDiv"+x).show();
             }else {

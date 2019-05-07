@@ -82,7 +82,7 @@
                                         @foreach($employeeCvQuesObjQuesAns as $empCvObjQues)
 
                                             <div class="form-group col-md-12">
-                                                <label for="">Ques-{{$st}}: {{$empCvObjQues->ques}}<span style="color: red">*</span></label>
+                                                <label for="">Ques-{{$st}}: {{$empCvObjQues->ques}}<span style="color: red">*</span></label><br>
                                                 {{$empCvObjQues->ans}}
 
                                             </div>

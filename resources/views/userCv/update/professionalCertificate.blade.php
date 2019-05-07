@@ -279,7 +279,7 @@
 
             var resultSydtem=document.getElementById("resultSydtem"+x).value;
 
-            if (resultSydtem == "others"){
+            if (resultSydtem == "{{OTHERS}}"){
 
                 $("#resultSydtemNameDiv"+x).show();
             }else {

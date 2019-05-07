@@ -83,6 +83,7 @@ class JobExperienceController extends Controller
        $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
 
        $emp=Employee::findOrFail($employee->employeeId);
+
        if ($r->hasProfCertificate==0){
 
            $emp->hasJobExp=0;

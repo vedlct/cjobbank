@@ -228,7 +228,7 @@
 
 
                 var major =$('#majorSub'+x).val();
-                if (major == "others"){
+                if (major == "{{OTHERS}}"){
 
                     $("#subjectNameDiv"+x).show();
                 }else {
@@ -360,7 +360,7 @@
                         var major=$('#majorSub'+(counter-1)).val();
                         var universityType=$('#universityType'+(counter-1)).val();
 
-                        if(major=="others" && $("#subjectName"+(counter-1)).val()=="" ){
+                        if(major=="{{OTHERS}}" && $("#subjectName"+(counter-1)).val()=="" ){
                             var errorMsg='Please type a subject name first!!'
                             validationError(errorMsg);
                             return false;
@@ -708,7 +708,7 @@
                 var degree=document.getElementById("degree"+btn).value;
 
 
-                if (degree == "others"){
+                if (degree == "{{OTHERS}}"){
 
                     $("#degreeNameDiv"+btn).show();
                     $("#subjectNameDiv"+btn).show();
@@ -749,7 +749,7 @@
                 var board=document.getElementById("board"+x).value;
 
 
-                if (board == "others"){
+                if (board == "{{OTHERS}}"){
 
                     $("#boardNameDiv"+btn).show();
                 }else {
@@ -766,7 +766,7 @@
 
                 var resultSydtem=document.getElementById("resultSydtem"+x).value;
 
-                if (resultSydtem == "others"){
+                if (resultSydtem == "{{OTHERS}}"){
 
                     $("#resultSydtemNameDiv"+btn).show();
                 }else {

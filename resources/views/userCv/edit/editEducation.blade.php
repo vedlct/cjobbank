@@ -183,7 +183,7 @@
     $('#majorSub').on('change', function() {
 
         var major =$('#majorSub').val();
-        if (major == "others"){
+        if (major == "{{OTHERS}}"){
 
             $("#subjectNameDiv").show();
         }else {
@@ -196,7 +196,7 @@
     $('#board').on('change', function() {
 
         var board =$('#board').val();
-        if (board == "others"){
+        if (board == "{{OTHERS}}"){
 
             $("#boardNameDiv").show();
         }else {
@@ -282,7 +282,7 @@
     $('#resultSydtem').on('change', function() {
 
         var resultSydtem =$('#resultSydtem').val();
-        if (resultSydtem == "others"){
+        if (resultSydtem == "{{OTHERS}}"){
 
             $("#resultSydtemNameDiv").show();
         }else {
@@ -301,7 +301,7 @@
 
 
         var degree =$('#degree').val();
-        if (degree == "others"){
+        if (degree == "{{OTHERS}}"){
 
             $("#degreeNameDiv").show();
             $("#subjectNameDiv").show();
@@ -348,7 +348,7 @@
 
         var universityType=$('#universityType').val();
 
-        if(major=="others" && $("#subjectName").val()=="" ){
+        if(major=="{{OTHERS}}" && $("#subjectName").val()=="" ){
             var errorMsg='Please Type a Subject Name First!!'
             validationError(errorMsg);
             return false;

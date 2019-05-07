@@ -216,7 +216,10 @@
 
                         if(endDate[i].value!=""){
 
-                            if(startDate[i].value > endDate[i].value){
+//                            alert(endDate[i].value);
+//                            alert(startDate[i].value);
+
+                            if(Date.parse(startDate[i].value) > Date.parse(endDate[i].value)){
 
                                 var errorMsg='start date must be less then end date';
                                 validationError(errorMsg);

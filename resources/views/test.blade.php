@@ -356,7 +356,7 @@
 
             <tr>
                 <td  style="border: none;">
-                    <label> Blood Group: </label>{{$personalInfo->bloodGroup}}
+                    <label> Blood Group: </label>{{strtoupper($personalInfo->bloodGroup)}}
                 </td>
 
 
@@ -458,6 +458,7 @@
             </tr>
         </table>
 
+
         <table border="0" style="width:100%; margin-top: 10px; border: none;">
 
             @php $count=1;@endphp
@@ -485,6 +486,20 @@
 
 
         </table>
+        <table border="0" style="width:100%; margin-top: 25px; border: none;">
+
+            <b>Declaration:</b> I do hereby declare that the above information is true and correct to the best of my knowledge.
+
+            <tr>
+
+                <td style="width: 13%; border: none; "><img height="100px" width="100px" src="{{url('public/candidateSigns/thumb').'/'.$personalInfo->sign}}" alt=""></td>
+            </tr>
+            <tr>
+                <td style="width: 13%; border: none; ">&nbsp;&nbsp;Signature</td>
+            </tr>
+        </table>
+
+
 
 
     {{--</div>--}}

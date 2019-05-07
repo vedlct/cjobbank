@@ -175,7 +175,7 @@
     $('#resultSydtem').on('change', function() {
 
         var resultSydtem =$('#resultSydtem').val();
-        if (resultSydtem == "others"){
+        if (resultSydtem == "{{OTHERS}}"){
 
             $("#resultSydtemNameDiv").show();
         }else {
