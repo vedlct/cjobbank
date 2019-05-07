@@ -309,17 +309,17 @@
                     return false;
 
                 }
-                // if(end[i].value != "") {
-                //
-                //
-                //     if (Date.parse(end[i].value) < Date.parse(start[i].value)) {
-                //
-                //         var errorMsg = 'End date should after start date!!';
-                //         validationError(errorMsg);
-                //         return false;
-                //
-                //     }
-                // }
+                 if(end[i].value != "") {
+
+
+                     if (Date.parse(end[i].value) < Date.parse(start[i].value)) {
+
+                         var errorMsg = 'End date should after start date!!';
+                         validationError(errorMsg);
+                         return false;
+
+                     }
+                 }
 
 //                if($.trim(address[i].value)==""){
 //
@@ -596,17 +596,17 @@
                         return false;
 
                     }
-                    // if(end != "") {
-                    //
-                    //
-                    //     if (Date.parse(end) < Date.parse(start)) {
-                    //
-                    //         var errorMsg = 'End date should after start date!!';
-                    //         validationError(errorMsg);
-                    //         return false;
-                    //
-                    //     }
-                    // }
+                     if(end != "") {
+
+
+                         if (Date.parse(end) < Date.parse(start)) {
+
+                             var errorMsg = 'End date should after start date!!';
+                             validationError(errorMsg);
+                             return false;
+
+                         }
+                     }
                     //
                     // if($.trim(address)==""){
                     //

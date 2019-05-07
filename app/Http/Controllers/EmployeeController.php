@@ -19,6 +19,7 @@ use App\Religion;
 
 use App\Traning;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Session;
 use Auth;
 use Image;
@@ -163,9 +164,14 @@ class EmployeeController extends Controller
                 $professionalCertificate = ProfessionalQualification::where('fkemployeeId', $empId)
                     ->get();
 
-                $jobExperience = JobExperience::where('fkemployeeId', $empId)
+                $jobExperience = JobExperience::select('jobexperience.*')->where('fkemployeeId', $empId)
                     ->orderBy('startDate', 'desc')
+                    ->addSelect(DB::raw("TIMESTAMPDIFF(YEAR,`jobexperience`.`startDate`,`jobexperience`.`endDate`) as expYear"),
+                        DB::raw("TIMESTAMPDIFF(MONTH,`jobexperience`.`startDate`,`jobexperience`.`endDate`) as expMonth"))
                     ->get();
+
+                //return $jobExperience;
+
 
                 $trainingCertificate = Traning::where('fkemployeeId', $empId)
                     ->orderBy('startDate', 'desc')
