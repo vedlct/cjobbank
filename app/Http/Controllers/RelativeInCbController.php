@@ -86,6 +86,7 @@ class RelativeInCbController extends Controller
 
             Employee::where('fkuserId',Auth::user()->userId)
                 ->update(['cvCompletedDate'=>date('Y-m-d')]);
+            Session::flash('CVcomplete', 'done');
 
         }else{
 
@@ -94,6 +95,7 @@ class RelativeInCbController extends Controller
 
             Employee::where('fkuserId',Auth::user()->userId)
                 ->update(['cvCompletedDate'=>null]);
+            Session::flash('CVcomplete', 'notDone');
         }
 
 
@@ -102,6 +104,7 @@ class RelativeInCbController extends Controller
             ->update(['relativeInCB' => 1]);
 
         Session::flash('message', 'Relative Added Successfully');
+
 
         return redirect()->route('relativeInCaritas.getRelationInfo');
     }
@@ -118,6 +121,7 @@ class RelativeInCbController extends Controller
 
             Employee::where('fkuserId', Auth::user()->userId)
                 ->update(['relativeInCB' => 1]);
+            Session::flash('CVcomplete', 'done');
 
             return redirect()->route('relativeInCaritas.getRelationInfo');
         }else{
@@ -132,6 +136,7 @@ class RelativeInCbController extends Controller
 //                ->update(['cvCompletedDate'=>date('Y-m-d')]);
 
             Session::flash('message', 'Relative Information Added Successfully');
+            Session::flash('CVcomplete', 'done');
             return redirect()->route('relativeInCaritas.getRelationInfo');
         }
     }
