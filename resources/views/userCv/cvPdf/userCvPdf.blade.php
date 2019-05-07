@@ -383,8 +383,14 @@
                             </td>
                         </tr>
                         <tr>
-                            <td  style="border: none;">
+                            <td  style="border: none;" colspan="2">
                                 <label>Permanent address :</label> {{$personalInfo->parmanentAddress}}
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td  style="border: none;" >
+                                <label>Expected salary :</label> {{$salary->expectedSalary}}
                             </td>
                         </tr>
 
@@ -426,6 +432,82 @@
                         </tr>
                     </table>
                     @endif
+
+
+
+{{--                    =========--}}
+
+                    <table border="0" style="width:100%; margin-top: 10px; border: none;">
+                    </table>
+
+                    <table border="0" style="width:100%; margin-top: 5px; border: none;">
+                        <tr>
+                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Languages</b> </td>
+                        </tr>
+                    </table>
+
+                    <table border="0" style="width:100%; margin-top: 5px; border: none;">
+
+                        <tr style=" border: none;">
+                            @if($languageNames->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @endif
+                            @foreach($languageNames as $lname)
+                                <td>
+                                    {{$lname->languagename}}
+                                </td>
+
+
+                                @foreach($languages->where('fklanguageHead',$lname->fklanguageHead) as $lan)
+
+                                <td>
+                                    {{$lan->languageSkillName}} : {{$lan->rate}}
+
+                                </td>
+
+                                @endforeach
+                            @endforeach
+
+                        </tr>
+
+
+                    </table>
+
+
+
+
+
+                    <table border="0" style="width:100%; margin-top: 10px; border: none;">
+                    </table>
+
+                    <table border="0" style="width:100%; margin-top: 5px; border: none;">
+                        <tr>
+                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Membership in Professional Network</b> </td>
+                        </tr>
+                    </table>
+
+                    <table border="0" style="width:100%; margin-top: 5px; border: none;">
+
+                        <tr style=" border: none;">
+                            @if($memberShip->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @endif
+                            @foreach($memberShip as $mem)
+
+                                <td style="border: none;">
+                                    <span class="bold"> Network name :</span>{{$mem->networkName}}    &nbsp; &nbsp;<span class="bold">Membership type:</span>{{$mem->membershipType}}<br>
+                                    <span class="bold">  Duration:</span> &nbsp;&nbsp;&nbsp;{{$mem->duration}} <br>
+
+                                </td>
+
+                            @endforeach
+
+                        </tr>
+
+
+                    </table>
+
+
+{{--                    ====--}}
+
+
+
 
                     <table border="0" style="width:100%; margin-top: 10px; border: none;">
                     </table>

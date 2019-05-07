@@ -178,7 +178,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'C:\\xampp\\htdocs\\cjobbank\\storage\\framework/cache/data',
+        'path' => '/opt/lampp/htdocs/cjobbank/storage/framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -329,10 +329,10 @@
     'orientation' => 'portrait',
     'defines' => 
     array (
-      'font_dir' => 'C:\\xampp\\htdocs\\cjobbank\\storage\\fonts/',
-      'font_cache' => 'C:\\xampp\\htdocs\\cjobbank\\storage\\fonts/',
-      'temp_dir' => 'C:\\Users\\TCL\\AppData\\Local\\Temp',
-      'chroot' => 'C:\\xampp\\htdocs\\cjobbank',
+      'font_dir' => '/opt/lampp/htdocs/cjobbank/storage/fonts/',
+      'font_cache' => '/opt/lampp/htdocs/cjobbank/storage/fonts/',
+      'temp_dir' => '/tmp',
+      'chroot' => '/opt/lampp/htdocs/cjobbank',
       'enable_font_subsetting' => false,
       'pdf_backend' => 'CPDF',
       'default_media_type' => 'screen',
@@ -342,7 +342,7 @@
       'enable_php' => true,
       'enable_javascript' => true,
       'enable_remote' => true,
-      'font_height_ratio' => 1.1000000000000001,
+      'font_height_ratio' => 1.1,
       'enable_html5_parser' => false,
       'DOMPDF_UNICODE_ENABLED' => true,
     ),
@@ -363,7 +363,7 @@
         'host' => 'localhost',
         'port' => 11211,
       ),
-      'dir' => 'C:\\xampp\\htdocs\\cjobbank\\storage\\cache',
+      'dir' => '/opt/lampp/htdocs/cjobbank/storage/cache',
     ),
     'properties' => 
     array (
@@ -429,7 +429,7 @@
       ),
       'store' => 
       array (
-        'path' => 'C:\\xampp\\htdocs\\cjobbank\\storage\\exports',
+        'path' => '/opt/lampp/htdocs/cjobbank/storage/exports',
         'returnInfo' => false,
       ),
       'pdf' => 
@@ -439,15 +439,15 @@
         array (
           'DomPDF' => 
           array (
-            'path' => 'C:\\xampp\\htdocs\\cjobbank\\vendor/dompdf/dompdf/',
+            'path' => '/opt/lampp/htdocs/cjobbank/vendor/dompdf/dompdf/',
           ),
           'tcPDF' => 
           array (
-            'path' => 'C:\\xampp\\htdocs\\cjobbank\\vendor/tecnick.com/tcpdf/',
+            'path' => '/opt/lampp/htdocs/cjobbank/vendor/tecnick.com/tcpdf/',
           ),
           'mPDF' => 
           array (
-            'path' => 'C:\\xampp\\htdocs\\cjobbank\\vendor/mpdf/mpdf/',
+            'path' => '/opt/lampp/htdocs/cjobbank/vendor/mpdf/mpdf/',
           ),
         ),
       ),
@@ -615,12 +615,12 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\xampp\\htdocs\\cjobbank\\storage\\app',
+        'root' => '/opt/lampp/htdocs/cjobbank/storage/app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\xampp\\htdocs\\cjobbank\\storage\\app/public',
+        'root' => '/opt/lampp/htdocs/cjobbank/storage/app/public',
         'url' => 'http://localhost/storage',
         'visibility' => 'public',
       ),
@@ -657,7 +657,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'C:\\xampp\\htdocs\\cjobbank\\resources\\views/vendor/mail',
+        0 => '/opt/lampp/htdocs/cjobbank/resources/views/vendor/mail',
       ),
     ),
     'stream' => 
@@ -679,8 +679,8 @@
     'keywords' => '',
     'creator' => 'Laravel Pdf',
     'display_mode' => 'fullpage',
-    'tempDir' => 'C:\\xampp\\htdocs\\cjobbank\\../temp/',
-    'font_path' => 'C:\\xampp\\htdocs\\cjobbank\\public\\fonts/',
+    'tempDir' => '/opt/lampp/htdocs/cjobbank/../temp/',
+    'font_path' => '/opt/lampp/htdocs/cjobbank/public/fonts/',
     'font_data' => 
     array (
       'bangla' => 
@@ -770,7 +770,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'C:\\xampp\\htdocs\\cjobbank\\storage\\framework/sessions',
+    'files' => '/opt/lampp/htdocs/cjobbank/storage/framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -814,8 +814,8 @@
   array (
     'paths' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\cjobbank\\resources\\views',
+      0 => '/opt/lampp/htdocs/cjobbank/resources/views',
     ),
-    'compiled' => 'C:\\xampp\\htdocs\\cjobbank\\storage\\framework\\views',
+    'compiled' => '/opt/lampp/htdocs/cjobbank/storage/framework/views',
   ),
 );

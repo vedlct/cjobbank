@@ -6,13 +6,17 @@ namespace App\Http\Controllers;
 use App\Education;
 use App\Employee;
 use App\EmployeeComputerSkill;
+use App\EmployeeLanguage;
 use App\EmployeeOtherInfo;
 use App\EmpOtherSkill;
+use App\EmpQuestionObj;
 use App\Ethnicity;
 use App\Jobapply;
 use App\JobExperience;
+use App\MembershipInSocialNetwork;
 use App\Nationality;
 use App\ProfessionalQualification;
+use App\QuestionObjective;
 use App\Refree;
 use App\RelativeInCb;
 use App\Religion;
@@ -178,10 +182,32 @@ class EmployeeController extends Controller
                 $empOtherInfo = EmployeeOtherInfo::where('fk_empId', $empId)
                     ->first();
 
-//                return $empOtherInfo;
+                $memberShip=MembershipInSocialNetwork::where('fkemployeeId',$empId)->get();
+
+
+//                return $memberShip;
+
+                $languageNames=EmployeeLanguage::select('fklanguageHead','languagename')
+                    ->where('fkemployeeId',$empId)
+                    ->leftJoin('languagehead','languagehead.id','emp_language.fklanguageHead')
+                    ->groupBy('fklanguageHead')
+                    ->get();
+
+                $languages=EmployeeLanguage::where('fkemployeeId',$empId)
+                    ->leftJoin('languageskill','languageskill.id','emp_language.fklanguageSkill')
+                    ->get();
+
+
+
+//                return $languages;
+                $salary=QuestionObjective::where('empId',$empId)->first();
+
+
+//                return $salary;
+
                 return view('userCv.cvPdf.userCvPdf', compact('allEmp', 'personalInfo', 'education',
                     'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree',
-                    'relativeCb', 'empOtherSkillls', 'empComputerSkill', 'empOtherInfo'));
+                    'relativeCb', 'empOtherSkillls', 'empComputerSkill', 'empOtherInfo','memberShip','languages','languageNames','salary'));
 
 
             }
