@@ -1,6 +1,11 @@
 @extends('main')
 
 @section('content')
+    <style>
+        .updateCard {
+            height:2500px;
+        }
+    </style>
 
     <div class="row ">
 
