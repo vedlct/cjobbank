@@ -20,11 +20,11 @@
                             <a href="{{route('cv.OthersInfo')}}" >Other Information</a>
                             <a href="{{route('candidate.cvTrainingCertificate')}}">Training Certification</a>
                             <a href="{{route('candidate.cvProfessionalCertificate')}}">Professional Certification</a>
-                            <a  href="{{route('JobExperience.index')}}">Job Experience</a>
-                            <a  href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
-                            <a   href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
-                            <a    href="{{route('refree.index')}}">Referee</a>
-                            <a  class="activeNav" href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas Bangladesh</a>
+                            <a href="{{route('JobExperience.index')}}">Job Experience</a>
+                            <a href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
+                            <a href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
+                            <a href="{{route('refree.index')}}">Referee</a>
+                            <a class="activeNav" href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas Bangladesh</a>
                         </div>
 
                     </div>
@@ -206,7 +206,8 @@
 ////            $('#end').datepicker({
 //                format: 'yyyy-m-d'
 //            });
-            @if($employee->cvStatus==1)
+            @if(Session::has('CVcomplete'))
+            @if(Session::get('CVcomplete')=='done' && $employee->cvStatus == 1)
 
                 $.alert({
                 title: 'Congratulation',
@@ -223,6 +224,7 @@
                 }
             });
 
+            @endif
             @endif
         });
 

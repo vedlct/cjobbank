@@ -41,16 +41,16 @@
                 </div>
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Organization address</label>
-                    <textarea  class="form-control" name="address"id="address" placeholder="address">{{$experience->address}} </textarea>
+                    <textarea  class="form-control" rows="5" name="address"id="address" placeholder="address">{{$experience->address}} </textarea>
                 </div>
 
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Major responsibilities<span id="notice">Max limit 5000 character</span> </label>
-                    <textarea class="form-control" name="majorResponsibilities" maxlength="5000"  id="majorResponsibilities" placeholder="Major responsibilities">{{$experience->majorResponsibilities}}</textarea>
+                    <textarea class="form-control" rows="15" name="majorResponsibilities" maxlength="5000"  id="majorResponsibilities" placeholder="Major responsibilities">{{$experience->majorResponsibilities}}</textarea>
                 </div>
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Key achievement<span id="notice">Max limit 5000 character</span> </label>
-                    <textarea class="form-control" name="keyAchivement" maxlength="5000"  id="keyAchivement" placeholder="Key Achievement">{{$experience->keyAchivement}}</textarea>
+                    <textarea class="form-control" rows="15" name="keyAchivement" maxlength="5000"  id="keyAchivement" placeholder="Key Achievement">{{$experience->keyAchivement}}</textarea>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">Name of supervisor</label>
@@ -72,7 +72,7 @@
 
                         <option value="" selected>Select Employment Type</option>
                         @foreach($employmentType as $eT)
-                            <option value="{{$eT->employmentTypeName}}">{{$eT->employmentTypeName}}</option>
+                            <option @if($eT->employmentTypeName == $experience->employmentType)selected @endif value="{{$eT->employmentTypeName}}">{{$eT->employmentTypeName}}</option>
 
                         @endforeach
                         <option @if($experience->employmentType == OTHERS)selected @endif value="{{OTHERS}}">Others</option>

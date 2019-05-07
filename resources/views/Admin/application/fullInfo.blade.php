@@ -91,7 +91,7 @@
                 {{++$temp}}. Degree title : {{$edu->degreeName}}<br>
                 Major Subject: {{$edu->educationMajorName}}<br>
                 Passing Year: {{$edu->passingYear}} , Board: {{$edu->boardName}}<br>
-                Name of Institution/school/college/versity: <br>
+                Name of Institution/school/college/university: <br>
                     {{$edu->institutionName}}<br>
                 Status : @if($edu->status==1) Ongoing @elseif($edu->status==2) Complete @endif , Result: {{$edu->result}}<br><br>
 

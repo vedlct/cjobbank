@@ -203,7 +203,8 @@
 //                format: 'yyyy-m-d'
 //            });
 
-            @if($employee->cvStatus==1)
+            @if(Session::has('CVcomplete'))
+            @if(Session::get('CVcomplete')=='done' && $employee->cvStatus == 1)
 
             $.alert({
                 title: 'Congratulation',
@@ -220,6 +221,7 @@
                 }
             });
             $("#submitBtn").hide();
+            @endif
             @endif
             @if($employee->cvStatus != 1)
             $("#submitBtn").show();
