@@ -394,8 +394,7 @@
                             </td>
                         </tr>
 
-                        {{--bloodGroup--}}
-                        {{--maritalStatus--}}
+
 
 
                     </table>
