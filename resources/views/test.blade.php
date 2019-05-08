@@ -150,6 +150,12 @@
     @endif
         </table>
 
+        @if(!$jobExperience->isEmpty() && count($jobExperience) >=2)
+            <p style="page-break-after: always;"></p>
+        @elseif($jobExperience->isEmpty()&& count($trainingCertificate)>=2)
+            <p style="page-break-after: always;"></p>
+        @endif
+
 
 
         <table border="0" style="width:100%; margin-top: 15px; border: none;">
@@ -185,9 +191,13 @@
 
         </table>
 
-        {{--@if($trainingCertificate->isEmpty())--}}
-        {{--<p style="page-break-after: always;"></p>--}}
-        {{--@endif--}}
+        @if($trainingCertificate->isEmpty()&& $jobExperience->isEmpty() )
+        <p style="page-break-after: always;"></p>
+        @elseif($trainingCertificate->isEmpty()&& count($jobExperience)<2)
+            <p style="page-break-after: always;"></p>
+        @elseif(count($jobExperience)<2 && count($trainingCertificate)<2)
+            <p style="page-break-after: always;"></p>
+        @endif
 
         <table border="0" style="width:100%;border: none;">
             <tr>
@@ -247,7 +257,7 @@
 
         {{--<p style="page-break-after: always"></p>--}}
 
-        <table border="0" style="width:100%; margin-top: 25px; border: none;">
+        <table border="0" style="width:100%; margin-top: 5px; border: none;">
             <tr>
                 <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Other Skill</b> </td>
             </tr>
@@ -310,7 +320,7 @@
 
 
 {{--        <p style="page-break-after: always"></p><br>--}}
-        <table border="0" style="width:100%; margin-top: 25px; border: none;">
+        <table border="0" style="width:100%; margin-top: 5px; border: none;">
             <tr>
                 <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Personal Info</b> </td>
             </tr>
@@ -406,31 +416,39 @@
 
                 <tr>
                     <td  style="border: none;">
-                        <label>Extracurricular activities :</label>{{$empOtherInfo->extraCurricularActivities}}
+                        <label><b>Extracurricular activities :</b></label>{{$empOtherInfo->extraCurricularActivities}}
                     </td>
                 </tr>
                 <tr>
 
                     <td style="border: none;">
-                        <label> Interests :</label>{{$empOtherInfo->interests}}
+                        <label> <b>Interests :</b></label>{{$empOtherInfo->interests}}
                     </td>
                 </tr>
                 <tr>
                     <td style="border: none;">
-                        <label> Awards received :</label>{{$empOtherInfo->awardReceived}}
+                        <label> <b>Awards received :</b></label>{{$empOtherInfo->awardReceived}}
                     </td>
                 </tr>
                 <tr>
                     <td style="border: none;">
-                        <label> Research / Publication :</label>{{$empOtherInfo->researchPublication}}
+                        <label> <b>Research / Publication :</b></label>{{$empOtherInfo->researchPublication}}
                     </td>
                 </tr>
             </table>
         @endif
 
+        {{--@if($trainingCertificate->isEmpty()&& $jobExperience->isEmpty() )--}}
+            {{--<p style="page-break-after: always;"></p>--}}
+        {{--@elseif($trainingCertificate->isEmpty()&& count($jobExperience)<2)--}}
+            {{--<p style="page-break-after: always;"></p>--}}
+        {{--@elseif(count($jobExperience)<2 && count($trainingCertificate)<2)--}}
+            {{--<p style="page-break-after: always;"></p>--}}
+        {{--@endif--}}
 
+        <p style="page-break-after: always;"></p>
 
-        <table border="0" style="width:100%; margin-top: 5px; border: none;">
+        <table border="0" style="width:100%; margin-top: 25px; border: none;">
             <tr>
                 <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Languages</b> </td>
             </tr>
