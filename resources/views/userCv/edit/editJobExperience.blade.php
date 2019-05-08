@@ -185,17 +185,17 @@
             return false;
 
         }
-        // if(end != "") {
-        //
-        //
-        //     if (Date.parse(end) < Date.parse(start)) {
-        //
-        //         var errorMsg = 'End date should after Start Date!!';
-        //         validationError(errorMsg);
-        //         return false;
-        //
-        //     }
-        // }
+         if(end != "") {
+
+
+             if (Date.parse(end) < Date.parse(start)) {
+
+                 var errorMsg = 'End date should after Start Date!!';
+                 validationError(errorMsg);
+                 return false;
+
+             }
+         }
 
         // if($.trim(address)==""){
         //
