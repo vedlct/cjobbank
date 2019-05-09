@@ -6,12 +6,10 @@
 
         <div class="col-12 ">
 
-            <div class="card updateCard" style="display: block">
+            <div class="card updateCard">
 
 
-
-
-                <div style="background-color: #F1F1F1;" class="card-body" >
+                <div style="background-color: #F1F1F1; height: 1500px;" class="card-body" >
 
                     <div class="col-md-3">
 

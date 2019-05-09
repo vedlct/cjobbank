@@ -139,6 +139,12 @@
                         <span class="bold"> Duration:</span>&nbsp;&nbsp;&nbsp; {{$exp->startDate}} -  @if($exp->endDate) {{$exp->endDate}} @else
                             Continuing
                         @endif
+                        <br>
+
+                        <span class="bold"> Total job experience:</span> @if ($exp->expYear >0){{$exp->expYear}}.{{(((int)$exp->expMonth)/(12*$exp->expYear))}} @else
+                            {{$exp->expYear}}.{{$exp->expMonth}}
+                        @endif
+                        Years<br>
 
 
 

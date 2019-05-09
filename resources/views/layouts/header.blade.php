@@ -201,7 +201,7 @@
 
 
 
-        @media screen and (min-width: 1000px) {
+        @media screen and (min-width: 1920px) {
             .updateCard {
             height:1500px;
             }
@@ -213,7 +213,9 @@
             /*}*/
         /*}*/
 
-
+        .updateCard {
+            height:1500px;
+        }
 
 
     </style>

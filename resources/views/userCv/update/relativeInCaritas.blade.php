@@ -1,12 +1,30 @@
 @extends('main')
+@section('header')
+    <style>
+        .card-body {
+            -webkit-box-flex: 1;
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+            padding: 1.25rem;
+            height: 1500px !important;
+        }
 
+        .updateCard {
+            height: 1500px;
+        }
+    </style>
+
+@endsection
 @section('content')
+
 
     <div class="row ">
 
         <div class="col-12 ">
-            <div class="card updateCard">
-                <div style="background-color: #F1F1F1" class="card-body">
+            <div style="display: unset;" class="card updateCard">
+                <div style="background-color: #F1F1F1; " class="card-body">
+
+
 
                     <div class="col-md-3">
 

@@ -216,8 +216,6 @@
 
                         if(endDate[i].value!=""){
 
-//                            alert(endDate[i].value);
-//                            alert(startDate[i].value);
 
                             if(Date.parse(startDate[i].value) > Date.parse(endDate[i].value)){
 

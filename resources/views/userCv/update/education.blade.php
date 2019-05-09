@@ -47,7 +47,7 @@
 
                                     <div class="form-group col-md-4">
 
-                                        <label for="">Exam/ Degree :</label>
+                                        <label for="">Exam/Level :</label>
                                         {{$educationInfo->educationLevelName}}
                                     </div>
 

@@ -414,7 +414,11 @@ class ApplicationController extends Controller
             ->get();
 
 
-        $jobExperience=JobExperience::whereIn('fkemployeeId',$empIds)
+        $jobExperience=JobExperience::select('jobexperience.*')
+            ->orderBy('startDate', 'desc')
+            ->addSelect(DB::raw("TIMESTAMPDIFF(YEAR,`jobexperience`.`startDate`,`jobexperience`.`endDate`) as expYear"),
+                DB::raw("TIMESTAMPDIFF(MONTH,`jobexperience`.`startDate`,`jobexperience`.`endDate`) as expMonth"))
+            ->whereIn('fkemployeeId',$empIds)
             ->get();
 
         $salaryInfo=Jobapply::whereIn('fkemployeeId',$empIds)
@@ -518,7 +522,11 @@ class ApplicationController extends Controller
             ->get();
 
 
-        $jobExperience=JobExperience::whereIn('fkemployeeId',$empIds)
+        $jobExperience=JobExperience::select('jobexperience.*')
+            ->orderBy('startDate', 'desc')
+            ->addSelect(DB::raw("TIMESTAMPDIFF(YEAR,`jobexperience`.`startDate`,`jobexperience`.`endDate`) as expYear"),
+                DB::raw("TIMESTAMPDIFF(MONTH,`jobexperience`.`startDate`,`jobexperience`.`endDate`) as expMonth"))
+            ->whereIn('fkemployeeId',$empIds)
             ->get();
 
         $salaryInfo=Jobapply::whereIn('fkemployeeId',$empIds)
@@ -637,7 +645,11 @@ class ApplicationController extends Controller
             ->get();
 
 
-        $jobExperience=JobExperience::whereIn('fkemployeeId',$empIds)
+        $jobExperience=JobExperience::select('jobexperience.*')
+            ->orderBy('startDate', 'desc')
+            ->addSelect(DB::raw("TIMESTAMPDIFF(YEAR,`jobexperience`.`startDate`,`jobexperience`.`endDate`) as expYear"),
+                DB::raw("TIMESTAMPDIFF(MONTH,`jobexperience`.`startDate`,`jobexperience`.`endDate`) as expMonth"))
+            ->whereIn('fkemployeeId',$empIds)
             ->get();
 
         $salaryInfo=Jobapply::whereIn('fkemployeeId',$empIds)

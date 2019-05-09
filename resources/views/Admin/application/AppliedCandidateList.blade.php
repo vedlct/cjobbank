@@ -132,12 +132,17 @@
 
             {{--</td>--}}
             <td colspan="3" height="600" style="text-align: left;vertical-align: top;">
+                <?php $tJEY=0;$tJEM=0;?>
                 @foreach($jobExperienceList->where('fkemployeeId',$emp['employeeId']) as $job)
                     Designation:<br>{{$job->degisnation}}<br>
                     Name of Organization:<br>{{$job->organization}}<br>
                     {{$job->address}}<br>
 
-                    {{--years: <br>--}}
+                    years: @if ($job->expYear >0){{$tJEY=$job->expYear}}.{{(((int)$job->expMonth)/(12*$job->expYear))}}
+                    @else
+                        {{$job->expYear}}.{{$job->expMonth}}
+                    @endif
+                    <br>
                     Start:{{$job->startDate}}
                     End:{{$job->endDate}}
                     <br>
@@ -145,6 +150,8 @@
 
 
                 @endforeach
+
+                Total job experience :
 
             </td>
             @if($withoutsalary != 'true')
