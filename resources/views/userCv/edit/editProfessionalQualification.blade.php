@@ -17,7 +17,7 @@
 
     <div class="row">
         <div class="form-group col-md-8">
-            <label for="inputEmail4">Institution</label> :</label>
+            <label for="inputEmail4">Institution</label> :<span style="color: red">*</span></label>
             <input type="text" class="form-control" name="institutionName" id="institutionName" value="{{$professional->institutionName}}" placeholder="institution" required>
         </div>
 
@@ -70,7 +70,7 @@
 
         <div class="form-group col-md-4">
             <label for="inputPassword4">Start date </label>:</label>
-            <input type="text" class="form-control date" name="startDate" value="{{$professional->startDate}}" id="start" placeholder="date" required>
+            <input type="text" class="form-control date" name="startDate" value="{{$professional->startDate}}" id="start" placeholder="date">
         </div>
         <div class="form-group col-md-4">
             <label for="inputPassword4">End date </label>:</label>
@@ -199,29 +199,67 @@
         var resultSystem=$('#resultSystem').val();
 
 
+//        if(certificateName==""){
+//
+//            var errorMsg='Please type certificatename first!!'
+//            validationError(errorMsg)
+//            return false;
+//        }
+//        if (certificateName.length > 100){
+//
+//            var errorMsg='certificateName should not more than 100 charecter length!!'
+//            validationError(errorMsg)
+//            return false;
+//
+//        }
+//        // if(institutionName==""){
+//        //
+//        //     var errorMsg='Please Type instituteName First!!'
+//        //     validationError(errorMsg)
+//        //     return false;
+//        //
+//        // }
+//        if(resultSystem==""){
+//
+//            var errorMsg='Please select resultSystem first!!'
+//            validationError(errorMsg)
+//            return false;
+//
+//        }
+//        if (institutionName.length > 255){
+//
+//            var errorMsg='Institute name should not more than 255 charecter length!!'
+//            validationError(errorMsg)
+//            return false;
+//
+//        }
+//
+//        if(status==""){
+//
+//            var errorMsg='Please select a status first!!'
+//            validationError(errorMsg)
+//            return false;
+//
+//        }
+//        //return false;
+
+
         if(certificateName==""){
 
-            var errorMsg='Please type certificatename first!!'
+            var errorMsg='Please type certificate name first!!'
             validationError(errorMsg)
             return false;
         }
         if (certificateName.length > 100){
 
-            var errorMsg='certificateName should not more than 100 charecter length!!'
+            var errorMsg='certificate name should not more than 100 charecter length!!'
             validationError(errorMsg)
             return false;
 
         }
-        // if(institutionName==""){
-        //
-        //     var errorMsg='Please Type instituteName First!!'
-        //     validationError(errorMsg)
-        //     return false;
-        //
-        // }
-        if(resultSystem==""){
+        if(institutionName==""){
 
-            var errorMsg='Please select resultSystem first!!'
+            var errorMsg='Please type institute name first!!'
             validationError(errorMsg)
             return false;
 
@@ -234,6 +272,54 @@
 
         }
 
+        if(resultSystem==""){
+
+            var errorMsg='Please select result system first!!'
+            validationError(errorMsg)
+            return false;
+        }
+
+//                    if(result==""){
+//
+//                        var errorMsg='Please Type a Result First!!'
+//                        validationError(errorMsg)
+//                        return false;
+//
+//                    }
+//                    if (result.length > 10){
+//
+//                        var errorMsg='Result Should not more than 10 Charecter Length!!'
+//                        validationError(errorMsg)
+//                        return false;
+//
+//                    }
+//                    if(start==""){
+//
+//                        var errorMsg='Please select a strat date first!!'
+//                        validationError(errorMsg)
+//                        return false;
+//
+//                    }
+//                    if(end==""){
+//
+//                        var errorMsg='Please Select a End Date First!!'
+//                        validationError(errorMsg)
+//                        return false;
+//
+//                    }
+
+        if (start !="" && end != "") {
+
+
+            if (Date.parse(end) < Date.parse(start)) {
+
+                var errorMsg = 'End date should after start date!!'
+                validationError(errorMsg)
+                return false;
+
+            }
+        }
+
         if(status==""){
 
             var errorMsg='Please select a status first!!'
@@ -241,7 +327,6 @@
             return false;
 
         }
-        //return false;
 
     }
 

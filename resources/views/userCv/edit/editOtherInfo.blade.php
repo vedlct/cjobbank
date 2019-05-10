@@ -70,7 +70,8 @@
         <div style="overflow:auto;">
             <div style="float:right;">
 
-                <a class="btn btn-danger pull-left" href="{{route('cv.OthersInfo')}}">Cancel</a>&nbsp;&nbsp;
+                {{--<a class="btn btn-danger pull-left" href="{{route('cv.OthersInfo')}}">Cancel</a>&nbsp;&nbsp;--}}
+                <button class="btn-danger pull-left" onclick="{{route('cv.OthersInfo')}}">Cancel</button>&nbsp;&nbsp;
                 <button type="submit" id="submitBtn">Save</button>
 
 

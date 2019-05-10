@@ -36,8 +36,8 @@
 
 
             <div class="form-group col-md-12">
-                <a class="btn btn-danger pull-right" href="{{route('candidate.skill.index')}}">Cancel</a>&nbsp;&nbsp;
-                <button  class="btn btn-info pull-right">Update</button>
+                <button class="btn-danger pull-left" onclick="{{route('candidate.skill.index')}}">Cancel</button>&nbsp;&nbsp;
+                <button  class=" btn-info">Update</button>
             </div>
 
 

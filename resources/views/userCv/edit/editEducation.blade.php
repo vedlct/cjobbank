@@ -155,8 +155,9 @@
 
         </div>
     <div class="form-group col-md-12">
-        <a class="btn btn-danger pull-left" href="{{route('candidate.cvEducation')}}">Cancel</a>&nbsp;&nbsp;
-        <button class="btn btn-success pull-left">Update</button>
+        {{--<a class="btn btn-danger pull-left" href="{{route('candidate.cvEducation')}}">Cancel</a>&nbsp;&nbsp;--}}
+        <button class="btn btn-danger pull-left" onclick="{{route('candidate.cvEducation')}}">Cancel</button>&nbsp;&nbsp;
+        <button class="btn btn-success">Update</button>
 
     </div>
 

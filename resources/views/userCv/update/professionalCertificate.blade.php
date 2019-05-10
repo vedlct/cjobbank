@@ -448,8 +448,8 @@
                     '</div>'+
 
                     '<div class="form-group col-md-4">'+
-                    '<label for="inputPassword4">Start Date<span style="color: red">*</span></label>'+
-                    '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date" required>'+
+                    '<label for="inputPassword4">Start Date</label>'+
+                    '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date">'+
                     '</div>'+
                     '<div class="form-group col-md-4">'+
                     '<label for="inputPassword4">End Date</label>'+

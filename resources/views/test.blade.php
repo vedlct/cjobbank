@@ -356,7 +356,7 @@
 
 
                 <td style="border: none;">
-                    <label>Date Of Birth :</label> {{$personalInfo->dateOfBirth}}
+                    <label>Date of Birth :</label> {{$personalInfo->dateOfBirth}}
                 </td>
             </tr>
             <tr>
@@ -563,7 +563,7 @@
                         Name : {{$ref->firstName}} {{$ref->lastName}} <br>
                         Contact: {{$ref->phone}} <br>
                         Position: {{$ref->presentposition}} <br>
-                        email: {{$ref->email}}
+                        Email: {{$ref->email}}
 
                     </td>
                 </tr>

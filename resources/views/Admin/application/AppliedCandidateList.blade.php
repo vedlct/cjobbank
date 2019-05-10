@@ -138,9 +138,9 @@
                     Name of Organization:<br>{{$job->organization}}<br>
                     {{$job->address}}<br>
 
-                    years: @if ($job->expYear >0){{$tJEY=$job->expYear}}.{{(((int)$job->expMonth)/(12*$job->expYear))}}
+                    years: @if ($job->expYear >0){{$tJEY=$job->expYear}}.{{floor((((int)$job->expMonth)/(12*$job->expYear)))}}
                     @else
-                        {{$job->expYear}}.{{$job->expMonth}}
+                        {{$job->expYear}}.{{floor($job->expMonth)}}
                     @endif
                     <br>
                     Start:{{$job->startDate}}

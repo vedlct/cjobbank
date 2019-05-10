@@ -180,6 +180,8 @@
 
                     $('#edit'+x).html(data);
                     $("#addButton").hide();
+                    $("#btnPevious").hide();
+                    $("#nextBtn").hide();
 
                 }
             });

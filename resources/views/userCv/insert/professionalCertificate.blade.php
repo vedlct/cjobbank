@@ -63,7 +63,7 @@
 
                                 <div class="row">
                                 <div class="form-group col-md-8">
-                                    <label for="inputEmail4">Institution</label>
+                                    <label for="inputEmail4">Institution<span style="color: red">*</span></label>
                                     <input type="text" class="form-control" name="institutionName[]" id="institutionName" placeholder="institution">
                                 </div>
                                     <div class="form-group col-md-4">
@@ -355,7 +355,7 @@
 
                     }
 
-                    if (end[i].value != "") {
+                    if (start[i].value != "" && end[i].value != "") {
 
 
                         if (Date.parse(end[i].value) < Date.parse(start[i].value)) {
@@ -634,7 +634,7 @@
                     '</div>'+
 
                     '<div class="form-group col-md-4">'+
-                    '<label for="inputPassword4">Start date<span style="color: red">*</span></label>'+
+                    '<label for="inputPassword4">Start date</label>'+
                 '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date" >'+
                 '</div>'+
                 '<div class="form-group col-md-4">'+

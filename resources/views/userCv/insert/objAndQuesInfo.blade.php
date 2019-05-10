@@ -41,7 +41,7 @@
 
                             <div class="form-group">
                                 <label for="">Objective <span style="color: blue">(Max Limit 2500 character)</span></label>
-                                <textarea type="text" name="objective" maxlength="2500"  rows="2" class="form-control{{ $errors->has('objective') ? ' is-invalid' : '' }}"  id="objective" placeholder="Career Objective">{{ old('objective') }}</textarea>
+                                <textarea type="text" name="objective" maxlength="2500"  rows="10" class="form-control{{ $errors->has('objective') ? ' is-invalid' : '' }}"  id="objective" placeholder="Career Objective">{{ old('objective') }}</textarea>
                                 @if ($errors->has('objective'))
 
                                     <span class="">
