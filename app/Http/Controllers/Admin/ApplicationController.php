@@ -728,8 +728,8 @@ class ApplicationController extends Controller
             ->where('educationlevel.status',1)
             ->where('degree.status',1)
             ->where('educationmajor.status',1)
-
             ->groupBy('educationMajorId')
+            ->orderBy('educationMajorName')
             ->get();
 
         if ($major == null) {
