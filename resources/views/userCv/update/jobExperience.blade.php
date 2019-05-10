@@ -154,6 +154,7 @@
 
                         </div>
 
+
                         <div style="overflow:auto;">
                             <div style="float:right;">
                                 <a href="{{route('candidate.cvProfessionalCertificate')}}"><button type="button" id="btnPevious" >Back</button></a>
@@ -178,7 +179,6 @@
                         </div>
 
                     </div>
-
 
                 </div>
             </div>

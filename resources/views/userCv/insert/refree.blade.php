@@ -1,7 +1,11 @@
 @extends('main')
 
 @section('content')
-
+    <style>
+        .updateCard {
+            height:2500px;
+        }
+    </style>
     <style>
         strong{
             color: red;

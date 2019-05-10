@@ -207,15 +207,15 @@
             }
         }
 
-        /*@media screen and (max-width: 500px) {*/
-            /*.updateCard {*/
-                /*height:3000px;*/
-            /*}*/
-        /*}*/
-
-        .updateCard {
-            height:1500px;
+        @media screen and (max-width: 500px) {
+            .updateCard {
+                height:3000px;
+            }
         }
+
+        /*.updateCard {*/
+            /*height:1500px;*/
+        /*}*/
 
 
     </style>
