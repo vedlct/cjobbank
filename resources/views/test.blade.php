@@ -120,7 +120,7 @@
         <table border="0" style="width:100%; margin-top: 10px; border: none;">
             @if($jobExperience->isEmpty())<tr><td style=" border: none; text-align: center"> <strong>None </strong> </td> </tr>@else
 
-            @php $count=1;@endphp
+            @php $count=1;$flag=0;@endphp
             @foreach($jobExperience as $exp)
 
                 <tr>
@@ -128,13 +128,11 @@
                         <span class="bold">{{$count++}}.</span>
                     </td>
 
-
                     <td style="border: none;">
 
                         <span class="bold"> Company Name : </span> &nbsp;&nbsp; {{$exp->organization}}  &nbsp;&nbsp;
                         <div class="pull-right"><span class="bold">Position:</span>&nbsp;{{$exp->degisnation}} </div><br>
-
-                        <span class="bold"> Major Responsibilities :</span>&nbsp;&nbsp; {{$exp->majorResponsibilities}} <br>
+                        <span class="bold"> Major Responsibilities :</span>&nbsp;&nbsp;{{$exp->majorResponsibilities}} <br>
                         <span class="bold"> Address:</span>&nbsp;&nbsp;&nbsp; {{$exp->address}} <br>
                         <span class="bold"> Duration:</span>&nbsp;&nbsp;&nbsp; {{$exp->startDate}} -  @if($exp->endDate) {{$exp->endDate}} @else
                             Continuing
@@ -157,6 +155,8 @@
         </table>
 
         @if(!$jobExperience->isEmpty() && count($jobExperience) >=2)
+            <p style="page-break-after: always;"></p>
+        @elseif(!$jobExperience->isEmpty())
             <p style="page-break-after: always;"></p>
         @elseif($jobExperience->isEmpty()&& count($trainingCertificate)>=2)
             <p style="page-break-after: always;"></p>
@@ -199,10 +199,6 @@
 
         @if($trainingCertificate->isEmpty()&& $jobExperience->isEmpty() )
         <p style="page-break-after: always;"></p>
-        @elseif($trainingCertificate->isEmpty()&& count($jobExperience)<2)
-            <p style="page-break-after: always;"></p>
-        @elseif(count($jobExperience)<2 && count($trainingCertificate)<2)
-            <p style="page-break-after: always;"></p>
         @endif
 
         <table border="0" style="width:100%;border: none;">
