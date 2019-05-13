@@ -45,7 +45,7 @@
                                         <div class="form-group col-md-10">
 
                                             <label for="inputEmail4">Designation :</label>
-                                            <label for="inputEmail4">{{$previousWorkInCB->designation}}</label>
+                                            {{$previousWorkInCB->designation}}
                                         </div>
 
                                         <div class="form-group col-md-2 ">

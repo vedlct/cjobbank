@@ -456,9 +456,9 @@
             </tr>
         </table>
 
-        <table border="0" style="width:100%; margin-top: 5px; border: none;">
+        <table border="0" style="width:100%; margin-top: 5px; ">
 
-            <tr style=" border: none;">
+            <tr style=" ">
                 @if($languageNames->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @endif
                 @foreach($languageNames as $lname)
                     <td>
@@ -495,8 +495,8 @@
                 @foreach($memberShip as $mem)
 
                     <td style="border: none;">
-                        <span class="bold"> Network name :</span>{{$mem->networkName}}    &nbsp; &nbsp;<span class="bold">Membership type:</span>{{$mem->membershipType}}<br>
-                        <span class="bold">  Duration:</span> &nbsp;&nbsp;&nbsp;{{$mem->duration}} <br>
+                        <span class="bold"> Network name :</span>{{$mem->networkName}}  <br>
+                        <span class="bold">Membership type:&nbsp; &nbsp;</span>{{$mem->membershipType}}  &nbsp; &nbsp;&nbsp;<span class="bold">  Duration:</span> &nbsp;&nbsp;{{$mem->duration}} <br>
 
                     </td>
 

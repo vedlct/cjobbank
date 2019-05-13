@@ -45,7 +45,7 @@
                                         <div class="form-group col-md-10">
 
                                             <label for="inputEmail4">Name of the training :</label>
-                                            <label for="inputEmail4">{{$training->trainingName}}</label>
+                                          {{$training->trainingName}}
                                         </div>
 
                                         <div class="form-group col-md-2 ">
@@ -60,7 +60,7 @@
                                     <div class="row">
                                         <div class="form-group col-md-12">
                                             <label for="inputEmail4">Venue :</label>
-                                            <label for="inputEmail4">{{$training->vanue}} </label>
+                                            {{$training->vanue}}
                                             {{--<input type="text" class="form-control" name="vanue[]" id="inputEmail4" placeholder="vanue" required>--}}
                                         </div>
 
@@ -68,7 +68,7 @@
 
                                         <div class="form-group col-md-12">
                                             <label for="inputEmail4">Duration :</label>
-                                            <label for="inputEmail4">{{"H:".$training->hour." D:".$training->day." W:".$training->week." M:".$training->month." Y:".$training->year}} </label>
+                                           {{"H:".$training->hour." D:".$training->day." W:".$training->week." M:".$training->month." Y:".$training->year}}
                                             {{--<input type="text" class="form-control" name="vanue[]" id="inputEmail4" placeholder="vanue" required>--}}
                                         </div>
                                        @endif
@@ -76,32 +76,31 @@
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label for="inputPassword4">Country :</label>
-                                            <label for="inputEmail4">{{$training->countryName}} </label>
+                                            {{$training->countryName}}
 
                                         </div>
 
                                         <div class="form-group col-md-6">
                                             <label for="inputPassword4">Start date :</label>
-                                            <label for="inputEmail4">{{$training->startDate}} </label>
+                                            {{$training->startDate}}
                                             {{--<input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" required>--}}
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label for="inputPassword4">End date :</label>
-                                            <label for="inputEmail4">{{$training->endDate}} </label>
+                                            {{$training->endDate}}
                                             {{--<input type="text" class="form-control date" name="endDate[]" id="end" placeholder="date">--}}
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="inputPassword4">Status :</label>
-                                            <label for="inputPassword4">
 
                                                 @foreach(COMPLETING_STATUS as $key=>$values)
 
                                                     @if($training->status == $values) {{$key}} @endif
                                                 @endforeach
 
-                                            </label>
+
                                             {{--<select class="form-control" name="status[]">--}}
                                             {{--<option value="1" @if($value->status == 1) selected @endif>On going</option>--}}
                                             {{--<option value="2" @if($value->status == 2) selected @endif>Completed</option>--}}

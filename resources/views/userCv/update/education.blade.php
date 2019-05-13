@@ -67,7 +67,7 @@
 
                                 <div class="form-group col-md-12">
                                     <label for="">School/College/Institution name :</label>
-                                    <label for="">{{$educationInfo->institutionName}}</label>
+                                    {{$educationInfo->institutionName}}
                                     {{--<input type="text" name="instituteName[]" required class="form-control" id="" placeholder="">--}}
                                 </div>
                                 @endif
@@ -139,7 +139,7 @@
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label for="">Scale/ Out of :</label>
-                                        <label for="">{{$educationInfo->resultOutOf}}</label>
+                                        {{$educationInfo->resultOutOf}}
 
                                     </div>
                                     <div class="form-group col-md-3">

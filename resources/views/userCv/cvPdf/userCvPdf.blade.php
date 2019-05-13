@@ -494,8 +494,9 @@
                             @foreach($memberShip as $mem)
 
                                 <td style="border: none;">
-                                    <span class="bold"> Network name :</span>{{$mem->networkName}}    &nbsp; &nbsp;<span class="bold">Membership type:</span>{{$mem->membershipType}}<br>
-                                    <span class="bold">  Duration:</span> &nbsp;&nbsp;&nbsp;{{$mem->duration}} <br>
+                                    <span class="bold"> Network name :</span>{{$mem->networkName}} <br>
+                                    <span class="bold">Membership type:</span>{{$mem->membershipType}}
+                                    &nbsp; <span class="bold">  Duration:</span> &nbsp;&nbsp;&nbsp;{{$mem->duration}} <br>
 
                                 </td>
 
