@@ -5,10 +5,31 @@
     <div class="row ">
 
         <div class="col-12 ">
-            <div class="card">
+            <div class="card updateCard">
                 <div style="background-color: #F1F1F1" class="card-body">
 
-                    <div id="regForm" >
+                    <div class="col-md-3">
+
+                        <div class="sidenav">
+                            <a href="{{route('candidate.cvPersonalInfo')}}">Personal Details</a>
+                            <a href="{{route('candidate.cvQuesObj')}}">Career Objective and Application Information</a>
+                            <a href="{{route('candidate.cvEducation')}}">Education</a>
+                            <a href="{{route('candidate.language.index')}}" >Language</a>
+                            <a href="{{route('candidate.computerSkill.index')}}" >Computer-Skill</a>
+                            <a href="{{route('candidate.skill.index')}}" >Other Skill Information</a>
+                            <a href="{{route('cv.OthersInfo')}}" >Other Information</a>
+                            <a href="{{route('candidate.cvTrainingCertificate')}}">Training Certification</a>
+                            <a href="{{route('candidate.cvProfessionalCertificate')}}">Professional Certification</a>
+                            <a  href="{{route('JobExperience.index')}}">Job Experience</a>
+                            <a class="activeNav" href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
+                            <a  href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
+                            <a  href="{{route('refree.index')}}">Referee</a>
+                            <a  href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas Bangladesh</a>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-9" id="regForm" >
 
 
                         <div id="" class="tab">
@@ -24,7 +45,7 @@
                                         <div class="form-group col-md-10">
 
                                             <label for="inputEmail4">Designation :</label>
-                                            <label for="inputEmail4">{{$previousWorkInCB->designation}}</label>
+                                            {{$previousWorkInCB->designation}}
                                         </div>
 
                                         <div class="form-group col-md-2 ">
@@ -256,8 +277,8 @@
                 var newTextBoxDiv = $(document.createElement('div'))
                     .attr("id", 'TextBoxDiv' + counter).attr("class", 'row');
                 newTextBoxDiv.after().html(
-                    '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>' +
-                    '<div class="row"> ' +
+                    '<div class="form-group"><hr style="border-top:1px dotted #000;"></div>' +
+//                    '<div class="row"> ' +
                     '<div class="form-group col-md-12"> ' +
                     '<label for="inputEmail4">Designation</label> ' +
                     '<input type="text" class="form-control" name="degisnation[]" id="degisnation'+counter+'" placeholder="designation" > ' +
@@ -268,10 +289,10 @@
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
                     '<label for="inputPassword4">End date</label> ' +
-                    '/ <input type="checkbox" id="currentlyRunning'+counter+'" name="currentlyRunning[]" value="1">Running'+
+                    '/ <input type="checkbox"  class="col-md-2" id="currentlyRunning'+counter+'" name="currentlyRunning[]" value="1">Running'+
                     '<input type="text" class="form-control date" name="endDate[]" id="end'+counter+'" placeholder="date"> ' +
 
-                    '</div> ' +
+//                    '</div> ' +
                     '</div>'
 
                 );
@@ -286,6 +307,7 @@
                 $('.date').datepicker({
                     format: 'yyyy-m-d'
                 });
+                $('.date').keydown(false);
             });
 
             $("#removeButton").click(function () {
@@ -342,7 +364,7 @@
 
                         if(endDate[i].value!=""){
 
-                            if(startDate[i].value > endDate[i].value){
+                            if(Date.parse(startDate[i].value) > Date.parse(endDate[i].value)){
 
                                 var errorMsg='startDate must be less then endDate';
                                 validationError(errorMsg);

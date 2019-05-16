@@ -122,9 +122,100 @@
             width: 50%;
         }
 
+        .select2-container--default .select2-selection--single {
+            height: 36px;
+        }
+
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered{
+            line-height: 35px;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__arrow{
+            top: 5px;
+        }
+        .sidenav {
+            width: 350px;
+            position: fixed;
+            z-index: 1;
+            /* top: 20px;
+            left: 10px; */
+            background: #D3D3D3;
+            overflow-x: hidden;
+            padding: 0;
+            margin-top: 12px;
+        }
+
+        .sidenav a {
+            padding: 8px 8px 8px 16px;
+            text-decoration: none;
+            color: #000;
+            display: block;
+            transition: all 0.3s;
+            border-bottom:1px solid #FBFBFB;
+        }
+
+        .sidenav a:hover {
+            color: #fff;
+            background: #1FB0E5;
+        }
+
+        .sidenav .activeNav {
+            color: #fff;
+            background: #1FB0E5;
+        }
+
+        .sidenav .incomplete:hover {
+            background: transparent;
+            color:#000;
+        }
+
+        @media only screen and (max-width: 1450px) and (min-width: 801px) {
+            .sidenav {
+                width: 250px;
+            }
+        }
+
+        @media screen and (max-width: 800px) {
+
+            .sidenav {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .sidenav a {
+                text-align: center;
+                float: none;
+            }
+        }
+            @media screen and (max-width: 500px) {
+                .sidenav {
+                    width: 100%;
+                }
+
+                .sidenav a {
+                    text-align: center;
+                    float: none;
+                }
+            }
 
 
 
+        @media screen and (min-width: 1920px) {
+            .updateCard {
+            height:1500px;
+            }
+        }
+
+        @media screen and (max-width: 500px) {
+            .updateCard {
+                height:3000px;
+            }
+        }
+
+        /*.updateCard {*/
+            /*height:1500px;*/
+        /*}*/
 
 
     </style>

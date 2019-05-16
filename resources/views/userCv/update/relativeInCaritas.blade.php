@@ -1,13 +1,53 @@
 @extends('main')
+@section('header')
+    <style>
+        .card-body {
+            -webkit-box-flex: 1;
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+            padding: 1.25rem;
+            height: 1500px !important;
+        }
 
+        .updateCard {
+            height: 1500px;
+        }
+    </style>
+
+@endsection
 @section('content')
+
 
     <div class="row ">
 
         <div class="col-12 ">
-            <div class="card">
-                <div style="background-color: #F1F1F1" class="card-body">
-                    <div id="regForm">
+            <div style="display: unset;" class="card updateCard">
+                <div style="background-color: #F1F1F1; " class="card-body">
+
+
+
+                    <div class="col-md-3">
+
+                        <div class="sidenav">
+                            <a href="{{route('candidate.cvPersonalInfo')}}">Personal Details</a>
+                            <a href="{{route('candidate.cvQuesObj')}}">Career Objective and Application Information</a>
+                            <a href="{{route('candidate.cvEducation')}}">Education</a>
+                            <a href="{{route('candidate.language.index')}}" >Language</a>
+                            <a href="{{route('candidate.computerSkill.index')}}" >Computer-Skill</a>
+                            <a href="{{route('candidate.skill.index')}}" >Other Skill Information</a>
+                            <a href="{{route('cv.OthersInfo')}}" >Other Information</a>
+                            <a href="{{route('candidate.cvTrainingCertificate')}}">Training Certification</a>
+                            <a href="{{route('candidate.cvProfessionalCertificate')}}">Professional Certification</a>
+                            <a href="{{route('JobExperience.index')}}">Job Experience</a>
+                            <a href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
+                            <a href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
+                            <a href="{{route('refree.index')}}">Referee</a>
+                            <a class="activeNav" href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas Bangladesh</a>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-9" id="regForm">
 
 
 
@@ -184,7 +224,8 @@
 ////            $('#end').datepicker({
 //                format: 'yyyy-m-d'
 //            });
-            @if($employee->cvStatus==1)
+            @if(Session::has('CVcomplete'))
+            @if(Session::get('CVcomplete')=='done' && $employee->cvStatus == 1)
 
                 $.alert({
                 title: 'Congratulation',
@@ -201,6 +242,7 @@
                 }
             });
 
+            @endif
             @endif
         });
 

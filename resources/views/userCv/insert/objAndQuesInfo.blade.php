@@ -5,10 +5,31 @@
     <div class="row">
 
         <div class="col-12 ">
-            <div style="background-color: #F1F1F1" class="card">
+            <div style="background-color: #F1F1F1" class="card updateCard">
                 <div class="card-body">
 
-                    <form id="regForm" method="post" action="{{route('cv.insertQuesObj')}}" onsubmit="return submitForm()">
+                    <div class="col-md-3">
+
+                        <div class="sidenav">
+                            <a href="{{route('candidate.cvPersonalInfo')}}">Personal Details</a>
+                            <a href="{{route('candidate.cvQuesObj')}}" class="activeNav">Career Objective and Application Information</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.cvEducation')}}">Education</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.language.index')}}">Language</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.computerSkill.index')}}">Computer-Skill</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.skill.index')}}">Other Skill Information</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('cv.OthersInfo')}}">Other Information</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.cvTrainingCertificate')}}">Training Certification</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.cvProfessionalCertificate')}}">Professional Certification</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('JobExperience.index')}}">Job Experience</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('refree.index')}}">Referee</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas Bangladesh</a>
+                        </div>
+
+                    </div>
+
+                    <form class="col-md-9" id="regForm" method="post" action="{{route('cv.insertQuesObj')}}" onsubmit="return submitForm()">
                         <!-- One "tab" for each step in the form: -->
 
                         {{csrf_field()}}
@@ -20,7 +41,7 @@
 
                             <div class="form-group">
                                 <label for="">Objective <span style="color: blue">(Max Limit 2500 character)</span></label>
-                                <textarea type="text" name="objective" maxlength="2500"  rows="2" class="form-control{{ $errors->has('objective') ? ' is-invalid' : '' }}"  id="objective" placeholder="Career Objective">{{ old('objective') }}</textarea>
+                                <textarea type="text" name="objective" maxlength="2500"  rows="10" class="form-control{{ $errors->has('objective') ? ' is-invalid' : '' }}"  id="objective" placeholder="Career Objective">{{ old('objective') }}</textarea>
                                 @if ($errors->has('objective'))
 
                                     <span class="">

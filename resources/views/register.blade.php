@@ -17,6 +17,13 @@
     <link href="{{url('public/assets/css/icons.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{url('public/assets/css/style.css')}}" rel="stylesheet" type="text/css" />
 
+    <style>
+        .accountbg {
+            background-position-x: center;
+            background-position-y: 50%;
+        }
+    </style>
+
 </head>
 
 

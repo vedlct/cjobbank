@@ -65,10 +65,12 @@ class QuestionObjectiveController extends Controller
         if ($employeeCvQuesObjInfo){
             $employeeCvQuesObjQues=QuestionObjectiveAndInfo::where('status',1)->orderBy('serial', 'ASC')->get();
 
-            $employeeCvQuesObjQuesAns=QuestionObjectiveAns::where('fkemployeeId',$employee)
+            $employeeCvQuesObjQuesAns=QuestionObjectiveAns::select('emp_ques_objective_and_info_ans.*','emp_ques_objective_and_info.ques')
+                ->leftJoin('emp_ques_objective_and_info', 'emp_ques_objective_and_info.id', '=', 'emp_ques_objective_and_info_ans.fkqusId')
+                ->where('fkemployeeId',$employee)
                 ->get();
 
-//            return $employeeCvQuesObjQuesAns;
+          //  return $employeeCvQuesObjQuesAns;
 
             return view('userCv.update.objAndQuesInfo',compact('employeeCvQuesObjInfo','employee','employeeCvQuesObjQuesAns','employeeCvQuesObjQues'));
 

@@ -20,6 +20,13 @@
     <link href="{{url('public/assets/css/icons.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{url('public/assets/css/style.css')}}" rel="stylesheet" type="text/css" />
 
+    <style>
+        .accountbg {
+            background-position-x: center;
+            background-position-y: 50%;
+        }
+    </style>
+
 </head>
 
 
@@ -40,7 +47,7 @@
 
 
             <div align="center">
-                <img src="{{url('public/logo/TCL_logo.png')}}" height="150" width="200">
+                <img src="{{url('public/logo/Final_Logo_Caritas_2010.jpg')}}" height="180" width="200">
             </div>
             <div>
                 @if(Session::has('notActive'))

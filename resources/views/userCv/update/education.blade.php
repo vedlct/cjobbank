@@ -5,10 +5,31 @@
     <div class="row ">
 
         <div class="col-12 ">
-            <div style="background-color: #F1F1F1" class="card">
+            <div style="background-color: #F1F1F1" class="card updateCard">
                 <div class="card-body">
 
-                    <div id="regForm" >
+                    <div class="col-md-3">
+
+                        <div class="sidenav">
+                            <a href="{{route('candidate.cvPersonalInfo')}}">Personal Details</a>
+                            <a href="{{route('candidate.cvQuesObj')}}">Career Objective and Application Information</a>
+                            <a href="{{route('candidate.cvEducation')}}" class="activeNav">Education</a>
+                            <a href="{{route('candidate.language.index')}}">Language</a>
+                            <a href="{{route('candidate.computerSkill.index')}}">Computer-Skill</a>
+                            <a href="{{route('candidate.skill.index')}}">Other Skill Information</a>
+                            <a href="{{route('cv.OthersInfo')}}">Other Information</a>
+                            <a href="{{route('candidate.cvTrainingCertificate')}}">Training Certification</a>
+                            <a href="{{route('candidate.cvProfessionalCertificate')}}">Professional Certification</a>
+                            <a href="{{route('JobExperience.index')}}">Job Experience</a>
+                            <a href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
+                            <a href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
+                            <a href="{{route('refree.index')}}">Referee</a>
+                            <a href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas Bangladesh</a>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-9" id="regForm" >
                         <!-- One "tab" for each step in the form: -->
 
 
@@ -26,7 +47,7 @@
 
                                     <div class="form-group col-md-4">
 
-                                        <label for="">Exam/ Degree :</label>
+                                        <label for="">Exam/Level :</label>
                                         {{$educationInfo->educationLevelName}}
                                     </div>
 
@@ -46,7 +67,7 @@
 
                                 <div class="form-group col-md-12">
                                     <label for="">School/College/Institution name :</label>
-                                    <label for="">{{$educationInfo->institutionName}}</label>
+                                    {{$educationInfo->institutionName}}
                                     {{--<input type="text" name="instituteName[]" required class="form-control" id="" placeholder="">--}}
                                 </div>
                                 @endif
@@ -118,7 +139,7 @@
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label for="">Scale/ Out of :</label>
-                                        <label for="">{{$educationInfo->resultOutOf}}</label>
+                                        {{$educationInfo->resultOutOf}}
 
                                     </div>
                                     <div class="form-group col-md-3">
@@ -207,7 +228,7 @@
 
 
                 var major =$('#majorSub'+x).val();
-                if (major == "others"){
+                if (major == "{{OTHERS}}"){
 
                     $("#subjectNameDiv"+x).show();
                 }else {
@@ -339,7 +360,7 @@
                         var major=$('#majorSub'+(counter-1)).val();
                         var universityType=$('#universityType'+(counter-1)).val();
 
-                        if(major=="others" && $("#subjectName"+(counter-1)).val()=="" ){
+                        if(major=="{{OTHERS}}" && $("#subjectName"+(counter-1)).val()=="" ){
                             var errorMsg='Please type a subject name first!!'
                             validationError(errorMsg);
                             return false;
@@ -484,7 +505,7 @@
                         '</div>'+
 
 
-                        '<div class="form-group col-md-3">'+
+                        '<div class="form-group col-md-9">'+
                         '<label for="">Major</label>'+
                         '<select name="major[]" class="form-control js-example-basic-single" onchange="checkMajor('+counter+')" id="majorSub'+counter+'">'+
                         '<option value="">Select Major</option>'+
@@ -687,7 +708,7 @@
                 var degree=document.getElementById("degree"+btn).value;
 
 
-                if (degree == "others"){
+                if (degree == "{{OTHERS}}"){
 
                     $("#degreeNameDiv"+btn).show();
                     $("#subjectNameDiv"+btn).show();
@@ -728,7 +749,7 @@
                 var board=document.getElementById("board"+x).value;
 
 
-                if (board == "others"){
+                if (board == "{{OTHERS}}"){
 
                     $("#boardNameDiv"+btn).show();
                 }else {
@@ -745,7 +766,7 @@
 
                 var resultSydtem=document.getElementById("resultSydtem"+x).value;
 
-                if (resultSydtem == "others"){
+                if (resultSydtem == "{{OTHERS}}"){
 
                     $("#resultSydtemNameDiv"+btn).show();
                 }else {

@@ -1,0 +1,26 @@
+/*table, th, td {*/
+    /*border: 2px solid ;*/
+/*}*/
+.Border{
+    border: 2px solid ;
+}
+
+
+td{
+    wrap-text:true;
+    vertical-align: top;
+}
+.bold{
+    font-weight: bold;
+}
+.noTopBorder{
+    border-top: none !important ;
+    border-bottom: none !important ;
+    border-right: 2px solid !important ;
+    border-left: 2px solid !important ;
+}
+.testStyle{
+    border-right: 2px solid !important ;
+    border-left: 2px solid !important ;
+}
+

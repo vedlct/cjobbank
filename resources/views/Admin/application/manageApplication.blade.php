@@ -51,7 +51,7 @@
                                     <div id="testDateDiv" class="col-md-6">
 
                                         <label for="">Test Date</label>
-                                        <input class="form-control date" id="testDate" name="testDate" value="">
+                                        <input class="form-control date1" id="testDate" name="testDate" value="">
 
                                     </div>
 
@@ -80,6 +80,7 @@
                                     <div class="form-group">
 
                                         <button type="submit" onclick="sendMailToJobApplied()" class="btn btn-success">Submit</button>
+                                        <button type="button" onclick="downloadmailDoc()" class="btn btn-success">Download as doc</button>
                                     </div>
 
                                 {{--</form>--}}
@@ -354,11 +355,12 @@
                             <a onclick="excelInfomationSubmit()"><button class="btn btn-danger btn-sm">Export candidates excel</button></a>
                         </div>
                         <div class="col-md-3">
-                            <a onclick="excelReport02InfomationSubmit()"><button class="btn btn-primary btn-sm">Export HR report-02</button></a>
+                            <a onclick="excelReport03InfomationSubmit()"><button class="btn btn-primary btn-sm">Export HR report-02</button></a>
                         </div>
                         <div class="col-md-3">
-                            <a onclick="excelReport03InfomationSubmit()"><button class="btn btn-primary btn-sm">Export HR report-03</button></a>
+                            <a onclick="excelReport02InfomationSubmit()"><button class="btn btn-primary btn-sm">Export HR report-03</button></a>
                         </div>
+
 
 
 
@@ -448,6 +450,12 @@ CKEDITOR.config.toolbar = [
                 format: 'yyyy-m-d',
                 todayHighlight: true,
                 autoclose: true
+            });
+            $('.date1').datepicker({
+                format: 'yyyy-m-d',
+                todayHighlight: true,
+                autoclose: true,
+                startDate: '-0d',
             });
 
 
@@ -1518,6 +1526,109 @@ CKEDITOR.config.toolbar = [
 
 
         }
+        function downloadmailDoc() {
+
+
+            if ($('#mailTamplate').val() !=""){
+
+                $("#wait").css("display", "block");
+
+                var products=selecteds;
+
+
+                    $.ajax({
+                        type: 'POST',
+                        url: "{!! route('jobAppliedCadidate.admin.downloadMailDoc') !!}",
+                        cache: false,
+                        data: {'jobApply': products,_token:"{{csrf_token()}}",'tamplateId':$('#mailTamplate').val(),'testDate':$('#testDate').val(),
+                            'testAddress':$('#testAddress').val(),'testDetails':$('#tamplateBody').val(),'footerAndSign':CKEDITOR.instances['ckBox'].getData(),
+                            'subjectLine':$('#subjectLine').val(),'refNo':$('#refNo').val()},
+                        success: function (data) {
+
+                            $("#wait").css("display", "none");
+//
+                            $('#SessionMessage').load(document.URL +  ' #SessionMessage');
+                            table.ajax.reload();  //just reload table
+
+                            selecteds=[];
+
+                           // console.log(data);
+
+                            $(':checkbox:checked').prop('checked',false);
+
+//                            win = window.open("", "_blank");
+//                            win.document.body.innerHTML = data;
+
+
+                            for (var i=0; i<data.length;i++){
+
+
+                                var link = document.createElement("a");
+                                link.download = data[i]['Name'];
+                                var uri = '{{url("public/mailPreview")}}'+"/"+data[i]['Name'];
+                                link.href = uri;
+                                document.body.appendChild(link);
+                                link.click();
+                                document.body.removeChild(link);
+                                delete link;
+
+                            }
+
+                            $.alert({
+                                title: 'Alert!',
+                                type: 'green',
+                                content: 'Mail Preview is Downloaded successfully',
+                                buttons: {
+                                    tryAgain: {
+                                        text: 'Ok',
+                                        btnClass: 'btn-blue',
+                                        action: function(){
+
+                                            location.reload();
+                                        }
+                                    }
+                                }
+                            });
+
+
+
+                          //  location.reload();
+
+                           // console.log(data);
+
+
+                        }
+
+                    });
+
+
+
+            }
+
+            else {
+
+                $.alert({
+                    title: 'Alert!',
+                    type: 'red',
+                    content: 'Please Select a Tamplate First',
+                    buttons: {
+                        tryAgain: {
+                            text: 'Ok',
+                            btnClass: 'btn-blue',
+                            action: function () {
+
+
+                            }
+                        }
+
+                    }
+                });
+
+            }
+
+
+
+        }
 
         // add multiple select / deselect functionality
         $("#selectall2").click(function () {
@@ -1733,6 +1844,7 @@ CKEDITOR.config.toolbar = [
                     $('#excel_info').modal({show: true});
                     $("#HRfullreport").hide();
                     $("#HRreport03").show();
+                    $("#HRreport02").hide();
                 }
                 else {
 

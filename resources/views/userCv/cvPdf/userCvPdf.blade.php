@@ -55,8 +55,8 @@
                             <td style="text-align: left; border: none;">
                                 <h3 style="">{{$personalInfo->firstName}} {{$personalInfo->lastName}}</h3>
                                 <p style="max-width: 300px"><span class="bold">Cell No:</span> {{$personalInfo->personalMobile}} <br>
-                                    <span class="bold">email:</span> {{$personalInfo->email}} <br>
-                                    <span class="bold">address:</span> {{$personalInfo->presentAddress}}
+                                    <span class="bold">Email:</span> {{$personalInfo->email}} <br>
+                                    <span class="bold">Address:</span> {{$personalInfo->presentAddress}}
                                 </p>
 
                             </td>
@@ -153,8 +153,12 @@
                                     <span class="bold"> Duration:</span>&nbsp;&nbsp;&nbsp; {{$exp->startDate}} -  @if($exp->endDate) {{$exp->endDate}} @else
                                         Continuing
                                     @endif
-                                    .
+                                    .<br>
 
+                                    <span class="bold"> Total job experience:</span> @if ($exp->expYear >0){{$exp->expYear}}.{{(((int)$exp->expMonth)/(12*$exp->expYear))}} @else
+                                        {{$exp->expYear}}.{{$exp->expMonth}}
+                                    @endif
+                                        Years<br>
 
 
                                 </td>
@@ -359,7 +363,7 @@
 
                         <tr>
                             <td  style="border: none;">
-                                <label> Blood Group: </label>{{$personalInfo->bloodGroup}}
+                                <label> Blood Group: </label>{{strtoupper($personalInfo->bloodGroup)}}
                             </td>
 
 
@@ -383,13 +387,18 @@
                             </td>
                         </tr>
                         <tr>
-                            <td  style="border: none;">
+                            <td  style="border: none;" colspan="2">
                                 <label>Permanent address :</label> {{$personalInfo->parmanentAddress}}
                             </td>
                         </tr>
 
-                        {{--bloodGroup--}}
-                        {{--maritalStatus--}}
+                        <tr>
+                            <td  style="border: none;" >
+                                <label>Expected salary :</label> {{$salary->expectedSalary}}
+                            </td>
+                        </tr>
+
+
 
 
                     </table>
@@ -427,6 +436,83 @@
                     </table>
                     @endif
 
+
+
+{{--                    =========--}}
+
+                    <table border="0" style="width:100%; margin-top: 10px; border: none;">
+                    </table>
+
+                    <table border="0" style="width:100%; margin-top: 5px; border: none;">
+                        <tr>
+                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Languages</b> </td>
+                        </tr>
+                    </table>
+
+                    <table border="0" style="width:100%; margin-top: 5px; border: none;">
+
+                        <tr style=" border: none;">
+                            @if($languageNames->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @endif
+                            @foreach($languageNames as $lname)
+                                <td>
+                                    {{$lname->languagename}}
+                                </td>
+
+
+                                @foreach($languages->where('fklanguageHead',$lname->fklanguageHead) as $lan)
+
+                                <td>
+                                    {{$lan->languageSkillName}} : {{$lan->rate}}
+
+                                </td>
+
+                                @endforeach
+                            @endforeach
+
+                        </tr>
+
+
+                    </table>
+
+
+
+
+
+                    <table border="0" style="width:100%; margin-top: 10px; border: none;">
+                    </table>
+
+                    <table border="0" style="width:100%; margin-top: 5px; border: none;">
+                        <tr>
+                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Membership in Professional Network</b> </td>
+                        </tr>
+                    </table>
+
+                    <table border="0" style="width:100%; margin-top: 5px; border: none;">
+
+                        <tr style=" border: none;">
+                            @if($memberShip->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @endif
+                            @foreach($memberShip as $mem)
+
+                                <td style="border: none;">
+                                    <span class="bold"> Network name :</span>{{$mem->networkName}} <br>
+                                    <span class="bold">Membership type:</span>{{$mem->membershipType}}
+                                    &nbsp; <span class="bold">  Duration:</span> &nbsp;&nbsp;&nbsp;{{$mem->duration}} <br>
+
+                                </td>
+
+                            @endforeach
+
+                        </tr>
+
+
+                    </table>
+
+
+{{--                    ====--}}
+
+
+
+
                     <table border="0" style="width:100%; margin-top: 10px; border: none;">
                     </table>
 
@@ -462,7 +548,7 @@
                         </tr>
                     </table>
 
-                    <table border="0" style="width:100%; margin-top: 10px; border: none;">
+                    <table border="0" style="width:100%; margin-top: 10px; margin-bottom:15px;border: none;">
 
                         @php $count=1;@endphp
 
@@ -489,6 +575,19 @@
 
                     </table>
 
+                    <table border="0" style="width:100%; margin-top: 25px; border: none;">
+
+                        <b>Declaration:</b> I do hereby declare that the above information is true and correct to the best of my knowledge.
+
+                        <tr>
+
+                            <td style="width: 13%; border: none; "><img height="100px" width="100px" src="{{url('public/candidateSigns/thumb').'/'.$personalInfo->sign}}" alt=""></td>
+                        </tr>
+                        <tr>
+                            <td style="width: 13%; border: none; ">&nbsp;&nbsp;Signature</td>
+                        </tr>
+                    </table>
+
 
 
 
@@ -510,24 +609,24 @@
 
 <script>
 
-    @if(Session::has('message') && $allEmp != null &&  $allEmp->cvStatus == null)
+    {{--@if(Session::has('message') && $allEmp != null &&  $allEmp->cvStatus == null)--}}
 
-    $.alert({
-        title: 'Error',
-        type: 'red',
-        content: 'Your CV is not Completed yet,Please Complete First',
-        buttons: {
-            tryAgain: {
-                text: 'Ok',
-                btnClass: 'btn-green',
-                action: function () {
+    {{--$.alert({--}}
+        {{--title: 'Error',--}}
+        {{--type: 'red',--}}
+        {{--content: 'Your CV is not Completed yet,Please Complete First',--}}
+        {{--buttons: {--}}
+            {{--tryAgain: {--}}
+                {{--text: 'Ok',--}}
+                {{--btnClass: 'btn-green',--}}
+                {{--action: function () {--}}
 
-                }
-            }
-        }
-    });
+                {{--}--}}
+            {{--}--}}
+        {{--}--}}
+    {{--});--}}
 
-    @endif
+    {{--@endif--}}
     @if(Session::has('message') && $msg != null)
 
     $.alert({

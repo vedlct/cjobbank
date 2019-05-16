@@ -61,9 +61,9 @@ define('UNIVERSITY_TYPE',array(
 ));
 
 define('RESULT_SYSTEM',array(
-    "grade"=>'1',
-    "division"=>'2',
-    "class"=>'3',
+    "Grade"=>'1',
+    "Division"=>'2',
+    "Class"=>'3',
 
 ));
 
@@ -85,7 +85,7 @@ define('STATUS',array(
     "0"=>'Inactive',
 ));
 
-define('OTHERS',"others");
+define('OTHERS',"Others");
 define('CV_COMPLITING_MSG',"Thank you for submiting your CV. All the data submitted here are only for Caritas Bangladesh");
 
 //ComputerSkillAchievement

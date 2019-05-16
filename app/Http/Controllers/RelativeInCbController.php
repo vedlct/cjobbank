@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Refree;
 use App\RelativeInCb;
 use App\User;
 use Illuminate\Http\Request;
@@ -75,16 +76,35 @@ class RelativeInCbController extends Controller
             $relative->save();
         }
 
-        Employee::where('fkuserId',Auth::user()->userId)
-            ->update(['cvStatus'=>1]);
 
-        Employee::where('fkuserId',Auth::user()->userId)
-            ->update(['cvCompletedDate'=>date('Y-m-d')]);
+        $refrees=Refree::where('fkemployeeId',$employee->employeeId)
+            ->count();
+        if ($refrees>=2){
+
+            Employee::where('fkuserId',Auth::user()->userId)
+                ->update(['cvStatus'=>1]);
+
+            Employee::where('fkuserId',Auth::user()->userId)
+                ->update(['cvCompletedDate'=>date('Y-m-d')]);
+            Session::flash('CVcomplete', 'done');
+
+        }else{
+
+            Employee::where('fkuserId',Auth::user()->userId)
+                ->update(['cvStatus'=>null]);
+
+            Employee::where('fkuserId',Auth::user()->userId)
+                ->update(['cvCompletedDate'=>null]);
+            Session::flash('CVcomplete', 'notDone');
+        }
+
+
 
         Employee::where('fkuserId', Auth::user()->userId)
             ->update(['relativeInCB' => 1]);
 
         Session::flash('message', 'Relative Added Successfully');
+
 
         return redirect()->route('relativeInCaritas.getRelationInfo');
     }
@@ -101,6 +121,7 @@ class RelativeInCbController extends Controller
 
             Employee::where('fkuserId', Auth::user()->userId)
                 ->update(['relativeInCB' => 1]);
+            Session::flash('CVcomplete', 'done');
 
             return redirect()->route('relativeInCaritas.getRelationInfo');
         }else{
@@ -115,6 +136,7 @@ class RelativeInCbController extends Controller
 //                ->update(['cvCompletedDate'=>date('Y-m-d')]);
 
             Session::flash('message', 'Relative Information Added Successfully');
+            Session::flash('CVcomplete', 'done');
             return redirect()->route('relativeInCaritas.getRelationInfo');
         }
     }
@@ -146,16 +168,16 @@ class RelativeInCbController extends Controller
 
         RelativeInCb::destroy($r->relativeId);
 
+
+
         $count=RelativeInCb::where('relativeincb.fkemployeeId',$empId)
 //            ->leftJoin('employee','employee.employeeId','relativeincb.fkemployeeId')
             ->count();
 
         if($count<1){
             Employee::where('employeeId',$empId)
-                ->update(['cvStatus'=>null,'cvCompletedDate' =>null,'relativeInCB'=>0]);
+                ->update(['cvCompletedDate' =>date('Y-m-d'),'relativeInCB'=>0]);
 
-//            Employee::where('fkuserId',Auth::user()->userId)
-//                ->update(['cvCompletedDate'=>null]);
 
 
         }

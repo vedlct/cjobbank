@@ -13,8 +13,8 @@
                     <li class="has-submenu">
                         <a href="#"><i class="ti-home"></i>My CV</a>
                         <ul class="submenu">
-                            <li><a href="{{route('candidate.cvPersonalInfo')}}">Add/Edit Cv</a></li>
-                            <li><a href="{{route('candidate.viewUserCv')}}">View Cv</a></li>
+                            <li><a href="{{route('candidate.cvPersonalInfo')}}">Add/Edit CV</a></li>
+                            <li><a href="{{route('candidate.viewUserCv')}}">View CV</a></li>
                         </ul>
                     </li>
 
@@ -98,5 +98,8 @@
 
 @if(Session::has('message'))
     <p class="alert alert-info" style="text-align: center">{{ Session::get('message') }}</p>
+@endif
+@if(Session::has('error-message'))
+    <p class="alert alert-danger" style="text-align: center">{{ Session::get('error-message') }}</p>
 @endif
 

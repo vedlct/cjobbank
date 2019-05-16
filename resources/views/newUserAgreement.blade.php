@@ -28,6 +28,13 @@
         }
     </style>
 
+    <style>
+        .accountbg {
+            background-position-x: center;
+            background-position-y: 50%;
+        }
+    </style>
+
 </head>
 
 

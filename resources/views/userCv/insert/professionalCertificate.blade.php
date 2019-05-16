@@ -5,10 +5,31 @@
     <div class="row ">
 
         <div class="col-12 ">
-            <div class="card">
+            <div class="card updateCard">
                 <div style="background-color: #F1F1F1" class="card-body">
 
-                    <form id="regForm" name="regForm" action="{{route('submit.cvProfessionalCertificate')}}" onsubmit="return chkProfessinalCertificate()" method="post">
+                    <div class="col-md-3">
+
+                        <div class="sidenav">
+                            <a href="{{route('candidate.cvPersonalInfo')}}">Personal Details</a>
+                            <a href="{{route('candidate.cvQuesObj')}}">Career Objective and Application Information</a>
+                            <a href="{{route('candidate.cvEducation')}}">Education</a>
+                            <a href="{{route('candidate.language.index')}}" >Language</a>
+                            <a href="{{route('candidate.computerSkill.index')}}" >Computer-Skill</a>
+                            <a href="{{route('candidate.skill.index')}}" >Other Skill Information</a>
+                            <a href="{{route('cv.OthersInfo')}}" >Other Information</a>
+                            <a href="{{route('candidate.cvTrainingCertificate')}}">Training Certification</a>
+                            <a class="activeNav" href="{{route('candidate.cvProfessionalCertificate')}}">Professional Certification</a>
+                            <a <?php if ($hasProfCertificate!='0'){?> onclick="return false;" class="incomplete" <?php } ?> href="{{route('JobExperience.index')}}">Job Experience</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('refree.index')}}">Referee</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas Bangladesh</a>
+                        </div>
+
+                    </div>
+
+                    <form class="col-md-9" id="regForm" name="regForm" action="{{route('submit.cvProfessionalCertificate')}}" onsubmit="return chkProfessinalCertificate()" method="post">
                         <!-- One "tab" for each step in the form: -->
                         {{csrf_field()}}
 
@@ -42,7 +63,7 @@
 
                                 <div class="row">
                                 <div class="form-group col-md-8">
-                                    <label for="inputEmail4">Institution</label>
+                                    <label for="inputEmail4">Institution<span style="color: red">*</span></label>
                                     <input type="text" class="form-control" name="institutionName[]" id="institutionName" placeholder="institution">
                                 </div>
                                     <div class="form-group col-md-4">
@@ -234,7 +255,7 @@
         $('#resultSydtem').on('change', function() {
 
             var resultSydtem =$('#resultSydtem').val();
-            if (resultSydtem == "others"){
+            if (resultSydtem == "{{OTHERS}}"){
 
                 $("#resultSydtemNameDiv").show();
             }else {
@@ -254,7 +275,7 @@
 
             var resultSydtem=document.getElementById("resultSydtem"+x).value;
 
-            if (resultSydtem == "others"){
+            if (resultSydtem == "{{OTHERS}}"){
 
                 $("#resultSydtemNameDiv"+x).show();
             }else {
@@ -334,7 +355,7 @@
 
                     }
 
-                    if (end[i].value != "") {
+                    if (start[i].value != "" && end[i].value != "") {
 
 
                         if (Date.parse(end[i].value) < Date.parse(start[i].value)) {
@@ -613,7 +634,7 @@
                     '</div>'+
 
                     '<div class="form-group col-md-4">'+
-                    '<label for="inputPassword4">Start date<span style="color: red">*</span></label>'+
+                    '<label for="inputPassword4">Start date</label>'+
                 '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date" >'+
                 '</div>'+
                 '<div class="form-group col-md-4">'+

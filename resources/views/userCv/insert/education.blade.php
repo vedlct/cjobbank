@@ -5,10 +5,31 @@
     <div class="row ">
 
         <div class="col-12 ">
-            <div style="background-color: #F1F1F1" class="card">
+            <div style="background-color: #F1F1F1" class="card updateCard">
                 <div class="card-body">
 
-                    <form id="regForm" method="post" action="{{route('cv.insertPersonalEducation')}}">
+                    <div class="col-md-3">
+
+                        <div class="sidenav">
+                            <a href="{{route('candidate.cvPersonalInfo')}}">Personal Details</a>
+                            <a href="{{route('candidate.cvQuesObj')}}">Career Objective and Application Information</a>
+                            <a href="{{route('candidate.cvEducation')}}" class="activeNav">Education</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.language.index')}}">Language</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.computerSkill.index')}}">Computer-Skill</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.skill.index')}}">Other Skill Information</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('cv.OthersInfo')}}">Other Information</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.cvTrainingCertificate')}}">Training Certification</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.cvProfessionalCertificate')}}">Professional Certification</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('JobExperience.index')}}">Job Experience</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('refree.index')}}">Referee</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas Bangladesh</a>
+                        </div>
+
+                    </div>
+
+                    <form class="col-md-9" id="regForm" method="post" action="{{route('cv.insertPersonalEducation')}}">
 
                         {{csrf_field()}}
 
@@ -22,7 +43,7 @@
 
                                     <label for="">Education exam/level<span style="color: red">*</span></label>
                                     <select name="educationLevel[]" class="form-control" required="" id="educationLevel">
-                                        <option value="">Select education level</option>
+                                        <option value="">Select education exam/level</option>
                                         @foreach($educationLevel as $edulevel)
                                             <option value="{{$edulevel->educationLevelId}}">{{$edulevel->educationLevelName}}</option>
                                         @endforeach
@@ -31,10 +52,9 @@
                                 </div>
                                 <div class="form-group col-md-8">
 
-                                    <label for="">Education degree<span style="color: red">*</span></label>
+                                    <label for="">Subject/Group<span style="color: red">*</span></label>
                                     <select  name="degree[]" class="form-control" required id="degree">
                                         <option value="">Select degree</option>
-
                                     </select>
 
                                 </div>
@@ -77,7 +97,7 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group col-md-3">
+                                <div class="form-group col-md-9">
                                     <label for="">Major</label>
                                     <select name="major[]" class="form-control js-example-basic-single" id="majorSub">
                                         <option value="" >Select major</option>
@@ -231,7 +251,7 @@
         $('#majorSub').on('change', function() {
 
             var major =$('#majorSub').val();
-            if (major == "others"){
+            if (major == "{{OTHERS}}"){
 
                 $("#subjectNameDiv").show();
             }else {
@@ -263,7 +283,7 @@
 
 
             var major =$('#majorSub'+x).val();
-            if (major == "others"){
+            if (major == "{{OTHERS}}"){
 
                 $("#subjectNameDiv"+x).show();
             }else {
@@ -311,7 +331,7 @@
 //                alert(1);
 //
 //                var major =$('#majorSub'+(counter)).val();
-//                if (major == "others"){
+//                if (major == "{{OTHERS}}"){
 //
 //                    $("#subjectNameDiv"+(counter)).show();
 //                }else {
@@ -345,7 +365,7 @@
                     var major=$('#majorSub').val();
                     var universityType=$('#universityType').val();
 
-                    if(major=="others" && $("#subjectName").val()=="" ){
+                    if(major=="{{OTHERS}}" && $("#subjectName").val()=="" ){
                         var errorMsg='Please type a subject name first!!'
                         validationError(errorMsg);
                         return false;
@@ -449,7 +469,7 @@
                     var major=$('#majorSub'+(counter-1)).val();
                     var universityType=$('#universityType'+(counter-1)).val();
 
-                    if(major=="others" && $("#subjectName"+(counter-1)).val()=="" ){
+                    if(major=="{{OTHERS}}" && $("#subjectName"+(counter-1)).val()=="" ){
                         var errorMsg='Please Type a Subject Name First!!'
                         validationError(errorMsg);
                         return false;
@@ -598,7 +618,7 @@
                     '</div>'+
 
 
-                    '<div class="form-group col-md-3">'+
+                    '<div class="form-group col-md-9">'+
                     '<label for="">Major</label>'+
                     '<select name="major[]" class="form-control js-example-basic-single" onchange="checkMajor('+counter+')" id="majorSub'+counter+'">'+
                     '<option value="">Select major</option>'+
@@ -773,7 +793,7 @@
         $('#degree').on('change', function() {
 
             var degree =$('#degree').val();
-            if (degree == "others"){
+            if (degree == "{{OTHERS}}"){
 
                 $("#degreeNameDiv").show();
                 $("#subjectNameDiv").show();
@@ -808,7 +828,7 @@
         $('#board').on('change', function() {
 
             var board =$('#board').val();
-            if (board == "others"){
+            if (board == "{{OTHERS}}"){
 
                 $("#boardNameDiv").show();
             }else {
@@ -826,7 +846,7 @@
         $('#resultSydtem').on('change', function() {
 
             var resultSydtem =$('#resultSydtem').val();
-            if (resultSydtem == "others"){
+            if (resultSydtem == "{{OTHERS}}"){
 
                 $("#resultSydtemNameDiv").show();
             }else {
@@ -928,7 +948,7 @@
             var degree=document.getElementById("degree"+btn).value;
 
 
-            if (degree == "others"){
+            if (degree == "{{OTHERS}}"){
 
                 $("#degreeNameDiv"+btn).show();
                 $("#subjectNameDiv"+btn).show();
@@ -966,7 +986,7 @@
             var board=document.getElementById("board"+x).value;
 
 
-            if (board == "others"){
+            if (board == "{{OTHERS}}"){
 
                 $("#boardNameDiv"+btn).show();
             }else {
@@ -983,7 +1003,7 @@
 
             var resultSydtem=document.getElementById("resultSydtem"+x).value;
 
-            if (resultSydtem == "others"){
+            if (resultSydtem == "{{OTHERS}}"){
 
                 $("#resultSydtemNameDiv"+btn).show();
             }else {

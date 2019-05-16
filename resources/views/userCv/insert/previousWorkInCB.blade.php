@@ -5,10 +5,31 @@
     <div class="row ">
 
         <div class="col-12 ">
-            <div class="card">
+            <div class="card updateCard">
                 <div style="background-color: #F1F1F1" class="card-body">
 
-                    <form id="regForm" onsubmit="return chkPreviousWork()" action="{{route('candidate.previousWorkInCB.insert')}}" method="post">
+                    <div class="col-md-3">
+
+                        <div class="sidenav">
+                            <a href="{{route('candidate.cvPersonalInfo')}}">Personal Details</a>
+                            <a href="{{route('candidate.cvQuesObj')}}">Career Objective and Application Information</a>
+                            <a href="{{route('candidate.cvEducation')}}">Education</a>
+                            <a href="{{route('candidate.language.index')}}" >Language</a>
+                            <a href="{{route('candidate.computerSkill.index')}}" >Computer-Skill</a>
+                            <a href="{{route('candidate.skill.index')}}" >Other Skill Information</a>
+                            <a href="{{route('cv.OthersInfo')}}" >Other Information</a>
+                            <a href="{{route('candidate.cvTrainingCertificate')}}">Training Certification</a>
+                            <a href="{{route('candidate.cvProfessionalCertificate')}}">Professional Certification</a>
+                            <a  href="{{route('JobExperience.index')}}">Job Experience</a>
+                            <a class="activeNav" href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
+                            <a <?php if ($hasWorkedInCB!='0'){?> onclick="return false;" class="incomplete"<?php } ?> href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('refree.index')}}">Referee</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas Bangladesh</a>
+                        </div>
+
+                    </div>
+
+                    <form class="col-md-9" id="regForm" onsubmit="return chkPreviousWork()" action="{{route('candidate.previousWorkInCB.insert')}}" method="post">
                         <!-- One "tab" for each step in the form: -->
                         {{csrf_field()}}
 
@@ -47,7 +68,7 @@
 
                                         <label for="inputPassword4">End date</label> /
                                         <input type="checkbox" class="col-md-2" id="currentlyRunning" name="currentlyRunning[]" value="1">Running
-                                        <input type="text" class="form-control  col-md-4 end" name="endDate[]" id="end" placeholder="date">
+                                        <input type="text" class="form-control end" name="endDate[]" id="end" placeholder="date">
 
 
                                     </div>
@@ -132,13 +153,16 @@
                 format: "yyyy-m-d"
 //                useCurrent: false
 //                startDate: $( "#start" ).val(),
-            })
+            });
+            $('.date').keydown(false);
+            $('.end').keydown(false);
         });
 
         $("input[name=hasWorkedInCB]").click( function () {
 
             if ($(this).val()=='1'){
                 $('#PreviousWorkInCBDiv').show();
+                $("#submitBtn").show();
             }else {
                 $('#PreviousWorkInCBDiv').hide();
             }
@@ -148,6 +172,7 @@
             if ('<?php echo $hasWorkedInCB?>'== '0'){
 
                 $('#PreviousWorkInCBDiv').hide();
+                $("#submitBtn").hide();
 
             }else if ('<?php echo $hasWorkedInCB?>'== '1'){
                 $('#PreviousWorkInCBDiv').show();
@@ -191,7 +216,8 @@
 
                         if(endDate[i].value!=""){
 
-                            if(startDate[i].value > endDate[i].value){
+
+                            if(Date.parse(startDate[i].value) > Date.parse(endDate[i].value)){
 
                                 var errorMsg='start date must be less then end date';
                                 validationError(errorMsg);
@@ -345,21 +371,22 @@
                     .attr("id", 'TextBoxDiv' + counter).attr("class", 'row');
                 newTextBoxDiv.after().html(
 
-                    '<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>' +
-                    '<div class="row"> ' +
-                    '<div class="form-group col-md-4"> ' +
+                    '<div class="form-group"><hr style="border-top:1px dotted #000;"></div>' +
+//                    '<div class="col-md-12"> ' +
+                    '<div class="form-group col-md-12"> ' +
                     '<label for="inputEmail4">Designation</label> ' +
                     '<input type="text" class="form-control" name="degisnation[]" id="degisnation'+counter+'" placeholder="designation" > ' +
                     '</div> ' +
-                    '<div class="form-group col-md-4"> ' +
+                    '<div class="form-group col-md-6"> ' +
                     '<label for="inputPassword4">Start date</label> ' +
                     '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date"> ' +
                     '</div> ' +
-                    '<div class="form-group col-md-4"> ' +
+                    '<div class="form-group col-md-6"> ' +
                     '<label for="inputPassword4">End date</label> ' +
+                    '/ <input type="checkbox" class="col-md-2" id="currentlyRunning'+counter+'" name="currentlyRunning[]" value="1"> Running'+
                     '<input type="text" class="form-control date" name="endDate[]" id="end'+counter+'" placeholder="date"> ' +
-                    '/ <input type="checkbox" id="currentlyRunning'+counter+'" name="currentlyRunning[]" value="1"> Running'+
-                '</div> ' +
+
+//                '</div> ' +
                     '</div>'
 
                 );
@@ -373,6 +400,7 @@
                 $('.date').datepicker({
                     format: 'yyyy-m-d'
                 });
+                $('.date').keydown(false);
             });
 
             $("#removeButton").click(function () {

@@ -242,12 +242,15 @@ class ApplicationController extends Controller
 
 
 
-        $employee=Employee::select('employee.*','nationality.nationalityName','ethnicity.ethnicityName','religion.religionName')
+        $employee=Employee::select('employee.*','emp_other_info.interests','emp_other_info.researchPublication','emp_other_info.awardReceived','nationality.nationalityName','ethnicity.ethnicityName','religion.religionName')
             ->leftJoin('nationality','nationality.nationalityId','employee.fknationalityId')
             ->leftJoin('ethnicity','ethnicity.ethnicityId','employee.ethnicityId')
             ->leftJoin('religion','religion.religionId','employee.fkreligionId')
+            ->leftJoin('emp_other_info','emp_other_info.fk_empId','employee.employeeId')
             ->whereIn('employeeId',$employees)
             ->get();
+
+
 
 //        return $employee;
         $social=MembershipInSocialNetwork::whereIn('fkemployeeId',$employees)->get();
@@ -321,11 +324,18 @@ class ApplicationController extends Controller
 
                 $sheet->setStyle(array(
                     'font' => array(
-                        'name'      =>  'Calibri',
-                        'size'      =>  10,
-                        'bold'      =>  false
+//                        'name'      =>  'Calibri',
+                        'size'      =>  13,
+//                        'bold'      =>  false
                     )
                 ));
+
+
+                $sheet->setpaperSize(5);
+                $sheet->setOrientation('landscape');
+                $sheet->setScale(40);
+                $sheet->setFitToPage(false);
+//                $sheet->getStyle()->getAlignment()->setWrapText(true);
 
                 $sheet->loadView('Admin.application.fullInfo',
                     compact('employee','social','education','pQualification','training','jobExperience','reference',
@@ -404,7 +414,11 @@ class ApplicationController extends Controller
             ->get();
 
 
-        $jobExperience=JobExperience::whereIn('fkemployeeId',$empIds)
+        $jobExperience=JobExperience::select('jobexperience.*')
+            ->orderBy('startDate', 'desc')
+            ->addSelect(DB::raw("TIMESTAMPDIFF(YEAR,`jobexperience`.`startDate`,`jobexperience`.`endDate`) as expYear"),
+                DB::raw("TIMESTAMPDIFF(MONTH,`jobexperience`.`startDate`,`jobexperience`.`endDate`) as expMonth"))
+            ->whereIn('fkemployeeId',$empIds)
             ->get();
 
         $salaryInfo=Jobapply::whereIn('fkemployeeId',$empIds)
@@ -419,38 +433,7 @@ class ApplicationController extends Controller
 
 
 
-//        return $relativeList;
 
-//        return view('Admin.application.AppliedCandidateList')
-//            ->with('AppliedCandidateList',$newlist)
-//            ->with('ethnicity',$ethnicity)
-//            ->with('educationList',$education)
-//            ->with('qualificationList',$pQualification)
-//            ->with('trainingList',$training)
-//            ->with('jobExperienceList',$jobExperience)
-//            ->with('salaryList',$salaryInfo)
-//            ->with('refreeList',$refree)
-//            ->with('jobTitle',$jobTitle)
-//            ->with('relativeList',$relativeList);
-
-//        $check=Excel::create($fileName,function($excel) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle) {
-//            $excel->sheet('First sheet', function($sheet) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle) {
-//                $sheet->loadView('Admin.application.AppliedCandidateList')
-//                    ->with('AppliedCandidateList',$newlist)
-//                    ->with('ethnicity',$ethnicity)
-//                    ->with('educationList',$education)
-//                    ->with('qualificationList',$pQualification)
-//                    ->with('trainingList',$training)
-//                    ->with('jobExperienceList',$jobExperience)
-//                    ->with('salaryList',$salaryInfo)
-//                    ->with('refreeList',$refree)
-//                    ->with('jobTitle',$jobTitle)
-//                    ->with('relativeList',$relativeList);
-//
-//            });
-//        })->export('xls');
-//
-//        return "done";
 
         $check=Excel::create($fileName,function($excel) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle) {
             $excel->sheet('First sheet', function($sheet) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle) {
@@ -483,6 +466,130 @@ class ApplicationController extends Controller
 
     }
     public function exportAppliedCandidateHrReport03(Request $r)
+    {
+
+        $appliedList=$r->jobApply;
+        $excelName=$r->excelName;
+//        $jobTitle=$r->jobTitle;
+
+//        $employees=array();
+//        for ($i=0;$i<count($appliedList);$i++){
+//            $appliedId=$appliedList[$i];
+//            $empId=Jobapply::where('jobapply',$appliedId)->first()->fkemployeeId;
+//            array_push($employees,$empId);
+//        }
+
+
+        $ethnicity=Ethnicity::get();
+//        $appliedList=$r->jobApply;
+//        $appliedId=7;
+        $filePath=public_path ()."/exportedExcel";
+        $fileName=$excelName."_HR_report02_".date("Y-m-d_H-i-s");
+
+        $fileInfo=array(
+            'fileName'=>$fileName,
+            'filePath'=>$fileName,
+        );
+
+
+
+         $jobTitle=Jobapply::select('job.title','job.jobId','job.deadline')
+                ->leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')->whereIn('jobapply',$appliedList)->first();
+
+        $empIds=Jobapply::select('fkemployeeId')->whereIn('jobapply',$appliedList)
+            ->get()
+            ->toArray();
+
+
+        $newlist=Employee::select('employee.*',DB::raw("TIMESTAMPDIFF(YEAR,`employee`.`dateOfBirth`,CURDATE()) as AgeYear"),DB::raw("MONTH(`employee`.`dateOfBirth`)-MONTH(CURDATE()) as AgeMonth"))
+                ->whereIn('employee.employeeId',$empIds)
+                ->get();
+
+        $education=Education::select('education.institutionName','board.boardName','education.fkemployeeId','education.status','education.resultSystem','education.result','educationlevel.educationLevelName',
+            'educationmajor.educationMajorName','education.fkMajorId')
+            ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
+            ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
+            ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
+            ->leftJoin('board', 'board.boardId', '=', 'education.fkboardId')
+            ->whereIn('fkemployeeId',$empIds)
+            ->get();
+
+
+        $pQualification=ProfessionalQualification::whereIn('professionalqualification.fkemployeeId',$empIds)
+            ->get();
+
+        $training=Traning::whereIn('fkemployeeId',$empIds)
+            ->get();
+
+
+        $jobExperience=JobExperience::select('jobexperience.*')
+            ->orderBy('startDate', 'desc')
+            ->addSelect(DB::raw("TIMESTAMPDIFF(YEAR,`jobexperience`.`startDate`,`jobexperience`.`endDate`) as expYear"),
+                DB::raw("TIMESTAMPDIFF(MONTH,`jobexperience`.`startDate`,`jobexperience`.`endDate`) as expMonth"))
+            ->whereIn('fkemployeeId',$empIds)
+            ->get();
+
+        $salaryInfo=Jobapply::whereIn('fkemployeeId',$empIds)
+            ->where('fkjobId',$jobTitle->jobId)
+            ->get();
+
+        $refree=Refree::whereIn('fkemployeeId',$empIds)
+            ->get();
+
+        $relativeList=RelativeInCb::whereIn('fkemployeeId',$empIds)
+            ->get();
+        $withoutSalaryInfo='false';
+
+        $check=Excel::create($fileName,function($excel) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle,$withoutSalaryInfo,$excelName) {
+            $excel->sheet('First sheet', function($sheet) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle,$withoutSalaryInfo,$excelName) {
+
+                $sheet->setStyle(array(
+                    'font' => array(
+//                        'name'      =>  'Calibri',
+                        'size'      =>  13,
+//                        'bold'      =>  false
+                    )
+                ));
+
+
+
+                $sheet->setpaperSize(9);
+                $sheet->setOrientation('landscape');
+                $sheet->setScale(60);
+                $sheet->setFitToPage(false);
+
+
+                $sheet->loadView('Admin.application.AppliedCandidateList')
+                    ->with('AppliedCandidateList',$newlist)
+                    ->with('ethnicity',$ethnicity)
+                    ->with('educationList',$education)
+                    ->with('qualificationList',$pQualification)
+                    ->with('trainingList',$training)
+                    ->with('jobExperienceList',$jobExperience)
+                    ->with('salaryList',$salaryInfo)
+                    ->with('refreeList',$refree)
+                    ->with('jobTitle',$jobTitle)
+                    ->with('withoutsalary',$withoutSalaryInfo)
+                    ->with('excelName',$excelName)
+                    ->with('relativeList',$relativeList);
+
+            });
+        })->store('xls',$filePath);
+        if ($check){
+            $message=array('message'=>$fileName .'.xls has been downloaded',
+                'success'=>'1');
+            $fileInfo=array_merge($fileInfo,$message);
+        }else{
+            $message=array('message'=>'Someting went wrong',
+                'success'=>'0');
+            $fileInfo=array_merge($fileInfo,$message);
+        }
+        return $fileInfo;
+
+
+
+    }
+    public function exportAppliedCandidateHrReport02(Request $r)
     {
 
         $appliedList=$r->jobApply;
@@ -538,108 +645,11 @@ class ApplicationController extends Controller
             ->get();
 
 
-        $jobExperience=JobExperience::whereIn('fkemployeeId',$empIds)
-            ->get();
-
-        $salaryInfo=Jobapply::whereIn('fkemployeeId',$empIds)
-            ->where('fkjobId',$jobTitle->jobId)
-            ->get();
-
-        $refree=Refree::whereIn('fkemployeeId',$empIds)
-            ->get();
-
-        $relativeList=RelativeInCb::whereIn('fkemployeeId',$empIds)
-            ->get();
-        $withoutSalaryInfo='false';
-
-        $check=Excel::create($fileName,function($excel) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle,$withoutSalaryInfo) {
-            $excel->sheet('First sheet', function($sheet) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle,$withoutSalaryInfo) {
-                $sheet->loadView('Admin.application.AppliedCandidateList')
-                    ->with('AppliedCandidateList',$newlist)
-                    ->with('ethnicity',$ethnicity)
-                    ->with('educationList',$education)
-                    ->with('qualificationList',$pQualification)
-                    ->with('trainingList',$training)
-                    ->with('jobExperienceList',$jobExperience)
-                    ->with('salaryList',$salaryInfo)
-                    ->with('refreeList',$refree)
-                    ->with('jobTitle',$jobTitle)
-                    ->with('withoutsalary',$withoutSalaryInfo)
-                    ->with('relativeList',$relativeList);
-
-            });
-        })->store('xls',$filePath);
-        if ($check){
-            $message=array('message'=>$fileName .'.xls has been downloaded',
-                'success'=>'1');
-            $fileInfo=array_merge($fileInfo,$message);
-        }else{
-            $message=array('message'=>'Someting went wrong',
-                'success'=>'0');
-            $fileInfo=array_merge($fileInfo,$message);
-        }
-        return $fileInfo;
-
-
-
-    }
-    public function exportAppliedCandidateHrReport02(Request $r)
-    {
-
-        $appliedList=$r->jobApply;
-        $excelName=$r->excelName;
-//        $jobTitle=$r->jobTitle;
-
-//        $employees=array();
-//        for ($i=0;$i<count($appliedList);$i++){
-//            $appliedId=$appliedList[$i];
-//            $empId=Jobapply::where('jobapply',$appliedId)->first()->fkemployeeId;
-//            array_push($employees,$empId);
-//        }
-
-
-        $ethnicity=Ethnicity::get();
-//        $appliedList=$r->jobApply;
-//        $appliedId=7;
-        $filePath=public_path ()."/exportedExcel";
-        $fileName=$excelName."_HR_report02_".date("Y-m-d_H-i-s");
-
-        $fileInfo=array(
-            'fileName'=>$fileName,
-            'filePath'=>$fileName,
-        );
-
-
-
-         $jobTitle=Jobapply::select('job.title','job.jobId','job.deadline')
-                ->leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')->whereIn('jobapply',$appliedList)->first();
-
-        $empIds=Jobapply::select('fkemployeeId')->whereIn('jobapply',$appliedList)
-            ->get()
-            ->toArray();
-
-        $newlist=Employee::select('employee.*',DB::raw("TIMESTAMPDIFF(YEAR,`employee`.`dateOfBirth`,CURDATE()) as AgeYear"),DB::raw("MONTH(`employee`.`dateOfBirth`)-MONTH(CURDATE()) as AgeMonth"))
-                ->whereIn('employee.employeeId',$empIds)
-                ->get();
-
-        $education=Education::select('education.institutionName','board.boardName','education.fkemployeeId','education.status','education.resultSystem','education.result','educationlevel.educationLevelName',
-            'educationmajor.educationMajorName','education.fkMajorId')
-            ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
-            ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
-            ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
-            ->leftJoin('board', 'board.boardId', '=', 'education.fkboardId')
+        $jobExperience=JobExperience::select('jobexperience.*')
+            ->orderBy('startDate', 'desc')
+            ->addSelect(DB::raw("TIMESTAMPDIFF(YEAR,`jobexperience`.`startDate`,`jobexperience`.`endDate`) as expYear"),
+                DB::raw("TIMESTAMPDIFF(MONTH,`jobexperience`.`startDate`,`jobexperience`.`endDate`) as expMonth"))
             ->whereIn('fkemployeeId',$empIds)
-            ->get();
-
-
-        $pQualification=ProfessionalQualification::whereIn('professionalqualification.fkemployeeId',$empIds)
-            ->get();
-
-        $training=Traning::whereIn('fkemployeeId',$empIds)
-            ->get();
-
-
-        $jobExperience=JobExperience::whereIn('fkemployeeId',$empIds)
             ->get();
 
         $salaryInfo=Jobapply::whereIn('fkemployeeId',$empIds)
@@ -654,8 +664,22 @@ class ApplicationController extends Controller
 
         $withoutSalaryInfo='true';
 
-        $check=Excel::create($fileName,function($excel) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle,$withoutSalaryInfo) {
-            $excel->sheet('First sheet', function($sheet) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle,$withoutSalaryInfo) {
+        $check=Excel::create($fileName,function($excel) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle,$withoutSalaryInfo,$excelName) {
+            $excel->sheet('First sheet', function($sheet) use($newlist, $ethnicity, $education, $pQualification, $training, $jobExperience, $salaryInfo, $refree,$relativeList,$jobTitle,$withoutSalaryInfo,$excelName) {
+
+                $sheet->setStyle(array(
+                    'font' => array(
+//                        'name'      =>  'Calibri',
+                        'size'      =>  13,
+//                        'bold'      =>  false
+                    )
+                ));
+
+                $sheet->setpaperSize(9);
+                $sheet->setOrientation('landscape');
+                $sheet->setScale(60);
+                $sheet->setFitToPage(false);
+
                 $sheet->loadView('Admin.application.AppliedCandidateList')
                     ->with('AppliedCandidateList',$newlist)
                     ->with('ethnicity',$ethnicity)
@@ -667,6 +691,7 @@ class ApplicationController extends Controller
                     ->with('refreeList',$refree)
                     ->with('jobTitle',$jobTitle)
                     ->with('withoutsalary',$withoutSalaryInfo)
+                    ->with('excelName',$excelName)
                     ->with('relativeList',$relativeList);
 
             });
@@ -703,8 +728,8 @@ class ApplicationController extends Controller
             ->where('educationlevel.status',1)
             ->where('degree.status',1)
             ->where('educationmajor.status',1)
-
             ->groupBy('educationMajorId')
+            ->orderBy('educationMajorName')
             ->get();
 
         if ($major == null) {
@@ -842,6 +867,122 @@ class ApplicationController extends Controller
 
 
         }
+
+
+    }
+    public function downloadMailDoc(Request $r){
+
+
+        $appliedList=$r->jobApply;
+        $template=$r->tamplateId;
+        $testDate=$r->testDate;
+        $testAddress=$r->testAddress;
+        $testDetails=$r->testDetails;
+        $footerAndSign=$r->footerAndSign;
+        $subjectLine=$r->subjectLine;
+        $refNo=$r->refNo;
+
+//        $list=array();
+
+        $data=array();
+
+        for ($i=0;$i<count($appliedList);$i++) {
+
+            $appliedId = $appliedList[$i];
+
+
+//            $jobInfo=Jobapply::select('job.title','job.position','jobapply.fkemployeeId','interviewCallDate')->where('jobapply',$appliedId)
+            $jobInfo=Jobapply::leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')->findOrFail($appliedId);
+
+
+            $employeeInfo=Employee::select('employee.*')
+                ->where('employee.employeeId',$jobInfo->fkemployeeId)
+                ->first();
+
+            //  return $template;
+
+            /* make invoice pdf*/
+
+            if ($template=='1'){
+
+
+
+                $word = new \PhpOffice\PhpWord\PhpWord();
+
+                $newSection = $word->addSection();
+
+                $html = view('mail.mailPreview.interviewCard',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
+                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo]);
+
+
+                \PhpOffice\PhpWord\Shared\Html::addHtml( $newSection, $html, false, false);
+
+                header('Content-Type: application/octet-stream');
+                header('Content-Disposition: attachment;filename="interviewCard_'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx"');
+
+                $objectWriter = \PhpOffice\PhpWord\IOFactory::createWriter($word, 'Word2007');
+
+                $objectWriter->save(public_path('mailPreview'."/").'interviewCard_'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx');
+                $data1=array(
+                    'Name'=>'interviewCard_'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx',
+                );
+                array_push($data,$data1);
+
+            }
+            if ($template=='2'){
+
+                $word = new \PhpOffice\PhpWord\PhpWord();
+
+                $newSection = $word->addSection();
+
+                $html = view('mail.mailPreview.notSelected',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
+                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo]);
+
+
+                \PhpOffice\PhpWord\Shared\Html::addHtml( $newSection, $html, false, false);
+
+                header('Content-Type: application/octet-stream');
+                header('Content-Disposition: attachment;filename="notSelected'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx"');
+
+                $objectWriter = \PhpOffice\PhpWord\IOFactory::createWriter($word, 'Word2007');
+
+                $objectWriter->save(public_path('mailPreview'."/").'notSelected'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx');
+                $data2=array(
+                    'Name'=>'notSelected'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx',
+            );
+                array_push($data,$data2);
+
+            }
+            if ($template=='3'){
+
+                $word = new \PhpOffice\PhpWord\PhpWord();
+
+                $newSection = $word->addSection();
+
+                $html = view('mail.mailPreview.panelListed',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
+                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo]);
+
+
+                \PhpOffice\PhpWord\Shared\Html::addHtml( $newSection, $html, false, false);
+
+                header('Content-Type: application/octet-stream');
+                header('Content-Disposition: attachment;filename="panelListed'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx"');
+
+                $objectWriter = \PhpOffice\PhpWord\IOFactory::createWriter($word, 'Word2007');
+
+                $objectWriter->save(public_path('mailPreview'."/").'panelListed'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx');
+
+                $data3=array(
+                    'Name'=>'panelListed'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx',
+                );
+                array_push($data,$data3);
+
+
+            }
+
+        }
+        return $data;
+
 
 
     }

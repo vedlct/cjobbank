@@ -9,6 +9,7 @@ use App\Nationality;
 use App\Religion;
 
 use Illuminate\Http\Request;
+use Artisan;
 use Session;
 use Auth;
 use Image;
@@ -187,6 +188,7 @@ class PersonalInfoController extends Controller
 
         $employee->save();
         Session::flash('message', 'Personal Info Added Successfully');
+        Artisan::call('cache:clear');
 
         return redirect()->route('candidate.cvPersonalInfo');
 
@@ -298,7 +300,7 @@ class PersonalInfoController extends Controller
         $employee->save();
 
         Session::flash('message', 'Personal Info Updated Successfully');
-
+        Artisan::call('cache:clear');
         return redirect()->route('candidate.cvPersonalInfo');
 
 

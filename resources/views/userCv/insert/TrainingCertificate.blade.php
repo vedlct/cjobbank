@@ -5,10 +5,31 @@
     <div class="row ">
 
         <div class="col-12 ">
-            <div class="card">
+            <div class="card updateCard">
                 <div style="background-color: #F1F1F1" class="card-body">
 
-                    <form id="regForm" onsubmit="return chkTrainingCertificate()" action="{{route('insert.cvTrainingCertificate')}}" method="post">
+                    <div class="col-md-3">
+
+                        <div class="sidenav">
+                            <a href="{{route('candidate.cvPersonalInfo')}}">Personal Details</a>
+                            <a href="{{route('candidate.cvQuesObj')}}">Career Objective and Application Information</a>
+                            <a href="{{route('candidate.cvEducation')}}">Education</a>
+                            <a href="{{route('candidate.language.index')}}" >Language</a>
+                            <a href="{{route('candidate.computerSkill.index')}}" >Computer-Skill</a>
+                            <a href="{{route('candidate.skill.index')}}" >Other Skill Information</a>
+                            <a href="{{route('cv.OthersInfo')}}" >Other Information</a>
+                            <a href="{{route('candidate.cvTrainingCertificate')}}" class="activeNav">Training Certification</a>
+                            <a <?php if ($hasTrainingInfo!='0'){?> onclick="return false;" class="incomplete" <?php } ?> href="{{route('candidate.cvProfessionalCertificate')}}">Professional Certification</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('JobExperience.index')}}">Job Experience</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('refree.index')}}">Referee</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas Bangladesh</a>
+                        </div>
+
+                    </div>
+
+                    <form class="col-md-9" id="regForm" onsubmit="return chkTrainingCertificate()" action="{{route('insert.cvTrainingCertificate')}}" method="post">
                         <!-- One "tab" for each step in the form: -->
                         {{csrf_field()}}
 
@@ -43,11 +64,11 @@
 
                                     <div class="row">
                                         <div class="form-group col-md-6">
-                                            <label for="inputEmail4">Venue <span style="color: red">*</span></label>
+                                            <label for="inputEmail4">Venue </label>
                                             <input type="text" class="form-control" name="vanue[]" id="vanue" placeholder="venue" >
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="inputPassword4" style="display:block">Country<span style="color: red">*</span></label>
+                                            <label for="inputPassword4" style="display:block">Country</label>
 
                                             <select  class="form-control col-md-12 js-example-basic-single" id="country" name="countryId[]" style="width:100%">
                                                 <option value="">Select country</option>
@@ -59,7 +80,7 @@
                                         </div>
 
                                         <div class="form-group col-md-4">
-                                            <label for="inputPassword4">Start date<span style="color: red">*</span></label>
+                                            <label for="inputPassword4">Start date</label>
                                             <input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" >
                                         </div>
                                         <div class="form-group col-md-4">
@@ -142,10 +163,11 @@
 
 
                                 </div>
-                                <button type="button" id="addButton" class="btn btn-success">Add more</button>
-                                <button type="button" id="removeButton" class="btn btn-success" >Remove</button>
+
 
                             </div>
+                                <button type="button" id="addButton" class="btn btn-success">Add more</button>
+                                <button type="button" id="removeButton" class="btn btn-success" >Remove</button>
                             </div>
 
                             <div style="overflow:auto;">
@@ -210,6 +232,7 @@
 
             if ($(this).val()=='1'){
                 $('#TrainCertificateDiv').show();
+                $("#submitBtn").show();
             }else {
                 $('#TrainCertificateDiv').hide();
             }
@@ -219,6 +242,7 @@
             if ('<?php echo $hasTrainingInfo?>'== '0'){
 
                 $('#TrainCertificateDiv').hide();
+                $("#submitBtn").hide();
 
             }else if ('<?php echo $hasTrainingInfo?>'== '1'){
                 $('#TrainCertificateDiv').show();
@@ -370,13 +394,13 @@
                         return false;
 
                     }
-                    if (vanue == "") {
-
-                        var errorMsg = 'Please type a venue first!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
+//                    if (vanue == "") {
+//
+//                        var errorMsg = 'Please type a venue first!!'
+//                        validationError(errorMsg)
+//                        return false;
+//
+//                    }
                     if (vanue.length > 255) {
 
                         var errorMsg = 'value should not more than 255 charecter length!!';
@@ -384,13 +408,13 @@
                         return false;
 
                     }
-                    if (country == "") {
-
-                        var errorMsg = 'Please select a country first!!';
-                        validationError(errorMsg)
-                        return false;
-
-                    }
+//                    if (country == "") {
+//
+//                        var errorMsg = 'Please select a country first!!';
+//                        validationError(errorMsg)
+//                        return false;
+//
+//                    }
 
 //                    if(start==""){
 //                        var errorMsg='Please select a strat date first!!';
@@ -450,13 +474,13 @@
                         return false;
 
                     }
-                    if(vanue==""){
-
-                        var errorMsg='Please type a venue first!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
+//                    if(vanue==""){
+//
+//                        var errorMsg='Please type a venue first!!'
+//                        validationError(errorMsg)
+//                        return false;
+//
+//                    }
                     if (vanue.length > 255){
 
                         var errorMsg='value should not more than 255 charecter length!!';
@@ -464,13 +488,13 @@
                         return false;
 
                     }
-                    if(country==""){
-
-                        var errorMsg='Please select a country first!!';
-                        validationError(errorMsg)
-                        return false;
-
-                    }
+//                    if(country==""){
+//
+//                        var errorMsg='Please select a country first!!';
+//                        validationError(errorMsg)
+//                        return false;
+//
+//                    }
                     if(trainingCertificateStatus==""){
                         var errorMsg='Please select a status first!!';
                         validationError(errorMsg)
@@ -517,11 +541,11 @@
                     '</div> ' +
 
                     '<div class="form-group col-md-8"> ' +
-                    '<label for="inputEmail4">Venue <span style="color: red">*</span></label> ' +
+                    '<label for="inputEmail4">Venue </label> ' +
                     '<input type="text" class="form-control" name="vanue[]" id="vanue'+counter+'" placeholder="venue" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
-                    '<label for="inputPassword4">Country<span style="color: red">*</span></label>' +
+                    '<label for="inputPassword4">Country</label>' +
                     '<select required class="form-control js-example-basic-single" id="country'+counter+'" name="countryId[]">'+
                     '<option value="">Select Country</option>'+
                     '@foreach($countries as $country)'+
@@ -530,7 +554,7 @@
                     '</select>'+
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
-                    '<label for="inputPassword4">Start date<span style="color: red">*</span></label> ' +
+                    '<label for="inputPassword4">Start date</label> ' +
                     '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date"> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +

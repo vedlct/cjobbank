@@ -113,7 +113,7 @@ class ProfessionalCertificateController extends Controller
                     $professional->grade=$r->grade[$i];
                 }
 
-                if ($r->resultSystem[$i]=='others'){
+                if ($r->resultSystem[$i]==OTHERS){
 
                     $professional->resultSystem=4;
                     $professional->resultSystemName=$r->resultSydtemName[$i];
@@ -148,7 +148,7 @@ class ProfessionalCertificateController extends Controller
             $professional->startDate=$r->startDate;
             $professional->endDate=$r->endDate;
 //            $professional->resultSystem=$r->resultSystem;
-        if ($r->resultSystem=='others'){
+        if ($r->resultSystem==OTHERS){
 
             $professional->resultSystem=4;
             $professional->resultSystemName=$r->resultSydtemName;

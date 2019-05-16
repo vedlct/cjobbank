@@ -44,8 +44,8 @@
                 <td style="text-align: left; border: none;width: 85%; ">
                     <h3 style="">{{$personalInfo->firstName}} {{$personalInfo->lastName}}</h3>
                     <p style="max-width: 300px">Cell No: {{$personalInfo->personalMobile}} <br>
-                        email: {{$personalInfo->email}} <br>
-                        address: {{$personalInfo->presentAddress}}
+                        Email: {{$personalInfo->email}} <br>
+                        Address: {{$personalInfo->presentAddress}}
                     </p>
 
                 </td>
@@ -76,8 +76,6 @@
             </tr>
         </table>
 
-
-        Education
 
         <table border="0" style="width:100%; margin-top: 10px; ">
             <thead>
@@ -122,7 +120,7 @@
         <table border="0" style="width:100%; margin-top: 10px; border: none;">
             @if($jobExperience->isEmpty())<tr><td style=" border: none; text-align: center"> <strong>None </strong> </td> </tr>@else
 
-            @php $count=1;@endphp
+            @php $count=1;$flag=0;@endphp
             @foreach($jobExperience as $exp)
 
                 <tr>
@@ -130,17 +128,21 @@
                         <span class="bold">{{$count++}}.</span>
                     </td>
 
-
                     <td style="border: none;">
 
                         <span class="bold"> Company Name : </span> &nbsp;&nbsp; {{$exp->organization}}  &nbsp;&nbsp;
-                        <div class="pull-right"><span class="bold">Position:</span>&nbsp;&nbsp;&nbsp; {{$exp->degisnation}} </div><br>
-
-                        <span class="bold"> Major Responsibilities :</span>&nbsp;&nbsp;&nbsp; {{$exp->majorResponsibilities}} <br>
+                        <div class="pull-right"><span class="bold">Position:</span>&nbsp;{{$exp->degisnation}} </div><br>
+                        <span class="bold"> Major Responsibilities :</span>&nbsp;&nbsp;{{$exp->majorResponsibilities}} <br>
                         <span class="bold"> Address:</span>&nbsp;&nbsp;&nbsp; {{$exp->address}} <br>
                         <span class="bold"> Duration:</span>&nbsp;&nbsp;&nbsp; {{$exp->startDate}} -  @if($exp->endDate) {{$exp->endDate}} @else
                             Continuing
                         @endif
+                        <br>
+
+                        <span class="bold"> Total job experience:</span> @if ($exp->expYear >0){{$exp->expYear}}.{{(((int)$exp->expMonth)/(12*$exp->expYear))}} @else
+                            {{$exp->expYear}}.{{$exp->expMonth}}
+                        @endif
+                        Years<br>
 
 
 
@@ -151,6 +153,14 @@
             @endforeach
     @endif
         </table>
+
+        @if(!$jobExperience->isEmpty() && count($jobExperience) >=2)
+            <p style="page-break-after: always;"></p>
+        @elseif(!$jobExperience->isEmpty())
+            <p style="page-break-after: always;"></p>
+        @elseif($jobExperience->isEmpty()&& count($trainingCertificate)>=2)
+            <p style="page-break-after: always;"></p>
+        @endif
 
 
 
@@ -187,9 +197,9 @@
 
         </table>
 
-        {{--@if($trainingCertificate->isEmpty())--}}
-        {{--<p style="page-break-after: always;"></p>--}}
-        {{--@endif--}}
+        @if($trainingCertificate->isEmpty()&& $jobExperience->isEmpty() )
+        <p style="page-break-after: always;"></p>
+        @endif
 
         <table border="0" style="width:100%;border: none;">
             <tr>
@@ -249,7 +259,7 @@
 
         {{--<p style="page-break-after: always"></p>--}}
 
-        <table border="0" style="width:100%; margin-top: 25px; border: none;">
+        <table border="0" style="width:100%; margin-top: 5px; border: none;">
             <tr>
                 <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Other Skill</b> </td>
             </tr>
@@ -311,8 +321,8 @@
 
 
 
-        <p style="page-break-after: always"></p><br>
-        <table border="0" style="width:100%; margin-top: 25px; border: none;">
+{{--        <p style="page-break-after: always"></p><br>--}}
+        <table border="0" style="width:100%; margin-top: 5px; border: none;">
             <tr>
                 <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Personal Info</b> </td>
             </tr>
@@ -342,7 +352,7 @@
 
 
                 <td style="border: none;">
-                    <label>Date Of Birth :</label> {{$personalInfo->dateOfBirth}}
+                    <label>Date of Birth :</label> {{$personalInfo->dateOfBirth}}
                 </td>
             </tr>
             <tr>
@@ -358,7 +368,7 @@
 
             <tr>
                 <td  style="border: none;">
-                    <label> Blood Group: </label>{{$personalInfo->bloodGroup}}
+                    <label> Blood Group: </label>{{strtoupper($personalInfo->bloodGroup)}}
                 </td>
 
 
@@ -382,13 +392,17 @@
                 </td>
             </tr>
             <tr>
-                <td  style="border: none;">
-                    <label>Permanent Address :</label> {{$personalInfo->parmanentAddress}}
+                <td  style="border: none;" colspan="2">
+                    <label>Permanent address :</label> {{$personalInfo->parmanentAddress}}
                 </td>
             </tr>
 
-            bloodGroup
-            maritalStatus
+            <tr>
+                <td  style="border: none;" >
+                    <label>Expected salary :</label> {{$salary->expectedSalary}}
+                </td>
+            </tr>
+
 
 
         </table>
@@ -404,27 +418,94 @@
 
                 <tr>
                     <td  style="border: none;">
-                        <label>Extracurricular activities :</label>{{$empOtherInfo->extraCurricularActivities}}
+                        <label><b>Extracurricular activities :</b></label>{{$empOtherInfo->extraCurricularActivities}}
                     </td>
                 </tr>
                 <tr>
 
                     <td style="border: none;">
-                        <label> Interests :</label>{{$empOtherInfo->interests}}
+                        <label> <b>Interests :</b></label>{{$empOtherInfo->interests}}
                     </td>
                 </tr>
                 <tr>
                     <td style="border: none;">
-                        <label> Awards received :</label>{{$empOtherInfo->awardReceived}}
+                        <label> <b>Awards received :</b></label>{{$empOtherInfo->awardReceived}}
                     </td>
                 </tr>
                 <tr>
                     <td style="border: none;">
-                        <label> Research / Publication :</label>{{$empOtherInfo->researchPublication}}
+                        <label> <b>Research / Publication :</b></label>{{$empOtherInfo->researchPublication}}
                     </td>
                 </tr>
             </table>
         @endif
+
+        {{--@if($trainingCertificate->isEmpty()&& $jobExperience->isEmpty() )--}}
+            {{--<p style="page-break-after: always;"></p>--}}
+        {{--@elseif($trainingCertificate->isEmpty()&& count($jobExperience)<2)--}}
+            {{--<p style="page-break-after: always;"></p>--}}
+        {{--@elseif(count($jobExperience)<2 && count($trainingCertificate)<2)--}}
+            {{--<p style="page-break-after: always;"></p>--}}
+        {{--@endif--}}
+
+        <p style="page-break-after: always;"></p>
+
+        <table border="0" style="width:100%; margin-top: 25px; border: none;">
+            <tr>
+                <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Languages</b> </td>
+            </tr>
+        </table>
+
+        <table border="0" style="width:100%; margin-top: 5px; ">
+
+            <tr style=" ">
+                @if($languageNames->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @endif
+                @foreach($languageNames as $lname)
+                    <td>
+                        {{$lname->languagename}}
+                    </td>
+
+
+                    @foreach($languages->where('fklanguageHead',$lname->fklanguageHead) as $lan)
+
+                        <td>
+                            {{$lan->languageSkillName}} : {{$lan->rate}}
+
+                        </td>
+
+                    @endforeach
+                @endforeach
+
+            </tr>
+
+
+        </table>
+
+
+        <table border="0" style="width:100%; margin-top: 5px; border: none;">
+            <tr>
+                <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Membership in Professional Network</b> </td>
+            </tr>
+        </table>
+
+        <table border="0" style="width:100%; margin-top: 5px; border: none;">
+
+            <tr style=" border: none;">
+                @if($memberShip->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @endif
+                @foreach($memberShip as $mem)
+
+                    <td style="border: none;">
+                        <span class="bold"> Network name :</span>{{$mem->networkName}}  <br>
+                        <span class="bold">Membership type:&nbsp; &nbsp;</span>{{$mem->membershipType}}  &nbsp; &nbsp;&nbsp;<span class="bold">  Duration:</span> &nbsp;&nbsp;{{$mem->duration}} <br>
+
+                    </td>
+
+                @endforeach
+
+            </tr>
+
+
+        </table>
 
 
         <table border="0" style="width:100%; margin-top: 5px; border: none;">
@@ -460,6 +541,7 @@
             </tr>
         </table>
 
+
         <table border="0" style="width:100%; margin-top: 10px; border: none;">
 
             @php $count=1;@endphp
@@ -477,7 +559,7 @@
                         Name : {{$ref->firstName}} {{$ref->lastName}} <br>
                         Contact: {{$ref->phone}} <br>
                         Position: {{$ref->presentposition}} <br>
-                        email: {{$ref->email}}
+                        Email: {{$ref->email}}
 
                     </td>
                 </tr>
@@ -487,6 +569,20 @@
 
 
         </table>
+        <table border="0" style="width:100%; margin-top: 25px; border: none;">
+
+            <b>Declaration:</b> I do hereby declare that the above information is true and correct to the best of my knowledge.
+
+            <tr>
+
+                <td style="width: 13%; border: none; "><img height="100px" width="100px" src="{{url('public/candidateSigns/thumb').'/'.$personalInfo->sign}}" alt=""></td>
+            </tr>
+            <tr>
+                <td style="width: 13%; border: none; ">&nbsp;&nbsp;Signature</td>
+            </tr>
+        </table>
+
+
 
 
     {{--</div>--}}

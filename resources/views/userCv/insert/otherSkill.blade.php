@@ -41,14 +41,35 @@
     <div class="row ">
 
         <div class="col-12 ">
-            <div class="card">
+            <div class="card updateCard">
                 <div style="background-color: #F1F1F1" class="card-body">
 
+                    <div class="col-md-3">
+
+                        <div class="sidenav">
+                            <a href="{{route('candidate.cvPersonalInfo')}}">Personal Details</a>
+                            <a href="{{route('candidate.cvQuesObj')}}">Career Objective and Application Information</a>
+                            <a href="{{route('candidate.cvEducation')}}">Education</a>
+                            <a href="{{route('candidate.language.index')}}" >Language</a>
+                            <a href="{{route('candidate.computerSkill.index')}}" >Computer-Skill</a>
+                            <a href="{{route('candidate.skill.index')}}" class="activeNav">Other Skill Information</a>
+                            <a <?php if ($hasOtherSkill!='0'){?> onclick="return false;" class="incomplete"<?php } ?> href="{{route('cv.OthersInfo')}}">Other Information</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.cvTrainingCertificate')}}">Training Certification</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.cvProfessionalCertificate')}}">Professional Certification</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('JobExperience.index')}}">Job Experience</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('refree.index')}}">Referee</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas Bangladesh</a>
+                        </div>
+
+                    </div>
 
 
 
 
-                    <form id="regForm" onsubmit="return chkOtherSkill()"  action="{{route('candidate.skill.insert')}}"  method="post">
+
+                    <form class="col-md-9" id="regForm" onsubmit="return chkOtherSkill()"  action="{{route('candidate.skill.insert')}}"  method="post">
                         <!-- One "tab" for each step in the form: -->
                         {{csrf_field()}}
 
@@ -206,6 +227,7 @@
 
             if ($(this).val()=='1'){
                 $('#otherSkillDiv').show();
+                $("#submitBtn").show();
             }else {
                 $('#otherSkillDiv').hide();
             }
@@ -215,9 +237,11 @@
             if ('<?php echo $hasOtherSkill?>'== '0'){
 
                 $('#otherSkillDiv').hide();
+                $("#submitBtn").hide();
 
             }else if ('<?php echo $hasOtherSkill?>'== '1'){
                 $('#otherSkillDiv').show();
+
 
             }
         });
@@ -412,7 +436,7 @@
         $('#skill').on('change', function() {
 
             var skill =$('#skill').val();
-            if (skill == "others"){
+            if (skill == "{{OTHERS}}"){
 
                 $("#otherSkillNameDiv").show();
             }else {
@@ -431,7 +455,7 @@
 
 
             var skill =$('#skill'+x).val();
-            if (skill == "others"){
+            if (skill == "{{OTHERS}}"){
 
                 $("#otherSkillNameDiv"+x).show();
             }else {

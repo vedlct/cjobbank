@@ -9,7 +9,7 @@
                         <div class="row">
                             <div class="form-group col-md-12">
                                 <label for="">Career objective <span style="color: blue">(Max Limit 2500 character)</span></label>
-                                <textarea type="text" name="objective" maxlength="2500"  rows="2" class="form-control{{ $errors->has('objective') ? ' is-invalid' : '' }}"  id="objective" placeholder="Career Objective">{{$employeeCareerInfo->objective}}</textarea>
+                                <textarea type="text" name="objective" maxlength="2500"  rows="10" class="form-control{{ $errors->has('objective') ? ' is-invalid' : '' }}"  id="objective" placeholder="Career Objective">{{$employeeCareerInfo->objective}}</textarea>
                                 @if ($errors->has('objective'))
 
                                     <span class="">
@@ -109,7 +109,8 @@
                         <div style="overflow:auto;">
                             <div style="float:right;">
 
-                                <a class="btn btn-danger pull-left" href="{{route('candidate.cvQuesObj')}}">Cancel</a>&nbsp;&nbsp;
+                                {{--<a  class="btn btn-danger pull-left" href="{{route('candidate.cvQuesObj')}}">Cancel</a>&nbsp;&nbsp;--}}
+                                <button class="btn-danger pull-left" onclick="{{route('candidate.cvQuesObj')}}">Cancel</button>&nbsp;&nbsp;
                                 <button type="submit" id="submitBtn">Save</button>
 
 

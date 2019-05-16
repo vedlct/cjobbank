@@ -5,10 +5,31 @@
     <div class="row ">
 
         <div class="col-12 ">
-            <div class="card">
+            <div class="card updateCard">
                 <div style="background-color: #F1F1F1" class="card-body">
 
-                    <div id="regForm" >
+                    <div class="col-md-3">
+
+                        <div class="sidenav">
+                            <a href="{{route('candidate.cvPersonalInfo')}}">Personal Details</a>
+                            <a href="{{route('candidate.cvQuesObj')}}">Career Objective and Application Information</a>
+                            <a href="{{route('candidate.cvEducation')}}">Education</a>
+                            <a href="{{route('candidate.language.index')}}" >Language</a>
+                            <a href="{{route('candidate.computerSkill.index')}}" >Computer-Skill</a>
+                            <a href="{{route('candidate.skill.index')}}" >Other Skill Information</a>
+                            <a href="{{route('cv.OthersInfo')}}" >Other Information</a>
+                            <a href="{{route('candidate.cvTrainingCertificate')}}" class="activeNav">Training Certification</a>
+                            <a  href="{{route('candidate.cvProfessionalCertificate')}}">Professional Certification</a>
+                            <a  href="{{route('JobExperience.index')}}">Job Experience</a>
+                            <a  href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
+                            <a  href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
+                            <a  href="{{route('refree.index')}}">Referee</a>
+                            <a  href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas Bangladesh</a>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-9" id="regForm" >
 
 
                         <div id="" class="tab">
@@ -24,7 +45,7 @@
                                         <div class="form-group col-md-10">
 
                                             <label for="inputEmail4">Name of the training :</label>
-                                            <label for="inputEmail4">{{$training->trainingName}}</label>
+                                          {{$training->trainingName}}
                                         </div>
 
                                         <div class="form-group col-md-2 ">
@@ -39,7 +60,7 @@
                                     <div class="row">
                                         <div class="form-group col-md-12">
                                             <label for="inputEmail4">Venue :</label>
-                                            <label for="inputEmail4">{{$training->vanue}} </label>
+                                            {{$training->vanue}}
                                             {{--<input type="text" class="form-control" name="vanue[]" id="inputEmail4" placeholder="vanue" required>--}}
                                         </div>
 
@@ -47,7 +68,7 @@
 
                                         <div class="form-group col-md-12">
                                             <label for="inputEmail4">Duration :</label>
-                                            <label for="inputEmail4">{{"H:".$training->hour." D:".$training->day." W:".$training->week." M:".$training->month." Y:".$training->year}} </label>
+                                           {{"H:".$training->hour." D:".$training->day." W:".$training->week." M:".$training->month." Y:".$training->year}}
                                             {{--<input type="text" class="form-control" name="vanue[]" id="inputEmail4" placeholder="vanue" required>--}}
                                         </div>
                                        @endif
@@ -55,32 +76,31 @@
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label for="inputPassword4">Country :</label>
-                                            <label for="inputEmail4">{{$training->countryName}} </label>
+                                            {{$training->countryName}}
 
                                         </div>
 
                                         <div class="form-group col-md-6">
                                             <label for="inputPassword4">Start date :</label>
-                                            <label for="inputEmail4">{{$training->startDate}} </label>
+                                            {{$training->startDate}}
                                             {{--<input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" required>--}}
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-6">
                                             <label for="inputPassword4">End date :</label>
-                                            <label for="inputEmail4">{{$training->endDate}} </label>
+                                            {{$training->endDate}}
                                             {{--<input type="text" class="form-control date" name="endDate[]" id="end" placeholder="date">--}}
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="inputPassword4">Status :</label>
-                                            <label for="inputPassword4">
 
                                                 @foreach(COMPLETING_STATUS as $key=>$values)
 
                                                     @if($training->status == $values) {{$key}} @endif
                                                 @endforeach
 
-                                            </label>
+
                                             {{--<select class="form-control" name="status[]">--}}
                                             {{--<option value="1" @if($value->status == 1) selected @endif>On going</option>--}}
                                             {{--<option value="2" @if($value->status == 2) selected @endif>Completed</option>--}}
@@ -258,13 +278,13 @@
                         return false;
 
                     }
-                    if(vanue==""){
-
-                        var errorMsg='Please type a venue first!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
+//                    if(vanue==""){
+//
+//                        var errorMsg='Please type a venue first!!'
+//                        validationError(errorMsg)
+//                        return false;
+//
+//                    }
                     if (vanue.length > 255){
 
                         var errorMsg='value should not more than 255 charecter length!!';
@@ -272,13 +292,13 @@
                         return false;
 
                     }
-                    if(country==""){
-
-                        var errorMsg='Please select a country first!!';
-                        validationError(errorMsg)
-                        return false;
-
-                    }
+//                    if(country==""){
+//
+//                        var errorMsg='Please select a country first!!';
+//                        validationError(errorMsg)
+//                        return false;
+//
+//                    }
 
 //                    if(start==""){
 //                        var errorMsg='Please select a strat date first!!';
@@ -324,12 +344,12 @@
                     '</div> ' +
 
                     '<div class="form-group col-md-8"> ' +
-                    '<label for="inputEmail4">Venue <span style="color: red">*</span></label> ' +
-                    '<input type="text" class="form-control" name="vanue[]" id="vanue'+counter+'" placeholder="venue" required> ' +
+                    '<label for="inputEmail4">Venue </label> ' +
+                    '<input type="text" class="form-control" name="vanue[]" id="vanue'+counter+'" placeholder="venue" > ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
-                    '<label for="inputPassword4">Country<span style="color: red">*</span></label>' +
-                    '<select required class="form-control js-example-basic-single" id="country'+counter+'" name="countryId[]">'+
+                    '<label for="inputPassword4">Country</label>' +
+                    '<select  class="form-control js-example-basic-single" id="country'+counter+'" name="countryId[]">'+
                     '<option value="">Select Country</option>'+
                     '@foreach($countries as $country)'+
                     '<option value="{{$country->countryId}}">{{$country->countryName}}</option>'+
@@ -337,7 +357,7 @@
                     '</select>'+
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
-                    '<label for="inputPassword4">Start date<span style="color: red">*</span></label> ' +
+                    '<label for="inputPassword4">Start date</label> ' +
                     '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date"> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
@@ -346,7 +366,7 @@
                     '</div>'+
                 '<div class="form-group col-md-4">'+
                 '<label for="inputPassword4">Status<span style="color: red">*</span></label>'+
-                '<select required class="form-control"id="trainingCertificateStatus" name="status[]">'+
+                '<select onchange="checkTrainingStatus('+counter+')" required class="form-control"id="trainingCertificateStatus'+counter+'" name="status[]">'+
 
                 '<option value="">Select status</option>'+
                 @foreach(COMPLETING_STATUS as $key=>$value)
@@ -354,7 +374,7 @@
                 @endforeach
                     '</select>'+
                 '</div>'+
-                '<div class="row">'+
+                '<div id="courseDuration'+counter+'" class="row">'+
                 '<label>Duration</label>'+
                 '<div class="form-group col-md-2">'+
                 '<label for="inputPassword4">Hour</label>'+
@@ -409,6 +429,7 @@
                 '</div>'
                 );
                 newTextBoxDiv.appendTo("#TextBoxesGroup");
+                $('#courseDuration'+counter).hide();
 
                 counter++;
                 if(counter>1){
@@ -456,6 +477,22 @@
                     }
                 }
             });
+
+        }
+
+        function checkTrainingStatus(x) {
+
+            var trainingCertificateStatus =$('#trainingCertificateStatus'+x).val();
+
+            if(trainingCertificateStatus==1){
+                $('#courseDuration'+x).hide();
+            }
+            else if(trainingCertificateStatus==2){
+                $('#courseDuration'+x).show();
+            }
+
+
+
 
         }
 

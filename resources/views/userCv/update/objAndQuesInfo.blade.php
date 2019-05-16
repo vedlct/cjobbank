@@ -5,10 +5,31 @@
     <div class="row ">
 
         <div class="col-12 ">
-            <div style="background-color: #F1F1F1" class="card">
+            <div style="background-color: #F1F1F1" class="card updateCard">
                 <div class="card-body">
 
-                    <div id="regForm" >
+                    <div class="col-md-3">
+
+                        <div class="sidenav">
+                            <a href="{{route('candidate.cvPersonalInfo')}}">Personal Details</a>
+                            <a href="{{route('candidate.cvQuesObj')}}" class="activeNav">Career Objective and Application Information</a>
+                            <a href="{{route('candidate.cvEducation')}}">Education</a>
+                            <a  href="{{route('candidate.language.index')}}">Language</a>
+                            <a  href="{{route('candidate.computerSkill.index')}}">Computer-Skill</a>
+                            <a  href="{{route('candidate.skill.index')}}">Other Skill Information</a>
+                            <a  href="{{route('cv.OthersInfo')}}">Other Information</a>
+                            <a  href="{{route('candidate.cvTrainingCertificate')}}">Training Certification</a>
+                            <a  href="{{route('candidate.cvProfessionalCertificate')}}">Professional Certification</a>
+                            <a  href="{{route('JobExperience.index')}}">Job Experience</a>
+                            <a  href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
+                            <a  href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
+                            <a  href="{{route('refree.index')}}">Referee</a>
+                            <a  href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas Bangladesh</a>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-9" id="regForm" >
                         <!-- One "tab" for each step in the form: -->
 
 
@@ -30,16 +51,25 @@
                                         {{$employeeCvQuesObjInfo->objective}}
                                     </div>
 
+                                    @if($employeeCvQuesObjQuesAns->isEmpty())
+
+                                        <div class="form-group col-md-2">
+                                            <button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$employeeCvQuesObjInfo->id}})"><i class="fa fa-edit"></i></button>
+                                            {{--<button type="button" class="btn btn-danger btn-sm " onclick="deleteProfession({{$employeeCvQuesObjInfo->id}})"><i class="fa fa-trash"></i></button>--}}
+
+                                        </div>
+                                    @endif
+
 
                                     @if(!$employeeCvQuesObjQuesAns->isEmpty())
 
 
-
                                         <div class="form-group col-md-2">
                                             <button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$employeeCvQuesObjInfo->id}})"><i class="fa fa-edit"></i></button>
-                                            <button type="button" class="btn btn-danger btn-sm " onclick="deleteProfession({{$employeeCvQuesObjInfo->id}})"><i class="fa fa-trash"></i></button>
+                                            {{--<button type="button" class="btn btn-danger btn-sm " onclick="deleteProfession({{$employeeCvQuesObjInfo->id}})"><i class="fa fa-trash"></i></button>--}}
 
                                         </div>
+
 
 
 
@@ -52,7 +82,7 @@
                                         @foreach($employeeCvQuesObjQuesAns as $empCvObjQues)
 
                                             <div class="form-group col-md-12">
-                                                <label for="">Ques-{{$st}}: {{$empCvObjQues->ques}}<span style="color: red">*</span></label>
+                                                <label for="">Ques-{{$st}}: {{$empCvObjQues->ques}}<span style="color: red">*</span></label><br>
                                                 {{$empCvObjQues->ans}}
 
                                             </div>
@@ -103,14 +133,7 @@
                                             {{$employeeCvQuesObjInfo->readyToJoinAfter}}
                                         </div>
 
-                                        @if($employeeCvQuesObjQuesAns->isEmpty())
 
-                                        <div class="form-group col-md-2">
-                                            <button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$employeeCvQuesObjInfo->id}})"><i class="fa fa-edit"></i></button>
-                                            {{--<button type="button" class="btn btn-danger btn-sm " onclick="deleteProfession({{$employeeCvQuesObjInfo->id}})"><i class="fa fa-trash"></i></button>--}}
-
-                                        </div>
-                                        @endif
 
 
 

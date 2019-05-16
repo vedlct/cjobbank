@@ -68,7 +68,7 @@ class BackupController extends Controller
 
 
             $dump = new IMysqldump\Mysqldump('mysql:host='.$dbhost.';dbname='.$dbname.'', ''.$dbuser.'', ''.$dbpass.'');
-            $dump->start('public/DBbackup/dump.sql');
+
 
             Session::flash('message', 'dump created successfully');
             $fileName='dump'.date("Y-m-d_H-i-s");
@@ -76,6 +76,8 @@ class BackupController extends Controller
             if(!is_file($file)){
                 fopen($file, "w");
             }
+
+            $dump->start($file);
 
 
 

@@ -83,7 +83,7 @@ class UserCvController extends Controller
        $personalInfo = Employee::select('emp_ques_obj.objective','firstName', 'lastName',
            'fathersName', 'mothersName', 'gender', 'personalMobile',
            'dateOfBirth', 'email', 'presentAddress', 'image', 'religionName', 'nationalityName','nationalId','parmanentAddress',
-           'passport','bloodGroup','maritalStatus')
+           'passport','bloodGroup','maritalStatus','sign')
            ->leftJoin('religion', 'religion.religionId', 'fkreligionId')
            ->leftJoin('nationality', 'nationality.nationalityId', 'fknationalityId')
            ->leftJoin('emp_ques_obj', 'emp_ques_obj.empId', 'employee.employeeId')
@@ -129,9 +129,31 @@ class UserCvController extends Controller
 
 
 
+       $memberShip=MembershipInSocialNetwork::where('fkemployeeId',$empId)->get();
+
+
+//                return $memberShip;
+
+       $languageNames=EmployeeLanguage::select('fklanguageHead','languagename')
+           ->where('fkemployeeId',$empId)
+           ->leftJoin('languagehead','languagehead.id','emp_language.fklanguageHead')
+           ->groupBy('fklanguageHead')
+           ->get();
+
+       $languages=EmployeeLanguage::where('fkemployeeId',$empId)
+           ->leftJoin('languageskill','languageskill.id','emp_language.fklanguageSkill')
+           ->get();
+
+
+
+//                return $languages;
+       $salary=QuestionObjective::where('empId',$empId)->first();
+
+
+
        $pdf = PDF::loadView('test',compact('allEmp', 'personalInfo', 'education',
            'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree',
-           'relativeCb','empOtherSkillls','empComputerSkill','empOtherInfo'));
+           'relativeCb','empOtherSkillls','empComputerSkill','empOtherInfo','empOtherInfo','languageNames','languages','salary','memberShip'));
 
        return $pdf->download('Curriculam Vitae of '.$personalInfo->firstName." ".$personalInfo->lastName.'.pdf',array('Attachment'=>false));
 
@@ -146,7 +168,7 @@ class UserCvController extends Controller
        $personalInfo = Employee::select('emp_ques_obj.objective','firstName', 'lastName',
            'fathersName', 'mothersName', 'gender', 'personalMobile',
            'dateOfBirth', 'email', 'presentAddress', 'image', 'religionName', 'nationalityName','nationalId','parmanentAddress',
-           'passport','bloodGroup','maritalStatus')
+           'passport','bloodGroup','maritalStatus','sign')
            ->leftJoin('religion', 'religion.religionId', 'fkreligionId')
            ->leftJoin('nationality', 'nationality.nationalityId', 'fknationalityId')
            ->leftJoin('emp_ques_obj', 'emp_ques_obj.empId', 'employee.employeeId')
@@ -190,11 +212,31 @@ class UserCvController extends Controller
        $empOtherInfo=EmployeeOtherInfo::where('fk_empId', $empId)
            ->first();
 
+       $memberShip=MembershipInSocialNetwork::where('fkemployeeId',$empId)->get();
+
+
+//                return $memberShip;
+
+       $languageNames=EmployeeLanguage::select('fklanguageHead','languagename')
+           ->where('fkemployeeId',$empId)
+           ->leftJoin('languagehead','languagehead.id','emp_language.fklanguageHead')
+           ->groupBy('fklanguageHead')
+           ->get();
+
+       $languages=EmployeeLanguage::where('fkemployeeId',$empId)
+           ->leftJoin('languageskill','languageskill.id','emp_language.fklanguageSkill')
+           ->get();
+
+
+
+//                return $languages;
+       $salary=QuestionObjective::where('empId',$empId)->first();
+
 
 
        $pdf = PDF::loadView('test',compact('allEmp', 'personalInfo', 'education',
            'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree',
-           'relativeCb','empOtherSkillls','empComputerSkill','empOtherInfo'));
+           'relativeCb','empOtherSkillls','empComputerSkill','empOtherInfo','languageNames','languages','salary','memberShip'));
 
        return $pdf->download('Curriculam Vitae of '.$personalInfo->firstName." ".$personalInfo->lastName.'.pdf',array('Attachment'=>false));
 
@@ -206,7 +248,7 @@ class UserCvController extends Controller
        $personalInfo = Employee::select('emp_ques_obj.objective','firstName', 'lastName',
            'fathersName', 'mothersName', 'gender', 'personalMobile',
            'dateOfBirth', 'email', 'presentAddress', 'image', 'religionName', 'nationalityName','nationalId','parmanentAddress',
-           'passport','bloodGroup','maritalStatus')
+           'passport','bloodGroup','maritalStatus','sign')
            ->leftJoin('religion', 'religion.religionId', 'fkreligionId')
            ->leftJoin('nationality', 'nationality.nationalityId', 'fknationalityId')
            ->leftJoin('emp_ques_obj', 'emp_ques_obj.empId', 'employee.employeeId')
@@ -254,10 +296,31 @@ class UserCvController extends Controller
            ->first();
 
 
+       $memberShip=MembershipInSocialNetwork::where('fkemployeeId',$empId)->get();
+
+
+//                return $memberShip;
+
+       $languageNames=EmployeeLanguage::select('fklanguageHead','languagename')
+           ->where('fkemployeeId',$empId)
+           ->leftJoin('languagehead','languagehead.id','emp_language.fklanguageHead')
+           ->groupBy('fklanguageHead')
+           ->get();
+
+       $languages=EmployeeLanguage::where('fkemployeeId',$empId)
+           ->leftJoin('languageskill','languageskill.id','emp_language.fklanguageSkill')
+           ->get();
+
+
+
+//                return $languages;
+       $salary=QuestionObjective::where('empId',$empId)->first();
+
+
 
         $pdf = PDF::loadView('test',compact('allEmp', 'personalInfo', 'education',
             'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree',
-            'relativeCb','empOtherSkillls','empComputerSkill','empOtherInfo'));
+            'relativeCb','empOtherSkillls','empComputerSkill','empOtherInfo','memberShip','languageNames','languages','salary'));
 
        return $pdf->download('Curriculam Vitae of '.$personalInfo->firstName." ".$personalInfo->lastName.'.pdf',array('Attachment'=>false));
 
@@ -277,7 +340,7 @@ class UserCvController extends Controller
             $personalInfo = Employee::select('emp_ques_obj.objective','firstName', 'lastName',
                 'fathersName', 'mothersName', 'gender', 'personalMobile',
                 'dateOfBirth', 'email', 'presentAddress', 'image', 'religionName', 'nationalityName','nationalId','parmanentAddress',
-                'passport','bloodGroup','maritalStatus')
+                'passport','bloodGroup','maritalStatus','sign')
                 ->leftJoin('religion', 'religion.religionId', 'fkreligionId')
                 ->leftJoin('nationality', 'nationality.nationalityId', 'fknationalityId')
                 ->leftJoin('emp_ques_obj', 'emp_ques_obj.empId', 'employee.employeeId')
@@ -324,9 +387,32 @@ class UserCvController extends Controller
 //            $pdf = PDF::loadView('test', compact('personalInfo', 'education', 'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree', 'relativeCb'));
 
 
+            $empOtherInfo=EmployeeOtherInfo::where('fk_empId', $empId)
+                ->first();
+
+            $memberShip=MembershipInSocialNetwork::where('fkemployeeId',$empId)->get();
+
+
+//                return $memberShip;
+
+            $languageNames=EmployeeLanguage::select('fklanguageHead','languagename')
+                ->where('fkemployeeId',$empId)
+                ->leftJoin('languagehead','languagehead.id','emp_language.fklanguageHead')
+                ->groupBy('fklanguageHead')
+                ->get();
+
+            $languages=EmployeeLanguage::where('fkemployeeId',$empId)
+                ->leftJoin('languageskill','languageskill.id','emp_language.fklanguageSkill')
+                ->get();
+
+
+
+//                return $languages;
+            $salary=QuestionObjective::where('empId',$empId)->first();
+
             $pdf = PDF::loadView('test',compact('allEmp', 'personalInfo', 'education',
                 'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree',
-                'relativeCb','empOtherSkillls','empComputerSkill'));
+                'relativeCb','empOtherSkillls','empComputerSkill','empOtherInfo','memberShip','languageNames','languages','salary'));
 
             return $pdf->stream('Curriculam Vitae of ' . $personalInfo->firstName . " " . $personalInfo->lastName . '.pdf', array('Attachment' => 0));
         }

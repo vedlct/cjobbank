@@ -1,3 +1,4 @@
+
 <form  method="post" action="{{route('cv.updatePersonalEducation')}}" onsubmit="return checkEducation()" >
 
 {{csrf_field()}}
@@ -78,9 +79,9 @@
             </div>
 
 
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-9">
                 <label for="">Major</label>
-                <select name="major" class="form-control js-example-basic-single" id="majorSub">
+                <select name="major"  class="form-control js-example-basic-single" id="majorSub">
                     <option value="">Select Major</option>
                     <option selected value="{{$education->educationMajorId}}">{{$education->educationMajorName}}</option>
                     <option value="{{OTHERS}}">{{OTHERS}}</option>
@@ -96,7 +97,7 @@
 
             <div class="form-group col-md-3">
                 <label for="">Country<span style="color: red">*</span></label>
-                <select name="country" class="form-control js-example-basic-single" required id="country">
+                <select  name="country" class="form-control js-example-basic-single" required id="country">
                     <option value="">Select country</option>
                     @foreach($country as $coun)
                         <option @if($coun->countryId == $education->fkcountryId )selected @endif value="{{$coun->countryId}}">{{$coun->countryName}}</option>
@@ -154,8 +155,9 @@
 
         </div>
     <div class="form-group col-md-12">
-        <a class="btn btn-danger pull-left" href="{{route('candidate.cvEducation')}}">Cancel</a>&nbsp;&nbsp;
-        <button class="btn btn-success pull-left">Update</button>
+        {{--<a class="btn btn-danger pull-left" href="{{route('candidate.cvEducation')}}">Cancel</a>&nbsp;&nbsp;--}}
+        <button class="btn btn-danger pull-left" onclick="{{route('candidate.cvEducation')}}">Cancel</button>&nbsp;&nbsp;
+        <button class="btn btn-success">Update</button>
 
     </div>
 
@@ -182,7 +184,7 @@
     $('#majorSub').on('change', function() {
 
         var major =$('#majorSub').val();
-        if (major == "others"){
+        if (major == "{{OTHERS}}"){
 
             $("#subjectNameDiv").show();
         }else {
@@ -195,7 +197,7 @@
     $('#board').on('change', function() {
 
         var board =$('#board').val();
-        if (board == "others"){
+        if (board == "{{OTHERS}}"){
 
             $("#boardNameDiv").show();
         }else {
@@ -281,7 +283,7 @@
     $('#resultSydtem').on('change', function() {
 
         var resultSydtem =$('#resultSydtem').val();
-        if (resultSydtem == "others"){
+        if (resultSydtem == "{{OTHERS}}"){
 
             $("#resultSydtemNameDiv").show();
         }else {
@@ -300,7 +302,7 @@
 
 
         var degree =$('#degree').val();
-        if (degree == "others"){
+        if (degree == "{{OTHERS}}"){
 
             $("#degreeNameDiv").show();
             $("#subjectNameDiv").show();
@@ -347,7 +349,7 @@
 
         var universityType=$('#universityType').val();
 
-        if(major=="others" && $("#subjectName").val()=="" ){
+        if(major=="{{OTHERS}}" && $("#subjectName").val()=="" ){
             var errorMsg='Please Type a Subject Name First!!'
             validationError(errorMsg);
             return false;

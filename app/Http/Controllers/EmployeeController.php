@@ -6,19 +6,24 @@ namespace App\Http\Controllers;
 use App\Education;
 use App\Employee;
 use App\EmployeeComputerSkill;
+use App\EmployeeLanguage;
 use App\EmployeeOtherInfo;
 use App\EmpOtherSkill;
+use App\EmpQuestionObj;
 use App\Ethnicity;
 use App\Jobapply;
 use App\JobExperience;
+use App\MembershipInSocialNetwork;
 use App\Nationality;
 use App\ProfessionalQualification;
+use App\QuestionObjective;
 use App\Refree;
 use App\RelativeInCb;
 use App\Religion;
 
 use App\Traning;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Session;
 use Auth;
 use Image;
@@ -94,15 +99,34 @@ class EmployeeController extends Controller
 
         if ($empId != null) {
 
+            $count = Refree::where('employee.fkuserId', Auth::user()->userId)
+                ->leftJoin('employee', 'employee.employeeId', 'referee.fkemployeeId')
+                ->count();
+
+            if ($count < 2) {
+
+                $allEmp = $empId;
+
+                $msg = 'Your CV is not Completed yet ! Candidate must have atleast 2 reference';
+                Session::flash('message', 'Your CV is not Completed yet ! Candidate must have atleast 2 reference');
+
+                return view('userCv.cvPdf.userCvPdf', compact('allEmp', 'msg'));
+
+            } else {
+                $msg = null;
+//                Session::flash('message', 'Your CV is not Completed yet,Please Complete First');
+
+
 
             if ($empId->cvStatus == 0) {
 
                 $allEmp = $empId;
 
-                Session::flash('message', 'Your CV is not Completed yet,Please Complete First');
+
+                 Session::flash('message', 'Your CV is not Completed yet,Please Complete First');
                 $msg=null;
 
-                return view('userCv.cvPdf.userCvPdf', compact('allEmp','msg'));
+                return view('userCv.cvPdf.userCvPdf', compact('allEmp', 'msg'));
 
             } else {
 
@@ -111,16 +135,16 @@ class EmployeeController extends Controller
 
                 $empId = $empId->employeeId;
 
-                $personalInfo = Employee::select('emp_ques_obj.objective','firstName', 'lastName',
+                $personalInfo = Employee::select('emp_ques_obj.objective', 'firstName', 'lastName',
                     'fathersName', 'mothersName', 'gender', 'personalMobile',
-                    'dateOfBirth', 'email', 'presentAddress', 'image', 'religionName', 'nationalityName','nationalId','parmanentAddress',
-                    'passport','bloodGroup','maritalStatus')
+                    'dateOfBirth', 'email', 'presentAddress', 'image', 'religionName', 'nationalityName', 'nationalId', 'parmanentAddress',
+                    'passport', 'bloodGroup', 'maritalStatus','sign')
                     ->leftJoin('religion', 'religion.religionId', 'fkreligionId')
                     ->leftJoin('nationality', 'nationality.nationalityId', 'fknationalityId')
                     ->leftJoin('emp_ques_obj', 'emp_ques_obj.empId', 'employee.employeeId')
                     ->findOrFail($empId);
 
-                $education = Education::select('degreeName', 'education.institutionName', 'boardName','education.fkemployeeId', 'education.status', 'education.resultSystem', 'education.result', 'educationlevel.educationLevelName',
+                $education = Education::select('degreeName', 'education.institutionName', 'boardName', 'education.fkemployeeId', 'education.status', 'education.resultSystem', 'education.result', 'educationlevel.educationLevelName',
                     'educationmajor.educationMajorName', 'education.fkMajorId', 'passingYear')
                     ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
                     ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
@@ -132,26 +156,26 @@ class EmployeeController extends Controller
                     ->get();
 
 
-
-
-                $empOtherSkillls=EmpOtherSkill::where('fkemployeeId',$empId)
-                    ->leftJoin('otherskillsinformation','otherskillsinformation.id','emp_otherskill_achievement.otherSkillId')
+                $empOtherSkillls = EmpOtherSkill::where('fkemployeeId', $empId)
+                    ->leftJoin('otherskillsinformation', 'otherskillsinformation.id', 'emp_otherskill_achievement.otherSkillId')
                     ->get();
 
-                $empComputerSkill=EmployeeComputerSkill::where('fk_empId',$empId)
-                    ->leftJoin('computerskill','computerskill.id','empcomputerskill.computerSkillId')
+                $empComputerSkill = EmployeeComputerSkill::where('fk_empId', $empId)
+                    ->leftJoin('computerskill', 'computerskill.id', 'empcomputerskill.computerSkillId')
                     ->get();
-
-
-
 
 
                 $professionalCertificate = ProfessionalQualification::where('fkemployeeId', $empId)
                     ->get();
 
-                $jobExperience = JobExperience::where('fkemployeeId', $empId)
+                $jobExperience = JobExperience::select('jobexperience.*')->where('fkemployeeId', $empId)
                     ->orderBy('startDate', 'desc')
+                    ->addSelect(DB::raw("TIMESTAMPDIFF(YEAR,`jobexperience`.`startDate`,`jobexperience`.`endDate`) as expYear"),
+                        DB::raw("TIMESTAMPDIFF(MONTH,`jobexperience`.`startDate`,`jobexperience`.`endDate`) as expMonth"))
                     ->get();
+
+                //return $jobExperience;
+
 
                 $trainingCertificate = Traning::where('fkemployeeId', $empId)
                     ->orderBy('startDate', 'desc')
@@ -161,16 +185,39 @@ class EmployeeController extends Controller
                 $relativeCb = RelativeInCb::where('fkemployeeId', $empId)
                     ->get();
 
-                $empOtherInfo=EmployeeOtherInfo::where('fk_empId', $empId)
+                $empOtherInfo = EmployeeOtherInfo::where('fk_empId', $empId)
                     ->first();
 
-//                return $empOtherInfo;
+                $memberShip=MembershipInSocialNetwork::where('fkemployeeId',$empId)->get();
+
+
+//                return $memberShip;
+
+                $languageNames=EmployeeLanguage::select('fklanguageHead','languagename')
+                    ->where('fkemployeeId',$empId)
+                    ->leftJoin('languagehead','languagehead.id','emp_language.fklanguageHead')
+                    ->groupBy('fklanguageHead')
+                    ->get();
+
+                $languages=EmployeeLanguage::where('fkemployeeId',$empId)
+                    ->leftJoin('languageskill','languageskill.id','emp_language.fklanguageSkill')
+                    ->get();
+
+
+
+//                return $languages;
+                $salary=QuestionObjective::where('empId',$empId)->first();
+
+
+//                return $salary;
+
                 return view('userCv.cvPdf.userCvPdf', compact('allEmp', 'personalInfo', 'education',
                     'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree',
-                    'relativeCb','empOtherSkillls','empComputerSkill','empOtherInfo'));
+                    'relativeCb', 'empOtherSkillls', 'empComputerSkill', 'empOtherInfo','memberShip','languages','languageNames','salary'));
 
 
             }
+        }
         }else{
             $allEmp= null;
             Session::flash('message', 'Your CV information is not found ,please make your CV first');

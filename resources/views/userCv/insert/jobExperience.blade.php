@@ -6,15 +6,42 @@
         #notice{
             color: blue;
         }
+
+    </style>
+    <style>
+        .updateCard {
+            height:2500px;
+        }
     </style>
 
     <div class="row ">
 
         <div class="col-12 ">
-            <div class="card">
+            <div class="card updateCard">
                 <div style="background-color: #F1F1F1" class="card-body">
 
-                    <form id="regForm" onsubmit="return checkJobExperience()" action="{{route('submit.jobExperience')}}" method="post">
+                    <div class="col-md-3">
+
+                        <div class="sidenav">
+                            <a href="{{route('candidate.cvPersonalInfo')}}">Personal Details</a>
+                            <a href="{{route('candidate.cvQuesObj')}}">Career Objective and Application Information</a>
+                            <a href="{{route('candidate.cvEducation')}}">Education</a>
+                            <a href="{{route('candidate.language.index')}}" >Language</a>
+                            <a href="{{route('candidate.computerSkill.index')}}" >Computer-Skill</a>
+                            <a href="{{route('candidate.skill.index')}}" >Other Skill Information</a>
+                            <a href="{{route('cv.OthersInfo')}}" >Other Information</a>
+                            <a href="{{route('candidate.cvTrainingCertificate')}}">Training Certification</a>
+                            <a href="{{route('candidate.cvProfessionalCertificate')}}">Professional Certification</a>
+                            <a class="activeNav" href="{{route('JobExperience.index')}}">Job Experience</a>
+                            <a <?php if ($hasProfCertificate!='0'){?> onclick="return false;" class="incomplete" <?php } ?> href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('refree.index')}}">Referee</a>
+                            <a onclick="return false;" class="incomplete" href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas Bangladesh</a>
+                        </div>
+
+                    </div>
+
+                    <form class="col-md-9" id="regForm" onsubmit="return checkJobExperience()" action="{{route('submit.jobExperience')}}" method="post">
                         <!-- One "tab" for each step in the form: -->
                         {{csrf_field()}}
 
@@ -58,7 +85,7 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="inputPassword4">Start date<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" required>
+                                        <input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date" >
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="inputPassword4">End date</label>
@@ -66,15 +93,15 @@
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="inputPassword4">Organization address </label>
-                                        <textarea class="form-control" name="address[]"  id="address" placeholder="address"></textarea>
+                                        <textarea class="form-control" rows="5" name="address[]"  id="address" placeholder="address"></textarea>
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="inputPassword4">Major responsibilities <span id="notice">Max limit 5000 character</span></label>
-                                        <textarea class="form-control" name="majorResponsibilities[]" maxlength="5000"  id="majorResponsibilities" placeholder="max limit 5000"></textarea>
+                                        <textarea class="form-control" rows="15" name="majorResponsibilities[]" maxlength="5000"  id="majorResponsibilities" placeholder="max limit 5000"></textarea>
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="inputPassword4">Key achievement <span id="notice">Max limit 5000 character</span></label>
-                                        <textarea class="form-control" name="keyAchivement[]" maxlength="5000"  id="keyAchivement" placeholder="max limit 5000"></textarea>
+                                        <textarea class="form-control" rows="15" name="keyAchivement[]" maxlength="5000"  id="keyAchivement" placeholder="max limit 5000"></textarea>
                                     </div>
 
                                     <div class="form-group col-md-6" id="supervisorDiv">
@@ -94,7 +121,7 @@
 
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Type of employment<span style="color: red">*</span></label>
-                                        <select class="form-control" required id="employmentType" name="employmentType[]" >
+                                        <select class="form-control"  id="employmentType" name="employmentType[]" >
 
                                             <option value="" selected>Select employment type</option>
                                             @foreach($employmentType as $eT)
@@ -195,6 +222,7 @@
 
             if ($(this).val()=='1'){
                 $('#EmploymentDiv').show();
+                $("#submitBtn").show();
             }else {
                 $('#EmploymentDiv').hide();
             }
@@ -204,6 +232,7 @@
             if ('<?php echo $hasProfCertificate?>'== '0'){
 
                 $('#EmploymentDiv').hide();
+                $("#submitBtn").hide();
 
             }else if ('<?php echo $hasProfCertificate?>'== '1'){
                 $('#EmploymentDiv').show();
@@ -219,7 +248,7 @@
             var organizationType=document.getElementsByName('organizationType[]');
             var organization=document.getElementsByName('organization[]');
             var degisnation=document.getElementsByName('degisnation[]');
-            var start=document.getElementsByName('start[]');
+            var start=document.getElementsByName('startDate[]');
             var end=document.getElementsByName('endDate[]');
             var address=document.getElementsByName('address[]');
 
@@ -280,17 +309,17 @@
                     return false;
 
                 }
-                // if(end[i].value != "") {
-                //
-                //
-                //     if (Date.parse(end[i].value) < Date.parse(start[i].value)) {
-                //
-                //         var errorMsg = 'End date should after start date!!';
-                //         validationError(errorMsg);
-                //         return false;
-                //
-                //     }
-                // }
+                 if(end[i].value != "") {
+
+
+                     if (Date.parse(end[i].value) < Date.parse(start[i].value)) {
+
+                         var errorMsg = 'End date should after start date!!';
+                         validationError(errorMsg);
+                         return false;
+
+                     }
+                 }
 
 //                if($.trim(address[i].value)==""){
 //
@@ -306,7 +335,8 @@
                //     validationError(errorMsg);
                //     return false;
                // }
-                if(majorResponsibilities[i].value!="") {
+                if(majorResponsibilities[i].value!= "") {
+
                     if (majorResponsibilities[i].value.length > 5000) {
 
                         var errorMsg = 'Major responsibilities should not more than 5000 charecter length!!'
@@ -566,17 +596,17 @@
                         return false;
 
                     }
-                    // if(end != "") {
-                    //
-                    //
-                    //     if (Date.parse(end) < Date.parse(start)) {
-                    //
-                    //         var errorMsg = 'End date should after start date!!';
-                    //         validationError(errorMsg);
-                    //         return false;
-                    //
-                    //     }
-                    // }
+                     if(end != "") {
+
+
+                         if (Date.parse(end) < Date.parse(start)) {
+
+                             var errorMsg = 'End date should after start date!!';
+                             validationError(errorMsg);
+                             return false;
+
+                         }
+                     }
                     //
                     // if($.trim(address)==""){
                     //

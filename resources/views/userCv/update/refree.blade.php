@@ -1,7 +1,11 @@
 @extends('main')
 
 @section('content')
-
+    <style>
+        .updateCard {
+            height:2500px;
+        }
+    </style>
     <style>
         strong{
             color: red;
@@ -19,9 +23,30 @@
     <div class="row ">
 
         <div class="col-12 ">
-            <div class="card">
+            <div class="card updateCard">
                 <div style="background-color: #F1F1F1" class="card-body">
-                    <div id="regForm">
+
+                    <div class="col-md-3">
+
+                        <div class="sidenav">
+                            <a href="{{route('candidate.cvPersonalInfo')}}">Personal Details</a>
+                            <a href="{{route('candidate.cvQuesObj')}}">Career Objective and Application Information</a>
+                            <a href="{{route('candidate.cvEducation')}}">Education</a>
+                            <a href="{{route('candidate.language.index')}}" >Language</a>
+                            <a href="{{route('candidate.computerSkill.index')}}" >Computer-Skill</a>
+                            <a href="{{route('candidate.skill.index')}}" >Other Skill Information</a>
+                            <a href="{{route('cv.OthersInfo')}}" >Other Information</a>
+                            <a href="{{route('candidate.cvTrainingCertificate')}}">Training Certification</a>
+                            <a href="{{route('candidate.cvProfessionalCertificate')}}">Professional Certification</a>
+                            <a href="{{route('JobExperience.index')}}">Job Experience</a>
+                            <a href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
+                            <a href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
+                            <a class="activeNav"  href="{{route('refree.index')}}">Referee</a>
+                            <a href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas Bangladesh</a>
+                        </div>
+
+                    </div>
+                    <div class="col-md-9" id="regForm">
 
                         <span id="notice"><span style="color: red">*</span><span style="color: red">*</span>Experience candidate : referee should be present or previous organization/company.</span><span style="color: red">*</span><span style="color: red">*</span><br>
                         <span id="notice"><span style="color: red">*</span><span style="color: red">*</span>Freshers : referee can be from his/her own preference.</span><span style="color: red">*</span><span style="color: red">*</span>
@@ -109,7 +134,7 @@
                                    {{--</div>--}}
 
                             <button type="button" id="addButton" class="btn btn-success">Add more</button>
-                            <button type="button" id="removeButton" class="btn btn-success" >remove</button>
+                            <button type="button" id="removeButton" class="btn btn-success" >Remove</button>
 
 
 
@@ -117,7 +142,7 @@
                             <div style="float:right;">
                                 <a href="{{route('candidate.membershipInSocialNetwork.index')}}"><button type="button" id="btnPevious" >Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
-                                <a href="{{route('relativeInCaritas.getRelationInfo')}}"><button type="button" id="nextBtn" >Next</button></a>
+                                <a <?php if ($tempHr < 2){?> onclick="return alert('atleast 2 refree needed')"  class="incomplete" <?php }else{?> href="{{route('relativeInCaritas.getRelationInfo')}}" <?php } ?> ><button type="button" id="nextBtn" >Next</button></a>
                             </div>
                         </div>
                         </form>
@@ -145,10 +170,8 @@
     </div> <!-- end row -->
 
     </div> <!-- end container -->
-    </div>
+
     <!-- end wrapper -->
-
-
 
 
 @endsection
@@ -237,8 +260,8 @@
 
                 console.log(tempCounter);
 
-                if(tempCounter>3){
-                    alert("Only 3 Section allow per Time!!");
+                if(tempCounter>5){
+                    alert("Only 5 Section allow per Time!!");
                     return false;
                 }
 
