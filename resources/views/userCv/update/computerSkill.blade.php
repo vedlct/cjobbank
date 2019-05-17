@@ -16,7 +16,7 @@
                             <a href="{{route('candidate.cvEducation')}}">Education</a>
                             <a href="{{route('candidate.language.index')}}" >Language</a>
                             <a href="{{route('candidate.computerSkill.index')}}" class="activeNav">Computer-Skill</a>
-                            <a href="{{route('candidate.skill.index')}}">Other Skill Information</a>
+                            {{--<a href="{{route('candidate.skill.index')}}">Other Skill Information</a>--}}
                             <a href="{{route('cv.OthersInfo')}}">Other Information</a>
                             <a  href="{{route('candidate.cvTrainingCertificate')}}">Training Certification</a>
                             <a  href="{{route('candidate.cvProfessionalCertificate')}}">Professional Certification</a>
@@ -105,7 +105,8 @@
                                 {{--<a id="btnPevious" class="btn btn-success" href="{{route('JobExperience.index')}}">Back</a>--}}
                                 <button type="submit" id="submitBtn1">Save</button>
 
-                                <a href="{{route('candidate.skill.index')}}"><button type="button" id="btnNext" >Next</button></a>
+                                {{--<a href="{{route('candidate.skill.index')}}"><button type="button" id="btnNext" >Next</button></a>--}}
+                                <a href="{{route('cv.OthersInfo')}}"><button type="button" id="btnNext" >Next</button></a>
 
                             </div>
                         </div>

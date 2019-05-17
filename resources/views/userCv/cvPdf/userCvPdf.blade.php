@@ -256,31 +256,31 @@
 
                     </table >
 
-                    <table border="0" style="width:100%; margin-top: 25px; border: none;">
-                        <tr>
-                            <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Other Skill</b> </td>
-                        </tr>
-                    </table>
-                    <table border="0" style="width:100%; margin-top: 10px; border: none;">
-                    </table>
-                    <table border="0" style="width:100%; margin-top: 10px; border: none;">
-                        @if($empOtherSkillls->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @else
+                    {{--<table border="0" style="width:100%; margin-top: 25px; border: none;">--}}
+                        {{--<tr>--}}
+                            {{--<td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Other Skill</b> </td>--}}
+                        {{--</tr>--}}
+                    {{--</table>--}}
+                    {{--<table border="0" style="width:100%; margin-top: 10px; border: none;">--}}
+                    {{--</table>--}}
+                    {{--<table border="0" style="width:100%; margin-top: 10px; border: none;">--}}
+                        {{--@if($empOtherSkillls->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @else--}}
 
-                        <thead>
-                            <th style="width: 70%;text-align: center" >Skill</th>
-                            <th style="width: 30%;text-align: center">Rating</th>
-                        </thead>
-                        @foreach($empOtherSkillls as $skills)
-                            <tr>
+                        {{--<thead>--}}
+                            {{--<th style="width: 70%;text-align: center" >Skill</th>--}}
+                            {{--<th style="width: 30%;text-align: center">Rating</th>--}}
+                        {{--</thead>--}}
+                        {{--@foreach($empOtherSkillls as $skills)--}}
+                            {{--<tr>--}}
 
-                                <td style="text-align: center">{{$skills->skillName}}</td>
+                                {{--<td style="text-align: center">{{$skills->skillName}}</td>--}}
 
-                                <td style="text-align: center">{{$skills->ratiing}}</td>
+                                {{--<td style="text-align: center">{{$skills->ratiing}}</td>--}}
 
-                            </tr>
-                        @endforeach
-                            @endif
-                    </table>
+                            {{--</tr>--}}
+                        {{--@endforeach--}}
+                            {{--@endif--}}
+                    {{--</table>--}}
 
 
 
