@@ -98,6 +98,7 @@
             @endforeach
         </td>
         <td colspan="6" class="Border" height="620"   style="text-align: left;">
+            <?php $tJEY=0;$tJEM=0; $totalexpyr = 0; $totalexpmonth = 0 ?>
             <?php $temp=0 ?>
             @foreach($jobExperience->where('fkemployeeId',$emp->employeeId) as $job)
             {{++$temp}}. Position: {{$job->degisnation}}<br>
@@ -111,6 +112,14 @@
 
                 <br><br>
             @endforeach
+            <br>
+                <?php
+                $totalexpyr = $totalexpyr + $tJEY=$job->expYear ;
+                $totalexpmonth =  $totalexpmonth +(((int)$job->expMonth)/(12*$job->expYear)) ;
+                ?>
+                @endforeach
+
+                Total job experience : {{$totalexpyr + round($totalexpmonth / 12)." years"}} {{($totalexpmonth % 12)." months"}}
         </td>
         <td colspan="8" class="Border" height="620" style="text-align: left;">
             Extracurricular activities<br>
