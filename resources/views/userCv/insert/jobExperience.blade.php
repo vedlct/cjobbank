@@ -91,6 +91,10 @@
                                         <label for="inputPassword4">End date</label>
                                         <input type="text" class="form-control date" name="endDate[]" id="end" placeholder="date">
                                     </div>
+                                    <div id="experienceDiv" style="display: none" class="form-group col-md-4">
+                                        <label for="inputPassword4">Total Experience</label>
+                                        <input type="text" class="form-control" name="totalExp" id="totalExpValue" placeholder="experience">
+                                    </div>
                                     <div class="form-group col-md-12">
                                         <label for="inputPassword4">Organization address </label>
                                         <textarea class="form-control" rows="5" name="address[]"  id="address" placeholder="address"></textarea>
@@ -217,6 +221,92 @@
 //                format: 'yyyy-m-d'
 //            });
         });
+
+        $( "#start" ).change(function() {
+
+            if ($('#end').val()!="" && $('#start').val()!=""){
+
+                var total_month='';
+
+                var end = new Date($('#end').val());
+                var start = new Date($('#start').val());
+                var exp=calcDate(end,start)
+
+
+                $("#totalExpValue").val(exp);
+
+                $("#experienceDiv").show();
+
+
+            }else {
+
+                $("#experienceDiv").hide();
+            }
+
+        });
+        $( "#end" ).change(function() {
+
+            if ($('#end').val()!="" && $('#start').val()!=""){
+
+                var total_month='';
+
+                var end = new Date($('#end').val());
+                var start = new Date($('#start').val());
+                var exp=calcDate(end,start)
+
+
+                $("#totalExpValue").val(exp);
+
+                $("#experienceDiv").show();
+
+
+            }else {
+                $("#experienceDiv").hide();
+            }
+
+        });
+
+        function getExp(counter) {
+
+            if ($('#end'+counter).val()!="" && $('#start'+counter).val()!=""){
+
+                var total_month='';
+
+                var end = new Date($('#end'+counter).val());
+                var start = new Date($('#start'+counter).val());
+                var exp=calcDate(end,start);
+
+
+                $("#totalExpValue"+counter).val(exp);
+
+                $("#experienceDiv"+counter).show();
+
+
+            }else {
+                $("#experienceDiv"+counter).hide();
+            }
+
+
+        }
+        function calcDate(date1,date2) {
+            var diff = Math.floor(date1.getTime() - date2.getTime());
+            var day = 1000 * 60 * 60 * 24;
+
+            var days = Math.floor(diff/day);
+            var months = Math.floor(days/31);
+            var years = Math.floor(months/12);
+
+            if (years > 0){
+                var month=Math.round((months-(12*years)+1));
+            }else {
+                var month=months;
+            }
+
+            var message = years + " years.";
+            message += month + " months ";
+
+            return message
+        }
 
         $("input[name=hasProfCertificate]").click( function () {
 
@@ -721,12 +811,16 @@
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
                     '<label for="inputPassword4">Start date<span style="color: red">*</span></label> ' +
-                    '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date" required> ' +
+                    '<input type="text" class="form-control date" onchange="getExp('+counter+')" name="startDate[]" id="start'+counter+'" placeholder="date" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-4"> ' +
                     '<label for="inputPassword4">End date</label> ' +
-                    '<input type="text" class="form-control date" name="endDate[]" id="end'+counter+'" placeholder="date"> ' +
+                    '<input type="text" class="form-control date" onchange="getExp('+counter+')" name="endDate[]" id="end'+counter+'" placeholder="date"> ' +
                     '</div> ' +
+                    '<div id="experienceDiv'+counter+'" style="display: none" class="form-group col-md-4">'+
+                    '<label for="inputPassword4">Total Experience</label>'+
+                    '<input type="text" class="form-control" name="totalExp" id="totalExpValue'+counter+'" placeholder="experience">'+
+                    '</div>'+
                     '<div class="form-group col-md-12"> ' +
                     '<label for="inputPassword4">Address</label> ' +
                     '<textarea class="form-control" name="address[]" id="address'+counter+'" placeholder="address"></textarea> ' +

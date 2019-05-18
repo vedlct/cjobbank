@@ -115,7 +115,7 @@
             <br>
                 <?php
                 $totalexpyr = $totalexpyr + $tJEY=$job->expYear ;
-                $totalexpmonth =  $totalexpmonth +(((int)$job->expMonth)/(12*$job->expYear)) ;
+                $totalexpmonth =  $totalexpmonth +(((int)$job->expMonth)-(12*$job->expYear)) ;
                 ?>
                 @endforeach
 
@@ -131,10 +131,10 @@
             {{$emp->researchPublication}}<br>
 
 
-            4.Other skills:<br>
-            @foreach($extraCurriculumn->where('fkemployeeId',$emp->employeeId) as $c)
-                Name: {{$c->skillName}} -{{$c->ratiing}}%<br><br>
-            @endforeach
+            {{--4.Other skills:<br>--}}
+            {{--@foreach($extraCurriculumn->where('fkemployeeId',$emp->employeeId) as $c)--}}
+                {{--Name: {{$c->skillName}} -{{$c->ratiing}}%<br><br>--}}
+            {{--@endforeach--}}
 
             Computer skill:<br>
             @foreach($computerSkill->where('fk_empId',$emp->employeeId) as $skill)

@@ -59,7 +59,21 @@ class ComputerSkillController extends Controller
 
         for($i=0;$i<count($r->computerSkillId);$i++){
             $empComputerSkill=new EmployeeComputerSkill();
-            $empComputerSkill->computerSkillId=$r->computerSkillId[$i];
+
+            if ($r->computerSkillId[$i] == OTHERS){
+
+                $newComputerSkill=new ComputerSkill();
+                $newComputerSkill->computerSkillName=$r->computerSkillName[$i];
+                $newComputerSkill->status=1;
+                $newComputerSkill->save();
+
+                $empComputerSkill->computerSkillId=$newComputerSkill->id;
+
+            }else{
+                $empComputerSkill->computerSkillId=$r->computerSkillId[$i];
+            }
+
+
             $empComputerSkill->SkillAchievement=$r->SkillAchievement[$i];
             $empComputerSkill->fk_empId=$employee->employeeId;
             $empComputerSkill->save();
@@ -82,7 +96,21 @@ public function update(Request $r){
      //   return $r;
     $empComputerSkill=EmployeeComputerSkill::findOrFail($r->id);
 
-    $empComputerSkill->computerSkillId=$r->computerSkillId;
+    if ($r->computerSkillId == OTHERS){
+
+        $newComputerSkill=new ComputerSkill();
+        $newComputerSkill->computerSkillName=$r->computerSkillName;
+        $newComputerSkill->status=1;
+        $newComputerSkill->save();
+
+        $empComputerSkill->computerSkillId=$newComputerSkill->id;
+
+    }else{
+        $empComputerSkill->computerSkillId=$r->computerSkillId;
+    }
+
+
+//    $empComputerSkill->computerSkillId=$r->computerSkillId;
     $empComputerSkill->SkillAchievement=$r->SkillAchievement;
 
     $empComputerSkill->save();
