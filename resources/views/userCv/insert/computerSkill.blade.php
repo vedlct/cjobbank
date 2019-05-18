@@ -46,12 +46,19 @@
 
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Skill<span style="color: red">*</span></label>
-                                        <select name="computerSkillId[]" id="" class="form-control req" onchange="checkUnique(this)" required>
+                                        <select name="computerSkillId[]" id="skill" class="form-control req" onchange="checkUnique(this)" required>
                                             <option value="">Select skill</option>
                                             @foreach($computerSkills as $skill)
                                                 <option value="{{$skill->id}}">{{$skill->computerSkillName}}</option>
                                             @endforeach
+                                            <option value="{{OTHERS}}" >{{OTHERS}}</option>
                                         </select>
+                                    </div>
+
+                                    <div style="display: none" id="computerSkillNameDiv" class="form-group col-md-6">
+                                        <label for="">Skill name</label>
+                                        <input type="text" maxlength="255" name="computerSkillName[]" class="form-control" id="computerSkillName"  placeholder="skill name">
+
                                     </div>
 
 
@@ -151,12 +158,54 @@
 //            });
         });
 
+        $('#skill').on('change', function() {
+
+            var skill =$('#skill').val();
+            if (skill == "{{OTHERS}}"){
+
+                $("#computerSkillNameDiv").show();
+                $("#computerSkillName").attr("required", "true");
+            }else {
+
+
+                $("#computerSkillNameDiv").hide();
+                $("#computerSkillName").attr("required", "false");
+
+
+            }
+
+
+
+        });
+        function skillchange(x) {
+
+
+            var skill =$('#skill'+x).val();
+            if (skill == "{{OTHERS}}"){
+
+                $("#computerSkillNameDiv"+x).show();
+                $("#computerSkillName"+x).attr("required", "true");
+            }else {
+
+
+                $("#computerSkillNameDiv"+x).hide();
+                $("#computerSkillName"+x).attr("required", "false");
+
+
+            }
+
+        }
+
         function  checkUnique(x) {
 
 
             var values =  $('select[name="computerSkillId[]"]').map(function () {
                 return this.value; // $(this).val()
             }).get();
+
+            for( var i = values.length-1; i--;){
+                if ( values[i] === '{{OTHERS}}') values.splice(i, 1);
+            }
 
 
             var unique = values.filter(function(itm, i, values) {
@@ -229,13 +278,19 @@
 
                     '                                    <div class="form-group col-md-6">\n' +
                     '                                        <label for="inputEmail4">Skill<span style="color: red">*</span></label>\n' +
-                    '                                        <select name="computerSkillId[]" id="" class="form-control" onchange="checkUnique(this)" required>\n' +
+                    '                                        <select name="computerSkillId[]" id="skill'+counter+'" class="form-control" onchange="checkUnique(this);skillchange('+counter+')" required>\n' +
                     '                                            <option value="">Select skill</option>\n' +
                     '                                            @foreach($computerSkills as $skill)\n' +
                     '                                                <option value="{{$skill->id}}">{{$skill->computerSkillName}}</option>\n' +
                     '                                            @endforeach\n' +
+                    '<option value="{{OTHERS}}" >{{OTHERS}}</option>'+
                     '                                        </select>\n' +
                     '                                    </div>\n' +
+                    '<div style="display: none" id="computerSkillNameDiv'+counter+'" class="form-group col-md-6">'+
+                    '<label for="">Skill name</label>'+
+                    '<input type="text" maxlength="255" name="computerSkillName[]" class="form-control" id="computerSkillName'+counter+'"  placeholder="skill name">'+
+
+                    '</div>'+
                     '\n' +
                     '\n' +
                     '                                    <div class="form-group col-md-6">\n' +

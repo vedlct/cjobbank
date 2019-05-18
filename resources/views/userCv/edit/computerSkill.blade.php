@@ -9,7 +9,7 @@
                     <label for="inputEmail4">Skill<span style="color: red">*</span></label>
                     <?php $skillId= array();
                     $skillTitle=array();?>
-                    <select name="computerSkillId" id="" class="form-control" required>
+                    <select name="computerSkillId" id="skill1" class="form-control" required>
                         <option value="">Select skill</option>
                         @foreach($allComputerSkills as $skill)
                             <option @if($skill->id==$computerSkill->computerSkillId)selected @endif value="{{$skill->id}}">{{$skill->computerSkillName}}</option>
@@ -19,7 +19,14 @@
                             {{--array_push($skillTitle,$skill->computerSkillName );--}}
                             {{--@endphp--}}
                         @endforeach
+                        <option value="{{OTHERS}}" >{{OTHERS}}</option>
                     </select>
+                </div>
+
+                <div style="display: none" id="computerSkillNameDiv" class="form-group col-md-6">
+                    <label for="">Skill name</label>
+                    <input type="text" maxlength="255" name="computerSkillName" class="form-control" id="computerSkillName"  placeholder="skill name">
+
                 </div>
 
 
@@ -52,5 +59,27 @@
 
 
 </form>
+
+<script>
+    $('#skill1').on('change', function() {
+
+        var skill =$('#skill1').val();
+        if (skill == "{{OTHERS}}"){
+
+            $("#computerSkillNameDiv").show();
+            $("#computerSkillName").attr("required", "true");
+        }else {
+
+
+            $("#computerSkillNameDiv").hide();
+            $("#computerSkillName").attr("required", "false");
+
+
+        }
+
+
+
+    });
+</script>
 
 
