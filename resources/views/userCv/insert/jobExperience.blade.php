@@ -274,7 +274,7 @@
 
                 var end = new Date($('#end'+counter).val());
                 var start = new Date($('#start'+counter).val());
-                var exp=calcDate(end,start)
+                var exp=calcDate(end,start);
 
 
                 $("#totalExpValue"+counter).val(exp);
