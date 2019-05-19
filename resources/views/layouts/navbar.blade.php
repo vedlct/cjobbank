@@ -59,7 +59,7 @@
     @if(USER_TYPE['Admin']== Auth::user()->fkuserTypeId)
     <li class="has-submenu">
         <a href="#"><i class="ti-settings"></i>Settings</a>
-        <ul class="submenu">
+        <ul class="submenu" style="height: 500px;overflow-y: scroll">
         <li><a href="{{route('manage.zone')}}">Manage Zone</a></li>
         <li><a href="{{route('manage.education')}}">Manage Education Level</a></li>
         <li><a href="{{route('manage.educationDegree')}}">Manage Education Degree</a></li>

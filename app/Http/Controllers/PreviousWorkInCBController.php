@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\PreviousWorkInCB;
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\DB;
 use Session;
 
 use App\Traning;
@@ -53,7 +54,11 @@ class PreviousWorkInCBController extends Controller
 
            $hasWorkedInCB=1;
 
-           $previousWorkInCB=PreviousWorkInCB::where('fkemployeeId',$employee->employeeId)
+           $previousWorkInCB=PreviousWorkInCB::select('previous_work_in_caritasbd.*')
+               ->addSelect(DB::raw("(CASE WHEN `previous_work_in_caritasbd`.`endDate` IS NOT null AND `previous_work_in_caritasbd`.`startDate` IS NOT null THEN TIMESTAMPDIFF(YEAR,`previous_work_in_caritasbd`.`startDate`,`previous_work_in_caritasbd`.`endDate`) WHEN `previous_work_in_caritasbd`.`startDate` IS NOT null AND `previous_work_in_caritasbd`.`endDate` IS null THEN TIMESTAMPDIFF(YEAR,`previous_work_in_caritasbd`.`startDate`,CURDATE()) ELSE 0 END) AS expYear"),
+                   DB::raw("(CASE WHEN `previous_work_in_caritasbd`.`endDate` IS NOT null AND `previous_work_in_caritasbd`.`startDate` IS NOT null THEN TIMESTAMPDIFF(MONTH,`previous_work_in_caritasbd`.`startDate`,`previous_work_in_caritasbd`.`endDate`) WHEN `previous_work_in_caritasbd`.`startDate` IS NOT null AND `previous_work_in_caritasbd`.`endDate` IS null THEN TIMESTAMPDIFF(MONTH,`previous_work_in_caritasbd`.`startDate`,CURDATE()) ELSE 0 END) AS expMonth"))
+
+           ->where('fkemployeeId',$employee->employeeId)
                ->get();
 
 

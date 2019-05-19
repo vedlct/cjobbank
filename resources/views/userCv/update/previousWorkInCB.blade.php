@@ -71,6 +71,19 @@
 
 
                                         </div>
+                                        <div class="col-md-6">
+                                            <label for="inputPassword4">Total experience :</label><br>
+                                            years: @if ($previousWorkInCB->expYear >0)
+
+                                                {{$previousWorkInCB->expYear}}.{{floor((((int)$previousWorkInCB->expMonth)/(12*$previousWorkInCB->expYear)))}}
+
+                                            @else
+                                                {{$previousWorkInCB->expYear}}.{{floor($previousWorkInCB->expMonth)}}
+
+                                            @endif
+
+
+                                        </div>
                                     </div>
 
                                     @php($tempHr++)
@@ -208,6 +221,72 @@
 //            });
         });
 
+        function getExp(counter) {
+
+            if ($('#end'+counter).val()!="" && $('#start'+counter).val()!=""){
+
+                var total_month='';
+
+                var end = new Date($('#end'+counter).val());
+                var start = new Date($('#start'+counter).val());
+                var exp=calcDate(end,start);
+
+
+                $("#totalExpValue"+counter).val(exp);
+                $("#currentlyRunning"+counter). prop("checked", false);
+
+                $("#experienceDiv"+counter).show();
+
+
+            }else {
+                $("#experienceDiv"+counter).hide();
+            }
+
+
+        }
+        function getchkExp(counter) {
+
+            if ($('#start'+counter).val()!=""){
+
+                var total_month='';
+
+                var end = new Date();
+                var start = new Date($('#start'+counter).val());
+                var exp=calcDate(end,start);
+
+
+                $("#totalExpValue"+counter).val(exp);
+                $('#end'+counter).val("");
+
+                $("#experienceDiv"+counter).show();
+
+
+            }else {
+                $("#experienceDiv"+counter).hide();
+            }
+
+
+        }
+        function calcDate(date1,date2) {
+            var diff = Math.floor(date1.getTime() - date2.getTime());
+            var day = 1000 * 60 * 60 * 24;
+
+            var days = Math.floor(diff/day);
+            var months = Math.floor(days/31);
+            var years = Math.floor(months/12);
+
+            if (years > 0){
+                var month=Math.round((months-(12*years)+1));
+            }else {
+                var month=months;
+            }
+
+            var message = years + " years.";
+            message += month + " months ";
+
+            return message
+        }
+
         $(document).ready(function(){
 
             var counter = 1;
@@ -285,14 +364,18 @@
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
                     '<label for="inputPassword4">Start date</label> ' +
-                    '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date"> ' +
+                    '<input type="text" class="form-control date" name="startDate[]" onchange="getExp('+counter+')" id="start'+counter+'" placeholder="date"> ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
                     '<label for="inputPassword4">End date</label> ' +
-                    '/ <input type="checkbox"  class="col-md-2" id="currentlyRunning'+counter+'" name="currentlyRunning[]" value="1">Running'+
-                    '<input type="text" class="form-control date" name="endDate[]" id="end'+counter+'" placeholder="date"> ' +
+                    '/ <input type="checkbox"  class="col-md-2" id="currentlyRunning'+counter+'" onclick="getchkExp('+counter+')" name="currentlyRunning[]" value="1">Running'+
+                    '<input type="text" class="form-control date" name="endDate[]" onchange="getExp('+counter+')" id="end'+counter+'" placeholder="date"> ' +
 
 //                    '</div> ' +
+                    '</div>'+
+                    '<div id="experienceDiv'+counter+'" style="display: none" class="form-group col-md-4">'+
+                    '<label for="inputPassword4">Total Experience</label>'+
+                    '<input type="text" class="form-control" name="totalExp" id="totalExpValue'+counter+'"readonly placeholder="experience">'+
                     '</div>'
 
                 );

@@ -16,7 +16,7 @@
         <div class="form-group col-md-6">
             <label for="inputPassword4">End date</label>
             /
-            <input type="checkbox" class="col-md-2" id="currentlyRunning" name="currentlyRunning" @if($previousWorkInCB->currentlyRunning=='1')checked @endif value="1"> Running
+            <input type="checkbox" class="col-md-2" id="currentlyRunning" onclick="chkEXPCurrent()" name="currentlyRunning" @if($previousWorkInCB->currentlyRunning=='1')checked @endif value="1"> Running
 
         @if($previousWorkInCB->currentlyRunning=='0')
                 <input type="text" id="endDate"name="endDate" placeholder="End Date" value="{{$previousWorkInCB->endDate}}" class="form-control date"/>
@@ -25,6 +25,11 @@
             @endif
 
 
+        </div>
+
+        <div id="experienceDiv" style="display: none" class="form-group col-md-4">
+            <label for="inputPassword4">Total Experience</label>
+            <input type="text" class="form-control"  name="totalExp" id="totalExpValue" placeholder="experience">
         </div>
 
         <div class="form-group col-md-12">
@@ -47,6 +52,101 @@
         format: 'yyyy-m-d'
     });
     $('.date').keydown(false);
+
+    $( "#start" ).change(function() {
+
+        if ($('#endDate').val()!="" && $('#start').val()!=""){
+
+            var total_month='';
+
+            var end = new Date($('#endDate').val());
+            var start = new Date($('#start').val());
+            var exp=calcDate(end,start)
+
+
+            $("#totalExpValue").val(exp);
+
+            $("#experienceDiv").show();
+
+
+        }else {
+
+            $("#experienceDiv").hide();
+        }
+
+    });
+    $( "#endDate" ).change(function() {
+
+        if ($('#endDate').val()!="" && $('#start').val()!=""){
+
+            var total_month='';
+
+            var end = new Date($('#endDate').val());
+            var start = new Date($('#start').val());
+            var exp=calcDate(end,start)
+
+
+            $("#totalExpValue").val(exp);
+            $("#currentlyRunning"). prop("checked", false);
+
+            $("#experienceDiv").show();
+
+
+        }else {
+            $("#experienceDiv").hide();
+        }
+
+    });
+
+    function chkEXPCurrent() {
+
+        if ($('#currentlyRunning').is(':checked')) {
+
+            if ($('#start').val()!=""){
+
+                var total_month='';
+
+                var end = new Date();
+                var start = new Date($('#start').val());
+                var exp=calcDate(end,start)
+
+
+                $("#totalExpValue").val(exp);
+                // document.getElementById("myText").value = "Johnny Bravo";
+                $('#endDate').val("");
+
+
+                $("#experienceDiv").show();
+
+
+            }else {
+                $("#experienceDiv").hide();
+            }
+
+
+
+        }
+
+    }
+    function calcDate(date1,date2) {
+        var diff = Math.floor(date1.getTime() - date2.getTime());
+        var day = 1000 * 60 * 60 * 24;
+
+        var days = Math.floor(diff/day);
+        var months = Math.floor(days/31);
+        var years = Math.floor(months/12);
+
+        if (years > 0){
+            var month=Math.round((months-(12*years)+1));
+        }else {
+            var month=months;
+        }
+
+        var message = years + " years.";
+        message += month + " months ";
+
+        return message
+    }
 
     function checkTrainingCertificate(){
 

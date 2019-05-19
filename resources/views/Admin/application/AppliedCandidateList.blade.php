@@ -138,26 +138,32 @@
                     Name of Organization:<br>{{$job->organization}}<br>
                     {{$job->address}}<br>
 
-                    years: @if ($job->expYear >0){{$tJEY=$job->expYear}}.{{floor((((int)$job->expMonth)/(12*$job->expYear)))}}
+                    years: @if ($job->expYear >0)
+                               @php
+                            $totalexpyr = $totalexpyr + $job->expYear ;
+                            $totalexpmonth =  $totalexpmonth +(floor(((int)$job->expMonth)/(12*$job->expYear))) ;
+                            @endphp
+                            {{$tJEY=$job->expYear}}.{{floor((((int)$job->expMonth)/(12*$job->expYear)))}}
+
                     @else
                         {{$job->expYear}}.{{floor($job->expMonth)}}
+                        @php
+                            $totalexpyr = $totalexpyr + $job->expYear ;
+                                $totalexpmonth =  $totalexpmonth +(floor($job->expMonth)) ;
+                        @endphp
                     @endif
                     <br>
                     Start:{{$job->startDate}}
-                    End:{{$job->endDate}}
+                    End:@if($job->startDate!=null && $job->endDate=null) Running @else {{$job->endDate}}@endif
                     <br>
 
-                    <?php
-                        $totalexpyr = $totalexpyr + $tJEY=$job->expYear ;
-                        if($job->expYear >0){
-                            $totalexpmonth =  $totalexpmonth +(floor(((int)$job->expMonth)-(12*$job->expYear))) ;
-                        }else{
-                            $totalexpmonth =  $totalexpmonth +(floor($job->expMonth)) ;
-                        }
-                    ?>
-                @endforeach
 
-                Total job experience : {{$totalexpyr + round($totalexpmonth / 12)." years"}} {{round($totalexpmonth % 12)." months"}}
+
+
+                @endforeach
+                    Total job experience : {{$totalexpyr + floor($totalexpmonth / 12)." years"}} {{round($totalexpmonth % 12)." months"}}
+
+
 
             </td>
             @if($withoutsalary != 'true')
