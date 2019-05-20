@@ -5,6 +5,12 @@
         .updateCard {
             height:2500px;
         }
+
+        @media only screen and (max-width: 1450px) and (min-width: 801px) {
+            .updateCard {
+            height:3800px;
+        }
+        }
     </style>
     <style>
         #notice{
