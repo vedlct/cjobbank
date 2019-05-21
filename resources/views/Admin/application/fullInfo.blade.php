@@ -123,7 +123,7 @@
                 ?>
                 @endforeach
 
-                Total job experience : {{$totalexpyr + round($totalexpmonth / 12)." years"}} {{($totalexpmonth % 12)." months"}}
+                Total job experience : {{$totalexpyr + floor($totalexpmonth / 12)." years"}} {{($totalexpmonth % 12)." months"}}
         </td>
         <td colspan="8" class="Border" height="620" style="text-align: left;">
             Extracurricular activities<br>

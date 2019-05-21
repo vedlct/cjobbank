@@ -5,6 +5,12 @@
         .updateCard {
             height:2500px;
         }
+
+        @media only screen and (max-width: 1450px) and (min-width: 801px) {
+            .updateCard {
+            height:3800px;
+        }
+        }
     </style>
     <style>
         #notice{
@@ -98,6 +104,21 @@
                                                     <label for="inputPassword4">End date :</label>
                                                 {{$experience->endDate}}
                                                 @endif
+                                            </div>
+                                            <div class="form-group col-md-4">
+
+
+                                                    <label for="inputPassword4">Total experience :</label><br>
+                                                years: @if ($experience->expYear >0)
+
+                                                    {{$experience->expYear}}.{{floor((((int)$experience->expMonth)/(12*$experience->expYear)))}}
+
+                                                @else
+                                                    {{$experience->expYear}}.{{floor($experience->expMonth)}}
+
+                                                @endif
+
+
                                             </div>
                                             <div class="form-group col-md-12">
                                                 <label for="inputPassword4">Organization address :</label>

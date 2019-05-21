@@ -173,6 +173,11 @@
             .sidenav {
                 width: 250px;
             }
+
+            .sidenav a {
+            padding: 5px 8px 5px 16px;
+            }
+
         }
 
         @media screen and (max-width: 800px) {

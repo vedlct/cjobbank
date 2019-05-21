@@ -67,10 +67,15 @@
                                     <div class="form-group col-md-6">
 
                                         <label for="inputPassword4">End date</label> /
-                                        <input type="checkbox" class="col-md-2" id="currentlyRunning" name="currentlyRunning[]" value="1">Running
+                                        <input type="checkbox" class="col-md-2" id="currentlyRunning" onclick="chkEXPCurrent()" name="currentlyRunning[]" value="1">Running
                                         <input type="text" class="form-control end" name="endDate[]" id="end" placeholder="date">
 
 
+                                    </div>
+
+                                    <div id="experienceDiv" style="display: none" class="form-group col-md-4">
+                                        <label for="inputPassword4">Total Experience</label>
+                                        <input type="text" class="form-control"  name="totalExp" id="totalExpValue" placeholder="experience">
                                     </div>
 
                                 </div>
@@ -157,6 +162,149 @@
             $('.date').keydown(false);
             $('.end').keydown(false);
         });
+
+        $( "#start" ).change(function() {
+
+            if ($('#end').val()!="" && $('#start').val()!=""){
+
+                var total_month='';
+
+                var end = new Date($('#end').val());
+                var start = new Date($('#start').val());
+                var exp=calcDate(end,start)
+
+
+                $("#totalExpValue").val(exp);
+
+                $("#experienceDiv").show();
+
+
+            }else {
+
+                $("#experienceDiv").hide();
+            }
+
+        });
+        $( "#end" ).change(function() {
+
+            if ($('#end').val()!="" && $('#start').val()!=""){
+
+                var total_month='';
+
+                var end = new Date($('#end').val());
+                var start = new Date($('#start').val());
+                var exp=calcDate(end,start)
+
+
+                $("#totalExpValue").val(exp);
+                $("#currentlyRunning"). prop("checked", false);
+
+                $("#experienceDiv").show();
+
+
+            }else {
+                $("#experienceDiv").hide();
+            }
+
+        });
+
+        function chkEXPCurrent() {
+
+            if ($('#currentlyRunning').is(':checked')) {
+
+                if ($('#start').val()!=""){
+
+                    var total_month='';
+
+                    var end = new Date();
+                    var start = new Date($('#start').val());
+                    var exp=calcDate(end,start)
+
+
+                    $("#totalExpValue").val(exp);
+                    // document.getElementById("myText").value = "Johnny Bravo";
+                    $('#end').val("");
+
+
+                    $("#experienceDiv").show();
+
+
+                }else {
+                    $("#experienceDiv").hide();
+                }
+
+
+
+            }
+
+        }
+
+        function getExp(counter) {
+
+            if ($('#end'+counter).val()!="" && $('#start'+counter).val()!=""){
+
+                var total_month='';
+
+                var end = new Date($('#end'+counter).val());
+                var start = new Date($('#start'+counter).val());
+                var exp=calcDate(end,start);
+
+
+                $("#totalExpValue"+counter).val(exp);
+                $("#currentlyRunning"+counter). prop("checked", false);
+
+                $("#experienceDiv"+counter).show();
+
+
+            }else {
+                $("#experienceDiv"+counter).hide();
+            }
+
+
+        }
+        function getchkExp(counter) {
+
+            if ($('#start'+counter).val()!=""){
+
+                var total_month='';
+
+                var end = new Date();
+                var start = new Date($('#start'+counter).val());
+                var exp=calcDate(end,start);
+
+
+                $("#totalExpValue"+counter).val(exp);
+                $('#end'+counter).val("");
+
+
+                $("#experienceDiv"+counter).show();
+
+
+            }else {
+                $("#experienceDiv"+counter).hide();
+            }
+
+
+        }
+        function calcDate(date1,date2) {
+            var diff = Math.floor(date1.getTime() - date2.getTime());
+            var day = 1000 * 60 * 60 * 24;
+
+            var days = Math.floor(diff/day);
+            var months = Math.floor(days/31);
+            var years = Math.floor(months/12);
+
+            if (years > 0){
+                var month=Math.round((months-(12*years)+1));
+            }else {
+                var month=months;
+            }
+
+            var message = years + " years.";
+            message += month + " months ";
+
+            return message
+        }
 
         $("input[name=hasWorkedInCB]").click( function () {
 
@@ -374,20 +522,24 @@
                     '<div class="form-group"><hr style="border-top:1px dotted #000;"></div>' +
 //                    '<div class="col-md-12"> ' +
                     '<div class="form-group col-md-12"> ' +
-                    '<label for="inputEmail4">Designation</label> ' +
+                    '<label for="inputEmail4">Designation<span style="color: red">*</span></label> ' +
                     '<input type="text" class="form-control" name="degisnation[]" id="degisnation'+counter+'" placeholder="designation" > ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
-                    '<label for="inputPassword4">Start date</label> ' +
-                    '<input type="text" class="form-control date" name="startDate[]" id="start'+counter+'" placeholder="date"> ' +
+                    '<label for="inputPassword4">Start date<span style="color: red">*</span></label> ' +
+                    '<input type="text" class="form-control date" onchange="getExp('+counter+')" name="startDate[]" id="start'+counter+'" placeholder="date"> ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
                     '<label for="inputPassword4">End date</label> ' +
-                    '/ <input type="checkbox" class="col-md-2" id="currentlyRunning'+counter+'" name="currentlyRunning[]" value="1"> Running'+
-                    '<input type="text" class="form-control date" name="endDate[]" id="end'+counter+'" placeholder="date"> ' +
+                    '/ <input type="checkbox" class="col-md-2" id="currentlyRunning'+counter+'" onclick="getchkExp('+counter+')" name="currentlyRunning[]" value="1"> Running'+
+                    '<input type="text" class="form-control date" name="endDate[]" onchange="getExp('+counter+')" id="end'+counter+'" placeholder="date"> ' +
 
 //                '</div> ' +
-                    '</div>'
+                    '</div>'+
+                '<div id="experienceDiv'+counter+'" style="display: none" class="form-group col-md-4">'+
+                '<label for="inputPassword4">Total Experience</label>'+
+                '<input type="text" class="form-control" name="totalExp" id="totalExpValue'+counter+'" placeholder="experience">'+
+                '</div>'
 
                 );
                 newTextBoxDiv.appendTo("#TextBoxesGroup");
