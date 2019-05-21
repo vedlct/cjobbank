@@ -1,12 +1,5 @@
 
 <html>
-
-{{--<style>--}}
-
-    {{----}}
-
-{{--</style>--}}
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link href="{{url('public/css/exceltable.css')}}" rel="stylesheet">
@@ -139,7 +132,7 @@
                     {{$job->address}}<br>
 
                     years: @if ($job->expYear >0)
-                               @php
+                            @php
                             $totalexpyr = $totalexpyr + $job->expYear ;
                             $totalexpmonth =  $totalexpmonth +(floor(((int)$job->expMonth)/(12*$job->expYear))) ;
                             @endphp
@@ -149,16 +142,13 @@
                         {{$job->expYear}}.{{floor($job->expMonth)}}
                         @php
                             $totalexpyr = $totalexpyr + $job->expYear ;
-                                $totalexpmonth =  $totalexpmonth +(floor($job->expMonth)) ;
+                            $totalexpmonth =  $totalexpmonth +(floor($job->expMonth)) ;
                         @endphp
                     @endif
                     <br>
                     Start:{{$job->startDate}}
-                    End:@if($job->startDate!=null && $job->endDate=null) Running @else {{$job->endDate}}@endif
+                    End:@if($job->startDate!=null && $job->endDate==null) Running @else {{$job->endDate}}@endif
                     <br>
-
-
-
 
                 @endforeach
                     Total job experience : {{$totalexpyr + floor($totalexpmonth / 12)." years"}} {{round($totalexpmonth % 12)." months"}}

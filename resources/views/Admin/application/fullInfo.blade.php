@@ -106,22 +106,22 @@
             Organizarion type: {{$job->organizationTypeName}}<br>
 
             Type of Employment: {{$job->employmentType}}<br>
-            Served From /To: {{$job->startDate}} - {{$job->endDate}}<br>
+            Served From /To: {{$job->startDate}} - @if($job->startDate!=null && $job->endDate==null) Running @else {{$job->endDate}}@endif<br>
             Job location/Address: {{$job->address}}<br>
             Name of Supervisor: {{$job->supervisorName}}<br>
 
                 <br><br>
+                    <?php
+                    $totalexpyr = $totalexpyr + $tJEY=$job->expYear ;
+                    if($job->expYear >0){
+                        $totalexpmonth =  $totalexpmonth +(floor(((int)$job->expMonth)/(12*$job->expYear))) ;
+                    }else{
+                        $totalexpmonth =  $totalexpmonth +(floor($job->expMonth)) ;
+                    }
+                    ?>
             @endforeach
             <br>
-                <?php
-                $totalexpyr = $totalexpyr + $tJEY=$job->expYear ;
-                if($job->expYear >0){
-                    $totalexpmonth =  $totalexpmonth +(floor(((int)$job->expMonth)-(12*$job->expYear))) ;
-                }else{
-                    $totalexpmonth =  $totalexpmonth +(floor($job->expMonth)) ;
-                }
-                ?>
-                @endforeach
+
 
                 Total job experience : {{$totalexpyr + floor($totalexpmonth / 12)." years"}} {{($totalexpmonth % 12)." months"}}
         </td>
