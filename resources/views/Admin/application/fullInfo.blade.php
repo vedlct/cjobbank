@@ -115,7 +115,11 @@
             <br>
                 <?php
                 $totalexpyr = $totalexpyr + $tJEY=$job->expYear ;
-                $totalexpmonth =  $totalexpmonth +(((int)$job->expMonth)-(12*$job->expYear)) ;
+                if($job->expYear >0){
+                    $totalexpmonth =  $totalexpmonth +(floor(((int)$job->expMonth)-(12*$job->expYear))) ;
+                }else{
+                    $totalexpmonth =  $totalexpmonth +(floor($job->expMonth)) ;
+                }
                 ?>
                 @endforeach
 

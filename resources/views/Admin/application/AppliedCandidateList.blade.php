@@ -157,7 +157,7 @@
                     ?>
                 @endforeach
 
-                Total job experience : {{$totalexpyr + round($totalexpmonth / 12)." years"}} {{round($totalexpmonth % 12)." months"}}
+                Total job experience : {{$totalexpyr + floor($totalexpmonth / 12)." years"}} {{round($totalexpmonth % 12)." months"}}
 
             </td>
             @if($withoutsalary != 'true')
