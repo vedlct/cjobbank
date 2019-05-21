@@ -83,7 +83,7 @@
                                 <hr>
                             @endforeach
 
-                                <form id="" action="{{route('candidate.computerSkill.submit')}}" method="post">
+                                <form id="" onsubmit="return chkComputerSkill()" action="{{route('candidate.computerSkill.submit')}}" method="post">
                                     <!-- One "tab" for each step in the form: -->
                                     {{csrf_field()}}
 
@@ -179,15 +179,56 @@
             if (skill == "{{OTHERS}}"){
 
                 $("#computerSkillNameDiv"+x).show();
-                $("#computerSkillName"+x).attr("required", "true");
+               // $("#computerSkillName"+x).attr("required", "true");
             }else {
 
 
                 $("#computerSkillNameDiv"+x).hide();
-                $("#computerSkillName"+x).attr("required", "false");
+              //  $("#computerSkillName"+x).attr("required", "false");
 
 
             }
+
+        }
+
+        function chkComputerSkill() {
+
+
+            var computerSkillId=document.getElementsByName('computerSkillId[]');
+            var SkillAchievement=document.getElementsByName('SkillAchievement[]');
+
+            var computerSkillName=document.getElementsByName('computerSkillName[]');
+
+
+            for (i=0;i<computerSkillId.length;i++){
+
+                if(computerSkillId[i].value==""){
+
+                    var errorMsg='Please select a computer skill first!!';
+                    validationError(errorMsg);
+                    return false;
+                }
+
+                if(SkillAchievement[i].value==""){
+
+                    var errorMsg='Please type skill achievement first!!';
+                    validationError(errorMsg);
+                    return false;
+                }
+
+                if(computerSkillId[i].value=='{{OTHERS}}' && computerSkillName[i].value==""){
+
+                    var errorMsg='Please type computer skill name!!';
+                    validationError(errorMsg);
+                    return false;
+                }
+
+
+            }
+
+
+
+
 
         }
 
