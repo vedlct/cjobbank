@@ -81,47 +81,47 @@
         <label>Duration</label>
         <div class="form-group col-md-2">
             <label for="inputPassword4">Hour</label>
-            <select  class="form-control"id="trainingCertificatehour" name="hour">
+            <select  class="form-control js-example-basic-single"id="trainingCertificatehour" name="hour">
 
                 <option value="">Select hour</option>
-                @for($i = 1 ; $i <51 ; $i++)
+                @for($i = 1 ; $i <=300 ; $i++)
                     <option value="{{$i}}" @if($professional->hour == $i)selected @endif>{{$i}}</option>
                 @endfor
             </select>
         </div>
         <div class="form-group col-md-2">
             <label for="inputPassword4">Day</label>
-            <select  class="form-control"id="trainingCertificateday" name="day">
+            <select  class="form-control js-example-basic-single"id="trainingCertificateday" name="day">
 
                 <option value="">Select day</option>
-                @for($i = 1 ; $i <51 ; $i++)
+                @for($i = 1 ; $i <=365 ; $i++)
                     <option value="{{$i}}" @if($professional->day == $i)selected @endif>{{$i}}</option>
                 @endfor
             </select>
         </div>
         <div class="form-group col-md-2">
             <label for="inputPassword4">Week</label>
-            <select  class="form-control"id="trainingCertificateweek" name="week">
+            <select  class="form-control js-example-basic-single"id="trainingCertificateweek" name="week">
 
                 <option value="">Select week</option>
-                @for($i = 1 ; $i <51 ; $i++)
+                @for($i = 1 ; $i <=52 ; $i++)
                     <option value="{{$i}}" @if($professional->week == $i)selected @endif>{{$i}}</option>
                 @endfor
             </select>
         </div>
         <div class="form-group col-md-2">
             <label for="inputPassword4">Month</label>
-            <select  class="form-control"id="trainingCertificatemonth" name="month">
+            <select  class="form-control js-example-basic-single"id="trainingCertificatemonth" name="month">
 
                 <option value="">Select month</option>
-                @for($i = 1 ; $i <51 ; $i++)
+                @for($i = 1 ; $i <=12 ; $i++)
                     <option value="{{$i}}" @if($professional->month == $i)selected @endif>{{$i}}</option>
                 @endfor
             </select>
         </div>
         <div class="form-group col-md-2">
             <label for="inputPassword4">Year</label>
-            <select  class="form-control"id="trainingCertificateyear" name="year">
+            <select  class="form-control js-example-basic-single" id="trainingCertificateyear" name="year">
 
                 <option value="">Select year</option>
                 @for($i = 1 ; $i <51 ; $i++)
@@ -168,6 +168,8 @@
             $('#courseDuration').hide();
 
         }
+
+        $('.js-example-basic-single').select2();
 
 
     });
@@ -257,13 +259,13 @@
             return false;
 
         }
-        if(institutionName==""){
-
-            var errorMsg='Please type institute name first!!'
-            validationError(errorMsg)
-            return false;
-
-        }
+//        if(institutionName==""){
+//
+//            var errorMsg='Please type institute name first!!'
+//            validationError(errorMsg)
+//            return false;
+//
+//        }
         if (institutionName.length > 255){
 
             var errorMsg='Institute name should not more than 255 charecter length!!'
@@ -272,12 +274,12 @@
 
         }
 
-        if(resultSystem==""){
-
-            var errorMsg='Please select result system first!!'
-            validationError(errorMsg)
-            return false;
-        }
+//        if(resultSystem==""){
+//
+//            var errorMsg='Please select result system first!!'
+//            validationError(errorMsg)
+//            return false;
+//        }
 
 //                    if(result==""){
 //

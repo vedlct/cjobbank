@@ -389,8 +389,8 @@
                         <tr>
 
                             <th style="width: 4%">Select</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
+                            <th>Given name</th>
+                            <th>Surname</th>
 
                             <th>Job Title</th>
                             <th>Zone</th>

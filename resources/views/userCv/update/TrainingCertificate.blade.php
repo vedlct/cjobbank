@@ -239,6 +239,7 @@
 //            $('#end').datepicker({
 //                format: 'yyyy-m-d'
 //            });
+            $('.js-example-basic-single').select2();
         });
 
         $(document).ready(function(){
@@ -378,47 +379,47 @@
                 '<label>Duration</label>'+
                 '<div class="form-group col-md-2">'+
                 '<label for="inputPassword4">Hour</label>'+
-                '<select  class="form-control"id="trainingCertificatehour" name="hour[]">'+
+                '<select  class="form-control js-example-basic-single"id="trainingCertificatehour" name="hour[]">'+
 
                 '<option value="">Select hour</option>'+
-                @for($i = 1 ; $i <51 ; $i++)
+                @for($i = 1 ; $i <=300 ; $i++)
                     '<option value="{{$i}}">{{$i}}</option>'+
                 @endfor
                     '</select>'+
                 '</div>'+
                 '<div class="form-group col-md-2">'+
                 '<label for="inputPassword4">Day</label>'+
-                '<select  class="form-control"id="trainingCertificateday" name="day[]">'+
+                '<select  class="form-control js-example-basic-single"id="trainingCertificateday" name="day[]">'+
 
                 '<option value="">Select day</option>'+
-                @for($i = 1 ; $i <51 ; $i++)
+                @for($i = 1 ; $i <=365 ; $i++)
                     '<option value="{{$i}}">{{$i}}</option>'+
                 @endfor
                     '</select>'+
                 '</div>'+
                 '<div class="form-group col-md-2">'+
                 '<label for="inputPassword4">Week</label>' +
-                '<select  class="form-control"id="trainingCertificateweek" name="week[]">'+
+                '<select  class="form-control js-example-basic-single"id="trainingCertificateweek" name="week[]">'+
 
                 '<option value="">Select week</option>'+
-                @for($i = 1 ; $i <51 ; $i++)
+                @for($i = 1 ; $i <=52 ; $i++)
                     '<option value="{{$i}}">{{$i}}</option>'+
                 @endfor
                     '</select>'+
                 '</div>'+
                 '<div class="form-group col-md-2">'+
                 '<label for="inputPassword4">Month</label>'+
-                '<select  class="form-control"id="trainingCertificatemonth" name="month[]">'+
+                '<select  class="form-control js-example-basic-single"id="trainingCertificatemonth" name="month[]">'+
 
                 '<option value="">Select month</option>'+
-                @for($i = 1 ; $i <51 ; $i++)
+                @for($i = 1 ; $i <=12 ; $i++)
                     '<option value="{{$i}}">{{$i}}</option>'+
                 @endfor
                     '</select>'+
                 '</div>'+
                 '<div class="form-group col-md-2">'+
                 '<label for="inputPassword4">Year</label>'+
-                '<select  class="form-control"id="trainingCertificateyear" name="year[]">'+
+                '<select  class="form-control js-example-basic-single"id="trainingCertificateyear" name="year[]">'+
 
                 '<option value="">Select year</option>'+
                 @for($i = 1 ; $i <51 ; $i++)

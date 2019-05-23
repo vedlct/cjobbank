@@ -47,8 +47,8 @@
                         <thead>
                         <tr>
                             {{--<th width="4%">Select</th>--}}
-                            <th>First Name</th>
-                            <th>Last Name</th>
+                            <th>Given name</th>
+                            <th>Surname</th>
                             <th>Designation</th>
                             <th>Gender</th>
                             <th>Email</th>

@@ -58,10 +58,10 @@
 
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <label for="">First name:</label>{{$personalInfo->firstName}}
+                                        <label for="">Given name:</label>{{$personalInfo->firstName}}
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="inputPassword4">Last name:</label>{{$personalInfo->lastName}}
+                                        <label for="inputPassword4">Surname:</label>{{$personalInfo->lastName}}
 
                                     </div>
                                 </div>

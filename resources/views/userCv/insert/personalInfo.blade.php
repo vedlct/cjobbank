@@ -51,7 +51,7 @@
                             <h2 style="margin-bottom: 40px; text-align: center;">Personal Details </h2>
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="">First name<span style="color: red">*</span></label>
+                                    <label for="">Given name<span style="color: red">*</span></label>
                                     <input type="text" name="firstName" class="form-control {{ $errors->has('firstName') ? ' is-invalid' : '' }}" value="{{ old('firstName') }}" id="" required placeholder="First name">
                                     @if ($errors->has('firstName'))
 
@@ -61,7 +61,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="inputPassword4">Last name<span style="color: red">*</span></label>
+                                    <label for="inputPassword4">Surname<span style="color: red">*</span></label>
                                     <input type="text" name="lastName" class="form-control {{ $errors->has('lastName') ? ' is-invalid' : '' }}" value="{{ old('lastName') }}" id="" required placeholder="Last name">
                                     @if ($errors->has('lastName'))
 

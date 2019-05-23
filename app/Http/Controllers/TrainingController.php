@@ -111,7 +111,7 @@ class TrainingController extends Controller
 
 
 
-       Session::flash('message', 'Traning Added Successfully');
+       Session::flash('message', 'Training Added Successfully');
        return redirect()->route('candidate.cvTrainingCertificate');
 
    }
@@ -140,7 +140,7 @@ class TrainingController extends Controller
 
        $training->save();
 
-       Session::flash('message', 'Traning Updated Successfully');
+       Session::flash('message', 'Training Updated Successfully');
 
        return redirect()->route('candidate.cvTrainingCertificate');
    }
@@ -161,6 +161,6 @@ class TrainingController extends Controller
 
        }
 
-       Session::flash('message', 'Traning Deleted Successfully');
+       Session::flash('message', 'Training Deleted Successfully');
    }
 }
