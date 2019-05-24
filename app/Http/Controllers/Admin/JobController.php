@@ -170,8 +170,8 @@ class JobController extends Controller
 
        $rules = [
 
-           'title' => 'required|max:255',
-           'position' => 'required|max:45',
+           'title' => 'required',
+           'position' => 'required',
            'salary' => 'required|max:45',
            'jobStatus' => 'required',
            'deadline' => 'required|date',
@@ -219,8 +219,8 @@ class JobController extends Controller
 
        $rules = [
 
-           'title' => 'required|max:255',
-           'position' => 'required|max:45',
+           'title' => 'required',
+           'position' => 'required',
            'salary' => 'required|max:45',
            'jobStatus' => 'required',
            'deadline' => 'required|date',
