@@ -98,8 +98,8 @@
             @endforeach
         </td>
         <td colspan="6" class="Border" height="620"   style="text-align: left;">
-            <?php $tJEY=0;$tJEM=0; $totalexpyr = 0; $totalexpmonth = 0 ?>
-            <?php $temp=0 ?>
+            <?php $tJEY=0;$tJEM=0;$tJED=0; $totalexpyr = 0;$totalexpDay = 0; $totalexpmonth = 0 ?>
+            <?php $temp=0; $totalday  = 0; ?>
             @foreach($jobExperience->where('fkemployeeId',$emp->employeeId) as $job)
             {{++$temp}}. Position: {{$job->degisnation}}<br>
             Organization name: {{$job->organization}}<br>
@@ -110,20 +110,50 @@
             Job location/Address: {{$job->address}}<br>
             Name of Supervisor: {{$job->supervisorName}}<br>
 
+                {{$job->expDay}}
+
+
                 <br><br>
                     <?php
+
                     $totalexpyr = $totalexpyr + $tJEY=$job->expYear ;
+
+                    $totalexpDay = $totalexpDay + $job->expDay ;
+
+
                     if($job->expYear >0){
+
                         $totalexpmonth =  $totalexpmonth +(floor(((int)$job->expMonth)/(12*$job->expYear))) ;
+
+
+
                     }else{
+
                         $totalexpmonth =  $totalexpmonth +(floor($job->expMonth)) ;
                     }
+
+
                     ?>
+
+
             @endforeach
+
+
             <br>
+                <?php
+                $result = array($totalexpDay);
 
 
-                Total job experience : {{$totalexpyr + floor($totalexpmonth / 12)." years"}} {{($totalexpmonth % 12)." months"}}
+                $sub_struct_month = ($result[0] / 30) ;
+                $sub_struct_month = floor($sub_struct_month);
+                $sub_struct_year = floor($sub_struct_month / 12) ;
+                $sub_struct_days = ($result[0] % 30); // the rest of days
+                $sub_struct = $sub_struct_year."yr".$sub_struct_month."m ".$sub_struct_days."d";
+
+                echo $sub_struct;
+                ?>
+                Total job experience : {{$totalexpyr + round($totalexpmonth / 12)." years"}} {{round($totalexpmonth % 12)." months"}}
+                {{--Total job experience : {{"year:".$years." "."months:".$months." "."days".$days}}--}}
         </td>
         <td colspan="8" class="Border" height="620" style="text-align: left;">
             Extracurricular activities<br>
