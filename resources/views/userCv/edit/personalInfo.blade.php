@@ -174,8 +174,6 @@
                                         @endif
                                     </div>
 
-
-
                                 </div>
 
 
@@ -191,17 +189,6 @@
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label for="">NID / BID <span style="color: red">*</span></label>
-                                        <input required type="text" name="nId" class="form-control {{ $errors->has('nId') ? ' is-invalid' : '' }}" value="{{ $personalInfo->nationalId }}" id="" placeholder="">
-                                        @if ($errors->has('nId'))
-
-                                            <span class="">
-                                        <strong>{{ $errors->first('nId') }}</strong>
-                                    </span>
-                                        @endif
-                                    </div>
-
-                                    <div class="form-group col-md-6">
                                         <label for="">Passport (if any)</label>
                                         <input type="text" placeholder="If any" onkeypress="return isAlfaNumberKey(event)" class="form-control" value="{{$personalInfo->passport}}" name="passport">
                                         @if ($errors->has('passport'))
@@ -212,9 +199,37 @@
                                         @endif
                                     </div>
 
+                                    <div class="form-group col-md-6">
+                                        <button type="button" class="btn " style="margin-top: 15px; margin-bottom: 5px" onclick="nid()">NID</button > <button type="button" style="margin-top: 15px; margin-bottom: 5px" class="btn" onclick="bid()">BID</button>
+                                    </div>
+
+
+                                    <div class="form-group col-md-6" id="nid" style="display: none">
+                                        <label for=""> NID <span style="color: red">*</span></label>
+                                        <input required type="text" name="nId" class="form-control {{ $errors->has('nId') ? ' is-invalid' : '' }}" value="{{ $personalInfo->nationalId }}" id="" placeholder="">
+                                        @if ($errors->has('nId'))
+
+                                            <span class="">
+                                        <strong>{{ $errors->first('nId') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+
+                                    <div class="form-group col-md-6" id="bid" style="display: none">
+                                        <label for="">  BID <span style="color: red">*</span></label>
+                                        <input required type="text" name="nId" class="form-control {{ $errors->has('nId') ? ' is-invalid' : '' }}" value="{{ $personalInfo->nationalId }}" id="" placeholder="">
+                                        @if ($errors->has('nId'))
+
+                                            <span class="">
+                                        <strong>{{ $errors->first('nId') }}</strong>
+                                            </span>
+                                        @endif
+                                    </div>
+
+
+
+
                                 </div>
-
-
 
                                 <div class="row">
                                     <div class="form-group col-md-6">
@@ -353,7 +368,7 @@
                                     </span>
                                         @endif
                                         <input type="file" class="form-control" name="image" id="image" placeholder="">
-<br>
+                                        <br>
                                         @if($personalInfo->image != null)
                                             <div>
                                                 <img style="width: 150px;height: 150px" src="{{url('public/candidateImages/thumb'."/".$personalInfo->image)}}">
@@ -403,10 +418,6 @@
                                 <span class="step"></span>
                             </div>
 
-
-
-
-
                         </form>
                     @endforeach
 
@@ -448,7 +459,20 @@
 //            $("#sign").focus(function(){
 //                $("#signMsg").css("display", "inline");
 //            });
+
+            @if(!empty($personalInfo->nationalId))
+                $('#nid').show();
+                $('#bid').hide();
+            @else
+
+                $('#bid').show();
+                $('#nid').hide();
+            @endif
+
+
+
         });
+
 
         function isNumberKey(evt)
         {
@@ -525,6 +549,16 @@
                 }
             });
 
+        }
+        function nid() {
+          //  alert("nid");
+            document.getElementById("nid").style.display = "block";
+            document.getElementById("bid").style.display = "none";
+        }
+        function bid() {
+           // alert("bid");
+            document.getElementById("bid").style.display = "block";
+            document.getElementById("nid").style.display = "none";
         }
 
         function isAlfaNumberKey(evt)
