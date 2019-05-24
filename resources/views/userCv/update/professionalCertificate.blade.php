@@ -160,10 +160,10 @@
                                 @endforeach
 
 
-                                <form id="" action="{{route('submit.cvProfessionalCertificate')}}" method="post">
+                                <form id="" action="{{route('submit.cvProfessionalCertificate')}}" onsubmit="return chkProfessinalCertificate()" method="post">
                                     <!-- One "tab" for each step in the form: -->
                                     {{csrf_field()}}
-                                    <input class="form-check-input" type="hidden" name="hasProfCertificate" value="1">
+                                    <input class="form-check-input" type="hidden" id="hasProfCertificate" name="hasProfCertificate" value="1">
                                     <div id="TextBoxesGroup">
 
 
@@ -226,6 +226,86 @@
 
                 }
             });
+        }
+
+        function chkProfessinalCertificate() {
+
+
+
+            if ($("#hasProfCertificate").val()=="1") {
+
+               // return false;
+
+
+                var certificateName = document.getElementsByName("certificateName[]");
+
+//                var institutionName = document.getElementsByName("institutionName[]");
+
+                var start = document.getElementsByName("startDate[]");
+                var end = document.getElementsByName("endDate[]");
+                var status = document.getElementsByName("status[]");
+//                var resultSystem = document.getElementsByName("resultSystem[]");
+
+
+
+                for (i = 0; i < certificateName.length; i++) {
+
+                    if(certificateName[i].value==""){
+
+                        var errorMsg='Please type certificate name first!!';
+                        validationError(errorMsg);
+                        return false;
+                    }
+//                    if(resultSystem[i].value==""){
+//
+//                        var errorMsg='Please select result system first!!';
+//                        validationError(errorMsg);
+//                        return false;
+//                    }
+                    if (certificateName[i].value.length > 100){
+
+                        var errorMsg='certificate name should not more than 100 charecter length!!';
+                        validationError(errorMsg);
+                        return false;
+
+                    }
+//                    if(institutionName[i].value==""){
+//
+//                        var errorMsg='Please type instituteName first!!';
+//                        validationError(errorMsg);
+//                        return false;
+//
+//                    }
+
+                    if (start[i].value != "" && end[i].value != "") {
+
+
+                        if (Date.parse(end[i].value) < Date.parse(start[i].value)) {
+
+                            var errorMsg = 'End date should after start date!!'
+                            validationError(errorMsg)
+                            return false;
+
+                        }
+                    }
+
+                    if(status[i].value==""){
+
+                        var errorMsg='Please select a status first!!';
+                        validationError(errorMsg);
+                        return false;
+
+                    }
+
+                }
+
+            }else {
+
+                return true;
+
+            }
+
+
         }
 
         function deleteProfession(x) {
@@ -424,11 +504,11 @@
                     '</div>' +
                     '<div class="row">' +
                     '<div class="form-group col-md-8">' +
-                    '<label for="inputEmail4">Institution<span style="color: red">*</span></label>' +
+                    '<label for="inputEmail4">Institution</label>' +
                     '<input type="text" class="form-control" name="institutionName[]" id="institutionName' + counter + '" placeholder="institution" >' +
                     '</div>' +
                     '<div class="form-group col-md-4">' +
-                    '<label for="">Result System<span style="color: red">*</span></label>' +
+                    '<label for="">Result System</label>' +
                     '<select name="resultSystem[]" class="form-control" id="resultSydtem' + counter + '" data-panel-id="' + counter + '" onchange="getResultSystemName(' + counter + ')">' +
                     '<option value="">Select System</option>' +
                         @foreach(RESULT_SYSTEM as $key=>$value)

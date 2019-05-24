@@ -4,7 +4,7 @@
     <input type="hidden" name="professionalQualificationId" value="{{$professional->professionalQualificationId}}">
     <div class="row">
         <div class="form-group col-md-12">
-            <label for="inputEmail4">Certificate name :<span style="color: red">*</span></label></label>
+            <label for="inputEmail4">Certificate name :<span style="color: red">*</span></label>
             <input type="text" class="form-control" name="certificateName" id="certificateName" value="{{$professional->certificateName}}" placeholder="certificate" required>
         </div>
         {{--<div class="form-group col-md-2 ">--}}
@@ -17,13 +17,13 @@
 
     <div class="row">
         <div class="form-group col-md-8">
-            <label for="inputEmail4">Institution</label> :<span style="color: red">*</span></label>
-            <input type="text" class="form-control" name="institutionName" id="institutionName" value="{{$professional->institutionName}}" placeholder="institution" required>
+            <label for="inputEmail4">Institution</label> :
+            <input type="text" class="form-control" name="institutionName" id="institutionName" value="{{$professional->institutionName}}" placeholder="institution">
         </div>
 
         <div class="form-group col-md-4">
 
-            <label for="">Result system<span style="color: red">*</span></label>
+            <label for="">Result system</label>
             <select name="resultSystem" class="form-control"  id="resultSydtem" >
                 <option value="">Select System</option>
 
@@ -69,11 +69,11 @@
         </div>
 
         <div class="form-group col-md-4">
-            <label for="inputPassword4">Start date </label>:</label>
+            <label for="inputPassword4">Start date </label>:
             <input type="text" class="form-control date" name="startDate" value="{{$professional->startDate}}" id="start" placeholder="date">
         </div>
         <div class="form-group col-md-4">
-            <label for="inputPassword4">End date </label>:</label>
+            <label for="inputPassword4">End date </label>:
             <input type="text" class="form-control date" name="endDate" value="{{$professional->endDate}}" id="end" placeholder="date">
         </div>
     </div>
@@ -81,7 +81,7 @@
         <label>Duration</label>
         <div class="form-group col-md-2">
             <label for="inputPassword4">Hour</label>
-            <select  class="form-control js-example-basic-single"id="trainingCertificatehour" name="hour">
+            <select  class="form-control js-example-basic-single" id="trainingCertificatehour" name="hour">
 
                 <option value="">Select hour</option>
                 @for($i = 1 ; $i <=300 ; $i++)
@@ -91,7 +91,7 @@
         </div>
         <div class="form-group col-md-2">
             <label for="inputPassword4">Day</label>
-            <select  class="form-control js-example-basic-single"id="trainingCertificateday" name="day">
+            <select  class="form-control js-example-basic-single" id="trainingCertificateday" name="day">
 
                 <option value="">Select day</option>
                 @for($i = 1 ; $i <=365 ; $i++)
@@ -101,7 +101,7 @@
         </div>
         <div class="form-group col-md-2">
             <label for="inputPassword4">Week</label>
-            <select  class="form-control js-example-basic-single"id="trainingCertificateweek" name="week">
+            <select  class="form-control js-example-basic-single" id="trainingCertificateweek" name="week">
 
                 <option value="">Select week</option>
                 @for($i = 1 ; $i <=52 ; $i++)
@@ -111,7 +111,7 @@
         </div>
         <div class="form-group col-md-2">
             <label for="inputPassword4">Month</label>
-            <select  class="form-control js-example-basic-single"id="trainingCertificatemonth" name="month">
+            <select  class="form-control js-example-basic-single" id="trainingCertificatemonth" name="month">
 
                 <option value="">Select month</option>
                 @for($i = 1 ; $i <=12 ; $i++)
@@ -133,7 +133,7 @@
     <div class="row">
 
         <div class="form-group col-md-4">
-            <label for="inputPassword4">Status <span style="color: red">*</span></label>:</label>
+            <label for="inputPassword4">Status <span style="color: red">*</span></label>:
             <select required class="form-control" id="professinalCertificateStatus" name="status"  onchange="selectStatus(this)">
                 <option value="">Select status</option>
 
@@ -203,14 +203,14 @@
 
 //        if(certificateName==""){
 //
-//            var errorMsg='Please type certificatename first!!'
-//            validationError(errorMsg)
+//            var errorMsg='Please type certificate name first!!';
+//            validationError(errorMsg);
 //            return false;
 //        }
 //        if (certificateName.length > 100){
 //
-//            var errorMsg='certificateName should not more than 100 charecter length!!'
-//            validationError(errorMsg)
+//            var errorMsg='Certificate name should not more than 100 charecter length!!';
+//            validationError(errorMsg);
 //            return false;
 //
 //        }
@@ -254,7 +254,7 @@
         }
         if (certificateName.length > 100){
 
-            var errorMsg='certificate name should not more than 100 charecter length!!'
+            var errorMsg='Certificate name should not more than 100 charecter length!!'
             validationError(errorMsg)
             return false;
 
@@ -268,8 +268,8 @@
 //        }
         if (institutionName.length > 255){
 
-            var errorMsg='Institute name should not more than 255 charecter length!!'
-            validationError(errorMsg)
+            var errorMsg='Institute name should not more than 255 charecter length!!';
+            validationError(errorMsg);
             return false;
 
         }

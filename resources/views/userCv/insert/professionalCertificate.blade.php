@@ -63,11 +63,11 @@
 
                                 <div class="row">
                                 <div class="form-group col-md-8">
-                                    <label for="inputEmail4">Institution<span style="color: red">*</span></label>
+                                    <label for="inputEmail4">Institution</label>
                                     <input type="text" class="form-control" name="institutionName[]" id="institutionName" placeholder="institution">
                                 </div>
                                     <div class="form-group col-md-4">
-                                        <label for="">Result system<span style="color: red">*</span></label>
+                                        <label for="">Result system</label>
                                         <select name="resultSystem[]" class="form-control" data-panel-id="0"  id="resultSydtem">
                                             <option value="">Select System</option>
                                             @foreach(RESULT_SYSTEM as $key=>$value)
@@ -320,12 +320,15 @@
 
                 var certificateName = document.getElementsByName("certificateName[]");
 
-                var institutionName = document.getElementsByName("institutionName[]");
+//                var institutionName = document.getElementsByName("institutionName[]");
 
-                var start = document.getElementsByName("start[]");
-                var end = document.getElementsByName("end[]");
-                var status = document.getElementsByName("professinalCertificateStatus[]");
-                var resultSystem = document.getElementsByName("resultSystem[]");
+                var start = document.getElementsByName("startDate[]");
+                var end = document.getElementsByName("endDate[]");
+                var status = document.getElementsByName("status[]");
+//                var resultSystem = document.getElementsByName("resultSystem[]");
+
+
+
 
                 for (i = 0; i < certificateName.length; i++) {
 
@@ -609,11 +612,11 @@
                 '</div>'+
                 '<div class="row" >'+
                     '<div class="form-group col-md-8">'+
-                    '<label for="inputEmail4">Institution<span style="color: red">*</span></label>'+
+                    '<label for="inputEmail4">Institution</label>'+
                 '<input type="text" class="form-control" name="institutionName[]" id="institutionName'+counter+'" placeholder="institution" >'+
                 '</div>'+
                     '<div class="form-group col-md-4">'+
-                    '<label for="">Result system<span style="color: red">*</span></label>'+
+                    '<label for="">Result system</label>'+
 
                     '<select name="resultSystem[]" class="form-control" data-panel-id="'+counter+'"  onchange="getResultSystemName('+counter+')"  id="resultSydtem'+counter+'">'+
                     '<option value="">Select system</option>'+

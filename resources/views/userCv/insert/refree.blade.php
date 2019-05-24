@@ -51,7 +51,7 @@
                         {{csrf_field()}}
 
                         <div id="" class="tab">
-                            <span id="notice"><span style="color: red">*</span><span style="color: red">*</span>Experience candidate : referee should be present or previous organization/company.</span><span style="color: red">*</span><span style="color: red">*</span><br>
+                            <span id="notice"><span style="color: red">*</span><span style="color: red">*</span>Experienced candidate : referee should be present or previous organization/company.</span><span style="color: red">*</span><span style="color: red">*</span><br>
                             <span id="notice"><span style="color: red">*</span><span style="color: red">*</span>Freshers : referee can be from his/her own preference.</span><span style="color: red">*</span><span style="color: red">*</span>
 
                             <h2 style="margin-bottom: 30px;">Referee - 1</h2>
