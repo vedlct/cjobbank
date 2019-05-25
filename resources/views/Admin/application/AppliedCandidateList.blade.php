@@ -138,9 +138,10 @@
 
                         $sub_struct_month = ($result[0] / 30) ;
                         $sub_struct_month = floor($sub_struct_month);
+                        $sub_struct_months = floor($sub_struct_month%12);
                         $sub_struct_year = floor($sub_struct_month / 12) ;
                         $sub_struct_days = floor($result[0] % 30); // the rest of days
-                        $sub_struct = $sub_struct_year."years ".$sub_struct_month."months ".$sub_struct_days."days";
+                        echo $sub_struct = $sub_struct_year."years ".$sub_struct_months."months ".$sub_struct_days."days";
 
 
                         ?>
@@ -157,6 +158,7 @@
                         $totalexpDay = $totalexpDay + $job->expDay ;
 
                         ?>
+                    <br>
 
                 @endforeach
 
@@ -172,6 +174,7 @@
 
 
                     ?>
+                    <br>
                     Total job experience : {{$sub_struct}}
 
             </td>
