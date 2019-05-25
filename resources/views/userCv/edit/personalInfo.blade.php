@@ -9,6 +9,10 @@
         notice{
             color: blue;
         }
+        #radioBtn .notActive{
+            color: #3276b1;
+            background-color: #fff;
+        }
         /*#imageMsg,#signMsg{*/
             /*display: none;*/
         /*}*/
@@ -199,14 +203,19 @@
                                         @endif
                                     </div>
 
-                                    <div class="form-group col-md-6">
-                                        <button type="button" class="btn " style="margin-top: 15px; margin-bottom: 5px" onclick="nid()">NID</button > <button type="button" style="margin-top: 15px; margin-bottom: 5px" class="btn" onclick="bid()">BID</button>
+                                    <div id="radioBtn" class="form-group col-md-6">
+                                        <label for="idProvided">Select NID/BID</label>
+                                        <div class="col-sm-2 col-md-2"></div>
+                                            <a @if(!is_null($personalInfo->nationalId))class="btn btn-primary btn-sm active" @else class="btn btn-primary btn-sm notActive" @endif data-toggle="idProvided" data-title="NID" onclick="nid()">NID</a>
+                                            <a @if(!is_null($personalInfo->birthID))class="btn btn-primary btn-sm active" @else class="btn btn-primary btn-sm notActive" @endif data-toggle="idProvided" data-title="BID"onclick="bid()">BID</a>
+                                            <input type="hidden" name="idProvided" id="idProvided">
+                                        {{--<button type="button" class="btn " style="margin-top: 15px; margin-bottom: 5px" onclick="nid()">NID</button > <button type="button" style="margin-top: 15px; margin-bottom: 5px" class="btn" onclick="bid()">BID</button>--}}
                                     </div>
 
 
                                     <div class="form-group col-md-6" id="nid" style="display: none">
                                         <label for=""> NID <span style="color: red">*</span></label>
-                                        <input required type="text" name="nId" class="form-control {{ $errors->has('nId') ? ' is-invalid' : '' }}" value="{{ $personalInfo->nationalId }}" id="" placeholder="">
+                                        <input  type="text" name="nId" class="form-control {{ $errors->has('nId') ? ' is-invalid' : '' }}" value="{{ $personalInfo->nationalId }}" id="nidField" placeholder="">
                                         @if ($errors->has('nId'))
 
                                             <span class="">
@@ -217,11 +226,11 @@
 
                                     <div class="form-group col-md-6" id="bid" style="display: none">
                                         <label for="">  BID <span style="color: red">*</span></label>
-                                        <input required type="text" name="nId" class="form-control {{ $errors->has('nId') ? ' is-invalid' : '' }}" value="{{ $personalInfo->nationalId }}" id="" placeholder="">
-                                        @if ($errors->has('nId'))
+                                        <input  type="text" name="bId" class="form-control {{ $errors->has('bId') ? ' is-invalid' : '' }}" value="{{ $personalInfo->birthID }}" id="bidField" placeholder="">
+                                        @if ($errors->has('bId'))
 
                                             <span class="">
-                                        <strong>{{ $errors->first('nId') }}</strong>
+                                        <strong>{{ $errors->first('bId') }}</strong>
                                             </span>
                                         @endif
                                     </div>
@@ -460,17 +469,32 @@
 //                $("#signMsg").css("display", "inline");
 //            });
 
-            @if(!empty($personalInfo->nationalId))
+            @if(!is_null($personalInfo->nationalId))
                 $('#nid').show();
-                $('#bid').hide();
+            $('#idProvided').val("NID");
+            $("#nidField").attr("required", true);
+            $("#bidField").attr("required", false);
+            $('#bid').hide();
             @else
 
                 $('#bid').show();
-                $('#nid').hide();
+            $('#idProvided').val("BID");
+            $("#bidField").attr("required", true);
+            $("#nidField").attr("required", false);
+            $('#nid').hide();
             @endif
 
 
 
+        });
+
+        $('#radioBtn a').on('click', function(){
+            var sel = $(this).data('title');
+            var tog = $(this).data('toggle');
+            $('#'+tog).prop('value', sel);
+
+            $('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
+            $('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');
         });
 
 
@@ -554,11 +578,17 @@
           //  alert("nid");
             document.getElementById("nid").style.display = "block";
             document.getElementById("bid").style.display = "none";
+            $('#idProvided').val("NID");
+            $("#nidField").attr("required", true);
+            $("#bidField").attr("required", false);
         }
         function bid() {
            // alert("bid");
             document.getElementById("bid").style.display = "block";
             document.getElementById("nid").style.display = "none";
+            $('#idProvided').val("BID");
+            $("#bidField").attr("required", true);
+            $("#nidField").attr("required", false);
         }
 
         function isAlfaNumberKey(evt)

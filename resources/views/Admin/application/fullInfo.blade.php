@@ -110,28 +110,15 @@
             Job location/Address: {{$job->address}}<br>
             Name of Supervisor: {{$job->supervisorName}}<br>
 
-                {{$job->expDay}}
+
 
 
                 <br><br>
                     <?php
 
-                    $totalexpyr = $totalexpyr + $tJEY=$job->expYear ;
+
 
                     $totalexpDay = $totalexpDay + $job->expDay ;
-
-
-                    if($job->expYear >0){
-
-                        $totalexpmonth =  $totalexpmonth +(floor(((int)$job->expMonth)/(12*$job->expYear))) ;
-
-
-
-                    }else{
-
-                        $totalexpmonth =  $totalexpmonth +(floor($job->expMonth)) ;
-                    }
-
 
                     ?>
 
@@ -147,12 +134,12 @@
                 $sub_struct_month = ($result[0] / 30) ;
                 $sub_struct_month = floor($sub_struct_month);
                 $sub_struct_year = floor($sub_struct_month / 12) ;
-                $sub_struct_days = ($result[0] % 30); // the rest of days
-                $sub_struct = $sub_struct_year."yr".$sub_struct_month."m ".$sub_struct_days."d";
+                $sub_struct_days = floor($result[0] % 30); // the rest of days
+                $sub_struct = $sub_struct_year."years ".$sub_struct_month."months ".$sub_struct_days."days";
 
-                echo $sub_struct;
+
                 ?>
-                Total job experience : {{$totalexpyr + round($totalexpmonth / 12)." years"}} {{round($totalexpmonth % 12)." months"}}
+                Total job experience : {{$sub_struct}}
                 {{--Total job experience : {{"year:".$years." "."months:".$months." "."days".$days}}--}}
         </td>
         <td colspan="8" class="Border" height="620" style="text-align: left;">

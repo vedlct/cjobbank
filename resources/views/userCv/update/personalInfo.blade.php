@@ -143,11 +143,17 @@
                                             @if($personalInfo->fknationalityId == $natio->nationalityId ) {{$natio->nationalityName}} @endif
                                         @endforeach
                                     </div>
-
+                                    @if(!is_null($personalInfo->nationalId))
                                     <div class="form-group col-md-6">
-                                        <label for="">NID / BID:</label>
+                                        <label for="">NID:</label>
                                         {{ $personalInfo->nationalId }}
                                     </div>
+                                    @elseif(!is_null($personalInfo->birthID))
+                                    <div class="form-group col-md-6">
+                                        <label for="">BID:</label>
+                                        {{ $personalInfo->birthID }}
+                                    </div>
+                                    @endif
 
                                     <div class="form-group col-md-6">
                                         <label for="">Passport:</label>

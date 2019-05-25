@@ -83,7 +83,7 @@ class UserCvController extends Controller
        $personalInfo = Employee::select('emp_ques_obj.objective','firstName', 'lastName',
            'fathersName', 'mothersName', 'gender', 'personalMobile',
            'dateOfBirth', 'email', 'presentAddress', 'image', 'religionName', 'nationalityName','nationalId','parmanentAddress',
-           'passport','bloodGroup','maritalStatus','sign')
+           'passport','bloodGroup','maritalStatus','sign','birthID')
            ->leftJoin('religion', 'religion.religionId', 'fkreligionId')
            ->leftJoin('nationality', 'nationality.nationalityId', 'fknationalityId')
            ->leftJoin('emp_ques_obj', 'emp_ques_obj.empId', 'employee.employeeId')
@@ -168,7 +168,7 @@ class UserCvController extends Controller
        $personalInfo = Employee::select('emp_ques_obj.objective','firstName', 'lastName',
            'fathersName', 'mothersName', 'gender', 'personalMobile',
            'dateOfBirth', 'email', 'presentAddress', 'image', 'religionName', 'nationalityName','nationalId','parmanentAddress',
-           'passport','bloodGroup','maritalStatus','sign')
+           'passport','bloodGroup','maritalStatus','sign','birthID')
            ->leftJoin('religion', 'religion.religionId', 'fkreligionId')
            ->leftJoin('nationality', 'nationality.nationalityId', 'fknationalityId')
            ->leftJoin('emp_ques_obj', 'emp_ques_obj.empId', 'employee.employeeId')
@@ -248,7 +248,7 @@ class UserCvController extends Controller
        $personalInfo = Employee::select('emp_ques_obj.objective','firstName', 'lastName',
            'fathersName', 'mothersName', 'gender', 'personalMobile',
            'dateOfBirth', 'email', 'presentAddress', 'image', 'religionName', 'nationalityName','nationalId','parmanentAddress',
-           'passport','bloodGroup','maritalStatus','sign')
+           'passport','bloodGroup','maritalStatus','sign','birthID','birthID')
            ->leftJoin('religion', 'religion.religionId', 'fkreligionId')
            ->leftJoin('nationality', 'nationality.nationalityId', 'fknationalityId')
            ->leftJoin('emp_ques_obj', 'emp_ques_obj.empId', 'employee.employeeId')
@@ -340,7 +340,7 @@ class UserCvController extends Controller
             $personalInfo = Employee::select('emp_ques_obj.objective','firstName', 'lastName',
                 'fathersName', 'mothersName', 'gender', 'personalMobile',
                 'dateOfBirth', 'email', 'presentAddress', 'image', 'religionName', 'nationalityName','nationalId','parmanentAddress',
-                'passport','bloodGroup','maritalStatus','sign')
+                'passport','bloodGroup','maritalStatus','sign','birthID')
                 ->leftJoin('religion', 'religion.religionId', 'fkreligionId')
                 ->leftJoin('nationality', 'nationality.nationalityId', 'fknationalityId')
                 ->leftJoin('emp_ques_obj', 'emp_ques_obj.empId', 'employee.employeeId')
@@ -423,7 +423,7 @@ class UserCvController extends Controller
 
         $personalInfo = Employee::select('firstName','lastName',
             'fathersName','mothersName','gender','personalMobile',
-            'dateOfBirth','email','presentAddress','image','religionName','nationalityName','nationalId','parmanentAddress')
+            'dateOfBirth','email','presentAddress','image','religionName','nationalityName','nationalId','parmanentAddress','birthID')
             ->leftJoin('religion','religion.religionId','fkreligionId')
             ->leftJoin('nationality','nationality.nationalityId','fknationalityId')
             ->findOrFail($empId);

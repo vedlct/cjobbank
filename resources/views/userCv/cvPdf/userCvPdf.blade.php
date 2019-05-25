@@ -383,7 +383,11 @@
 
 
                             <td style="border: none;">
+                                @if(!is_null($personalInfo->nationalId))
                                 <label>National Id :</label> {{$personalInfo->nationalId}}
+                                @elseif(!is_null($personalInfo->birthID))
+                                    <label>Birth Id :</label> {{$personalInfo->birthID}}
+                                 @endif
                             </td>
                         </tr>
                         <tr>

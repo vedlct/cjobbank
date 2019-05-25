@@ -9,6 +9,10 @@
         notice{
             color: blue;
         }
+        #radioBtn .notActive{
+            color: #3276b1;
+            background-color: #fff;
+        }
         /*#imageMsg,#signMsg{*/
             /*display: none;*/
         /*}*/
@@ -208,15 +212,15 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group col-md-6">
-                                    <label for="">NID / BID<span style="color: red">*</span></label>
-                                    <input type="text" required name="nId" class="form-control {{ $errors->has('nId') ? ' is-invalid' : '' }}" value="{{ old('nId') }}" id="" placeholder="National Id">
-                                    @if ($errors->has('nId'))
-                                        <span class="">
-                                        <strong>{{ $errors->first('nId') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
+                                {{--<div class="form-group col-md-6">--}}
+                                    {{--<label for="">NID / BID<span style="color: red">*</span></label>--}}
+                                    {{--<input type="text" required name="nId" class="form-control {{ $errors->has('nId') ? ' is-invalid' : '' }}" value="{{ old('nId') }}" id="" placeholder="National Id">--}}
+                                    {{--@if ($errors->has('nId'))--}}
+                                        {{--<span class="">--}}
+                                        {{--<strong>{{ $errors->first('nId') }}</strong>--}}
+                                    {{--</span>--}}
+                                    {{--@endif--}}
+                                {{--</div>--}}
 
                                 <div class="form-group col-md-6">
                                     <label for="">Passport</label>
@@ -226,6 +230,38 @@
                                         <span class="">
                                         <strong>{{ $errors->first('passport') }}</strong>
                                     </span>
+                                    @endif
+                                </div>
+
+                                <div id="radioBtn" class="form-group col-md-6">
+                                    <label for="idProvided">Select NID/BID</label>
+                                    <div class="col-sm-2 col-md-2"></div>
+                                    <a  @if(old('nId')) class="btn btn-primary btn-sm active" @else class="btn btn-primary btn-sm notActive" @endif id="chkNid" data-toggle="idProvided" data-title="NID" onclick="nid()">NID</a>
+                                    <a  @if(old('bId')) class="btn btn-primary btn-sm active" @else class="btn btn-primary btn-sm notActive" @endif id="chkBid" data-toggle="idProvided" data-title="BID"onclick="bid()">BID</a>
+                                    <input type="hidden" name="idProvided" id="idProvided">
+                                    {{--<button type="button" class="btn " style="margin-top: 15px; margin-bottom: 5px" onclick="nid()">NID</button > <button type="button" style="margin-top: 15px; margin-bottom: 5px" class="btn" onclick="bid()">BID</button>--}}
+                                </div>
+
+
+                                <div class="form-group col-md-6" id="nid">
+                                    <label for=""> NID <span style="color: red">*</span></label>
+                                    <input  type="text" name="nId" class="form-control {{ $errors->has('nId') ? ' is-invalid' : '' }}" value="{{ old('nId') }}" id="nidField" placeholder="">
+                                    @if ($errors->has('nId'))
+
+                                        <span class="">
+                                        <strong>{{ $errors->first('nId') }}</strong>
+                                            </span>
+                                    @endif
+                                </div>
+
+                                <div class="form-group col-md-6" id="bid" style="display: none">
+                                    <label for="">  BID <span style="color: red">*</span></label>
+                                    <input  type="text" name="bId" class="form-control {{ $errors->has('bId') ? ' is-invalid' : '' }}" value="{{ old('bId') }}" id="bidField" placeholder="">
+                                    @if ($errors->has('bId'))
+
+                                        <span class="">
+                                        <strong>{{ $errors->first('bId') }}</strong>
+                                            </span>
                                     @endif
                                 </div>
 
@@ -282,7 +318,7 @@
 
                                 <div class="form-group col-md-6">
                                     <label for="">Personal phone number<span style="color: red">*</span></label>
-                                    <input type="text" maxlength="20" onkeypress="return isNumberKey(event)"name="personalMobile" class="form-control {{ $errors->has('personalMobile') ? ' is-invalid' : '' }}" value="{{ old('personalMobile') }}" id="" placeholder="Personal mobile number">
+                                    <input required type="text" maxlength="20" onkeypress="return isNumberKey(event)"name="personalMobile" class="form-control {{ $errors->has('personalMobile') ? ' is-invalid' : '' }}" value="{{ old('personalMobile') }}" id="" placeholder="Personal mobile number">
                                     @if ($errors->has('personalMobile'))
 
                                         <span class="">
@@ -452,7 +488,49 @@
             $('#dob').datepicker({
                 format: 'yyyy-m-d'
             });
+
+            if($("#chkNid" ).hasClass( "active" )) {
+                $('#nid').show();
+                $('#idProvided').val("NID");
+                $("#nidField").attr("required", true);
+                $("#bidField").attr("required", false);
+                $('#bid').hide();
+            }else if($("#chkBid" ).hasClass( "active" )) {
+                $('#bid').show();
+                $('#idProvided').val("BID");
+                $("#bidField").attr("required", true);
+                $("#nidField").attr("required", false);
+
+                $('#nid').hide();
+            }
+
         });
+
+        $('#radioBtn a').on('click', function(){
+            var sel = $(this).data('title');
+            var tog = $(this).data('toggle');
+            $('#'+tog).prop('value', sel);
+
+            $('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
+            $('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');
+        });
+
+        function nid() {
+            //  alert("nid");
+            document.getElementById("nid").style.display = "block";
+            document.getElementById("bid").style.display = "none";
+            $('#idProvided').val("NID");
+            $("#nidField").attr("required", true);
+            $("#bidField").attr("required", false);
+        }
+        function bid() {
+            // alert("bid");
+            document.getElementById("bid").style.display = "block";
+            document.getElementById("nid").style.display = "none";
+            $('#idProvided').val("BID");
+            $("#bidField").attr("required", true);
+            $("#nidField").attr("required", false);
+        }
 
         function isNumberKey(evt)
         {

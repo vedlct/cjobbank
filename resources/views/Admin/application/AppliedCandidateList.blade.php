@@ -125,34 +125,54 @@
 
             {{--</td>--}}
             <td colspan="3" height="600" style="text-align: left;vertical-align: top;">
-                <?php $tJEY=0;$tJEM=0; $totalexpyr = 0; $totalexpmonth = 0 ?>
+                <?php $tJEY=0;$tJEM=0; $totalexpyr = 0;$totalexpDay = 0;$tJED=0; $totalexpmonth = 0 ?>
                 @foreach($jobExperienceList->where('fkemployeeId',$emp['employeeId']) as $job)
                     Designation:<br>{{$job->degisnation}}<br>
                     Name of Organization:<br>{{$job->organization}}<br>
                     {{$job->address}}<br>
 
-                    years: @if ($job->expYear >0)
-                            @php
-                            $totalexpyr = $totalexpyr + $job->expYear ;
-                            $totalexpmonth =  $totalexpmonth +(floor(((int)$job->expMonth)/(12*$job->expYear))) ;
-                            @endphp
-                            {{$tJEY=$job->expYear}}.{{floor((((int)$job->expMonth)/(12*$job->expYear)))}}
+                    years:
+                        <?php
+                        $result = array($job->expDay);
 
-                    @else
-                        {{$job->expYear}}.{{floor($job->expMonth)}}
-                        @php
-                            $totalexpyr = $totalexpyr + $job->expYear ;
-                            $totalexpmonth =  $totalexpmonth +(floor($job->expMonth)) ;
-                        @endphp
-                    @endif
+
+                        $sub_struct_month = ($result[0] / 30) ;
+                        $sub_struct_month = floor($sub_struct_month);
+                        $sub_struct_year = floor($sub_struct_month / 12) ;
+                        $sub_struct_days = floor($result[0] % 30); // the rest of days
+                        $sub_struct = $sub_struct_year."years ".$sub_struct_month."months ".$sub_struct_days."days";
+
+
+                        ?>
+
                     <br>
                     Start:{{$job->startDate}}
                     End:@if($job->startDate!=null && $job->endDate==null) Running @else {{$job->endDate}}@endif
                     <br>
 
-                @endforeach
-                    Total job experience : {{$totalexpyr + floor($totalexpmonth / 12)." years"}} {{round($totalexpmonth % 12)." months"}}
+                        <?php
 
+
+
+                        $totalexpDay = $totalexpDay + $job->expDay ;
+
+                        ?>
+
+                @endforeach
+
+                    <?php
+                    $result = array($totalexpDay);
+
+
+                    $sub_struct_month = ($result[0] / 30) ;
+                    $sub_struct_month = floor($sub_struct_month);
+                    $sub_struct_year = floor($sub_struct_month / 12) ;
+                    $sub_struct_days = floor($result[0] % 30); // the rest of days
+                    $sub_struct = $sub_struct_year."years ".$sub_struct_month."months ".$sub_struct_days."days";
+
+
+                    ?>
+                    Total job experience : {{$sub_struct}}
 
             </td>
             @if($withoutsalary != 'true')

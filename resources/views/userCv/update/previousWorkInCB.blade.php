@@ -72,15 +72,24 @@
 
                                         </div>
                                         <div class="col-md-6">
-                                            <label for="inputPassword4">Total experience :</label><br>
-                                            years: @if ($previousWorkInCB->expYear >0)
+                                            <label for="inputPassword4">Total experience :</label>
+                                            <span id="TE"></span>
 
-                                                {{$previousWorkInCB->expYear}}.{{floor((((int)$previousWorkInCB->expMonth)/(12*$previousWorkInCB->expYear)))}}
+<!--                                            --><?php
+//                                            $result = array($previousWorkInCB->expDay);
+//
+//
+//                                            $sub_struct_month = ($result[0] / 30) ;
+//                                            $sub_struct_month = floor($sub_struct_month);
+//                                            $sub_struct_year = floor($sub_struct_month / 12) ;
+//                                            $sub_struct_days = floor($result[0] % 30); // the rest of days
+//                                            $sub_struct = $sub_struct_year."years ".$sub_struct_month."months ".$sub_struct_days."days";
+//
+//                                            echo $sub_struct;
+//
+//
+//                                            ?>
 
-                                            @else
-                                                {{$previousWorkInCB->expYear}}.{{floor($previousWorkInCB->expMonth)}}
-
-                                            @endif
 
 
                                         </div>
@@ -219,6 +228,12 @@
 //            $('#end').datepicker({
 //                format: 'yyyy-m-d'
 //            });
+            @if(!is_null($previousWorkInCB->startDate) && $previousWorkInCB->currentlyRunning=='0' && !is_null($previousWorkInCB->endDate))
+            document.getElementById("TE").innerHTML = calcDate(new Date('{{$previousWorkInCB->endDate}}'),new Date('{{$previousWorkInCB->startDate}}'));
+            @elseif(!is_null($previousWorkInCB->startDate) && $previousWorkInCB->currentlyRunning !='0' && is_null($previousWorkInCB->endDate))
+            document.getElementById("TE").innerHTML = calcDate(new Date(),new Date('{{$previousWorkInCB->startDate}}'));
+            @endif
+
         });
 
         function getExp(counter) {
@@ -268,23 +283,112 @@
 
         }
         function calcDate(date1,date2) {
-            var diff = Math.floor(date1.getTime() - date2.getTime());
-            var day = 1000 * 60 * 60 * 24;
+            // var diff = Math.floor(date1.getTime() - date2.getTime());
+            // var day = 1000 * 60 * 60 * 24;
+            //
+            // var days = Math.floor(diff/day);
+            // var months = Math.floor((days%365)/31);
+            // var years = Math.floor(days/365);
+            // var daydiffs = Math.floor(days%30);
+            //
+            // if (days>0) {
+            //
+            //
+            //     if (daydiffs == 0) {
+            //         var month = (months + 1);
+            //     } else {
+            //         var month = months;
+            //     }
+            //
+            // }
+            //
+            // // if (years > 0){
+            // //     var month=Math.round((months-(12*years)+1));
+            // // }else {
+            // //     var month=months;
+            // // }
+            //
+            // var message = years + "years ";
+            // message += month + " months ";
+            // message += daydiffs + "days ";
+            //
+            // return message;
 
-            var days = Math.floor(diff/day);
-            var months = Math.floor(days/31);
-            var years = Math.floor(months/12);
+            var now = date1;
+            var today = date2;
 
-            if (years > 0){
-                var month=Math.round((months-(12*years)+1));
-            }else {
-                var month=months;
+            var yearNow = now.getYear();
+            var monthNow = now.getMonth();
+            var dateNow = now.getDate();
+
+            // var dob = new Date(dateString.substring(6,10),
+            //     dateString.substring(0,2)-1,
+            //     dateString.substring(3,5)
+            // );
+
+            var yearDob = today.getYear();
+            var monthDob = today.getMonth();
+            var dateDob = today.getDate();
+            var age = {};
+            var ageString = "";
+            var yearString = "";
+            var monthString = "";
+            var dayString = "";
+
+
+            yearAge = yearNow - yearDob;
+
+            if (monthNow >= monthDob)
+                var monthAge = monthNow - monthDob;
+            else {
+                yearAge--;
+                var monthAge = 12 + monthNow -monthDob;
             }
 
-            var message = years + " years.";
-            message += month + " months ";
+            if (dateNow >= dateDob)
+                var dateAge = dateNow - dateDob;
+            else {
+                monthAge--;
+                var dateAge = 31 + dateNow - dateDob;
 
-            return message
+                if (monthAge < 0) {
+                    monthAge = 11;
+                    yearAge--;
+                }
+            }
+
+            age = {
+                years: yearAge,
+                months: monthAge,
+                days: dateAge
+            };
+
+            if ( age.years > 1 ) yearString = " years";
+            else yearString = " year";
+            if ( age.months> 1 ) monthString = " months";
+            else monthString = " month";
+            if ( age.days > 1 ) dayString = " days";
+            else dayString = " day";
+
+
+            if ( (age.years > 0) && (age.months > 0) && (age.days > 0) )
+                ageString = age.years + yearString + ", " + age.months + monthString + ", and " + age.days + dayString ;
+            else if ( (age.years == 0) && (age.months == 0) && (age.days > 0) )
+                ageString = age.days + dayString;
+            else if ( (age.years > 0) && (age.months == 0) && (age.days == 0) )
+                ageString = age.years + yearString;
+            else if ( (age.years > 0) && (age.months > 0) && (age.days == 0) )
+                ageString = age.years + yearString + " and " + age.months + monthString ;
+            else if ( (age.years == 0) && (age.months > 0) && (age.days > 0) )
+                ageString = age.months + monthString + " and " + age.days + dayString;
+            else if ( (age.years > 0) && (age.months == 0) && (age.days > 0) )
+                ageString = age.years + yearString + " and " + age.days + dayString;
+            else if ( (age.years == 0) && (age.months > 0) && (age.days == 0) )
+                ageString = age.months + monthString
+            else ageString = "Oops! Could not calculate !";
+
+            return ageString;
+
         }
 
         $(document).ready(function(){

@@ -103,12 +103,13 @@ class PersonalInfoController extends Controller
             'religion' => 'required',
             'ethnicity' => 'required',
             'disability' => 'required',
-            'nId' => 'required',
+            'nId' => 'max:25',
+            'bId' => 'max:25',
             'homeTelephone' => 'nullable|max:20|regex:/^([0-9\s\-\+\(\)]*)$/',
             'officeTelephone' => 'nullable|max:20|regex:/^([0-9\s\-\+\(\)]*)$/',
             'telephone' => 'nullable|max:20|regex:/^([0-9\s\-\+\(\)]*)$/',
             'alternativePhoneNo' => 'nullable|max:20|regex:/^([0-9\s\-\+\(\)]*)$/',
-            'personalMobile' => 'required|max:20|regex:/^([0-9\s\-\+\(\)]*)$/|min:11',
+            'personalMobile' => 'required|max:20|regex:/^([0-9\s\-\+\(\)]*)$/',
             'email' => 'required|max:255|email',
             'nationality' => 'required|max:25',
             'skype' => 'nullable|max:255',
@@ -147,7 +148,14 @@ class PersonalInfoController extends Controller
         $employee->personalMobile=$r->personalMobile;
         $employee->alternativePhoneNo=$r->alternativePhoneNo;
         $employee->email=$r->email;
-        $employee->nationalId=$r->nId;
+
+        if ($r->idProvided=="NID"){
+            $employee->nationalId=$r->nId;
+            $employee->birthID=null;
+        }elseif ($r->idProvided=="BID"){
+            $employee->nationalId=null;
+            $employee->birthID=$r->bId;
+        }
         $employee->skype=$r->skype;
         $employee->alternativeEmail=$r->alternateEmail;
         $employee->presentAddress=$r->currentAddress;
@@ -197,6 +205,7 @@ class PersonalInfoController extends Controller
     public function updatePersonalInfo(Request $r)
     {
 
+
         $rules = [
             'firstName' => 'required|max:50',
             'lastName' => 'required|max:50',
@@ -211,12 +220,13 @@ class PersonalInfoController extends Controller
             'religion' => 'required',
             'ethnicity' => 'required',
             'disability' => 'required',
-            'nId' => 'required',
+            'nId' => 'max:25',
+            'bId' => 'max:25',
             'homeTelephone' => 'nullable|max:20|regex:/^([0-9\s\-\+\(\)]*)$/',
             'officeTelephone' => 'nullable|max:20|regex:/^([0-9\s\-\+\(\)]*)$/',
             'telephone' => 'nullable|max:20|regex:/^([0-9\s\-\+\(\)]*)$/',
             'alternativePhoneNo' => 'nullable|max:20|regex:/^([0-9\s\-\+\(\)]*)$/',
-            'personalMobile' => 'required|max:20|regex:/^([0-9\s\-\+\(\)]*)$/|min:11',
+            'personalMobile' => 'required|max:20|regex:/^([0-9\s\-\+\(\)]*)$/',
             'email' => 'required|max:255|email',
             'nationality' => 'required|max:25',
             'skype' => 'nullable|max:255',
@@ -255,7 +265,14 @@ class PersonalInfoController extends Controller
         $employee->personalMobile=$r->personalMobile;
         $employee->alternativePhoneNo=$r->alternativePhoneNo;
         $employee->email=$r->email;
-        $employee->nationalId=$r->nId;
+        if ($r->idProvided=="NID"){
+            $employee->nationalId=$r->nId;
+            $employee->birthID=null;
+        }elseif ($r->idProvided=="BID"){
+            $employee->nationalId=null;
+            $employee->birthID=$r->bId;
+        }
+
         $employee->skype=$r->skype;
         $employee->alternativeEmail=$r->alternateEmail;
         $employee->presentAddress=$r->currentAddress;
