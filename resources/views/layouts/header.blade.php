@@ -143,6 +143,15 @@
             overflow-x: hidden;
             padding: 0;
             margin-top: 12px;
+
+        }
+
+
+        @media only screen and (max-height: 800px) {
+            .sidenav{
+                overflow-y: scroll;
+                height:400px;
+            }
         }
 
         .sidenav a {
@@ -171,7 +180,7 @@
 
         @media only screen and (max-width: 1450px) and (min-width: 801px) {
             .sidenav {
-                width: 250px;
+                width: 200px;
             }
 
             .sidenav a {
