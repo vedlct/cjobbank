@@ -43,13 +43,14 @@
             background-color: #f1f1f1;
         }
 
+
         #regForm {
             background-color: #ffffff;
-            margin: 100px auto;
             font-family: Raleway;
-            padding: 40px;
-            width: 70%;
+            margin: 10px auto;
             min-width: 300px;
+            padding: 40px;
+            width: 50%;
         }
 
         h1 {
@@ -113,14 +114,7 @@
             background-color: #4CAF50;
         }
 
-        #regForm {
-            background-color: #ffffff;
-            font-family: Raleway;
-            margin: 10px auto;
-            min-width: 300px;
-            padding: 40px;
-            width: 50%;
-        }
+
 
         .select2-container--default .select2-selection--single {
             height: 36px;
@@ -189,12 +183,19 @@
 
         }
 
+
         @media screen and (max-width: 800px) {
 
             .sidenav {
-                width: 100%;
+                width: 450%;
                 height: auto;
                 position: relative;
+            }
+
+            #regForm {
+
+                min-width: 93%;
+
             }
 
             .sidenav a {
