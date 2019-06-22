@@ -343,7 +343,6 @@
         function editPersonalInfo() {
 
 
-
             $.ajax({
                 type: 'POST',
                 url: "{!! route('personalInfo.edit') !!}",
