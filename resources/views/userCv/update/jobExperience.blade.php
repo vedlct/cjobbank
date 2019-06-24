@@ -109,7 +109,7 @@
 
 
                                                     <label for="inputPassword4">Total experience :</label>
-                                                <span id="TE"></span>
+                                                <span id="TE{{$tempHr}}"></span>
 
 
 
@@ -282,12 +282,40 @@
             $('.date').datepicker({
                 format: 'yyyy-m-d'
             });
+           // var expss= '{{$experiences}}';
 
-            @if(!is_null($experience->startDate) && !is_null($experience->endDate))
-            document.getElementById("TE").innerHTML = calcDate(new Date('{{$experience->endDate}}'),new Date('{{$experience->startDate}}'));
-            @elseif(!is_null($experience->startDate) && is_null($experience->endDate))
-            document.getElementById("TE").innerHTML = calcDate(new Date(),new Date('{{$experience->startDate}}'));
-            @endif
+          //  console.log(expss[0]);
+
+
+
+//            for (var $i=0;$i<=expss.length;$i++){
+//
+//                console.log(expss[0]['startDate']);
+
+//            if((expss[$i]['startDate']) && (expss[$i]['endDate']))
+//            document.getElementById("TE"+[0]).innerHTML = calcDate(new Date(expss[$i]['endDate']),new Date(expss[$i]['startDate']));
+//            else if((expss[$i]['startDate']) && !(expss[$i]['endDate']))
+//            document.getElementById("TE"+[$i]).innerHTML = calcDate(new Date(),new Date(expss[$i]['startDate']));
+
+
+//            }
+
+
+                <?php $ii=0;?>
+                @foreach($experiences as $experience)
+
+
+                @if(!is_null($experience->startDate) && !is_null($experience->endDate))
+                document.getElementById("TE"+'{{$ii}}').innerHTML = calcDate(new Date('{{$experience->endDate}}'),new Date('{{$experience->startDate}}'));
+                @elseif(!is_null($experience->startDate) && is_null($experience->endDate))
+                document.getElementById("TE"+'{{$ii}}').innerHTML = calcDate(new Date(),new Date('{{$experience->startDate}}'));
+                @endif
+            <?php $ii++;?>
+            @endforeach
+
+
+
+
 
         });
 
