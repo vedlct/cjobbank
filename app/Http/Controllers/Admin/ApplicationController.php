@@ -521,6 +521,7 @@ class ApplicationController extends Controller
             ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
             ->leftJoin('board', 'board.boardId', '=', 'education.fkboardId')
             ->whereIn('fkemployeeId',$empIds)
+            ->orderBy('education.passingYear')
             ->get();
 
 
@@ -646,6 +647,7 @@ class ApplicationController extends Controller
             ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
             ->leftJoin('board', 'board.boardId', '=', 'education.fkboardId')
             ->whereIn('fkemployeeId',$empIds)
+            ->orderBy('education.passingYear')
             ->get();
 
 
