@@ -243,12 +243,28 @@
                     <label>Educational Qualification</label>
                     <select id="educationLvlFilter" name="educationLvlFilter" class="form-control">
                         <option value="">Select a Qualification</option>
-                        @foreach($allEducationLevel as $eduLvl)
-                            <option  value="{{$eduLvl->educationLevelId}}">{{$eduLvl->educationLevelName}}</option>
+                        @foreach($degree as $de)
+                            <option  value="{{$de->degreeId}}">{{$de->degreeName}}</option>
                         @endforeach
 
                     </select>
                 </div>
+
+{{--                    <div class=" form-group ">--}}
+{{--                        <label>Degree</label>--}}
+{{--                        <select id="degreeLvlFilter" name="degreeLvlFilter" class="form-control">--}}
+{{--                            <option value="">Select a Qualification</option>--}}
+{{--                            @foreach($allEducationLevel as $eduLvl)--}}
+{{--                                <option  value="{{$eduLvl->educationLevelId}}">{{$eduLvl->educationLevelName}}</option>--}}
+{{--                            @endforeach--}}
+
+{{--                        </select>--}}
+{{--                    </div>--}}
+
+
+
+
+
                     <div class=" form-group ">
                         <label>Major</label>
                         <select id="educationMajorFilter" name="educationMajorFilter" class="form-control">
@@ -1707,6 +1723,24 @@ CKEDITOR.config.toolbar = [
 
                 }
             });
+
+
+            {{--$.ajax({--}}
+            {{--    type:'POST',--}}
+            {{--    url:'{{route('application.admin.getDegreeFromEducationlvl')}}',--}}
+            {{--    data:{_token:"{{csrf_token()}}",id:this.value},--}}
+            {{--    cache: false,--}}
+            {{--    success:function(data) {--}}
+
+            {{--        console.log(data);--}}
+            {{--        // document.getElementById("educationMajorFilter").innerHTML = data;--}}
+            {{--        // $('#educationMajorFilter').css("background-color", "#FFF").css('color', 'black');--}}
+
+            {{--    }--}}
+            {{--});--}}
+
+
+
 
         });
 

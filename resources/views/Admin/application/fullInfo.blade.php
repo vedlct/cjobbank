@@ -293,6 +293,11 @@
                 Relation: {{$rel->relation}}<br><br>
             @endforeach
 
+            @if($relative->where('fkemployeeId',$emp->employeeId)->count() == 0)
+                No
+
+            @endif
+
 
 
         </td>

@@ -108,9 +108,33 @@ class ApplicationController extends Controller
         $allEducationLevel=Educationlevel::where('status',1)->get();
         $mailTamplate=MailTamplate::select('tamplateName','tamplateId')->get();
 
+        $degree=Degree::where('status',1)->get();
 
-        return view('Admin.application.manageApplication',compact('religion','ethnicity','natinality','allZone','allJobTitle','allEducationLevel','organizationType','mailTamplate'));
+//        return $degree;
+
+
+        return view('Admin.application.manageApplication',compact('religion','degree','ethnicity','natinality','allZone','allJobTitle','allEducationLevel','organizationType','mailTamplate'));
     }
+
+
+    public function showAllDegreeForEducation(Request $r){
+
+        $degree = Degree::where('degree.educationLevelId', '=',$r->id)
+            ->where('degree.status',1)
+            ->get();
+
+        if ($degree == null) {
+            echo "<option value='' selected>Select Degree</option>";
+        } else {
+            echo "<option value='' selected>Select Degree</option>";
+            foreach ($degree as $mejor) {
+                echo "<option value='$mejor->degreeId'>$mejor->degreeName</option>";
+            }
+        }
+
+
+    }
+
     public function showAllApplication(Request $r)
     {
         $application = Jobapply::select('jobapply.jobapply as applyId', 'jobapply.applydate', 'zone.zoneName','employee.employeeId', 'employee.firstName', 'employee.lastName', 'job.title', 'employee.maritalStatus')
@@ -736,7 +760,7 @@ class ApplicationController extends Controller
 //            ->groupBy('educationMajorId')
 //            ->get();
 
-        $major = Educationmajor::select('educationMajorId','educationMajorName')
+        $major = Educationmajor::select('educationMajorId','educationMajorName','degree.degreeName')
             ->leftJoin('degree', 'degree.degreeId', 'educationmajor.fkDegreeId')
             ->leftJoin('educationlevel', 'educationlevel.educationLevelId', 'degree.educationLevelId')
             ->where('degree.educationLevelId', '=',$r->id)
@@ -752,7 +776,7 @@ class ApplicationController extends Controller
         } else {
             echo "<option value='' selected>Select Major</option>";
             foreach ($major as $mejor) {
-                echo "<option value='$mejor->educationMajorId'>$mejor->educationMajorName</option>";
+                echo "<option value='$mejor->educationMajorId'>$mejor->educationMajorName ($mejor->degreeName)</option>";
             }
         }
     }
