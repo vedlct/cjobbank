@@ -79,7 +79,7 @@ class RefreeController extends Controller
         for($i=0;$i<count($r->firstName);$i++){
             $refree=new Refree();
             $refree->firstName=$r->firstName[$i];
-            $refree->lastName=$r->lastName[$i];
+//            $refree->lastName=$r->lastName[$i];
             $refree->presentposition=$r->presentposition[$i];
             $refree->organization=$r->organization[$i];
             $refree->email=$r->email[$i];
@@ -106,7 +106,7 @@ class RefreeController extends Controller
     public function updateRefree(Request $r){
         $refree=Refree::findOrFail($r->refereeId);
         $refree->firstName=$r->firstName;
-        $refree->lastName=$r->lastName;
+//        $refree->lastName=$r->lastName;
         $refree->presentposition=$r->presentposition;
         $refree->organization=$r->organization;
         $refree->email=$r->email;

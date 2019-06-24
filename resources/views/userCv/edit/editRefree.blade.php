@@ -3,16 +3,16 @@
     <input type="hidden" name="refereeId" value="{{$refree->refereeId}}">
 <div class="row">
     <div class="form-group col-md-6">
-        <label for="inputEmail4">First name<span style="color: red">*</span></label>
-        <input type="text" class="form-control" name="firstName" value="{{$refree->firstName}}" id="firstName" placeholder="first name" required>
+        <label for="inputEmail4">Name<span style="color: red">*</span></label>
+        <input type="text" class="form-control" name="firstName" value="{{$refree->firstName}}" id="firstName" placeholder="full name" required>
     </div>
 
 
 
-    <div class="form-group col-md-6">
-        <label for="inputEmail4">Last name<span style="color: red">*</span></label>
-        <input type="text" class="form-control" name="lastName" value="{{$refree->lastName}}" id="lastName" placeholder="last name" required>
-    </div>
+{{--    <div class="form-group col-md-6">--}}
+{{--        <label for="inputEmail4">Last name<span style="color: red">*</span></label>--}}
+{{--        <input type="text" class="form-control" name="lastName" value="{{$refree->lastName}}" id="lastName" placeholder="last name" required>--}}
+{{--    </div>--}}
 
 
 
@@ -80,30 +80,30 @@
 
         if(firstName==""){
 
-            var errorMsg='Please Type First Name First!!';
+            var errorMsg='Please Type Name First!!';
             validationError(errorMsg);
             return false;
         }
-        if (firstName.length > 45){
+        if (firstName.length > 90){
 
-            var errorMsg='First Name Should not more than 45 Charecter Length!!';
+            var errorMsg='Name Should not more than 90 character Length!!';
             validationError(errorMsg);
             return false;
 
         }
-        if(lastName==""){
-
-            var errorMsg='Please Type Last Name First!!'
-            validationError(errorMsg)
-            return false;
-        }
-        if (lastName.length > 45){
-
-            var errorMsg='Last Name Should not more than 45 Charecter Length!!'
-            validationError(errorMsg)
-            return false;
-
-        }
+        // if(lastName==""){
+        //
+        //     var errorMsg='Please Type Last Name First!!'
+        //     validationError(errorMsg)
+        //     return false;
+        // }
+        // if (lastName.length > 45){
+        //
+        //     var errorMsg='Last Name Should not more than 45 Charecter Length!!'
+        //     validationError(errorMsg)
+        //     return false;
+        //
+        // }
 
         // if(presentposition==""){
         //
