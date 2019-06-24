@@ -110,11 +110,22 @@
             Job location/Address: {{$job->address}}<br>
             Name of Supervisor: {{$job->supervisorName}}<br>
 
+                    @if ($job->startDate!=null && $job->endDate==null)
+
+                    {{$sub_struct=\Carbon\Carbon::parse($job->startDate)->diff(\Carbon\Carbon::now())->format('%y years, %m months and %d days')}}
+                    @else
+                    {{$sub_struct=\Carbon\Carbon::parse($job->startDate)->diff(\Carbon\Carbon::parse($job->endDate))->format('%y years, %m months and %d days')}}
+                    @endif
+
+
+
 
 
 
                 <br><br>
                     <?php
+
+
 
 
 
@@ -142,6 +153,7 @@
 
                 ?>
                 Total job experience :
+                {{--{{$totalexpDay}}--}}
                 {{$sub_struct}}
                 {{--Total job experience : {{"year:".$years." "."months:".$months." "."days".$days}}--}}
         </td>
