@@ -36,21 +36,21 @@
 
                             <h2 style="margin-bottom: 30px;">Previous work information in Caritas Bangladesh</h2>
                             @php($tempHr=0)
-                            @foreach($previousWorkInCB as $previousWorkInCB)
+                            @foreach($previousWorkInCB as $prevWc)
                                 @if($tempHr>0)
                                     <div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>
                                 @endif
-                                <div id="edit{{$previousWorkInCB->id}}">
+                                <div id="edit{{$prevWc->id}}">
                                     <div class="row">
                                         <div class="form-group col-md-10">
 
                                             <label for="inputEmail4">Designation :</label>
-                                            {{$previousWorkInCB->designation}}
+                                            {{$prevWc->designation}}
                                         </div>
 
                                         <div class="form-group col-md-2 ">
-                                            <button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$previousWorkInCB->id}})"><i class="fa fa-edit"></i></button>
-                                            <button type="button" class="btn btn-danger btn-sm " onclick="deletePreViousWork({{$previousWorkInCB->id}})"><i class="fa fa-trash"></i></button>
+                                            <button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$prevWc->id}})"><i class="fa fa-edit"></i></button>
+                                            <button type="button" class="btn btn-danger btn-sm " onclick="deletePreViousWork({{$prevWc->id}})"><i class="fa fa-trash"></i></button>
 
                                         </div>
 
@@ -59,12 +59,12 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label>Start date</label>
-                                            {{$previousWorkInCB->startDate}}
+                                            {{$prevWc->startDate}}
                                         </div>
                                         <div class="col-md-6">
                                             <label>End date</label>
-                                            @if($previousWorkInCB->currentlyRunning=='0')
-                                                {{$previousWorkInCB->endDate}}
+                                            @if($prevWc->currentlyRunning=='0')
+                                                {{$prevWc->endDate}}
                                             @else
                                                 Running
                                             @endif
@@ -73,24 +73,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <label for="inputPassword4">Total experience :</label>
-                                            <span id="TE"></span>
-
-<!--                                            --><?php
-//                                            $result = array($previousWorkInCB->expDay);
-//
-//
-//                                            $sub_struct_month = ($result[0] / 30) ;
-//                                            $sub_struct_month = floor($sub_struct_month);
-//                                            $sub_struct_year = floor($sub_struct_month / 12) ;
-//                                            $sub_struct_days = floor($result[0] % 30); // the rest of days
-//                                            $sub_struct = $sub_struct_year."years ".$sub_struct_month."months ".$sub_struct_days."days";
-//
-//                                            echo $sub_struct;
-//
-//
-//                                            ?>
-
-
+                                            <span id="TE{{$tempHr}}"></span>
 
                                         </div>
                                     </div>
@@ -228,11 +211,19 @@
 //            $('#end').datepicker({
 //                format: 'yyyy-m-d'
 //            });
-            @if(!is_null($previousWorkInCB->startDate) && $previousWorkInCB->currentlyRunning=='0' && !is_null($previousWorkInCB->endDate))
-            document.getElementById("TE").innerHTML = calcDate(new Date('{{$previousWorkInCB->endDate}}'),new Date('{{$previousWorkInCB->startDate}}'));
-            @elseif(!is_null($previousWorkInCB->startDate) && $previousWorkInCB->currentlyRunning !='0' && is_null($previousWorkInCB->endDate))
-            document.getElementById("TE").innerHTML = calcDate(new Date(),new Date('{{$previousWorkInCB->startDate}}'));
+
+
+
+
+            <?php $ii=0;?>
+            @foreach($previousWorkInCB as $pwc)
+            @if(!is_null($pwc->startDate) && !is_null($pwc->endDate))
+            document.getElementById("TE"+'{{$ii}}').innerHTML = calcDate(new Date('{{$pwc->endDate}}'),new Date('{{$pwc->startDate}}'));
+            @elseif(!is_null($pwc->startDate) && is_null($pwc->endDate))
+            document.getElementById("TE"+'{{$ii}}').innerHTML = calcDate(new Date(),new Date('{{$pwc->startDate}}'));
             @endif
+            <?php $ii++;?>
+            @endforeach
 
         });
 

@@ -89,12 +89,14 @@
             <td colspan="3" height="600" style="text-align: left;vertical-align: top;">
 
                 @foreach($educationList->where('fkemployeeId',$emp['employeeId']) as $edu)
-                    {{$edu->institutionName}}
-                        <br>
-                    {{$edu->boardName}}
-                <br>
-                Level:{{$edu->educationLevelName}}  Result:{{$edu->result}}
-                    <br>
+                        {{--{{$edu->institutionName}}--}}
+                        {{--<br>--}}
+                        {{--{{$edu->boardName}}--}}
+                        {{--<br>--}}
+                        {{--Level:{{$edu->educationLevelName}}  Result:{{$edu->result}}--}}
+                        {{--<br>--}}
+
+                    {{$edu->educationLevelName}} @if($edu->educationMajorName)({{$edu->educationMajorName}})@endif={{$edu->result}}<br>
 
                 @endforeach
             </td>
