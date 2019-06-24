@@ -790,6 +790,7 @@ CKEDITOR.config.toolbar = [
             $('#educationLvlFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
                 table.ajax.reload();  //just reload table
+
                 emptySelect();
                 if ($('#educationLvlFilter').val()!=""){
 

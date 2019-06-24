@@ -174,7 +174,7 @@ class ApplicationController extends Controller
             $application= $application->where('job.fkzoneId',$r->zonefilter);
         }
         if ($r->educationLvlFilter){
-            $application= $application->where('educationlevel.educationLevelId',$r->educationLvlFilter);
+            $application= $application->where('degree.degreeId',$r->educationLvlFilter);
         }
         if ($r->educationCompletingFilter){
             $application= $application->where('education.status',$r->educationCompletingFilter);
@@ -763,7 +763,7 @@ class ApplicationController extends Controller
         $major = Educationmajor::select('educationMajorId','educationMajorName','degree.degreeName')
             ->leftJoin('degree', 'degree.degreeId', 'educationmajor.fkDegreeId')
             ->leftJoin('educationlevel', 'educationlevel.educationLevelId', 'degree.educationLevelId')
-            ->where('degree.educationLevelId', '=',$r->id)
+            ->where('degree.degreeId', '=',$r->id)
             ->where('educationlevel.status',1)
             ->where('degree.status',1)
             ->where('educationmajor.status',1)
@@ -776,7 +776,7 @@ class ApplicationController extends Controller
         } else {
             echo "<option value='' selected>Select Major</option>";
             foreach ($major as $mejor) {
-                echo "<option value='$mejor->educationMajorId'>$mejor->educationMajorName ($mejor->degreeName)</option>";
+                echo "<option value='$mejor->educationMajorId'>$mejor->educationMajorName</option>";
             }
         }
     }
