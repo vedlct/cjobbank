@@ -217,6 +217,9 @@ Route::post('Admin-Change-Job-Status','Admin\JobController@jobStatusUpdate')->na
 Route::get('Admin-Manage-Application','Admin\ApplicationController@manageApplication')->name('application.admin.manage');
 Route::post('Admin-Show-All-Application','Admin\ApplicationController@showAllApplication')->name('application.admin.showAll');
 Route::post('Admin-Show-All-Major-For Education','Admin\ApplicationController@showAllMajorForEducation')->name('application.admin.getMajorFromEducationlvl');
+Route::post('Admin-Show-All-Major-For-Degree','Admin\ApplicationController@showAllDegreeForEducation')->name('application.admin.getDegreeFromEducationlvl');
+
+
 Route::post('Admin-Export-All-AppliedCandidate-Hr-report01','Admin\ApplicationController@exportAppliedCandidate')->name('jobAppliedCadidate.admin.Exportxls');
 Route::post('Admin-Export-All-AppliedCandidate-Hr-report03','Admin\ApplicationController@exportAppliedCandidateHrReport03')->name('jobAppliedCadidate.admin.Exporthrreport03xls');
 Route::post('Admin-Export-All-AppliedCandidate-Hr-report02','Admin\ApplicationController@exportAppliedCandidateHrReport02')->name('jobAppliedCadidate.admin.Exporthrreport02xls');
