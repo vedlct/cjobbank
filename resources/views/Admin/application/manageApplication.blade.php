@@ -254,7 +254,7 @@
                     <div class=" form-group ">
                         <label>Degree</label>
                         <select id="degreeLvlFilter" name="degreeLvlFilter" class="form-control">
-                            <option value="">Select a Qualification</option>
+                            <option value="">Select a Degree</option>
                             @foreach($degree as $de)
                                 <option  value="{{$de->degreeId}}">{{$de->degreeName}}</option>
                             @endforeach
