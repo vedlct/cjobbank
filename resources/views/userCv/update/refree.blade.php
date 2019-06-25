@@ -400,8 +400,8 @@
                     '<h2 style="margin-bottom: 30px;">Referee - '+(tempCounter)+'</h2>'+
                     '  <div class="row"> ' +
                     '<div class="form-group col-md-6"> ' +
-                    '<label for="inputEmail4">First name<span style="color: red">*</span></label> ' +
-                    '<input type="text" class="form-control" name="firstName[]" id="firstName'+counter+'" placeholder="first name" required> ' +
+                    '<label for="inputEmail4">Name<span style="color: red">*</span></label> ' +
+                    '<input type="text" class="form-control" name="firstName[]" id="firstName'+counter+'" placeholder="Name" required> ' +
                     '</div> ' +
                     // '<div class="form-group col-md-6"> ' +
                     // '<label for="inputEmail4">Last name<span style="color: red">*</span></label> ' +

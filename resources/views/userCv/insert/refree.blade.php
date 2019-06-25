@@ -60,7 +60,7 @@
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Name<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" name="firstName[]" id="firstName" placeholder="full name" required>
+                                        <input type="text" class="form-control" name="firstName[]" id="firstName" placeholder="Name" required>
                                     </div>
 
 
@@ -111,7 +111,7 @@
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Name<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" name="firstName[]" id="firstName" placeholder="full name" required>
+                                        <input type="text" class="form-control" name="firstName[]" id="firstName" placeholder="Name" required>
                                     </div>
 
 
@@ -246,7 +246,7 @@
                 if (counter == 1 ){
 
                     var firstName=$('#firstName').val();
-                    var lastName=$('#lastName').val();
+//                    var lastName=$('#lastName').val();
                     var presentposition=$('#presentposition').val();
                     var organization=$('#organization').val();
                     var email=$('#email').val();
@@ -372,7 +372,7 @@
                 else {
 
                     var firstName=$('#firstName'+(counter-1)).val();
-                    var lastName=$('#lastName'+(counter-1)).val();
+//                    var lastName=$('#lastName'+(counter-1)).val();
                     var presentposition=$('#presentposition'+(counter-1)).val();
                     var organization=$('#organization'+(counter-1)).val();
                     var email=$('#email'+(counter-1)).val();
@@ -506,7 +506,7 @@
                     '  <div class="row"> ' +
                     '<div class="form-group col-md-6"> ' +
                     '<label for="inputEmail4">Name<span style="color: red">*</span></label> ' +
-                    '<input type="text" class="form-control" name="firstName[]" id="firstName'+counter+'" placeholder="full name" required> ' +
+                    '<input type="text" class="form-control" name="firstName[]" id="firstName'+counter+'" placeholder="Name" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
                     '<label for="inputEmail4">Present position</label> ' +
