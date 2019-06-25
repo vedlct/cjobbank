@@ -174,7 +174,10 @@ class ApplicationController extends Controller
             $application= $application->where('job.fkzoneId',$r->zonefilter);
         }
         if ($r->educationLvlFilter){
-            $application= $application->where('degree.degreeId',$r->educationLvlFilter);
+            $application= $application->where('educationlevel.educationLevelId',$r->educationLvlFilter);
+        }
+        if ($r->degreeLvlFilter){
+            $application= $application->where('degree.degreeId',$r->degreeLvlFilter);
         }
         if ($r->educationCompletingFilter){
             $application= $application->where('education.status',$r->educationCompletingFilter);
