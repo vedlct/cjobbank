@@ -139,10 +139,15 @@
                         @endif
                         <br>
 
-                        <span class="bold"> Total job experience:</span> @if ($exp->expYear >0){{$exp->expYear}}.{{(((int)$exp->expMonth)/(12*$exp->expYear))}} @else
-                            {{$exp->expYear}}.{{$exp->expMonth}}
+                        <span class="bold"> Total job experience:</span>
+
+                        @if ($exp->startDate!=null && $exp->endDate==null)
+
+                            {{$sub_struct=\Carbon\Carbon::parse($exp->startDate)->diff(\Carbon\Carbon::now())->format('%y years, %m months and %d days')}}
+                        @else
+                            {{$sub_struct=\Carbon\Carbon::parse($exp->startDate)->diff(\Carbon\Carbon::parse($exp->endDate))->format('%y years, %m months and %d days')}}
                         @endif
-                        Years<br>
+
 
 
 
