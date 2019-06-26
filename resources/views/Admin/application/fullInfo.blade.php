@@ -249,10 +249,12 @@
             @endforeach
         </td>
         <td colspan="6" class="Border" height="450"   style="text-align: left;">
+            <?php $temporary=0; ?>
             @foreach($jobExperience->where('fkemployeeId',$emp->employeeId) as $job)
+              {{++$temporary}}.{{$job->organization}}->{{$job->degisnation}}<br>
                 Major Job responsibility: {{$job->majorResponsibilities}}<br>
                 Key Achievement: {{$job->keyAchivement}}<br>
-                <br><br>
+                <br>
             @endforeach
 
 
