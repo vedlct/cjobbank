@@ -541,15 +541,24 @@ class ApplicationController extends Controller
                 ->whereIn('employee.employeeId',$empIds)
                 ->get();
 
-        $education=Education::select('education.institutionName','board.boardName','education.fkemployeeId','education.status','education.resultSystem','education.result','educationlevel.educationLevelName',
-            'educationmajor.educationMajorName','education.fkMajorId')
-            ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
-            ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
-            ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
-            ->leftJoin('board', 'board.boardId', '=', 'education.fkboardId')
+//        $education=Education::select('education.institutionName','board.boardName','education.fkemployeeId','education.status','education.resultSystem','education.result','educationlevel.educationLevelName',
+//            'educationmajor.educationMajorName','education.fkMajorId')
+//            ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
+//            ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
+//            ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
+//            ->leftJoin('board', 'board.boardId', '=', 'education.fkboardId')
+//            ->whereIn('fkemployeeId',$empIds)
+//            ->orderBy('education.passingYear')
+//            ->get();
+
+        $education=Education::select('education.*','degree.degreeName','board.boardName','educationmajor.educationMajorName')
             ->whereIn('fkemployeeId',$empIds)
+            ->leftJoin('degree','degree.degreeId','education.fkdegreeId')
+            ->leftJoin('board','board.boardId','education.fkboardId')
+            ->leftJoin('educationmajor','educationmajor.educationMajorId','education.fkMajorId')
             ->orderBy('education.passingYear')
             ->get();
+
 
 
         $pQualification=ProfessionalQualification::whereIn('professionalqualification.fkemployeeId',$empIds)
@@ -667,15 +676,25 @@ class ApplicationController extends Controller
                 ->whereIn('employee.employeeId',$empIds)
                 ->get();
 
-        $education=Education::select('education.institutionName','board.boardName','education.fkemployeeId','education.status','education.resultSystem','education.result','educationlevel.educationLevelName',
-            'educationmajor.educationMajorName','education.fkMajorId')
-            ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
-            ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
-            ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
-            ->leftJoin('board', 'board.boardId', '=', 'education.fkboardId')
+//        $education=Education::select('education.institutionName','board.boardName','education.fkemployeeId','education.status','education.resultSystem','education.result','educationlevel.educationLevelName',
+//            'educationmajor.educationMajorName','education.fkMajorId')
+//            ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
+//            ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
+//            ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
+//            ->leftJoin('board', 'board.boardId', '=', 'education.fkboardId')
+//            ->whereIn('fkemployeeId',$empIds)
+//            ->orderBy('education.passingYear')
+//            ->get();
+
+
+        $education=Education::select('education.*','degree.degreeName','board.boardName','educationmajor.educationMajorName')
             ->whereIn('fkemployeeId',$empIds)
+            ->leftJoin('degree','degree.degreeId','education.fkdegreeId')
+            ->leftJoin('board','board.boardId','education.fkboardId')
+            ->leftJoin('educationmajor','educationmajor.educationMajorId','education.fkMajorId')
             ->orderBy('education.passingYear')
             ->get();
+
 
 
         $pQualification=ProfessionalQualification::whereIn('professionalqualification.fkemployeeId',$empIds)
@@ -766,7 +785,7 @@ class ApplicationController extends Controller
         $major = Educationmajor::select('educationMajorId','educationMajorName','degree.degreeName')
             ->leftJoin('degree', 'degree.degreeId', 'educationmajor.fkDegreeId')
             ->leftJoin('educationlevel', 'educationlevel.educationLevelId', 'degree.educationLevelId')
-            ->where('degree.degreeId', '=',$r->id)
+//            ->where('degree.degreeId', '=',$r->id)
             ->where('educationlevel.status',1)
             ->where('degree.status',1)
             ->where('educationmajor.status',1)
