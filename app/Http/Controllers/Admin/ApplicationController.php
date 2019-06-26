@@ -569,7 +569,7 @@ class ApplicationController extends Controller
 
 
         $jobExperience=JobExperience::select('jobexperience.*')
-            ->orderBy('startDate', 'desc')
+//            ->orderBy('startDate', 'desc')
             ->addSelect(DB::raw("(CASE WHEN `jobexperience`.`endDate` IS NOT null AND `jobexperience`.`startDate` IS NOT null THEN TIMESTAMPDIFF(YEAR,`jobexperience`.`startDate`,`jobexperience`.`endDate`) WHEN `jobexperience`.`startDate` IS NOT null AND `jobexperience`.`endDate` IS null THEN TIMESTAMPDIFF(YEAR,`jobexperience`.`startDate`,CURDATE()) ELSE 0 END) AS expYear"),
                 DB::raw("(CASE WHEN `jobexperience`.`endDate` IS NOT null AND `jobexperience`.`startDate` IS NOT null THEN TIMESTAMPDIFF(MONTH,`jobexperience`.`startDate`,`jobexperience`.`endDate`) WHEN `jobexperience`.`startDate` IS NOT null AND `jobexperience`.`endDate` IS null THEN TIMESTAMPDIFF(MONTH,`jobexperience`.`startDate`,CURDATE()) ELSE 0 END) AS expMonth"),
                 DB::raw("(CASE WHEN `jobexperience`.`endDate` IS NOT null AND `jobexperience`.`startDate` IS NOT null THEN TIMESTAMPDIFF(DAY,`jobexperience`.`startDate`,`jobexperience`.`endDate`) WHEN `jobexperience`.`startDate` IS NOT null AND `jobexperience`.`endDate` IS null THEN TIMESTAMPDIFF(DAY,`jobexperience`.`startDate`,CURDATE()) ELSE 0 END) AS expDay"))
@@ -705,7 +705,7 @@ class ApplicationController extends Controller
 
 
         $jobExperience=JobExperience::select('jobexperience.*')
-            ->orderBy('startDate', 'desc')
+//            ->orderBy('startDate', 'desc')
             ->addSelect(DB::raw("(CASE WHEN `jobexperience`.`endDate` IS NOT null AND `jobexperience`.`startDate` IS NOT null THEN TIMESTAMPDIFF(YEAR,`jobexperience`.`startDate`,`jobexperience`.`endDate`) WHEN `jobexperience`.`startDate` IS NOT null AND `jobexperience`.`endDate` IS null THEN TIMESTAMPDIFF(YEAR,`jobexperience`.`startDate`,CURDATE()) ELSE 0 END) AS expYear"),
                 DB::raw("(CASE WHEN `jobexperience`.`endDate` IS NOT null AND `jobexperience`.`startDate` IS NOT null THEN TIMESTAMPDIFF(MONTH,`jobexperience`.`startDate`,`jobexperience`.`endDate`) WHEN `jobexperience`.`startDate` IS NOT null AND `jobexperience`.`endDate` IS null THEN TIMESTAMPDIFF(MONTH,`jobexperience`.`startDate`,CURDATE()) ELSE 0 END) AS expMonth"),
                 DB::raw("(CASE WHEN `jobexperience`.`endDate` IS NOT null AND `jobexperience`.`startDate` IS NOT null THEN TIMESTAMPDIFF(DAY,`jobexperience`.`startDate`,`jobexperience`.`endDate`) WHEN `jobexperience`.`startDate` IS NOT null AND `jobexperience`.`endDate` IS null THEN TIMESTAMPDIFF(DAY,`jobexperience`.`startDate`,CURDATE()) ELSE 0 END) AS expDay"))
@@ -782,15 +782,15 @@ class ApplicationController extends Controller
 //            ->groupBy('educationMajorId')
 //            ->get();
 
-        $major = Educationmajor::select('educationMajorId','educationMajorName','degree.degreeName')
-            ->leftJoin('degree', 'degree.degreeId', 'educationmajor.fkDegreeId')
-            ->leftJoin('educationlevel', 'educationlevel.educationLevelId', 'degree.educationLevelId')
-//            ->where('degree.degreeId', '=',$r->id)
-            ->where('educationlevel.status',1)
-            ->where('degree.status',1)
-            ->where('educationmajor.status',1)
+        $major = Educationmajor::select('educationMajorId','educationMajorName')
+//            ->leftJoin('degree', 'degree.degreeId', 'educationmajor.fkDegreeId')
+//            ->leftJoin('educationlevel', 'educationlevel.educationLevelId', 'degree.educationLevelId')
+            ->where('fkDegreeId', '=',$r->id)
+            ->orWhere('type', '=','g')
+//            ->where('educationlevel.status',1)
+            ->where('status',1)
             ->groupBy('educationMajorId')
-            ->orderBy('educationMajorName')
+            ->orderBy('educationMajorName','ASC')
             ->get();
 
         if ($major == null) {

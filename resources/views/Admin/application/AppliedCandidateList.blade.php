@@ -151,7 +151,7 @@
                             {{$sub_struct=\Carbon\Carbon::parse($job->startDate)->diff(\Carbon\Carbon::parse($job->endDate))->format('%y years, %m months and %d days')}}
                         @endif
 
-<!--                        --><?php
+<?php
 //                        $result = array($job->expDay);
 //
 //
@@ -163,11 +163,11 @@
 //                        echo $sub_struct = $sub_struct_year."years ".$sub_struct_months."months ".$sub_struct_days."days";
 //
 //
-//                        ?>
+                        ?>
 
                     <br>
-                    Start:{{$job->startDate}}
-                    End:@if($job->startDate!=null && $job->endDate==null) Running @else {{$job->endDate}}@endif
+                    Start: {{$job->startDate}}
+                    End: @if($job->startDate!=null && $job->endDate==null) Running @else {{$job->endDate}}@endif
                     <br>
 
                         <?php
@@ -181,20 +181,30 @@
 
                 @endforeach
 
+
                     <?php
-                    $result = array($totalexpDay);
+                    $now = \Carbon\Carbon::now();
+                    $nextDate=\Carbon\Carbon::now()->addDays($totalexpDay);
+                    $diff=$now->diff($nextDate)->format('%y years, %m months and %d days');
 
-
-                    $sub_struct_month = ($result[0] / 30) ;
-                    $sub_struct_month = floor($sub_struct_month);
-                    $sub_struct_year = floor($sub_struct_month / 12) ;
-                    $sub_struct_days = floor($result[0] % 30); // the rest of days
-                    $sub_struct = $sub_struct_year."years ".$sub_struct_month."months ".$sub_struct_days."days";
+//                    $result = array($totalexpDay);
+//
+//
+//                    $sub_struct_month = ($result[0] / 30) ;
+//                    $sub_struct_month = floor($sub_struct_month);
+//
+//                    $sub_struct_year = floor($sub_struct_month / 12) ;
+//
+//                    $sub_struct_months = floor($sub_struct_month % 12);
+//
+//                    $sub_struct_days = floor($result[0] % 30); // the rest of days
+//
+//                    $sub_struct = $sub_struct_year."years ".$sub_struct_months."months ".$sub_struct_days."days";
 
 
                     ?>
                     <br>
-                    Total job experience : {{$sub_struct}}
+                    Total job experience : {{$diff}}
 
             </td>
             @if($withoutsalary != 'true')
