@@ -247,8 +247,25 @@
                             <option  value="{{$eduLvl->educationLevelId}}">{{$eduLvl->educationLevelName}}</option>
                         @endforeach
 
+
                     </select>
                 </div>
+
+                    <div class=" form-group ">
+                        <label>Degree</label>
+                        <select id="degreeLvlFilter" name="degreeLvlFilter" class="form-control">
+                            <option value="">Select a Degree</option>
+                            @foreach($degree as $de)
+                                <option  value="{{$de->degreeId}}">{{$de->degreeName}}</option>
+                            @endforeach
+
+                        </select>
+                    </div>
+
+
+
+
+
                     <div class=" form-group ">
                         <label>Major</label>
                         <select id="educationMajorFilter" name="educationMajorFilter" class="form-control">
@@ -507,6 +524,8 @@ CKEDITOR.config.toolbar = [
                         }
                         if ($('#educationLvlFilter').val()!=""){
                             d.educationLvlFilter=$('#educationLvlFilter').val();
+                        }if ($('#degreeLvlFilter').val()!=""){
+                            d.degreeLvlFilter=$('#degreeLvlFilter').val();
                         }
                         if ($('#educationCompletingFilter').val()!=""){
                             d.educationCompletingFilter=$('#educationCompletingFilter').val();
@@ -774,12 +793,26 @@ CKEDITOR.config.toolbar = [
             $('#educationLvlFilter').change(function(){ //button filter event click
 //                table.search("").draw(); //just redraw myTableFilter
                 table.ajax.reload();  //just reload table
+
                 emptySelect();
                 if ($('#educationLvlFilter').val()!=""){
 
                     $('#educationLvlFilter').css("background-color", "#7c9").css('color', 'white');
                 }else {
                     $('#educationLvlFilter').css("background-color", "#FFF").css('color', 'black');
+                }
+
+            });
+            $('#degreeLvlFilter').change(function(){ //button filter event click
+//                table.search("").draw(); //just redraw myTableFilter
+                table.ajax.reload();  //just reload table
+
+                emptySelect();
+                if ($('#degreeLvlFilter').val()!=""){
+
+                    $('#degreeLvlFilter').css("background-color", "#7c9").css('color', 'white');
+                }else {
+                    $('#degreeLvlFilter').css("background-color", "#FFF").css('color', 'black');
                 }
 
             });
@@ -1694,6 +1727,41 @@ CKEDITOR.config.toolbar = [
 
         $('#educationLvlFilter').on('change', function() {
 
+            {{--$.ajax({--}}
+                {{--type:'POST',--}}
+                {{--url:'{{route('application.admin.getMajorFromEducationlvl')}}',--}}
+                {{--data:{_token:"{{csrf_token()}}",id:this.value},--}}
+                {{--cache: false,--}}
+                {{--success:function(data) {--}}
+
+                   {{--// console.log(data);--}}
+                    {{--document.getElementById("educationMajorFilter").innerHTML = data;--}}
+                    {{--$('#educationMajorFilter').css("background-color", "#FFF").css('color', 'black');--}}
+
+                {{--}--}}
+            {{--});--}}
+
+
+            $.ajax({
+                type:'POST',
+                url:'{{route('application.admin.getDegreeFromEducationlvl')}}',
+                data:{_token:"{{csrf_token()}}",id:this.value},
+                cache: false,
+                success:function(data) {
+
+                   // console.log(data);
+                     document.getElementById("degreeLvlFilter").innerHTML = data;
+                     $('#degreeLvlFilter').css("background-color", "#FFF").css('color', 'black');
+
+                }
+            });
+
+
+
+
+        });
+        $('#degreeLvlFilter').on('change', function() {
+
             $.ajax({
                 type:'POST',
                 url:'{{route('application.admin.getMajorFromEducationlvl')}}',
@@ -1708,9 +1776,12 @@ CKEDITOR.config.toolbar = [
                 }
             });
 
+
+
+
         });
 
-        $("#educationMajorFilter").one('focus', function (){
+        $("#educationMajorFilter").on('focus', function (){
 
                 if ($('#educationLvlFilter').val()=="") {
 

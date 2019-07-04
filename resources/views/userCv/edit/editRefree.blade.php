@@ -4,7 +4,7 @@
 <div class="row">
     <div class="form-group col-md-6">
         <label for="inputEmail4">Name<span style="color: red">*</span></label>
-        <input type="text" class="form-control" name="firstName" value="{{$refree->firstName}}" id="firstName" placeholder="full name" required>
+        <input type="text" class="form-control" name="firstName" value="{{$refree->firstName}}" id="firstName" placeholder="Name" required>
     </div>
 
 
@@ -66,7 +66,7 @@
     function checkReferee(){
 
         var firstName=$('#firstName').val();
-        var lastName=$('#lastName').val();
+//        var lastName=$('#lastName').val();
         var presentposition=$('#presentposition').val();
         var organization=$('#organization').val();
         var email=$('#email').val();

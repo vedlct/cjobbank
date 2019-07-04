@@ -169,7 +169,7 @@ class EmployeeController extends Controller
                     ->get();
 
                 $jobExperience = JobExperience::select('jobexperience.*')->where('fkemployeeId', $empId)
-                    ->orderBy('startDate', 'desc')
+//                    ->orderBy('startDate', 'desc')
                     ->addSelect(DB::raw("TIMESTAMPDIFF(YEAR,`jobexperience`.`startDate`,`jobexperience`.`endDate`) as expYear"),
                         DB::raw("TIMESTAMPDIFF(MONTH,`jobexperience`.`startDate`,`jobexperience`.`endDate`) as expMonth"))
                     ->get();

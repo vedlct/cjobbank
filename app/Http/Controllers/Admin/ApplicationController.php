@@ -108,9 +108,33 @@ class ApplicationController extends Controller
         $allEducationLevel=Educationlevel::where('status',1)->get();
         $mailTamplate=MailTamplate::select('tamplateName','tamplateId')->get();
 
+        $degree=Degree::where('status',1)->get();
 
-        return view('Admin.application.manageApplication',compact('religion','ethnicity','natinality','allZone','allJobTitle','allEducationLevel','organizationType','mailTamplate'));
+//        return $degree;
+
+
+        return view('Admin.application.manageApplication',compact('religion','degree','ethnicity','natinality','allZone','allJobTitle','allEducationLevel','organizationType','mailTamplate'));
     }
+
+
+    public function showAllDegreeForEducation(Request $r){
+
+        $degree = Degree::where('degree.educationLevelId', '=',$r->id)
+            ->where('degree.status',1)
+            ->get();
+
+        if ($degree == null) {
+            echo "<option value='' selected>Select Degree</option>";
+        } else {
+            echo "<option value='' selected>Select Degree</option>";
+            foreach ($degree as $mejor) {
+                echo "<option value='$mejor->degreeId'>$mejor->degreeName</option>";
+            }
+        }
+
+
+    }
+
     public function showAllApplication(Request $r)
     {
         $application = Jobapply::select('jobapply.jobapply as applyId', 'jobapply.applydate', 'zone.zoneName','employee.employeeId', 'employee.firstName', 'employee.lastName', 'job.title', 'employee.maritalStatus')
@@ -151,6 +175,9 @@ class ApplicationController extends Controller
         }
         if ($r->educationLvlFilter){
             $application= $application->where('educationlevel.educationLevelId',$r->educationLvlFilter);
+        }
+        if ($r->degreeLvlFilter){
+            $application= $application->where('degree.degreeId',$r->degreeLvlFilter);
         }
         if ($r->educationCompletingFilter){
             $application= $application->where('education.status',$r->educationCompletingFilter);
@@ -514,14 +541,24 @@ class ApplicationController extends Controller
                 ->whereIn('employee.employeeId',$empIds)
                 ->get();
 
-        $education=Education::select('education.institutionName','board.boardName','education.fkemployeeId','education.status','education.resultSystem','education.result','educationlevel.educationLevelName',
-            'educationmajor.educationMajorName','education.fkMajorId')
-            ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
-            ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
-            ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
-            ->leftJoin('board', 'board.boardId', '=', 'education.fkboardId')
+//        $education=Education::select('education.institutionName','board.boardName','education.fkemployeeId','education.status','education.resultSystem','education.result','educationlevel.educationLevelName',
+//            'educationmajor.educationMajorName','education.fkMajorId')
+//            ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
+//            ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
+//            ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
+//            ->leftJoin('board', 'board.boardId', '=', 'education.fkboardId')
+//            ->whereIn('fkemployeeId',$empIds)
+//            ->orderBy('education.passingYear')
+//            ->get();
+
+        $education=Education::select('education.*','degree.degreeName','board.boardName','educationmajor.educationMajorName')
             ->whereIn('fkemployeeId',$empIds)
+            ->leftJoin('degree','degree.degreeId','education.fkdegreeId')
+            ->leftJoin('board','board.boardId','education.fkboardId')
+            ->leftJoin('educationmajor','educationmajor.educationMajorId','education.fkMajorId')
+            ->orderBy('education.passingYear')
             ->get();
+
 
 
         $pQualification=ProfessionalQualification::whereIn('professionalqualification.fkemployeeId',$empIds)
@@ -532,7 +569,7 @@ class ApplicationController extends Controller
 
 
         $jobExperience=JobExperience::select('jobexperience.*')
-            ->orderBy('startDate', 'desc')
+//            ->orderBy('startDate', 'desc')
             ->addSelect(DB::raw("(CASE WHEN `jobexperience`.`endDate` IS NOT null AND `jobexperience`.`startDate` IS NOT null THEN TIMESTAMPDIFF(YEAR,`jobexperience`.`startDate`,`jobexperience`.`endDate`) WHEN `jobexperience`.`startDate` IS NOT null AND `jobexperience`.`endDate` IS null THEN TIMESTAMPDIFF(YEAR,`jobexperience`.`startDate`,CURDATE()) ELSE 0 END) AS expYear"),
                 DB::raw("(CASE WHEN `jobexperience`.`endDate` IS NOT null AND `jobexperience`.`startDate` IS NOT null THEN TIMESTAMPDIFF(MONTH,`jobexperience`.`startDate`,`jobexperience`.`endDate`) WHEN `jobexperience`.`startDate` IS NOT null AND `jobexperience`.`endDate` IS null THEN TIMESTAMPDIFF(MONTH,`jobexperience`.`startDate`,CURDATE()) ELSE 0 END) AS expMonth"),
                 DB::raw("(CASE WHEN `jobexperience`.`endDate` IS NOT null AND `jobexperience`.`startDate` IS NOT null THEN TIMESTAMPDIFF(DAY,`jobexperience`.`startDate`,`jobexperience`.`endDate`) WHEN `jobexperience`.`startDate` IS NOT null AND `jobexperience`.`endDate` IS null THEN TIMESTAMPDIFF(DAY,`jobexperience`.`startDate`,CURDATE()) ELSE 0 END) AS expDay"))
@@ -639,14 +676,25 @@ class ApplicationController extends Controller
                 ->whereIn('employee.employeeId',$empIds)
                 ->get();
 
-        $education=Education::select('education.institutionName','board.boardName','education.fkemployeeId','education.status','education.resultSystem','education.result','educationlevel.educationLevelName',
-            'educationmajor.educationMajorName','education.fkMajorId')
-            ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
-            ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
-            ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
-            ->leftJoin('board', 'board.boardId', '=', 'education.fkboardId')
+//        $education=Education::select('education.institutionName','board.boardName','education.fkemployeeId','education.status','education.resultSystem','education.result','educationlevel.educationLevelName',
+//            'educationmajor.educationMajorName','education.fkMajorId')
+//            ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
+//            ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
+//            ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
+//            ->leftJoin('board', 'board.boardId', '=', 'education.fkboardId')
+//            ->whereIn('fkemployeeId',$empIds)
+//            ->orderBy('education.passingYear')
+//            ->get();
+
+
+        $education=Education::select('education.*','degree.degreeName','board.boardName','educationmajor.educationMajorName')
             ->whereIn('fkemployeeId',$empIds)
+            ->leftJoin('degree','degree.degreeId','education.fkdegreeId')
+            ->leftJoin('board','board.boardId','education.fkboardId')
+            ->leftJoin('educationmajor','educationmajor.educationMajorId','education.fkMajorId')
+            ->orderBy('education.passingYear')
             ->get();
+
 
 
         $pQualification=ProfessionalQualification::whereIn('professionalqualification.fkemployeeId',$empIds)
@@ -657,7 +705,7 @@ class ApplicationController extends Controller
 
 
         $jobExperience=JobExperience::select('jobexperience.*')
-            ->orderBy('startDate', 'desc')
+//            ->orderBy('startDate', 'desc')
             ->addSelect(DB::raw("(CASE WHEN `jobexperience`.`endDate` IS NOT null AND `jobexperience`.`startDate` IS NOT null THEN TIMESTAMPDIFF(YEAR,`jobexperience`.`startDate`,`jobexperience`.`endDate`) WHEN `jobexperience`.`startDate` IS NOT null AND `jobexperience`.`endDate` IS null THEN TIMESTAMPDIFF(YEAR,`jobexperience`.`startDate`,CURDATE()) ELSE 0 END) AS expYear"),
                 DB::raw("(CASE WHEN `jobexperience`.`endDate` IS NOT null AND `jobexperience`.`startDate` IS NOT null THEN TIMESTAMPDIFF(MONTH,`jobexperience`.`startDate`,`jobexperience`.`endDate`) WHEN `jobexperience`.`startDate` IS NOT null AND `jobexperience`.`endDate` IS null THEN TIMESTAMPDIFF(MONTH,`jobexperience`.`startDate`,CURDATE()) ELSE 0 END) AS expMonth"),
                 DB::raw("(CASE WHEN `jobexperience`.`endDate` IS NOT null AND `jobexperience`.`startDate` IS NOT null THEN TIMESTAMPDIFF(DAY,`jobexperience`.`startDate`,`jobexperience`.`endDate`) WHEN `jobexperience`.`startDate` IS NOT null AND `jobexperience`.`endDate` IS null THEN TIMESTAMPDIFF(DAY,`jobexperience`.`startDate`,CURDATE()) ELSE 0 END) AS expDay"))
@@ -735,14 +783,14 @@ class ApplicationController extends Controller
 //            ->get();
 
         $major = Educationmajor::select('educationMajorId','educationMajorName')
-            ->leftJoin('degree', 'degree.degreeId', 'educationmajor.fkDegreeId')
-            ->leftJoin('educationlevel', 'educationlevel.educationLevelId', 'degree.educationLevelId')
-            ->where('degree.educationLevelId', '=',$r->id)
-            ->where('educationlevel.status',1)
-            ->where('degree.status',1)
-            ->where('educationmajor.status',1)
+//            ->leftJoin('degree', 'degree.degreeId', 'educationmajor.fkDegreeId')
+//            ->leftJoin('educationlevel', 'educationlevel.educationLevelId', 'degree.educationLevelId')
+            ->where('fkDegreeId', '=',$r->id)
+            ->orWhere('type', '=','g')
+//            ->where('educationlevel.status',1)
+            ->where('status',1)
             ->groupBy('educationMajorId')
-            ->orderBy('educationMajorName')
+            ->orderBy('educationMajorName','ASC')
             ->get();
 
         if ($major == null) {
