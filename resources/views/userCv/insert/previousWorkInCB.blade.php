@@ -11,16 +11,16 @@
                     <div class="col-md-3">
 
                         <div class="sidenav">
-                            <a href="{{route('candidate.cvPersonalInfo')}}">Personal Details</a>
-                            <a href="{{route('candidate.cvQuesObj')}}">Career Objective and Application Information</a>
+                            <a href="{{route('candidate.cvPersonalInfo')}}">Personal details</a>
+                            <a href="{{route('candidate.cvQuesObj')}}">Career objective and application information</a>
                             <a href="{{route('candidate.cvEducation')}}">Education</a>
                             <a href="{{route('candidate.language.index')}}" >Language</a>
-                            <a href="{{route('candidate.computerSkill.index')}}" >Computer-Skill</a>
+                            <a href="{{route('candidate.computerSkill.index')}}" >Computer-skill</a>
                             {{--<a href="{{route('candidate.skill.index')}}" >Other Skill Information</a>--}}
-                            <a href="{{route('cv.OthersInfo')}}" >Other Information</a>
-                            <a href="{{route('candidate.cvTrainingCertificate')}}">Training Certification</a>
-                            <a href="{{route('candidate.cvProfessionalCertificate')}}">Professional Certification</a>
-                            <a  href="{{route('JobExperience.index')}}">Job Experience</a>
+                            <a href="{{route('cv.OthersInfo')}}" >Other information</a>
+                            <a href="{{route('candidate.cvTrainingCertificate')}}">Training certification</a>
+                            <a href="{{route('candidate.cvProfessionalCertificate')}}">Professional certification</a>
+                            <a  href="{{route('JobExperience.index')}}">Job experience</a>
                             <a class="activeNav" href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
                             <a <?php if ($hasWorkedInCB!='0'){?> onclick="return false;" class="incomplete"<?php } ?> href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
                             <a onclick="return false;" class="incomplete" href="{{route('refree.index')}}">Referee</a>
@@ -74,7 +74,7 @@
                                     </div>
 
                                     <div id="experienceDiv" style="display: none" class="form-group col-md-4">
-                                        <label for="inputPassword4">Total Experience</label>
+                                        <label for="inputPassword4">Total experience</label>
                                         <input type="text" class="form-control"  name="totalExp" id="totalExpValue" placeholder="experience">
                                     </div>
 

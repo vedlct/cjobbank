@@ -43,7 +43,7 @@
             @endif
         </div>
         <div class="form-group">
-            <label for="">Awards Received <notice>(Max Limit 2500)</notice></label>
+            <label for="">Awards received <notice>(Max Limit 2500)</notice></label>
             <textarea type="text" name="awardReceived" maxlength="2500"  rows="3"
                       class="form-control {{ $errors->has('awardReceived') ? ' is-invalid' : '' }}"
                       id="awardReceived" placeholder="Awards received">{{$empOtherInfo->awardReceived}}</textarea>
