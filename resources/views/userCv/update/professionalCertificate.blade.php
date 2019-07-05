@@ -37,7 +37,7 @@
                     <div class="col-md-9" id="regForm">
                         <div id="" class="tab">
 
-                            <h2 style="margin-bottom: 30px;">Professional Certification</h2>
+                            <h2 style="margin-bottom: 30px;">Professional certification</h2>
 
                             <div id="profCertificateDiv">
 

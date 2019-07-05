@@ -49,7 +49,7 @@
 
                         <div class="col-md-9" id="regForm">
 
-                            <h2 style="margin-bottom: 40px; text-align: center;">Personal Details</h2>
+                            <h2 style="margin-bottom: 40px; text-align: center;">Personal details</h2>
                             <div id="edit">
 
                         {{--{{csrf_field()}}--}}
