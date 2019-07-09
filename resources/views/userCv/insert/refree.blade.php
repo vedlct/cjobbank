@@ -116,10 +116,10 @@
 
 
 
-                                    <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Last name<span style="color: red">*</span></label>
-                                        <input type="text" class="form-control" name="lastName[]" id="lastName" placeholder="last name" required>
-                                    </div>
+                                    {{--<div class="form-group col-md-6">--}}
+                                        {{--<label for="inputEmail4">Last name<span style="color: red">*</span></label>--}}
+                                        {{--<input type="text" class="form-control" name="lastName[]" id="lastName" placeholder="last name" required>--}}
+                                    {{--</div>--}}
 
 
 
@@ -260,13 +260,13 @@
 
                     if(firstName==""){
 
-                        var errorMsg='Please type  name first!!';
+                        var errorMsg='Please type  Name first!!';
                         validationError(errorMsg);
                         return false;
                     }
                     if (firstName.length > 90){
 
-                        var errorMsg='name should not more than 90 character length!!';
+                        var errorMsg='Name should not more than 90 character length!!';
                         validationError(errorMsg);
                         return false;
 
@@ -386,13 +386,13 @@
 
                     if(firstName==""){
 
-                        var errorMsg='Please type first name first!!';
+                        var errorMsg='Please type Name first!!';
                         validationError(errorMsg);
                         return false;
                     }
                     if (firstName.length > 90){
 
-                        var errorMsg='first name should not more than 90 character length!!';
+                        var errorMsg='Name should not more than 90 character length!!';
                         validationError(errorMsg);
                         return false;
 

@@ -43,7 +43,7 @@
         @if($withoutsalary != 'true')
         <th style="text-align: center">Salary Information</th>
         @endif
-        <th style="text-align: center">National ID Card</th>
+        <th style="text-align: center">National ID No./ Birth Identification No.</th>
         <th style="text-align: center">Photo (2)</th>
         <th style="text-align: center">Name of  two Referees</th>
         {{--<th>Relative in CB</th>--}}
@@ -137,18 +137,24 @@
 
             {{--</td>--}}
             <td colspan="3" height="600" style="text-align: left;vertical-align: top;">
-                <?php $tJEY=0;$tJEM=0; $totalexpyr = 0;$totalexpDay = 0;$tJED=0; $totalexpmonth = 0 ?>
+                <?php $tJEY=0;$tJEM=0; $totalexpyr = 0;$totalexpDay = 0;$tJED=0; $totalexpmonth = 0;$subDay=0 ?>
                 @foreach($jobExperienceList->where('fkemployeeId',$emp['employeeId']) as $job)
-                    Designation:<br>{{$job->degisnation}}<br>
-                    Name of Organization:<br>{{$job->organization}}<br>
+                    Position: {{$job->degisnation}}<br>
+                    Organization name: {{$job->organization}}<br>
                     {{$job->address}}<br>
 
                     years:
                         @if ($job->startDate!=null && $job->endDate==null)
 
                             {{$sub_struct=\Carbon\Carbon::parse($job->startDate)->diff(\Carbon\Carbon::now())->format('%y years, %m months and %d days')}}
+                            @php
+                            $subDay=\Carbon\Carbon::parse($job->startDate)->diffInDays(\Carbon\Carbon::now())
+                            @endphp
                         @else
                             {{$sub_struct=\Carbon\Carbon::parse($job->startDate)->diff(\Carbon\Carbon::parse($job->endDate))->format('%y years, %m months and %d days')}}
+                            @php
+                                $subDay=\Carbon\Carbon::parse($job->startDate)->diffInDays(\Carbon\Carbon::parse($job->endDate))
+                            @endphp
                         @endif
 
 <?php
@@ -166,15 +172,14 @@
                         ?>
 
                     <br>
-                    Start: {{$job->startDate}}
-                    End: @if($job->startDate!=null && $job->endDate==null) Running @else {{$job->endDate}}@endif
+                    {{--Start: {{$job->startDate}}--}}
+                    {{--End: @if($job->startDate!=null && $job->endDate==null) Running @else {{$job->endDate}}@endif--}}
+                    Served From /To: {{$job->startDate}} - @if($job->startDate!=null && $job->endDate==null) Running @else {{$job->endDate}}@endif<br>
                     <br>
 
                         <?php
 
-
-
-                        $totalexpDay = $totalexpDay + $job->expDay ;
+                        $totalexpDay = $totalexpDay + $subDay ;
 
                         ?>
                     <br>
@@ -218,11 +223,21 @@
             @endif
             <td height="600" style="text-align: center;vertical-align: middle;">
 
-                @if($emp['nationalId'])
-                    Yes
-                @else
-                    No
-                @endif
+                {{--@if($emp['nationalId'])--}}
+                    {{--Yes--}}
+                {{--@else--}}
+                    {{--No--}}
+                {{--@endif--}}
+                    @if(!is_null($emp['nationalId']))
+
+                    National ID No. :{{ $emp['nationalId'] }}
+
+                    @elseif(!is_null($emp['birthID']))
+
+                    Birth Identification No. :{{ $emp['birthID'] }}
+
+                    @endif
+
             </td>
             <td height="600" style="text-align: center;vertical-align: middle;">
 

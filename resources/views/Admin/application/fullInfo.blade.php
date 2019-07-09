@@ -58,7 +58,18 @@
                 Alternative Email: {{$emp->alternativeEmail}}<br>
                 Skype :  {{$emp->skype}}<br>
                 Date Of Birth: {{$emp->dateOfBirth}}<br>
-                National ID Card No: {{$emp->nationalId}}.<br>
+
+                @if(!is_null($emp->nationalId))
+
+                National ID No. :{{ $emp->nationalId }}<br>
+
+                @elseif(!is_null($emp->birthID))
+
+                Birth Identification No. :{{ $emp->birthID }}<br>
+
+                @endif
+
+                {{--National ID Card No: {{$emp->nationalId}}.<br>--}}
                 Passport No:  {{$emp->passport}}<br>
 
                 Permanent Address: {{$emp->parmanentAddress}}<br>
@@ -98,7 +109,7 @@
             @endforeach
         </td>
         <td colspan="6" class="Border" height="620"   style="text-align: left;">
-            <?php $tJEY=0;$tJEM=0;$tJED=0; $totalexpyr = 0;$totalexpDay = 0; $totalexpmonth = 0 ?>
+            <?php $tJEY=0;$tJEM=0;$tJED=0; $totalexpyr = 0;$totalexpDay = 0; $totalexpmonth = 0;$subDay=0; ?>
             <?php $temp=0; $totalday  = 0; ?>
             @foreach($jobExperience->where('fkemployeeId',$emp->employeeId) as $job)
             {{++$temp}}. Position: {{$job->degisnation}}<br>
@@ -113,8 +124,14 @@
                     @if ($job->startDate!=null && $job->endDate==null)
 
                     {{$sub_struct=\Carbon\Carbon::parse($job->startDate)->diff(\Carbon\Carbon::now())->format('%y years, %m months and %d days')}}
+                        @php
+                            $subDay=\Carbon\Carbon::parse($job->startDate)->diffInDays(\Carbon\Carbon::now())
+                        @endphp
                     @else
                     {{$sub_struct=\Carbon\Carbon::parse($job->startDate)->diff(\Carbon\Carbon::parse($job->endDate))->format('%y years, %m months and %d days')}}
+                        @php
+                            $subDay=\Carbon\Carbon::parse($job->startDate)->diffInDays(\Carbon\Carbon::parse($job->endDate))
+                        @endphp
                     @endif
 
 
@@ -130,9 +147,9 @@
 
 
 
-                    $totalexpDay = $totalexpDay + $job->expDay ;
-                    $totalexpmonth = $totalexpmonth + $job->expMonth ;
-                    $totalexpyr = $totalexpyr + $job->expYear ;
+                    $totalexpDay = $totalexpDay + $subDay ;
+//                    $totalexpmonth = $totalexpmonth + $job->expMonth ;
+//                    $totalexpyr = $totalexpyr + $job->expYear ;
 
                     ?>
 

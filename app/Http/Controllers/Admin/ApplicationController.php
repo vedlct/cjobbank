@@ -15,6 +15,7 @@ use App\Http\Controllers\Controller;
 use App\Job;
 use App\Jobapply;
 use App\JobExperience;
+use App\Mail\newMail;
 use App\MailTamplate;
 use App\Nationality;
 use App\PreviousWorkInCB;
@@ -39,6 +40,7 @@ use Excel;
 use PDF;
 use MPDF;
 use Mail;
+
 
 
 
@@ -814,7 +816,7 @@ class ApplicationController extends Controller
         $refNo=$r->refNo;
 
 //        $list=array();
-
+        $error=array();
         for ($i=0;$i<count($appliedList);$i++) {
 
             $appliedId = $appliedList[$i];
@@ -832,6 +834,8 @@ class ApplicationController extends Controller
 
           //  return $template;
 
+
+
             /* make invoice pdf*/
 
             if ($template=='1'){
@@ -839,29 +843,36 @@ class ApplicationController extends Controller
                 $jobInfo->interviewCallDate=$testDate;
                 $jobInfo->save();
 
-                $pdf = PDF::loadView('mail.interviewCard',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
-                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo]);
+
 
 
                 try{
 
-                    Mail::send('mail.MailBody',['employeeInfo' => $employeeInfo], function($message) use ($pdf,$employeeInfo)
-                    {
-
-//                        $message->from('support@caritasbd.com', 'CARITAS BD');
-
-                        $message->to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)->subject('INTERVIEW CARD From CARITAS BD');
-
-                        $message->attachData($pdf->output(),'INTERVIEW-CARD.pdf',['mime' => 'application/pdf']);
 
 
+                    Mail::to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)
 
-                    });
-                    return 1;
+                        ->queue(new newMail($testDate, $testAddress, $testDetails, $footerAndSign, $subjectLine, $refNo, $jobInfo,$employeeInfo,$template));
+
+//                    Mail::queue('mail.MailBody',['employeeInfo' => $employeeInfo], function($message) use ($pdf,$employeeInfo)
+//                    {
+//
+////                        $message->from('support@caritasbd.com', 'CARITAS BD');
+//
+//                        $message->to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)->subject('INTERVIEW CARD From CARITAS BD');
+//
+//                        $message->attachData($pdf->output(),'INTERVIEW-CARD.pdf',['mime' => 'application/pdf']);
+//
+//
+//
+//                    });
+                    //return 1;
+
                 }
                 catch (\Exception $ex) {
 
-                    return 0;
+//                    return 0;
+                    return $error[$i]=$ex;
                 }
 
             }
@@ -873,7 +884,7 @@ class ApplicationController extends Controller
 
                 try{
 
-                    Mail::send('mail.MailBody',['employeeInfo' => $employeeInfo], function($message) use ($pdf,$employeeInfo)
+                    Mail::queue('mail.MailBody',['employeeInfo' => $employeeInfo], function($message) use ($pdf,$employeeInfo)
                     {
 
 //                        $message->from('support@caritasbd.com', 'CARITAS BD');
@@ -885,11 +896,12 @@ class ApplicationController extends Controller
 
 
                     });
-                    return 1;
+//                    return 1;
                 }
                 catch (\Exception $ex) {
 
-                    return 0;
+//                    return 0;
+                    return $error[$i]=$ex;
                 }
 
             }
@@ -901,7 +913,7 @@ class ApplicationController extends Controller
 
                 try{
 
-                    Mail::send('mail.MailBody',['employeeInfo' => $employeeInfo], function($message) use ($pdf,$employeeInfo)
+                    Mail::queue('mail.MailBody',['employeeInfo' => $employeeInfo], function($message) use ($pdf,$employeeInfo)
                     {
 
 //                        $message->from('support@caritasbd.com', 'CARITAS BD');
@@ -913,11 +925,12 @@ class ApplicationController extends Controller
 
 
                     });
-                    return 1;
+//                    return 1;
                 }
                 catch (\Exception $ex) {
 
-                    return 0;
+//                    return 0;
+                    return $error[$i]=$ex;
                 }
 
             }
@@ -927,6 +940,14 @@ class ApplicationController extends Controller
 
 
 
+        }
+        if(!empty($error))
+        {
+
+            return $error;
+
+        }else{
+            return 1;
         }
 
 

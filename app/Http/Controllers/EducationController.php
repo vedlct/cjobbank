@@ -234,9 +234,17 @@ class EducationController extends Controller
         $boards=Board::where('status',1)->orderBy('boardName', 'ASC')->get();
 
 
+        $major=Educationmajor::select('educationMajorId','educationMajorName')
+            ->where('fkDegreeId', '=',$education->degreeId)
+            ->where('status',1)
+            ->orWhere('type', '=','g')
+            ->groupBy('educationMajorId')
+            ->orderBy('educationMajorName', 'ASC')
+            ->get();
 
 
-        return view('userCv.edit.editEducation',compact('education','educationLevel','country','boards'));
+
+        return view('userCv.edit.editEducation',compact('education','educationLevel','country','boards','major'));
 
 
     }

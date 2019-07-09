@@ -282,13 +282,13 @@
 
                     if(firstName==""){
 
-                        var errorMsg='Please type name first!!';
+                        var errorMsg='Please type Name first!!';
                         validationError(errorMsg);
                         return false;
                     }
                     if (firstName.length > 90){
 
-                        var errorMsg='name should not more than 90 character length!!';
+                        var errorMsg='Name should not more than 90 character length!!';
                         validationError(errorMsg);
                         return false;
 

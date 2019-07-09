@@ -83,7 +83,11 @@
                 <label for="">Major</label>
                 <select name="major"  class="form-control js-example-basic-single" id="majorSub">
                     <option value="">Select Major</option>
-                    <option selected value="{{$education->educationMajorId}}">{{$education->educationMajorName}}</option>
+
+                    @foreach($major as $mj)
+                    <option @if($mj->educationMajorId == $education->fkMajorId) selected @endif value="{{$mj->educationMajorId}}">{{$mj->educationMajorName}}</option>
+                    @endforeach
+
                     <option value="{{OTHERS}}">{{OTHERS}}</option>
                 </select>
             </div>
