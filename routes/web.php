@@ -11,8 +11,8 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('auth.login');
+//Route::get('/RumiTest', function () {
+//    return view('mail.MailBody');
 //});
 //sleep(2);
 Route::get('/','Auth\LoginController@loginForm')->name('/');

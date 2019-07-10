@@ -848,24 +848,27 @@ class ApplicationController extends Controller
 
                 try{
 
+            $pdf = PDF::loadView('mail.interviewCard',['empInfo' => $employeeInfo,'testDate'=>$jobInfo->interviewCallDate,'testAddress'=>$testAddress,
+                'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo]);
 
 
-                    Mail::to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)
+//                    Mail::to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)
+//
+//                        ->send(new newMail($testDate, $testAddress, $testDetails, $footerAndSign, $subjectLine, $refNo, $jobInfo,$employeeInfo,$template));
 
-                        ->queue(new newMail($testDate, $testAddress, $testDetails, $footerAndSign, $subjectLine, $refNo, $jobInfo,$employeeInfo,$template));
+                    Mail::send('mail.MailBody',['employeeInfo' => $employeeInfo], function($message) use ($pdf,$employeeInfo)
+                    {
 
-//                    Mail::queue('mail.MailBody',['employeeInfo' => $employeeInfo], function($message) use ($pdf,$employeeInfo)
-//                    {
-//
-////                        $message->from('support@caritasbd.com', 'CARITAS BD');
-//
-//                        $message->to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)->subject('INTERVIEW CARD From CARITAS BD');
-//
-//                        $message->attachData($pdf->output(),'INTERVIEW-CARD.pdf',['mime' => 'application/pdf']);
-//
-//
-//
-//                    });
+//                        $message->from('support@caritasbd.com', 'CARITAS BD');
+
+                        $message->to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)->subject('INTERVIEW CARD From CARITAS BD');
+
+                        $message->attachData($pdf->output(),'INTERVIEW-CARD.pdf',['mime' => 'application/pdf']);
+
+
+
+                    });
+                    sleep(1);
                     //return 1;
 
                 }
@@ -884,7 +887,7 @@ class ApplicationController extends Controller
 
                 try{
 
-                    Mail::queue('mail.MailBody',['employeeInfo' => $employeeInfo], function($message) use ($pdf,$employeeInfo)
+                    Mail::send('mail.MailBody',['employeeInfo' => $employeeInfo], function($message) use ($pdf,$employeeInfo)
                     {
 
 //                        $message->from('support@caritasbd.com', 'CARITAS BD');
@@ -896,6 +899,7 @@ class ApplicationController extends Controller
 
 
                     });
+                    sleep(1);
 //                    return 1;
                 }
                 catch (\Exception $ex) {
@@ -913,7 +917,7 @@ class ApplicationController extends Controller
 
                 try{
 
-                    Mail::queue('mail.MailBody',['employeeInfo' => $employeeInfo], function($message) use ($pdf,$employeeInfo)
+                    Mail::send('mail.MailBody',['employeeInfo' => $employeeInfo], function($message) use ($pdf,$employeeInfo)
                     {
 
 //                        $message->from('support@caritasbd.com', 'CARITAS BD');
@@ -925,6 +929,7 @@ class ApplicationController extends Controller
 
 
                     });
+                    sleep(1);
 //                    return 1;
                 }
                 catch (\Exception $ex) {
