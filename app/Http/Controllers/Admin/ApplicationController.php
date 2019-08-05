@@ -868,14 +868,14 @@ class ApplicationController extends Controller
 
 
                     });
-                    sleep(1);
+//                    sleep(1);
                     //return 1;
 
                 }
                 catch (\Exception $ex) {
 
 //                    return 0;
-                    return $error[$i]=$ex;
+                     $error[$i]=$ex;
                 }
 
             }
@@ -899,13 +899,13 @@ class ApplicationController extends Controller
 
 
                     });
-                    sleep(1);
+//                    sleep(1);
 //                    return 1;
                 }
                 catch (\Exception $ex) {
 
 //                    return 0;
-                    return $error[$i]=$ex;
+                     $error[$i]=$ex;
                 }
 
             }
@@ -929,20 +929,16 @@ class ApplicationController extends Controller
 
 
                     });
-                    sleep(1);
+//                    sleep(1);
 //                    return 1;
                 }
                 catch (\Exception $ex) {
 
 //                    return 0;
-                    return $error[$i]=$ex;
+                     $error[$i]=$ex;
                 }
 
             }
-
-
-
-
 
 
         }

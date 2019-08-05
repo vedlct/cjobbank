@@ -1478,7 +1478,7 @@ CKEDITOR.config.toolbar = [
 
                             selecteds=[];
 
-                            console.log(data);
+                           // console.log(data);
 
                             $(':checkbox:checked').prop('checked',false);
 
