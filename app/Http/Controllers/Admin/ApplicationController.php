@@ -810,6 +810,29 @@ class ApplicationController extends Controller
     }
     public function sendMailtoAppliedCandidate(Request $r)
     {
+        $start = $r->start;
+        $end = $r->end;
+
+        if (empty($r->interval) && $r->tamplateId=='1'){
+            $arr = array('msg' => 'interval field is required.', 'status' => 'error');
+            return Response()->json($arr);
+        }
+
+        if($start < $end){
+            $totaltime = (strtotime($end)-strtotime($start))/$r->selected;
+            $availabletime = date("i",$totaltime);
+            if ($availabletime >= $r->interval)
+            {
+                $possible=true;
+            }else{
+                $arr = array('msg' => 'Not possible interval time.', 'status' => 'error');
+                return Response()->json($arr);
+            }
+
+        } else {
+            $arr = array('msg' => 'Invalid start and end time.', 'status' => 'error');
+            return Response()->json($arr);
+        }
         $appliedList=$r->jobApply;
         $template=$r->tamplateId;
         $templateversion=$r->tamplateversion;
@@ -823,6 +846,12 @@ class ApplicationController extends Controller
 //        $list=array();
         $error=array();
         for ($i=0;$i<count($appliedList);$i++) {
+
+            if ($possible){
+                $intv = $r->interval*($i+1);
+                $nexttime = strtotime("+".$intv." minutes", strtotime($start));
+                $intviewTime = date("H:i",$nexttime);
+            }
 
             $appliedId = $appliedList[$i];
 
@@ -852,12 +881,12 @@ class ApplicationController extends Controller
 
 
                 try{
-                    if($templateversion=='regular'){
+//                    if($templateversion=='regular'){
                         $pdf = PDF::loadView('mail.interviewCard',['empInfo' => $employeeInfo,'testDate'=>$jobInfo->interviewCallDate,'testAddress'=>$testAddress,
-                            'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo]);
-                    }elseif($templateversion=='custom'){
-                        echo 'custom';
-                    }
+                            'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'intviewTime'=>$intviewTime]);
+//                    }elseif($templateversion=='custom'){
+//                        echo 'custom';
+//                    }
 
                     Mail::send('mail.MailBody',['employeeInfo' => $employeeInfo], function($message) use ($pdf,$employeeInfo)
                     {
@@ -879,12 +908,12 @@ class ApplicationController extends Controller
             }
             if ($template=='2'){
 
-                if($templateversion=='regular'){
+//                if($templateversion=='regular'){
                     $pdf = PDF::loadView('mail.notSelected',['empInfo' => $employeeInfo,'testDate'=>$jobInfo->interviewCallDate,'testAddress'=>$testAddress,
                         'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo]);
-                }elseif($templateversion=='custom'){
-                    echo 'custom';
-                }
+//                }elseif($templateversion=='custom'){
+//                    echo 'custom';
+//                }
 
                 try{
 
@@ -900,8 +929,6 @@ class ApplicationController extends Controller
 
 
                     });
-//                    sleep(1);
-//                    return 1;
                 }
                 catch (\Exception $ex) {
 
@@ -912,12 +939,12 @@ class ApplicationController extends Controller
             }
             if ($template=='3'){
 
-                if($templateversion=='regular'){
+//                if($templateversion=='regular'){
                     $pdf = PDF::loadView('mail.panelListed',['empInfo' => $employeeInfo,'testDate'=>$jobInfo->interviewCallDate,'testAddress'=>$testAddress,
                         'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo]);
-                }elseif($templateversion=='custom'){
-                    echo 'custom';
-                }
+//                }elseif($templateversion=='custom'){
+//                    echo 'custom';
+//                }
 
                 try{
 

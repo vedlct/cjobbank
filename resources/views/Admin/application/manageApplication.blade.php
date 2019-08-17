@@ -29,11 +29,8 @@
 
                             <div class="modal-body">
 
-                                {{--<form method="post" action="{{route('mailTamplate.store')}}">--}}
-                                    {{--{{csrf_field()}}--}}
-                                    <div class="row">
-
-                                        <div  class="col-md-6">
+                                <div class="row">
+                                    <div  class="col-md-6">
 
                                             <label for="mailTamplate" class="control-label">Mail Tamplate</label>
 
@@ -58,9 +55,7 @@
                                             </select>
 
                                         </div>
-
-
-                                    </div>
+                                </div>
                                 <div class="row">
 
                                     <div class="col-md-6">
@@ -73,6 +68,35 @@
 
                                         <label for="">Test Date</label>
                                         <input class="form-control date1" id="testDate" name="testDate" value="">
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row" id="forinterview">
+
+                                    <div class="col-md-3">
+
+                                        <label for="refNo">Selected applicant:</label>
+                                        <input type="text" id="totalSelected" class="form-control" readonly>
+
+                                    </div>
+                                    <div class="col-md-3">
+
+                                        <label for="">Start Time</label>
+                                        <input type="time" class="form-control" id="StartTime">
+
+                                    </div>
+                                    <div class="col-md-3">
+
+                                        <label for="">End Time</label>
+                                        <input type="time" class="form-control" id="EndTime">
+
+                                    </div>
+                                    <div class="col-md-3">
+
+                                        <label for="">Interval Time</label>
+                                        <input class="form-control" id="IntervalTime">
 
                                     </div>
 
@@ -510,8 +534,7 @@ CKEDITOR.config.toolbar = [
                 startDate: '-0d',
             });
 
-
-
+            $('#forinterview').hide();
 
             table = $('#manageapplication').DataTable({
                 processing: true,
@@ -1439,8 +1462,8 @@ CKEDITOR.config.toolbar = [
                 var products=selecteds;
 
                 if (products.length >0) {
-
                     $('#mail_info').modal({show: true});
+                    $("#totalSelected").val(products.length);
                 }
                 else {
 
@@ -1503,7 +1526,7 @@ CKEDITOR.config.toolbar = [
                         cache: false,
                         data: {'jobApply': products,_token:"{{csrf_token()}}",'tamplateId':$('#mailTamplate').val(),'tamplateversion':$('#TamplateVersion').val(),'testDate':$('#testDate').val(),
                             'testAddress':$('#testAddress').val(),'testDetails':$('#tamplateBody').val(),'footerAndSign':CKEDITOR.instances['ckBox'].getData(),
-                            'subjectLine':$('#subjectLine').val(),'refNo':$('#refNo').val()},
+                            'subjectLine':$('#subjectLine').val(),'refNo':$('#refNo').val(),'selected':$('#totalSelected').val(),'start':$('#StartTime').val(),'end':$('#EndTime').val(),'interval':$('#IntervalTime').val()},
                         success: function (data) {
 
                             $("#wait").css("display", "none");
@@ -1513,7 +1536,19 @@ CKEDITOR.config.toolbar = [
 
                             selecteds=[];
 
-                           // console.log(data);
+                           if(data.status=='error'){
+                               $.alert({
+                                   title: 'Alert!',
+                                   type: 'red',
+                                   content: data.msg,
+                                   buttons: {
+                                       tryAgain: {
+                                           text: 'Ok',
+                                           btnClass: 'btn-blue',
+                                       }
+                                   }
+                               });
+                           }
 
                             $(':checkbox:checked').prop('checked',false);
 
@@ -1783,8 +1818,6 @@ CKEDITOR.config.toolbar = [
                 data:{_token:"{{csrf_token()}}",id:this.value},
                 cache: false,
                 success:function(data) {
-
-                   // console.log(data);
                      document.getElementById("degreeLvlFilter").innerHTML = data;
                      $('#degreeLvlFilter').css("background-color", "#FFF").css('color', 'black');
 
@@ -1848,9 +1881,11 @@ CKEDITOR.config.toolbar = [
                             if ($('#mailTamplate').val()==1){
                                 $('#subjectLineDiv').show();
                                 $('#testDateDiv').show();
+                                $('#forinterview').show();
                             }else{
                                 $('#subjectLineDiv').hide();
                                 $('#testDateDiv').hide();
+                                $('#forinterview').hide();
                             }
 
 
