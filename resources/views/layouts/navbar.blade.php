@@ -60,26 +60,29 @@
     <li class="has-submenu">
         <a href="#"><i class="ti-settings"></i>Settings</a>
         <ul class="submenu" style="height: 500px;overflow-y: scroll">
-        <li><a href="{{route('manage.zone')}}">Manage Zone</a></li>
-        <li><a href="{{route('manage.education')}}">Manage Education Level</a></li>
-        <li><a href="{{route('manage.educationDegree')}}">Manage Education Degree</a></li>
-        <li><a href="{{route('manage.major')}}">Manage Major</a></li>
-        <li><a href="{{route('manage.board')}}">Manage Board</a></li>
-        <li><a href="{{route('manage.nationality')}}">Manage Nationality</a></li>
-        <li><a href="{{route('manage.religion')}}">Manage Religion</a></li>
-        <li><a href="{{route('manage.ethnicity')}}">Manage Ethnicity</a></li>
-        <li><a href="{{route('manage.organizationType')}}">Manage Organization type</a></li>
-        <li><a href="{{route('manage.agreement')}}">Manage Agreement</a></li>
-        <li><a href="{{route('manage.degisnation')}}">Manage Designation</a></li>
-        <li><a href="{{route('manage.getApplicantQuestionAnswer')}}">Applicant Question Answer</a></li>
-        {{--<li><a href="{{route('manage.otherSkill')}}">Manage Other Skill</a></li>--}}
-        <li><a href="{{route('manage.skill')}}">Manage Computer Skill</a></li>
-        <li><a href="{{route('manage.language')}}">Manage Language</a></li>
-        {{--<li><a href="{{route('manage.mailTamplate')}}">Manage Mail Tamplate</a></li>--}}
-        <li><a href="{{route('manage.careerObjectiveAndApplicationInformation')}}">Career Objective and Application Information</a></li>
-        <li><a href="{{route('manage.terms_and_condition')}}">Terms and Condition</a></li>
-        <li><a href="{{route('manage.typeOfEmployment')}}">Type of Employment</a></li>
-        <li><a  href="{{route('backup.wholeDbBackup')}}">Database backup</a></li>
+            <li><a href="{{route('manage.zone')}}">Manage Zone</a></li>
+            <li><a href="{{route('manage.education')}}">Manage Education Level</a></li>
+            <li><a href="{{route('manage.educationDegree')}}">Manage Education Degree</a></li>
+            <li><a href="{{route('manage.major')}}">Manage Major</a></li>
+            <li><a href="{{route('manage.board')}}">Manage Board</a></li>
+            <li><a href="{{route('manage.nationality')}}">Manage Nationality</a></li>
+            <li><a href="{{route('manage.religion')}}">Manage Religion</a></li>
+            <li><a href="{{route('manage.ethnicity')}}">Manage Ethnicity</a></li>
+            <li><a href="{{route('manage.organizationType')}}">Manage Organization type</a></li>
+            <li><a href="{{route('manage.agreement')}}">Manage Agreement</a></li>
+            <li><a href="{{route('manage.degisnation')}}">Manage Designation</a></li>
+            <li><a href="{{route('manage.getApplicantQuestionAnswer')}}">Applicant Question Answer</a></li>
+            {{--<li><a href="{{route('manage.otherSkill')}}">Manage Other Skill</a></li>--}}
+            <li><a href="{{route('manage.skill')}}">Manage Computer Skill</a></li>
+            <li><a href="{{route('manage.language')}}">Manage Language</a></li>
+            {{--<li><a href="{{route('manage.mailTamplate')}}">Manage Mail Tamplate</a></li>--}}
+            <li><a href="{{route('manage.careerObjectiveAndApplicationInformation')}}">Career Objective and Application Information</a></li>
+            <li><a href="{{route('manage.terms_and_condition')}}">Terms and Condition</a></li>
+            <li><a href="{{route('manage.typeOfEmployment')}}">Type of Employment</a></li>
+            <li><a  href="{{route('backup.wholeDbBackup')}}">Database backup</a></li>
+            <li><a href="{{route('changeemailtemplate.interviewcard')}}">Change Interview card Email Template</a></li>
+            <li><a href="{{route('changeemailtemplate.panellisted')}}">Change Panel listed Email Template</a></li>
+            <li><a href="{{route('changeemailtemplate.notselected')}}">Change Not selected Email Template</a></li>
         </ul>
     </li>
     @endif

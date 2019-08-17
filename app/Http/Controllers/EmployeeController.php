@@ -28,6 +28,7 @@ use Session;
 use Auth;
 use Image;
 use PDF;
+use Mail;
 
 class EmployeeController extends Controller
 {
@@ -77,8 +78,6 @@ class EmployeeController extends Controller
 
         $empId=Employee::where('fkuserId',Auth::user()->userId)->first()->employeeId;
 
-
-
         $jobApply=new Jobapply();
         $jobApply->applydate=date('Y-m-d');
         $jobApply->fkjobId=$jobId;
@@ -86,12 +85,19 @@ class EmployeeController extends Controller
         $jobApply->currentSalary=$r->currentSalary;
         $jobApply->expectedSalary=$r->expectedSalary;
 //        $jobApply->status=JOB_STATUS['Pending'];
-        $jobApply->save();
+//        $jobApply->save();
+        if ($jobApply->save())
+        {
+            $email = Auth::user()->email;
+            Mail::send('mail.jobApplySuccess',['email' => $email], function($message) use ($email)
+            {
+                $message->to($email)->subject('APPLY SUCCESSFUL');
+            });
+        }
 
         return redirect()->route('job.all');
-
-
     }
+
     public function getEmployeeshowFullCv()
     {
 

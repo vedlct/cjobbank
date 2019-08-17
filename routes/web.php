@@ -398,3 +398,12 @@ Route::get('manage/Type-of-employment','Admin\SettingsController@typeOfEmploymen
 Route::post('manage/Type-of-employment/insert','Admin\SettingsController@inserttypeOfEmployment')->name('manage.typeOfEmployment.insert');
 Route::post('manage/Type-of-employment/edit','Admin\SettingsController@edittypeOfEmployment')->name('manage.typeOfEmployment.edit');
 Route::post('manage/Type-of-employment/update/{id}','Admin\SettingsController@updatetypeOfEmployment')->name('manage.typeOfEmployment.update');
+
+/*change email template*/
+Route::get('change-template/interview-card','Admin\SettingsController@changeinterviewcard')->name('changeemailtemplate.interviewcard');
+Route::get('change-template/panel-listed','Admin\SettingsController@changepanellisted')->name('changeemailtemplate.panellisted');
+Route::get('change-template/not-selected','Admin\SettingsController@notselected')->name('changeemailtemplate.notselected');
+
+Route::post('change-template/update-template','Admin\SettingsController@updateemailtemplate')->name('changeemailtemplate.updateemailtemplate');
+
+

@@ -1,4 +1,14 @@
 @extends('main')
+
+@section('header')
+
+{{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>--}}
+{{--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>--}}
+
+{{--<link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" rel="stylesheet">--}}
+
+@endsection
+
 @section('content')
 
 
@@ -35,6 +45,17 @@
 
                                             </select>
 
+                                        </div>
+
+                                        <div  class="col-md-6">
+
+                                            <label for="mailTamplate" class="control-label">Mail Version</label>
+
+                                            <select class="form-control" id="TamplateVersion">
+                                                <option selected value="">Select Version</option>
+                                                <option value="regular">Regular</option>
+                                                <option value="custom">Custom</option>
+                                            </select>
 
                                         </div>
 
@@ -262,18 +283,28 @@
                         </select>
                     </div>
 
-
+{{--                    <div class="example">--}}
+{{--                        <script type="text/javascript">--}}
+{{--                            $(document).ready(function() {--}}
+{{--                                $('#educationMajorFilter').multiselect();--}}
+{{--                            });--}}
+{{--                        </script>--}}
+{{--                        <select id="multi-select-demo" multiple="multiple">--}}
+{{--                            <option value="jQuery">jQuery tutorial</option>--}}
+{{--                            <option value="Bootstrap">Bootstrap Tips</option>--}}
+{{--                            <option value="HTML">HTML</option>--}}
+{{--                            <option value="CSS">CSS tricks</option>--}}
+{{--                            <option value="angular">Angular JS</option>--}}
+{{--                        </select>--}}
+{{--                    </div>--}}
 
 
 
                     <div class=" form-group ">
                         <label>Major</label>
-                        <select id="educationMajorFilter" name="educationMajorFilter" class="form-control">
+{{--                        <select data-placeholder="Choose a Country..."id="educationMajorFilter" class="chosen-select" multiple style="width:350px;" tabindex="4">--}}
+                        <select id="educationMajorFilter" name="educationMajorFilter" class="form-control" multiple>
                             <option value="">Select a Major</option>
-                            {{--@foreach($allEducationMajor as $eduMajor)--}}
-                            {{--<option value="{{$eduMajor->educationMajorId}}">{{$eduMajor->educationMajorName}}</option>--}}
-                            {{--@endforeach--}}
-
                         </select>
                     </div>
                 <div class=" form-group ">
@@ -437,6 +468,9 @@
 
 @endsection
 @section('foot-js')
+
+{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.js"></script>--}}
+
     <script src="{{url('public/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{url('public/assets/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
     <script type="text/javascript" src="{{url('public/assets/ckeditor/ckeditor.js')}}"></script>
@@ -461,6 +495,7 @@ CKEDITOR.config.toolbar = [
     </script>
 
     <script>
+
         $(document).ready(function() {
 
             $('.date').datepicker({
@@ -1466,7 +1501,7 @@ CKEDITOR.config.toolbar = [
                         type: 'POST',
                         url: "{!! route('jobAppliedCadidate.admin.sendMail') !!}",
                         cache: false,
-                        data: {'jobApply': products,_token:"{{csrf_token()}}",'tamplateId':$('#mailTamplate').val(),'testDate':$('#testDate').val(),
+                        data: {'jobApply': products,_token:"{{csrf_token()}}",'tamplateId':$('#mailTamplate').val(),'tamplateversion':$('#TamplateVersion').val(),'testDate':$('#testDate').val(),
                             'testAddress':$('#testAddress').val(),'testDetails':$('#tamplateBody').val(),'footerAndSign':CKEDITOR.instances['ckBox'].getData(),
                             'subjectLine':$('#subjectLine').val(),'refNo':$('#refNo').val()},
                         success: function (data) {

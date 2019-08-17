@@ -23,6 +23,7 @@ use App\OrganizationType;
 use App\TermsAndConditions;
 use App\TypeOfEmployment;
 use App\Zone;
+use App\email;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Session;
@@ -53,11 +54,6 @@ class SettingsController extends Controller
 
                 return redirect('/');
             }
-
-
-
-
-
         });
     }
 
@@ -847,5 +843,34 @@ class SettingsController extends Controller
 
     }
 
+    public function changeinterviewcard()
+    {
+        $email_data = email::where('emailfor','interview')->first();
+        return view('emailTemplte.interview',compact('email_data'));
+    }
 
+    public function changepanellisted()
+    {
+        $email_data = email::where('emailfor','panellisted')->first();
+        return view('emailTemplte.panellisted',compact('email_data'));
+    }
+
+    public function notselected()
+    {
+        $email_data = email::where('emailfor','notselected')->first();
+        return view('emailTemplte.notselected',compact('email_data'));
+    }
+
+    public function updateemailtemplate(Request $r)
+    {
+        if (!empty($r->contant_id))
+            $email = email::find($r->contant_id);
+        else
+            $email = new email;
+            $email->emailfor=$r->contant_type;
+            $email->emailbody=$r->contents;
+            $email->save();
+
+            return redirect('/');
+    }
 }

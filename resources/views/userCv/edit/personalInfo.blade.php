@@ -369,7 +369,7 @@
                                 <div class="row">
 
                                     <div class="form-group col-md-6">
-                                        <label for="">Image</label>&nbsp;<span id="imageMsg"><notice>(Maximum Image Size 100Kb)</notice></span>
+                                        <label for="">Please upload your updated picture</label>&nbsp;<span id="imageMsg"><notice>(Maximum Size 100Kb)</notice></span>
                                         @if ($errors->has('image'))
 
                                             <span class="">
@@ -386,7 +386,7 @@
                                         @endif
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="">Signature</label>&nbsp;<span id="signMsg"><notice>(Maximum Signature Size 50Kb)</notice></span>
+                                        <label for="">Signature</label>&nbsp;<span id="signMsg"><notice>(Maximum Size 50Kb)</notice></span>
                                         @if ($errors->has('sign'))
 
                                             <span class="">

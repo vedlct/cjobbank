@@ -234,6 +234,6 @@ feel free to apply again for other position/vacancies for which you may be quali
 </table>
 
 </div>
-
+<p>This is a computer-generated document. No signature is required</p>
 </body>
 </html>

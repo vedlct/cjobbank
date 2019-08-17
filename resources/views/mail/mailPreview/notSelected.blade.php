@@ -50,6 +50,6 @@
         <td width="100%" align="left">{!!$footerAndSign!!}
         </td>
     </tr>
-
-
 </table>
+
+<p>This is a computer-generated document. No signature is required</p>

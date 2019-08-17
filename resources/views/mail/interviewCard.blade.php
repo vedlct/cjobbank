@@ -228,6 +228,6 @@ Please take note of the following information for attending the interview:<br>
     </table>
 
 </div>
-
+<p>This is a computer-generated document. No signature is required</p>
 </body>
 </html>

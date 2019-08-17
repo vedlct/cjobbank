@@ -405,7 +405,7 @@
                             <div class="row">
 
                                 <div class="form-group col-md-6">
-                                    <label for="">Image</label>&nbsp;<notice>(Maximum Image Size 100Kb)</notice>
+                                    <label for="">Please upload your updated picture</label>&nbsp;<notice>(Maximum Size 100Kb)</notice>
                                     <input type="file" class="form-control" name="image" id="image" placeholder="Image">
                                     @if ($errors->has('image'))
 
@@ -415,7 +415,7 @@
                                     @endif
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="">Signature</label>&nbsp;<notice>(Maximum signature size 50Kb)</notice>
+                                    <label for="">Signature</label>&nbsp;<notice>(Maximum size 50Kb)</notice>
                                     @if ($errors->has('sign'))
 
                                         <span class="">

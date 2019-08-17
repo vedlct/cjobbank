@@ -233,6 +233,6 @@ Thank you very much for your interest in working with Caritas Bangladesh.
     </table>
 
 </div>
-
+<p>This is a computer-generated document. No signature is required</p>
 </body>
 </html>

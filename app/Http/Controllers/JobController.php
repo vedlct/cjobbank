@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Job;
 use Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class JobController extends Controller
 {
@@ -119,7 +120,6 @@ class JobController extends Controller
    }
 
    public function applyJobModal(Request $r){
-
-       return view('job.jobModal')->with('jobId',$r->jobId);
+        return view('job.jobModal')->with('jobId',$r->jobId);
    }
 }

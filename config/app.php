@@ -250,9 +250,6 @@ return [
 //        'PDF' => Barryvdh\DomPDF\Facade::class,
 
         'PDF' => niklasravnsborg\LaravelPdf\Facades\Pdf::class,
-
-
-
     ],
 
 ];
