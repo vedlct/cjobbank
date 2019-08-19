@@ -163,6 +163,9 @@ Please be informed that you have been enlisted in the panel of future recruitmen
 determined by the Recruitment Committee upon careful assessment of candidate's
 applications and the results of the {{$testDetails}}. Kindly
 note that you will be communicated if any scope arises in future.<br><br>
+                <span>
+                    {!! $customBody !!}
+                </span>
 Thank you very much for your interest in working with Caritas Bangladesh.
 
 

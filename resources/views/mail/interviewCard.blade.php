@@ -155,10 +155,11 @@ With reference to your application for the post of {{$jobInfo->position}}, we wo
 <br>
 <br>
                 <span>
-Please take note of the following information for attending the interview:<br>
-1. That you are requested to be present for the interview on time.<br>
-2. That no TA/DA will be provided for attending the above interview.<br>
-3. That you are requested to bring original copies of all certificates during interview.<br>
+{{--                        Please take note of the following information for attending the interview:<br>--}}
+{{--                        1. That you are requested to be present for the interview on time.<br>--}}
+{{--                        2. That no TA/DA will be provided for attending the above interview.<br>--}}
+{{--                        3. That you are requested to bring original copies of all certificates during interview.<br>--}}
+                    {!! $customBody !!}
 
                </span>
             </td>

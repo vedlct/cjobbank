@@ -163,6 +163,9 @@ Please be informed that the other candidate has been selected for appointment in
 post of {{$jobInfo->position}} as determined by the
 Recruitment Committee upon careful assessment of candidates applications and the
 results of the {{$testDetails}}.<br><br>
+                <span>
+                    {!! $customBody !!}
+                </span>
 Thank you very much for your interest in working with Caritas Bangladesh and please
 feel free to apply again for other position/vacancies for which you may be qualified.
 

@@ -10,6 +10,7 @@ use App\Employee;
 use App\EmpQuestionObjAns;
 use App\Ethnicity;
 use App\HR;
+use App\email;
 use App\Http\Controllers\Controller;
 
 use App\Job;
@@ -843,6 +844,13 @@ class ApplicationController extends Controller
         $subjectLine=$r->subjectLine;
         $refNo=$r->refNo;
 
+        if ($template=='1') {
+            $custom_template = email::where('emailfor','interview')->first();
+        }elseif ($template=='2') {
+            $custom_template = email::where('emailfor','panellisted')->first();
+        }elseif ($template=='3') {
+            $custom_template = email::where('emailfor','notselected')->first();
+        }
 //        $list=array();
         $error=array();
         for ($i=0;$i<count($appliedList);$i++) {
@@ -883,7 +891,7 @@ class ApplicationController extends Controller
                 try{
 //                    if($templateversion=='regular'){
                         $pdf = PDF::loadView('mail.interviewCard',['empInfo' => $employeeInfo,'testDate'=>$jobInfo->interviewCallDate,'testAddress'=>$testAddress,
-                            'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'intviewTime'=>$intviewTime]);
+                            'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'intviewTime'=>$intviewTime,'customBody'=>$custom_template->emailbody]);
 //                    }elseif($templateversion=='custom'){
 //                        echo 'custom';
 //                    }
@@ -910,7 +918,7 @@ class ApplicationController extends Controller
 
 //                if($templateversion=='regular'){
                     $pdf = PDF::loadView('mail.notSelected',['empInfo' => $employeeInfo,'testDate'=>$jobInfo->interviewCallDate,'testAddress'=>$testAddress,
-                        'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo]);
+                        'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'customBody'=>$custom_template->emailbody]);
 //                }elseif($templateversion=='custom'){
 //                    echo 'custom';
 //                }
@@ -941,7 +949,7 @@ class ApplicationController extends Controller
 
 //                if($templateversion=='regular'){
                     $pdf = PDF::loadView('mail.panelListed',['empInfo' => $employeeInfo,'testDate'=>$jobInfo->interviewCallDate,'testAddress'=>$testAddress,
-                        'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo]);
+                        'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'customBody'=>$custom_template->emailbody]);
 //                }elseif($templateversion=='custom'){
 //                    echo 'custom';
 //                }
