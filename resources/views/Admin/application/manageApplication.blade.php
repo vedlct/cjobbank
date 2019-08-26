@@ -1754,15 +1754,21 @@ CKEDITOR.config.toolbar = [
         });
 
         function getEmpCv(id) {
-            var url = "{{ route('userCv.get', ':empId') }}";
-            url = url.replace(':empId', id);
-            window.open(url,'_blank');
+            {{--var url = "{{ route('userCv.get', ':empId') }}";--}}
+            {{--url = url.replace(':empId', id);--}}
+            {{--window.open(url,'_blank');--}}
+
+            $.ajax({
+                type:'get',
+                url:'{{url('/user/cv')}}'+'/'+id,
+                cache: false,
+                success:function(data) {
+                    table.ajax.reload();
+                }
+            });
         }
 
         function empReject(id) {
-            var url = "{{ route('userCv.get', ':empId') }}";
-            url = url.replace(':empId', id);
-            window.open(url,'_blank');
 
             $.ajax({
                 type:'get',

@@ -153,7 +153,7 @@ class UserCvController extends Controller
        $application->status = 'Viewed';
        $application->save();
 
-       $pdf = PDF::loadView('test',compact('allEmp', 'personalInfo', 'education',
+       $pdf = PDF::loadView('test',compact( 'personalInfo', 'education',
            'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree',
            'relativeCb','empOtherSkillls','empComputerSkill','empOtherInfo','empOtherInfo','languageNames','languages','salary','memberShip'));
 
