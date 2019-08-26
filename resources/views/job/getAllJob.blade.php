@@ -46,7 +46,7 @@
                         @php
                             $flag= "False"
                         @endphp
-                        @if($applyjob != null)
+                        @if(isset($applyjob) && $applyjob != null)
                         @foreach($applyjob as $aj)
                         @if($job->jobId ==  $aj->fkjobId)
 
@@ -61,12 +61,12 @@
 
                         @if($flag == "True")
                         @else
-                            @if($cvStatus == null)
+                            @if(isset($cvStatus) && $cvStatus == null)
                                  <label style="color: red">Please complete your cv to apply job</label>
                              @else
                         {{--<a href="{{route('candidate.ApplyJob',$job->jobId)}}"><button type="button" class="btn btn-primary">Apply Now</button></a>--}}
                                 <button type="button" class="btn btn-info btn-lg" data-job-title="{{$job->title}}" data-panel-id="{{$job->jobId}}" onclick="applyJob(this)">Apply Now</button>
-                        @endif
+                            @endif
 
                         @endif
 

@@ -35,23 +35,11 @@
                                             <label for="mailTamplate" class="control-label">Mail Tamplate</label>
 
                                             <select class="form-control" id="mailTamplate">
-                                                <option selected value="">Select Tamplate</option>
+                                                <option selected value="" selected>Select Tamplate</option>
                                                 @foreach($mailTamplate as $mT)
                                                     <option value="{{$mT->tamplateId}}">{{$mT->tamplateName}}</option>
                                                 @endforeach
 
-                                            </select>
-
-                                        </div>
-
-                                        <div  class="col-md-6">
-
-                                            <label for="mailTamplate" class="control-label">Mail Version</label>
-
-                                            <select class="form-control" id="TamplateVersion">
-                                                <option selected value="">Select Version</option>
-                                                <option value="regular">Regular</option>
-                                                <option value="custom">Custom</option>
                                             </select>
 
                                         </div>
@@ -78,7 +66,7 @@
                                     <div class="col-md-3">
 
                                         <label for="refNo">Selected applicant:</label>
-                                        <input type="text" id="totalSelected" class="form-control" readonly>
+                                        <input type="text" id="totalSelected" name="numberofapplicant" class="form-control" readonly>
 
                                     </div>
                                     <div class="col-md-3">
@@ -467,6 +455,9 @@
                             <th>Job Title</th>
                             <th>Zone</th>
                             <th>Apply Date</th>
+                            <th>Status</th>
+                            <th>Schedule Date</th>
+                            <th>Schedule Time</th>
 
                             <th>Action</th>
 
@@ -630,11 +621,14 @@ CKEDITOR.config.toolbar = [
                     { data: 'title', name: 'job.title', "orderable": false, "searchable":true },
                     { data: 'zoneName', name: 'zone.zoneName', "orderable": false, "searchable":true },
                     { data: 'applydate', name: 'jobapply.applydate', "orderable": true, "searchable":true },
+                    { data: 'status', name: 'jobapply.status', "orderable": true, "searchable":true },
+                    { data: 'interviewCallDate', name: 'jobapply.interviewCallDate', "orderable": true, "searchable":true },
+                    { data: 'interviewCallDateTime', name: 'jobapply.interviewCallDateTime', "orderable": true, "searchable":true },
 
 
                     { "data": function(data){
-                        return '<!--<button class="btn btn-sm btn-danger"><i class="fa fa-envelope"></i></button>-->'+
-                            '&nbsp;<button class="btn btn-smbtn-info" onclick="getEmpCv('+data.employeeId+')"><i class="fa fa-file-pdf-o"></i></button>'
+                        return '<button class="btn btn-smbtn-info" onclick="getEmpCv('+data.employeeId+')"><i class="fa fa-file-pdf-o"></i></button>'
+                            +'&nbsp;' +'<button class="btn btn-sm btn-danger" onclick="empReject('+data.employeeId+')"><i class="fa fa-trash-o"></i></button>'
                             ;},
                         "orderable": false, "searchable":false
                     },
@@ -1760,12 +1754,24 @@ CKEDITOR.config.toolbar = [
         });
 
         function getEmpCv(id) {
-
-
             var url = "{{ route('userCv.get', ':empId') }}";
             url = url.replace(':empId', id);
-//            document.location.href=url;
             window.open(url,'_blank');
+        }
+
+        function empReject(id) {
+            var url = "{{ route('userCv.get', ':empId') }}";
+            url = url.replace(':empId', id);
+            window.open(url,'_blank');
+
+            $.ajax({
+                type:'get',
+                url:'{{url('/application-status-change/')}}'+'/'+id,
+                cache: false,
+                success:function(data) {
+                    table.ajax.reload();
+                }
+            });
         }
 
         function validationError(errorMsg){

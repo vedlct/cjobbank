@@ -149,7 +149,9 @@ class UserCvController extends Controller
 //                return $languages;
        $salary=QuestionObjective::where('empId',$empId)->first();
 
-
+       $application = Jobapply::where('fkemployeeId',$empId)->first();
+       $application->status = 'Viewed';
+       $application->save();
 
        $pdf = PDF::loadView('test',compact('allEmp', 'personalInfo', 'education',
            'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree',

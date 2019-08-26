@@ -113,9 +113,6 @@ class ApplicationController extends Controller
 
         $degree=Degree::where('status',1)->get();
 
-//        return $degree;
-
-
         return view('Admin.application.manageApplication',compact('religion','degree','ethnicity','natinality','allZone','allJobTitle','allEducationLevel','organizationType','mailTamplate'));
     }
 
@@ -138,9 +135,17 @@ class ApplicationController extends Controller
 
     }
 
+    public function applicationStatusChange($id)
+    {
+        $application = Jobapply::where('fkemployeeId',$id)->first();
+        $application->status = 'Rejected';
+        $application->save();
+        return;
+    }
+
     public function showAllApplication(Request $r)
     {
-        $application = Jobapply::select('jobapply.jobapply as applyId', 'jobapply.applydate', 'zone.zoneName','employee.employeeId', 'employee.firstName', 'employee.lastName', 'job.title', 'employee.maritalStatus')
+        $application = Jobapply::select('jobapply.jobapply as applyId', 'jobapply.applydate','jobapply.status','jobapply.interviewCallDate','jobapply.interviewCallDateTime', 'zone.zoneName','employee.employeeId', 'employee.firstName', 'employee.lastName', 'job.title', 'employee.maritalStatus')
 
             ->leftJoin('employee', 'employee.employeeId', '=', 'jobapply.fkemployeeId')
             ->leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')
@@ -820,9 +825,13 @@ class ApplicationController extends Controller
         }
 
         if($start < $end){
-            $totaltime = (strtotime($end)-strtotime($start))/$r->selected;
-            $availabletime = date("i",$totaltime);
-            if ($availabletime >= $r->interval)
+            $avail_time  = (strtotime($end)-strtotime($start))/60;
+            $avail_interval =  ($avail_time/$r->interval)+1;
+//            echo $avail_interval.' ---- '.$r->interval;
+//            exit();
+//            $totaltime = (strtotime($end)-strtotime($start))/$r->selected;
+//            $availabletime = date("i",$totaltime);
+            if ($avail_interval >= $r->numberofapplicant)
             {
                 $possible=true;
             }else{
@@ -836,7 +845,6 @@ class ApplicationController extends Controller
         }
         $appliedList=$r->jobApply;
         $template=$r->tamplateId;
-        $templateversion=$r->tamplateversion;
         $testDate=$r->testDate;
         $testAddress=$r->testAddress;
         $testDetails=$r->testDetails;
@@ -856,7 +864,11 @@ class ApplicationController extends Controller
         for ($i=0;$i<count($appliedList);$i++) {
 
             if ($possible){
-                $intv = $r->interval*($i+1);
+                if ($i==0){
+                    $intv = 0;
+                }else{
+                    $intv = $r->interval*($i+1);
+                }
                 $nexttime = strtotime("+".$intv." minutes", strtotime($start));
                 $intviewTime = date("H:i",$nexttime);
             }
@@ -867,7 +879,11 @@ class ApplicationController extends Controller
 //            $jobInfo=Jobapply::select('job.title','job.position','jobapply.fkemployeeId','interviewCallDate')->where('jobapply',$appliedId)
             $jobInfo=Jobapply::leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')->findOrFail($appliedId);
 
-
+            $add_data = Jobapply::where('fkemployeeId',$jobInfo->fkemployeeId)->first();
+            $add_data->status = 'Called';
+            $add_data->interviewCallDate = $testDate;
+            $add_data->interviewCallDateTime = $intviewTime;
+            $add_data->save();
 
 
             $employeeInfo=Employee::select('employee.*')

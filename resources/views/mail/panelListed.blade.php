@@ -154,21 +154,16 @@
         <tr>
 
             <td align="left" width="100%">
-
-
-
-This has reference to your recent application for the post of {{$jobInfo->position}} and the subsequent formal {{$testDetails}}
-held on {{date('dS F Y (l)',strtotime($testDate))}}.<br><br>
-Please be informed that you have been enlisted in the panel of future recruitment as
-determined by the Recruitment Committee upon careful assessment of candidate's
-applications and the results of the {{$testDetails}}. Kindly
-note that you will be communicated if any scope arises in future.<br><br>
+                This has reference to your recent application for the post of {{$jobInfo->position}} and the subsequent formal {{$testDetails}}
+                held on {{date('dS F Y (l)',strtotime($testDate))}}.<br><br>
+                Please be informed that you have been enlisted in the panel of future recruitment as
+                determined by the Recruitment Committee upon careful assessment of candidate's
+                applications and the results of the {{$testDetails}}. Kindly
+                note that you will be communicated if any scope arises in future.<br><br>
                 <span>
                     {!! $customBody !!}
                 </span>
-Thank you very much for your interest in working with Caritas Bangladesh.
-
-
+                Thank you very much for your interest in working with Caritas Bangladesh.
             </td>
 
         </tr>
@@ -188,6 +183,7 @@ Thank you very much for your interest in working with Caritas Bangladesh.
             <td width="100%" align="left">
                 {!!$footerAndSign!!}
             </td>
+            <td>This is a computer-generated document. No signature is required</td>
         </tr>
 
 
@@ -236,6 +232,5 @@ Thank you very much for your interest in working with Caritas Bangladesh.
     </table>
 
 </div>
-<p>This is a computer-generated document. No signature is required</p>
 </body>
 </html>

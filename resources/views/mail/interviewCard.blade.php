@@ -178,12 +178,13 @@ With reference to your application for the post of {{$jobInfo->position}}, we wo
             </td>
         </tr>
         <tr>
-        <td style="width: 100%" align="left">
-            {!! $footerAndSign !!}
-        </td>
+            <td style="width: 100%" align="left">
+                {!! $footerAndSign !!}
+            </td>
         </tr>
-
-
+        <tr>
+            <td>This is a computer-generated document. No signature is required</td>
+        </tr>
     </table>
 
 </div>
@@ -229,6 +230,5 @@ With reference to your application for the post of {{$jobInfo->position}}, we wo
     </table>
 
 </div>
-<p>This is a computer-generated document. No signature is required</p>
 </body>
 </html>
