@@ -145,7 +145,7 @@ class ApplicationController extends Controller
 
     public function showAllApplication(Request $r)
     {
-        $application = Jobapply::select('jobapply.jobapply as applyId', 'jobapply.applydate','jobapply.status','jobapply.interviewCallDate','jobapply.interviewCallDateTime', 'zone.zoneName','employee.employeeId', 'employee.firstName', 'employee.lastName', 'job.title', 'employee.maritalStatus')
+        $application = Jobapply::select('jobapply.jobapply as applyId',DB::raw('DATE_FORMAT(jobapply.applydate, "%d-%m-%Y") as applydate'),'jobapply.status',DB::raw('DATE_FORMAT(jobapply.interviewCallDate, "%d-%m-%Y") as interviewCallDate'),DB::raw('TIME_FORMAT(jobapply.interviewCallDateTime, "%H:%i") as interviewCallDateTime'), 'zone.zoneName','employee.employeeId', 'employee.firstName', 'employee.lastName', 'job.title', 'employee.maritalStatus')
 
             ->leftJoin('employee', 'employee.employeeId', '=', 'jobapply.fkemployeeId')
             ->leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')
@@ -162,6 +162,9 @@ class ApplicationController extends Controller
 
         if ($r->maritalStatusFilter){
             $application= $application->where('employee.maritalStatus',$r->maritalStatusFilter);
+        }
+        if ($r->applicant_Status){
+            $application= $application->where('jobapply.status',$r->applicant_Status);
         }
         if ($r->genderFilter){
             $application= $application->where('employee.gender',$r->genderFilter);
@@ -242,12 +245,7 @@ class ApplicationController extends Controller
 
         }
 
-//         $application=$application->get();
-
-
-
         $datatables = DataTables::of($application);
-
         return $datatables->make(true);
 
 

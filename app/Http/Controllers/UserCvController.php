@@ -166,7 +166,6 @@ class UserCvController extends Controller
 
        $empId=$r->id;
 
-
        $personalInfo = Employee::select('emp_ques_obj.objective','firstName', 'lastName',
            'fathersName', 'mothersName', 'gender', 'personalMobile',
            'dateOfBirth', 'email', 'presentAddress', 'image', 'religionName', 'nationalityName','nationalId','parmanentAddress',

@@ -208,6 +208,16 @@
                     </select>
                 </div>
                 <div class=" form-group ">
+                    <label>Applicant Status</label>
+                    <select name="applicant_Status" id="applicant_Status" class="form-control">
+                        <option value="" id="blankStatus">Select a Status</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Viewed">Viewed</option>
+                        <option value="Called">Called</option>
+                        <option value="Rejected">Rejected</option>
+                    </select>
+                </div>
+                <div class=" form-group ">
                     <label>Religion</label>
                     <select name="religionFilter" id="religionFilter" class="form-control">
                         <option value="">Select a Religion</option>
@@ -489,29 +499,30 @@
     <script src="{{url('public/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{url('public/assets/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
     <script type="text/javascript" src="{{url('public/assets/ckeditor/ckeditor.js')}}"></script>
+{{--    <script type="text/javascript" src="{{url('public/assets/js/moment.js')}}"></script>--}}
 
     <script>
-//        CKEDITOR.replace( 'tamplateBody' );
-//        CKEDITOR.replace( 'ckBox' );
-        // $('tamplateBody').CKEDITOR(); // ADD THIS
-CKEDITOR.config.autoParagraph = false;
 
-CKEDITOR.config.toolbar = [
-    { name: 'document', items: [ 'Source', '-', 'Preview', '-'] },
-    { name: 'clipboard', items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
-    '/',
-    { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline' ] },
-    { name: 'paragraph',   items: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
-    { name: 'styles', items: [ 'Format', 'Styles', 'blocks', 'align', 'bidi' ]},
-    { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ]},
-    { name: 'paragraph', items: [ 'Outdent', 'Indent', 'Blockquote' ]}
+        CKEDITOR.config.autoParagraph = false;
 
-];
+        CKEDITOR.config.toolbar = [
+            { name: 'document', items: [ 'Source', '-', 'Preview', '-'] },
+            { name: 'clipboard', items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
+            '/',
+            { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline' ] },
+            { name: 'paragraph',   items: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+            { name: 'styles', items: [ 'Format', 'Styles', 'blocks', 'align', 'bidi' ]},
+            { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ]},
+            { name: 'paragraph', items: [ 'Outdent', 'Indent', 'Blockquote' ]}
+
+        ];
     </script>
 
     <script>
 
         $(document).ready(function() {
+
+            $("#applicant_Status").attr("disabled", true);
 
             $('.date').datepicker({
                 format: 'yyyy-m-d',
@@ -567,6 +578,10 @@ CKEDITOR.config.toolbar = [
                         }
                         if ($('#jobTitle').val()!=""){
                             d.jobTitle=$('#jobTitle').val();
+                            $("#applicant_Status").attr("disabled", false);
+                        }
+                        if ($('#applicant_Status').val()!=""){
+                            d.applicant_Status=$('#applicant_Status').val();
                         }
                         if ($('#applyDate').val()!=""){
                             d.applyDate=$('#applyDate').val();
@@ -615,9 +630,6 @@ CKEDITOR.config.toolbar = [
                     },
                     { data: 'firstName', name: 'employee.firstName',"orderable": false, "searchable":true },
                     { data: 'lastName', name: 'employee.lastName',"orderable": false, "searchable":true },
-
-
-
                     { data: 'title', name: 'job.title', "orderable": false, "searchable":true },
                     { data: 'zoneName', name: 'zone.zoneName', "orderable": false, "searchable":true },
                     { data: 'applydate', name: 'jobapply.applydate', "orderable": true, "searchable":true },
@@ -635,6 +647,10 @@ CKEDITOR.config.toolbar = [
 
 
                 ],
+            });
+
+            $('#applicant_Status').change(function(){
+                table.ajax.reload();
             });
 
             // maritial status
@@ -722,15 +738,16 @@ CKEDITOR.config.toolbar = [
                     $('#zonefilter').css("background-color", "#FFF").css('color', 'black');
                 }
             });
-            $('#jobTitle').change(function(){ //button filter event click
-//                table.search("").draw(); //just redraw myTableFilter
-                table.ajax.reload();  //just reload table
+            $('#jobTitle').change(function(){
+                table.ajax.reload();
                 emptySelect();
+                $("#blankStatus").prop('selected',true);
                 if ($('#jobTitle').val()!=""){
-
                     $('#jobTitle').css("background-color", "#7c9").css('color', 'white');
+                    $("#applicant_Status").attr("disabled", false);
                 }else {
                     $('#jobTitle').css("background-color", "#FFF").css('color', 'black');
+                    $("#applicant_Status").attr("disabled", true);
                 }
 
             });
