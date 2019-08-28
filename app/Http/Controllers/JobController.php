@@ -167,6 +167,8 @@ class JobController extends Controller
    }
 
    public function applyJobModal(Request $r){
-        return view('job.jobModal')->with('jobId',$r->jobId);
+        $jobId = $r->jobId;
+        $jobTitle = $r->jobTitle;
+        return view('job.jobModal',compact('jobId'));
    }
 }

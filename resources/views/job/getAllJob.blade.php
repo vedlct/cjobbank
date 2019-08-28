@@ -116,7 +116,7 @@
             type: 'POST',
             url: "{!! route('job.applyJobModal') !!}",
             cache: false,
-            data: {_token: "{{csrf_token()}}",jobId:id},
+            data: {_token: "{{csrf_token()}}",jobId:id,jobTitle:title},
             success: function (data) {
 //                console.log(data);
                 $('#jobModalTitle').html(title);
