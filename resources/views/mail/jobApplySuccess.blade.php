@@ -4,9 +4,8 @@
 
 
 
-You have successfully applied.<br>
-
-Thanks.
+<br>
+<span>{!! $customBody !!}</span>
 
 
 <hr>

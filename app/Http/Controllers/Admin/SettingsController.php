@@ -871,6 +871,18 @@ class SettingsController extends Controller
             $email->emailbody=$r->contents;
             $email->save();
 
-            return redirect('/');
+            return $this->emailTemplateSettings();
+    }
+
+    public function emailTemplateSettings()
+    {
+        $email_data = email::where('emailfor','interview')->first();
+        return view('emailTemplte.interview',compact('email_data'));
+    }
+
+    public function acknowledgement()
+    {
+        $email_data = email::where('emailfor','Acknowledgement')->first();
+        return view('emailTemplte.acknowledgement',compact('email_data'));
     }
 }

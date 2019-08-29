@@ -80,9 +80,7 @@
             <li><a href="{{route('manage.terms_and_condition')}}">Terms and Condition</a></li>
             <li><a href="{{route('manage.typeOfEmployment')}}">Type of Employment</a></li>
             <li><a  href="{{route('backup.wholeDbBackup')}}">Database backup</a></li>
-            <li><a href="{{route('changeemailtemplate.interviewcard')}}">Change Interview card Email Template</a></li>
-            <li><a href="{{route('changeemailtemplate.panellisted')}}">Change Panel listed Email Template</a></li>
-            <li><a href="{{route('changeemailtemplate.notselected')}}">Change Not selected Email Template</a></li>
+            <li><a  href="{{url('/email-template-settings')}}">Email template settings</a></li>
         </ul>
     </li>
     @endif

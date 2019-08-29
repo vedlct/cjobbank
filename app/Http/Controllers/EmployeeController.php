@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Education;
+use App\email;
 use App\Employee;
 use App\EmployeeComputerSkill;
 use App\EmployeeLanguage;
@@ -89,7 +90,8 @@ class EmployeeController extends Controller
         if ($jobApply->save())
         {
             $email = Auth::user()->email;
-            Mail::send('mail.jobApplySuccess',['email' => $email], function($message) use ($email)
+            $customBody = email::where('emailfor','Acknowledgement')->first();
+            Mail::send('mail.jobApplySuccess',['email' => $email,'customBody' => $customBody->emailbody], function($message) use ($customBody,$email)
             {
                 $message->to($email)->subject('APPLY SUCCESSFUL');
             });

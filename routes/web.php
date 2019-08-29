@@ -404,9 +404,12 @@ Route::post('manage/Type-of-employment/update/{id}','Admin\SettingsController@up
 Route::get('change-template/interview-card','Admin\SettingsController@changeinterviewcard')->name('changeemailtemplate.interviewcard');
 Route::get('change-template/panel-listed','Admin\SettingsController@changepanellisted')->name('changeemailtemplate.panellisted');
 Route::get('change-template/not-selected','Admin\SettingsController@notselected')->name('changeemailtemplate.notselected');
+Route::get('change-template/acknowledgement','Admin\SettingsController@acknowledgement')->name('changeemailtemplate.acknowledgement');
+
+Route::get('/email-template-settings','Admin\SettingsController@emailTemplateSettings');
 
 Route::post('change-template/update-template','Admin\SettingsController@updateemailtemplate')->name('changeemailtemplate.updateemailtemplate');
 
 /* Guest */
-Route::get('/available-job','GuestController@guestAvailablejob');
-Route::post('/available-job/all','GuestController@guestGetJobData');
+//Route::get('/available-job','GuestController@guestAvailablejob');
+//Route::post('/available-job/all','GuestController@guestGetJobData');
