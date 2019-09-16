@@ -87,6 +87,12 @@
                             @endif
                         </div>
                     </div>
+{{--                    <div class="input-group">--}}
+{{--                        <input type="text" class="form-control">--}}
+{{--                        <span class="input-group-btn">--}}
+{{--                            <button class="btn btn-default" type="button">Button</button>--}}
+{{--                          </span>--}}
+{{--                    </div>--}}
 
                     <div class="form-group row">
                         <div class="col-12">

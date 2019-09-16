@@ -151,7 +151,7 @@
 
 
 
-With reference to your application for the post of {{$jobInfo->position}}, we would like to invite you for {{$testDetails}} to be held on the {{date('dS F Y (l)',strtotime($testDate))}} at {{$intviewTime}} in {{$testAddress}}.
+With reference to your application for the post of {{$jobInfo->position}}, we would like to invite you for {{$testDetails}} to be held on the {{date('dS F Y (l)',strtotime($testDate))}} @if(@$intviewTime) at {{$intviewTime}}@endif in {{$testAddress}}.
 <br>
 <br>
                 <span>
@@ -182,8 +182,11 @@ With reference to your application for the post of {{$jobInfo->position}}, we wo
                 {!! $footerAndSign !!}
             </td>
         </tr>
+        <br>
+        <br>
+        <br>
         <tr>
-            <td>This is a computer-generated document. No signature is required</td>
+            <td><h2>This is a computer-generated document. No signature is required</h2></td>
         </tr>
     </table>
 

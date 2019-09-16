@@ -825,10 +825,6 @@ class ApplicationController extends Controller
         if($start < $end){
             $avail_time  = (strtotime($end)-strtotime($start))/60;
             $avail_interval =  ($avail_time/$r->interval)+1;
-//            echo $avail_interval.' ---- '.$r->interval;
-//            exit();
-//            $totaltime = (strtotime($end)-strtotime($start))/$r->selected;
-//            $availabletime = date("i",$totaltime);
             if ($avail_interval >= $r->numberofapplicant)
             {
                 $possible=true;
@@ -898,9 +894,6 @@ class ApplicationController extends Controller
 
                 $jobInfo->interviewCallDate=$testDate;
                 $jobInfo->save();
-
-
-
 
                 try{
 //                    if($templateversion=='regular'){
@@ -1018,7 +1011,13 @@ class ApplicationController extends Controller
         $subjectLine=$r->subjectLine;
         $refNo=$r->refNo;
 
-//        $list=array();
+        if ($template=='1') {
+            $custom_template = email::where('emailfor','interview')->first();
+        }elseif ($template=='2') {
+            $custom_template = email::where('emailfor','panellisted')->first();
+        }elseif ($template=='3') {
+            $custom_template = email::where('emailfor','notselected')->first();
+        }
 
         $data=array();
 
@@ -1041,77 +1040,84 @@ class ApplicationController extends Controller
 
             if ($template=='1'){
 
+                PDF::loadView('mail.interviewCard',['empInfo' => $employeeInfo,'testDate'=>$jobInfo->interviewCallDate,'testAddress'=>$testAddress,
+                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'customBody'=>$custom_template->emailbody])->stream();
 
-
-                $word = new \PhpOffice\PhpWord\PhpWord();
-
-                $newSection = $word->addSection();
-
-                $html = view('mail.mailPreview.interviewCard',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
-                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo]);
-
-
-                \PhpOffice\PhpWord\Shared\Html::addHtml( $newSection, $html, false, false);
-
-                header('Content-Type: application/octet-stream');
-                header('Content-Disposition: attachment;filename="interviewCard_'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx"');
-
-                $objectWriter = \PhpOffice\PhpWord\IOFactory::createWriter($word, 'Word2007');
-
-                $objectWriter->save(public_path('mailPreview'."/").'interviewCard_'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx');
-                $data1=array(
-                    'Name'=>'interviewCard_'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx',
-                );
-                array_push($data,$data1);
+//                $word = new \PhpOffice\PhpWord\PhpWord();
+//
+//                $newSection = $word->addSection();
+//
+//                $html = view('mail.mailPreview.interviewCard',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
+//                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo]);
+//
+//
+//                \PhpOffice\PhpWord\Shared\Html::addHtml( $newSection, $html, false, false);
+//
+//                header('Content-Type: application/octet-stream');
+//                header('Content-Disposition: attachment;filename="interviewCard_'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx"');
+//
+//                $objectWriter = \PhpOffice\PhpWord\IOFactory::createWriter($word, 'Word2007');
+//
+//                $objectWriter->save(public_path('mailPreview'."/").'interviewCard_'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx');
+//                $data1=array(
+//                    'Name'=>'interviewCard_'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx',
+//                );
+//                array_push($data,$data1);
 
             }
             if ($template=='2'){
 
-                $word = new \PhpOffice\PhpWord\PhpWord();
+                PDF::loadView('mail.notSelected',['empInfo' => $employeeInfo,'testDate'=>$jobInfo->interviewCallDate,'testAddress'=>$testAddress,
+                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'customBody'=>$custom_template->emailbody])->stream();
 
-                $newSection = $word->addSection();
-
-                $html = view('mail.mailPreview.notSelected',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
-                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo]);
-
-
-                \PhpOffice\PhpWord\Shared\Html::addHtml( $newSection, $html, false, false);
-
-                header('Content-Type: application/octet-stream');
-                header('Content-Disposition: attachment;filename="notSelected'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx"');
-
-                $objectWriter = \PhpOffice\PhpWord\IOFactory::createWriter($word, 'Word2007');
-
-                $objectWriter->save(public_path('mailPreview'."/").'notSelected'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx');
-                $data2=array(
-                    'Name'=>'notSelected'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx',
-            );
-                array_push($data,$data2);
+//                $word = new \PhpOffice\PhpWord\PhpWord();
+//
+//                $newSection = $word->addSection();
+//
+//                $html = view('mail.mailPreview.notSelected',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
+//                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo]);
+//
+//
+//                \PhpOffice\PhpWord\Shared\Html::addHtml( $newSection, $html, false, false);
+//
+//                header('Content-Type: application/octet-stream');
+//                header('Content-Disposition: attachment;filename="notSelected'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx"');
+//
+//                $objectWriter = \PhpOffice\PhpWord\IOFactory::createWriter($word, 'Word2007');
+//
+//                $objectWriter->save(public_path('mailPreview'."/").'notSelected'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx');
+//                $data2=array(
+//                    'Name'=>'notSelected'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx',
+//            );
+//                array_push($data,$data2);
 
             }
             if ($template=='3'){
 
-                $word = new \PhpOffice\PhpWord\PhpWord();
+                PDF::loadView('mail.panelListed',['empInfo' => $employeeInfo,'testDate'=>$jobInfo->interviewCallDate,'testAddress'=>$testAddress,
+                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'customBody'=>$custom_template->emailbody])->stream();
 
-                $newSection = $word->addSection();
-
-                $html = view('mail.mailPreview.panelListed',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
-                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo]);
-
-
-                \PhpOffice\PhpWord\Shared\Html::addHtml( $newSection, $html, false, false);
-
-                header('Content-Type: application/octet-stream');
-                header('Content-Disposition: attachment;filename="panelListed'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx"');
-
-                $objectWriter = \PhpOffice\PhpWord\IOFactory::createWriter($word, 'Word2007');
-
-                $objectWriter->save(public_path('mailPreview'."/").'panelListed'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx');
-
-                $data3=array(
-                    'Name'=>'panelListed'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx',
-                );
-                array_push($data,$data3);
+//                $word = new \PhpOffice\PhpWord\PhpWord();
+//
+//                $newSection = $word->addSection();
+//
+//                $html = view('mail.mailPreview.panelListed',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
+//                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo]);
+//
+//
+//                \PhpOffice\PhpWord\Shared\Html::addHtml( $newSection, $html, false, false);
+//
+//                header('Content-Type: application/octet-stream');
+//                header('Content-Disposition: attachment;filename="panelListed'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx"');
+//
+//                $objectWriter = \PhpOffice\PhpWord\IOFactory::createWriter($word, 'Word2007');
+//
+//                $objectWriter->save(public_path('mailPreview'."/").'panelListed'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx');
+//
+//                $data3=array(
+//                    'Name'=>'panelListed'.$jobInfo->title.'_'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'.docx',
+//                );
+//                array_push($data,$data3);
 
 
             }

@@ -83,7 +83,7 @@ class EmployeeController extends Controller
         $jobApply->applydate=date('Y-m-d');
         $jobApply->fkjobId=$jobId;
         $jobApply->fkemployeeId=$empId;
-        $jobApply->currentSalary=$r->currentSalary;
+//        $jobApply->currentSalary=$r->currentSalary;
         $jobApply->expectedSalary=$r->expectedSalary;
 //        $jobApply->status=JOB_STATUS['Pending'];
 //        $jobApply->save();

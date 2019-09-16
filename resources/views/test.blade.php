@@ -409,11 +409,11 @@
                 </td>
             </tr>
 
-            <tr>
-                <td  style="border: none;" >
-                    <label>Expected salary :</label> {{$salary->expectedSalary}}
-                </td>
-            </tr>
+{{--            <tr>--}}
+{{--                <td  style="border: none;" >--}}
+{{--                    <label>Expected salary :</label> {{$salary->expectedSalary}}--}}
+{{--                </td>--}}
+{{--            </tr>--}}
 
 
 
