@@ -137,22 +137,17 @@
 
 @endsection
 @section('foot-js')
-
     <script src="{{url('public/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{url('public/assets/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
-
     <script>
         $(function () {
             $('#manageZone').DataTable(
                 {
-                    "ordering": false,
-
+                    "ordering": false
                 }
             );
         });
-    </script>
 
-    <script>
         function editZone(x) {
             var id=$(x).data('panel-id');
 
@@ -162,19 +157,14 @@
                 cache: false,
                 data: {_token: "{{csrf_token()}}",'id': id},
                 success: function (data) {
-//                    console.log(data);
                     $('#editModalBody').html(data);
                     $('#editModal').modal();
                 }
             });
-
-
         }
         function addZone() {
             $('#NewZoneModal').modal({show:true});
 
         }
     </script>
-
-
 @endsection

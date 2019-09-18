@@ -139,13 +139,13 @@
                                 @endforeach
 
 
-                                <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label>Current salary</label>
-                                        <input type="text" onkeypress="return isNumberKey(event)"
-                                               placeholder="current salary" name="currentSalary">
-                                    </div>
-                                </div>
+{{--                                <div class="row">--}}
+{{--                                    <div class="form-group col-md-6">--}}
+{{--                                        <label>Current salary</label>--}}
+{{--                                        <input type="text" onkeypress="return isNumberKey(event)"--}}
+{{--                                               placeholder="current salary" name="currentSalary">--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
 
                             </div>
 

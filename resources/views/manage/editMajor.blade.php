@@ -26,6 +26,10 @@
         </select>
     </div>
     <div class="form-group">
+        <label for="global">Global<span style="color: red">*</span></label>
+        <input type="checkbox" name="global" class="form-control" id="global" @if($editMajor->type=='g') checked @endif>
+    </div>
+    <div class="form-group">
         <button type="submit" class="btn btn-success">Update</button>
     </div>
 </form>

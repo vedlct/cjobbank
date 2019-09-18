@@ -70,12 +70,8 @@
 
                                         </div>
 
-
-
-
                                         @php
                                             $st=1;
-
                                         @endphp
 
 
@@ -119,10 +115,10 @@
 
 
 
-                                        <div class="form-group col-md-5">
-                                            <label>Expected salary :</label>
-                                            {{$employeeCvQuesObjInfo->expectedSalary}}
-                                        </div>
+{{--                                        <div class="form-group col-md-5">--}}
+{{--                                            <label>Expected salary :</label>--}}
+{{--                                            {{$employeeCvQuesObjInfo->expectedSalary}}--}}
+{{--                                        </div>--}}
 
 
 
@@ -132,13 +128,6 @@
                                             <label>Possible joining date :</label>
                                             {{$employeeCvQuesObjInfo->readyToJoinAfter}}
                                         </div>
-
-
-
-
-
-
-
 
                                     <div class="form-group col-md-12" style="overflow:auto;">
                                         <div style="float:right;">

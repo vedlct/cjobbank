@@ -28,11 +28,12 @@
 
                         </div>
                         <div class="form-group">
-
                             <label for="">Major<span style="color: red">*</span></label>
-
                             <input class="form-control" name="major" maxlength="255" required type="text">
-
+                        </div>
+                        <div class="form-group">
+                            <label for="global">Global<span style="color: red">*</span></label>
+                            <input type="checkbox" name="global" class="form-control" id="global">
                         </div>
 
                         <div class="form-group">
@@ -109,6 +110,7 @@
                             <th>Major</th>
                             <th>Degree</th>
                             <th>Status</th>
+                            <th>Type</th>
                             <th width="30%">Action</th>
                         </tr>
                         </thead>
@@ -124,6 +126,13 @@
                                             {{$value}}
                                         @endif
                                     @endforeach
+                                </td>
+                                <td>
+                                    @if($m->type=='g')
+                                        {{'Global'}}
+                                    @else
+                                        {{'N/A'}}
+                                    @endif
                                 </td>
                                 <td width="10%"><button class="btn btn-sm btn-success" data-panel-id="{{$m->educationMajorId}}" onclick="editMajor(this)">Edit</button>
                                 </td>

@@ -19,8 +19,15 @@
                             </div>
 
                             <div class="form-group col-md-6">
-                                <label>Expected salary</label>
-                                <input type="text"  onkeypress="return isNumberKey(event)" placeholder="expected salary" value="{{$employeeCareerInfo->expectedSalary}}" name="expectedSalary">
+{{--                                <label>Expected salary</label>--}}
+{{--                                <input type="text"  onkeypress="return isNumberKey(event)" placeholder="expected salary" value="{{$employeeCareerInfo->expectedSalary}}" name="expectedSalary">--}}
+                                <label for="">{{CAREER_QUES['Ques0']}}<span style="color: red">*</span></label>
+                                <div class="col-md-10 mb-10">
+                                    <input class="form-check-input" type="radio" required  name="freshers" value="1" @if(count($employeeCvQuesObjQuesAns)>0) checked @endif   onclick="checkFreshers()"> Yes&nbsp;&nbsp;
+                                </div>
+                                <div class="col-md-10">
+                                    <input class="form-check-input" type="radio" required  name="freshers" @if(count($employeeCvQuesObjQuesAns)==0) checked @endif onclick="hideFresher()" value="0"> No&nbsp;&nbsp;
+                                </div>
                             </div>
 
                             <div class="form-group col-md-6">
@@ -35,17 +42,17 @@
 
 
 
-                            <div class="row">
-                                <div class="form-group">
-                                    <label for="">{{CAREER_QUES['Ques0']}}<span style="color: red">*</span></label>
-                                    <div class="col-md-10 mb-10">
-                                        <input class="form-check-input" type="radio" required  name="freshers" value="1" @if(count($employeeCvQuesObjQuesAns)>0) checked @endif   onclick="checkFreshers()"> Yes&nbsp;&nbsp;
-                                    </div>
-                                    <div class="col-md-10">
-                                        <input class="form-check-input" type="radio" required  name="freshers" @if(count($employeeCvQuesObjQuesAns)==0) checked @endif onclick="hideFresher()" value="0"> No&nbsp;&nbsp;
-                                    </div>
-                                </div>
-                            </div>
+{{--                            <div class="row">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label for="">{{CAREER_QUES['Ques0']}}<span style="color: red">*</span></label>--}}
+{{--                                    <div class="col-md-10 mb-10">--}}
+{{--                                        <input class="form-check-input" type="radio" required  name="freshers" value="1" @if(count($employeeCvQuesObjQuesAns)>0) checked @endif   onclick="checkFreshers()"> Yes&nbsp;&nbsp;--}}
+{{--                                    </div>--}}
+{{--                                    <div class="col-md-10">--}}
+{{--                                        <input class="form-check-input" type="radio" required  name="freshers" @if(count($employeeCvQuesObjQuesAns)==0) checked @endif onclick="hideFresher()" value="0"> No&nbsp;&nbsp;--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
                         </div>
                             <div id="compulsoryQuestions">
@@ -213,13 +220,7 @@
             '                                    @php $st++;@endphp\n' +
             '\n' +
             '                                @endforeach\n' +
-            '                            @php $nt=$st; @endphp\n' +
-            '                            <div class="row">\n' +
-            '                                <div class="form-group col-md-6">\n' +
-            '                                    <label>Current salary</label>\n' +
-            '                                    <input type="text"  onkeypress="return isNumberKey(event)" placeholder="current salary" value="{{$employeeCareerInfo->currentSalary}}" name="currentSalary">\n' +
-            '                                </div>\n' +
-            '                            </div>');
+            '                            @php $nt=$st; @endphp\n' );
 
 
 

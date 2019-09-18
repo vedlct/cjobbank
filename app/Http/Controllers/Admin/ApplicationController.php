@@ -792,17 +792,13 @@ class ApplicationController extends Controller
 //            ->groupBy('educationMajorId')
 //            ->get();
 
-        $major = Educationmajor::select('educationMajorId','educationMajorName')
-//            ->leftJoin('degree', 'degree.degreeId', 'educationmajor.fkDegreeId')
-//            ->leftJoin('educationlevel', 'educationlevel.educationLevelId', 'degree.educationLevelId')
+        $major = Educationmajor::select('educationMajorId','educationMajorName','status')
             ->where('fkDegreeId', '=',$r->id)
             ->orWhere('type', '=','g')
-//            ->where('educationlevel.status',1)
             ->where('status',1)
             ->groupBy('educationMajorId')
             ->orderBy('educationMajorName','ASC')
             ->get();
-
         if ($major == null) {
             echo "<option value='' selected>Select Major</option>";
         } else {
@@ -814,29 +810,34 @@ class ApplicationController extends Controller
     }
     public function sendMailtoAppliedCandidate(Request $r)
     {
-        $start = $r->start;
-        $end = $r->end;
+        if ($r->tamplateId===1){
+            $start = $r->start;
+            $end = $r->end;
 
-        if (empty($r->interval) && $r->tamplateId=='1'){
-            $arr = array('msg' => 'interval field is required.', 'status' => 'error');
-            return Response()->json($arr);
-        }
-
-        if($start < $end){
-            $avail_time  = (strtotime($end)-strtotime($start))/60;
-            $avail_interval =  ($avail_time/$r->interval)+1;
-            if ($avail_interval >= $r->numberofapplicant)
-            {
-                $possible=true;
-            }else{
-                $arr = array('msg' => 'Not possible interval time.', 'status' => 'error');
+            if (empty($r->interval) && $r->tamplateId=='1'){
+                $arr = array('msg' => 'interval field is required.', 'status' => 'error');
                 return Response()->json($arr);
             }
 
-        } else {
-            $arr = array('msg' => 'Invalid start and end time.', 'status' => 'error');
-            return Response()->json($arr);
+            if($start < $end){
+                $avail_time  = (strtotime($end)-strtotime($start))/60;
+                $avail_interval =  ($avail_time/$r->interval)+1;
+                if ($avail_interval >= $r->numberofapplicant)
+                {
+                    $possible=true;
+                }else{
+                    $arr = array('msg' => 'Not possible interval time.', 'status' => 'error');
+                    return Response()->json($arr);
+                }
+
+            } else {
+                $arr = array('msg' => 'Invalid start and end time.', 'status' => 'error');
+                return Response()->json($arr);
+            }
+        }else{
+            $possible=false;
         }
+
         $appliedList=$r->jobApply;
         $template=$r->tamplateId;
         $testDate=$r->testDate;
@@ -848,10 +849,13 @@ class ApplicationController extends Controller
 
         if ($template=='1') {
             $custom_template = email::where('emailfor','interview')->first();
+            $emp_status = 'Called';
         }elseif ($template=='2') {
             $custom_template = email::where('emailfor','panellisted')->first();
+            $emp_status = 'Panel listed';
         }elseif ($template=='3') {
             $custom_template = email::where('emailfor','notselected')->first();
+            $emp_status = 'Rejected';
         }
 //        $list=array();
         $error=array();
@@ -865,6 +869,8 @@ class ApplicationController extends Controller
                 }
                 $nexttime = strtotime("+".$intv." minutes", strtotime($start));
                 $intviewTime = date("H:i",$nexttime);
+            }else{
+                $intviewTime = '';
             }
 
             $appliedId = $appliedList[$i];
@@ -874,7 +880,7 @@ class ApplicationController extends Controller
             $jobInfo=Jobapply::leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')->findOrFail($appliedId);
 
             $add_data = Jobapply::where('fkemployeeId',$jobInfo->fkemployeeId)->first();
-            $add_data->status = 'Called';
+            $add_data->status = $emp_status;
             $add_data->interviewCallDate = $testDate;
             $add_data->interviewCallDateTime = $intviewTime;
             $add_data->save();
@@ -896,12 +902,8 @@ class ApplicationController extends Controller
                 $jobInfo->save();
 
                 try{
-//                    if($templateversion=='regular'){
-                        $pdf = PDF::loadView('mail.interviewCard',['empInfo' => $employeeInfo,'testDate'=>$jobInfo->interviewCallDate,'testAddress'=>$testAddress,
+                    $pdf = PDF::loadView('mail.interviewCard',['empInfo' => $employeeInfo,'testDate'=>$jobInfo->interviewCallDate,'testAddress'=>$testAddress,
                             'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'intviewTime'=>$intviewTime,'customBody'=>$custom_template->emailbody]);
-//                    }elseif($templateversion=='custom'){
-//                        echo 'custom';
-//                    }
 
                     Mail::send('mail.MailBody',['employeeInfo' => $employeeInfo], function($message) use ($pdf,$employeeInfo)
                     {
@@ -946,9 +948,7 @@ class ApplicationController extends Controller
                     });
                 }
                 catch (\Exception $ex) {
-
-//                    return 0;
-                     $error[$i]=$ex;
+                    $error[$i]=$ex;
                 }
 
             }
@@ -975,13 +975,9 @@ class ApplicationController extends Controller
 
 
                     });
-//                    sleep(1);
-//                    return 1;
                 }
                 catch (\Exception $ex) {
-
-//                    return 0;
-                     $error[$i]=$ex;
+                    $error[$i]=$ex;
                 }
 
             }
@@ -990,7 +986,6 @@ class ApplicationController extends Controller
         }
         if(!empty($error))
         {
-
             return $error;
 
         }else{

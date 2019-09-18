@@ -66,7 +66,7 @@ class SettingsController extends Controller
 
     public function insertZone(Request $r){
         $r->validate([
-            'zone' => 'required|max:15|unique:zone,zoneName',
+            'zone' => 'required|max:50|unique:zone,zoneName',
 
         ]);
         $zone=new Zone();
@@ -579,7 +579,7 @@ class SettingsController extends Controller
 
     public function major(){
 
-        $major=Educationmajor::select('educationmajor.educationMajorName','degree.degreeName','educationmajor.educationMajorId','educationmajor.status')
+        $major=Educationmajor::select('educationmajor.educationMajorName','degree.degreeName','educationmajor.educationMajorId','educationmajor.status','educationmajor.type')
             ->leftjoin('degree','degree.degreeId','educationmajor.fkDegreeId')
             ->orderBy('educationmajor.educationMajorName')
             ->get();
@@ -590,11 +590,14 @@ class SettingsController extends Controller
     public function insertMajor(Request $r){
         $r->validate([
             'major' => 'required',
-
         ]);
         $major =new Educationmajor();
         $major->educationMajorName=$r->major;
         $major->fkDegreeId=$r->degree;
+        $major->status='1';
+        if ($r->global){
+            $major->type='g';
+        }
         $major->save();
 
         Session::flash('message', 'Major Added Successfully!');
@@ -613,6 +616,11 @@ class SettingsController extends Controller
         $major->educationMajorName=$r->major;
         $major->fkDegreeId=$r->degree;
         $major->status = $r->status;
+        if ($r->global){
+            $major->type='g';
+        }else{
+            $major->type='';
+        }
         $major->save();
 
         Session::flash('message', 'Major Updated Successfully!');

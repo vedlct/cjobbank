@@ -872,9 +872,9 @@
                 }
 
             });
-            $('#degreeLvlFilter').change(function(){ //button filter event click
-//                table.search("").draw(); //just redraw myTableFilter
-                table.ajax.reload();  //just reload table
+            $('#degreeLvlFilter').change(function(){
+
+                table.ajax.reload();
 
                 emptySelect();
                 if ($('#degreeLvlFilter').val()!=""){
@@ -1865,8 +1865,6 @@
                 data:{_token:"{{csrf_token()}}",id:this.value},
                 cache: false,
                 success:function(data) {
-
-                   // console.log(data);
                     document.getElementById("educationMajorFilter").innerHTML = data;
                     $('#educationMajorFilter').css("background-color", "#FFF").css('color', 'black');
 

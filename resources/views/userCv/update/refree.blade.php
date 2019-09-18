@@ -421,7 +421,7 @@
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
                     '<label for="inputPassword4">Phone<span style="color: red">*</span></label> ' +
-                    '<input type="text" class="form-control" name="phone[]" id="phone'+counter+'" placeholder="email" required> ' +
+                    '<input type="text" class="form-control" name="phone[]" id="phone'+counter+'" placeholder="Phone" required> ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
                     '<label for="inputPassword4">relation<span style="color: red">*</span></label> ' +

@@ -65,10 +65,10 @@ class EducationController extends Controller
 
         if ($employeeCvEducationInfo->isEmpty()){
 
-            return view('userCv.insert.education',compact('educationLevel','degree','country','boards'));
+            return view('userCv.insert.education',compact('educationLevel','country','boards'));
 
         }else{
-            return view('userCv.update.education',compact('educationLevel','degree','country','employeeCvEducationInfo','boards'));
+            return view('userCv.update.education',compact('educationLevel','country','employeeCvEducationInfo','boards'));
         }
 
     }

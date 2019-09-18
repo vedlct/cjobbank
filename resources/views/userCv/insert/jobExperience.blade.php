@@ -180,12 +180,8 @@
 
                 </div>
             </div>
-        </div> <!-- end col -->
-    </div> <!-- end row -->
-
-    </div> <!-- end container -->
+        </div>
     </div>
-    <!-- end wrapper -->
 
 
 
