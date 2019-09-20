@@ -1,6 +1,6 @@
 
 <!-- Footer -->
-<footer class="footer">
+<footer class="footer" style="position: fixed">
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">

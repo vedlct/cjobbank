@@ -87,19 +87,38 @@
             </tr>
             </thead>
             <tbody >
+            @foreach($education as $Key => $edu)
+                @if($edu->passingYear==null)
+                    <tr>
+                        <td style="text-align: center">{{$edu->educationLevelName}} in {{$edu->degreeName}} </td>
+                        <td style="text-align: center">{{$edu->institutionName}}
+                            @if($edu->boardName)
+                                /{{$edu->boardName}}
+                            @endif
+                        </td>
+                        <td style="text-align: center">
+                            {{$edu->passingYear}}
+                        </td>
+
+                        <td style="text-align: center"> {{$edu->result}}</td>
+                    </tr>
+                    @unset($education[$Key])
+                    @break
+                @endif
+            @endforeach
+
             @foreach($education as $edu)
                 <tr>
                     <td style="text-align: center">{{$edu->educationLevelName}} in {{$edu->degreeName}} </td>
                     <td style="text-align: center">{{$edu->institutionName}}
                         @if($edu->boardName)
-                            /
-                            {{$edu->boardName}}
-
+                            /{{$edu->boardName}}
                         @endif
-
                     </td>
 
-                    <td style="text-align: center">{{$edu->passingYear}} </td>
+                    <td style="text-align: center">
+                        {{$edu->passingYear}}
+                    </td>
 
                     <td style="text-align: center"> {{$edu->result}}</td>
                 </tr>
@@ -107,11 +126,9 @@
 
             </tbody>
 
+        </table>
 
-        </table >
-
-
-        <table border="0" style="width:100%; margin-top: 25px; border: none;">
+       <table border="0" style="width:100%; margin-top: 25px; border: none;">
             <tr>
                 <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Job Experience</b> </td>
             </tr>
@@ -122,7 +139,6 @@
 
             @php $count=1;$flag=0;@endphp
             @foreach($jobExperience as $exp)
-
                 <tr>
                     <td width="5%" style="border: none; vertical-align: top">
                         <span class="bold">{{$count++}}.</span>
@@ -147,9 +163,8 @@
                         @else
                             {{$sub_struct=\Carbon\Carbon::parse($exp->startDate)->diff(\Carbon\Carbon::parse($exp->endDate))->format('%y years, %m months and %d days')}}
                         @endif
-
-                    </td>
                 </tr>
+
 
             @endforeach
     @endif
@@ -163,6 +178,18 @@
 {{--            <p style="page-break-after: always;"></p>--}}
 {{--        @endif--}}
 
+        @if(!empty($exp->keyAchivement))
+        <table border="0" style="width:100%; margin-top: 15px; border: none;">
+            <tr>
+                <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000; background-color: #eff0f1;" ><b>Key achievement</b> </td>
+            </tr>
+        </table>
+
+        <table border="0" style="width:100%; margin-top: 10px; border: none;">
+            @if($exp->keyAchivement==null)<tr><td style=" border: none; text-align: center"> <strong>None </strong> </td> </tr>@else
+            <br><span style="text-align: justify">{!! $exp->keyAchivement !!}</span>@endif
+        </table>
+        @endif
 
 
         <table border="0" style="width:100%; margin-top: 15px; border: none;">

@@ -54,7 +54,7 @@
                 </div>
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Key achievement<span id="notice">Max limit 5000 character</span> </label>
-                    <textarea class="form-control" rows="15" name="keyAchivement" maxlength="5000"  id="keyAchivement" placeholder="Key Achievement">{{$experience->keyAchivement}}</textarea>
+                    <textarea class="form-control ckeditor" rows="15" name="keyAchivement" maxlength="5000"  id="keyAchivement" placeholder="Key Achievement">{{$experience->keyAchivement}}</textarea>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">Name of supervisor</label>
@@ -103,7 +103,7 @@
     </form>
 
 <meta name="csrf-token" content="{{ csrf_token() }}" />
-
+<script type="text/javascript" src="{{url('public/assets/ckeditor/ckeditor.js')}}"></script>
 <script>
     $.ajaxSetup({
         headers: {

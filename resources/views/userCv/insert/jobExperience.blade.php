@@ -189,6 +189,7 @@
 @endsection
 
 @section('foot-js')
+    <script type="text/javascript" src="{{url('public/assets/ckeditor/ckeditor.js')}}"></script>
     <script>
         var currentTab = 0; // Current tab is set to be the first tab (0)
         fixStepIndicator(currentTab); // Display the crurrent tab

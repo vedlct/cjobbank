@@ -21,6 +21,7 @@ use App\RelativeInCb;
 use App\Traning;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use PDF;
 use Auth;
 class UserCvController extends Controller
@@ -113,7 +114,7 @@ class UserCvController extends Controller
            ->get();
 
        $jobExperience = JobExperience::where('fkemployeeId', $empId)
-//           ->orderBy('startDate', 'desc')
+           ->orderBy('startDate', 'desc')
            ->get();
 
        $trainingCertificate = Traning::where('fkemployeeId', $empId)
