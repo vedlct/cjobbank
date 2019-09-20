@@ -1200,33 +1200,20 @@
 
 
             if ($('#jobTitle').val()!=""){
-
-
                 var products=selecteds;
-
                 if (products.length >0) {
-
                     $.ajax({
                         type: 'POST',
                         url: "{!! route('jobAppliedCadidate.admin.Exporthrreport03xls') !!}",
                         cache: false,
                         data: {'jobApply': products,'excelName':$('#excelName').val(),_token:"{{csrf_token()}}",jobTitle:$('#jobTitle').val()},
                         success: function (data) {
-                           // console.log(data);
-
                             $('#SessionMessage').load(document.URL +  ' #SessionMessage');
-                            table.ajax.reload();  //just reload table
-
+                            table.ajax.reload();
                             selecteds=[];
-
                             $(':checkbox:checked').prop('checked',false);
 
-                            //alert(data);
-
-//                            location.reload();
-
                             if (data.success=='1'){
-
                                 $.alert({
                                     title: 'Success!',
                                     type: 'green',
@@ -1247,17 +1234,10 @@
                                                 delete link;
 
                                                 location.reload();
-
-
-
-
                                             }
                                         }
-
                                     }
                                 });
-
-
                             }else if(data.success=='0'){
 
                                 $.alert({
@@ -1276,18 +1256,10 @@
 
                                     }
                                 });
-
-
                             }
-
-
                         }
-
                     });
-                }
-                else {
-
-
+                }else{
                     $.alert({
                         title: 'Alert!',
                         type: 'Red',
@@ -1296,20 +1268,11 @@
                             tryAgain: {
                                 text: 'Ok',
                                 btnClass: 'btn-red',
-                                action: function () {
-
-
-                                }
                             }
-
                         }
                     });
                 }
-
-
-
             }else {
-
                 $.alert({
                     title: 'Alert!',
                     type: 'red',
@@ -1317,19 +1280,13 @@
                     buttons: {
                         tryAgain: {
                             text: 'Ok',
-                            btnClass: 'btn-blue',
-                            action: function () {
-
-
-                            }
+                            btnClass: 'btn-blue'
                         }
-
                     }
                 });
-
             }
-
         }
+
         function myfunchrreport02() {
 
 

@@ -150,8 +150,10 @@ class UserCvController extends Controller
        $salary=QuestionObjective::where('empId',$empId)->first();
 
        $application = Jobapply::where('fkemployeeId',$empId)->first();
-       $application->status = 'Viewed';
-       $application->save();
+       if ($application){
+           $application->status = 'Viewed';
+           $application->save();
+       }
 
        $pdf = PDF::loadView('test',compact( 'personalInfo', 'education',
            'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree',
@@ -159,7 +161,9 @@ class UserCvController extends Controller
 
        return $pdf->download('Curriculam Vitae of '.$personalInfo->firstName." ".$personalInfo->lastName.'.pdf',array('Attachment'=>false));
 
-
+//        return view('test',compact( 'personalInfo', 'education',
+//           'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree',
+//           'relativeCb','empOtherSkillls','empComputerSkill','empOtherInfo','empOtherInfo','languageNames','languages','salary','memberShip'));
 
    }
    public function getUserFullCv(Request $r){

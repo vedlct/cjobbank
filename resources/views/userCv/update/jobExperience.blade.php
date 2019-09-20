@@ -215,6 +215,7 @@
 @endsection
 
 @section('foot-js')
+
     <script>
         var currentTab = 0; // Current tab is set to be the first tab (0)
         fixStepIndicator(currentTab); // Display the crurrent tab
@@ -492,7 +493,7 @@
                     '<textarea  class="form-control" rows="5" name="address[]" id="address'+counter+'" placeholder="address"></textarea> ' +
                     '</div> ' +
                     '<div class="form-group col-md-12">'+
-                    '<label for="inputPassword4">Major responsibilities: <span id="notice">Max limit 5000 character</span></label>'+
+                    '<label>Major responsibilities: <span id="notice">Max limit 5000 character</span></label>'+
                     '<textarea class="form-control" rows="15"name="majorResponsibilities[]" maxlength="5000"  id="majorResponsibilities'+counter+'" placeholder="Major responsibilities"></textarea>'+
                     '</div>'+
                     '<div class="form-group col-md-12">'+

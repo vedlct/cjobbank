@@ -513,7 +513,6 @@ class ApplicationController extends Controller
     }
     public function exportAppliedCandidateHrReport03(Request $r)
     {
-
         $appliedList=$r->jobApply;
         $excelName=$r->excelName;
 //        $jobTitle=$r->jobTitle;
@@ -537,9 +536,7 @@ class ApplicationController extends Controller
             'filePath'=>$fileName,
         );
 
-
-
-         $jobTitle=Jobapply::select('job.title','job.jobId','job.deadline')
+        $jobTitle=Jobapply::select('job.title','job.jobId','job.deadline')
                 ->leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')->whereIn('jobapply',$appliedList)->first();
 
         $empIds=Jobapply::select('fkemployeeId')->whereIn('jobapply',$appliedList)
@@ -609,14 +606,10 @@ class ApplicationController extends Controller
                     )
                 ));
 
-
-
                 $sheet->setpaperSize(9);
                 $sheet->setOrientation('landscape');
                 $sheet->setScale(60);
                 $sheet->setFitToPage(false);
-
-
                 $sheet->loadView('Admin.application.AppliedCandidateList')
                     ->with('AppliedCandidateList',$newlist)
                     ->with('ethnicity',$ethnicity)
@@ -643,10 +636,8 @@ class ApplicationController extends Controller
             $fileInfo=array_merge($fileInfo,$message);
         }
         return $fileInfo;
-
-
-
     }
+
     public function exportAppliedCandidateHrReport02(Request $r)
     {
 

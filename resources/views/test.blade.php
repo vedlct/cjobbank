@@ -24,7 +24,7 @@
         }
 
         @page {
-            margin-bottom:0px;margin-top: 5px;
+            margin-bottom:5px;margin-top: 15px;
         }
     </style>
 
@@ -63,7 +63,7 @@
         </table>
         <table border="0" style="width:100%; margin-top: 10px; border: none;">
             <tr>
-                <td style="width: 100%;border: none;">{{$personalInfo->objective}}</td>
+                <td style="width: 100%;border: none;text-align: justify">{{$personalInfo->objective}}</td>
             </tr>
         </table>
 
@@ -111,7 +111,7 @@
         </table >
 
 
-        <table border="0" style="width:100%; margin-top: 15px; border: none;">
+        <table border="0" style="width:100%; margin-top: 25px; border: none;">
             <tr>
                 <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Job Experience</b> </td>
             </tr>
@@ -128,11 +128,12 @@
                         <span class="bold">{{$count++}}.</span>
                     </td>
 
-                    <td style="border: none;">
+                    <p style="border: none;">
 
                         <span class="bold"> Company Name : </span> &nbsp;&nbsp; {{$exp->organization}}  &nbsp;&nbsp;
                         <div class="pull-right"><span class="bold">Position:</span>&nbsp;{{$exp->degisnation}} </div><br>
-                        <span class="bold"> Major Responsibilities :</span>&nbsp;&nbsp;{{$exp->majorResponsibilities}} <br>
+                        <p><span class="bold" > Major Responsibilities :</span>&nbsp;&nbsp;
+                            <span style="text-align: justify">{!! $exp->majorResponsibilities !!}</span> <br></p>
                         <span class="bold"> Address:</span>&nbsp;&nbsp;&nbsp; {{$exp->address}} <br>
                         <span class="bold"> Duration:</span>&nbsp;&nbsp;&nbsp; {{$exp->startDate}} -  @if($exp->endDate) {{$exp->endDate}} @else
                             Continuing
@@ -142,15 +143,10 @@
                         <span class="bold"> Total job experience:</span>
 
                         @if ($exp->startDate!=null && $exp->endDate==null)
-
                             {{$sub_struct=\Carbon\Carbon::parse($exp->startDate)->diff(\Carbon\Carbon::now())->format('%y years, %m months and %d days')}}
                         @else
                             {{$sub_struct=\Carbon\Carbon::parse($exp->startDate)->diff(\Carbon\Carbon::parse($exp->endDate))->format('%y years, %m months and %d days')}}
                         @endif
-
-
-
-
 
                     </td>
                 </tr>
@@ -159,13 +155,13 @@
     @endif
         </table>
 
-        @if(!$jobExperience->isEmpty() && count($jobExperience) >=2)
-            <p style="page-break-after: always;"></p>
-        @elseif(!$jobExperience->isEmpty())
-            <p style="page-break-after: always;"></p>
-        @elseif($jobExperience->isEmpty()&& count($trainingCertificate)>=2)
-            <p style="page-break-after: always;"></p>
-        @endif
+{{--        @if(!$jobExperience->isEmpty() && count($jobExperience) >=2)--}}
+{{--            <p style="page-break-after: always;"></p>--}}
+{{--        @elseif(!$jobExperience->isEmpty())--}}
+{{--            <p style="page-break-after: always;"></p>--}}
+{{--        @elseif($jobExperience->isEmpty()&& count($trainingCertificate)>=2)--}}
+{{--            <p style="page-break-after: always;"></p>--}}
+{{--        @endif--}}
 
 
 
@@ -202,9 +198,9 @@
 
         </table>
 
-        @if($trainingCertificate->isEmpty()&& $jobExperience->isEmpty() )
-        <p style="page-break-after: always;"></p>
-        @endif
+{{--        @if($trainingCertificate->isEmpty()&& $jobExperience->isEmpty() )--}}
+{{--        <p style="page-break-after: always;"></p>--}}
+{{--        @endif--}}
 
         <table border="0" style="width:100%;border: none;">
             <tr>
@@ -460,7 +456,7 @@
             {{--<p style="page-break-after: always;"></p>--}}
         {{--@endif--}}
 
-        <p style="page-break-after: always;"></p>
+{{--        <p style="page-break-after: always;"></p>--}}
 
         <table border="0" style="width:100%; margin-top: 25px; border: none;">
             <tr>
