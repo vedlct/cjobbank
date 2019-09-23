@@ -1,4 +1,4 @@
-
+@php error_reporting(0); @endphp
 <html lang="en">
 <head>
     <title>Curriculam Vitae of {{$personalInfo->firstName}} {{$personalInfo->lastName}}</title>
@@ -29,7 +29,7 @@
     </style>
 
 </head>
-<body style="margin-bottom:0px;">
+<body style="margin-bottom:5px;">
 <div style="margin-bottom:0px;" class="">
     <div style="background: #fff;margin-bottom:0px; " class="">
 
@@ -616,11 +616,5 @@
                 <td style="width: 13%; border: none; ">&nbsp;&nbsp;Signature</td>
             </tr>
         </table>
-
-
-
-
-    {{--</div>--}}
-{{--</div>--}}
 </body>
 </html>

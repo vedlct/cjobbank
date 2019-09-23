@@ -101,11 +101,11 @@
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="inputPassword4">Major responsibilities <span id="notice">Max limit 5000 character</span></label>
-                                        <textarea class="form-control" rows="15" name="majorResponsibilities[]" maxlength="5000"  id="majorResponsibilities" placeholder="max limit 5000"></textarea>
+                                        <textarea class="form-control ckeditor" rows="15" name="majorResponsibilities[]" maxlength="5000"  id="majorResponsibilities" placeholder="max limit 5000"></textarea>
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="inputPassword4">Key achievement <span id="notice">Max limit 5000 character</span></label>
-                                        <textarea class="form-control" rows="15" name="keyAchivement[]" maxlength="5000"  id="keyAchivement" placeholder="max limit 5000"></textarea>
+                                        <textarea class="form-control ckeditor" rows="15" name="keyAchivement[]" maxlength="5000"  id="keyAchivement" placeholder="max limit 5000"></textarea>
                                     </div>
 
                                     <div class="form-group col-md-6" id="supervisorDiv">
@@ -147,8 +147,8 @@
 
                             </div>
 
-                            <button type="button" id="addButton" class="btn btn-success">Add more</button>
-                            <button type="button" id="removeButton" class="btn btn-success" >Remove</button>
+{{--                            <button type="button" id="addButton" class="btn btn-success">Add more</button>--}}
+{{--                            <button type="button" id="removeButton" class="btn btn-success" >Remove</button>--}}
 
                         </div>
                         </div>

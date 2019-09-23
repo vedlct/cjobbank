@@ -34,7 +34,6 @@ class JobExperienceController extends Controller
 
        $employee=Employee::select('employeeId','hasJobExp')->where('fkuserId',Auth::user()->userId)->first();
 
-
        $companyType=DB::table('organizationtype')->where('status',1)->get();
        $employmentType=DB::table('type_of_employment')->where('status',1)->get();
 
@@ -81,11 +80,32 @@ class JobExperienceController extends Controller
 
    }
 
+   public function JobExperiencesubmit(Request $r)
+   {
+       $experience = new JobExperience();
+       $experience->organization = $r->organization;
+       $experience->degisnation = $r->degisnation;
+       $experience->startDate = $r->startDate;
+       $experience->endDate = $r->endDate;
+       $experience->address = $r->address;
+       $experience->fkemployeeId = Auth::user()->userId;
+       $experience->fkOrganizationType = $r->organizationType;
+       $experience->majorResponsibilities = $r->majorResponsibilities;
+       $experience->keyAchivement = $r->keyAchivement;
+       $experience->supervisorName = $r->supervisorName;
+       $experience->reservationContactingEmployer = $r->reservationContactingEmployer;
+       $experience->employmentType = $r->employmentType;
+       $experience->employmentTypeText = $r->employmentTypeText;
+       $experience->save();
+
+       Session::flash('message', 'Experience Added Successfully');
+
+       return redirect()->route('JobExperience.index');
+   }
+
    public function submitJobExperience(Request $r){
 
-      // return $r;
-
-       $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
+        $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
 
        $emp=Employee::findOrFail($employee->employeeId);
 
@@ -132,8 +152,14 @@ class JobExperienceController extends Controller
        $companyType=DB::table('organizationtype')->where('status',1)->get();
        $employmentType=DB::table('type_of_employment')->where('status',1)->get();
        return view('userCv.edit.editJobExperience',compact('experience','companyType', 'employmentType'));
-//       return $r;
-   }
+
+    }
+
+    public function JobExperienceadd(){
+        $companyType=DB::table('organizationtype')->where('status',1)->get();
+        $employmentType=DB::table('type_of_employment')->where('status',1)->get();
+        return view('userCv.update.addjobexperience',compact('companyType', 'employmentType'));
+    }
 
    public function updateJobExperience(Request $r){
 
