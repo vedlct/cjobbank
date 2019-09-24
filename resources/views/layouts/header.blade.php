@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html>
-
-<!-- Mirrored from themesdesign.in/upcube/layouts/horizontal/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 May 2018 07:43:36 GMT -->
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,21 +12,19 @@
     <!-- App Icons -->
     <link rel="shortcut icon" href="{{url('public/logo/TCL_logo.png')}}">
 
-    <!--Morris Chart CSS -->
-{{--<link rel="stylesheet" href="{{url('public/assets/plugins/morris/morris.css')}}">--}}
-
-<!-- App css -->
     <link href="{{asset('public/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('public/assets/css/icons.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('public/assets/css/style.css')}}" rel="stylesheet" type="text/css" />
-    {{--<script href="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.dev.js"></script>--}}
-    {{--Jquery Alert--}}
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+{{--    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">--}}
+{{--    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/w/dt/dt-1.10.18/b-1.5.6/datatables.min.css"/>--}}
     <!-- DataTables -->
     <link href="{{asset('public/assets/plugins/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('public/assets/plugins/datatables/buttons.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('public/assets/plugins/datatables/responsive.bootstrap4.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('public/assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css')}}" rel="stylesheet">
+{{--    <link href="{{asset('public/datatables.min.css')}}" rel="stylesheet">--}}
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 

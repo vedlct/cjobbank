@@ -9,13 +9,13 @@
 
 
     <tr>
-        <td colspan="15" style="text-align: center;vertical-align: top;height: 20"><span style="font-weight: bold">{{strtoupper($jobTitle['title'])}}</span>
+        <td colspan="22" style="text-align: center;vertical-align: top;height: 20;font-size: 28px;"><span style="font-weight: bold">{{strtoupper($jobTitle['title'])}}</span>
             <b>- {{$excelName}}</b>
         </td>
     </tr>
 
     <tr>
-        <td colspan="15" style="text-align: center;vertical-align: top;height: 20">
+        <td colspan="22" style="text-align: center;vertical-align: top;height: 20">
             <span style="font-weight: bold">Last date: {{$jobTitle['deadline']}} </span>
         </td>
         {{--<td colspan="5"></td>--}}
@@ -36,14 +36,14 @@
         {{--<th>Disability</th>--}}
         {{--<th>Ethnicity</th>--}}
         <th colspan="1"style="text-align: center" >  AGE  </th>
-        <th style="text-align: center" colspan="3">Educational Qualification</th>
+        <th style="text-align: center" colspan="5">Educational Qualification</th>
         {{--<th colspan="2">Professional Qualification</th>--}}
         {{--<th colspan="2">Training</th>--}}
-        <th style="text-align: center" colspan="3">Job Experiences</th>
+        <th style="text-align: center" colspan="5">Job Experiences</th>
         @if($withoutsalary != 'true')
-        <th style="text-align: center">Salary Information</th>
+        <th style="text-align: center" colspan="1">Salary Information</th>
         @endif
-        <th style="text-align: center">National ID No./ Birth Identification No.</th>
+        <th style="text-align: center" colspan="2">National ID No./ Birth Identification No.</th>
         <th style="text-align: center">Photo (2)</th>
         <th style="text-align: center">Name of  two Referees</th>
         {{--<th>Relative in CB</th>--}}
@@ -54,11 +54,9 @@
     <tbody>
 
     @foreach($AppliedCandidateList as $key=>$emp)
-        <tr>
+        <tr style="border-radius: 2px">
             <td colspan="1"height="600" style="text-align: left;vertical-align: middle;">
              {{$key+1}}
-
-
             </td>
             <td colspan="3"height="600" style="text-align: left;vertical-align: top;">
                 {{$emp['firstName']}}   {{$emp['lastName']}}
@@ -71,7 +69,6 @@
 
                 <span class="bold">Permanent Address:</span><br>
                 {{$emp['parmanentAddress']}} <br>
-
             </td>
             {{--<td height="600" style="text-align: center;vertical-align: middle;">--}}
                 {{--{{$emp['gender']}}--}}
@@ -83,10 +80,9 @@
                 {{--{{$ethnicity->where('ethnicityId',$emp['ethnicityId'])->first()->ethnicityName}}--}}
             {{--</td>--}}
             <td colspan="1" height="600" style="text-align: center;vertical-align: middle;">
-
                 {{$emp['AgeYear']}}.{{substr($emp['AgeMonth'],0,1)}}yrs
             </td>
-            <td colspan="3" height="600" style="text-align: left;vertical-align: top;">
+            <td colspan="5" height="600" style="text-align: left;vertical-align: top;">
 
 {{--                @foreach($educationList->where('fkemployeeId',$emp['employeeId']) as $edu)--}}
 {{--                        --}}{{--{{$edu->institutionName}}--}}
@@ -136,13 +132,12 @@
                 {{--@endforeach--}}
 
             {{--</td>--}}
-            <td colspan="3" height="600" style="text-align: left;vertical-align: top;">
+            <td colspan="5" height="600" style="text-align: left;vertical-align: top;">
                 <?php $tJEY=0;$tJEM=0; $totalexpyr = 0;$totalexpDay = 0;$tJED=0; $totalexpmonth = 0;$subDay=0 ?>
                 @foreach($jobExperienceList->where('fkemployeeId',$emp['employeeId']) as $job)
                     Position: {{$job->degisnation}}<br>
                     Organization name: {{$job->organization}}<br>
                     {{$job->address}}<br>
-
                     years:
                         @if ($job->startDate!=null && $job->endDate==null)
 
@@ -213,7 +208,7 @@
 
             </td>
             @if($withoutsalary != 'true')
-            <td  height="600" style="text-align: left;vertical-align: middle;">
+            <td  height="600" style="text-align: left;vertical-align: middle;" colspan="1">
                 @foreach($salaryList->where('fkemployeeId',$emp['employeeId']) as $salary)
                     Current:{{$salary->currentSalary}}<br>
                     Expected:{{$salary->expectedSalary}}
@@ -221,7 +216,7 @@
 
             </td>
             @endif
-            <td height="600" style="text-align: center;vertical-align: middle;">
+            <td height="600" style="text-align: center;vertical-align: middle;" colspan="2">
 
                 {{--@if($emp['nationalId'])--}}
                     {{--Yes--}}

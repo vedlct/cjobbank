@@ -732,7 +732,7 @@ class ApplicationController extends Controller
                 $sheet->setStyle(array(
                     'font' => array(
 //                        'name'      =>  'Calibri',
-                        'size'      =>  13,
+                        'size'      =>  20,
 //                        'bold'      =>  false
                     )
                 ));

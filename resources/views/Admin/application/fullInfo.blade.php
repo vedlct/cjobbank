@@ -273,8 +273,8 @@
             <?php $temporary=0; ?>
             @foreach($jobExperience->where('fkemployeeId',$emp->employeeId) as $job)
               {{++$temporary}}.{{$job->organization}}->{{$job->degisnation}}<br>
-                Major Job responsibility: {{$job->majorResponsibilities}}<br>
-                Key Achievement: {{$job->keyAchivement}}<br>
+                Major Job responsibility: {!! $job->majorResponsibilities !!}<br>
+                Key Achievement: {!! $job->keyAchivement !!}<br>
                 <br>
             @endforeach
 
