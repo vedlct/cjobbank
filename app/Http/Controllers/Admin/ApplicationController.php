@@ -731,7 +731,7 @@ class ApplicationController extends Controller
 
                 $sheet->setStyle(array(
                     'font' => array(
-//                        'name'      =>  'Calibri',
+//                        'name'      =>  'Times New Roman',
                         'size'      =>  20,
 //                        'bold'      =>  false
                     )
@@ -768,9 +768,6 @@ class ApplicationController extends Controller
             $fileInfo=array_merge($fileInfo,$message);
         }
         return $fileInfo;
-
-
-
     }
 
     public function showAllMajorForEducation(Request $r)

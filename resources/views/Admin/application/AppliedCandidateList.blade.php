@@ -9,7 +9,7 @@
 
 
     <tr>
-        <td colspan="22" style="text-align: center;vertical-align: top;height: 20;font-size: 28px;"><span style="font-weight: bold">{{strtoupper($jobTitle['title'])}}</span>
+        <td colspan="22" style="text-align: center;vertical-align: top;height: 20;"><span style="font-weight: bold">{{strtoupper($jobTitle['title'])}}</span>
             <b>- {{$excelName}}</b>
         </td>
     </tr>
@@ -29,8 +29,8 @@
 <table class="table">
     <thead>
 
-    <tr >
-        <th colspan="1"style="text-align: center">Sl No.</th>
+    <tr style="border: 2px solid #000000;">
+        <th colspan="1"style="text-align: center;">Sl No.</th>
         <th colspan="3"style="text-align: center">NAME</th>
         {{--<th>Gender</th>--}}
         {{--<th>Disability</th>--}}
@@ -47,14 +47,14 @@
         <th style="text-align: center">Photo (2)</th>
         <th style="text-align: center">Name of  two Referees</th>
         {{--<th>Relative in CB</th>--}}
-        <th style="text-align: center" colspan="2">Remarks</th>
+{{--        <th style="text-align: center" colspan="2">Remarks</th>--}}
 
     </tr>
     </thead>
     <tbody>
 
     @foreach($AppliedCandidateList as $key=>$emp)
-        <tr style="border-radius: 2px">
+        <tr style="border: 2px solid #000000;">
             <td colspan="1"height="600" style="text-align: left;vertical-align: middle;">
              {{$key+1}}
             </td>
@@ -263,9 +263,6 @@
                  {{--@endforeach--}}
 
             {{--</td>--}}
-            <td colspan="2" height="600" style="text-align: center;vertical-align: middle;"></td>
-
-
         </tr>
 
 
