@@ -82,12 +82,13 @@ class JobExperienceController extends Controller
 
    public function JobExperiencesubmit(Request $r)
    {
+//       dd(Auth::user()->userId);
        $experience = new JobExperience();
-       $experience->organization = $r->organization;
        $experience->degisnation = $r->degisnation;
+       $experience->organization = $r->organization;
+       $experience->address = $r->address;
        $experience->startDate = $r->startDate;
        $experience->endDate = $r->endDate;
-       $experience->address = $r->address;
        $experience->fkemployeeId = Auth::user()->userId;
        $experience->fkOrganizationType = $r->organizationType;
        $experience->majorResponsibilities = $r->majorResponsibilities;

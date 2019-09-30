@@ -780,12 +780,11 @@ class ApplicationController extends Controller
 //            ->groupBy('educationMajorId')
 //            ->get();
 
-        $major = Educationmajor::select('educationMajorId','educationMajorName','status')
-            ->where('fkDegreeId', '=',$r->id)
-            ->orWhere('type', '=','g')
+        $major = Educationmajor::where('fkDegreeId', '=',$r->id)
             ->where('status',1)
             ->groupBy('educationMajorId')
             ->orderBy('educationMajorName','ASC')
+            ->orWhere('type', '=','g')
             ->get();
         if ($major == null) {
             echo "<option value='' selected>Select Major</option>";

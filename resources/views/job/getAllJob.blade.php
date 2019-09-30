@@ -65,7 +65,7 @@
                                  <label style="color: red">Please complete your cv to apply job</label>
                              @else
                         {{--<a href="{{route('candidate.ApplyJob',$job->jobId)}}"><button type="button" class="btn btn-primary">Apply Now</button></a>--}}
-                                <button type="button" class="btn btn-info btn-lg" data-job-title="{{$job->title}}" data-panel-id="{{$job->jobId}}" onclick="applyJob(this)">Apply Now</button>
+                                <button type="button" class="btn btn-info btn-lg" data-job-title="{{$job->title}}" data-panel-id="{{$job->jobId}}" onclick="applyJob(this)" id="apply-button">Apply Now</button>
                             @endif
 
                         @endif
@@ -103,6 +103,7 @@
 
 
 <script>
+
     $(".pagiNextPrevBtn").on("click",function() {
         var page=$(this).data('id').split('page=')[1];
         getData(page);
@@ -111,21 +112,22 @@
     function applyJob(x) {
         var id=$(x).data('panel-id');
         var title=$(x).data('job-title');
-
         $.ajax({
             type: 'POST',
             url: "{!! route('job.applyJobModal') !!}",
             cache: false,
-            data: {_token: "{{csrf_token()}}",jobId:id,jobTitle:title},
+            data: {_token: "{{csrf_token()}}", jobId: id, jobTitle: title},
             success: function (data) {
-//                console.log(data);
                 $('#jobModalTitle').html(title);
                 $('#jobModalBody').html(data);
                 $('#jobModal').modal();
-
             }
         });
     }
+
+    $("#button-apply").click(function(){
+        $('#jobModalBody').hide();
+    });
 
 
 </script>

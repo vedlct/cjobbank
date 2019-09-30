@@ -546,84 +546,88 @@
 
         function EmpCvDelete(id) {
 
-            $.ajax({
-                type: 'post',
-                url: "{!! route('userCv.delete') !!}",
-                cache: false,
-                data: {'id': id, _token: "{{csrf_token()}}"},
-                success: function (data) {
+            $.alert({
+                title: 'Error',
+                type: 'red',
+                buttons: {
+                    tryAgain: {
+                        text: 'Ok',
+                        btnClass: 'btn-green',
+                        action: function () {
+                            $.ajax({
+                                type: 'post',
+                                url: "{!! route('userCv.delete') !!}",
+                                cache: false,
+                                data: {'id': id, _token: "{{csrf_token()}}"},
+                                success: function (data) {
 
-                    console.log(data);
+                                    console.log(data);
 
-                    if (data != 0) {
+                                    if (data != 0) {
 
 
-                        $.confirm({
-                            title: 'Confirm!',
-                            content: 'This user allready applied for ' + data + ' job',
-                            buttons: {
-                                confirm: function () {
-                                    $.ajax({
-                                        type: 'post',
-                                        url: "{!! route('userCv.confirm.delete') !!}",
-                                        cache: false,
-                                        data: {'id': id, _token: "{{csrf_token()}}"},
-                                        success: function (data) {
-                                            $.alert({
-                                                title: 'Success',
-                                                type: 'green',
-                                                content: 'This user deleted successfully',
-                                                buttons: {
-                                                    tryAgain: {
-                                                        text: 'Ok',
-                                                        btnClass: 'btn-green',
-                                                        action: function () {
+                                        $.confirm({
+                                            title: 'Confirm!',
+                                            content: 'This user allready applied for ' + data + ' job',
+                                            buttons: {
+                                                confirm: function () {
+                                                    $.ajax({
+                                                        type: 'post',
+                                                        url: "{!! route('userCv.confirm.delete') !!}",
+                                                        cache: false,
+                                                        data: {'id': id, _token: "{{csrf_token()}}"},
+                                                        success: function (data) {
+                                                            $.alert({
+                                                                title: 'Success',
+                                                                type: 'green',
+                                                                content: 'This user deleted successfully',
+                                                                buttons: {
+                                                                    tryAgain: {
+                                                                        text: 'Ok',
+                                                                        btnClass: 'btn-green',
+                                                                        action: function () {
 
-                                                            location.reload();
+                                                                            location.reload();
 
+                                                                        }
+                                                                    }
+                                                                }
+                                                            });
                                                         }
+                                                    });
+                                                }
+                                            }
+                                        });
+
+                                    } else {
+
+                                        $.alert({
+                                            title: 'Success',
+                                            type: 'green',
+                                            content: 'This user deleted successfully',
+                                            buttons: {
+                                                tryAgain: {
+                                                    text: 'Ok',
+                                                    btnClass: 'btn-green',
+                                                    action: function () {
+
+                                                        location.reload();
+
                                                     }
                                                 }
-                                            });
-                                        }
-                                    });
-                                },
-                                cancel: function () {
-                                    //$.alert('Canceled!');
-                                },
-
-                            }
-                        });
-
-                    } else {
-
-                        $.alert({
-                            title: 'Success',
-                            type: 'green',
-                            content: 'This user deleted successfully',
-                            buttons: {
-                                tryAgain: {
-                                    text: 'Ok',
-                                    btnClass: 'btn-green',
-                                    action: function () {
-
-                                        location.reload();
-
+                                            }
+                                        });
                                     }
                                 }
-                            }
-                        });
+                            });
+                        }
+                    },
+                    close: {
+                        text: 'close',
+                        btnClass: 'btn-red',
                     }
-
-                    // location.reload();
-
                 }
             });
-
-            {{--var url = "{{ route('userCv.delete', ':empId') }}";--}}
-            {{--url = url.replace(':empId', id);--}}
-            // location.reload();
-            //window.open(url,'_blank');
         }
 
 

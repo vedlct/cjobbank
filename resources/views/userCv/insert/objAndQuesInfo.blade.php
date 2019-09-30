@@ -41,8 +41,7 @@
 
                     </div>
 
-                    <form class="col-md-9" id="regForm" method="post" action="{{route('cv.insertQuesObj')}}"
-                          onsubmit="return submitForm()">
+                    <form class="col-md-9" id="regForm" method="post" action="{{route('cv.insertQuesObj')}}">
                         {{csrf_field()}}
                         <div class="tab">
 
@@ -65,11 +64,6 @@
                             </div>
 
                             <div class="row">
-
-                                {{--                                <div class="form-group col-md-6">--}}
-                                {{--                                    <label>Expected salary</label>--}}
-                                {{--                                    <input type="text" onkeypress="return isNumberKey(event)" placeholder="expected salary" name="expectedSalary">--}}
-                                {{--                                </div>--}}
 
                                 <div class="form-group col-md-6">
                                     <label>Possible joining date</label>
@@ -111,7 +105,6 @@
 
                                 @php
                                     $st=1;
-
                                 @endphp
 
 
@@ -137,15 +130,6 @@
                                     @endphp
 
                                 @endforeach
-
-
-{{--                                <div class="row">--}}
-{{--                                    <div class="form-group col-md-6">--}}
-{{--                                        <label>Current salary</label>--}}
-{{--                                        <input type="text" onkeypress="return isNumberKey(event)"--}}
-{{--                                               placeholder="current salary" name="currentSalary">--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
 
                             </div>
 

@@ -50,7 +50,7 @@
 
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Major responsibilities<span id="notice">Max limit 5000 character</span> </label>
-                    <textarea class="form-control ckeditor" rows="15" name="majorResponsibilities" maxlength="5000"  id="majorResponsibilities" placeholder="Major responsibilities">{{$experience->majorResponsibilities}}</textarea>
+                    <textarea class="form-control ckeditor" rows="15" name="majorResponsibilities" maxlength="5000"  id="majorResponsibilities" placeholder="Major responsibilities">{!! $experience->majorResponsibilities !!}</textarea>
                 </div>
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Key achievement<span id="notice">Max limit 5000 character</span> </label>
