@@ -1,15 +1,13 @@
-@extends('main')
+<?php $__env->startSection('header'); ?>
 
-@section('header')
 
-{{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>--}}
-{{--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>--}}
 
-{{--<link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" rel="stylesheet">--}}
 
-@endsection
 
-@section('content')
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
 <style>
     div.ex3 {
         background-color: lightblue;
@@ -42,9 +40,9 @@
 
                                             <select class="form-control" id="mailTamplate">
                                                 <option selected value="" selected>Select Tamplate</option>
-                                                @foreach($mailTamplate as $mT)
-                                                    <option value="{{$mT->tamplateId}}">{{$mT->tamplateName}}</option>
-                                                @endforeach
+                                                <?php $__currentLoopData = $mailTamplate; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mT): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <option value="<?php echo e($mT->tamplateId); ?>"><?php echo e($mT->tamplateName); ?></option>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                             </select>
 
@@ -174,9 +172,9 @@
                     <label>Gender</label>
                     <select name="genderFilter" id="genderFilter" class="form-control">
                         <option value="">Select a Gender</option>
-                        @foreach(GENDER as $key=>$value)
-                            <option value="{{$value}}">{{$key}}</option>
-                        @endforeach
+                        <?php $__currentLoopData = GENDER; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($value); ?>"><?php echo e($key); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                     </select>
                 </div>
@@ -199,9 +197,9 @@
                     <label>Job Title</label>
                     <select name="jobTitle" id="jobTitle" class="form-control">
                         <option value="">Select a jobTitle</option>
-                        @foreach($allJobTitle as $jobTitle)
-                            <option value="{{$jobTitle->title}}">{{$jobTitle->title}}</option>
-                        @endforeach
+                        <?php $__currentLoopData = $allJobTitle; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $jobTitle): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($jobTitle->title); ?>"><?php echo e($jobTitle->title); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                     </select>
                 </div>
@@ -219,9 +217,9 @@
                     <label>Religion</label>
                     <select name="religionFilter" id="religionFilter" class="form-control">
                         <option value="">Select a Religion</option>
-                        @foreach($religion as $reli)
-                            <option value="{{$reli->religionId}}">{{$reli->religionName}}</option>
-                        @endforeach
+                        <?php $__currentLoopData = $religion; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $reli): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($reli->religionId); ?>"><?php echo e($reli->religionName); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                     </select>
                 </div>
@@ -229,9 +227,9 @@
                     <label>Ethnicity</label>
                     <select name="ethnicityFilter" id="ethnicityFilter" class="form-control">
                         <option value="">Select a Ethnicity</option>
-                        @foreach($ethnicity as $ethi)
-                            <option value="{{$ethi->ethnicityId}}">{{$ethi->ethnicityName}}</option>
-                        @endforeach
+                        <?php $__currentLoopData = $ethnicity; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ethi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($ethi->ethnicityId); ?>"><?php echo e($ethi->ethnicityName); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                     </select>
                 </div>
@@ -239,9 +237,9 @@
                     <label>Disability</label>
                     <select name="disabilityFilter" id="disabilityFilter" class="form-control">
                         <option value="">Select a Disability</option>
-                        @foreach(DISABILITY as $key=>$value)
-                            <option value="{{$value}}">{{$key}}</option>
-                        @endforeach
+                        <?php $__currentLoopData = DISABILITY; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($value); ?>"><?php echo e($key); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                     </select>
                 </div>
@@ -250,9 +248,9 @@
                     <label>Marital Status</label>
                     <select name="maritalStatusFilter" id="maritalStatusFilter" class="form-control">
                         <option value="">Select marital status</option>
-                        @foreach(MARITAL_STATUS as $key=>$value)
-                            <option value="{{$value}}">{{$key}}</option>
-                        @endforeach
+                        <?php $__currentLoopData = MARITAL_STATUS; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($value); ?>"><?php echo e($key); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </select>
                 </div>
 
@@ -261,9 +259,9 @@
                     <label>Nationality</label>
                     <select name="nationalityFilter" id="nationalityFilter" class="form-control">
                         <option  value="">Select a Nationality</option>
-                        @foreach($natinality as $natio)
-                            <option value="{{$natio->nationalityId}}">{{$natio->nationalityName}}</option>
-                        @endforeach
+                        <?php $__currentLoopData = $natinality; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $natio): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($natio->nationalityId); ?>"><?php echo e($natio->nationalityName); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                     </select>
                 </div>
@@ -271,9 +269,9 @@
                     <label>Zone</label>
                     <select name="zonefilter" id="zonefilter" class="form-control">
                         <option value="">Select a Zone</option>
-                        @foreach($allZone as $zone)
-                            <option  value="{{$zone->zoneId}}">{{$zone->zoneName}}</option>
-                        @endforeach
+                        <?php $__currentLoopData = $allZone; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $zone): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option  value="<?php echo e($zone->zoneId); ?>"><?php echo e($zone->zoneName); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                     </select>
                 </div>
@@ -284,9 +282,9 @@
                     <label>Educational Qualification</label>
                     <select id="educationLvlFilter" name="educationLvlFilter" class="form-control">
                         <option value="">Select a Qualification</option>
-                        @foreach($allEducationLevel as $eduLvl)
-                            <option  value="{{$eduLvl->educationLevelId}}">{{$eduLvl->educationLevelName}}</option>
-                        @endforeach
+                        <?php $__currentLoopData = $allEducationLevel; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $eduLvl): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option  value="<?php echo e($eduLvl->educationLevelId); ?>"><?php echo e($eduLvl->educationLevelName); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
                     </select>
@@ -296,33 +294,33 @@
                         <label>Degree</label>
                         <select id="degreeLvlFilter" name="degreeLvlFilter" class="form-control">
                             <option value="">Select a Degree</option>
-                            @foreach($degree as $de)
-                                <option  value="{{$de->degreeId}}">{{$de->degreeName}}</option>
-                            @endforeach
+                            <?php $__currentLoopData = $degree; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $de): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option  value="<?php echo e($de->degreeId); ?>"><?php echo e($de->degreeName); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                         </select>
                     </div>
 
-{{--                    <div class="example">--}}
-{{--                        <script type="text/javascript">--}}
-{{--                            $(document).ready(function() {--}}
-{{--                                $('#educationMajorFilter').multiselect();--}}
-{{--                            });--}}
-{{--                        </script>--}}
-{{--                        <select id="multi-select-demo" multiple="multiple">--}}
-{{--                            <option value="jQuery">jQuery tutorial</option>--}}
-{{--                            <option value="Bootstrap">Bootstrap Tips</option>--}}
-{{--                            <option value="HTML">HTML</option>--}}
-{{--                            <option value="CSS">CSS tricks</option>--}}
-{{--                            <option value="angular">Angular JS</option>--}}
-{{--                        </select>--}}
-{{--                    </div>--}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
                     <div class=" form-group ">
                         <label>Major</label>
-{{--                        <select data-placeholder="Choose a Country..."id="educationMajorFilter" class="chosen-select" multiple style="width:350px;" tabindex="4">--}}
+
                         <select id="educationMajorFilter" name="educationMajorFilter" class="form-control" multiple>
                             <option value="">Select a Major</option>
                         </select>
@@ -331,9 +329,9 @@
                     <label>Status of completion</label>
                     <select id="educationCompletingFilter" name="educationCompletingFilter" class="form-control">
                         <option value="">Select a Status</option>
-                        @foreach(COMPLETING_STATUS as $key=>$value)
-                            <option value="{{$value}}">{{$key}}</option>
-                        @endforeach
+                        <?php $__currentLoopData = COMPLETING_STATUS; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($value); ?>"><?php echo e($key); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                     </select>
                 </div>
@@ -349,9 +347,9 @@
                         <label>Status of completion</label>
                         <select id="qualificationCompletingFilter" name="qualificationCompletingFilter" class="form-control">
                             <option value="">Select a Status</option>
-                            @foreach(COMPLETING_STATUS as $key=>$value)
-                                <option value="{{$value}}">{{$key}}</option>
-                            @endforeach
+                            <?php $__currentLoopData = COMPLETING_STATUS; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option value="<?php echo e($value); ?>"><?php echo e($key); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                         </select>
                     </div>
@@ -367,9 +365,9 @@
                         <label>Status of completion</label>
                         <select id="trainingCompletingFilter" name="trainingCompletingFilter" class="form-control">
                             <option value="">Select a Status</option>
-                            @foreach(COMPLETING_STATUS as $key=>$value)
-                                <option value="{{$value}}">{{$key}}</option>
-                            @endforeach
+                            <?php $__currentLoopData = COMPLETING_STATUS; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option value="<?php echo e($value); ?>"><?php echo e($key); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                         </select>
                     </div>
@@ -391,9 +389,9 @@
                         <label>Organization Type</label>
                         <select id="jobExperienceFilter" name="jobExperienceFilter" class="form-control">
                             <option value="">Select a Type</option>
-                            @foreach($organizationType as $type)
-                                <option value="{{$type->organizationTypeId}}">{{$type->organizationTypeName}}</option>
-                            @endforeach
+                            <?php $__currentLoopData = $organizationType; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option value="<?php echo e($type->organizationTypeId); ?>"><?php echo e($type->organizationTypeName); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                         </select>
 
@@ -442,14 +440,14 @@
                         </div>
 
                     </div>
-                    {{--<div class="row">--}}
+                    
 
-                        {{--<div class="col-md-1">--}}
-                            {{--<a onclick="return sendMail()"><button class="btn btn-danger btn-sm">Send Mail</button></a>--}}
-                        {{--</div>--}}
+                        
+                            
+                        
 
 
-                    {{--</div>--}}
+                    
                     <br>
                     <div class="table table-responsive">
                     <table id="manageapplication" class="table table-striped table-bordered" style="width:100%" >
@@ -489,15 +487,15 @@
 
 
 
-@endsection
-@section('foot-js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('foot-js'); ?>
 
-{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.js"></script>--}}
 
-    <script src="{{url('public/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{url('public/assets/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
-    <script type="text/javascript" src="{{url('public/assets/ckeditor/ckeditor.js')}}"></script>
-{{--    <script type="text/javascript" src="{{url('public/assets/js/moment.js')}}"></script>--}}
+
+    <script src="<?php echo e(url('public/assets/plugins/datatables/jquery.dataTables.min.js')); ?>"></script>
+    <script src="<?php echo e(url('public/assets/plugins/datatables/dataTables.bootstrap4.min.js')); ?>"></script>
+    <script type="text/javascript" src="<?php echo e(url('public/assets/ckeditor/ckeditor.js')); ?>"></script>
+
 
     <script>
 
@@ -541,11 +539,11 @@
                 serverSide: true,
                 stateSave: true,
                 "ajax":{
-                    "url": "{!! route('application.admin.showAll')!!}",
+                    "url": "<?php echo route('application.admin.showAll'); ?>",
                     "type": "POST",
                     data:function (d){
 
-                        d._token="{{csrf_token()}}";
+                        d._token="<?php echo e(csrf_token()); ?>";
 
                         if ($('#maritalStatusFilter').val()!=""){
                             d.maritalStatusFilter=$('#maritalStatusFilter').val();
@@ -1072,9 +1070,9 @@
 
                     $.ajax({
                         type: 'POST',
-                        url: "{!! route('jobAppliedCadidate.admin.Exportxls') !!}",
+                        url: "<?php echo route('jobAppliedCadidate.admin.Exportxls'); ?>",
                         cache: false,
-                        data: {'jobApply': products,'excelName':$('#excelName').val(),_token:"{{csrf_token()}}",jobTitle:$('#jobTitle').val()},
+                        data: {'jobApply': products,'excelName':$('#excelName').val(),_token:"<?php echo e(csrf_token()); ?>",jobTitle:$('#jobTitle').val()},
                         success: function (data) {
                            // console.log(data);
 
@@ -1103,7 +1101,7 @@
 
                                                 var link = document.createElement("a");
                                                 link.download = data.fileName+".xls";
-                                                var uri = '{{url("public/exportedExcel")}}'+"/"+data.fileName+".xls";
+                                                var uri = '<?php echo e(url("public/exportedExcel")); ?>'+"/"+data.fileName+".xls";
                                                 link.href = uri;
                                                 document.body.appendChild(link);
                                                 link.click();
@@ -1206,9 +1204,9 @@
 
                     $.ajax({
                         type: 'POST',
-                        url: "{!! route('jobAppliedCadidate.admin.Exporthrreport03xls') !!}",
+                        url: "<?php echo route('jobAppliedCadidate.admin.Exporthrreport03xls'); ?>",
                         cache: false,
-                        data: {'jobApply': products,'excelName':$('#excelName').val(),_token:"{{csrf_token()}}",jobTitle:$('#jobTitle').val()},
+                        data: {'jobApply': products,'excelName':$('#excelName').val(),_token:"<?php echo e(csrf_token()); ?>",jobTitle:$('#jobTitle').val()},
                         success: function (data) {
                            // console.log(data);
 
@@ -1237,7 +1235,7 @@
 
                                                 var link = document.createElement("a");
                                                 link.download = data.fileName+".xls";
-                                                var uri = '{{url("public/exportedExcel")}}'+"/"+data.fileName+".xls";
+                                                var uri = '<?php echo e(url("public/exportedExcel")); ?>'+"/"+data.fileName+".xls";
                                                 link.href = uri;
                                                 document.body.appendChild(link);
                                                 link.click();
@@ -1340,9 +1338,9 @@
 
                     $.ajax({
                         type: 'POST',
-                        url: "{!! route('jobAppliedCadidate.admin.Exporthrreport02xls') !!}",
+                        url: "<?php echo route('jobAppliedCadidate.admin.Exporthrreport02xls'); ?>",
                         cache: false,
-                        data: {'jobApply': products,'excelName':$('#excelName').val(),_token:"{{csrf_token()}}",jobTitle:$('#jobTitle').val()},
+                        data: {'jobApply': products,'excelName':$('#excelName').val(),_token:"<?php echo e(csrf_token()); ?>",jobTitle:$('#jobTitle').val()},
                         success: function (data) {
                            // console.log(data);
 
@@ -1371,7 +1369,7 @@
 
                                                 var link = document.createElement("a");
                                                 link.download = data.fileName+".xls";
-                                                var uri = '{{url("public/exportedExcel")}}'+"/"+data.fileName+".xls";
+                                                var uri = '<?php echo e(url("public/exportedExcel")); ?>'+"/"+data.fileName+".xls";
                                                 link.href = uri;
                                                 document.body.appendChild(link);
                                                 link.click();
@@ -1531,9 +1529,9 @@
 
                     $.ajax({
                         type: 'POST',
-                        url: "{!! route('jobAppliedCadidate.admin.sendMail') !!}",
+                        url: "<?php echo route('jobAppliedCadidate.admin.sendMail'); ?>",
                         cache: false,
-                        data: {'jobApply': products,_token:"{{csrf_token()}}",'tamplateId':$('#mailTamplate').val(),'tamplateversion':$('#TamplateVersion').val(),'testDate':$('#testDate').val(),
+                        data: {'jobApply': products,_token:"<?php echo e(csrf_token()); ?>",'tamplateId':$('#mailTamplate').val(),'tamplateversion':$('#TamplateVersion').val(),'testDate':$('#testDate').val(),
                             'testAddress':$('#testAddress').val(),'testDetails':$('#tamplateBody').val(),'footerAndSign':CKEDITOR.instances['ckBox'].getData(),
                             'subjectLine':$('#subjectLine').val(),'refNo':$('#refNo').val(),'selected':$('#totalSelected').val(),'start':$('#StartTime').val(),'end':$('#EndTime').val(),'interval':$('#IntervalTime').val()},
                         success: function (data) {
@@ -1647,9 +1645,9 @@
 
                 $.ajax({
                     type: 'POST',
-                    url: "{!! route('jobAppliedCadidate.admin.downloadMailDoc') !!}",
+                    url: "<?php echo route('jobAppliedCadidate.admin.downloadMailDoc'); ?>",
                     cache: false,
-                    data: {'jobApply': products,_token:"{{csrf_token()}}",'tamplateId':$('#mailTamplate').val(),'testDate':$('#testDate').val(),
+                    data: {'jobApply': products,_token:"<?php echo e(csrf_token()); ?>",'tamplateId':$('#mailTamplate').val(),'testDate':$('#testDate').val(),
                         'testAddress':$('#testAddress').val(),'testDetails':$('#tamplateBody').val(),'footerAndSign':CKEDITOR.instances['ckBox'].getData(),
                         'subjectLine':$('#subjectLine').val(),'refNo':$('#refNo').val()},
                     success: function (data) {
@@ -1663,18 +1661,18 @@
 
                         $(':checkbox:checked').prop('checked',false);
 
-                        {{--for (var i=0; i<data.length;i++){--}}
+                        
 
-                        {{--    var link = document.createElement("a");--}}
-                        {{--    link.download = data[i]['Name'];--}}
-                        {{--    var uri = '{{url("public/mailPreview")}}'+"/"+data[i]['Name'];--}}
-                        {{--    link.href = uri;--}}
-                        {{--    document.body.appendChild(link);--}}
-                        {{--    link.click();--}}
-                        {{--    document.body.removeChild(link);--}}
-                        {{--    delete link;--}}
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
 
-                        {{--}--}}
+                        
 
                         $.alert({
                             title: 'Alert!',
@@ -1741,13 +1739,13 @@
         });
 
         function getEmpCv(id) {
-            {{--var url = "{{ route('userCv.get', ':empId') }}";--}}
-            {{--url = url.replace(':empId', id);--}}
-            {{--window.open(url,'_blank');--}}
+            
+            
+            
 
             $.ajax({
                 type:'get',
-                url:'{{url('/user/cv')}}'+'/'+id,
+                url:'<?php echo e(url('/user/cv')); ?>'+'/'+id,
                 cache: false,
                 success:function(data) {
                     table.ajax.reload();
@@ -1767,7 +1765,7 @@
                         action: function () {
                             $.ajax({
                                 type:'get',
-                                url:'{{url('/application-status-change/')}}'+'/'+id,
+                                url:'<?php echo e(url('/application-status-change/')); ?>'+'/'+id,
                                 cache: false,
                                 success:function() {
                                     table.ajax.reload();
@@ -1808,25 +1806,25 @@
 
         $('#educationLvlFilter').on('change', function() {
 
-            {{--$.ajax({--}}
-                {{--type:'POST',--}}
-                {{--url:'{{route('application.admin.getMajorFromEducationlvl')}}',--}}
-                {{--data:{_token:"{{csrf_token()}}",id:this.value},--}}
-                {{--cache: false,--}}
-                {{--success:function(data) {--}}
+            
+                
+                
+                
+                
+                
 
-                   {{--// console.log(data);--}}
-                    {{--document.getElementById("educationMajorFilter").innerHTML = data;--}}
-                    {{--$('#educationMajorFilter').css("background-color", "#FFF").css('color', 'black');--}}
+                   
+                    
+                    
 
-                {{--}--}}
-            {{--});--}}
+                
+            
 
 
             $.ajax({
                 type:'POST',
-                url:'{{route('application.admin.getDegreeFromEducationlvl')}}',
-                data:{_token:"{{csrf_token()}}",id:this.value},
+                url:'<?php echo e(route('application.admin.getDegreeFromEducationlvl')); ?>',
+                data:{_token:"<?php echo e(csrf_token()); ?>",id:this.value},
                 cache: false,
                 success:function(data) {
                      document.getElementById("degreeLvlFilter").innerHTML = data;
@@ -1843,8 +1841,8 @@
 
             $.ajax({
                 type:'POST',
-                url:'{{route('application.admin.getMajorFromEducationlvl')}}',
-                data:{_token:"{{csrf_token()}}",id:this.value},
+                url:'<?php echo e(route('application.admin.getMajorFromEducationlvl')); ?>',
+                data:{_token:"<?php echo e(csrf_token()); ?>",id:this.value},
                 cache: false,
                 success:function(data) {
 
@@ -1884,9 +1882,9 @@
 
                     $.ajax({
                         type: 'POST',
-                        url: "{!! route('edit.mailTamplate1') !!}",
+                        url: "<?php echo route('edit.mailTamplate1'); ?>",
                         cache: false,
-                        data: {_token: "{{csrf_token()}}",'id': $('#mailTamplate').val(),},
+                        data: {_token: "<?php echo e(csrf_token()); ?>",'id': $('#mailTamplate').val(),},
                         success: function (data) {
 
                             if ($('#mailTamplate').val()==1){
@@ -2094,4 +2092,6 @@
 
 
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

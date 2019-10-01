@@ -1000,55 +1000,26 @@ class ApplicationController extends Controller
         }elseif ($template=='3') {
             $custom_template = email::where('emailfor','notselected')->first();
         }
+        $jobInfo=Jobapply::leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')->findOrFail($appliedList[0]);
 
-        $data=array();
+        $employeeInfo=Employee::select('employee.*')
+            ->where('employee.employeeId',$jobInfo->fkemployeeId)
+            ->first();
 
-//        for ($i=0;$i<count($appliedList);$i++) {
-//
-//            $appliedId = $appliedList[0];
-
-
-//            $jobInfo=Jobapply::select('job.title','job.position','jobapply.fkemployeeId','interviewCallDate')->where('jobapply',$appliedId)
-            $jobInfo=Jobapply::leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')->findOrFail($appliedList[0]);
-
-
-            $employeeInfo=Employee::select('employee.*')
-                ->where('employee.employeeId',$jobInfo->fkemployeeId)
-                ->first();
-
-            //  return $template;
-
-            /* make invoice pdf*/
-
-            if ($template=='1'){
-
-                PDF::loadView('mail.interviewCard',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
-                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'customBody'=>$custom_template->emailbody])->stream();
-
-
-            }
-            if ($template=='2'){
-
-                PDF::loadView('mail.notSelected',['empInfo' => $employeeInfo,'testDate'=>$jobInfo->interviewCallDate,'testAddress'=>$testAddress,
-                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'customBody'=>$custom_template->emailbody])->stream();
-
-
-            }
-            if ($template=='3'){
-
-                PDF::loadView('mail.panelListed',['empInfo' => $employeeInfo,'testDate'=>$jobInfo->interviewCallDate,'testAddress'=>$testAddress,
-                    'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'customBody'=>$custom_template->emailbody])->stream();
-
-            }
-
-//        }
-//        return $data;
-
-
-
+        if ($template=='1'){
+            $pdf = PDF::loadView('mail.interviewCard',['empInfo' => $employeeInfo,'testDate'=>$testDate,'testAddress'=>$testAddress,
+                'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'customBody'=>$custom_template->emailbody]);
+            return $pdf->download('interviewCard_sample.pdf');
+        }
+        if ($template=='2'){
+            $pdf = PDF::loadView('mail.notSelected',['empInfo' => $employeeInfo,'testDate'=>$jobInfo->interviewCallDate,'testAddress'=>$testAddress,
+                'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'customBody'=>$custom_template->emailbody]);
+            return $pdf->download('notSelected_sample.pdf');
+        }
+        if ($template=='3'){
+            $pdf = PDF::loadView('mail.panelListed',['empInfo' => $employeeInfo,'testDate'=>$jobInfo->interviewCallDate,'testAddress'=>$testAddress,
+                'testDetails'=>$testDetails,'footerAndSign'=>$footerAndSign,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'customBody'=>$custom_template->emailbody])->stream();
+            return $pdf->download('panelListed_sample.pdf');
+        }
     }
-
-
-
-
 }

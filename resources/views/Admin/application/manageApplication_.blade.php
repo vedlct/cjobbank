@@ -1,27 +1,17 @@
 @extends('main')
 
 @section('header')
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/w/dt/jq-3.3.1/jszip-2.5.0/dt-1.10.18/af-2.3.3/b-1.5.6/b-colvis-1.5.6/b-flash-1.5.6/b-html5-1.5.6/b-print-1.5.6/cr-1.5.0/fc-3.2.5/fh-3.1.4/kt-2.5.0/r-2.2.2/rg-1.1.0/rr-1.2.4/sc-2.0.0/sl-1.3.0/datatables.min.css"/>
 
-{{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>--}}
-{{--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>--}}
-
-{{--<link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" rel="stylesheet">--}}
-
+{{--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">--}}
 @endsection
 
 @section('content')
-<style>
-    div.ex3 {
-        background-color: lightblue;
-        width: 100%;
-        height: 600px;
-        overflow: auto;
-    }
-</style>
+
     <div class="row">
         <div class="col-md-2">
 
-            <div style="background-color: white;margin-bottom: 20px;" class="card-body ex3">
+            <div style="background-color: white;margin-bottom: 20px;" class="card-body">
 
                 <!-- Modal -->
                 <div class="modal fade" id="mail_info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -121,6 +111,9 @@
                                         <button type="submit" onclick="sendMailToJobApplied()" class="btn btn-success">Submit</button>
                                         <button type="button" onclick="downloadmailDoc()" class="btn btn-success">Download</button>
                                     </div>
+
+                                {{--</form>--}}
+
                             </div>
 
 
@@ -139,13 +132,13 @@
                             </div>
 
                             <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="excelName">Excel Name:</label>
+                                        <input class="form-control" id="excelName" name="excelName" value="">
 
-                                <div class="form-group">
+                                    </div>
 
-                                    <label for="excelName">Excel Name:</label>
-                                    <input class="form-control" id="excelName" name="excelName" value="">
 
-                                </div>
 
                                 <div style="display: none" id="HRfullreport" class="form-group">
 
@@ -455,21 +448,16 @@
                     <table id="manageapplication" class="table table-striped table-bordered" style="width:100%" >
                         <thead>
                         <tr>
-
                             <th style="width: 4%">Select</th>
                             <th>Given name</th>
                             <th>Surname</th>
-
                             <th>Job Title</th>
                             <th>Zone</th>
                             <th>Apply Date</th>
                             <th>Status</th>
                             <th>Schedule Date</th>
                             <th>Schedule Time</th>
-
                             <th>Action</th>
-
-
                         </tr>
                         </thead>
                     </table>
@@ -491,14 +479,10 @@
 
 @endsection
 @section('foot-js')
-
-{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.js"></script>--}}
-
-    <script src="{{url('public/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{url('public/datatables.min.js')}}"></script>
+{{--    <script src="{{url('public/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>--}}
     <script src="{{url('public/assets/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
     <script type="text/javascript" src="{{url('public/assets/ckeditor/ckeditor.js')}}"></script>
-{{--    <script type="text/javascript" src="{{url('public/assets/js/moment.js')}}"></script>--}}
-
     <script>
 
         CKEDITOR.config.autoParagraph = false;
@@ -617,8 +601,32 @@
                             d.jobExperienceFilter=$('#jobExperienceFilter').val();
                         }
 
-                    },
+                    }
                 },
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [
+                    {extend: 'copy'},
+                    {extend: 'csv'},
+                    {extend: 'excel', title: 'Log-Excel'},
+                    {extend: 'pdf', title: 'Log-Pdf'},
+                    {extend: 'print',
+                        customize: function (win){
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
+
+                            $(win.document.body).find('table')
+                                .addClass('compact')
+                                .css('font-size', 'inherit');
+                        }
+                    }
+                ],
+                // dom: 'Bfrtip',
+                // buttons: [
+                //     'copyHtml5',
+                //     'excelHtml5',
+                //     'csvHtml5',
+                //     'pdfHtml5'
+                // ],
                 columns: [
 
                     { "data": function(data){
@@ -870,9 +878,9 @@
                 }
 
             });
-            $('#degreeLvlFilter').change(function(){ //button filter event click
-//                table.search("").draw(); //just redraw myTableFilter
-                table.ajax.reload();  //just reload table
+            $('#degreeLvlFilter').change(function(){
+
+                table.ajax.reload();
 
                 emptySelect();
                 if ($('#degreeLvlFilter').val()!=""){
@@ -1198,33 +1206,20 @@
 
 
             if ($('#jobTitle').val()!=""){
-
-
                 var products=selecteds;
-
                 if (products.length >0) {
-
                     $.ajax({
                         type: 'POST',
                         url: "{!! route('jobAppliedCadidate.admin.Exporthrreport03xls') !!}",
                         cache: false,
                         data: {'jobApply': products,'excelName':$('#excelName').val(),_token:"{{csrf_token()}}",jobTitle:$('#jobTitle').val()},
                         success: function (data) {
-                           // console.log(data);
-
                             $('#SessionMessage').load(document.URL +  ' #SessionMessage');
-                            table.ajax.reload();  //just reload table
-
+                            table.ajax.reload();
                             selecteds=[];
-
                             $(':checkbox:checked').prop('checked',false);
 
-                            //alert(data);
-
-//                            location.reload();
-
                             if (data.success=='1'){
-
                                 $.alert({
                                     title: 'Success!',
                                     type: 'green',
@@ -1245,17 +1240,10 @@
                                                 delete link;
 
                                                 location.reload();
-
-
-
-
                                             }
                                         }
-
                                     }
                                 });
-
-
                             }else if(data.success=='0'){
 
                                 $.alert({
@@ -1274,18 +1262,10 @@
 
                                     }
                                 });
-
-
                             }
-
-
                         }
-
                     });
-                }
-                else {
-
-
+                }else{
                     $.alert({
                         title: 'Alert!',
                         type: 'Red',
@@ -1294,20 +1274,11 @@
                             tryAgain: {
                                 text: 'Ok',
                                 btnClass: 'btn-red',
-                                action: function () {
-
-
-                                }
                             }
-
                         }
                     });
                 }
-
-
-
             }else {
-
                 $.alert({
                     title: 'Alert!',
                     type: 'red',
@@ -1315,24 +1286,17 @@
                     buttons: {
                         tryAgain: {
                             text: 'Ok',
-                            btnClass: 'btn-blue',
-                            action: function () {
-
-
-                            }
+                            btnClass: 'btn-blue'
                         }
-
                     }
                 });
-
             }
-
         }
+
         function myfunchrreport02() {
 
 
             if ($('#jobTitle').val()!=""){
-
 
                 var products=selecteds;
 
@@ -1344,18 +1308,12 @@
                         cache: false,
                         data: {'jobApply': products,'excelName':$('#excelName').val(),_token:"{{csrf_token()}}",jobTitle:$('#jobTitle').val()},
                         success: function (data) {
-                           // console.log(data);
 
                             $('#SessionMessage').load(document.URL +  ' #SessionMessage');
-                            table.ajax.reload();  //just reload table
-
+                            table.ajax.reload();
                             selecteds=[];
 
                             $(':checkbox:checked').prop('checked',false);
-
-                            //alert(data);
-
-//                            location.reload();
 
                             if (data.success=='1'){
 
@@ -1368,7 +1326,6 @@
                                             text: 'Ok',
                                             btnClass: 'btn-blue',
                                             action: function () {
-
                                                 var link = document.createElement("a");
                                                 link.download = data.fileName+".xls";
                                                 var uri = '{{url("public/exportedExcel")}}'+"/"+data.fileName+".xls";
@@ -1377,18 +1334,11 @@
                                                 link.click();
                                                 document.body.removeChild(link);
                                                 delete link;
-
                                                 location.reload();
-
-
-
-
                                             }
                                         }
-
                                     }
                                 });
-
 
                             }else if(data.success=='0'){
 
@@ -1402,24 +1352,14 @@
                                             btnClass: 'btn-red',
                                             action: function () {
                                                 location.reload();
-
                                             }
                                         }
-
                                     }
                                 });
-
-
                             }
-
-
                         }
-
                     });
-                }
-                else {
-
-
+                }else{
                     $.alert({
                         title: 'Alert!',
                         type: 'Red',
@@ -1428,20 +1368,11 @@
                             tryAgain: {
                                 text: 'Ok',
                                 btnClass: 'btn-red',
-                                action: function () {
-
-
-                                }
                             }
-
                         }
                     });
                 }
-
-
-
             }else {
-
                 $.alert({
                     title: 'Alert!',
                     type: 'red',
@@ -1449,19 +1380,13 @@
                     buttons: {
                         tryAgain: {
                             text: 'Ok',
-                            btnClass: 'btn-blue',
-                            action: function () {
-
-
-                            }
+                            btnClass: 'btn-blue'
                         }
-
                     }
                 });
-
             }
-
         }
+
         function sendMail() {
 
 
@@ -1640,60 +1565,84 @@
         }
         function downloadmailDoc() {
 
+
             if ($('#mailTamplate').val() !=""){
 
                 $("#wait").css("display", "block");
+
                 var products=selecteds;
 
-                $.ajax({
-                    type: 'POST',
-                    url: "{!! route('jobAppliedCadidate.admin.downloadMailDoc') !!}",
-                    cache: false,
-                    data: {'jobApply': products,_token:"{{csrf_token()}}",'tamplateId':$('#mailTamplate').val(),'testDate':$('#testDate').val(),
-                        'testAddress':$('#testAddress').val(),'testDetails':$('#tamplateBody').val(),'footerAndSign':CKEDITOR.instances['ckBox'].getData(),
-                        'subjectLine':$('#subjectLine').val(),'refNo':$('#refNo').val()},
-                    success: function (data) {
 
-                        $("#wait").css("display", "none");
+                    $.ajax({
+                        type: 'POST',
+                        url: "{!! route('jobAppliedCadidate.admin.downloadMailDoc') !!}",
+                        cache: false,
+                        data: {'jobApply': products,_token:"{{csrf_token()}}",'tamplateId':$('#mailTamplate').val(),'testDate':$('#testDate').val(),
+                            'testAddress':$('#testAddress').val(),'testDetails':$('#tamplateBody').val(),'footerAndSign':CKEDITOR.instances['ckBox'].getData(),
+                            'subjectLine':$('#subjectLine').val(),'refNo':$('#refNo').val()},
+                        success: function (data) {
+
+                            $("#wait").css("display", "none");
 //
-                        $('#SessionMessage').load(document.URL +  ' #SessionMessage');
-                        table.ajax.reload();
+                            $('#SessionMessage').load(document.URL +  ' #SessionMessage');
+                            table.ajax.reload();  //just reload table
 
-                        selecteds=[];
+                            selecteds=[];
 
-                        $(':checkbox:checked').prop('checked',false);
+                           // console.log(data);
 
-                        {{--for (var i=0; i<data.length;i++){--}}
+                            $(':checkbox:checked').prop('checked',false);
 
-                        {{--    var link = document.createElement("a");--}}
-                        {{--    link.download = data[i]['Name'];--}}
-                        {{--    var uri = '{{url("public/mailPreview")}}'+"/"+data[i]['Name'];--}}
-                        {{--    link.href = uri;--}}
-                        {{--    document.body.appendChild(link);--}}
-                        {{--    link.click();--}}
-                        {{--    document.body.removeChild(link);--}}
-                        {{--    delete link;--}}
+//                            win = window.open("", "_blank");
+//                            win.document.body.innerHTML = data;
 
-                        {{--}--}}
 
-                        $.alert({
-                            title: 'Alert!',
-                            type: 'green',
-                            content: 'Mail Preview is Downloaded successfully',
-                            buttons: {
-                                tryAgain: {
-                                    text: 'Ok',
-                                    btnClass: 'btn-blue',
-                                    action: function(){
+                            for (var i=0; i<data.length;i++){
 
-                                        location.reload();
+
+                                var link = document.createElement("a");
+                                link.download = data[i]['Name'];
+                                var uri = '{{url("public/mailPreview")}}'+"/"+data[i]['Name'];
+                                link.href = uri;
+                                document.body.appendChild(link);
+                                link.click();
+                                document.body.removeChild(link);
+                                delete link;
+
+                            }
+
+                            $.alert({
+                                title: 'Alert!',
+                                type: 'green',
+                                content: 'Mail Preview is Downloaded successfully',
+                                buttons: {
+                                    tryAgain: {
+                                        text: 'Ok',
+                                        btnClass: 'btn-blue',
+                                        action: function(){
+
+                                            location.reload();
+                                        }
                                     }
                                 }
-                            }
-                        });
-                    }
-                });
-            }else{
+                            });
+
+
+
+                          //  location.reload();
+
+                           // console.log(data);
+
+
+                        }
+
+                    });
+
+
+
+            }
+
+            else {
 
                 $.alert({
                     title: 'Alert!',
@@ -1711,7 +1660,11 @@
 
                     }
                 });
+
             }
+
+
+
         }
 
         // add multiple select / deselect functionality
@@ -1757,27 +1710,12 @@
 
         function empReject(id) {
 
-            $.alert({
-                title: 'Error',
-                type: 'red',
-                buttons: {
-                    tryAgain: {
-                        text: 'Ok',
-                        btnClass: 'btn-green',
-                        action: function () {
-                            $.ajax({
-                                type:'get',
-                                url:'{{url('/application-status-change/')}}'+'/'+id,
-                                cache: false,
-                                success:function() {
-                                    table.ajax.reload();
-                                }
-                            });
-                        }
-                    },Again: {
-                        text: 'Cancle',
-                        btnClass: 'btn-red'
-                    }
+            $.ajax({
+                type:'get',
+                url:'{{url('/application-status-change/')}}'+'/'+id,
+                cache: false,
+                success:function(data) {
+                    table.ajax.reload();
                 }
             });
         }
@@ -1798,6 +1736,9 @@
                     }
                 }
             });
+
+
+
         }
         function emptySelect(){
 
@@ -1847,8 +1788,6 @@
                 data:{_token:"{{csrf_token()}}",id:this.value},
                 cache: false,
                 success:function(data) {
-
-                   // console.log(data);
                     document.getElementById("educationMajorFilter").innerHTML = data;
                     $('#educationMajorFilter').css("background-color", "#FFF").css('color', 'black');
 
@@ -1952,11 +1891,19 @@
                             tryAgain: {
                                 text: 'Ok',
                                 btnClass: 'btn-red',
+                                action: function () {
+
+
+                                }
                             }
+
                         }
                     });
                 }
-            }else{
+
+            }
+            else {
+
                 $.alert({
                     title: 'Alert!',
                     type: 'red',
@@ -1965,12 +1912,17 @@
                         tryAgain: {
                             text: 'Ok',
                             btnClass: 'btn-blue',
+                            action: function () {
+
+
+                            }
                         }
+
                     }
                 });
+
             }
         }
-
         function excelReport03InfomationSubmit()
         {
             if ($('#jobTitle').val()!=""){

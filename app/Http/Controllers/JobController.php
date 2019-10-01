@@ -14,27 +14,18 @@ class JobController extends Controller
 {
     public function __construct()
     {
-//        $this->middleware('auth');
         $this->middleware(function ($request, $next) {
-
             if (Auth::check()){
-
                 return $next($request);
-
-
             }else{
-
                 return redirect('/');
             }
-
-
         });
     }
 
    public function index(Request $r){
 
        $allZone=DB::table('zone')->where('status',1)->get();
-
 
        $jobs=Job::select('job.jobId','job.title','job.details','job.details','job.deadline','job.pdflink')
                     ->where('job.status',1)
@@ -48,7 +39,6 @@ class JobController extends Controller
        }
        $jobs=$jobs->paginate(10);
 
-
        $empId1=Employee::where('fkuserId',Auth::user()->userId)->first();
 
        if ($empId1 != null ){
@@ -61,7 +51,6 @@ class JobController extends Controller
 
        }else {
            $cvStatus=null;
-
            $applyjob = null;
        }
 

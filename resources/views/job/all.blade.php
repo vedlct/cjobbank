@@ -88,7 +88,6 @@
          data: {_token: "{{csrf_token()}}",search:search,zonefilter:zone},
          success: function (data) {
              $('#allJob').html(data);
-
          }
      });
  }

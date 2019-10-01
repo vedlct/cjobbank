@@ -210,21 +210,15 @@
                             url: "{!! route('JobExperience.delete') !!}",
                             cache: false,
                             data: {_token: "{{csrf_token()}}",'jobExperienceId': x},
-                            success: function (data) {
-//                                console.log(data);
+                            success: function () {
                                 location.reload();
-
-
                             }
                         });
                     },
                     cancel: function () {
-//                        $.alert('Canceled!');
                     }
-
                 }
             });
-
         }
 
         function fixStepIndicator(n) {
