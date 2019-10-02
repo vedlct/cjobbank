@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\email;
 use App\Http\Controllers\Controller;
 use App\MailTamplate;
 use Carbon\Carbon;
@@ -27,22 +28,15 @@ class MailTamplateController extends Controller
 
     public function __construct()
     {
-//        $this->middleware('auth');
         $this->middleware(function ($request, $next) {
-
             if (Auth::check()){
-
                 return $next($request);
-
-
             }else{
-
                 return redirect('/');
             }
-
-
         });
     }
+
     public function show(){
         $mailTemplete =MailTamplate::all();
         return view('manage.mail_tamplate')->with('mailTemplete',$mailTemplete);
@@ -114,8 +108,8 @@ CC: ED/ AED (P)
         return view('manage.editMailTemplete')->with('mail',$mailTemplete);
     }
     public function editMailTemplete1(Request $r){
-        $mailTemplete = MailTamplate::findOrFail($r->id);
-
+//        $mailTemplete = MailTamplate::findOrFail($r->id);
+        $mailTemplete = email::find($r->id);
         return $mailTemplete;
     }
 public function updateMailTemplete(Request $r){

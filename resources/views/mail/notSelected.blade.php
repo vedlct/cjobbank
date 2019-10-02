@@ -6,12 +6,9 @@
     <style>
 
         #footer {
-
             position:absolute;
             bottom:0;
             font-size: 10px;
-
-
         }
 
         body{
@@ -24,8 +21,6 @@
 
             margin: 25px 20px;
         }
-
-
     </style>
 
 
@@ -158,13 +153,13 @@
 
 
 
-This has reference to your recent application and the subsequent formal {{$testDetails}} held on {{date('dS F Y (l)',strtotime($testDate))}} for the post of {{$jobInfo->position}}.<br><br>
-Please be informed that the other candidate has been selected for appointment in the
-post of {{$jobInfo->position}} as determined by the
-Recruitment Committee upon careful assessment of candidates applications and the
-results of the {{$testDetails}}.<br><br>
+{{--This has reference to your recent application and the subsequent formal {{$testDetails}} held on {{date('dS F Y (l)',strtotime($testDate))}} for the post of {{$jobInfo->position}}.<br><br>--}}
+{{--Please be informed that the other candidate has been selected for appointment in the--}}
+{{--post of {{$jobInfo->position}} as determined by the--}}
+{{--Recruitment Committee upon careful assessment of candidates applications and the--}}
+{{--results of the {{$testDetails}}.<br><br>--}}
                 <span>
-                    {!! $customBody !!}
+                    {!! $emailtamplateBody !!}
                 </span>
 Thank you very much for your interest in working with Caritas Bangladesh and please
 feel free to apply again for other position/vacancies for which you may be qualified.
@@ -186,10 +181,15 @@ feel free to apply again for other position/vacancies for which you may be quali
             </td>
         </tr>
         <tr>
-            <td width="100%" align="left">
-                {!!$footerAndSign!!}
-            </td>
-            <td>This is a computer-generated document. No signature is required</td>
+{{--            <td width="100%" align="left">--}}
+{{--                {!!$footerAndSign!!}--}}
+{{--            </td>--}}
+        </tr>
+        <br>
+        <br>
+        <br>
+        <tr>
+            <td><h2>This is a computer-generated document. No signature is required</h2></td>
         </tr>
 
 

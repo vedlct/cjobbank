@@ -7,12 +7,9 @@
     <style>
 
         #footer {
-
             position:absolute;
             bottom:0;
             font-size: 10px;
-
-
         }
 
         body{
@@ -22,11 +19,8 @@
             margin: 0px;
         }
         @page{
-
             margin: 25px 20px;
         }
-
-
     </style>
 
 
@@ -154,14 +148,14 @@
         <tr>
 
             <td align="left" width="100%">
-                This has reference to your recent application for the post of {{$jobInfo->position}} and the subsequent formal {{$testDetails}}
-                held on {{date('dS F Y (l)',strtotime($testDate))}}.<br><br>
-                Please be informed that you have been enlisted in the panel of future recruitment as
-                determined by the Recruitment Committee upon careful assessment of candidate's
-                applications and the results of the {{$testDetails}}. Kindly
-                note that you will be communicated if any scope arises in future.<br><br>
+{{--                This has reference to your recent application for the post of {{$jobInfo->position}} and the subsequent formal {{$testDetails}}--}}
+{{--                held on {{date('dS F Y (l)',strtotime($testDate))}}.<br><br>--}}
+{{--                Please be informed that you have been enlisted in the panel of future recruitment as--}}
+{{--                determined by the Recruitment Committee upon careful assessment of candidate's--}}
+{{--                applications and the results of the {{$testDetails}}. Kindly--}}
+{{--                note that you will be communicated if any scope arises in future.<br><br>--}}
                 <span>
-                    {!! $customBody !!}
+                    {!! $emailtamplateBody !!}
                 </span>
                 Thank you very much for your interest in working with Caritas Bangladesh.
             </td>
@@ -180,13 +174,16 @@
             </td>
         </tr>
         <tr>
-            <td width="100%" align="left">
-                {!!$footerAndSign!!}
-            </td>
-            <td>This is a computer-generated document. No signature is required</td>
+{{--            <td width="100%" align="left">--}}
+{{--                {!!$footerAndSign!!}--}}
+{{--            </td>--}}
         </tr>
-
-
+        <br>
+        <br>
+        <br>
+        <tr>
+            <td><h2>This is a computer-generated document. No signature is required</h2></td>
+        </tr>
     </table>
 
 </div>

@@ -4,14 +4,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
     <style>
-
         #footer {
-
             position:absolute;
             bottom:0;
             font-size: 10px;
-
-
         }
 
         body{
@@ -28,9 +24,6 @@
         b{
             10;
         }
-
-
-
     </style>
 
 
@@ -151,7 +144,7 @@
 
 
 
-With reference to your application for the post of {{$jobInfo->position}}, we would like to invite you for {{$testDetails}} to be held on the {{date('dS F Y (l)',strtotime($testDate))}} @if(@$intviewTime) at {{$intviewTime}}@endif in {{$testAddress}}.
+{{--With reference to your application for the post of {{$jobInfo->position}}, we would like to invite you for {{$testDetails}} to be held on the {{date('dS F Y (l)',strtotime($testDate))}} @if(@$intviewTime) at {{$intviewTime}}@endif in {{$testAddress}}.--}}
 <br>
 <br>
                 <span>
@@ -159,7 +152,7 @@ With reference to your application for the post of {{$jobInfo->position}}, we wo
 {{--                        1. That you are requested to be present for the interview on time.<br>--}}
 {{--                        2. That no TA/DA will be provided for attending the above interview.<br>--}}
 {{--                        3. That you are requested to bring original copies of all certificates during interview.<br>--}}
-                    {!! $customBody !!}
+                    {!! $emailtamplateBody !!}
 
                </span>
             </td>
@@ -178,9 +171,9 @@ With reference to your application for the post of {{$jobInfo->position}}, we wo
             </td>
         </tr>
         <tr>
-            <td style="width: 100%" align="left">
-                {!! $footerAndSign !!}
-            </td>
+{{--            <td style="width: 100%" align="left">--}}
+{{--                {!! $footerAndSign !!}--}}
+{{--            </td>--}}
         </tr>
         <br>
         <br>

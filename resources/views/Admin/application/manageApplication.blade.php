@@ -1,14 +1,5 @@
 @extends('main')
 
-@section('header')
-
-{{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>--}}
-{{--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>--}}
-
-{{--<link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css" rel="stylesheet">--}}
-
-@endsection
-
 @section('content')
 <style>
     div.ex3 {
@@ -58,12 +49,12 @@
                                         <input class="form-control" id="refNo" name="refNo" value="">
 
                                     </div>
-                                    <div id="testDateDiv" class="col-md-6">
+{{--                                    <div id="testDateDiv" class="col-md-6">--}}
 
-                                        <label for="">Test Date</label>
-                                        <input class="form-control date1" id="testDate" name="testDate" value="">
+{{--                                        <label for="">Test Date</label>--}}
+{{--                                        <input class="form-control date1" id="testDate" name="testDate" value="">--}}
 
-                                    </div>
+{{--                                    </div>--}}
 
                                 </div>
 
@@ -75,24 +66,24 @@
                                         <input type="text" id="totalSelected" name="numberofapplicant" class="form-control" readonly>
 
                                     </div>
-                                    <div class="col-md-3">
+{{--                                    <div class="col-md-3">--}}
 
-                                        <label for="">Start Time</label>
-                                        <input type="time" class="form-control" id="StartTime">
+{{--                                        <label for="">Start Time</label>--}}
+{{--                                        <input type="time" class="form-control" id="StartTime">--}}
 
-                                    </div>
-                                    <div class="col-md-3">
+{{--                                    </div>--}}
+{{--                                    <div class="col-md-3">--}}
 
-                                        <label for="">End Time</label>
-                                        <input type="time" class="form-control" id="EndTime">
+{{--                                        <label for="">End Time</label>--}}
+{{--                                        <input type="time" class="form-control" id="EndTime">--}}
 
-                                    </div>
-                                    <div class="col-md-3">
+{{--                                    </div>--}}
+{{--                                    <div class="col-md-3">--}}
 
-                                        <label for="">Interval Time</label>
-                                        <input class="form-control" id="IntervalTime">
+{{--                                        <label for="">Interval Time</label>--}}
+{{--                                        <input class="form-control" id="IntervalTime">--}}
 
-                                    </div>
+{{--                                    </div>--}}
 
                                 </div>
 
@@ -101,26 +92,25 @@
                                     <input type="text" class="form-control" id="subjectLine" placeholder="subject line" value="" name="subjectLine">
                                 </div>
 
-                                    <div class="form-group">
-                                        <label for="">Test Details</label>
+{{--                                <div class="form-group">--}}
+{{--                                    <label for="">Test Details</label>--}}
 
-                                        <textarea class="form-control" id="tamplateBody" name="testDetails" rows="2" ></textarea>
-                                    </div>
+{{--                                    <textarea class="form-control" id="tamplateBody" name="testDetails" rows="2" ></textarea>--}}
+{{--                                </div>--}}
 
-                                    <div class="form-group">
-                                        <label for="">Test Address</label>
-                                        <textarea class="form-control" id="testAddress" name="testAddress" rows="2" ></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="">Mail Footer</label>
-                                        <textarea class="form-control ckeditor" id="ckBox" value="" name="tamplateFooterAndSign" rows="6" ></textarea>
-                                    </div>
+{{--                                <div class="form-group">--}}
+{{--                                    <label for="">Test Address</label>--}}
+{{--                                    <textarea class="form-control" id="testAddress" name="testAddress" rows="2" ></textarea>--}}
+{{--                                </div>--}}
+                                <div class="form-group">
+                                    <label for="">Mail Body</label>
+                                    <textarea class="form-control ckeditor" id="emailtamplateBody" name="emailtamplateBody"></textarea>
+                                </div>
 
-                                    <div class="form-group">
-
-                                        <button type="submit" onclick="sendMailToJobApplied()" class="btn btn-success">Submit</button>
-                                        <button type="button" onclick="downloadmailDoc()" class="btn btn-success">Download</button>
-                                    </div>
+                                <div class="form-group">
+                                    <button type="submit" onclick="sendMailToJobApplied()" class="btn btn-success">Submit</button>
+                                    <button type="button" onclick="downloadmailDoc()" class="btn btn-success">Download</button>
+                                </div>
                             </div>
 
 
@@ -499,22 +489,22 @@
     <script type="text/javascript" src="{{url('public/assets/ckeditor/ckeditor.js')}}"></script>
 {{--    <script type="text/javascript" src="{{url('public/assets/js/moment.js')}}"></script>--}}
 
-    <script>
+{{--    <script>--}}
 
-        CKEDITOR.config.autoParagraph = false;
+{{--        CKEDITOR.config.autoParagraph = false;--}}
 
-        CKEDITOR.config.toolbar = [
-            { name: 'document', items: [ 'Source', '-', 'Preview', '-'] },
-            { name: 'clipboard', items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },
-            '/',
-            { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline' ] },
-            { name: 'paragraph',   items: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
-            { name: 'styles', items: [ 'Format', 'Styles', 'blocks', 'align', 'bidi' ]},
-            { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ]},
-            { name: 'paragraph', items: [ 'Outdent', 'Indent', 'Blockquote' ]}
+{{--        CKEDITOR.config.toolbar = [--}}
+{{--            { name: 'document', items: [ 'Source', '-', 'Preview', '-'] },--}}
+{{--            { name: 'clipboard', items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ] },--}}
+{{--            '/',--}}
+{{--            { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Underline' ] },--}}
+{{--            { name: 'paragraph',   items: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },--}}
+{{--            { name: 'styles', items: [ 'Format', 'Styles', 'blocks', 'align', 'bidi' ]},--}}
+{{--            { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ]},--}}
+{{--            { name: 'paragraph', items: [ 'Outdent', 'Indent', 'Blockquote' ]}--}}
 
-        ];
-    </script>
+{{--        ];--}}
+{{--    </script>--}}
 
     <script>
 
@@ -634,24 +624,19 @@
                     { data: 'status', name: 'jobapply.status', "orderable": true, "searchable":true },
                     { data: 'interviewCallDate', name: 'jobapply.interviewCallDate', "orderable": true, "searchable":true },
                     { data: 'interviewCallDateTime', name: 'jobapply.interviewCallDateTime', "orderable": true, "searchable":true },
-
-
                     { "data": function(data){
                         return '<button class="btn btn-smbtn-info" onclick="getEmpCv('+data.employeeId+')"><i class="fa fa-file-pdf-o"></i></button>'
-                            +'&nbsp;' +'<button class="btn btn-sm btn-danger" onclick="empReject('+data.employeeId+')"><i class="fa fa-trash-o"></i></button>'
+                            +'&nbsp;' +'<button class="btn btn-sm btn-danger" onclick="empReject('+data.jid+','+data.employeeId+')"><i class="fa fa-trash-o"></i></button>'
                             ;},
                         "orderable": false, "searchable":false
-                    },
-
-
-                ],
+                    }
+                ]
             });
 
             $('#applicant_Status').change(function(){
                 table.ajax.reload();
             });
 
-            // maritial status
             $('#maritalStatusFilter').change(function(){
                 table.ajax.reload();
                 emptySelect();
@@ -663,9 +648,8 @@
                 }
             });
 
-            $('#genderFilter').change(function(){ //button filter event click
-//                table.search("").draw(); //just redraw myTableFilter
-                table.ajax.reload();  //just reload table
+            $('#genderFilter').change(function(){
+                table.ajax.reload();
                 emptySelect();
                 if ($('#genderFilter').val()!=""){
 
@@ -674,9 +658,7 @@
                     $('#genderFilter').css("background-color", "#FFF").css('color', 'black');
                 }
             });
-            $('#religionFilter').change(function(){ //button filter event click
-//                table.search("").draw(); //just redraw myTableFilter
-
+            $('#religionFilter').change(function(){
                 table.ajax.reload();  //just reload table
                 emptySelect();
                 if ($('#religionFilter').val()!=""){
@@ -1055,17 +1037,11 @@
 
                 selecteds.splice(index, 1);
             }
-
-
-
         }
 
         function myfunc() {
 
-
             if ($('#jobTitle').val()!=""){
-
-
                 var products=selecteds;
 
                 if (products.length >0) {
@@ -1079,15 +1055,11 @@
                            // console.log(data);
 
                             $('#SessionMessage').load(document.URL +  ' #SessionMessage');
-                            table.ajax.reload();  //just reload table
+                            table.ajax.reload();
 
                             selecteds=[];
 
                             $(':checkbox:checked').prop('checked',false);
-
-                            //alert(data);
-
-//                            location.reload();
 
                             if (data.success=='1'){
 
@@ -1100,7 +1072,6 @@
                                             text: 'Ok',
                                             btnClass: 'btn-blue',
                                             action: function () {
-
                                                 var link = document.createElement("a");
                                                 link.download = data.fileName+".xls";
                                                 var uri = '{{url("public/exportedExcel")}}'+"/"+data.fileName+".xls";
@@ -1109,19 +1080,12 @@
                                                 link.click();
                                                 document.body.removeChild(link);
                                                 delete link;
-
                                                 location.reload();
-
-
-
-
                                             }
                                         }
 
                                     }
                                 });
-
-
                             }else if(data.success=='0'){
 
                                 $.alert({
@@ -1134,24 +1098,14 @@
                                             btnClass: 'btn-red',
                                             action: function () {
                                                 location.reload();
-
                                             }
                                         }
-
                                     }
                                 });
-
-
                             }
-
-
                         }
-
                     });
-                }
-                else {
-
-
+                }else {
                     $.alert({
                         title: 'Alert!',
                         type: 'Red',
@@ -1160,20 +1114,11 @@
                             tryAgain: {
                                 text: 'Ok',
                                 btnClass: 'btn-red',
-                                action: function () {
-
-
-                                }
                             }
-
                         }
                     });
                 }
-
-
-
             }else {
-
                 $.alert({
                     title: 'Alert!',
                     type: 'red',
@@ -1182,49 +1127,27 @@
                         tryAgain: {
                             text: 'Ok',
                             btnClass: 'btn-blue',
-                            action: function () {
-
-
-                            }
                         }
-
                     }
                 });
-
             }
-
         }
+
         function myfunchrreport03() {
-
-
             if ($('#jobTitle').val()!=""){
-
-
                 var products=selecteds;
-
                 if (products.length >0) {
-
                     $.ajax({
                         type: 'POST',
                         url: "{!! route('jobAppliedCadidate.admin.Exporthrreport03xls') !!}",
                         cache: false,
                         data: {'jobApply': products,'excelName':$('#excelName').val(),_token:"{{csrf_token()}}",jobTitle:$('#jobTitle').val()},
                         success: function (data) {
-                           // console.log(data);
-
                             $('#SessionMessage').load(document.URL +  ' #SessionMessage');
-                            table.ajax.reload();  //just reload table
-
+                            table.ajax.reload();
                             selecteds=[];
-
                             $(':checkbox:checked').prop('checked',false);
-
-                            //alert(data);
-
-//                            location.reload();
-
                             if (data.success=='1'){
-
                                 $.alert({
                                     title: 'Success!',
                                     type: 'green',
@@ -1245,17 +1168,11 @@
                                                 delete link;
 
                                                 location.reload();
-
-
-
-
                                             }
                                         }
 
                                     }
                                 });
-
-
                             }else if(data.success=='0'){
 
                                 $.alert({
@@ -1268,24 +1185,14 @@
                                             btnClass: 'btn-red',
                                             action: function () {
                                                 location.reload();
-
                                             }
                                         }
-
                                     }
                                 });
-
-
                             }
-
-
                         }
-
                     });
-                }
-                else {
-
-
+                }else {
                     $.alert({
                         title: 'Alert!',
                         type: 'Red',
@@ -1293,19 +1200,11 @@
                         buttons: {
                             tryAgain: {
                                 text: 'Ok',
-                                btnClass: 'btn-red',
-                                action: function () {
-
-
-                                }
+                                btnClass: 'btn-red'
                             }
-
                         }
                     });
                 }
-
-
-
             }else {
 
                 $.alert({
@@ -1316,47 +1215,27 @@
                         tryAgain: {
                             text: 'Ok',
                             btnClass: 'btn-blue',
-                            action: function () {
-
-
-                            }
                         }
-
                     }
                 });
-
             }
-
         }
+
         function myfunchrreport02() {
-
-
             if ($('#jobTitle').val()!=""){
-
-
                 var products=selecteds;
-
                 if (products.length >0) {
-
                     $.ajax({
                         type: 'POST',
                         url: "{!! route('jobAppliedCadidate.admin.Exporthrreport02xls') !!}",
                         cache: false,
                         data: {'jobApply': products,'excelName':$('#excelName').val(),_token:"{{csrf_token()}}",jobTitle:$('#jobTitle').val()},
                         success: function (data) {
-                           // console.log(data);
 
                             $('#SessionMessage').load(document.URL +  ' #SessionMessage');
-                            table.ajax.reload();  //just reload table
-
+                            table.ajax.reload();
                             selecteds=[];
-
                             $(':checkbox:checked').prop('checked',false);
-
-                            //alert(data);
-
-//                            location.reload();
-
                             if (data.success=='1'){
 
                                 $.alert({
@@ -1377,18 +1256,11 @@
                                                 link.click();
                                                 document.body.removeChild(link);
                                                 delete link;
-
                                                 location.reload();
-
-
-
-
                                             }
                                         }
-
                                     }
                                 });
-
 
                             }else if(data.success=='0'){
 
@@ -1465,18 +1337,15 @@
         function sendMail() {
 
 
-            if ($('#jobTitle').val()!=""){
-
+            if ($('#jobTitle').val()!==""){
 
                 var products=selecteds;
 
                 if (products.length >0) {
+                    $('#subjectLine').val('For '+$('#jobTitle').val());
                     $('#mail_info').modal({show: true});
                     $("#totalSelected").val(products.length);
-                }
-                else {
-
-
+                }else {
                     $.alert({
                         title: 'Alert!',
                         type: 'Red',
@@ -1485,19 +1354,11 @@
                             tryAgain: {
                                 text: 'Ok',
                                 btnClass: 'btn-red',
-                                action: function () {
-
-
-                                }
                             }
-
                         }
                     });
                 }
-
-            }
-            else {
-
+            }else {
                 $.alert({
                     title: 'Alert!',
                     type: 'red',
@@ -1506,43 +1367,31 @@
                         tryAgain: {
                             text: 'Ok',
                             btnClass: 'btn-blue',
-                            action: function () {
-
-
-                            }
                         }
-
                     }
                 });
-
             }
-
         }
 
         function sendMailToJobApplied() {
 
-
-            if ($('#mailTamplate').val() !=""){
+            if ($('#mailTamplate').val() !==""){
 
                 $("#wait").css("display", "block");
 
                 var products=selecteds;
 
-
                     $.ajax({
                         type: 'POST',
                         url: "{!! route('jobAppliedCadidate.admin.sendMail') !!}",
                         cache: false,
-                        data: {'jobApply': products,_token:"{{csrf_token()}}",'tamplateId':$('#mailTamplate').val(),'tamplateversion':$('#TamplateVersion').val(),'testDate':$('#testDate').val(),
-                            'testAddress':$('#testAddress').val(),'testDetails':$('#tamplateBody').val(),'footerAndSign':CKEDITOR.instances['ckBox'].getData(),
-                            'subjectLine':$('#subjectLine').val(),'refNo':$('#refNo').val(),'selected':$('#totalSelected').val(),'start':$('#StartTime').val(),'end':$('#EndTime').val(),'interval':$('#IntervalTime').val()},
+                        data: {'jobApply': products,_token:"{{csrf_token()}}",'tamplateId':$('#mailTamplate').val(),'emailtamplateBody':CKEDITOR.instances['emailtamplateBody'].getData(),
+                            'subjectLine':$('#subjectLine').val(),'refNo':$('#refNo').val(),'selected':$('#totalSelected').val()},
                         success: function (data) {
 
                             $("#wait").css("display", "none");
-//
                             $('#SessionMessage').load(document.URL +  ' #SessionMessage');
-                            table.ajax.reload();  //just reload table
-
+                            table.ajax.reload();
                             selecteds=[];
 
                            if(data.status=='error'){
@@ -1558,13 +1407,8 @@
                                    }
                                });
                            }
-
-                            $(':checkbox:checked').prop('checked',false);
-
-
-
-                            if (data =='1'){
-
+                           $(':checkbox:checked').prop('checked',false);
+                           if (data =='1'){
                                 $.alert({
                                     title: 'Alert!',
                                     type: 'green',
@@ -1574,16 +1418,13 @@
                                             text: 'Ok',
                                             btnClass: 'btn-blue',
                                             action: function(){
-
                                                 location.reload();
                                             }
                                         }
                                     }
                                 });
-
-
                             }
-                            else if(data=='0'){
+                            else if(data==='0'){
 
                                 $.alert({
                                     title: 'Alert!',
@@ -1595,23 +1436,13 @@
                                             btnClass: 'btn-red',
                                             action: function () {
                                                 location.reload();
-
                                             }
                                         }
-
                                     }
                                 });
-
-
-                            }
-
-
+                           }
                         }
-
                     });
-
-
-
             }
 
             else {
@@ -1624,20 +1455,12 @@
                         tryAgain: {
                             text: 'Ok',
                             btnClass: 'btn-blue',
-                            action: function () {
-
-
-                            }
                         }
-
                     }
                 });
-
             }
-
-
-
         }
+
         function downloadmailDoc() {
 
             if ($('#mailTamplate').val() !=""){
@@ -1649,33 +1472,15 @@
                     type: 'POST',
                     url: "{!! route('jobAppliedCadidate.admin.downloadMailDoc') !!}",
                     cache: false,
-                    data: {'jobApply': products,_token:"{{csrf_token()}}",'tamplateId':$('#mailTamplate').val(),'testDate':$('#testDate').val(),
-                        'testAddress':$('#testAddress').val(),'testDetails':$('#tamplateBody').val(),'footerAndSign':CKEDITOR.instances['ckBox'].getData(),
+                    data: {'jobApply': products,_token:"{{csrf_token()}}",'tamplateId':$('#mailTamplate').val(),'emailtamplateBody':CKEDITOR.instances['emailtamplateBody'].getData(),
                         'subjectLine':$('#subjectLine').val(),'refNo':$('#refNo').val()},
-                    success: function (data) {
-
-                        $("#wait").css("display", "none");
-//
+                    success: function () {
+                        $("#wait").css("display", "none");//
                         $('#SessionMessage').load(document.URL +  ' #SessionMessage');
                         table.ajax.reload();
-
                         selecteds=[];
 
                         $(':checkbox:checked').prop('checked',false);
-
-                        {{--for (var i=0; i<data.length;i++){--}}
-
-                        {{--    var link = document.createElement("a");--}}
-                        {{--    link.download = data[i]['Name'];--}}
-                        {{--    var uri = '{{url("public/mailPreview")}}'+"/"+data[i]['Name'];--}}
-                        {{--    link.href = uri;--}}
-                        {{--    document.body.appendChild(link);--}}
-                        {{--    link.click();--}}
-                        {{--    document.body.removeChild(link);--}}
-                        {{--    delete link;--}}
-
-                        {{--}--}}
-
                         $.alert({
                             title: 'Alert!',
                             type: 'green',
@@ -1685,7 +1490,6 @@
                                     text: 'Ok',
                                     btnClass: 'btn-blue',
                                     action: function(){
-
                                         location.reload();
                                     }
                                 }
@@ -1703,47 +1507,33 @@
                         tryAgain: {
                             text: 'Ok',
                             btnClass: 'btn-blue',
-                            action: function () {
-
-
-                            }
                         }
-
                     }
                 });
             }
         }
 
-        // add multiple select / deselect functionality
         $("#selectall2").click(function () {
 
             if($('#selectall2').is(":checked")) {
                 selecteds=[];
-                //$('#selectall1').prop('checked',true);
                 checkboxes = document.getElementsByName('selected_rows[]');
                 for(var i in checkboxes) {
                     checkboxes[i].checked = 'TRUE';
                 }
 
-                /* look for all checkboes that have a class 'chk' attached to it and check if it was checked */
                 $(".chk:checked").each(function () {
                     selecteds.push($(this).val());
                 });
-
-
             }
             else {
                 selecteds=[];
                 $(':checkbox:checked').prop('checked',false);
-
             }
 
         });
 
         function getEmpCv(id) {
-            {{--var url = "{{ route('userCv.get', ':empId') }}";--}}
-            {{--url = url.replace(':empId', id);--}}
-            {{--window.open(url,'_blank');--}}
 
             $.ajax({
                 type:'get',
@@ -1755,7 +1545,7 @@
             });
         }
 
-        function empReject(id) {
+        function empReject(jid,employeeId) {
 
             $.alert({
                 title: 'Error',
@@ -1767,7 +1557,7 @@
                         action: function () {
                             $.ajax({
                                 type:'get',
-                                url:'{{url('/application-status-change/')}}'+'/'+id,
+                                url:'{{url('/application-status-change/')}}'+'/'+employeeId+'/'+jid,
                                 cache: false,
                                 success:function() {
                                     table.ajax.reload();
@@ -1831,14 +1621,10 @@
                 success:function(data) {
                      document.getElementById("degreeLvlFilter").innerHTML = data;
                      $('#degreeLvlFilter').css("background-color", "#FFF").css('color', 'black');
-
                 }
             });
-
-
-
-
         });
+
         $('#degreeLvlFilter').on('change', function() {
 
             $.ajax({
@@ -1847,17 +1633,11 @@
                 data:{_token:"{{csrf_token()}}",id:this.value},
                 cache: false,
                 success:function(data) {
-
-                   // console.log(data);
                     document.getElementById("educationMajorFilter").innerHTML = data;
                     $('#educationMajorFilter').css("background-color", "#FFF").css('color', 'black');
 
                 }
             });
-
-
-
-
         });
 
         $("#educationMajorFilter").on('focus', function (){
@@ -1874,48 +1654,43 @@
 
         $("#mailTamplate").on('change', function (){
 
-                if ($('#mailTamplate').val()=="") {
+            if ($('#mailTamplate').val()=="") {
 
-                    var errorMsg = 'Please Select Tamplate First!!';
-                    validationError(errorMsg);
-                    return false;
+                var errorMsg = 'Please Select Tamplate First!!';
+                validationError(errorMsg);
+                return false;
 
-                }else{
+            }else{
 
-                    $.ajax({
-                        type: 'POST',
-                        url: "{!! route('edit.mailTamplate1') !!}",
-                        cache: false,
-                        data: {_token: "{{csrf_token()}}",'id': $('#mailTamplate').val(),},
-                        success: function (data) {
+                $.ajax({
+                    type: 'POST',
+                    url: "{!! route('edit.mailTamplate1') !!}",
+                    cache: false,
+                    data: {_token: "{{csrf_token()}}",'id': $('#mailTamplate').val()},
+                    success: function (data) {
 
-                            if ($('#mailTamplate').val()==1){
-                                $('#subjectLineDiv').show();
-                                $('#testDateDiv').show();
-                                $('#forinterview').show();
-                            }else{
-                                $('#subjectLineDiv').hide();
-                                $('#testDateDiv').hide();
-                                $('#forinterview').hide();
-                            }
-
-
-                            $('#testDate').val(data['testDate']);
-                            $('#subjectLine').val(data['subject']);
-//                            $('#tamplateBody').val(data['testDetails']);
-                            $('#testAddress').val(data['testAddress']);
-                            $('#refNo').val(data['refNo']);
-
-                            CKEDITOR.instances['ckBox'].setData(data['tamplateFooterAndSign']); // where editor1 is id
-                            CKEDITOR.instances['tamplateBody'].setData(data['testDetails']); // where editor1 is id
-
-
-
+                        if ($('#mailTamplate').val()==1){
+                            $('#subjectLineDiv').show();
+                            $('#testDateDiv').show();
+                            $('#forinterview').show();
+                        }else{
+                            $('#subjectLineDiv').hide();
+                            $('#testDateDiv').hide();
+                            $('#forinterview').hide();
                         }
-                    });
 
-                }
+                        CKEDITOR.instances['emailtamplateBody'].setData(data['emailbody'])
+                        // $('#testDate').val(data['testDate']);
+                        // $('#subjectLine').val(data['subject']);
+//                            $('#tamplateBody').val(data['testDetails']);
+//                         $('#testAddress').val(data['testAddress']);
+//                         $('#refNo').val(data['refNo']);
 
+                        // CKEDITOR.instances['ckBox'].setData(data['tamplateFooterAndSign']); // where editor1 is id
+                        // CKEDITOR.instances['tamplateBody'].setData(data['testDetails']); // where editor1 is id
+                    }
+                });
+            }
         });
 
 
@@ -2074,22 +1849,11 @@
                         tryAgain: {
                             text: 'Ok',
                             btnClass: 'btn-blue',
-                            action: function () {
-
-
-                            }
                         }
-
                     }
                 });
-
             }
         }
-
-
-
-
-
     </script>
 
 

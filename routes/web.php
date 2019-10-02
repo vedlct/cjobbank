@@ -220,7 +220,7 @@ Route::get('Admin-Manage-Application','Admin\ApplicationController@manageApplica
 Route::post('Admin-Show-All-Application','Admin\ApplicationController@showAllApplication')->name('application.admin.showAll');
 Route::post('Admin-Show-All-Major-For Education','Admin\ApplicationController@showAllMajorForEducation')->name('application.admin.getMajorFromEducationlvl');
 Route::post('Admin-Show-All-Major-For-Degree','Admin\ApplicationController@showAllDegreeForEducation')->name('application.admin.getDegreeFromEducationlvl');
-Route::get('/application-status-change/{id}','Admin\ApplicationController@applicationStatusChange');
+Route::get('/application-status-change/{employeeId}/{jobId}','Admin\ApplicationController@applicationStatusChange');
 
 
 Route::post('Admin-Export-All-AppliedCandidate-Hr-report01','Admin\ApplicationController@exportAppliedCandidate')->name('jobAppliedCadidate.admin.Exportxls');
