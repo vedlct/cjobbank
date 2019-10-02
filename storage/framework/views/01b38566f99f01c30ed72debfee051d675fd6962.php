@@ -49,7 +49,7 @@
                 </table>
             </td >
             <td style="width: 15%;" align="center" >
-                <img src="{{url('public/logo/TCL_logo.png')}}" alt="logo">
+                <img src="<?php echo e(url('public/logo/TCL_logo.png')); ?>" alt="logo">
             </td>
 
             <td style="width: 45%;">
@@ -88,11 +88,13 @@
     <table style="width: 100%;border-top: 1px solid black;border-bottom: 1px solid black" >
         <tr>
             <td align="left" style="width: 50%;">
-                <b>Ref No: </b>{{$refNo}}
+                <b>Ref No: </b><?php echo e($refNo); ?>
+
 
             </td>
             <td style="width: 50%;" align="center">
-                <b>Date: </b>{{date('d-m-Y')}}
+                <b>Date: </b><?php echo e(date('d-m-Y')); ?>
+
             </td>
         </tr>
     </table>
@@ -105,10 +107,11 @@
 
             <table style="width: 50%" >
                 <tr >
-                    <td align="left"> {{$empInfo->firstName.' '.$empInfo->lastName}}<br>
-                        {{$empInfo->presentAddress}}<br>
-                        Email: {{$empInfo->email}}<br>
-                        Cell: {{$empInfo->personalMobile}}
+                    <td align="left"> <?php echo e($empInfo->firstName.' '.$empInfo->lastName); ?><br>
+                        <?php echo e($empInfo->presentAddress); ?><br>
+                        Email: <?php echo e($empInfo->email); ?><br>
+                        Cell: <?php echo e($empInfo->personalMobile); ?>
+
                     </td>
                 </tr>
             </table>
@@ -123,7 +126,7 @@
     <table style="width: 100%">
         <tr>
         <td style="width: 100%" align="left">
-            <b>Subject: {{$subjectLine.' for the post of '}}{{$jobInfo->position}}</b>
+            <b>Subject: <?php echo e($subjectLine.' for the post of '); ?><?php echo e($jobInfo->position); ?></b>
         </td>
         </tr>
 
@@ -136,7 +139,7 @@
     <table style="width: 100%">
         <tr>
         <td style="width: 100%" align="left">
-            <b>Dear </b>{{$empInfo->firstName.' '.$empInfo->lastName}},
+            <b>Dear </b><?php echo e($empInfo->firstName.' '.$empInfo->lastName); ?>,
         </td>
         </tr>
         <tr>
@@ -144,15 +147,16 @@
 
 
 
-{{--With reference to your application for the post of {{$jobInfo->position}}, we would like to invite you for {{$testDetails}} to be held on the {{date('dS F Y (l)',strtotime($testDate))}} @if(@$intviewTime) at {{$intviewTime}}@endif in {{$testAddress}}.--}}
+
 <br>
 <br>
                 <span>
-{{--                        Please take note of the following information for attending the interview:<br>--}}
-{{--                        1. That you are requested to be present for the interview on time.<br>--}}
-{{--                        2. That no TA/DA will be provided for attending the above interview.<br>--}}
-{{--                        3. That you are requested to bring original copies of all certificates during interview.<br>--}}
-                    {!! $emailtamplateBody !!}
+
+
+
+
+                    <?php echo $emailtamplateBody; ?>
+
 
                </span>
             </td>
@@ -167,19 +171,19 @@
     <table style="width: 100%">
         <tr>
             <td>
-{{--                With best regards,--}}
+
             </td>
         </tr>
         <tr>
-{{--            <td style="width: 100%" align="left">--}}
-{{--                {!! $footerAndSign !!}--}}
-{{--            </td>--}}
+
+
+
         </tr>
         <br>
         <br>
         <br>
         <tr>
-            <td><h2>This is a computer-generated document. No signature is required</h2></td>
+            <td><h2><span style="font-style: italic">This is a computer-generated document. No signature is required</span></h2></td>
         </tr>
     </table>
 
