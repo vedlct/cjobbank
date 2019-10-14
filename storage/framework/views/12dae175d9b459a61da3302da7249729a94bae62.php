@@ -34,7 +34,7 @@
                     
                 <?php endif; ?>
 
-                <?php if(USER_TYPE['Admin']== Auth::user()->fkuserTypeId || USER_TYPE['Emp']== Auth::user()->fkuserTypeId): ?>
+                <?php if(USER_TYPE['Admin']== Auth::user()->fkuserTypeId || USER_TYPE['Emp']== Auth::user()->fkuserTypeId|| USER_TYPE['ZoneAdmin']== Auth::user()->fkuserTypeId): ?>
                     <li class="has-submenu">
                         <a href="<?php echo e(route('admin.dashboard')); ?>"><i class="ti-home"></i>DashBoard</a>
                     </li>

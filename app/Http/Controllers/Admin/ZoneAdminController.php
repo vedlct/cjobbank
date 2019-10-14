@@ -1,32 +1,24 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Educationlevel;
-use App\Educationmajor;
+
 use App\Employee;
 use App\Ethnicity;
-use App\Http\Controllers\Controller;
-
-use App\Job;
 use App\HR;
 use App\Jobapply;
-use App\Nationality;
 use App\Religion;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use Auth;
-use Session;
-use Yajra\DataTables\DataTables;
 
-
-class DashboardController extends Controller
+class ZoneAdminController extends Controller
 {
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
             if (Auth::check()){
-                if(Auth::user()->fkuserTypeId==USER_TYPE['Admin'] || Auth::user()->fkuserTypeId==USER_TYPE['Emp'] || Auth::user()->fkuserTypeId==USER_TYPE['ZoneAdmin'] ){
+                if(Auth::user()->fkuserTypeId==USER_TYPE['ZoneAdmin'] ){
                     return $next($request);
                 }else{
                     return redirect('/');
@@ -44,12 +36,6 @@ class DashboardController extends Controller
             ->leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')
             ->where('applydate',date('Y-m-d'));
 
-        if(Auth::user()->fkuserTypeId=="cbEmp" || Auth::user()->fkuserTypeId==USER_TYPE['ZoneAdmin']){
-            $myZone=HR::where('fkuserId',Auth::user()->userId)
-                ->first();
-            $todaysJobApply= $todaysJobApply->where('job.fkzoneId',$myZone->fkzoneId);
-        }
-
         $todaysJobApply=$todaysJobApply->get();
 
         $todaysRegisterCv=Employee::select('employee.firstName','employee.lastName','employee.gender','employee.email','employee.personalMobile','employee.fkreligionId','employee.ethnicityId')
@@ -63,5 +49,4 @@ class DashboardController extends Controller
         return view('Admin.dashboard.home',compact('todaysJobApply','allZone','todaysRegisterCv','religion','ethnicity'));
 
     }
-
 }

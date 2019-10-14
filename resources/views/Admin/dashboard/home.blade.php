@@ -5,10 +5,6 @@
     <div class="row">
         <div class="col-12">
             <div class="card m-b-30">
-                {{--<div class="card-header">--}}
-                    {{--<h4 class="pull-left">Manage All Job</h4>--}}
-                    {{--<a href="{{route('job.admin.create')}}"><button class="btn btn-success pull-right">Post Job</button></a>--}}
-                {{--</div>--}}
                 <div class="card-body">
 
                     <div class="row">
@@ -19,7 +15,6 @@
                     <table id="todayJobApply" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                         <tr>
-
                             <th>No</th>
                             <th>Name</th>
                             <th>Degisnation</th>
@@ -29,7 +24,6 @@
                         </tr>
                         </thead>
                         <tbody>
-
                         @php
                             $sl=1;
                                 @endphp
@@ -38,34 +32,25 @@
 
                         <tr>
                             <td>{{$sl}}</td>
-
                             <td>{{$TodayJobApply->firstName." ".$TodayJobApply->lastName}}</td>
-
                             <td>{{$TodayJobApply->position}}</td>
                             <td>
                                 @foreach(GENDER as $key=>$value)
                                     @if($TodayJobApply->gender == $value){{$key}} @endif
                                 @endforeach
-
                             </td>
                             <td>{{$TodayJobApply->email}}</td>
                             <td>
                                 @foreach($allZone as $zone)
                                     @if($TodayJobApply->fkzoneId == $zone->zoneId){{$zone->zoneName}} @endif
                                 @endforeach
-
                             </td>
                         </tr>
 
                         @php
                             $sl++;
                         @endphp
-
-
                         @endforeach
-
-
-
                         </tbody>
 
                     </table>
@@ -78,16 +63,12 @@
         </div>
         <!-- end col -->
     </div>
-    <!-- end row -->
-    <!-- end page title end breadcrumb -->
+    @if(Auth::user()->fkuserTypeId!==USER_TYPE['ZoneAdmin'])
 
     <div style="margin-top: 30px;" class="row">
         <div class="col-12">
             <div class="card m-b-30">
-
-
                 <div class="card-body">
-
                     <div class="row">
                         <h2 style=" margin-bottom: 25px; margin-left: 13px; ">Today's Register CV</h2>
                     </div>
@@ -95,19 +76,16 @@
                     <table id="todayRegisterCV" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                         <tr>
-
                             <th>No</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Mobile</th>
                             <th>Gender</th>
-
                             <th>Religion</th>
                             <th>Ethnicity</th>
                         </tr>
                         </thead>
                         <tbody>
-
                         @php
                             $no=1;
                         @endphp
@@ -116,7 +94,6 @@
                         <tr>
 
                             <td>{{$no}}</td>
-
                             <td>{{$todayCv->firstName." ".$todayCv->lastName}}</td>
                             <td>{{$todayCv->email}}</td>
                             <td>{{$todayCv->personalMobile}}</td>
@@ -137,36 +114,20 @@
                             </td>
                         </tr>
                         @endforeach
-
-
-
                         </tbody>
-
                     </table>
                     </div>
-
-
-
                 </div>
-
             </div>
-        </div> <!-- end col -->
-    </div> <!-- end row -->
-
-
-
-
-
+        </div>
+    </div>
+    @endif
 
 @endsection
 @section('foot-js')
 
     <script src="{{url('public/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{url('public/assets/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
-    <!-- Buttons examples -->
-    {{--<script src="{{url('public/assets/plugins/datatables/dataTables.buttons.min.js')}}"></script>--}}
-    {{--<script src="https://cdn.datatables.net/rowreorder/1.2.3/js/dataTables.rowReorder.min.js"></script>--}}
-    {{--<script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>--}}
     <script src="{{url('public/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
     <script>
         $(document).ready(function() {
@@ -209,7 +170,4 @@
         });
 
     </script>
-
-
-
 @endsection

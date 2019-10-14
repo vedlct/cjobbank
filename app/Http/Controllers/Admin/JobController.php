@@ -17,65 +17,39 @@ class JobController extends Controller
 {
     public function __construct()
     {
-//        $this->middleware('auth');
         $this->middleware(function ($request, $next) {
-
             if (Auth::check()){
-
-                if(Auth::user()->fkuserTypeId==USER_TYPE['Admin'] || Auth::user()->fkuserTypeId==USER_TYPE['Emp'] ){
-
+                if(Auth::user()->fkuserTypeId==USER_TYPE['Admin'] || Auth::user()->fkuserTypeId==USER_TYPE['Emp'] || Auth::user()->fkuserTypeId==USER_TYPE['ZoneAdmin']){
                     return $next($request);
-
                 }else{
-
                     return redirect('/');
                 }
-
             }else{
-
                 return redirect('/');
             }
-
-
-
-
-
         });
     }
 
-   public function index(){
-
-
-   }
-
    public function addNewJob(){
 
-       if(Auth::user()->fkuserTypeId==USER_TYPE['Emp']){
+       if(Auth::user()->fkuserTypeId==USER_TYPE['Emp'] || Auth::user()->fkuserTypeId==USER_TYPE['ZoneAdmin']){
            $myZone=HR::where('fkuserId',Auth::user()->userId)->first();
            $allZone=DB::table('zone')->where('zoneId',$myZone->fkzoneId)->where('status',1)->get();
-
-
        }elseif(Auth::user()->fkuserTypeId==USER_TYPE['Admin']){
            $allZone=DB::table('zone')->where('status',1)->get();
        }
-       
        return view('Admin.job.addJob',compact('allZone'));
-
    }
 
-   public function manageJob(){
-
+   public function manageJob()
+   {
        $allZone=DB::table('zone')->where('status',1)->get();
-
-
        return view('Admin.job.manageJob',compact('allZone'));
    }
 
-   public function getManageJobData(Request $r){
-
-
-
-       $allJobList=Job::select('job.jobId','job.title as jobTitle','job.position as jobPosition','job.deadline','u1.name as createBy','job.createDate','u2.name as updateBy',
+   public function getManageJobData(Request $r)
+   {
+       $allJobList=Job::select('job.jobId','job.fkzoneId','job.title as jobTitle','job.position as jobPosition','job.deadline','u1.name as createBy','job.createDate','u2.name as updateBy',
            'job.updateTime','job.status','job.pdflink','zone.zoneName',DB::raw("DATE(job.postDate) as postDate"))
            ->leftJoin('zone', 'zone.zoneId', '=', 'job.fkzoneId')
            ->leftJoin('user as u1', 'u1.userId', '=', 'job.createBy')
@@ -83,6 +57,10 @@ class JobController extends Controller
            ->where('job.status', '!=',0)
            ->orderBy('job.postDate','desc');
 
+       if(Auth::user()->fkuserTypeId=="cbEmp" || Auth::user()->fkuserTypeId==USER_TYPE['ZoneAdmin']){
+           $myZone=HR::where('fkuserId',Auth::user()->userId)->first();
+           $allJobList= $allJobList->where('job.fkzoneId',$myZone->fkzoneId);
+       }
 
        if ($r->zonefilter){
            $allJobList= $allJobList->where('job.fkzoneId',$r->zonefilter);

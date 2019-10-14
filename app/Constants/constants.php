@@ -71,7 +71,7 @@ define('USER_TYPE',array(
     "Admin"=>'admin',
     "Emp"=>'cbEmp',
     "User"=>'user',
-
+    "ZoneAdmin"=>'zoneadmin'
 ));
 define('CAREER_QUES',array(
     "Ques1"=>'What are the reasons behind leaving you current or last job?',

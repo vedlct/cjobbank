@@ -34,7 +34,7 @@
                     {{--</li>--}}
                 @endif
 
-                @if(USER_TYPE['Admin']== Auth::user()->fkuserTypeId || USER_TYPE['Emp']== Auth::user()->fkuserTypeId)
+                @if(USER_TYPE['Admin']== Auth::user()->fkuserTypeId || USER_TYPE['Emp']== Auth::user()->fkuserTypeId|| USER_TYPE['ZoneAdmin']== Auth::user()->fkuserTypeId)
                     <li class="has-submenu">
                         <a href="{{route('admin.dashboard')}}"><i class="ti-home"></i>DashBoard</a>
                     </li>

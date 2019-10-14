@@ -71,11 +71,7 @@
 
     <table width="100%" >
         <tr>
-            <td  >
-
-                Central Office: 2, Outer Circular Road, Shantibagh, Dhaka-1217, Bangladesh, GPO Box-994, Dhaka - 1000
-
-            </td>
+            <td>{{$address->officeAddress}}</td>
         </tr>
     </table>
 </div>
@@ -195,15 +191,7 @@
             <td align="left" style="width: 60%">
                 <table>
                     <tr  >
-                        <td> Regd under the Societies Registration Act XXI of 1860 <br>
-                            No. 3760-B of 1972-73, Dated 13-7-1972
-                        </td>
-                    </tr>
-                    <tr >
-                        <td> Regd.with NGO Affairs Bureau under the Foreign Donations (Voluntary Activities) Regulation Ordinance, 1978, No.009, Dated 22-4-1981 Regd. under the Micro Credit Regulatory Authority Act 2006
-                            0.00032-00286-00184, Dated 16-03-2008
-
-                        </td>
+                        <td>{!! $templateFooter !!}</td>
                     </tr>
                 </table>
             </td>
@@ -212,14 +200,9 @@
                 <table >
                     <tr>
                         <td>
-
-                            Tel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: +880-2-8315405-9,8315641<br>
-                            Fax&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: +880-2-8314993 <br>
-                            E-mail&nbsp;&nbsp;&nbsp;: ed@caritasbd.org<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;info@caritasbd.org, cbgeneral@caritasbd.org<br>
-                            Website: www.caritasbd.org
-
-
+                            Tel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$address->zonePhone}}<br>
+                            E-mail&nbsp;&nbsp;&nbsp;: {{$address->zoneEmail}}<br>
+                            Website: {{$address->zoneWeb}}
                         </td>
                     </tr>
                 </table>

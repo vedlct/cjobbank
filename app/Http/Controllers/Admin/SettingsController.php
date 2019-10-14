@@ -36,31 +36,23 @@ class SettingsController extends Controller
 {
     public function __construct()
     {
-//        $this->middleware('auth');
         $this->middleware(function ($request, $next) {
-
             if (Auth::check()){
-
                 if(Auth::user()->fkuserTypeId==USER_TYPE['Admin'] || Auth::user()->fkuserTypeId==USER_TYPE['Emp'] ){
-
                     return $next($request);
-
                 }else{
-
                     return redirect('/');
                 }
-
             }else{
-
                 return redirect('/');
             }
         });
     }
 
     /*---------------------- Zone -----------------*/
-    public function zone(){
+    public function zone()
+    {
         $zones=Zone::get();
-
         return view('manage.zone',compact('zones'));
     }
 
@@ -71,6 +63,10 @@ class SettingsController extends Controller
         ]);
         $zone=new Zone();
         $zone->zoneName=$r->zone;
+        $zone->officeAddress=$r->officeAddress;
+        $zone->zonePhone=$r->zonePhone;
+        $zone->zoneEmail=$r->zoneEmail;
+        $zone->zoneWeb=$r->zoneWeb;
 
         if ($r->status ==""){
             $zone->status='1';
@@ -86,12 +82,16 @@ class SettingsController extends Controller
 
     public function editZone(Request $r){
         $zone=Zone::findOrFail($r->id);
-
         return view('manage.editZone',compact('zone'));
     }
     public function updateZone($id,Request $r){
         $zone=Zone::findOrFail($r->id);
         $zone->zoneName=$r->zone;
+        $zone->officeAddress=$r->officeAddress;
+        $zone->zonePhone=$r->zonePhone;
+        $zone->zoneEmail=$r->zoneEmail;
+        $zone->zoneWeb=$r->zoneWeb;
+
         if ($r->status ==""){
             $zone->status='1';
         }else{

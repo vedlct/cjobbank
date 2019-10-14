@@ -30,6 +30,7 @@ use App\Refree;
 use App\RelativeInCb;
 use App\Religion;
 use App\Traning;
+use App\Zone;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -52,7 +53,7 @@ class ApplicationController extends Controller
     {
         $this->middleware(function ($request, $next) {
             if (Auth::check()){
-                if(Auth::user()->fkuserTypeId==USER_TYPE['Admin'] || Auth::user()->fkuserTypeId==USER_TYPE['Emp'] ){
+                if(Auth::user()->fkuserTypeId==USER_TYPE['Admin'] || Auth::user()->fkuserTypeId==USER_TYPE['Emp'] || Auth::user()->fkuserTypeId==USER_TYPE['ZoneAdmin']){
                     return $next($request);
                 }else{
                     return redirect('/');
@@ -80,10 +81,10 @@ class ApplicationController extends Controller
         $allJobTitle=Job::select('title')->where('status','!=',0)->get();
         $allEducationLevel=Educationlevel::where('status',1)->get();
         $mailTamplate=MailTamplate::select('tamplateName','tamplateId')->get();
-
+        $zones=Zone::where('status',1)->get();
         $degree=Degree::where('status',1)->get();
 
-        return view('Admin.application.manageApplication',compact('religion','degree','ethnicity','natinality','allZone','allJobTitle','allEducationLevel','organizationType','mailTamplate'));
+        return view('Admin.application.manageApplication',compact('zones','religion','degree','ethnicity','natinality','allZone','allJobTitle','allEducationLevel','organizationType','mailTamplate'));
     }
 
 
@@ -116,7 +117,7 @@ class ApplicationController extends Controller
 
     public function showAllApplication(Request $r)
     {
-        $application = Jobapply::select('jobapply.jobapply as applyId','jobapply.fkjobId as jid',DB::raw('DATE_FORMAT(jobapply.applydate, "%d-%m-%Y") as applydate'),'jobapply.status',DB::raw('DATE_FORMAT(jobapply.interviewCallDate, "%d-%m-%Y") as interviewCallDate'),DB::raw('TIME_FORMAT(jobapply.interviewCallDateTime, "%H:%i") as interviewCallDateTime'), 'zone.zoneName','employee.employeeId', 'employee.firstName', 'employee.lastName', 'job.title', 'employee.maritalStatus')
+        $application = Jobapply::select('job.fkzoneId','jobapply.jobapply as applyId','jobapply.fkjobId as jid',DB::raw('DATE_FORMAT(jobapply.applydate, "%d-%m-%Y") as applydate'),'jobapply.status',DB::raw('DATE_FORMAT(jobapply.interviewCallDate, "%d-%m-%Y") as interviewCallDate'),DB::raw('TIME_FORMAT(jobapply.interviewCallDateTime, "%H:%i") as interviewCallDateTime'), 'zone.zoneName','employee.employeeId', 'employee.firstName', 'employee.lastName', 'job.title', 'employee.maritalStatus')
             ->leftJoin('employee', 'employee.employeeId', '=', 'jobapply.fkemployeeId')
             ->leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')
             ->leftJoin('education', 'education.fkemployeeId', '=', 'employee.employeeId')
@@ -128,6 +129,11 @@ class ApplicationController extends Controller
             ->leftJoin('traning', 'traning.fkemployeeId', '=', 'employee.employeeId')
             ->leftJoin('zone', 'zone.zoneId', '=', 'job.fkzoneId')
             ->distinct('educationmajor.fkDegreeId');
+
+        if(Auth::user()->fkuserTypeId=="cbEmp" || Auth::user()->fkuserTypeId==USER_TYPE['ZoneAdmin']){
+            $myZone=HR::where('fkuserId',Auth::user()->userId)->first();
+            $application = $application->where('job.fkzoneId',$myZone->fkzoneId);
+        }
 
         if ($r->maritalStatusFilter){
             $application= $application->where('employee.maritalStatus',$r->maritalStatusFilter);
@@ -203,12 +209,6 @@ class ApplicationController extends Controller
         }
         if ($r->jobExperienceFilter){
             $application= $application->where('jobexperience.fkOrganizationType',$r->jobExperienceFilter);
-        }
-
-        if(Auth::user()->fkuserTypeId=="cbEmp"){
-            $myZone=HR::where('fkuserId',Auth::user()->userId)
-                ->first();
-            $application= $application->where('job.fkzoneId',$myZone->fkzoneId);
         }
 
         $datatables = DataTables::of($application);
@@ -794,6 +794,12 @@ class ApplicationController extends Controller
         $refNo=$r->refNo;
         $emailtamplateBody=$r->emailtamplateBody;
 
+    if ($r->zoneid) {
+        $address = Zone::where('zoneId',$r->zoneid)->first();
+    }else{
+        $address = '';
+    }
+
         if ($template=='1') {
 //            $custom_template = email::where('emailfor','interview')->first();
             $emp_status = 'Called';
@@ -844,7 +850,7 @@ class ApplicationController extends Controller
 
                 try{
                     $pdf = PDF::loadView('mail.interviewCard',['empInfo' => $employeeInfo,
-                            'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody]);
+                            'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address,'templateFooter'=>$r->templateFooter]);
 
                     Mail::send('mail.MailBody',['employeeInfo' => $employeeInfo], function($message) use ($pdf,$employeeInfo)
                     {
@@ -858,7 +864,7 @@ class ApplicationController extends Controller
             }
             if ($template=='2'){
                 $pdf = PDF::loadView('mail.notSelected',['empInfo' => $employeeInfo,
-                        'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody]);
+                        'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address,'templateFooter'=>$r->templateFooter]);
                     try{
                     Mail::send('mail.MailBody',['employeeInfo' => $employeeInfo], function($message) use ($pdf,$employeeInfo)
                     {
@@ -869,15 +875,13 @@ class ApplicationController extends Controller
                 catch (\Exception $ex) {
                     $error[$i]=$ex;
                 }
-
             }
             if ($template=='3'){
-                $pdf = PDF::loadView('mail.panelListed',['empInfo' => $employeeInfo,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody]);
+                $pdf = PDF::loadView('mail.panelListed',['empInfo' => $employeeInfo,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address,'templateFooter'=>$r->templateFooter]);
                     try{
                     Mail::send('mail.MailBody',['employeeInfo' => $employeeInfo], function($message) use ($pdf,$employeeInfo)
                     {
                         $message->to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)->subject('PANEL-LIST LETTER FROM CARITAS BD');
-
                         $message->attachData($pdf->output(),'PANEL-LIST.pdf',['mime' => 'application/pdf']);
                     });
                 }
@@ -889,7 +893,6 @@ class ApplicationController extends Controller
         if(!empty($error))
         {
             return $error;
-
         }else{
             return 1;
         }
@@ -914,6 +917,11 @@ class ApplicationController extends Controller
 //        }elseif ($template=='3') {
 //            $custom_template = email::where('emailfor','notselected')->first();
 //        }
+        if ($r->zoneid) {
+            $address = Zone::where('zoneId',$r->zoneid)->first();
+        }else{
+            $address = '';
+        }
         $jobInfo=Jobapply::leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')->findOrFail($appliedList[0]);
 
         $employeeInfo=Employee::select('employee.*')
@@ -921,15 +929,15 @@ class ApplicationController extends Controller
             ->first();
 
         if ($template=='1'){
-            $pdf = PDF::loadView('mail.interviewCard',['empInfo' => $employeeInfo,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody]);
+            $pdf = PDF::loadView('mail.interviewCard',['empInfo' => $employeeInfo,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address]);
             return $pdf->download('interviewCard_sample.pdf');
         }
         if ($template=='2'){
-            $pdf = PDF::loadView('mail.notSelected',['empInfo' => $employeeInfo,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody]);
+            $pdf = PDF::loadView('mail.notSelected',['empInfo' => $employeeInfo,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address]);
             return $pdf->download('notSelected_sample.pdf');
         }
         if ($template=='3'){
-            $pdf = PDF::loadView('mail.panelListed',['empInfo' => $employeeInfo,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody]);
+            $pdf = PDF::loadView('mail.panelListed',['empInfo' => $employeeInfo,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address]);
             return $pdf->download('panelListed_sample.pdf');
         }
     }

@@ -1,20 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-//Route::get('/RumiTest', function () {
-//    return view('mail.MailBody');
-//});
-//sleep(2);
 Route::get('/','Auth\LoginController@loginForm')->name('/');
 Auth::routes();
 

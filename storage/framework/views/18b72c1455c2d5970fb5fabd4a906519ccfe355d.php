@@ -4,10 +4,6 @@
     <div class="row">
         <div class="col-12">
             <div class="card m-b-30">
-                
-                    
-                    
-                
                 <div class="card-body">
 
                     <div class="row">
@@ -18,7 +14,6 @@
                     <table id="todayJobApply" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                         <tr>
-
                             <th>No</th>
                             <th>Name</th>
                             <th>Degisnation</th>
@@ -28,7 +23,6 @@
                         </tr>
                         </thead>
                         <tbody>
-
                         <?php
                             $sl=1;
                                 ?>
@@ -37,34 +31,25 @@
 
                         <tr>
                             <td><?php echo e($sl); ?></td>
-
                             <td><?php echo e($TodayJobApply->firstName." ".$TodayJobApply->lastName); ?></td>
-
                             <td><?php echo e($TodayJobApply->position); ?></td>
                             <td>
                                 <?php $__currentLoopData = GENDER; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <?php if($TodayJobApply->gender == $value): ?><?php echo e($key); ?> <?php endif; ?>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
                             </td>
                             <td><?php echo e($TodayJobApply->email); ?></td>
                             <td>
                                 <?php $__currentLoopData = $allZone; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $zone): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <?php if($TodayJobApply->fkzoneId == $zone->zoneId): ?><?php echo e($zone->zoneName); ?> <?php endif; ?>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
                             </td>
                         </tr>
 
                         <?php
                             $sl++;
                         ?>
-
-
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-
-
                         </tbody>
 
                     </table>
@@ -77,16 +62,12 @@
         </div>
         <!-- end col -->
     </div>
-    <!-- end row -->
-    <!-- end page title end breadcrumb -->
+    <?php if(Auth::user()->fkuserTypeId!==USER_TYPE['ZoneAdmin']): ?>
 
     <div style="margin-top: 30px;" class="row">
         <div class="col-12">
             <div class="card m-b-30">
-
-
                 <div class="card-body">
-
                     <div class="row">
                         <h2 style=" margin-bottom: 25px; margin-left: 13px; ">Today's Register CV</h2>
                     </div>
@@ -94,19 +75,16 @@
                     <table id="todayRegisterCV" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                         <tr>
-
                             <th>No</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Mobile</th>
                             <th>Gender</th>
-
                             <th>Religion</th>
                             <th>Ethnicity</th>
                         </tr>
                         </thead>
                         <tbody>
-
                         <?php
                             $no=1;
                         ?>
@@ -115,7 +93,6 @@
                         <tr>
 
                             <td><?php echo e($no); ?></td>
-
                             <td><?php echo e($todayCv->firstName." ".$todayCv->lastName); ?></td>
                             <td><?php echo e($todayCv->email); ?></td>
                             <td><?php echo e($todayCv->personalMobile); ?></td>
@@ -136,36 +113,20 @@
                             </td>
                         </tr>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-
-
                         </tbody>
-
                     </table>
                     </div>
-
-
-
                 </div>
-
             </div>
-        </div> <!-- end col -->
-    </div> <!-- end row -->
-
-
-
-
-
+        </div>
+    </div>
+    <?php endif; ?>
 
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('foot-js'); ?>
 
     <script src="<?php echo e(url('public/assets/plugins/datatables/jquery.dataTables.min.js')); ?>"></script>
     <script src="<?php echo e(url('public/assets/plugins/datatables/dataTables.bootstrap4.min.js')); ?>"></script>
-    <!-- Buttons examples -->
-    
-    
-    
     <script src="<?php echo e(url('public/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')); ?>"></script>
     <script>
         $(document).ready(function() {
@@ -208,8 +169,6 @@
         });
 
     </script>
-
-
-
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

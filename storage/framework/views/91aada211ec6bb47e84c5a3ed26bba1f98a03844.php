@@ -34,7 +34,6 @@
                                                 <?php $__currentLoopData = $mailTamplate; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mT): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <option value="<?php echo e($mT->tamplateId); ?>"><?php echo e($mT->tamplateName); ?></option>
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
                                             </select>
 
                                         </div>
@@ -42,10 +41,17 @@
                                 <div class="row">
 
                                     <div class="col-md-6">
-
                                         <label for="refNo">Ref No:</label>
-                                        <input class="form-control" id="refNo" name="refNo" value="">
-
+                                        <input class="form-control" id="refNo" name="refNo">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="refNo">Address:</label>
+                                        <select class="form-control" id="zone_address" required>
+                                            <option value="">Select Address</option>
+                                            <?php $__currentLoopData = $zones; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $zone): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($zone->zoneId); ?>"><?php echo e($zone->zoneName); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </select>
                                     </div>
 
 
@@ -57,12 +63,9 @@
                                 </div>
 
                                 <div class="row" id="forinterview">
-
                                     <div class="col-md-3">
-
                                         <label for="refNo">Selected applicant:</label>
                                         <input type="text" id="totalSelected" name="numberofapplicant" class="form-control" readonly>
-
                                     </div>
 
 
@@ -104,6 +107,14 @@
                                     <label for="">Mail Body</label>
                                     <textarea class="form-control ckeditor" id="emailtamplateBody" name="emailtamplateBody"></textarea>
                                 </div>
+                                <div class="form-group">
+                                    <label for="">Mail Footer</label>
+                                    <textarea class="form-control ckeditor" id="emailtamplatefooter" name="emailtamplatefooter">
+                                        Regd under the Societies Registration Act XXI of 1860 <br>No. 3760-B of 1972-73, Dated 13-7-1972<br><br>
+                                        Regd.with NGO Affairs Bureau under the Foreign Donations (Voluntary Activities) Regulation Ordinance, 1978, No.009, Dated 22-4-1981 Regd. under the Micro Credit Regulatory Authority Act<br>
+                                        2006 0.00032-00286-00184, Dated 16-03-2008
+                                    </textarea>
+                                </div>
 
                                 <div class="form-group">
                                     <button type="submit" onclick="sendMailToJobApplied()" class="btn btn-success">Submit</button>
@@ -123,37 +134,26 @@
                             <div class="modal-header">
                                 <b><h4 class="modal-title dark profile-title" id="myModalLabel">Excel Info</h4></b>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-
                             </div>
 
                             <div class="modal-body">
 
                                 <div class="form-group">
-
                                     <label for="excelName">Excel Name:</label>
                                     <input class="form-control" id="excelName" name="excelName" value="">
-
                                 </div>
 
                                 <div style="display: none" id="HRfullreport" class="form-group">
-
                                     <a href="#" onclick="return myfunc()" ><button type="submit" class="btn btn-success">Submit</button></a>
                                 </div>
                                 <div style="display: none" id="HRreport02" class="form-group">
-
                                     <a href="#" onclick="return myfunchrreport02()" ><button type="submit" class="btn btn-success">Submit</button></a>
                                 </div>
                                 <div style="display: none" id="HRreport03" class="form-group">
-
                                     <a href="#" onclick="return myfunchrreport03()" ><button type="submit" class="btn btn-success">Submit</button></a>
                                 </div>
 
-
-
                             </div>
-
-
-
                         </div>
                     </div>
                 </div>
@@ -255,6 +255,7 @@
 
                     </select>
                 </div>
+                <?php if(Auth::user()->fkuserTypeId!==USER_TYPE['ZoneAdmin']): ?>
                 <div class=" form-group">
                     <label>Zone</label>
                     <select name="zonefilter" id="zonefilter" class="form-control">
@@ -265,6 +266,7 @@
 
                     </select>
                 </div>
+                <?php endif; ?>
                 <hr>
                 <div class="form-group">
                     <label style="text-align: center" class="col-12">Education</label>
@@ -1383,16 +1385,15 @@
                         type: 'POST',
                         url: "<?php echo route('jobAppliedCadidate.admin.sendMail'); ?>",
                         cache: false,
-                        data: {'jobApply': products,_token:"<?php echo e(csrf_token()); ?>",'tamplateId':$('#mailTamplate').val(),'emailtamplateBody':CKEDITOR.instances['emailtamplateBody'].getData(),
+                        data: {'templateFooter': CKEDITOR.instances['emailtamplatefooter'].getData(),'jobApply': products,'zoneid': $('#zone_address').val(),_token:"<?php echo e(csrf_token()); ?>",'tamplateId':$('#mailTamplate').val(),'emailtamplateBody':CKEDITOR.instances['emailtamplateBody'].getData(),
                             'subjectLine':$('#subjectLine').val(),'refNo':$('#refNo').val(),'selected':$('#totalSelected').val()},
                         success: function (data) {
-
                             $("#wait").css("display", "none");
                             $('#SessionMessage').load(document.URL +  ' #SessionMessage');
                             table.ajax.reload();
                             selecteds=[];
 
-                           if(data.status=='error'){
+                           if(data.status==='error'){
                                $.alert({
                                    title: 'Alert!',
                                    type: 'red',
@@ -1406,7 +1407,7 @@
                                });
                            }
                            $(':checkbox:checked').prop('checked',false);
-                           if (data =='1'){
+                           if (data ==='1'){
                                 $.alert({
                                     title: 'Alert!',
                                     type: 'green',
@@ -1421,8 +1422,7 @@
                                         }
                                     }
                                 });
-                            }
-                            else if(data==='0'){
+                           }else if(data==='0'){
 
                                 $.alert({
                                     title: 'Alert!',
@@ -1441,10 +1441,7 @@
                            }
                         }
                     });
-            }
-
-            else {
-
+            }else{
                 $.alert({
                     title: 'Alert!',
                     type: 'red',
@@ -1470,7 +1467,7 @@
                     type: 'POST',
                     url: "<?php echo route('jobAppliedCadidate.admin.downloadMailDoc'); ?>",
                     cache: false,
-                    data: {'jobApply': products,_token:"<?php echo e(csrf_token()); ?>",'tamplateId':$('#mailTamplate').val(),'emailtamplateBody':CKEDITOR.instances['emailtamplateBody'].getData(),
+                    data: {'templateFooter': CKEDITOR.instances['emailtamplatefooter'].getData(),'zoneid': $('#zone_address').val(),'jobApply': products,_token:"<?php echo e(csrf_token()); ?>",'tamplateId':$('#mailTamplate').val(),'emailtamplateBody':CKEDITOR.instances['emailtamplateBody'].getData(),
                         'subjectLine':$('#subjectLine').val(),'refNo':$('#refNo').val()},
                     success: function () {
                         $("#wait").css("display", "none");//
@@ -1533,14 +1530,17 @@
 
         function getEmpCv(id) {
 
-            $.ajax({
-                type:'get',
-                url:'<?php echo e(url('/user/cv')); ?>'+'/'+id,
-                cache: false,
-                success:function(data) {
-                    table.ajax.reload();
-                }
-            });
+            var url = '<?php echo e(url('/user/cv')); ?>'+'/'+id;
+            window.open(url,'_blank');
+
+            
+            
+            
+            
+            
+            
+            
+            
         }
 
         function empReject(jid,employeeId) {

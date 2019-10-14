@@ -1,24 +1,39 @@
 @extends('main')
 @section('content')
 
-    <!-- Modal -->
     <div class="modal fade" id="NewZoneModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <b><h4 class="modal-title dark profile-title" id="myModalLabel">Create Zone</h4></b>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-
                 </div>
 
                 <div class="modal-body">
-
                     <form method="post" action="{{route('admin.zone.insert')}}">
                         {{csrf_field()}}
-                            <div class="form-group">
-                                <label for="">Zone Name</label>
-                                <input type="text" class="form-control" id="" placeholder="zone" name="zone">
-                            </div>
+                        <div class="form-group">
+                            <label >Zone Name</label>
+                            <input type="text" class="form-control" placeholder="zone" name="zone">
+                        </div>
+                        <div class="form-group">
+                            <label >Office Address</label>
+                            <input type="text" class="form-control" placeholder="Address" name="officeAddress">
+                        </div>
+                        <div class="form-group">
+                            <label >Phone</label>
+                            <input type="text" class="form-control" placeholder="Phone" name="zonePhone">
+                            <small>If more than one then put it in comma separated form.</small>
+                        </div>
+                        <div class="form-group">
+                            <label >Email</label>
+                            <input type="text" class="form-control" placeholder="Email" name="zoneEmail">
+                            <small>If more than one then put it in comma separated form.</small>
+                        </div>
+                        <div class="form-group">
+                            <label >Website</label>
+                            <input type="text" class="form-control" placeholder="Website" name="zoneWeb">
+                        </div>
                         <div class="form-group">
                             <label for="">Status</label>
                             <select class="form-control" name="status">
@@ -29,15 +44,10 @@
                             </select>
                         </div>
                         <div class="form-group">
-
-                        <button type="submit" class="btn btn-success">Submit</button>
+                            <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                     </form>
-
                 </div>
-
-
-
             </div>
         </div>
     </div>
@@ -80,7 +90,6 @@
                     </div>
                 @endif
 
-
                 <div class="card-body">
                     <div class="card-header-tabs">
                         <h4>Manage Zone</h4>
@@ -92,48 +101,45 @@
                     <br>
 
                     <div class="table table-responsive">
-                    <table id="manageZone" class="table table-striped table-bordered" style="width:100%" >
-                        <thead>
-                        <tr>
-
-
-                            <th>Zone Name</th>
-                            <th>Zone status</th>
-                            <th width="30%">Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($zones as $zone)
+                        <table id="manageZone" class="table table-striped table-bordered" style="width:100%" >
+                            <thead>
                             <tr>
-                                <td>{{$zone->zoneName}}</td>
-                                <td>
-                                    @foreach(STATUS as $key=>$value)
-                                        @if($zone->status == $key)
-                                            {{$value}}
-                                        @endif
-                                    @endforeach
-
-                                </td>
-                                <td><button class="btn btn-success btn-sm" data-panel-id="{{$zone->zoneId}}" onclick="editZone(this)">Edit</button></td>
-
+                                <th>Zone Name</th>
+                                <th>Address</th>
+                                <th>Phone</th>
+                                <th>Email</th>
+                                <th>Website</th>
+                                <th>Zone status</th>
+                                <th width="30%">Action</th>
                             </tr>
-                        @endforeach
-
-                        </tbody>
-
-                    </table>
+                            </thead>
+                            <tbody>
+                            @foreach($zones as $zone)
+                                <tr>
+                                    <td>{{$zone->zoneName}}</td>
+                                    <td>{{$zone->officeAddress}}</td>
+                                    <td>{{$zone->zonePhone}}</td>
+                                    <td>{{$zone->zoneEmail}}</td>
+                                    <td>{{$zone->zoneWeb}}</td>
+                                    <td>
+                                        @foreach(STATUS as $key=>$value)
+                                            @if($zone->status == $key)
+                                                {{$value}}
+                                            @endif
+                                        @endforeach
+                                    </td>
+                                    <td><button class="btn btn-success btn-sm" data-panel-id="{{$zone->zoneId}}" onclick="editZone(this)">Edit</button></td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
                     </div>
                     <br>
-
-
                 </div>
 
             </div>
         </div> <!-- end col -->
     </div> <!-- end row -->
-
-
-
 
 @endsection
 @section('foot-js')
@@ -150,7 +156,6 @@
 
         function editZone(x) {
             var id=$(x).data('panel-id');
-
             $.ajax({
                 type: 'POST',
                 url: "{!! route('admin.editZone') !!}",
@@ -164,7 +169,6 @@
         }
         function addZone() {
             $('#NewZoneModal').modal({show:true});
-
         }
     </script>
 @endsection

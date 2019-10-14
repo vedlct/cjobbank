@@ -1,5 +1,4 @@
-@extends('main')
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 
     <div class="row">
@@ -8,17 +7,17 @@
 
             <div style="background-color: white;margin-bottom: 20px;" class="card-body">
 
-                @if(Auth::user()->fkuserTypeId!==USER_TYPE['ZoneAdmin'])
+                <?php if(Auth::user()->fkuserTypeId!==USER_TYPE['ZoneAdmin']): ?>
                     <div class=" form-group">
                         <label>Zone</label>
                         <select name="zonefilter" id="zonefilter" class="form-control">
                             <option value="">Select a Zone</option>
-                            @foreach($allZone as $zone)
-                                <option  value="{{$zone->zoneId}}">{{$zone->zoneName}}</option>
-                            @endforeach
+                            <?php $__currentLoopData = $allZone; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $zone): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option  value="<?php echo e($zone->zoneId); ?>"><?php echo e($zone->zoneName); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
                     </div>
-                @endif
+                <?php endif; ?>
                 <div class=" form-group">
                     <label>Post Date</label>
                     <input id="postDateFilter" name="postDateFilter" class="form-control date" onkeypress="return isNumberKey(event)" type="text">
@@ -31,9 +30,9 @@
                     <label>Job Status</label>
                     <select name="jobStatusFilter" id="jobStatusFilter" class="form-control">
                         <option selected value="">Select a Status</option>
-                        @foreach(JOB_STATUS as $key=>$value)
-                            <option value="{{$value}}">{{$key}}</option>
-                        @endforeach
+                        <?php $__currentLoopData = JOB_STATUS; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($value); ?>"><?php echo e($key); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
                     </select>
@@ -48,7 +47,7 @@
             <div class="card m-b-30">
                 <div class="card-header">
                     <h4 class="pull-left">Manage All Job</h4>
-                    <a href="{{route('job.admin.create')}}"><button class="btn btn-success pull-right">Post Job</button></a>
+                    <a href="<?php echo e(route('job.admin.create')); ?>"><button class="btn btn-success pull-right">Post Job</button></a>
                 </div>
                 <div class="card-body">
 
@@ -89,16 +88,16 @@
 
 
 
-@endsection
-@section('foot-js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('foot-js'); ?>
 
-    <script src="{{url('public/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{url('public/assets/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="<?php echo e(url('public/assets/plugins/datatables/jquery.dataTables.min.js')); ?>"></script>
+    <script src="<?php echo e(url('public/assets/plugins/datatables/dataTables.bootstrap4.min.js')); ?>"></script>
     <!-- Buttons examples -->
-    {{--<script src="{{url('public/assets/plugins/datatables/dataTables.buttons.min.js')}}"></script>--}}
-    {{--<script src="https://cdn.datatables.net/rowreorder/1.2.3/js/dataTables.rowReorder.min.js"></script>--}}
-    {{--<script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>--}}
-    <script src="{{url('public/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
+    
+    
+    
+    <script src="<?php echo e(url('public/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')); ?>"></script>
     <script>
 
         $('.date').datepicker({
@@ -124,11 +123,11 @@
                 stateSave: true,
                 "ordering": false,
                 "ajax":{
-                    "url": "{!! route('job.admin.getManageJobData')!!}",
+                    "url": "<?php echo route('job.admin.getManageJobData'); ?>",
                     "type": "POST",
                     data:function (d){
 
-                        d._token="{{csrf_token()}}";
+                        d._token="<?php echo e(csrf_token()); ?>";
                         if ($('#zonefilter').val()!=""){
                             d.zonefilter=$('#zonefilter').val();
                         }
@@ -281,8 +280,8 @@
 
                             $.ajax({
                                 type: "POST",
-                                url: '{{route('job.admin.changeJobStatus')}}',
-                                data: {'id':btn,'status':job,'_token':"{{csrf_token()}}"},
+                                url: '<?php echo e(route('job.admin.changeJobStatus')); ?>',
+                                data: {'id':btn,'status':job,'_token':"<?php echo e(csrf_token()); ?>"},
                                 success: function (data) {
 
                                     $.alert({
@@ -334,8 +333,8 @@
 
                             $.ajax({
                                 type: "POST",
-                                url: '{{route('job.admin.delete')}}',
-                                data: {'id':btn,'_token':"{{csrf_token()}}"},
+                                url: '<?php echo e(route('job.admin.delete')); ?>',
+                                data: {'id':btn,'_token':"<?php echo e(csrf_token()); ?>"},
                                 success: function (data) {
 
                                     $.alert({
@@ -374,7 +373,7 @@
         function jobEdit(x) {
 
             var id=$(x).data('panel-id');
-            var url = "{{ route('job.admin.edit', ':id') }}";
+            var url = "<?php echo e(route('job.admin.edit', ':id')); ?>";
             url = url.replace(':id', id);
             document.location.href=url;
 
@@ -408,4 +407,6 @@
 
     </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
