@@ -45,8 +45,7 @@ class DashboardController extends Controller
             ->where('applydate',date('Y-m-d'));
 
         if(Auth::user()->fkuserTypeId=="cbEmp" || Auth::user()->fkuserTypeId==USER_TYPE['ZoneAdmin']){
-            $myZone=HR::where('fkuserId',Auth::user()->userId)
-                ->first();
+            $myZone=HR::where('fkuserId',Auth::user()->userId)->first();
             $todaysJobApply= $todaysJobApply->where('job.fkzoneId',$myZone->fkzoneId);
         }
 
