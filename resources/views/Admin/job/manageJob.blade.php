@@ -372,23 +372,18 @@
         }
 
         function jobEdit(x) {
-
             var id=$(x).data('panel-id');
             var url = "{{ route('job.admin.edit', ':id') }}";
             url = url.replace(':id', id);
             document.location.href=url;
-
         }
-        function showPdf(x) {
 
+        function showPdf(x) {
             var id=$(x).data('panel-id');
             window.open("public/jobPdf"+"/"+id,'_blank');
-
-
         }
 
         function validationError(errorMsg){
-
             $.alert({
                 title: 'Error',
                 type: 'red',

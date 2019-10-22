@@ -121,9 +121,6 @@
                                     <button type="button" onclick="downloadmailDoc()" class="btn btn-success">Download</button>
                                 </div>
                             </div>
-
-
-
                         </div>
                     </div>
                 </div>
@@ -384,16 +381,10 @@
                             <?php $__currentLoopData = $organizationType; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $type): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <option value="<?php echo e($type->organizationTypeId); ?>"><?php echo e($type->organizationTypeName); ?></option>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
                         </select>
-
-
                     </div>
-
                 </div>
                 <hr>
-
-
             </div>
         </div>
 
@@ -404,8 +395,6 @@
 
                 </div>
                 <div class="card-body">
-
-
                     <div style="margin-top: 10px;" class="row">
                         <label class="checkbox-inline"><input style="width: auto;" type="checkbox" id="selectall2" value="">Select all</label>
 
@@ -418,12 +407,6 @@
                         <div class="col-md-3">
                             <a onclick="excelReport02InfomationSubmit()"><button class="btn btn-primary btn-sm">Export HR report-03</button></a>
                         </div>
-
-
-
-
-
-
                     </div>
                     <div style="margin-top: 10px;" class="row">
 
@@ -445,40 +428,24 @@
                     <table id="manageapplication" class="table table-striped table-bordered" style="width:100%" >
                         <thead>
                         <tr>
-
                             <th style="width: 4%">Select</th>
                             <th>Given name</th>
                             <th>Surname</th>
-
                             <th>Job Title</th>
                             <th>Zone</th>
                             <th>Apply Date</th>
                             <th>Status</th>
                             <th>Schedule Date</th>
                             <th>Schedule Time</th>
-
                             <th>Action</th>
-
-
                         </tr>
                         </thead>
                     </table>
                     </div>
-
-
-
-
                 </div>
-
             </div>
-        </div> <!-- end col -->
-    </div> <!-- end row -->
-
-
-
-
-
-
+        </div>
+    </div>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('foot-js'); ?>
 
@@ -1470,6 +1437,7 @@
                     data: {'templateFooter': CKEDITOR.instances['emailtamplatefooter'].getData(),'zoneid': $('#zone_address').val(),'jobApply': products,_token:"<?php echo e(csrf_token()); ?>",'tamplateId':$('#mailTamplate').val(),'emailtamplateBody':CKEDITOR.instances['emailtamplateBody'].getData(),
                         'subjectLine':$('#subjectLine').val(),'refNo':$('#refNo').val()},
                     success: function () {
+                        // window.open('_blank');
                         $("#wait").css("display", "none");//
                         $('#SessionMessage').load(document.URL +  ' #SessionMessage');
                         table.ajax.reload();

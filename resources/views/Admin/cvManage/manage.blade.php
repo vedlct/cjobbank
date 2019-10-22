@@ -560,12 +560,7 @@
                                 cache: false,
                                 data: {'id': id, _token: "{{csrf_token()}}"},
                                 success: function (data) {
-
-                                    console.log(data);
-
                                     if (data != 0) {
-
-
                                         $.confirm({
                                             title: 'Confirm!',
                                             content: 'This user allready applied for ' + data + ' job',
@@ -586,9 +581,7 @@
                                                                         text: 'Ok',
                                                                         btnClass: 'btn-green',
                                                                         action: function () {
-
                                                                             location.reload();
-
                                                                         }
                                                                     }
                                                                 }
@@ -610,9 +603,7 @@
                                                     text: 'Ok',
                                                     btnClass: 'btn-green',
                                                     action: function () {
-
                                                         location.reload();
-
                                                     }
                                                 }
                                             }
