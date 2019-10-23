@@ -219,7 +219,10 @@ Route::post('Admin-Preview-Mail-AppliedCandidate','Admin\ApplicationController@d
 Route::get('Admin-Export-All-AppliedCandidate1','Admin\ApplicationController@export')->name('jobAppliedCadidate.admin.Exportxls1');
 
 //Employee Management
-Route::get('Admin-Manage-User','Admin\UserManagementController@home')->name('admin.manageUser');
+Route::get('Admin-Manage-Employee','Admin\UserManagementController@home')->name('admin.manageUser');
+Route::get('Admin-Manage-User','Admin\UserManagementController@manageUser')->name('admin.manageUser.user');
+Route::post('Admin-Manage-UserData','Admin\UserManagementController@manageUserGet')->name('admin.getmanageUserData.User');
+Route::post('Admin-Change-User-Password','Admin\UserManagementController@changeUserPassword')->name('admin.changeUserPassword');
 Route::post('admin/Admin-Manage-User','Admin\UserManagementController@getUserData')->name('admin.getmanageUserData');
 Route::get('Admin-Manage-User/add','Admin\UserManagementController@add')->name('admin.manageUser.add');
 Route::get('Admin-Manage-User/edit/{id}','Admin\UserManagementController@edit')->name('admin.editmanageUserData');
@@ -228,6 +231,7 @@ Route::post('Admin-Manage-User/changeUserStatus','Admin\UserManagementController
 Route::post('Admin-Manage-User/update/{id}','Admin\UserManagementController@update')->name('admin.manageUser.update');
 /*----------------------Get CV ------------------------ */
 Route::get('user/cv/{empId}','UserCvController@getFullCv')->name('userCv.get');
+Route::get('user/cv-view/{empId}','UserCvController@getFullCvView')->name('userCv.view');
 Route::post('user/cv-delete','UserCvController@FullCvDelete')->name('userCv.delete');
 Route::post('user/cv-confirm-delete','UserCvController@FullCvCompleteDelete')->name('userCv.confirm.delete');
 

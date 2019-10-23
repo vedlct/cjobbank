@@ -118,7 +118,7 @@
 
                                 <div class="form-group">
                                     <button type="submit" onclick="sendMailToJobApplied()" class="btn btn-success">Submit</button>
-                                    <button type="button" onclick="downloadmailDoc()" class="btn btn-success">Download</button>
+
                                 </div>
                             </div>
                         </div>

@@ -272,13 +272,7 @@
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label for="">Email<span style="color: red">*</span></label>
-                                    <input type="text" required name="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}" id="" placeholder="Email">
-                                    @if ($errors->has('email'))
-
-                                        <span class="">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                    @endif
+                                    <input type="text" required name="email" class="form-control" value="{{Auth::user()->email }}" readonly>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="">Alternate email</label>

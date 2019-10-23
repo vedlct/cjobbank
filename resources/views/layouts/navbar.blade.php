@@ -53,7 +53,11 @@
     </li>
     @if(USER_TYPE['Admin']== Auth::user()->fkuserTypeId)
     <li class="has-submenu">
-        <a href="{{route('admin.manageUser')}}"><i class="ti-user"></i>User Management</a>
+        <a href="#"><i class="ti-user"></i>User Management</a>
+        <ul class="submenu">
+            <li><a href="{{route('admin.manageUser')}}">Employee</a></li>
+            <li><a href="{{route('admin.manageUser.user')}}">User</a></li>
+        </ul>
     </li>
     @endif
     @if(USER_TYPE['Admin']== Auth::user()->fkuserTypeId)

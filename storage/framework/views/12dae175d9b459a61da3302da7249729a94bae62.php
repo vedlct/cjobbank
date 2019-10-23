@@ -53,7 +53,11 @@
     </li>
     <?php if(USER_TYPE['Admin']== Auth::user()->fkuserTypeId): ?>
     <li class="has-submenu">
-        <a href="<?php echo e(route('admin.manageUser')); ?>"><i class="ti-user"></i>User Management</a>
+        <a href="#"><i class="ti-user"></i>User Management</a>
+        <ul class="submenu">
+            <li><a href="<?php echo e(route('admin.manageUser')); ?>">Employee</a></li>
+            <li><a href="<?php echo e(route('admin.manageUser.user')); ?>">User</a></li>
+        </ul>
     </li>
     <?php endif; ?>
     <?php if(USER_TYPE['Admin']== Auth::user()->fkuserTypeId): ?>

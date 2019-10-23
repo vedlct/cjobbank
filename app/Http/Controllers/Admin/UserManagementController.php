@@ -37,51 +37,25 @@ class UserManagementController extends Controller
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-
             if (Auth::check()){
-
                 if(Auth::user()->fkuserTypeId==USER_TYPE['Admin'] || Auth::user()->fkuserTypeId==USER_TYPE['Emp'] ){
-
                     return $next($request);
-
                 }else{
-
                     return redirect('/');
                 }
-
             }else{
-
                 return redirect('/');
             }
-
-
-
-
-
         });
     }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-
-    }
-
 
     public function home()
     {
         if(Auth::user()->fkuserTypeId==USER_TYPE['Admin']){
             $zones=Zone::where('status',1)->get();
             $designations=Designation::where('status',1)->get();
-
-
             return view('Admin.userMange.manage',compact('zones','designations'));
         }
-
     }
 
     public function getUserData(Request $r){
@@ -97,14 +71,31 @@ class UserManagementController extends Controller
             $hr=$hr->where('hr.fkdesignationId',$r->designationId);
         }
 
-
         $hr=$hr->get();
 
         $datatables = DataTables::of($hr);
-
         return $datatables->make(true);
 
     }
+
+    public function manageUser()
+    {
+        return view('Admin.userMange.manageuser');
+    }
+
+    public function manageUserGet(Request $data)
+    {
+        return DataTables::of(User::where('fkuserTypeId','user')->get())->make(true);
+    }
+
+    public function changeUserPassword(Request $data)
+    {
+        $user = User::find($data->id);
+        $user->password ='$2y$10$H7p/qRqJexa/5xju3TFIruCfQRKY/hig/NnAgwhOaBqjy0TR60HCG';
+        $user->save();
+        return redirect()->back();
+    }
+
     public function add(){
 
         if(Auth::user()->fkuserTypeId==USER_TYPE['Admin']) {

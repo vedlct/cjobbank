@@ -74,43 +74,17 @@
 
             </div>
         </div>
-        <!-- end col -->
     </div>
-    <!-- end row -->
-    <!-- end page title end breadcrumb -->
-
-
-
-
-
-
 
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('foot-js'); ?>
 
     <script src="<?php echo e(url('public/assets/plugins/datatables/jquery.dataTables.min.js')); ?>"></script>
     <script src="<?php echo e(url('public/assets/plugins/datatables/dataTables.bootstrap4.min.js')); ?>"></script>
-    <!-- Buttons examples -->
-    
-    
-    
+
     <script src="<?php echo e(url('public/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')); ?>"></script>
     <script>
         $(document).ready(function() {
-//            table=$('#managecv').DataTable(
-//                {
-//
-//                    "columnDefs": [
-//                        {
-//                            "targets": [0,1,3,4,6,8,9], //first column / numbering column
-//                            "orderable": false, //set not orderable
-//
-//                        },
-//
-//                    ],
-//
-//                }
-//            );
             table = $('#managecv').DataTable({
                 processing: true,
                 serverSide: true,
@@ -308,4 +282,5 @@
 
 
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

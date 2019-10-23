@@ -247,7 +247,8 @@
 
                     {
                         "data": function (data) {
-                            return '&nbsp;<button class="btn btn-smbtn-info" onclick="getEmpCv(' + data.employeeId + ')"><i class="fa fa-file-pdf-o"></i></button>' +
+                            return '&nbsp;<button class="btn btn-sm btn-primary" onclick="viewEmpCv(' + data.employeeId + ')"><i class="fa fa-eye"></i></button>' +
+                                '&nbsp;<button class="btn btn-sm btn-info" onclick="getEmpCv(' + data.employeeId + ')"><i class="fa fa-file-pdf-o"></i></button>' +
                                 '&nbsp;<button class="btn btn-sm btn-danger" onclick="EmpCvDelete(' + data.employeeId + ')"><i class="fa fa-trash-o"></i></button>'
                                 ;
                         },
@@ -536,10 +537,14 @@
 
         });
 
-
-        function getEmpCv(id) {
-
+        function getEmpCv(id){
             var url = "{{ route('userCv.get', ':empId') }}";
+            url = url.replace(':empId', id);
+            window.open(url, '_blank');
+        }
+
+        function viewEmpCv(id) {
+            var url = "{{ route('userCv.view', ':empId') }}";
             url = url.replace(':empId', id);
             window.open(url, '_blank');
         }
