@@ -101,8 +101,6 @@ class JobController extends Controller
            $allZone=DB::table('zone')->where('status',1)->get();
        }
 
-      // $allZone=DB::table('zone')->get();
-
        return view('Admin.job.editJob',compact('jobInfo','allZone'));
 
    }
@@ -120,50 +118,32 @@ class JobController extends Controller
            $data=array(
                'status'=>JOB_STATUS['De-activate'],
                'postBy'=>null,
-               'postDate'=>null,
-
+               'postDate'=>null
            );
-
        }
 
-       DB::table('job')
-           ->where('jobId',$r->id)
-           ->update($data);
-
-
-
+       DB::table('job')->where('jobId',$r->id)->update($data);
    }
-   public function jobDelete(Request $r){
-
-       DB::table('job')
-           ->where('jobId',$r->id)
-           ->update(['status' => 0]);
-
-
+   public function jobDelete(Request $r)
+   {
+       DB::table('job')->where('jobId',$r->id)->update(['status' => 0]);
    }
 
    public function jobUpdate(Request $r){
 
        $rules = [
-
            'title' => 'required',
            'position' => 'required',
            'salary' => 'required|max:45',
            'jobStatus' => 'required',
            'deadline' => 'required|date',
            'zone' => 'required',
-           'status' => 'required',
-
-
+           'status' => 'required'
        ];
 
-       $customMessages = [
-//            'unique' => 'This User is already been registered.Please Login !'
-       ];
+       $this->validate($r, $rules);
 
-       $this->validate($r, $rules, $customMessages);
-
-       $jobInfo=Job::findOrFail($r->jobId);
+       $jobInfo=Job::find($r->jobId);
        $jobInfo->title=$r->title;
        $jobInfo->position=$r->position;
        $jobInfo->salary=$r->salary;
@@ -178,6 +158,9 @@ class JobController extends Controller
 
 
        if($r->hasFile('jobPdf')){
+           if(file_exists(public_path('jobPdf/'.$jobInfo->pdflink))){
+               unlink(public_path('jobPdf/'.$jobInfo->pdflink));
+           }
            $img = $r->file('jobPdf');
            $filename= $r->jobId.'jobPdf'.'.'.$img->getClientOriginalExtension();
            $jobInfo->pdflink=$filename;

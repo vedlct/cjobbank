@@ -1,13 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
-
 use App\Employee;
 use App\Ethnicity;
 use App\Nationality;
 use App\Religion;
-
 use Illuminate\Http\Request;
 use Artisan;
 use Session;
@@ -16,40 +13,17 @@ use Image;
 
 class PersonalInfoController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
-//        $this->middleware('auth');
-
         $this->middleware(function ($request, $next) {
-
             if (Auth::check()){
-
                 return $next($request);
-
-
             }else{
-
                 return redirect('/');
             }
-
-
         });
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //return view('home');
-    }
     public function editPersonalInfo()
     {
         $userId=Auth::user()->userId;
@@ -75,13 +49,8 @@ class PersonalInfoController extends Controller
 //        return view('userCv.insert.personalInfo',compact('religion','ethnicity','natinality'));
 
         if (!$employeeCvPersonalInfo->isEmpty()){
-
-
             return view('userCv.update.personalInfo',compact('religion','ethnicity','natinality','employeeCvPersonalInfo'));
-
-
         }else{
-
             return view('userCv.insert.personalInfo',compact('religion','ethnicity','natinality'));
         }
 
@@ -117,9 +86,7 @@ class PersonalInfoController extends Controller
             'currentAddress' => 'required',
             'permanentAddress' => 'required',
             'image' => 'image|mimes:jpeg,jpg,png|max:100',
-            'sign' => 'image|mimes:jpeg,jpg,png|max:50',
-
-
+            'sign' => 'image|mimes:jpeg,jpg,png|max:50'
         ];
 
         $customMessages = [
@@ -166,10 +133,6 @@ class PersonalInfoController extends Controller
         $employee->passport=$r->passport;
         $employee->save();
 
-
-
-
-
         if($r->hasFile('image')){
             $img = $r->file('image');
             $filename= $employee->employeeId.'cvImage'.'.'.$img->getClientOriginalExtension();
@@ -199,13 +162,10 @@ class PersonalInfoController extends Controller
         Artisan::call('cache:clear');
 
         return redirect()->route('candidate.cvPersonalInfo');
-
-
     }
+
     public function updatePersonalInfo(Request $r)
     {
-
-
         $rules = [
             'firstName' => 'required|max:50',
             'lastName' => 'required|max:50',
@@ -234,9 +194,7 @@ class PersonalInfoController extends Controller
             'currentAddress' => 'required',
             'permanentAddress' => 'required',
             'image' => 'image|mimes:jpeg,jpg,png|max:100',
-            'sign' => 'image|mimes:jpeg,jpg,png|max:50',
-
-
+            'sign' => 'image|mimes:jpeg,jpg,png|max:50'
         ];
 
         $customMessages = [
@@ -285,11 +243,10 @@ class PersonalInfoController extends Controller
 
         $employee->save();
 
-
-
-
-
         if($r->hasFile('image')){
+            if(file_exists(public_path('candidateImages/'.$employee->image))){
+                unlink(public_path('candidateImages/'.$employee->image));
+            }
             $img = $r->file('image');
             $filename= $employee->employeeId.'cvImage'.'.'.$img->getClientOriginalExtension();
             $employee->image=$filename;
@@ -302,6 +259,9 @@ class PersonalInfoController extends Controller
         }
 
         if($r->hasFile('sign')){
+            if(file_exists(public_path('candidateSigns/'.$employee->sign))){
+                unlink(public_path('candidateSigns/'.$employee->sign));
+            }
             $sign = $r->file('sign');
             $filename= $employee->employeeId.'cvSign'.'.'.$sign->getClientOriginalExtension();
             $employee->sign=$filename;
@@ -313,16 +273,11 @@ class PersonalInfoController extends Controller
             })->save($location2);
         }
 
-
         $employee->save();
 
         Session::flash('message', 'Personal Info Updated Successfully');
         Artisan::call('cache:clear');
         return redirect()->route('candidate.cvPersonalInfo');
 
-
     }
-
-
-
 }

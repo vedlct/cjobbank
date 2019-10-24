@@ -19,73 +19,35 @@ use Auth;
 use Session;
 use Yajra\DataTables\DataTables;
 
-
-
-
-
-
 class CvManagementController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    \public function __construct()
     {
-//        $this->middleware('auth');
         $this->middleware(function ($request, $next) {
-
             if (Auth::check()){
-
                 if(Auth::user()->fkuserTypeId==USER_TYPE['Admin'] || Auth::user()->fkuserTypeId==USER_TYPE['Emp'] ){
-
                     return $next($request);
-
                 }else{
-
                     return redirect('/');
                 }
-
             }else{
-
                 return redirect('/');
             }
-
-
-
-
-
         });
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-
-    }
-
-
     public function manage()
     {
-//        $allZone=DB::table('zone')->get();
         if(Auth::user()->fkuserTypeId==USER_TYPE['Admin']){
 
             $religion=Religion::where('status',1)->get();
             $ethnicity=Ethnicity::where('status',1)->get();
-
             return view('Admin.cvManage.manage',compact('religion','ethnicity'));
         }
-
     }
+
     public function manageCvData(Request $r)
     {
-
-
         $cvData=DB::table('employee')->select('employeeId','employee.dateOfBirth as birthDate','gender', 'maritalStatus', 'email','image','firstName','lastName',
             DB::raw("TIMESTAMPDIFF(YEAR,`employee`.`dateOfBirth`,CURDATE()) as age1"),
             DB::raw("TIMESTAMPDIFF(MONTH,`employee`.`dateOfBirth`,CURDATE()) as age2"));
