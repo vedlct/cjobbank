@@ -924,13 +924,16 @@ class ApplicationController extends Controller
         }
         $jobInfo=Jobapply::leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')->findOrFail($appliedList[0]);
 
-        $employeeInfo=Employee::select('employee.*')
+        $empInfo=Employee::select('employee.*')
             ->where('employee.employeeId',$jobInfo->fkemployeeId)
             ->first();
+        $templateFooter = $r->templateFooter;
 
         if ($template=='1'){
-            $pdf = PDF::loadView('mail.interviewCard',['empInfo' => $employeeInfo,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address,'templateFooter'=>$r->templateFooter]);
-            return $pdf->download('interviewCard_sample.pdf');
+            return view('mail.interviewCard',compact( 'empInfo', 'subjectLine','refNo','jobInfo','emailtamplateBody','address','templateFooter'));
+
+//            $pdf = PDF::loadView('mail.interviewCard',['empInfo' => $employeeInfo,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address,'templateFooter'=>$r->templateFooter]);
+//            return $pdf->download('interviewCard_sample.pdf');
         }
         if ($template=='2'){
             $pdf = PDF::loadView('mail.notSelected',['empInfo' => $employeeInfo,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address,'templateFooter'=>$r->templateFooter]);

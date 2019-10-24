@@ -5,7 +5,7 @@
 Dear <?php echo e($employeeInfo['firstName'].' '.$employeeInfo['lastName']); ?>,<br>
 
 
-please see the attached file with this email.<br>
+Please see the attached file with this email.<br>
 
 Thanks.
 

@@ -21,7 +21,7 @@ use Yajra\DataTables\DataTables;
 
 class CvManagementController extends Controller
 {
-    \public function __construct()
+    public function __construct()
     {
         $this->middleware(function ($request, $next) {
             if (Auth::check()){

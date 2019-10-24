@@ -25,20 +25,18 @@
                             </div>
 
                             <div class="modal-body">
-
                                 <div class="row">
                                     <div  class="col-md-6">
+                                        <label for="mailTamplate" class="control-label">Mail Tamplate</label>
 
-                                            <label for="mailTamplate" class="control-label">Mail Tamplate</label>
+                                        <select class="form-control" id="mailTamplate">
+                                            <option selected value="" selected>Select Tamplate</option>
+                                            @foreach($mailTamplate as $mT)
+                                                <option value="{{$mT->tamplateId}}">{{$mT->tamplateName}}</option>
+                                            @endforeach
+                                        </select>
 
-                                            <select class="form-control" id="mailTamplate">
-                                                <option selected value="" selected>Select Tamplate</option>
-                                                @foreach($mailTamplate as $mT)
-                                                    <option value="{{$mT->tamplateId}}">{{$mT->tamplateName}}</option>
-                                                @endforeach
-                                            </select>
-
-                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row">
 
@@ -55,12 +53,12 @@
                                             @endforeach
                                         </select>
                                     </div>
-{{--                                    <div id="testDateDiv" class="col-md-6">--}}
+                                    {{--                                    <div id="testDateDiv" class="col-md-6">--}}
 
-{{--                                        <label for="">Test Date</label>--}}
-{{--                                        <input class="form-control date1" id="testDate" name="testDate" value="">--}}
+                                    {{--                                        <label for="">Test Date</label>--}}
+                                    {{--                                        <input class="form-control date1" id="testDate" name="testDate" value="">--}}
 
-{{--                                    </div>--}}
+                                    {{--                                    </div>--}}
 
                                 </div>
 
@@ -69,24 +67,24 @@
                                         <label for="refNo">Selected applicant:</label>
                                         <input type="text" id="totalSelected" name="numberofapplicant" class="form-control" readonly>
                                     </div>
-{{--                                    <div class="col-md-3">--}}
+                                    {{--                                    <div class="col-md-3">--}}
 
-{{--                                        <label for="">Start Time</label>--}}
-{{--                                        <input type="time" class="form-control" id="StartTime">--}}
+                                    {{--                                        <label for="">Start Time</label>--}}
+                                    {{--                                        <input type="time" class="form-control" id="StartTime">--}}
 
-{{--                                    </div>--}}
-{{--                                    <div class="col-md-3">--}}
+                                    {{--                                    </div>--}}
+                                    {{--                                    <div class="col-md-3">--}}
 
-{{--                                        <label for="">End Time</label>--}}
-{{--                                        <input type="time" class="form-control" id="EndTime">--}}
+                                    {{--                                        <label for="">End Time</label>--}}
+                                    {{--                                        <input type="time" class="form-control" id="EndTime">--}}
 
-{{--                                    </div>--}}
-{{--                                    <div class="col-md-3">--}}
+                                    {{--                                    </div>--}}
+                                    {{--                                    <div class="col-md-3">--}}
 
-{{--                                        <label for="">Interval Time</label>--}}
-{{--                                        <input class="form-control" id="IntervalTime">--}}
+                                    {{--                                        <label for="">Interval Time</label>--}}
+                                    {{--                                        <input class="form-control" id="IntervalTime">--}}
 
-{{--                                    </div>--}}
+                                    {{--                                    </div>--}}
 
                                 </div>
 
@@ -95,16 +93,16 @@
                                     <input type="text" class="form-control" id="subjectLine" placeholder="subject line" value="" name="subjectLine">
                                 </div>
 
-{{--                                <div class="form-group">--}}
-{{--                                    <label for="">Test Details</label>--}}
+                                {{--                                <div class="form-group">--}}
+                                {{--                                    <label for="">Test Details</label>--}}
 
-{{--                                    <textarea class="form-control" id="tamplateBody" name="testDetails" rows="2" ></textarea>--}}
-{{--                                </div>--}}
+                                {{--                                    <textarea class="form-control" id="tamplateBody" name="testDetails" rows="2" ></textarea>--}}
+                                {{--                                </div>--}}
 
-{{--                                <div class="form-group">--}}
-{{--                                    <label for="">Test Address</label>--}}
-{{--                                    <textarea class="form-control" id="testAddress" name="testAddress" rows="2" ></textarea>--}}
-{{--                                </div>--}}
+                                {{--                                <div class="form-group">--}}
+                                {{--                                    <label for="">Test Address</label>--}}
+                                {{--                                    <textarea class="form-control" id="testAddress" name="testAddress" rows="2" ></textarea>--}}
+                                {{--                                </div>--}}
                                 <div class="form-group">
                                     <label for="">Mail Body</label>
                                     <textarea class="form-control ckeditor" id="emailtamplateBody" name="emailtamplateBody"></textarea>
@@ -117,16 +115,15 @@
                                         2006 0.00032-00286-00184, Dated 16-03-2008
                                     </textarea>
                                 </div>
-
                                 <div class="form-group">
                                     <button type="submit" onclick="sendMailToJobApplied()" class="btn btn-success">Submit</button>
-{{--                                    <button type="button" onclick="downloadmailDoc()" class="btn btn-success">Download</button>--}}
+                                    <button type="button" onclick="downloadmailDoc()" class="btn btn-success">Download</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Modal -->
+                    <!-- Modal -->
                 <div class="modal fade" id="excel_info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
@@ -1428,8 +1425,6 @@
         function downloadmailDoc() {
 
             if ($('#mailTamplate').val() !=""){
-
-                $("#wait").css("display", "block");
                 var products=selecteds;
 
                 $.ajax({
@@ -1438,28 +1433,12 @@
                     cache: false,
                     data: {'templateFooter': CKEDITOR.instances['emailtamplatefooter'].getData(),'zoneid': $('#zone_address').val(),'jobApply': products,_token:"{{csrf_token()}}",'tamplateId':$('#mailTamplate').val(),'emailtamplateBody':CKEDITOR.instances['emailtamplateBody'].getData(),
                         'subjectLine':$('#subjectLine').val(),'refNo':$('#refNo').val()},
-                    success: function () {
-                        // window.open('_blank');
-                        $("#wait").css("display", "none");//
-                        $('#SessionMessage').load(document.URL +  ' #SessionMessage');
-                        table.ajax.reload();
-                        selecteds=[];
-
-                        $(':checkbox:checked').prop('checked',false);
-                        $.alert({
-                            title: 'Alert!',
-                            type: 'green',
-                            content: 'Mail Preview is Downloaded successfully',
-                            buttons: {
-                                tryAgain: {
-                                    text: 'Ok',
-                                    btnClass: 'btn-blue',
-                                    action: function(){
-                                        location.reload();
-                                    }
-                                }
-                            }
-                        });
+                    success: function (response) {
+                        $('#mail_info').modal('toggle');
+                        var w = window.open('about:blank');
+                        w.document.open();
+                        w.document.write(response);
+                        w.document.close();
                     }
                 });
             }else{

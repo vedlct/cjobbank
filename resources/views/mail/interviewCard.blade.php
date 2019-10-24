@@ -101,7 +101,9 @@
 
             <table style="width: 50%" >
                 <tr >
-                    <td align="left"> {{$empInfo->firstName.' '.$empInfo->lastName}}<br>
+                    <td align="left">
+                        To <br>
+                        {{$empInfo->firstName.' '.$empInfo->lastName}}<br>
                         {{$empInfo->presentAddress}}<br>
                         Email: {{$empInfo->email}}<br>
                         Cell: {{$empInfo->personalMobile}}

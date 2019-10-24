@@ -100,14 +100,11 @@
     <table style="width: 100%">
         <tr>
             <td style="width: 50%" align="left">
-
-                TO <br>
+                To <br>
                 <?php echo e($empInfo->firstName.' '.$empInfo->lastName); ?><br>
                 <?php echo e($empInfo->presentAddress); ?><br>
                 Email: <?php echo e($empInfo->email); ?><br>
                 Cell: <?php echo e($empInfo->personalMobile); ?>
-
-
 
             </td>
         </tr>

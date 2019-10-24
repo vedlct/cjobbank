@@ -98,14 +98,11 @@
     <table style="width: 100%">
         <tr>
             <td style="width: 50%" align="left">
-
-                TO <br>
+                To <br>
                 {{$empInfo->firstName.' '.$empInfo->lastName}}<br>
                 {{$empInfo->presentAddress}}<br>
                 Email: {{$empInfo->email}}<br>
                 Cell: {{$empInfo->personalMobile}}
-
-
             </td>
         </tr>
 

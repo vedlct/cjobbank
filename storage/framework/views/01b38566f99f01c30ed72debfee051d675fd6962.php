@@ -103,7 +103,9 @@
 
             <table style="width: 50%" >
                 <tr >
-                    <td align="left"> <?php echo e($empInfo->firstName.' '.$empInfo->lastName); ?><br>
+                    <td align="left">
+                        To <br>
+                        <?php echo e($empInfo->firstName.' '.$empInfo->lastName); ?><br>
                         <?php echo e($empInfo->presentAddress); ?><br>
                         Email: <?php echo e($empInfo->email); ?><br>
                         Cell: <?php echo e($empInfo->personalMobile); ?>
