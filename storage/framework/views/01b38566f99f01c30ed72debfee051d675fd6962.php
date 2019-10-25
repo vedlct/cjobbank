@@ -141,49 +141,21 @@
         </td>
         </tr>
         <tr>
-            <td align="left" width="100%">
-
-
-
-
-<br>
-<br>
-                <span>
-
-
-
-
-                    <?php echo $emailtamplateBody; ?>
-
-
-               </span>
+            <td align="left" width="100%"><br>
+                <span><?php echo $emailtamplateBody; ?></span>
+                <span>This is a computer-generated document. No signature is required</span>
             </td>
-
         </tr>
-
     </table>
 
 </div>
 <div style="margin: 30px 30px 0px 30px;">
 
-    <table style="width: 100%">
-        <tr>
-            <td>
-
-            </td>
-        </tr>
-        <tr>
-
-
-
-        </tr>
         <br>
         <br>
         <br>
-        <tr>
-            <td><h2>This is a computer-generated document. No signature is required</h2></td>
-        </tr>
-    </table>
+        <br>
+        <br>
 
 </div>
 

@@ -931,17 +931,12 @@ class ApplicationController extends Controller
 
         if ($template=='1'){
             return view('mail.interviewCard',compact( 'empInfo', 'subjectLine','refNo','jobInfo','emailtamplateBody','address','templateFooter'));
-
-//            $pdf = PDF::loadView('mail.interviewCard',['empInfo' => $employeeInfo,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address,'templateFooter'=>$r->templateFooter]);
-//            return $pdf->download('interviewCard_sample.pdf');
         }
         if ($template=='2'){
-            $pdf = PDF::loadView('mail.notSelected',['empInfo' => $employeeInfo,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address,'templateFooter'=>$r->templateFooter]);
-            return $pdf->download('notSelected_sample.pdf');
+            return view('mail.notSelected',compact( 'empInfo', 'subjectLine','refNo','jobInfo','emailtamplateBody','address','templateFooter'));
         }
         if ($template=='3'){
-            $pdf = PDF::loadView('mail.panelListed',['empInfo' => $employeeInfo,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address,'templateFooter'=>$r->templateFooter]);
-            return $pdf->download('panelListed_sample.pdf');
+            return view('mail.panelListed',compact( 'empInfo', 'subjectLine','refNo','jobInfo','emailtamplateBody','address','templateFooter'));
         }
     }
 }

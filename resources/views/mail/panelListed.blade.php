@@ -129,55 +129,44 @@
                 Cordial Greetings from Caritas Bangladesh!
             </td>
         </tr>
-
     </table>
 
 </div>
 
 <div style="margin: 0px 30px 0px 30px;">
 
-    <table >
-
+    <table>
         <tr>
-
             <td align="left" width="100%">
-{{--                This has reference to your recent application for the post of {{$jobInfo->position}} and the subsequent formal {{$testDetails}}--}}
-{{--                held on {{date('dS F Y (l)',strtotime($testDate))}}.<br><br>--}}
-{{--                Please be informed that you have been enlisted in the panel of future recruitment as--}}
-{{--                determined by the Recruitment Committee upon careful assessment of candidate's--}}
-{{--                applications and the results of the {{$testDetails}}. Kindly--}}
-{{--                note that you will be communicated if any scope arises in future.<br><br>--}}
-                <span>
-                    {!! $emailtamplateBody !!}
-                </span>
-                Thank you very much for your interest in working with Caritas Bangladesh.
+                <span>{!! $emailtamplateBody !!}</span>
+                <span>This is a computer-generated document. No signature is required</span>
             </td>
-
         </tr>
-
     </table>
 
 </div>
 <div style="margin: 30px 30px 0px 30px;">
 
-    <table >
-        <tr>
-            <td>
-                With best regards,
-            </td>
-        </tr>
-        <tr>
+{{--    <table >--}}
+{{--        <tr>--}}
+{{--            <td>--}}
+{{--                With best regards,--}}
+{{--            </td>--}}
+{{--        </tr>--}}
+{{--        <tr>--}}
 {{--            <td width="100%" align="left">--}}
 {{--                {!!$footerAndSign!!}--}}
 {{--            </td>--}}
-        </tr>
+{{--        </tr>--}}
         <br>
         <br>
         <br>
-        <tr>
-            <td><h2>This is a computer-generated document. No signature is required</h2></td>
-        </tr>
-    </table>
+        <br>
+        <br>
+{{--        <tr>--}}
+{{--            <td><h2>This is a computer-generated document. No signature is required</h2></td>--}}
+{{--        </tr>--}}
+{{--    </table>--}}
 
 </div>
 

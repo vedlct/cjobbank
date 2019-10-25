@@ -99,14 +99,11 @@
     <table style="width: 100%">
         <tr>
         <td style="width: 50%" align="left">
-
-                    TO <br>
-                        <?php echo e($empInfo->firstName.' '.$empInfo->lastName); ?><br>
-                        <?php echo e($empInfo->presentAddress); ?><br>
-                        Email: <?php echo e($empInfo->email); ?><br>
-                        Cell: <?php echo e($empInfo->personalMobile); ?>
-
-
+            To <br>
+            <?php echo e($empInfo->firstName.' '.$empInfo->lastName); ?><br>
+            <?php echo e($empInfo->presentAddress); ?><br>
+            Email: <?php echo e($empInfo->email); ?><br>
+            Cell: <?php echo e($empInfo->personalMobile); ?>
 
         </td>
         </tr>
@@ -135,56 +132,44 @@
                 Cordial Greetings from Caritas Bangladesh!
             </td>
         </tr>
-
     </table>
 
 </div>
 
 <div style="margin: 0px 30px 0px 30px;">
 
-    <table >
-
+    <table>
         <tr>
-
             <td align="left" width="100%">
-
-
-
-
-
-
-                <span>
-                    <?php echo $emailtamplateBody; ?>
-
-                </span>
-                Thank you very much for your interest in working with Caritas Bangladesh.
+                <span><?php echo $emailtamplateBody; ?></span>
+                <span>This is a computer-generated document. No signature is required</span>
             </td>
-
         </tr>
-
     </table>
 
 </div>
 <div style="margin: 30px 30px 0px 30px;">
 
-    <table >
-        <tr>
-            <td>
-                With best regards,
-            </td>
-        </tr>
-        <tr>
 
 
 
-        </tr>
+
+
+
+
+
+
+
+
         <br>
         <br>
         <br>
-        <tr>
-            <td><h2>This is a computer-generated document. No signature is required</h2></td>
-        </tr>
-    </table>
+        <br>
+        <br>
+
+
+
+
 
 </div>
 

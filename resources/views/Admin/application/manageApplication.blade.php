@@ -21,104 +21,104 @@
                             <div class="modal-header">
                                 <b><h4 class="modal-title dark profile-title" id="myModalLabel">Mail Info</h4></b>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-
                             </div>
 
                             <div class="modal-body">
-                                <div class="row">
-                                    <div  class="col-md-6">
-                                        <label for="mailTamplate" class="control-label">Mail Tamplate</label>
+                                <div id="email-preview"></div>
+                                <div id="email-send">
+                                    <div class="row">
+                                        <div  class="col-md-6">
+                                            <label for="mailTamplate" class="control-label">Mail Tamplate</label>
+                                            <select class="form-control" id="mailTamplate">
+                                                <option selected value="" selected>Select Tamplate</option>
+                                                @foreach($mailTamplate as $mT)
+                                                    <option value="{{$mT->tamplateId}}">{{$mT->tamplateName}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="refNo">Ref No:</label>
+                                            <input class="form-control" id="refNo" name="refNo">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="refNo">Address:</label>
+                                            <select class="form-control" id="zone_address" required>
+                                                <option value="">Select Address</option>
+                                                @foreach($zones as $zone)
+                                                    <option value="{{$zone->zoneId}}">{{$zone->zoneName}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        {{--                                    <div id="testDateDiv" class="col-md-6">--}}
 
-                                        <select class="form-control" id="mailTamplate">
-                                            <option selected value="" selected>Select Tamplate</option>
-                                            @foreach($mailTamplate as $mT)
-                                                <option value="{{$mT->tamplateId}}">{{$mT->tamplateName}}</option>
-                                            @endforeach
-                                        </select>
+                                        {{--                                        <label for="">Test Date</label>--}}
+                                        {{--                                        <input class="form-control date1" id="testDate" name="testDate" value="">--}}
+
+                                        {{--                                    </div>--}}
 
                                     </div>
-                                </div>
-                                <div class="row">
 
-                                    <div class="col-md-6">
-                                        <label for="refNo">Ref No:</label>
-                                        <input class="form-control" id="refNo" name="refNo">
+                                    <div class="row" id="forinterview">
+                                        <div class="col-md-3">
+                                            <label for="refNo">Selected applicant:</label>
+                                            <input type="text" id="totalSelected" name="numberofapplicant" class="form-control" readonly>
+                                        </div>
+                                        {{--                                    <div class="col-md-3">--}}
+
+                                        {{--                                        <label for="">Start Time</label>--}}
+                                        {{--                                        <input type="time" class="form-control" id="StartTime">--}}
+
+                                        {{--                                    </div>--}}
+                                        {{--                                    <div class="col-md-3">--}}
+
+                                        {{--                                        <label for="">End Time</label>--}}
+                                        {{--                                        <input type="time" class="form-control" id="EndTime">--}}
+
+                                        {{--                                    </div>--}}
+                                        {{--                                    <div class="col-md-3">--}}
+
+                                        {{--                                        <label for="">Interval Time</label>--}}
+                                        {{--                                        <input class="form-control" id="IntervalTime">--}}
+
+                                        {{--                                    </div>--}}
+
                                     </div>
-                                    <div class="col-md-6">
-                                        <label for="refNo">Address:</label>
-                                        <select class="form-control" id="zone_address" required>
-                                            <option value="">Select Address</option>
-                                            @foreach($zones as $zone)
-                                                <option value="{{$zone->zoneId}}">{{$zone->zoneName}}</option>
-                                            @endforeach
-                                        </select>
+
+                                    <div id="subjectLineDiv" class="form-group">
+                                        <label for="">Subject line</label>
+                                        <input type="text" class="form-control" id="subjectLine" placeholder="subject line" value="" name="subjectLine">
                                     </div>
-                                    {{--                                    <div id="testDateDiv" class="col-md-6">--}}
 
-                                    {{--                                        <label for="">Test Date</label>--}}
-                                    {{--                                        <input class="form-control date1" id="testDate" name="testDate" value="">--}}
+                                    {{--                                <div class="form-group">--}}
+                                    {{--                                    <label for="">Test Details</label>--}}
 
-                                    {{--                                    </div>--}}
+                                    {{--                                    <textarea class="form-control" id="tamplateBody" name="testDetails" rows="2" ></textarea>--}}
+                                    {{--                                </div>--}}
 
-                                </div>
-
-                                <div class="row" id="forinterview">
-                                    <div class="col-md-3">
-                                        <label for="refNo">Selected applicant:</label>
-                                        <input type="text" id="totalSelected" name="numberofapplicant" class="form-control" readonly>
+                                    {{--                                <div class="form-group">--}}
+                                    {{--                                    <label for="">Test Address</label>--}}
+                                    {{--                                    <textarea class="form-control" id="testAddress" name="testAddress" rows="2" ></textarea>--}}
+                                    {{--                                </div>--}}
+                                    <div class="form-group">
+                                        <label for="">Mail Body</label>
+                                        <textarea class="form-control ckeditor" id="emailtamplateBody" name="emailtamplateBody"></textarea>
                                     </div>
-                                    {{--                                    <div class="col-md-3">--}}
-
-                                    {{--                                        <label for="">Start Time</label>--}}
-                                    {{--                                        <input type="time" class="form-control" id="StartTime">--}}
-
-                                    {{--                                    </div>--}}
-                                    {{--                                    <div class="col-md-3">--}}
-
-                                    {{--                                        <label for="">End Time</label>--}}
-                                    {{--                                        <input type="time" class="form-control" id="EndTime">--}}
-
-                                    {{--                                    </div>--}}
-                                    {{--                                    <div class="col-md-3">--}}
-
-                                    {{--                                        <label for="">Interval Time</label>--}}
-                                    {{--                                        <input class="form-control" id="IntervalTime">--}}
-
-                                    {{--                                    </div>--}}
-
+                                    <div class="form-group">
+                                        <label for="">Mail Footer</label>
+                                        <textarea class="form-control ckeditor" id="emailtamplatefooter" name="emailtamplatefooter">
+                                            Regd under the Societies Registration Act XXI of 1860 <br>No. 3760-B of 1972-73, Dated 13-7-1972<br><br>
+                                            Regd.with NGO Affairs Bureau under the Foreign Donations (Voluntary Activities) Regulation Ordinance, 1978, No.009, Dated 22-4-1981 Regd. under the Micro Credit Regulatory Authority Act<br>
+                                            2006 0.00032-00286-00184, Dated 16-03-2008
+                                        </textarea>
+                                    </div>
                                 </div>
-
-                                <div id="subjectLineDiv" class="form-group">
-                                    <label for="">Subject line</label>
-                                    <input type="text" class="form-control" id="subjectLine" placeholder="subject line" value="" name="subjectLine">
-                                </div>
-
-                                {{--                                <div class="form-group">--}}
-                                {{--                                    <label for="">Test Details</label>--}}
-
-                                {{--                                    <textarea class="form-control" id="tamplateBody" name="testDetails" rows="2" ></textarea>--}}
-                                {{--                                </div>--}}
-
-                                {{--                                <div class="form-group">--}}
-                                {{--                                    <label for="">Test Address</label>--}}
-                                {{--                                    <textarea class="form-control" id="testAddress" name="testAddress" rows="2" ></textarea>--}}
-                                {{--                                </div>--}}
-                                <div class="form-group">
-                                    <label for="">Mail Body</label>
-                                    <textarea class="form-control ckeditor" id="emailtamplateBody" name="emailtamplateBody"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Mail Footer</label>
-                                    <textarea class="form-control ckeditor" id="emailtamplatefooter" name="emailtamplatefooter">
-                                        Regd under the Societies Registration Act XXI of 1860 <br>No. 3760-B of 1972-73, Dated 13-7-1972<br><br>
-                                        Regd.with NGO Affairs Bureau under the Foreign Donations (Voluntary Activities) Regulation Ordinance, 1978, No.009, Dated 22-4-1981 Regd. under the Micro Credit Regulatory Authority Act<br>
-                                        2006 0.00032-00286-00184, Dated 16-03-2008
-                                    </textarea>
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" onclick="sendMailToJobApplied()" class="btn btn-success">Submit</button>
-                                    <button type="button" onclick="downloadmailDoc()" class="btn btn-success">Download</button>
-                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" onclick="previewEmailClose()" id="previewEmailClose" class="btn btn-success" style="display: none">Mail</button>
+                                <button type="button" onclick="previewEmail()" id="previewEmail" class="btn btn-success">Preview</button>
+                                <button type="submit" onclick="sendMailToJobApplied()" class="btn btn-success">Send</button>
                             </div>
                         </div>
                     </div>
@@ -1422,7 +1422,14 @@
             }
         }
 
-        function downloadmailDoc() {
+        function previewEmailClose() {
+            $('#previewEmailClose').css('display','none');
+            $('#email-preview').css('display','none');
+            $('#email-send').css('display','block');
+            $('#previewEmail').css('display','block');
+        }
+
+        function previewEmail() {
 
             if ($('#mailTamplate').val() !=""){
                 var products=selecteds;
@@ -1434,11 +1441,11 @@
                     data: {'templateFooter': CKEDITOR.instances['emailtamplatefooter'].getData(),'zoneid': $('#zone_address').val(),'jobApply': products,_token:"{{csrf_token()}}",'tamplateId':$('#mailTamplate').val(),'emailtamplateBody':CKEDITOR.instances['emailtamplateBody'].getData(),
                         'subjectLine':$('#subjectLine').val(),'refNo':$('#refNo').val()},
                     success: function (response) {
-                        $('#mail_info').modal('toggle');
-                        var w = window.open('about:blank');
-                        w.document.open();
-                        w.document.write(response);
-                        w.document.close();
+                        $('#email-send').css('display','none');
+                        $('#previewEmail').css('display','none');
+                        $('#previewEmailClose').css('display','block');
+                        $('#email-preview').html(response);
+                        $('#email-preview').css('display','block');
                     }
                 });
             }else{

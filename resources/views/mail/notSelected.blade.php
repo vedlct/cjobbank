@@ -139,55 +139,21 @@
 <div style="margin: 0px 30px 0px 30px;">
 
     <table width="100%">
-
         <tr>
-
             <td align="left" width="100%">
-
-
-
-{{--This has reference to your recent application and the subsequent formal {{$testDetails}} held on {{date('dS F Y (l)',strtotime($testDate))}} for the post of {{$jobInfo->position}}.<br><br>--}}
-{{--Please be informed that the other candidate has been selected for appointment in the--}}
-{{--post of {{$jobInfo->position}} as determined by the--}}
-{{--Recruitment Committee upon careful assessment of candidates applications and the--}}
-{{--results of the {{$testDetails}}.<br><br>--}}
-                <span>
-                    {!! $emailtamplateBody !!}
-                </span>
-Thank you very much for your interest in working with Caritas Bangladesh and please
-feel free to apply again for other position/vacancies for which you may be qualified.
-
-
+                <span>{!! $emailtamplateBody !!}</span>
+                <span>This is a computer-generated document. No signature is required</span>
             </td>
-
         </tr>
-
     </table>
 
 </div>
 <div style="margin: 30px 30px 0px 30px;">
-
-    <table width="100%">
-        <tr>
-            <td>
-                With best regards,
-            </td>
-        </tr>
-        <tr>
-{{--            <td width="100%" align="left">--}}
-{{--                {!!$footerAndSign!!}--}}
-{{--            </td>--}}
-        </tr>
         <br>
         <br>
         <br>
-        <tr>
-            <td><h2>This is a computer-generated document. No signature is required</h2></td>
-        </tr>
-
-
-</table>
-
+        <br>
+        <br>
 </div>
 
 <div id="footer">

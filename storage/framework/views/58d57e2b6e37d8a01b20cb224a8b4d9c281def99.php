@@ -142,56 +142,21 @@
 <div style="margin: 0px 30px 0px 30px;">
 
     <table width="100%">
-
         <tr>
-
             <td align="left" width="100%">
-
-
-
-
-
-
-
-
-                <span>
-                    <?php echo $emailtamplateBody; ?>
-
-                </span>
-Thank you very much for your interest in working with Caritas Bangladesh and please
-feel free to apply again for other position/vacancies for which you may be qualified.
-
-
+                <span><?php echo $emailtamplateBody; ?></span>
+                <span>This is a computer-generated document. No signature is required</span>
             </td>
-
         </tr>
-
     </table>
 
 </div>
 <div style="margin: 30px 30px 0px 30px;">
-
-    <table width="100%">
-        <tr>
-            <td>
-                With best regards,
-            </td>
-        </tr>
-        <tr>
-
-
-
-        </tr>
         <br>
         <br>
         <br>
-        <tr>
-            <td><h2>This is a computer-generated document. No signature is required</h2></td>
-        </tr>
-
-
-</table>
-
+        <br>
+        <br>
 </div>
 
 <div id="footer">

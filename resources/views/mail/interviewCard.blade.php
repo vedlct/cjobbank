@@ -138,48 +138,21 @@
         </td>
         </tr>
         <tr>
-            <td align="left" width="100%">
-
-
-
-{{--With reference to your application for the post of {{$jobInfo->position}}, we would like to invite you for {{$testDetails}} to be held on the {{date('dS F Y (l)',strtotime($testDate))}} @if(@$intviewTime) at {{$intviewTime}}@endif in {{$testAddress}}.--}}
-<br>
-<br>
-                <span>
-{{--                        Please take note of the following information for attending the interview:<br>--}}
-{{--                        1. That you are requested to be present for the interview on time.<br>--}}
-{{--                        2. That no TA/DA will be provided for attending the above interview.<br>--}}
-{{--                        3. That you are requested to bring original copies of all certificates during interview.<br>--}}
-                    {!! $emailtamplateBody !!}
-
-               </span>
+            <td align="left" width="100%"><br>
+                <span>{!! $emailtamplateBody !!}</span>
+                <span>This is a computer-generated document. No signature is required</span>
             </td>
-
         </tr>
-
     </table>
 
 </div>
 <div style="margin: 30px 30px 0px 30px;">
 
-    <table style="width: 100%">
-        <tr>
-            <td>
-{{--                With best regards,--}}
-            </td>
-        </tr>
-        <tr>
-{{--            <td style="width: 100%" align="left">--}}
-{{--                {!! $footerAndSign !!}--}}
-{{--            </td>--}}
-        </tr>
         <br>
         <br>
         <br>
-        <tr>
-            <td><h2>This is a computer-generated document. No signature is required</h2></td>
-        </tr>
-    </table>
+        <br>
+        <br>
 
 </div>
 
