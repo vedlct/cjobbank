@@ -863,13 +863,13 @@ class ApplicationController extends Controller
                 }
             }
             if ($template=='2'){
-                $pdf = PDF::loadView('mail.notSelected',['empInfo' => $employeeInfo,
+                $pdf = PDF::loadView('mail.panelListed',['empInfo' => $employeeInfo,
                         'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address,'templateFooter'=>$r->templateFooter]);
                     try{
                     Mail::send('mail.MailBody',['employeeInfo' => $employeeInfo], function($message) use ($pdf,$employeeInfo)
                     {
-                        $message->to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)->subject('APOLOGY LETTER FROM CARITAS BD');
-                        $message->attachData($pdf->output(),'NOTSELECTED-CARD.pdf',['mime' => 'application/pdf']);
+                        $message->to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)->subject('PANEL-LIST LETTER FROM CARITAS BD');
+                        $message->attachData($pdf->output(),'PANEL-LIST.pdf',['mime' => 'application/pdf']);
                     });
                 }
                 catch (\Exception $ex) {
@@ -877,12 +877,12 @@ class ApplicationController extends Controller
                 }
             }
             if ($template=='3'){
-                $pdf = PDF::loadView('mail.panelListed',['empInfo' => $employeeInfo,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address,'templateFooter'=>$r->templateFooter]);
+                $pdf = PDF::loadView('mail.notSelected',['empInfo' => $employeeInfo,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address,'templateFooter'=>$r->templateFooter]);
                     try{
                     Mail::send('mail.MailBody',['employeeInfo' => $employeeInfo], function($message) use ($pdf,$employeeInfo)
                     {
-                        $message->to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)->subject('PANEL-LIST LETTER FROM CARITAS BD');
-                        $message->attachData($pdf->output(),'PANEL-LIST.pdf',['mime' => 'application/pdf']);
+                        $message->to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)->subject('APOLOGY LETTER FROM CARITAS BD');
+                        $message->attachData($pdf->output(),'NOTSELECTED-CARD.pdf',['mime' => 'application/pdf']);
                     });
                 }
                 catch (\Exception $ex) {
@@ -933,10 +933,10 @@ class ApplicationController extends Controller
             return view('mail.interviewCard',compact( 'empInfo', 'subjectLine','refNo','jobInfo','emailtamplateBody','address','templateFooter'));
         }
         if ($template=='2'){
-            return view('mail.notSelected',compact( 'empInfo', 'subjectLine','refNo','jobInfo','emailtamplateBody','address','templateFooter'));
+            return view('mail.panelListed',compact( 'empInfo', 'subjectLine','refNo','jobInfo','emailtamplateBody','address','templateFooter'));
         }
         if ($template=='3'){
-            return view('mail.panelListed',compact( 'empInfo', 'subjectLine','refNo','jobInfo','emailtamplateBody','address','templateFooter'));
+            return view('mail.notSelected',compact( 'empInfo', 'subjectLine','refNo','jobInfo','emailtamplateBody','address','templateFooter'));
         }
     }
 }
