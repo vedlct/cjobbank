@@ -13,6 +13,13 @@
             height: 1500px;
         }
     </style>
+    <style>
+        @media only screen and (max-width: 400px) {
+            .top{
+                margin-top: 4%;
+            }
+        }
+    </style>
 
 @endsection
 @section('content')

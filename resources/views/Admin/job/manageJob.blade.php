@@ -1,6 +1,17 @@
 @extends('main')
 @section('content')
-
+<style>
+    @media only screen and (max-width: 1397px) {
+        .top{
+            margin-top: 10%;
+        }
+    }
+    @media only screen and (min-width: 1398px) and (max-width: 1679px) {
+        .top1{
+            margin-top: 6%;
+        }
+    }
+</style>
 
     <div class="row">
 
@@ -187,11 +198,11 @@
 
 
                             return '<a data-panel-id="' + data.jobId + '" onclick="jobEdit(this)"  class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>&nbsp;' +
-                                '<a data-panel-id="' + data.jobId + '" onclick="deleteJob(this)" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></a>&nbsp;' +
-                                '<a data-panel-id="' + data.pdflink + '" onclick="showPdf(this)" target="_blank" class="btn btn-sm btn-info"><i class="fa fa-file-pdf-o"></i></a>&nbsp;'
+                                '<a data-panel-id="' + data.jobId + '" onclick="deleteJob(this)" class="btn btn-sm btn-danger top"><i class="fa fa-trash-o"></i></a>&nbsp;' +
+                                '<a data-panel-id="' + data.pdflink + '" onclick="showPdf(this)" target="_blank" class="btn btn-sm btn-info top top1"><i class="fa fa-file-pdf-o"></i></a>&nbsp;'
                         }else {
-                            return '<a data-panel-id="' + data.jobId + '" onclick="jobEdit(this)"  class="btn btn-sm btn-success"><i class="fa fa-edit"></i></a>&nbsp;' +
-                                '<a data-panel-id="' + data.jobId + '" onclick="deleteJob(this)" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i></a>&nbsp;'
+                            return '<a data-panel-id="' + data.jobId + '" onclick="jobEdit(this)"  class="btn btn-sm btn-success top"><i class="fa fa-edit"></i></a>&nbsp;' +
+                                '<a data-panel-id="' + data.jobId + '" onclick="deleteJob(this)" class="btn btn-sm btn-danger top"><i class="fa fa-trash-o"></i></a>&nbsp;'
 
                         }
                         ;},

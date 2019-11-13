@@ -1,6 +1,13 @@
 @extends('main')
 
 @section('content')
+    <style>
+        @media only screen and (max-width: 420px) {
+            .top{
+                margin-top: 4%;
+            }
+        }
+    </style>
 
     <div class="row ">
 
@@ -172,7 +179,7 @@
                                     <button type="button" id="addButton" class="btn btn-success">Add more</button>
                                     <button type="button" id="removeButton" class="btn btn-success">Remove</button>
 
-                                    <div style="overflow:auto;">
+                                    <div style="overflow:auto;" class="top">
                                         <div style="float:right;">
                                             <a href="{{route('candidate.cvTrainingCertificate')}}">
                                                 <button type="button" id="btnPevious">Back</button>

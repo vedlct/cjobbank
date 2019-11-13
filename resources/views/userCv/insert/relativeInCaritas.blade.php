@@ -1,6 +1,13 @@
 @extends('main')
 
 @section('content')
+    <style>
+        @media only screen and (max-width: 400px) {
+            .top{
+                margin-top: 4%;
+            }
+        }
+    </style>
 
     <div class="row ">
 
@@ -65,7 +72,7 @@
                                         <a href="{{route('candidate.viewUserCv')}}"><button type="button" id="btntes" >Done</button></a>
                                         @endif
 
-                                        <button id="submitBtn" type="submit" >Save</button>
+                                        <button id="submitBtn" type="submit" class="top" >Save</button>
 
 
                                         {{--@if($relativeInCB->relativeInCB == '1' || $relativeInCB->relativeInCB== '0' )--}}

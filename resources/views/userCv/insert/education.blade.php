@@ -1,4 +1,11 @@
 @extends('main')
+<style>
+    @media only screen and (max-width: 420px) {
+        .top{
+            margin-top: 4%;
+        }
+    }
+</style>
 
 @section('content')
 
@@ -180,7 +187,7 @@
                             <button type="button" id="removeButton" class="btn btn-success" >Remove</button>
                         </div>
 
-                        <div style="overflow:auto;">
+                        <div style="overflow:auto;" class="top" >
                             <div style="float:right;">
 
                                 <a href="{{route('candidate.cvQuesObj')}}"><button type="button" id="btnPevious">Back</button></a>

@@ -1,6 +1,43 @@
 @extends('main')
 @section('content')
+<style>
+    @media only screen and (max-width: 1299px) {
+        #button {
+            margin-top: 10%;
+        }
+        .left{
+            margin-left: 7%;
+        }
+    }
+    @media only screen and (min-width: 1201px) and (max-width: 1299px) {
+        .left1{
+            margin-left: 4%;
+        }
+    }
 
+    @media only screen and (min-width: 1300px) and (max-width: 1679px) {
+        .top{
+            margin-top: -8%;
+        }
+    }
+    @media only screen and (min-width: 1300px) and (max-width: 1371px) {
+        .top1{
+            margin-top:4%;
+        }
+        .left3{
+            margin-left: 5%;
+        }
+    }
+    @media only screen and (min-width: 1371px) and (max-width: 1679px) {
+        .bottom{
+            margin-top:-4%;
+        }
+        .left2{
+            margin-left: 4%;
+        }
+    }
+
+</style>
 
     <div class="row">
 
@@ -247,9 +284,9 @@
 
                     {
                         "data": function (data) {
-                            return '&nbsp;<button class="btn btn-sm btn-primary" onclick="viewEmpCv(' + data.employeeId + ')"><i class="fa fa-eye"></i></button>' +
-                                '&nbsp;<button class="btn btn-sm btn-info" onclick="getEmpCv(' + data.employeeId + ')"><i class="fa fa-file-pdf-o"></i></button>' +
-                                '&nbsp;<button class="btn btn-sm btn-danger" onclick="EmpCvDelete(' + data.employeeId + ')"><i class="fa fa-trash-o"></i></button>'
+                            return '&nbsp;<button class="btn btn-sm btn-primary top" onclick="viewEmpCv(' + data.employeeId + ')"><i class="fa fa-eye"></i></button>' +
+                                '&nbsp;<button class="btn btn-sm btn-info left1 top1 bottom left3" id="button" onclick="getEmpCv(' + data.employeeId + ')"><i class="fa fa-file-pdf-o"></i></button>' +
+                                '&nbsp;<button class="btn btn-sm btn-danger left top1 left2" id="button" onclick="EmpCvDelete(' + data.employeeId + ')"><i class="fa fa-trash-o"></i></button>'
                                 ;
                         },
                         "orderable": false, "searchable": false

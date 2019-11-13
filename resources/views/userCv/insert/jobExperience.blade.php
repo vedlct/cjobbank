@@ -13,6 +13,13 @@
             height:2500px;
         }
     </style>
+    <style>
+        @media only screen and (max-width: 400px) {
+            .top{
+                margin-top: 4%;
+            }
+        }
+    </style>
 
     <div class="row ">
 
@@ -158,7 +165,7 @@
                                 <a href="{{route('candidate.cvProfessionalCertificate')}}"><button type="button" id="btnPevious" >Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
                                 @if($hasProfCertificate == 0 || $hasProfCertificate== 1 )
-                                <a href="{{route('candidate.previousWorkInCB.index')}}"><button type="button" id="nextBtn" >Next</button></a>
+                                <a href="{{route('candidate.previousWorkInCB.index')}}"><button type="button" id="nextBtn" class="top" >Next</button></a>
                                 @endif
                             </div>
                         </div>

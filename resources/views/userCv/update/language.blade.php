@@ -36,6 +36,13 @@
             cursor: pointer;
         }
 
+
+        @media only screen and (max-width: 420px) {
+            .top{
+                margin-top: 4%;
+            }
+        }
+
     </style>
 
     <div class="row ">
@@ -128,7 +135,7 @@
 
                         {{--</div>--}}
 
-                        <div style="overflow:auto;">
+                        <div style="overflow:auto;" class="top">
                             <div style="float:right;">
                                 <a href="{{route('candidate.cvEducation')}}"><button type="button" id="btnPevious" >Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
