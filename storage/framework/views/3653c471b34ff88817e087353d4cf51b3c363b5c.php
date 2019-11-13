@@ -1,5 +1,4 @@
-@extends('main')
-@section('content')
+<?php $__env->startSection('content'); ?>
 
     <!-- Modal -->
     <div class="modal fade" id="NewNationalityModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -13,8 +12,9 @@
 
                 <div class="modal-body">
 
-                    <form action="{{route('manage.typeOfEmployment.insert')}}" method="post">
-                        {{csrf_field()}}
+                    <form action="<?php echo e(route('manage.typeOfEmployment.insert')); ?>" method="post">
+                        <?php echo e(csrf_field()); ?>
+
 
 
                         <div class="form-group">
@@ -28,9 +28,9 @@
                             <label for="">Status<span style="color: red">*</span></label>
                             <select required class="form-control" name="status">
                                 <option value="">Select Status</option>
-                                @foreach(STATUS as $key=>$value)
-                                    <option value="{{$key}}">{{$value}}</option>
-                                @endforeach
+                                <?php $__currentLoopData = STATUS; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($key); ?>"><?php echo e($value); ?></option>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                         </div>
                         <div class="form-group">
@@ -78,15 +78,15 @@
     <div class="row">
         <div class="col-12">
             <div class="card container">
-                @if ($errors->any())
+                <?php if($errors->any()): ?>
                     <div class="alert alert-danger">
                         <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
+                            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <li><?php echo e($error); ?></li>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </ul>
                     </div>
-                @endif
+                <?php endif; ?>
 
                 <div class="card-body">
                     <div class="card-header-tabs">
@@ -112,23 +112,24 @@
                             </thead>
                             <tbody>
 
-                            @foreach($type as $n)
+                            <?php $__currentLoopData = $type; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $n): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                    <td>{{$n->employmentTypeName}}</td>
+                                    <td><?php echo e($n->employmentTypeName); ?></td>
 
                                     <td>
-                                        @foreach(STATUS as $key=>$value)
-                                            @if($n->status == $key)
-                                                {{$value}}
-                                            @endif
-                                        @endforeach
+                                        <?php $__currentLoopData = STATUS; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <?php if($n->status == $key): ?>
+                                                <?php echo e($value); ?>
+
+                                            <?php endif; ?>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </td>
-                                    <td width="10%"><button class="btn btn-sm btn-success" data-panel-id="{{$n->id}}" onclick="editNationality(this)">Edit</button>
+                                    <td width="10%"><button class="btn btn-sm btn-success" data-panel-id="<?php echo e($n->id); ?>" onclick="editNationality(this)">Edit</button>
                                     </td>
 
                                 </tr>
 
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
                             </tbody>
@@ -146,15 +147,15 @@
 
 
 
-@endsection
-@section('foot-js')
-    <script src="{{url('public/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{url('public/assets/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('foot-js'); ?>
+    <script src="<?php echo e(url('public/assets/plugins/datatables/jquery.dataTables.min.js')); ?>"></script>
+    <script src="<?php echo e(url('public/assets/plugins/datatables/dataTables.bootstrap4.min.js')); ?>"></script>
     <!-- Buttons examples -->
-    {{--<script src="{{url('public/assets/plugins/datatables/dataTables.buttons.min.js')}}"></script>--}}
-    {{--<script src="https://cdn.datatables.net/rowreorder/1.2.3/js/dataTables.rowReorder.min.js"></script>--}}
-    {{--<script src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>--}}
-    <script src="{{url('public/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
+    
+    
+    
+    <script src="<?php echo e(url('public/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')); ?>"></script>
 
     <script>
         $(function () {
@@ -173,9 +174,9 @@
 
             $.ajax({
                 type: 'POST',
-                url: "{!! route('manage.typeOfEmployment.edit') !!}",
+                url: "<?php echo route('manage.typeOfEmployment.edit'); ?>",
                 cache: false,
-                data: {_token: "{{csrf_token()}}",'id': id},
+                data: {_token: "<?php echo e(csrf_token()); ?>",'id': id},
                 success: function (data) {
 //                    console.log(data);
                     $('#editModalBodyNationality').html(data);
@@ -188,4 +189,5 @@
     </script>
 
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

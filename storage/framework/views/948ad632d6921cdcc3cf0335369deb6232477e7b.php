@@ -20,7 +20,7 @@
 
                             <label for="">Designation<span style="color: red">*</span></label>
 
-                            <input class="form-control" name="designationName" required type="text">
+                            <input class="form-control" maxlength="50" name="designationName" required type="text">
 
                         </div>
 

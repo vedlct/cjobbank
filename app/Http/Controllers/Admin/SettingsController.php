@@ -547,7 +547,7 @@ class SettingsController extends Controller
 
         $degisnation->save();
 
-        Session::flash('message', 'Degisnation Added Successfully!');
+        Session::flash('message', 'Designation Added Successfully!');
         return redirect()->route('manage.degisnation');
 
     }
