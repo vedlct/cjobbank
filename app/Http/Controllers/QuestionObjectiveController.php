@@ -108,7 +108,9 @@ class QuestionObjectiveController extends Controller
 
         if ($r->hasOtherSkill){
 
-            $employeeCareerInfo->currentSalary=$r->currentSalary;
+            if(!empty($r->currentSalary)){
+                $employeeCareerInfo->currentSalary=$r->currentSalary;
+            }
 
             for ($i=1;$i<=$employeeCvQuesObjQues;$i++){
                 $userAggrement=new QuestionObjectiveAns();
@@ -119,8 +121,9 @@ class QuestionObjectiveController extends Controller
             }
         }
 
-
-        $employeeCareerInfo->expectedSalary=$r->expectedSalary;
+        if(!empty($r->expectedSalary)){
+            $employeeCareerInfo->expectedSalary=$r->expectedSalary;
+        }
         $employeeCareerInfo->readyToJoinAfter=$r->readyToJoinAfter;
 
         $employeeCareerInfo->empId=$employee;
@@ -189,7 +192,10 @@ class QuestionObjectiveController extends Controller
 
 
         if ($r->freshers==1){
-            $employeeCareerInfo->currentSalary=$r->currentSalary;
+
+            if(!empty($r->currentSalary)){
+                $employeeCareerInfo->currentSalary=$r->currentSalary;
+            }
 
 
             for ($i=1;$i<=$employeeCvQuesObjQues;$i++){
@@ -225,7 +231,9 @@ class QuestionObjectiveController extends Controller
             QuestionObjectiveAns::where('fkemployeeId',$employee)->delete();
         }
 
-        $employeeCareerInfo->expectedSalary=$r->expectedSalary;
+        if(!empty($r->expectedSalary)){
+            $employeeCareerInfo->expectedSalary=$r->expectedSalary;
+        }
         $employeeCareerInfo->readyToJoinAfter=$r->readyToJoinAfter;
 
         $employeeCareerInfo->empId=$employee;
