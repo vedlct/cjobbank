@@ -6,6 +6,18 @@
         height: 600px;
         overflow: auto;
     }
+
+    @media  only screen and (max-width: 500px) {
+        .top{
+            margin-top: 5%;
+        }
+    }
+
+    @media  only screen and (min-width: 600px) and (max-width: 768px) {
+        .left{
+            margin-left: 12%;
+        }
+    }
 </style>
     <div class="row">
         <div class="col-md-2">
@@ -399,10 +411,10 @@
                             <a onclick="excelInfomationSubmit()"><button class="btn btn-danger btn-sm">Export candidates excel</button></a>
                         </div>
                         <div class="col-md-3">
-                            <a onclick="excelReport03InfomationSubmit()"><button class="btn btn-primary btn-sm">Export HR report-02</button></a>
+                            <a onclick="excelReport03InfomationSubmit()"><button class="btn btn-primary btn-sm top left">Export HR report-02</button></a>
                         </div>
                         <div class="col-md-3">
-                            <a onclick="excelReport02InfomationSubmit()"><button class="btn btn-primary btn-sm">Export HR report-03</button></a>
+                            <a onclick="excelReport02InfomationSubmit()"><button class="btn btn-primary btn-sm top left">Export HR report-03</button></a>
                         </div>
                     </div>
                     <div style="margin-top: 10px;" class="row">
@@ -589,8 +601,8 @@
                     { data: 'interviewCallDate', name: 'jobapply.interviewCallDate', "orderable": true, "searchable":true },
                     { data: 'interviewCallDateTime', name: 'jobapply.interviewCallDateTime', "orderable": true, "searchable":true },
                     { "data": function(data){
-                        return '<button class="btn btn-smbtn-info" onclick="getEmpCv('+data.employeeId+')"><i class="fa fa-file-pdf-o"></i></button>'
-                            +'&nbsp;' +'<button class="btn btn-sm btn-danger" onclick="empReject('+data.jid+','+data.employeeId+')"><i class="fa fa-trash-o"></i></button>'
+                        return '<button class="btn btn-sm btn-info" onclick="getEmpCv('+data.employeeId+')"><i class="fa fa-file-pdf-o"></i></button>'
+                            +'&nbsp;' +'<button class="btn btn-sm btn-danger" style="margin-top: 8%;" onclick="empReject('+data.jid+','+data.employeeId+')"><i class="fa fa-trash-o"></i></button>'
                             ;},
                         "orderable": false, "searchable":false
                     }

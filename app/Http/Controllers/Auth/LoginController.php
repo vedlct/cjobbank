@@ -20,10 +20,8 @@ class LoginController extends Controller
 
     public function redirectTo()
     {
-        if (Auth::user()->fkuserTypeId == USER_TYPE['Admin'] || Auth::user()->fkuserTypeId == USER_TYPE['Emp']) {
+        if (Auth::user()->fkuserTypeId == USER_TYPE['Admin'] || Auth::user()->fkuserTypeId == USER_TYPE['Emp'] || Auth::user()->fkuserTypeId == USER_TYPE['ZoneAdmin']) {
             return route('admin.dashboard');
-        }elseif (Auth::user()->fkuserTypeId == USER_TYPE['ZoneAdmin']) {
-            return route('zone.admin.dashboard');
         }elseif (Auth::user()->fkuserTypeId == USER_TYPE['User']) {
             $cvStatus1=Employee::where('fkuserId',Auth::user()->userId)->first();
             if ($cvStatus1 != null && $cvStatus1->cvStatus == 1){

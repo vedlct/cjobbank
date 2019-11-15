@@ -78,7 +78,12 @@ class ApplicationController extends Controller
         $natinality=Nationality::where('status',1)->get();
         $allZone=DB::table('zone')->where('status',1)->get();
         $organizationType=DB::table('organizationtype')->where('status',1)->get();
-        $allJobTitle=Job::select('title')->where('status','!=',0)->get();
+        $allJobTitle=Job::select('title')->where('status','!=',0);
+        if(Auth::user()->fkuserTypeId=="cbEmp" || Auth::user()->fkuserTypeId==USER_TYPE['ZoneAdmin']){
+            $myZone=HR::where('fkuserId',Auth::user()->userId)->first();
+            $allJobTitle = $allJobTitle->where('fkzoneId',$myZone->fkzoneId);
+        }
+        $allJobTitle = $allJobTitle->get();
         $allEducationLevel=Educationlevel::where('status',1)->get();
         $mailTamplate=MailTamplate::select('tamplateName','tamplateId')->get();
         $zones=Zone::where('status',1)->get();
@@ -132,6 +137,7 @@ class ApplicationController extends Controller
 
         if(Auth::user()->fkuserTypeId=="cbEmp" || Auth::user()->fkuserTypeId==USER_TYPE['ZoneAdmin']){
             $myZone=HR::where('fkuserId',Auth::user()->userId)->first();
+//            echo $myZone->fkzoneId;exit();
             $application = $application->where('job.fkzoneId',$myZone->fkzoneId);
         }
 
