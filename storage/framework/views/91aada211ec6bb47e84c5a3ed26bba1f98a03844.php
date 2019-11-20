@@ -129,6 +129,7 @@
                                 <button type="button" onclick="previewEmailClose()" id="previewEmailClose" class="btn btn-success" style="display: none">Mail</button>
                                 <button type="button" onclick="previewEmail()" id="previewEmail" class="btn btn-success">Preview</button>
                                 <button type="submit" onclick="sendMailToJobApplied()" class="btn btn-success">Send</button>
+                                <button type="submit" onclick="downloadLetter()" class="btn btn-success">Download</button>
                             </div>
                         </div>
                     </div>
@@ -166,7 +167,7 @@
 
                 <div class=" form-group ">
                     <label>Gender</label>
-                    <select name="genderFilter" id="genderFilter" class="form-control">
+                    <select name="genderFilter" id="genderFilter" class="form-control" multiple>
                         <option value="">Select a Gender</option>
                         <?php $__currentLoopData = GENDER; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <option value="<?php echo e($value); ?>"><?php echo e($key); ?></option>
@@ -176,7 +177,7 @@
                 </div>
 
                 <div class=" form-group ">
-                    <label>Age From</label><span style="color: red">(Year)</span>
+                    <label>Age From</label><span style="color: redMajor">(Year)</span>
                     <input class="form-control" id="ageFromFilter" name="ageFromFilter" onkeypress="return isNumberKey(event)" type="text">
                 </div>
                 <div class=" form-group ">
@@ -206,6 +207,7 @@
                         <option value="Pending">Pending</option>
                         <option value="Viewed">Viewed</option>
                         <option value="Called">Called</option>
+                        <option value="Panel listed">Panel listed</option>
                         <option value="Rejected">Rejected</option>
                     </select>
                 </div>
@@ -601,9 +603,19 @@
                     { data: 'interviewCallDate', name: 'jobapply.interviewCallDate', "orderable": true, "searchable":true },
                     { data: 'interviewCallDateTime', name: 'jobapply.interviewCallDateTime', "orderable": true, "searchable":true },
                     { "data": function(data){
-                        return '<button class="btn btn-sm btn-info" onclick="getEmpCv('+data.employeeId+')"><i class="fa fa-file-pdf-o"></i></button>'
-                            +'&nbsp;' +'<button class="btn btn-sm btn-danger" style="margin-top: 8%;" onclick="empReject('+data.jid+','+data.employeeId+')"><i class="fa fa-trash-o"></i></button>'
-                            ;},
+                        if(data.status =='Pending' || data.status =='View'){
+                            return '<div class="btn-group" role="group" aria-label="Action">\n' +
+                                '  <button type="button" class="btn btn-sm btn-info" onclick="getEmpCv(' + data.employeeId + ')"><i class="fa fa-eye" title="View"></i></button>\n' +
+                                '  <button type="button" class="btn btn-sm btn-danger" onclick="empReject(' + data.jid + ',' + data.employeeId + ')" title="Reject"><i class="fa fa-trash-o"></i></button>\n' +
+                                '</div>';
+                        }else {
+                            return '<div class="btn-group" role="group" aria-label="Action">\n' +
+                                '  <button type="button" class="btn btn-sm btn-info" onclick="getEmpCv(' + data.employeeId + ')" title="View"><i class="fa fa-eye"></i></button>\n' +
+                                '  <button type="button" class="btn btn-sm btn-danger" onclick="empReject(' + data.jid + ',' + data.employeeId + ')" title="Reject"><i class="fa fa-trash-o"></i></button>\n' +
+                                '  <button type="button" class="btn btn-sm" onclick="downloadMailData(' + data.jid + ',' + data.employeeId + ')" title="Download"><i class="fa fa-file-pdf-o"></i></button>\n' +
+                                '</div>';
+                        }
+                        },
                         "orderable": false, "searchable":false
                     }
                 ]
@@ -1496,17 +1508,21 @@
 
         function getEmpCv(id) {
 
-            var url = '<?php echo e(url('/user/cv')); ?>'+'/'+id;
-            window.open(url,'_blank');
+            $.ajax({
+                type:'get',
+                url:'<?php echo e(url('/user/cv')); ?>'+'/'+id,
+                cache: false,
+                success:function() {
+                    table.ajax.reload();
+                    var url = '<?php echo e(url('/user/cv')); ?>'+'/'+id;
+                    window.open(url,'_blank');
+                }
+            });
+        }
 
-            
-            
-            
-            
-            
-            
-            
-            
+        function downloadMailData(jid,employeeId) {
+            var url = '<?php echo e(url('/downloadMailData')); ?>'+'/'+jid+'/'+employeeId;
+            window.open(url,'_blank');
         }
 
         function empReject(jid,employeeId) {

@@ -148,7 +148,7 @@ class ApplicationController extends Controller
             $application= $application->where('jobapply.status',$r->applicant_Status);
         }
         if ($r->genderFilter){
-            $application= $application->where('employee.gender',$r->genderFilter);
+            $application= $application->wherein('employee.gender',$r->genderFilter);
         }
         if ($r->religionFilter){
             $application= $application->where('employee.fkreligionId',$r->religionFilter);
@@ -760,6 +760,47 @@ class ApplicationController extends Controller
             }
         }
     }
+
+    public function downloadMailData($jid,$employeeId)
+    {
+        $jobInfo=Jobapply::leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')->where('job.jobId',$jid)->first();
+        $employeeInfo=Employee::select('employee.*')->where('employee.employeeId',$employeeId)->first();
+
+        if ($jobInfo->status =='Called'){
+
+            try{
+                $pdf = PDF::loadView('mail.interviewCard',['empInfo' => $employeeInfo,
+                    'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address,'templateFooter'=>$r->templateFooter]);
+
+                return $pdf->download('interviewCard.pdf',array('Attachment'=>false));
+            }
+            catch (\Exception $ex) {
+                $error[$i]=$ex;
+            }
+        }
+        if ($jobInfo->status =='Panel listed'){
+            try{
+                $pdf = PDF::loadView('mail.panelListed',['empInfo' => $employeeInfo,
+                    'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address,'templateFooter'=>$r->templateFooter]);
+
+                return $pdf->download('panelListed.pdf',array('Attachment'=>false));
+            }
+            catch (\Exception $ex) {
+                $error[$i]=$ex;
+            }
+        }
+        if ($jobInfo->status =='Rejected'){
+            try{
+                $pdf = PDF::loadView('mail.notSelected',['empInfo' => $employeeInfo,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address,'templateFooter'=>$r->templateFooter]);
+
+                return $pdf->download('notSelected.pdf',array('Attachment'=>false));
+            }
+            catch (\Exception $ex) {
+                $error[$i]=$ex;
+            }
+        }
+    }
+
     public function sendMailtoAppliedCandidate(Request $r)
     {
 //        if ($r->tamplateId===1){
