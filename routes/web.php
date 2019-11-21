@@ -214,7 +214,7 @@ Route::post('Admin-Export-All-AppliedCandidate-Hr-report02','Admin\ApplicationCo
 Route::post('Admin-Send-Mail-AppliedCandidate','Admin\ApplicationController@sendMailtoAppliedCandidate')->name('jobAppliedCadidate.admin.sendMail');
 Route::post('Admin-download-Mail-AppliedCandidate','Admin\ApplicationController@downloadMailtoAppliedCandidate')->name('jobAppliedCadidate.admin.downloadLetter');
 Route::post('Admin-Preview-Mail-AppliedCandidate','Admin\ApplicationController@downloadMailDoc')->name('jobAppliedCadidate.admin.downloadMailDoc');
-Route::get('/downloadMailData/{jid}/{employeeId}','Admin\ApplicationController@downloadMailData')->name('jobAppliedCadidate.admin.downloadMailData');
+Route::post('/downloadMailData','Admin\ApplicationController@downloadMailData')->name('jobAppliedCadidate.admin.downloadMailData');
 
 
 

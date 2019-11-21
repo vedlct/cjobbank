@@ -37,15 +37,10 @@ use Illuminate\Support\Facades\DB;
 use Auth;
 use Session;
 use Yajra\DataTables\DataTables;
-
 use Excel;
 use PDF;
-use MPDF;
 use Mail;
-
-
-
-
+use File;
 
 class ApplicationController extends Controller
 {
@@ -761,43 +756,68 @@ class ApplicationController extends Controller
         }
     }
 
-    public function downloadMailData($jid,$employeeId)
+    public function downloadMailData(Request $r)
     {
-        $jobInfo=Jobapply::leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')->where('job.jobId',$jid)->first();
-        $employeeInfo=Employee::select('employee.*')->where('employee.employeeId',$employeeId)->first();
+//        $path = public_path().'/mailed/pdf/'.date("h-i-sa");
+//        File::makeDirectory($path, $mode = 0777, true, true);
 
-        if ($jobInfo->status =='Called'){
+//exit();
+        $appliedList=$r->jobApply;
+        $template=$r->tamplateId;
+        $subjectLine=$r->subjectLine;
+        $refNo=$r->refNo;
+        $emailtamplateBody=$r->emailtamplateBody;
 
-            try{
-                $pdf = PDF::loadView('mail.interviewCard',['empInfo' => $employeeInfo,
-                    'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address,'templateFooter'=>$r->templateFooter]);
+        if ($r->zoneid) {
+            $address = Zone::where('zoneId',$r->zoneid)->first();
+        }else{
+            $address = '';
+        }
+        $error=array();
+        foreach (explode(" ",$r->jobApplyId) as $key => $applyId) {
 
-                return $pdf->download('interviewCard.pdf',array('Attachment'=>false));
+            $jobInfo=Jobapply::leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')->findOrFail($appliedList[$key]);
+
+            $employeeInfo=Employee::select('employee.*')
+                ->where('employee.employeeId',$jobInfo->fkemployeeId)
+                ->first();
+
+            if ($template=='1'){
+
+                try{
+                    $pdf = PDF::loadView('mail.interviewCard',['empInfo' => $employeeInfo,
+                        'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address,'templateFooter'=>$r->templateFooter]);
+                    $pdf->SetProtection(['copy', 'print'], '', 'pass');
+                    return $pdf->stream($employeeInfo->firstName.' '.$employeeInfo->lastName);
+
+                }
+                catch (\Exception $ex) {
+                    $error[$key]=$ex;
+                }
             }
-            catch (\Exception $ex) {
-                $error[$i]=$ex;
+            if ($template=='2'){
+                try{
+                    $pdf = PDF::loadView('mail.panelListed',['empInfo' => $employeeInfo,
+                        'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address,'templateFooter'=>$r->templateFooter])->stream($employeeInfo->firstName.' '.$employeeInfo->lastName);
+                }
+                catch (\Exception $ex) {
+                    $error[$key]=$ex;
+                }
+            }
+            if ($template=='3'){
+                try{
+                    $pdf = PDF::loadView('mail.notSelected',['empInfo' => $employeeInfo,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address,'templateFooter'=>$r->templateFooter])->save($employeeInfo->firstName.' '.$employeeInfo->lastName);
+                }
+                catch (\Exception $ex) {
+                    $error[$key]=$ex;
+                }
             }
         }
-        if ($jobInfo->status =='Panel listed'){
-            try{
-                $pdf = PDF::loadView('mail.panelListed',['empInfo' => $employeeInfo,
-                    'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address,'templateFooter'=>$r->templateFooter]);
-
-                return $pdf->download('panelListed.pdf',array('Attachment'=>false));
-            }
-            catch (\Exception $ex) {
-                $error[$i]=$ex;
-            }
-        }
-        if ($jobInfo->status =='Rejected'){
-            try{
-                $pdf = PDF::loadView('mail.notSelected',['empInfo' => $employeeInfo,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address,'templateFooter'=>$r->templateFooter]);
-
-                return $pdf->download('notSelected.pdf',array('Attachment'=>false));
-            }
-            catch (\Exception $ex) {
-                $error[$i]=$ex;
-            }
+        if(!empty($error))
+        {
+            return $error;
+        }else{
+            return 1;
         }
     }
 

@@ -129,7 +129,7 @@
                                 <button type="button" onclick="previewEmailClose()" id="previewEmailClose" class="btn btn-success" style="display: none">Mail</button>
                                 <button type="button" onclick="previewEmail()" id="previewEmail" class="btn btn-success">Preview</button>
                                 <button type="submit" onclick="sendMailToJobApplied()" class="btn btn-success">Send</button>
-                                <button type="submit" onclick="downloadLetter()" class="btn btn-success">Download</button>
+
                             </div>
                         </div>
                     </div>
@@ -407,7 +407,7 @@
                 </div>
                 <div class="card-body">
                     <div style="margin-top: 10px;" class="row">
-                        <label class="checkbox-inline"><input style="width: auto;" type="checkbox" id="selectall2" value="">Select all</label>
+
 
                         <div class="col-md-3">
                             <a onclick="excelInfomationSubmit()"><button class="btn btn-danger btn-sm">Export candidates excel</button></a>
@@ -439,7 +439,7 @@
                     <table id="manageapplication" class="table table-striped table-bordered" style="width:100%" >
                         <thead>
                         <tr>
-                            <th style="width: 4%">Select</th>
+                            <th><input style="width: auto;" type="checkbox" id="selectall2" value=""> ALL</th>
                             <th>Given name</th>
                             <th>Surname</th>
                             <th>Job Title</th>
@@ -465,24 +465,6 @@
     <script src="<?php echo e(url('public/assets/plugins/datatables/jquery.dataTables.min.js')); ?>"></script>
     <script src="<?php echo e(url('public/assets/plugins/datatables/dataTables.bootstrap4.min.js')); ?>"></script>
     <script type="text/javascript" src="<?php echo e(url('public/assets/ckeditor/ckeditor.js')); ?>"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <script>
 
@@ -1351,6 +1333,88 @@
                     title: 'Alert!',
                     type: 'red',
                     content: 'Please Filter With Job Title First',
+                    buttons: {
+                        tryAgain: {
+                            text: 'Ok',
+                            btnClass: 'btn-blue',
+                        }
+                    }
+                });
+            }
+        }
+
+        function downloadLetter() {
+            if ($('#mailTamplate').val() !==""){
+
+                $("#wait").css("display", "block");
+
+                var products=selecteds;
+
+                $.ajax({
+                    type: 'POST',
+                    url: "<?php echo route('jobAppliedCadidate.admin.downloadMailData'); ?>",
+                    cache: false,
+                    data: {'templateFooter': CKEDITOR.instances['emailtamplatefooter'].getData(),'jobApply': products,'zoneid': $('#zone_address').val(),_token:"<?php echo e(csrf_token()); ?>",'tamplateId':$('#mailTamplate').val(),'emailtamplateBody':CKEDITOR.instances['emailtamplateBody'].getData(),
+                        'subjectLine':$('#subjectLine').val(),'refNo':$('#refNo').val(),'selected':$('#totalSelected').val()},
+                    success: function (data) {
+                        $("#wait").css("display", "none");
+                        $('#SessionMessage').load(document.URL +  ' #SessionMessage');
+                        table.ajax.reload();
+                        selecteds=[];
+
+                        if(data.status==='error'){
+                            $.alert({
+                                title: 'Alert!',
+                                type: 'red',
+                                content: data.msg,
+                                buttons: {
+                                    tryAgain: {
+                                        text: 'Ok',
+                                        btnClass: 'btn-blue',
+                                    }
+                                }
+                            });
+                        }
+                        $(':checkbox:checked').prop('checked',false);
+                        if (data ==='1'){
+                            $.alert({
+                                title: 'Alert!',
+                                type: 'green',
+                                content: 'Mail Send successfully',
+                                buttons: {
+                                    tryAgain: {
+                                        text: 'Ok',
+                                        btnClass: 'btn-blue',
+                                        action: function(){
+                                            location.reload();
+                                        }
+                                    }
+                                }
+                            });
+                        }else if(data==='0'){
+
+                            $.alert({
+                                title: 'Alert!',
+                                type: 'Red',
+                                content: 'There is something wrong with the mail',
+                                buttons: {
+                                    tryAgain: {
+                                        text: 'Ok',
+                                        btnClass: 'btn-red',
+                                        action: function () {
+                                            location.reload();
+                                        }
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
+            }else{
+                $.alert({
+                    title: 'Alert!',
+                    type: 'red',
+                    content: 'Please Select a Tamplate First',
                     buttons: {
                         tryAgain: {
                             text: 'Ok',
