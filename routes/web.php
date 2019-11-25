@@ -215,6 +215,7 @@ Route::post('Admin-Send-Mail-AppliedCandidate','Admin\ApplicationController@send
 Route::post('Admin-download-Mail-AppliedCandidate','Admin\ApplicationController@downloadMailtoAppliedCandidate')->name('jobAppliedCadidate.admin.downloadLetter');
 Route::post('Admin-Preview-Mail-AppliedCandidate','Admin\ApplicationController@downloadMailDoc')->name('jobAppliedCadidate.admin.downloadMailDoc');
 Route::post('/downloadMailData','Admin\ApplicationController@downloadMailData')->name('jobAppliedCadidate.admin.downloadMailData');
+Route::get('/downloadZip/{folder}','Admin\ApplicationController@downloadZip')->name('jobAppliedCadidate.admin.downloadZip');
 
 
 

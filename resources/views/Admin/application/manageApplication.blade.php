@@ -27,7 +27,7 @@
             <div style="background-color: white;margin-bottom: 20px;" class="card-body ex3">
 
                 <!-- Modal -->
-                <div class="modal fade" id="mail_info" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal fade" id="mail_info" tabindex="-1" role="dialog">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -131,7 +131,7 @@
                                 <button type="button" onclick="previewEmailClose()" id="previewEmailClose" class="btn btn-success" style="display: none">Mail</button>
                                 <button type="button" onclick="previewEmail()" id="previewEmail" class="btn btn-success">Preview</button>
                                 <button type="submit" onclick="sendMailToJobApplied()" class="btn btn-success">Send</button>
-{{--                                <button type="submit" onclick="downloadLetter()" class="btn btn-success">Download</button>--}}
+                                <button type="submit" onclick="downloadLetter()" class="btn btn-success">Download</button>
                             </div>
                         </div>
                     </div>
@@ -441,7 +441,7 @@
                     <table id="manageapplication" class="table table-striped table-bordered" style="width:100%" >
                         <thead>
                         <tr>
-                            <th><input style="width: auto;" type="checkbox" id="selectall2" value=""> ALL</th>
+                            <th><input style="width: auto;" type="checkbox" id="selectall2" value=""></th>
                             <th>Given name</th>
                             <th>Surname</th>
                             <th>Job Title</th>
@@ -587,18 +587,11 @@
                     { data: 'interviewCallDate', name: 'jobapply.interviewCallDate', "orderable": true, "searchable":true },
                     { data: 'interviewCallDateTime', name: 'jobapply.interviewCallDateTime', "orderable": true, "searchable":true },
                     { "data": function(data){
-                        if(data.status =='Pending' || data.status =='View'){
-                            return '<div class="btn-group" role="group" aria-label="Action">\n' +
+                        return '<div class="btn-group" role="group" aria-label="Action">\n' +
                                 '  <button type="button" class="btn btn-sm btn-info" onclick="getEmpCv(' + data.employeeId + ')"><i class="fa fa-eye" title="View"></i></button>\n' +
                                 '  <button type="button" class="btn btn-sm btn-danger" onclick="empReject(' + data.jid + ',' + data.employeeId + ')" title="Reject"><i class="fa fa-trash-o"></i></button>\n' +
                                 '</div>';
-                        }else {
-                            return '<div class="btn-group" role="group" aria-label="Action">\n' +
-                                '  <button type="button" class="btn btn-sm btn-info" onclick="getEmpCv(' + data.employeeId + ')" title="View"><i class="fa fa-eye"></i></button>\n' +
-                                '  <button type="button" class="btn btn-sm btn-danger" onclick="empReject(' + data.jid + ',' + data.employeeId + ')" title="Reject"><i class="fa fa-trash-o"></i></button>\n' +
-                                '  <button type="button" class="btn btn-sm" onclick="downloadMailData(' + data.jid + ',' + data.employeeId + ')" title="Download"><i class="fa fa-file-pdf-o"></i></button>\n' +
-                                '</div>';
-                        }
+
                         },
                         "orderable": false, "searchable":false
                     }
@@ -1246,24 +1239,14 @@
                                             btnClass: 'btn-red',
                                             action: function () {
                                                 location.reload();
-
                                             }
                                         }
-
                                     }
                                 });
-
-
                             }
-
-
                         }
-
                     });
-                }
-                else {
-
-
+                }else {
                     $.alert({
                         title: 'Alert!',
                         type: 'Red',
@@ -1274,15 +1257,11 @@
                                 btnClass: 'btn-red',
                                 action: function () {
 
-
                                 }
                             }
-
                         }
                     });
                 }
-
-
 
             }else {
 
@@ -1296,18 +1275,13 @@
                             btnClass: 'btn-blue',
                             action: function () {
 
-
                             }
                         }
-
                     }
                 });
-
             }
-
         }
         function sendMail() {
-
 
             if ($('#jobTitle').val()!==""){
 
@@ -1338,7 +1312,7 @@
                     buttons: {
                         tryAgain: {
                             text: 'Ok',
-                            btnClass: 'btn-blue',
+                            btnClass: 'btn-blue'
                         }
                     }
                 });
@@ -1347,71 +1321,27 @@
 
         function downloadLetter() {
             if ($('#mailTamplate').val() !==""){
+                if ($('#zone_address').val() =="") {
+                    var errorMsg = 'Select a address first!!';
+                    validationError(errorMsg);
+                }else{
+                    var products=selecteds;
 
-                $("#wait").css("display", "block");
+                    $.ajax({
+                        type: 'POST',
+                        url: "{!! route('jobAppliedCadidate.admin.downloadMailData') !!}",
+                        cache: false,
+                        data: {'templateFooter': CKEDITOR.instances['emailtamplatefooter'].getData(),'jobApply': products,'zoneid': $('#zone_address').val(),_token:"{{csrf_token()}}",'tamplateId':$('#mailTamplate').val(),'emailtamplateBody':CKEDITOR.instances['emailtamplateBody'].getData(),
+                            'subjectLine':$('#subjectLine').val(),'refNo':$('#refNo').val(),'selected':$('#totalSelected').val()},
+                        success: function (data) {
+                            table.ajax.reload();
+                            $('#mail_info').modal('hide');
 
-                var products=selecteds;
-
-                $.ajax({
-                    type: 'POST',
-                    url: "{!! route('jobAppliedCadidate.admin.downloadMailData') !!}",
-                    cache: false,
-                    data: {'templateFooter': CKEDITOR.instances['emailtamplatefooter'].getData(),'jobApply': products,'zoneid': $('#zone_address').val(),_token:"{{csrf_token()}}",'tamplateId':$('#mailTamplate').val(),'emailtamplateBody':CKEDITOR.instances['emailtamplateBody'].getData(),
-                        'subjectLine':$('#subjectLine').val(),'refNo':$('#refNo').val(),'selected':$('#totalSelected').val()},
-                    success: function (data) {
-                        $("#wait").css("display", "none");
-                        $('#SessionMessage').load(document.URL +  ' #SessionMessage');
-                        table.ajax.reload();
-                        selecteds=[];
-
-                        if(data.status==='error'){
-                            $.alert({
-                                title: 'Alert!',
-                                type: 'red',
-                                content: data.msg,
-                                buttons: {
-                                    tryAgain: {
-                                        text: 'Ok',
-                                        btnClass: 'btn-blue',
-                                    }
-                                }
-                            });
+                            var url = '{{url('/downloadZip')}}'+'/'+data;
+                            window.open(url,'_blank');
                         }
-                        $(':checkbox:checked').prop('checked',false);
-                        if (data ==='1'){
-                            $.alert({
-                                title: 'Alert!',
-                                type: 'green',
-                                content: 'Mail Send successfully',
-                                buttons: {
-                                    tryAgain: {
-                                        text: 'Ok',
-                                        btnClass: 'btn-blue',
-                                        action: function(){
-                                            location.reload();
-                                        }
-                                    }
-                                }
-                            });
-                        }else if(data==='0'){
-
-                            $.alert({
-                                title: 'Alert!',
-                                type: 'Red',
-                                content: 'There is something wrong with the mail',
-                                buttons: {
-                                    tryAgain: {
-                                        text: 'Ok',
-                                        btnClass: 'btn-red',
-                                        action: function () {
-                                            location.reload();
-                                        }
-                                    }
-                                }
-                            });
-                        }
-                    }
-                });
+                    });
+                }
             }else{
                 $.alert({
                     title: 'Alert!',
@@ -1430,53 +1360,67 @@
         function sendMailToJobApplied() {
 
             if ($('#mailTamplate').val() !==""){
+                if ($('#zone_address').val() =="") {
+                    var errorMsg = 'Select a address first!!';
+                    validationError(errorMsg);
+                }else {
 
-                $("#wait").css("display", "block");
+                    $("#wait").css("display", "block");
 
-                var products=selecteds;
+                    var products = selecteds;
 
                     $.ajax({
                         type: 'POST',
                         url: "{!! route('jobAppliedCadidate.admin.sendMail') !!}",
                         cache: false,
-                        data: {'templateFooter': CKEDITOR.instances['emailtamplatefooter'].getData(),'jobApply': products,'zoneid': $('#zone_address').val(),_token:"{{csrf_token()}}",'tamplateId':$('#mailTamplate').val(),'emailtamplateBody':CKEDITOR.instances['emailtamplateBody'].getData(),
-                            'subjectLine':$('#subjectLine').val(),'refNo':$('#refNo').val(),'selected':$('#totalSelected').val()},
+                        data: {
+                            'templateFooter': CKEDITOR.instances['emailtamplatefooter'].getData(),
+                            'jobApply': products,
+                            'zoneid': $('#zone_address').val(),
+                            _token: "{{csrf_token()}}",
+                            'tamplateId': $('#mailTamplate').val(),
+                            'emailtamplateBody': CKEDITOR.instances['emailtamplateBody'].getData(),
+                            'subjectLine': $('#subjectLine').val(),
+                            'refNo': $('#refNo').val(),
+                            'selected': $('#totalSelected').val()
+                        },
                         success: function (data) {
                             $("#wait").css("display", "none");
-                            $('#SessionMessage').load(document.URL +  ' #SessionMessage');
+                            $('#SessionMessage').load(document.URL + ' #SessionMessage');
                             table.ajax.reload();
-                            selecteds=[];
+                            selecteds = [];
 
-                           if(data.status==='error'){
-                               $.alert({
-                                   title: 'Alert!',
-                                   type: 'red',
-                                   content: data.msg,
-                                   buttons: {
-                                       tryAgain: {
-                                           text: 'Ok',
-                                           btnClass: 'btn-blue',
-                                       }
-                                   }
-                               });
-                           }
-                           $(':checkbox:checked').prop('checked',false);
-                           if (data ==='1'){
+                            if (data.status === 'error') {
                                 $.alert({
                                     title: 'Alert!',
-                                    type: 'green',
-                                    content: 'Mail Send successfully',
+                                    type: 'red',
+                                    content: data.msg,
                                     buttons: {
                                         tryAgain: {
                                             text: 'Ok',
-                                            btnClass: 'btn-blue',
-                                            action: function(){
-                                                location.reload();
-                                            }
+                                            btnClass: 'btn-blue'
                                         }
                                     }
                                 });
-                           }else if(data==='0'){
+                            }
+                            $(':checkbox:checked').prop('checked', false);
+                            if (data ==='1'){
+                            $.alert({
+                                title: 'Alert!',
+                                type: 'green',
+                                content: 'Mail Send successfully',
+                                buttons: {
+                                    tryAgain: {
+                                        text: 'Ok',
+                                        btnClass: 'btn-blue',
+                                        action: function () {
+                                            $('#mail_info').modal('hide');
+                                            table.ajax.reload();
+                                        }
+                                    }
+                                }
+                            });
+                        }else if (data === '0') {
 
                                 $.alert({
                                     title: 'Alert!',
@@ -1487,14 +1431,16 @@
                                             text: 'Ok',
                                             btnClass: 'btn-red',
                                             action: function () {
-                                                location.reload();
+                                                $('#mail_info').modal('hide');
+                                                table.ajax.reload();
                                             }
                                         }
                                     }
                                 });
-                           }
+                            }
                         }
                     });
+                }
             }else{
                 $.alert({
                     title: 'Alert!',

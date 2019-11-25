@@ -32,9 +32,12 @@ use App\Religion;
 use App\Traning;
 use App\Zone;
 use Carbon\Carbon;
+use Chumper\Zipper\Facades\Zipper;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App as AppAlias;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use Illuminate\Support\Facades\Storage;
 use Session;
 use Yajra\DataTables\DataTables;
 use Excel;
@@ -758,25 +761,36 @@ class ApplicationController extends Controller
 
     public function downloadMailData(Request $r)
     {
-//        $path = public_path().'/mailed/pdf/'.date("h-i-sa");
-//        File::makeDirectory($path, $mode = 0777, true, true);
-
-//exit();
         $appliedList=$r->jobApply;
         $template=$r->tamplateId;
         $subjectLine=$r->subjectLine;
         $refNo=$r->refNo;
         $emailtamplateBody=$r->emailtamplateBody;
 
+        $folder_name = date("h-i-sa");
+
         if ($r->zoneid) {
             $address = Zone::where('zoneId',$r->zoneid)->first();
         }else{
             $address = '';
         }
-        $error=array();
-        foreach (explode(" ",$r->jobApplyId) as $key => $applyId) {
 
-            $jobInfo=Jobapply::leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')->findOrFail($appliedList[$key]);
+        if ($template=='1') {
+            $emp_status = 'Called';
+        }elseif ($template=='2') {
+            $emp_status = 'Panel listed';
+        }elseif ($template=='3') {
+            $emp_status = 'Rejected';
+        }
+
+        $error=array();
+        for ($i=0;$i<count($appliedList);$i++) {
+
+            $appliedId = $appliedList[$i];
+            $jobInfo=Jobapply::leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')->findOrFail($appliedId);
+            $jobInfo->status = $emp_status;
+            $jobInfo->save();
+
 
             $employeeInfo=Employee::select('employee.*')
                 ->where('employee.employeeId',$jobInfo->fkemployeeId)
@@ -787,38 +801,46 @@ class ApplicationController extends Controller
                 try{
                     $pdf = PDF::loadView('mail.interviewCard',['empInfo' => $employeeInfo,
                         'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address,'templateFooter'=>$r->templateFooter]);
-                    $pdf->SetProtection(['copy', 'print'], '', 'pass');
-                    return $pdf->stream($employeeInfo->firstName.' '.$employeeInfo->lastName);
+
+                    Storage::put('mailPreview/'.$folder_name.'/'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'-INTERVIEW-CARD.pdf', $pdf->output());
 
                 }
                 catch (\Exception $ex) {
-                    $error[$key]=$ex;
+                    $error[$i]=$ex;
                 }
             }
             if ($template=='2'){
                 try{
                     $pdf = PDF::loadView('mail.panelListed',['empInfo' => $employeeInfo,
-                        'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address,'templateFooter'=>$r->templateFooter])->stream($employeeInfo->firstName.' '.$employeeInfo->lastName);
+                        'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address,'templateFooter'=>$r->templateFooter]);
+
+                    Storage::put('mailPreview/'.$folder_name.'/'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'-PANEL-LIST.pdf', $pdf->output());
                 }
                 catch (\Exception $ex) {
-                    $error[$key]=$ex;
+                    $error[$i]=$ex;
                 }
             }
             if ($template=='3'){
                 try{
-                    $pdf = PDF::loadView('mail.notSelected',['empInfo' => $employeeInfo,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address,'templateFooter'=>$r->templateFooter])->save($employeeInfo->firstName.' '.$employeeInfo->lastName);
+                    $pdf = PDF::loadView('mail.notSelected',['empInfo' => $employeeInfo,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address,'templateFooter'=>$r->templateFooter]);
+
+                    Storage::put('mailPreview/'.$folder_name.'/'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'-NOTSELECTED-CARD.pdf', $pdf->output());
                 }
                 catch (\Exception $ex) {
-                    $error[$key]=$ex;
+                    $error[$i]=$ex;
                 }
             }
         }
-        if(!empty($error))
-        {
-            return $error;
-        }else{
-            return 1;
-        }
+
+        $files = glob(public_path('storage/mailPreview/'.$folder_name,'/*'));
+        \Zipper::make(public_path("mailPreview/".$folder_name.".zip"))->add($files)->close();
+        return $folder_name;
+    }
+
+    public function downloadZip($folder)
+    {
+        File::deleteDirectory(public_path('storage/mailPreview/'.$folder));
+        return response()->download(public_path("mailPreview/".$folder.".zip"))->deleteFileAfterSend(true);
     }
 
     public function sendMailtoAppliedCandidate(Request $r)
@@ -894,16 +916,12 @@ class ApplicationController extends Controller
 //            }
 
             $appliedId = $appliedList[$i];
-
-
-//            $jobInfo=Jobapply::select('job.title','job.position','jobapply.fkemployeeId','interviewCallDate')->where('jobapply',$appliedId)
             $jobInfo=Jobapply::leftJoin('job', 'job.jobId', '=', 'jobapply.fkjobId')->findOrFail($appliedId);
 
-            $add_data = Jobapply::where('fkemployeeId',$jobInfo->fkemployeeId)->first();
-            $add_data->status = $emp_status;
-//            $add_data->interviewCallDate = $testDate;
-//            $add_data->interviewCallDateTime = $intviewTime;
-            $add_data->save();
+            $jobInfo->status = $emp_status;
+//            $jobInfo->interviewCallDate = $testDate;
+//            $jobInfo->interviewCallDateTime = $intviewTime;
+            $jobInfo->save();
 
 
             $employeeInfo=Employee::select('employee.*')
@@ -924,39 +942,47 @@ class ApplicationController extends Controller
                         $message->to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)->subject('INTERVIEW CARD FROM CARITAS BD');
                         $message->attachData($pdf->output(),'INTERVIEW-CARD.pdf',['mime' => 'application/pdf']);
                     });
+
+//                    Storage::put('mailPreview/'.$folder_name.'/'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'-INTERVIEW-CARD.pdf', $pdf->output());
+
                 }
                 catch (\Exception $ex) {
                      $error[$i]=$ex;
                 }
             }
             if ($template=='2'){
-                $pdf = PDF::loadView('mail.panelListed',['empInfo' => $employeeInfo,
+                try{
+                    $pdf = PDF::loadView('mail.panelListed',['empInfo' => $employeeInfo,
                         'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address,'templateFooter'=>$r->templateFooter]);
-                    try{
+
                     Mail::send('mail.MailBody',['employeeInfo' => $employeeInfo], function($message) use ($pdf,$employeeInfo)
                     {
                         $message->to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)->subject('PANEL-LIST LETTER FROM CARITAS BD');
                         $message->attachData($pdf->output(),'PANEL-LIST.pdf',['mime' => 'application/pdf']);
                     });
+//                    Storage::put('mailPreview/'.$folder_name.'/'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'-PANEL-LIST.pdf', $pdf->output());
                 }
                 catch (\Exception $ex) {
                     $error[$i]=$ex;
                 }
             }
             if ($template=='3'){
-                $pdf = PDF::loadView('mail.notSelected',['empInfo' => $employeeInfo,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address,'templateFooter'=>$r->templateFooter]);
-                    try{
+                try{
+                    $pdf = PDF::loadView('mail.notSelected',['empInfo' => $employeeInfo,'subjectLine'=>$subjectLine,'refNo'=>$refNo,'jobInfo'=>$jobInfo,'emailtamplateBody'=>$emailtamplateBody,'address'=>$address,'templateFooter'=>$r->templateFooter]);
+
                     Mail::send('mail.MailBody',['employeeInfo' => $employeeInfo], function($message) use ($pdf,$employeeInfo)
                     {
                         $message->to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)->subject('APOLOGY LETTER FROM CARITAS BD');
                         $message->attachData($pdf->output(),'NOTSELECTED-CARD.pdf',['mime' => 'application/pdf']);
                     });
+//                    Storage::put('mailPreview/'.$folder_name.'/'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'-NOTSELECTED-CARD.pdf', $pdf->output());
                 }
                 catch (\Exception $ex) {
                     $error[$i]=$ex;
                 }
             }
         }
+
         if(!empty($error))
         {
             return $error;

@@ -149,6 +149,7 @@ class ComposerStaticInit16100a6e5f6f98c88104df9dc2c1bdf4
         'C' => 
         array (
             'Cron\\' => 5,
+            'Chumper\\Zipper\\' => 15,
         ),
         'A' => 
         array (
@@ -415,6 +416,10 @@ class ComposerStaticInit16100a6e5f6f98c88104df9dc2c1bdf4
         array (
             0 => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron',
         ),
+        'Chumper\\Zipper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/chumper/zipper/src/Chumper/Zipper',
+        ),
         'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
@@ -489,6 +494,7 @@ class ComposerStaticInit16100a6e5f6f98c88104df9dc2c1bdf4
         'App\\Http\\Controllers\\Admin\\ManageQuestionApplication' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ManageQuestionApplication.php',
         'App\\Http\\Controllers\\Admin\\SettingsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/SettingsController.php',
         'App\\Http\\Controllers\\Admin\\UserManagementController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/UserManagementController.php',
+        'App\\Http\\Controllers\\Admin\\ZoneAdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ZoneAdminController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
@@ -561,6 +567,11 @@ class ComposerStaticInit16100a6e5f6f98c88104df9dc2c1bdf4
         'Carbon\\Laravel\\ServiceProvider' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Laravel/ServiceProvider.php',
         'Carbon\\Translator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Translator.php',
         'Carbon\\Upgrade' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Upgrade.php',
+        'Chumper\\Zipper\\Facades\\Zipper' => __DIR__ . '/..' . '/chumper/zipper/src/Chumper/Zipper/Facades/Zipper.php',
+        'Chumper\\Zipper\\Repositories\\RepositoryInterface' => __DIR__ . '/..' . '/chumper/zipper/src/Chumper/Zipper/Repositories/RepositoryInterface.php',
+        'Chumper\\Zipper\\Repositories\\ZipRepository' => __DIR__ . '/..' . '/chumper/zipper/src/Chumper/Zipper/Repositories/ZipRepository.php',
+        'Chumper\\Zipper\\Zipper' => __DIR__ . '/..' . '/chumper/zipper/src/Chumper/Zipper/Zipper.php',
+        'Chumper\\Zipper\\ZipperServiceProvider' => __DIR__ . '/..' . '/chumper/zipper/src/Chumper/Zipper/ZipperServiceProvider.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/AbstractField.php',
         'Cron\\CronExpression' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/CronExpression.php',
         'Cron\\DayOfMonthField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/DayOfMonthField.php',
