@@ -1,6 +1,4 @@
-@extends('main')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
     <style>
 
@@ -36,11 +34,11 @@
         <div class="col-12">
             <div style="background-color: #F1F1F1" class="card">
                 <div class="card-body">
-                    @if($allEmp != null && $allEmp->cvStatus == 1)
+                    <?php if($allEmp != null && $allEmp->cvStatus == 1): ?>
 
                         <div id="regForm">
-                            {{--<div class="pull-right"><a class="btn btn-sm btn-success"  onclick="viewUserCv()">Download</a></div>--}}
-                            <div class="pull-right"><a class="btn btn-sm btn-success" href="{{route('userCv.post1',$allEmp->employeeId)}}" >Download</a></div>
+                            
+                            <div class="pull-right"><a class="btn btn-sm btn-success" href="<?php echo e(route('userCv.post1',$allEmp->employeeId)); ?>" >Download</a></div>
 
 
                             <div class="table-responsive">
@@ -55,20 +53,21 @@
                                 <table border="0" style="width:100%; margin-top: 30px; border: none;">
                                     <tr>
                                         <td style="text-align: left; border: none;">
-                                            <h3 style="">{{$personalInfo->firstName}} {{$personalInfo->lastName}}</h3>
-                                            <p style="max-width: 300px"><span class="bold">Cell No:</span> {{$personalInfo->personalMobile}} <br>
-                                                <span class="bold">Email:</span> {{$personalInfo->email}} <br>
-                                                <span class="bold">Address:</span> {{$personalInfo->presentAddress}}
+                                            <h3 style=""><?php echo e($personalInfo->firstName); ?> <?php echo e($personalInfo->lastName); ?></h3>
+                                            <p style="max-width: 300px"><span class="bold">Cell No:</span> <?php echo e($personalInfo->personalMobile); ?> <br>
+                                                <span class="bold">Email:</span> <?php echo e($personalInfo->email); ?> <br>
+                                                <span class="bold">Address:</span> <?php echo e($personalInfo->presentAddress); ?>
+
                                             </p>
 
                                         </td>
-                                        <td style="width: 13%; border: none; "><img height="150px" width="150px" src="{{url('public/candidateImages/thumb').'/'.$personalInfo->image}}" alt=""></td>
+                                        <td style="width: 13%; border: none; "><img height="150px" width="150px" src="<?php echo e(url('public/candidateImages/thumb').'/'.$personalInfo->image); ?>" alt=""></td>
                                     </tr>
 
                                 </table>
                             </div>
 
-                            {{--Objective--}}
+                            
 
                             <p style="page-break-after: always"></p>
                             <div class="table-responsive">
@@ -81,7 +80,7 @@
                             <div class="table-responsive">
                                 <table border="0" style="width:100%; margin-top: 10px; border: none;">
                                     <tr>
-                                        <td style="width: 100%;border: none;">{{$personalInfo->objective}}</td>
+                                        <td style="width: 100%;border: none;"><?php echo e($personalInfo->objective); ?></td>
                                     </tr>
                                 </table>
                             </div>
@@ -96,7 +95,7 @@
                             </div>
 
 
-                            {{--Education--}}
+                            
                             <div class="table-responsive">
                                 <table border="0" style="width:100%; margin-top: 10px; ">
                                     <thead>
@@ -108,24 +107,26 @@
                                     </tr>
                                     </thead>
                                     <tbody >
-                                    @foreach($education as $edu)
+                                    <?php $__currentLoopData = $education; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $edu): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr>
-{{--                                            <td style="text-align: center">{{$edu->educationLevelName}} in {{$edu->degreeName}} </td>--}}
-                                            <td style="text-align: center">{{$edu->degreeName}} </td>
-                                            <td style="text-align: center">{{$edu->institutionName}}
-                                                @if($edu->boardName)
-                                                    /
-                                                    {{$edu->boardName}}
 
-                                                @endif
+                                            <td style="text-align: center"><?php echo e($edu->degreeName); ?> </td>
+                                            <td style="text-align: center"><?php echo e($edu->institutionName); ?>
+
+                                                <?php if($edu->boardName): ?>
+                                                    /
+                                                    <?php echo e($edu->boardName); ?>
+
+
+                                                <?php endif; ?>
 
                                             </td>
 
-                                            <td style="text-align: center">{{$edu->passingYear}} </td>
+                                            <td style="text-align: center"><?php echo e($edu->passingYear); ?> </td>
 
-                                            <td style="text-align: center"> {{$edu->result}}</td>
+                                            <td style="text-align: center"> <?php echo e($edu->result); ?></td>
                                         </tr>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                     </tbody>
 
@@ -143,45 +144,47 @@
 
                             <div class="table-responsive">
                                 <table border="0" style="width:100%; margin-top: 10px; border: none;">
-                                    @if($jobExperience->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @else
-                                        @php $count=1;@endphp
-                                        @foreach($jobExperience as $exp)
+                                    <?php if($jobExperience->isEmpty()): ?><td style=" border: none; text-align: center"> <strong>None </strong> </td> <?php else: ?>
+                                        <?php $count=1;?>
+                                        <?php $__currentLoopData = $jobExperience; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $exp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
                                             <tr>
                                                 <td width="2%" style="border: none; vertical-align: top">
-                                                    <span class="bold">{{$count++}}.</span>
+                                                    <span class="bold"><?php echo e($count++); ?>.</span>
                                                 </td>
 
 
                                                 <td style="border: none;">
 
-                                                    <span class="bold"> Company name : </span> &nbsp;&nbsp {{$exp->organization}}  &nbsp;&nbsp;
-                                                    <div class="pull-right"><span class="bold">Position:</span>&nbsp;&nbsp;&nbsp; {{$exp->degisnation}} </div><br>
+                                                    <span class="bold"> Company name : </span> &nbsp;&nbsp <?php echo e($exp->organization); ?>  &nbsp;&nbsp;
+                                                    <div class="pull-right"><span class="bold">Position:</span>&nbsp;&nbsp;&nbsp; <?php echo e($exp->degisnation); ?> </div><br>
 
-                                                    <span class="bold"> Major responsibilities :</span>&nbsp;&nbsp;&nbsp; {{$exp->majorResponsibilities}} <br>
-                                                    <span class="bold"> Address:</span>&nbsp;&nbsp;&nbsp; {{$exp->address}} <br>
-                                                    <span class="bold"> Duration:</span>&nbsp;&nbsp;&nbsp; {{$exp->startDate}} -  @if($exp->endDate) {{$exp->endDate}} @else
+                                                    <span class="bold"> Major responsibilities :</span>&nbsp;&nbsp;&nbsp; <?php echo e($exp->majorResponsibilities); ?> <br>
+                                                    <span class="bold"> Address:</span>&nbsp;&nbsp;&nbsp; <?php echo e($exp->address); ?> <br>
+                                                    <span class="bold"> Duration:</span>&nbsp;&nbsp;&nbsp; <?php echo e($exp->startDate); ?> -  <?php if($exp->endDate): ?> <?php echo e($exp->endDate); ?> <?php else: ?>
                                                         Continuing
-                                                    @endif
+                                                    <?php endif; ?>
                                                     .<br>
 
                                                     <span class="bold"> Total job experience:</span>
 
 
-                                                    @if ($exp->startDate!=null && $exp->endDate==null)
+                                                    <?php if($exp->startDate!=null && $exp->endDate==null): ?>
 
-                                                        {{$sub_struct=\Carbon\Carbon::parse($exp->startDate)->diff(\Carbon\Carbon::now())->format('%y years, %m months and %d days')}}
-                                                    @else
-                                                        {{$sub_struct=\Carbon\Carbon::parse($exp->startDate)->diff(\Carbon\Carbon::parse($exp->endDate))->format('%y years, %m months and %d days')}}
-                                                    @endif
+                                                        <?php echo e($sub_struct=\Carbon\Carbon::parse($exp->startDate)->diff(\Carbon\Carbon::now())->format('%y years, %m months and %d days')); ?>
+
+                                                    <?php else: ?>
+                                                        <?php echo e($sub_struct=\Carbon\Carbon::parse($exp->startDate)->diff(\Carbon\Carbon::parse($exp->endDate))->format('%y years, %m months and %d days')); ?>
+
+                                                    <?php endif; ?>
 
 
 
                                                 </td>
                                             </tr>
 
-                                        @endforeach
-                                    @endif
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    <?php endif; ?>
 
                                 </table>
                             </div>
@@ -195,29 +198,29 @@
                             </div>
                             <div class="table-responsive">
                                 <table border="0" style="width:100%; margin-top: 10px; border: none;">
-                                    @if($trainingCertificate->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @endif
+                                    <?php if($trainingCertificate->isEmpty()): ?><td style=" border: none; text-align: center"> <strong>None </strong> </td> <?php endif; ?>
 
-                                    @php $count=1;@endphp
+                                    <?php $count=1;?>
 
 
-                                    @foreach($trainingCertificate as $certificate)
+                                    <?php $__currentLoopData = $trainingCertificate; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $certificate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr>
                                             <td width="2%" style="border: none; vertical-align: top">
-                                                <span class="bold">{{$count++}}.</span>
+                                                <span class="bold"><?php echo e($count++); ?>.</span>
                                             </td>
                                             <td style="border: none;">
-                                                <span class="bold"> Training name :</span> &nbsp;&nbsp;&nbsp;{{$certificate->trainingName}} <br>
-                                                <span class="bold"> Vanue:</span> &nbsp;&nbsp;&nbsp;{{$certificate->vanue}} <br>
-                                                <span class="bold"> Duration:</span> &nbsp;&nbsp;&nbsp;{{$certificate->startDate}} -  @if($certificate->endDate) {{$certificate->endDate}} @else
+                                                <span class="bold"> Training name :</span> &nbsp;&nbsp;&nbsp;<?php echo e($certificate->trainingName); ?> <br>
+                                                <span class="bold"> Vanue:</span> &nbsp;&nbsp;&nbsp;<?php echo e($certificate->vanue); ?> <br>
+                                                <span class="bold"> Duration:</span> &nbsp;&nbsp;&nbsp;<?php echo e($certificate->startDate); ?> -  <?php if($certificate->endDate): ?> <?php echo e($certificate->endDate); ?> <?php else: ?>
                                                     Continuing
-                                                @endif
+                                                <?php endif; ?>
                                                 .
 
 
 
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                 </table>
                             </div>
@@ -232,26 +235,26 @@
                             </div>
                             <div class="table-responsive">
                                 <table border="0" style="width:100%; margin-top: 10px; border: none;">
-                                    @if($professionalCertificate->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @endif
+                                    <?php if($professionalCertificate->isEmpty()): ?><td style=" border: none; text-align: center"> <strong>None </strong> </td> <?php endif; ?>
 
-                                    @foreach($professionalCertificate as $certificate)
+                                    <?php $__currentLoopData = $professionalCertificate; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $certificate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr>
 
                                             <td style="border: none; width: 20%"><span class="bold">Certificate name</span></td>
                                             <td style="border: none; width: 5%"><span class="bold">:</span></td>
-                                            <td style="border: none;"><b>{{$certificate->certificateName}}</b> </td>
+                                            <td style="border: none;"><b><?php echo e($certificate->certificateName); ?></b> </td>
                                         </tr>
                                         <tr>
 
                                             <td style="border: none; width: 20%"><span class="bold">Institution name</span></td>
                                             <td style="border: none; width: 5%"><span class="bold">:</span></td>
-                                            <td style="border: none;">{{$certificate->institutionName}} </td>
+                                            <td style="border: none;"><?php echo e($certificate->institutionName); ?> </td>
                                         </tr>
                                         <tr>
 
                                             <td style="border: none; width: 20%"><span class="bold">Session</span></td>
                                             <td style="border: none; width: 5%"><span class="bold">:</span></td>
-                                            <td style="border: none;width: 40%">{{$certificate->startDate}} - {{$certificate->endDate}}</td>
+                                            <td style="border: none;width: 40%"><?php echo e($certificate->startDate); ?> - <?php echo e($certificate->endDate); ?></td>
                                         </tr>
 
 
@@ -259,49 +262,49 @@
                                             <td style="border: none; width: 20%"><span class="bold">Status</span></td>
                                             <td style="border: none; width: 5%"><span class="bold">:</span></td>
                                             <td style="border: none;width: 20%">
-                                                @if($certificate->status == 1) On Going
-                                                @else
+                                                <?php if($certificate->status == 1): ?> On Going
+                                                <?php else: ?>
                                                     Completed
-                                                @endif
+                                                <?php endif; ?>
 
                                             </td>
                                             <td style="border: none; width: 10%"><span class="bold">Result</span></td>
                                             <td style="border: none; width: 5%"><span class="bold">:</span></td>
-                                            <td style="border: none;">{{$certificate->result}}</td>
+                                            <td style="border: none;"><?php echo e($certificate->result); ?></td>
                                         </tr>
 
 
 
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                 </table >
                             </div>
 
-                            {{--<table border="0" style="width:100%; margin-top: 25px; border: none;">--}}
-                            {{--<tr>--}}
-                            {{--<td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Other Skill</b> </td>--}}
-                            {{--</tr>--}}
-                            {{--</table>--}}
-                            {{--<table border="0" style="width:100%; margin-top: 10px; border: none;">--}}
-                            {{--</table>--}}
-                            {{--<table border="0" style="width:100%; margin-top: 10px; border: none;">--}}
-                            {{--@if($empOtherSkillls->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @else--}}
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
 
-                            {{--<thead>--}}
-                            {{--<th style="width: 70%;text-align: center" >Skill</th>--}}
-                            {{--<th style="width: 30%;text-align: center">Rating</th>--}}
-                            {{--</thead>--}}
-                            {{--@foreach($empOtherSkillls as $skills)--}}
-                            {{--<tr>--}}
+                            
+                            
+                            
+                            
+                            
+                            
 
-                            {{--<td style="text-align: center">{{$skills->skillName}}</td>--}}
+                            
 
-                            {{--<td style="text-align: center">{{$skills->ratiing}}</td>--}}
+                            
 
-                            {{--</tr>--}}
-                            {{--@endforeach--}}
-                            {{--@endif--}}
-                            {{--</table>--}}
+                            
+                            
+                            
+                            
 
 
                             <div class="table-responsive">
@@ -317,15 +320,15 @@
                                     <th style="width: 70%;text-align: center" >Skill</th>
                                     <th style="width: 30%;text-align: center">Level</th>
                                     </thead>
-                                    @foreach($empComputerSkill as $skills)
+                                    <?php $__currentLoopData = $empComputerSkill; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $skills): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr>
 
-                                            <td style="text-align: center">{{$skills->computerSkillName}}</td>
+                                            <td style="text-align: center"><?php echo e($skills->computerSkillName); ?></td>
 
-                                            <td style="text-align: center">@if($skills->SkillAchievement==1)General @elseif($skills->SkillAchievement==2)Advance @endif</td>
+                                            <td style="text-align: center"><?php if($skills->SkillAchievement==1): ?>General <?php elseif($skills->SkillAchievement==2): ?>Advance <?php endif; ?></td>
 
                                         </tr>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </table>
 
                             </div>
@@ -351,51 +354,59 @@
 
                                     <tr>
                                         <td  style="border: none;">
-                                            <label>Father name : </label>{{$personalInfo->fathersName}}
+                                            <label>Father name : </label><?php echo e($personalInfo->fathersName); ?>
+
                                         </td>
 
 
                                         <td style="border: none;">
-                                            <label> Mother name :</label> {{$personalInfo->mothersName}}
+                                            <label> Mother name :</label> <?php echo e($personalInfo->mothersName); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <td  style="border: none;">
                                             <label>Gender :</label>
-                                            @if($personalInfo->gender == "M")
-                                                {{"Male"}}
-                                            @else
-                                                {{"Female"}}
-                                            @endif
+                                            <?php if($personalInfo->gender == "M"): ?>
+                                                <?php echo e("Male"); ?>
+
+                                            <?php else: ?>
+                                                <?php echo e("Female"); ?>
+
+                                            <?php endif; ?>
                                         </td>
 
 
 
                                         <td style="border: none;">
-                                            <label>Date of birth :</label> {{$personalInfo->dateOfBirth}}
+                                            <label>Date of birth :</label> <?php echo e($personalInfo->dateOfBirth); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <td  style="border: none;">
-                                            <label> Religion : </label>{{$personalInfo->religionName}}
+                                            <label> Religion : </label><?php echo e($personalInfo->religionName); ?>
+
                                         </td>
 
 
                                         <td style="border: none;">
-                                            <label> Nationality :</label> {{$personalInfo->nationalityName}}
+                                            <label> Nationality :</label> <?php echo e($personalInfo->nationalityName); ?>
+
                                         </td>
                                     </tr>
 
                                     <tr>
                                         <td  style="border: none;">
-                                            <label> Blood Group: </label>{{strtoupper($personalInfo->bloodGroup)}}
+                                            <label> Blood Group: </label><?php echo e(strtoupper($personalInfo->bloodGroup)); ?>
+
                                         </td>
 
 
                                         <td style="border: none;">
-                                            @foreach(MARITAL_STATUS as $key=>$value)
-                                                @if($personalInfo->maritalStatus==$value) <label>Marital Status :</label> {{$key}}@endif
-                                            @endforeach
+                                            <?php $__currentLoopData = MARITAL_STATUS; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php if($personalInfo->maritalStatus==$value): ?> <label>Marital Status :</label> <?php echo e($key); ?><?php endif; ?>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                         </td>
                                     </tr>
@@ -403,27 +414,32 @@
 
                                     <tr>
                                         <td  style="border: none;">
-                                            <label>Passport :</label> {{$personalInfo->passport}}
+                                            <label>Passport :</label> <?php echo e($personalInfo->passport); ?>
+
                                         </td>
 
 
                                         <td style="border: none;">
-                                            @if(!is_null($personalInfo->nationalId))
-                                                <label>National Id :</label> {{$personalInfo->nationalId}}
-                                            @elseif(!is_null($personalInfo->birthID))
-                                                <label>Birth Id :</label> {{$personalInfo->birthID}}
-                                            @endif
+                                            <?php if(!is_null($personalInfo->nationalId)): ?>
+                                                <label>National Id :</label> <?php echo e($personalInfo->nationalId); ?>
+
+                                            <?php elseif(!is_null($personalInfo->birthID)): ?>
+                                                <label>Birth Id :</label> <?php echo e($personalInfo->birthID); ?>
+
+                                            <?php endif; ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td  style="border: none;" colspan="2">
-                                            <label>Permanent address :</label> {{$personalInfo->parmanentAddress}}
+                                            <label>Permanent address :</label> <?php echo e($personalInfo->parmanentAddress); ?>
+
                                         </td>
                                     </tr>
 
                                     <tr>
                                         <td  style="border: none;" >
-                                            <label>Expected salary :</label> {{$salary->expectedSalary ?? 'N/A'}}
+                                            <label>Expected salary :</label> <?php echo e($salary->expectedSalary ?? 'N/A'); ?>
+
                                         </td>
                                     </tr>
 
@@ -433,7 +449,7 @@
                                 </table>
                             </div>
 
-                            @if($empOtherInfo)
+                            <?php if($empOtherInfo): ?>
                                 <div class="table-responsive">
                                     <table border="0" style="width:100%; margin-top: 25px; border: none;">
                                         <tr>
@@ -446,32 +462,36 @@
 
                                         <tr>
                                             <td  style="border: none;">
-                                                <label>Extracurricular activities :</label>{{$empOtherInfo->extraCurricularActivities}}
+                                                <label>Extracurricular activities :</label><?php echo e($empOtherInfo->extraCurricularActivities); ?>
+
                                             </td>
                                         </tr>
                                         <tr>
 
                                             <td style="border: none;">
-                                                <label> Interests :</label>{{$empOtherInfo->interests}}
+                                                <label> Interests :</label><?php echo e($empOtherInfo->interests); ?>
+
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="border: none;">
-                                                <label> Awards received :</label>{{$empOtherInfo->awardReceived}}
+                                                <label> Awards received :</label><?php echo e($empOtherInfo->awardReceived); ?>
+
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="border: none;">
-                                                <label> Research / Publication :</label>{{$empOtherInfo->researchPublication}}
+                                                <label> Research / Publication :</label><?php echo e($empOtherInfo->researchPublication); ?>
+
                                             </td>
                                         </tr>
                                     </table>
                                 </div>
-                            @endif
+                            <?php endif; ?>
 
 
 
-                            {{--                    =========--}}
+                            
                             <div class="table-responsive">
                                 <table border="0" style="width:100%; margin-top: 10px; border: none;">
                                 </table>
@@ -487,22 +507,24 @@
                                 <table border="0" style="width:100%; margin-top: 5px; border: none;">
 
                                     <tr style=" border: none;">
-                                        @if($languageNames->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @endif
-                                        @foreach($languageNames as $lname)
+                                        <?php if($languageNames->isEmpty()): ?><td style=" border: none; text-align: center"> <strong>None </strong> </td> <?php endif; ?>
+                                        <?php $__currentLoopData = $languageNames; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lname): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <td>
-                                                {{$lname->languagename}}
+                                                <?php echo e($lname->languagename); ?>
+
                                             </td>
 
 
-                                            @foreach($languages->where('fklanguageHead',$lname->fklanguageHead) as $lan)
+                                            <?php $__currentLoopData = $languages->where('fklanguageHead',$lname->fklanguageHead); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $lan): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
                                                 <td>
-                                                    {{$lan->languageSkillName}} : {{$lan->rate}}
+                                                    <?php echo e($lan->languageSkillName); ?> : <?php echo e($lan->rate); ?>
+
 
                                                 </td>
 
-                                            @endforeach
-                                        @endforeach
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                     </tr>
 
@@ -530,17 +552,18 @@
                                 <table border="0" style="width:100%; margin-top: 5px; border: none;">
 
                                     <tr style=" border: none;">
-                                        @if($memberShip->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @endif
-                                        @foreach($memberShip as $mem)
+                                        <?php if($memberShip->isEmpty()): ?><td style=" border: none; text-align: center"> <strong>None </strong> </td> <?php endif; ?>
+                                        <?php $__currentLoopData = $memberShip; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mem): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
                                             <td style="border: none;">
-                                                <span class="bold"> Network name :</span>{{$mem->networkName}} <br>
-                                                <span class="bold">Membership type:</span>{{$mem->membershipType}}
-                                                &nbsp; <span class="bold">  Duration:</span> &nbsp;&nbsp;&nbsp;{{$mem->duration}} <br>
+                                                <span class="bold"> Network name :</span><?php echo e($mem->networkName); ?> <br>
+                                                <span class="bold">Membership type:</span><?php echo e($mem->membershipType); ?>
+
+                                                &nbsp; <span class="bold">  Duration:</span> &nbsp;&nbsp;&nbsp;<?php echo e($mem->duration); ?> <br>
 
                                             </td>
 
-                                        @endforeach
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                     </tr>
 
@@ -549,7 +572,7 @@
                             </div>
 
 
-                            {{--                    ====--}}
+                            
 
 
 
@@ -568,16 +591,16 @@
                                 <table border="0" style="width:100%; margin-top: 5px; border: none;">
 
                                     <tr style=" border: none;">
-                                        @if($relativeCb->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @endif
-                                        @foreach($relativeCb as $ref)
+                                        <?php if($relativeCb->isEmpty()): ?><td style=" border: none; text-align: center"> <strong>None </strong> </td> <?php endif; ?>
+                                        <?php $__currentLoopData = $relativeCb; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ref): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
                                             <td style="border: none;">
-                                                <span class="bold"> Name :</span> &nbsp;&nbsp;&nbsp;{{$ref->firstName}} {{$ref->lastName}} <br>
-                                                <span class="bold">  Position:</span> &nbsp;&nbsp;&nbsp;{{$ref->degisnation}} <br>
+                                                <span class="bold"> Name :</span> &nbsp;&nbsp;&nbsp;<?php echo e($ref->firstName); ?> <?php echo e($ref->lastName); ?> <br>
+                                                <span class="bold">  Position:</span> &nbsp;&nbsp;&nbsp;<?php echo e($ref->degisnation); ?> <br>
 
                                             </td>
 
-                                        @endforeach
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                     </tr>
 
@@ -595,25 +618,26 @@
                             <div class="table-responsive">
                                 <table border="0" style="width:100%; margin-top: 10px; margin-bottom:15px;border: none;">
 
-                                    @php $count=1;@endphp
+                                    <?php $count=1;?>
 
 
-                                    @foreach($refree as $ref)
+                                    <?php $__currentLoopData = $refree; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ref): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr style="">
 
                                             <td width="2%" style="border: none; vertical-align: top">
-                                                <span class="bold">{{$count++}}.</span>
+                                                <span class="bold"><?php echo e($count++); ?>.</span>
                                             </td>
 
                                             <td style="border: none;">
-                                                <span class="bold">Name :</span> &nbsp;&nbsp;&nbsp;{{$ref->firstName}} {{$ref->lastName}} <br>
-                                                <span class="bold">Contact:</span> &nbsp;&nbsp;&nbsp;{{$ref->phone}} <br>
-                                                <span class="bold">Position:</span> &nbsp;&nbsp;&nbsp;{{$ref->presentposition}} <br>
-                                                <span class="bold">email:</span> &nbsp;&nbsp;&nbsp;{{$ref->email}}
+                                                <span class="bold">Name :</span> &nbsp;&nbsp;&nbsp;<?php echo e($ref->firstName); ?> <?php echo e($ref->lastName); ?> <br>
+                                                <span class="bold">Contact:</span> &nbsp;&nbsp;&nbsp;<?php echo e($ref->phone); ?> <br>
+                                                <span class="bold">Position:</span> &nbsp;&nbsp;&nbsp;<?php echo e($ref->presentposition); ?> <br>
+                                                <span class="bold">email:</span> &nbsp;&nbsp;&nbsp;<?php echo e($ref->email); ?>
+
 
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
 
@@ -629,7 +653,7 @@
 
                                     <tr>
 
-                                        <td style="width: 13%; border: none; "><img height="100px" width="100px" src="{{url('public/candidateSigns/thumb').'/'.$personalInfo->sign}}" alt=""></td>
+                                        <td style="width: 13%; border: none; "><img height="100px" width="100px" src="<?php echo e(url('public/candidateSigns/thumb').'/'.$personalInfo->sign); ?>" alt=""></td>
                                     </tr>
                                     <tr>
                                         <td style="width: 13%; border: none; ">&nbsp;&nbsp;Signature</td>
@@ -640,7 +664,7 @@
 
 
                         </div>
-                    @endif
+                    <?php endif; ?>
 
 
                 </div>
@@ -651,31 +675,31 @@
 
 
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('foot-js')
+<?php $__env->startSection('foot-js'); ?>
 
     <script>
 
-        {{--@if(Session::has('message') && $allEmp != null &&  $allEmp->cvStatus == null)--}}
+        
 
-        {{--$.alert({--}}
-            {{--title: 'Error',--}}
-            {{--type: 'red',--}}
-            {{--content: 'Your CV is not Completed yet,Please Complete First',--}}
-            {{--buttons: {--}}
-                {{--tryAgain: {--}}
-                    {{--text: 'Ok',--}}
-                    {{--btnClass: 'btn-green',--}}
-                    {{--action: function () {--}}
+        
+            
+            
+            
+            
+                
+                    
+                    
+                    
 
-                    {{--}--}}
-                {{--}--}}
-            {{--}--}}
-        {{--});--}}
+                    
+                
+            
+        
 
-        {{--@endif--}}
-        @if(Session::has('message') && $msg != null)
+        
+        <?php if(Session::has('message') && $msg != null): ?>
 
         $.alert({
             title: 'Error',
@@ -692,22 +716,24 @@
             }
         });
 
-        @endif
-        {{--function viewUserCv() {--}}
+        <?php endif; ?>
+        
 
 
-        {{--$.ajax({--}}
-        {{--type: "get",--}}
-        {{--url: '{{route('userCv.post')}}',--}}
-        {{--data: {_token:"{{csrf_token()}}",id:"{{$allEmp->employeeId}}"},--}}
-        {{--success: function (data) {--}}
+        
+        
+        
+        
+        
 
 
-        {{--},--}}
-        {{--});--}}
+        
+        
 
 
-        {{--}--}}
+        
     </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
