@@ -46,7 +46,7 @@
                 </table>
             </td >
             <td style="width: 15%;" align="center" >
-                <img src="{{url('public/logo/TCL_logo.png')}}" alt="logo">
+                <img src="{{public_path().'/logo/TCL_logo.png'}}" alt="logo">
             </td>
 
             <td style="width: 45%;">

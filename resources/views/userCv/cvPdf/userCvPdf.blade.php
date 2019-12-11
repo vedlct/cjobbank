@@ -62,7 +62,7 @@
                                             </p>
 
                                         </td>
-                                        <td style="width: 13%; border: none; "><img height="150px" width="150px" src="{{url('public/candidateImages/thumb').'/'.$personalInfo->image}}" alt=""></td>
+                                        <td style="width: 13%; border: none; "><img height="150px" width="150px" src="{{public_path().'public/candidateImages/thumb/'.$personalInfo->image}}" alt=""></td>
                                     </tr>
 
                                 </table>

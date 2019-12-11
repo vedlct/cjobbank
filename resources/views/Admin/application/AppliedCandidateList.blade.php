@@ -2,7 +2,33 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="{{url('public/css/exceltable.css')}}" rel="stylesheet">
+{{--    <link href="{{url('public/css/exceltable.css')}}" rel="stylesheet">--}}
+
+    <style>
+        .Border{
+            border: 2px solid ;
+        }
+
+
+        td{
+            wrap-text:true;
+            vertical-align: top;
+        }
+        .bold{
+            font-weight: bold;
+        }
+        .noTopBorder{
+            border-top: none !important ;
+            border-bottom: none !important ;
+            border-right: 2px solid !important ;
+            border-left: 2px solid !important ;
+        }
+        .testStyle{
+            border-right: 2px solid !important ;
+            border-left: 2px solid !important ;
+        }
+    </style>
+
 </head>
 
 <table class="table">

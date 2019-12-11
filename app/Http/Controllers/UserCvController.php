@@ -548,7 +548,7 @@ class UserCvController extends Controller
         $relativeCb=RelativeInCb::where('fkemployeeId',$empId)
             ->get();
 
-        $pdf = PDF::loadView('test',compact('personalInfo','education','professionalCertificate','jobExperience','trainingCertificate','refree','relativeCb'));
+        $pdf = PDF::setOptions(['showImageErrors ' => true])->loadView('test',compact('personalInfo','education','professionalCertificate','jobExperience','trainingCertificate','refree','relativeCb'));
         return $pdf->stream('Curriculam Vitae of '.$personalInfo->firstName." ".$personalInfo->lastName.'.pdf',array('Attachment'=>0));
 
 

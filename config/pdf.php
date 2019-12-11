@@ -21,7 +21,7 @@ return [
     'keywords'              => '',
     'creator'               => 'Laravel Pdf',
     'display_mode'          => 'fullpage',
-    'tempDir'               => base_path('../temp/'),
+    'tempDir'               => public_path('temp/'),
     'font_path' => public_path('fonts/'),
     'font_data' => [
         'bangla' => [
