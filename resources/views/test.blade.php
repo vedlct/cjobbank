@@ -49,7 +49,11 @@
                     </p>
 
                 </td>
-                {{--<td style="width: 15%; border: none; "><img height="150px" width="150px" src="{{url('public/candidateImages/thumb').'/'.$personalInfo->image}}" alt=""></td>--}}
+                @if(isset($viewMode))
+                <td style="width: 15%; border: none; "><img height="150px" width="150px" src="{{url('public/candidateImages/thumb').'/'.$personalInfo->image}}" alt=""></td>
+                @else
+                <td style="width: 15%; border: none; "><img height="150px" width="150px" src="{{public_path().'/candidateImages/thumb/'.$personalInfo->image}}" alt=""></td>
+                @endif
             </tr>
 
         </table>
@@ -611,10 +615,11 @@
             <b>Declaration:</b> I do hereby declare that the above information is true and correct to the best of my knowledge.
 
             <tr>
-
-                {{--<td style="width: 13%; border: none; "><img style="height:100px; width:100px;" src="https://caritasbd.org/jobbank/public/candidateSigns/thumb/114cvSign.jpg" alt=""></td>--}}
+                @if(isset($viewMode))
+                <td style="width: 13%; border: none; "><img style="height:100px; width:100px;" src="{{url('public/candidateSigns/thumb').'/'.$personalInfo->sign}}" ></td>
+                @else
                 <td style="width: 13%; border: none; "><img style="height:100px; width:100px;" src="{{public_path().'/candidateSigns/thumb/'.$personalInfo->sign}}" ></td>
-                {{--<td style="width: 13%; border: none; "><img height="100px" width="100px" src="{{ base_path().'/public/candidateSigns/thumb'.'/'.$personalInfo->sign }}" alt=""></td>--}}
+                @endif
             </tr>
             <tr>
                 <td style="width: 13%; border: none; ">&nbsp;&nbsp;Signature</td>

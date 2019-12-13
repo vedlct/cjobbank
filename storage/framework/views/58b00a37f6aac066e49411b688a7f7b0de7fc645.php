@@ -50,23 +50,27 @@
                     </p>
 
                 </td>
+                <?php if(isset($viewMode)): ?>
                 <td style="width: 15%; border: none; "><img height="150px" width="150px" src="<?php echo e(url('public/candidateImages/thumb').'/'.$personalInfo->image); ?>" alt=""></td>
+                <?php else: ?>
+                <td style="width: 15%; border: none; "><img height="150px" width="150px" src="<?php echo e(public_path().'/candidateImages/thumb/'.$personalInfo->image); ?>" alt=""></td>
+                <?php endif; ?>
             </tr>
 
         </table>
 
 
         <?php if($personalInfo->objective): ?>
-        <table border="0" style="width:100%;border: none;">
-            <tr>
-                <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"> <b>Objective</b> </td>
-            </tr>
-        </table>
-        <table border="0" style="width:100%; margin-top: 10px; border: none;">
-            <tr>
-                <td style="width: 100%;border: none;text-align: justify"><?php echo e($personalInfo->objective); ?></td>
-            </tr>
-        </table>
+            <table border="0" style="width:100%;border: none;">
+                <tr>
+                    <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"> <b>Objective</b> </td>
+                </tr>
+            </table>
+            <table border="0" style="width:100%; margin-top: 10px; border: none;">
+                <tr>
+                    <td style="width: 100%;border: none;text-align: justify"><?php echo e($personalInfo->objective); ?></td>
+                </tr>
+            </table>
 
         <?php endif; ?>
 
@@ -92,7 +96,7 @@
                 <?php if($edu->passingYear==null): ?>
                     <tr>
                         <td style="text-align: center"><?php echo e($edu->educationLevelName); ?> in <?php echo e($edu->degreeName); ?> </td>
-
+                        
                         <td style="text-align: center"><?php echo e($edu->institutionName); ?>
 
                             <?php if($edu->boardName): ?>
@@ -115,7 +119,7 @@
             <?php $__currentLoopData = $education; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $edu): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr>
                     <td style="text-align: center"><?php echo e($edu->educationLevelName); ?> in <?php echo e($edu->degreeName); ?> </td>
-
+                    
                     <td style="text-align: center"><?php echo e($edu->institutionName); ?>
 
                         <?php if($edu->boardName): ?>
@@ -137,7 +141,7 @@
 
         </table>
 
-       <table border="0" style="width:100%; margin-top: 25px; border: none;">
+        <table border="0" style="width:100%; margin-top: 25px; border: none;">
             <tr>
                 <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Job Experience</b> </td>
             </tr>
@@ -146,61 +150,61 @@
         <table border="0" style="width:100%; margin-top: 10px; border: none;">
             <?php if($jobExperience->isEmpty()): ?><tr><td style=" border: none; text-align: center"> <strong>None </strong> </td> </tr><?php else: ?>
 
-            <?php $count=1;$flag=0;?>
-            <?php $__currentLoopData = $jobExperience; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $exp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <tr>
-                    <td width="5%" style="border: none; vertical-align: top">
-                        <span class="bold"><?php echo e($count++); ?>.</span>
-                    </td>
-                    <td>
+                <?php $count=1;$flag=0;?>
+                <?php $__currentLoopData = $jobExperience; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $exp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <tr>
+                        <td width="5%" style="border: none; vertical-align: top">
+                            <span class="bold"><?php echo e($count++); ?>.</span>
+                        </td>
+                        <td>
 
-                        <span class="bold"> Company Name : </span> &nbsp;&nbsp; <?php echo e($exp->organization); ?>  &nbsp;&nbsp;
-                        <div class="pull-right"><span class="bold">Position:</span>&nbsp;<?php echo e($exp->degisnation); ?> </div><br>
-                        <p><span class="bold" > Major Responsibilities :</span>&nbsp;&nbsp;
-                            <span style="text-align: justify"><?php echo $exp->majorResponsibilities; ?></span> <br></p>
-                        <span class="bold"> Address:</span>&nbsp;&nbsp;&nbsp; <?php echo e($exp->address); ?> <br>
-                        <span class="bold"> Duration:</span>&nbsp;&nbsp;&nbsp; <?php echo e($exp->startDate); ?> -  <?php if($exp->endDate): ?> <?php echo e($exp->endDate); ?> <?php else: ?>
-                            Continuing
-                        <?php endif; ?>
-                        <br>
+                            <span class="bold"> Company Name : </span> &nbsp;&nbsp; <?php echo e($exp->organization); ?>  &nbsp;&nbsp;
+                            <div class="pull-right"><span class="bold">Position:</span>&nbsp;<?php echo e($exp->degisnation); ?> </div><br>
+                            <p><span class="bold" > Major Responsibilities :</span>&nbsp;&nbsp;
+                                <span style="text-align: justify"><?php echo $exp->majorResponsibilities; ?></span> <br></p>
+                            <span class="bold"> Address:</span>&nbsp;&nbsp;&nbsp; <?php echo e($exp->address); ?> <br>
+                            <span class="bold"> Duration:</span>&nbsp;&nbsp;&nbsp; <?php echo e($exp->startDate); ?> -  <?php if($exp->endDate): ?> <?php echo e($exp->endDate); ?> <?php else: ?>
+                                Continuing
+                            <?php endif; ?>
+                            <br>
 
-                        <span class="bold"> Total job experience:</span>
+                            <span class="bold"> Total job experience:</span>
 
-                        <?php if($exp->startDate!=null && $exp->endDate==null): ?>
-                            <?php echo e($sub_struct=\Carbon\Carbon::parse($exp->startDate)->diff(\Carbon\Carbon::now())->format('%y years, %m months and %d days')); ?>
+                            <?php if($exp->startDate!=null && $exp->endDate==null): ?>
+                                <?php echo e($sub_struct=\Carbon\Carbon::parse($exp->startDate)->diff(\Carbon\Carbon::now())->format('%y years, %m months and %d days')); ?>
 
-                        <?php else: ?>
-                            <?php echo e($sub_struct=\Carbon\Carbon::parse($exp->startDate)->diff(\Carbon\Carbon::parse($exp->endDate))->format('%y years, %m months and %d days')); ?>
+                            <?php else: ?>
+                                <?php echo e($sub_struct=\Carbon\Carbon::parse($exp->startDate)->diff(\Carbon\Carbon::parse($exp->endDate))->format('%y years, %m months and %d days')); ?>
 
-                        <?php endif; ?>
-                    </td>
-                </tr>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
 
 
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-    <?php endif; ?>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php endif; ?>
         </table>
 
+        
+        
+        
+        
+        
+        
+        
 
+        
+        
+        
+        
+        
+        
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
+        
+        
+        
+        
 
 
         <table border="0" style="width:100%; margin-top: 15px; border: none;">
@@ -236,9 +240,9 @@
 
         </table>
 
-
-
-
+        
+        
+        
 
         <table border="0" style="width:100%;border: none;">
             <tr>
@@ -251,7 +255,7 @@
         <table border="0" style="width:100%; margin-top: 10px; border: none;">
             <?php if($professionalCertificate->isEmpty()): ?><tr><td style=" border: none; text-align: center"> <strong>None </strong> </td></tr> <?php endif; ?>
 
-        <?php $__currentLoopData = $professionalCertificate; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $certificate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php $__currentLoopData = $professionalCertificate; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $certificate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr>
 
                     <td style="border: none; width: 20%">Certificate Name</td>
@@ -300,31 +304,31 @@
         
 
         
-            
-                
-            
+        
+        
+        
         
         
         
 
         
-            
-                
-                
-            
-            
-            
-            
-            
-                
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
-                    
+        
 
-                    
+        
 
-                
-            
-            
+        
+        
+        
         
 
 
@@ -361,7 +365,7 @@
 
 
 
-
+        
         <table border="0" style="width:100%; margin-top: 5px; border: none;">
             <tr>
                 <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000"><b>Personal Info</b> </td>
@@ -440,7 +444,7 @@
 
                 <td style="border: none;">
                     <?php if(!is_null($personalInfo->nationalId)): ?>
-                    <label>National Id :</label> <?php echo e($personalInfo->nationalId); ?>
+                        <label>National Id :</label> <?php echo e($personalInfo->nationalId); ?>
 
                     <?php elseif(!is_null($personalInfo->birthID)): ?>
                         <label>Birth Id :</label> <?php echo e($personalInfo->birthID); ?>
@@ -456,11 +460,11 @@
                 </td>
             </tr>
 
-
-
-
-
-
+            
+            
+            
+            
+            
 
 
 
@@ -504,14 +508,14 @@
         <?php endif; ?>
 
         
-            
         
-            
         
-            
+        
+        
+        
         
 
-
+        
 
         <table border="0" style="width:100%; margin-top: 25px; border: none;">
             <tr>
@@ -640,12 +644,17 @@
             <b>Declaration:</b> I do hereby declare that the above information is true and correct to the best of my knowledge.
 
             <tr>
-
-                <td style="width: 13%; border: none; "><img height="100px" width="100px" src="<?php echo e(url('public/candidateSigns/thumb').'/'.$personalInfo->sign); ?>" alt=""></td>
+                <?php if(isset($viewMode)): ?>
+                <td style="width: 13%; border: none; "><img style="height:100px; width:100px;" src="<?php echo e(url('public/candidateSigns/thumb').'/'.$personalInfo->sign); ?>" ></td>
+                <?php else: ?>
+                <td style="width: 13%; border: none; "><img style="height:100px; width:100px;" src="<?php echo e(public_path().'/candidateSigns/thumb/'.$personalInfo->sign); ?>" ></td>
+                <?php endif; ?>
             </tr>
             <tr>
                 <td style="width: 13%; border: none; ">&nbsp;&nbsp;Signature</td>
             </tr>
         </table>
+    </div>
+</div>
 </body>
 </html>

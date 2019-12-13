@@ -49,7 +49,11 @@
                 </table>
             </td >
             <td style="width: 15%;" align="center" >
+            @if(isset($viewMode))
+                <img src="{{url('public//logo/TCL_logo.png')}}" alt="logo">
+            @else
                 <img src="{{public_path().'/logo/TCL_logo.png'}}" alt="logo">
+            @endif
             </td>
 
             <td style="width: 45%;">

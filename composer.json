@@ -6,7 +6,6 @@
     "type": "project",
     "require": {
         "php": ">=7.0.0",
-        "chumper/zipper": "^1.0",
         "fideloper/proxy": "~3.3",
         "guzzlehttp/guzzle": "^6.3",
         "ifsnop/mysqldump-php": "^2.6",
@@ -17,7 +16,8 @@
         "niklasravnsborg/laravel-pdf": "^2.0",
         "phpoffice/phpword": "^0.16.0",
         "spatie/db-dumper": "^2.13",
-        "yajra/laravel-datatables-oracle": "~8.0"
+        "yajra/laravel-datatables-oracle": "~8.0",
+        "chumper/zipper": "1.0.x"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
