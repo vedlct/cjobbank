@@ -149,12 +149,16 @@ class RegisterController extends Controller
 
         $data = array('email'=>$r->userEmail,'pass'=>$r->userPass,'userToken'=>$r->userToken);
 
-        try {
 
+        try {
             Mail::send('mail.AccountCreate', $data, function ($message) use ($data) {
                 $message->to($data['email'], 'Caritas BD')->subject('New - Account');
 
             });
+
+//            Mail::raw('Text to e-mail', function ($message) {
+//                $message->to('mujtaba.rumi1@gmail.com');
+//            });
             Session::flash('notActive', 'Account Activation Mail is sent to your mail , Also Check Spam');
 
         }catch (\Exception $ex) {
