@@ -215,11 +215,12 @@ class EmployeeController extends Controller
 
 //                return $languages;
                 $salary=QuestionObjective::where('empId',$empId)->first();
+                $viewMode=true;
 
 
 //                return $salary;
 
-                return view('userCv.cvPdf.userCvPdf', compact('allEmp', 'personalInfo', 'education',
+                return view('userCv.cvPdf.userCvPdf', compact('viewMode','allEmp', 'personalInfo', 'education',
                     'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree',
                     'relativeCb', 'empOtherSkillls', 'empComputerSkill', 'empOtherInfo','memberShip','languages','languageNames','salary'));
 

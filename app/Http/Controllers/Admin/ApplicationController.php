@@ -1021,15 +1021,16 @@ class ApplicationController extends Controller
             ->where('employee.employeeId',$jobInfo->fkemployeeId)
             ->first();
         $templateFooter = $r->templateFooter;
+        $viewMode=true;
 
         if ($template=='1'){
-            return view('mail.interviewCard',compact( 'empInfo', 'subjectLine','refNo','jobInfo','emailtamplateBody','address','templateFooter'));
+            return view('mail.interviewCard',compact( 'viewMode','empInfo', 'subjectLine','refNo','jobInfo','emailtamplateBody','address','templateFooter'));
         }
         if ($template=='2'){
-            return view('mail.panelListed',compact( 'empInfo', 'subjectLine','refNo','jobInfo','emailtamplateBody','address','templateFooter'));
+            return view('mail.panelListed',compact( 'viewMode','empInfo', 'subjectLine','refNo','jobInfo','emailtamplateBody','address','templateFooter'));
         }
         if ($template=='3'){
-            return view('mail.notSelected',compact( 'empInfo', 'subjectLine','refNo','jobInfo','emailtamplateBody','address','templateFooter'));
+            return view('mail.notSelected',compact( 'viewMode','empInfo', 'subjectLine','refNo','jobInfo','emailtamplateBody','address','templateFooter'));
         }
     }
 }

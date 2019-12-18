@@ -49,7 +49,11 @@
                 </table>
             </td >
             <td style="width: 15%;" align="center" >
-                <img src="<?php echo e(url('public/logo/TCL_logo.png')); ?>" alt="logo">
+            <?php if(isset($viewMode)): ?>
+                <img src="<?php echo e(url('public//logo/TCL_logo.png')); ?>" alt="logo">
+            <?php else: ?>
+                <img src="<?php echo e(public_path().'/logo/TCL_logo.png'); ?>" alt="logo">
+            <?php endif; ?>
             </td>
 
             <td style="width: 45%;">

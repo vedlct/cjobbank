@@ -244,6 +244,7 @@ class UserCvController extends Controller
             $application->status = 'Viewed';
             $application->save();
         }
+        $viewMode=true;
 
 //        $pdf = PDF::loadView('test',compact( 'personalInfo', 'education',
 //            'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree',
@@ -251,7 +252,7 @@ class UserCvController extends Controller
 //
 //        return $pdf->download('Curriculam Vitae of '.$personalInfo->firstName." ".$personalInfo->lastName.'.pdf',array('Attachment'=>false));
 
-        return view('test',compact( 'personalInfo', 'education',
+        return view('test',compact( 'viewMode','personalInfo', 'education',
            'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree',
            'relativeCb','empOtherSkillls','empComputerSkill','empOtherInfo','empOtherInfo','languageNames','languages','salary','memberShip'));
 

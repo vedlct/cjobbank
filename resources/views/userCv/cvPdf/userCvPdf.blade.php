@@ -62,7 +62,14 @@
                                             </p>
 
                                         </td>
-                                        <td style="width: 13%; border: none; "><img height="150px" width="150px" src="{{public_path().'public/candidateImages/thumb/'.$personalInfo->image}}" alt=""></td>
+                                        <td style="width: 13%; border: none; "><img height="150px" width="150px"
+                                                src="
+                                                @if($viewMode)
+                                                {{url('public/candidateImages/thumb').'/'.$personalInfo->image}}
+                                                @else
+                                                {{public_path().'/candidateImages/thumb/'.$personalInfo->image}}
+                                                @endif
+                                                "></td>
                                     </tr>
 
                                 </table>
@@ -628,8 +635,14 @@
                                     <b>Declaration:</b> I do hereby declare that the above information is true and correct to the best of my knowledge.
 
                                     <tr>
-
-                                        <td style="width: 13%; border: none; "><img height="100px" width="100px" src="{{url('public/candidateSigns/thumb').'/'.$personalInfo->sign}}" alt=""></td>
+                                        <td style="width: 13%; border: none; "><img height="100px" width="100px"
+                                                        src="
+                                                        @if($viewMode)
+                                                        {{url('public/candidateSigns/thumb').'/'.$personalInfo->sign}}
+                                                        @else
+                                                        {{public_path().'/candidateSigns/thumb/'.$personalInfo->sign}}
+                                                        @endif
+                                                        " alt=""></td>
                                     </tr>
                                     <tr>
                                         <td style="width: 13%; border: none; ">&nbsp;&nbsp;Signature</td>

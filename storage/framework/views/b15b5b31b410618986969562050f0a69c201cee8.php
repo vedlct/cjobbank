@@ -61,7 +61,16 @@
                                             </p>
 
                                         </td>
-                                        <td style="width: 13%; border: none; "><img height="150px" width="150px" src="<?php echo e(url('public/candidateImages/thumb').'/'.$personalInfo->image); ?>" alt=""></td>
+                                        <td style="width: 13%; border: none; "><img height="150px" width="150px"
+                                                src="
+                                                <?php if($viewMode): ?>
+                                                <?php echo e(url('public/candidateImages/thumb').'/'.$personalInfo->image); ?>
+
+                                                <?php else: ?>
+                                                <?php echo e(public_path().'/candidateImages/thumb/'.$personalInfo->image); ?>
+
+                                                <?php endif; ?>
+                                                "></td>
                                     </tr>
 
                                 </table>
@@ -652,8 +661,16 @@
                                     <b>Declaration:</b> I do hereby declare that the above information is true and correct to the best of my knowledge.
 
                                     <tr>
+                                        <td style="width: 13%; border: none; "><img height="100px" width="100px"
+                                                        src="
+                                                        <?php if($viewMode): ?>
+                                                        <?php echo e(url('public/candidateSigns/thumb').'/'.$personalInfo->sign); ?>
 
-                                        <td style="width: 13%; border: none; "><img height="100px" width="100px" src="<?php echo e(url('public/candidateSigns/thumb').'/'.$personalInfo->sign); ?>" alt=""></td>
+                                                        <?php else: ?>
+                                                        <?php echo e(public_path().'/candidateSigns/thumb/'.$personalInfo->sign); ?>
+
+                                                        <?php endif; ?>
+                                                        " alt=""></td>
                                     </tr>
                                     <tr>
                                         <td style="width: 13%; border: none; ">&nbsp;&nbsp;Signature</td>

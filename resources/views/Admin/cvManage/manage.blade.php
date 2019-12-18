@@ -224,7 +224,7 @@
                         "data": "image",
                         "render": function (data, type, full, meta) {
                             if (data == null) {
-                                return "<img src=\"{{url('public/candidateImages/thumb/dummyImage.png')}}" + "\" height=\"50\"/>";
+                                return "<img src=\"{{url('public/candidateImages/thumb/1cvImage.jpg')}}" + "\" height=\"50\"/>";
                             } else {
                                 return "<img src=\"{{url('public/candidateImages/thumb')}}" + "/" + data + "\" height=\"50\"/>";
                             }
@@ -284,10 +284,11 @@
 
                     {
                         "data": function (data) {
-                            return '&nbsp;<button class="btn btn-sm btn-primary top" onclick="viewEmpCv(' + data.employeeId + ')"><i class="fa fa-eye"></i></button>' +
-                                '&nbsp;<button class="btn btn-sm btn-info left1 top1 bottom left3" id="button" onclick="getEmpCv(' + data.employeeId + ')"><i class="fa fa-file-pdf-o"></i></button>' +
-                                '&nbsp;<button class="btn btn-sm btn-danger left top1 left2" id="button" onclick="EmpCvDelete(' + data.employeeId + ')"><i class="fa fa-trash-o"></i></button>'
-                                ;
+                            return '<div class="btn-group" role="group" aria-label="Action">\n' +
+                                '  <button type="button" class="btn btn-sm btn-primary" onclick="viewEmpCv(' + data.employeeId + ')"><i class="fa fa-eye" title="View"></i></button>\n' +
+                                '  <button type="button" class="btn btn-sm btn-info" onclick="getEmpCv(' + data.employeeId + ')"><i class="fa fa-file-pdf-o" title="Pdf"></i></button>\n' +
+                                '  <button type="button" class="btn btn-sm btn-danger" onclick="EmpCvDelete(' + data.employeeId + ')" title="Remove"><i class="fa fa-trash-o"></i></button>\n' +
+                                '</div>';
                         },
                         "orderable": false, "searchable": false
                     },
