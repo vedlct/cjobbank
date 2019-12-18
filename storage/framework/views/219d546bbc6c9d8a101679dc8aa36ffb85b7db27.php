@@ -222,10 +222,10 @@
                         "name": "image",
                         "data": "image",
                         "render": function (data, type, full, meta) {
-                            if (data == null) {
-                                return "<img src=\"<?php echo e(url('public/candidateImages/thumb/1cvImage.jpg')); ?>" + "\" height=\"50\"/>";
-                            } else {
+                            if (data != '') {
                                 return "<img src=\"<?php echo e(url('public/candidateImages/thumb')); ?>" + "/" + data + "\" height=\"50\"/>";
+                            } else {
+                                return "<img src=\"<?php echo e(url('public/candidateImages/thumb/1cvImage.jpg')); ?>" + "\" height=\"50\"/>";
                             }
 
                         },

@@ -49,10 +49,18 @@
                     </p>
 
                 </td>
+                @php
+                if($personalInfo->image != ''){
+                    $personalInfoimage = $personalInfo->image;
+                }else{
+                    $personalInfoimage = '1cvImage.jpg';
+                }
+                @endphp
+
                 @if(isset($viewMode))
-                <td style="width: 15%; border: none; "><img height="150px" width="150px" src="{{url('public/candidateImages/thumb').'/'.$personalInfo->image}}" alt=""></td>
+                <td style="width: 15%; border: none; "><img height="150px" width="150px" src="{{url('public/candidateImages/thumb').'/'.$personalInfoimage}}" alt=""></td>
                 @else
-                <td style="width: 15%; border: none; "><img height="150px" width="150px" src="{{public_path().'/candidateImages/thumb/'.$personalInfo->image}}" alt=""></td>
+                <td style="width: 15%; border: none; "><img height="150px" width="150px" src="{{public_path().'/candidateImages/thumb/'.$personalInfoimage}}" alt=""></td>
                 @endif
             </tr>
 
@@ -615,10 +623,12 @@
             <b>Declaration:</b> I do hereby declare that the above information is true and correct to the best of my knowledge.
 
             <tr>
-                @if(isset($viewMode))
-                <td style="width: 13%; border: none; "><img style="height:100px; width:100px;" src="{{url('public/candidateSigns/thumb').'/'.$personalInfo->sign}}" ></td>
-                @else
-                <td style="width: 13%; border: none; "><img style="height:100px; width:100px;" src="{{public_path().'/candidateSigns/thumb/'.$personalInfo->sign}}" ></td>
+                @if($personalInfo->sign != '')
+                    @if(isset($viewMode))
+                    <td style="width: 13%; border: none; "><img style="height:100px; width:100px;" src="{{url('public/candidateSigns/thumb').'/'.$personalInfo->sign}}" ></td>
+                    @else
+                    <td style="width: 13%; border: none; "><img style="height:100px; width:100px;" src="{{public_path().'/candidateSigns/thumb/'.$personalInfo->sign}}" ></td>
+                    @endif
                 @endif
             </tr>
             <tr>

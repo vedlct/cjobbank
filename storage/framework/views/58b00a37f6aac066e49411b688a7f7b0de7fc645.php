@@ -50,10 +50,18 @@
                     </p>
 
                 </td>
+                <?php
+                if($personalInfo->image != ''){
+                    $personalInfoimage = $personalInfo->image;
+                }else{
+                    $personalInfoimage = '1cvImage.jpg';
+                }
+                ?>
+
                 <?php if(isset($viewMode)): ?>
-                <td style="width: 15%; border: none; "><img height="150px" width="150px" src="<?php echo e(url('public/candidateImages/thumb').'/'.$personalInfo->image); ?>" alt=""></td>
+                <td style="width: 15%; border: none; "><img height="150px" width="150px" src="<?php echo e(url('public/candidateImages/thumb').'/'.$personalInfoimage); ?>" alt=""></td>
                 <?php else: ?>
-                <td style="width: 15%; border: none; "><img height="150px" width="150px" src="<?php echo e(public_path().'/candidateImages/thumb/'.$personalInfo->image); ?>" alt=""></td>
+                <td style="width: 15%; border: none; "><img height="150px" width="150px" src="<?php echo e(public_path().'/candidateImages/thumb/'.$personalInfoimage); ?>" alt=""></td>
                 <?php endif; ?>
             </tr>
 
@@ -644,10 +652,12 @@
             <b>Declaration:</b> I do hereby declare that the above information is true and correct to the best of my knowledge.
 
             <tr>
-                <?php if(isset($viewMode)): ?>
-                <td style="width: 13%; border: none; "><img style="height:100px; width:100px;" src="<?php echo e(url('public/candidateSigns/thumb').'/'.$personalInfo->sign); ?>" ></td>
-                <?php else: ?>
-                <td style="width: 13%; border: none; "><img style="height:100px; width:100px;" src="<?php echo e(public_path().'/candidateSigns/thumb/'.$personalInfo->sign); ?>" ></td>
+                <?php if($personalInfo->sign != ''): ?>
+                    <?php if(isset($viewMode)): ?>
+                    <td style="width: 13%; border: none; "><img style="height:100px; width:100px;" src="<?php echo e(url('public/candidateSigns/thumb').'/'.$personalInfo->sign); ?>" ></td>
+                    <?php else: ?>
+                    <td style="width: 13%; border: none; "><img style="height:100px; width:100px;" src="<?php echo e(public_path().'/candidateSigns/thumb/'.$personalInfo->sign); ?>" ></td>
+                    <?php endif; ?>
                 <?php endif; ?>
             </tr>
             <tr>

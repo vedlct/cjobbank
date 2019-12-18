@@ -202,10 +202,7 @@ class RegisterController extends Controller
     public function resendActivationMail(Request $r)
     {
         $rules = [
-
             'email' => 'required|email|max:255',
-
-
         ];
 
         $customMessages = [
