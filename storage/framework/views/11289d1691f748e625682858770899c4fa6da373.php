@@ -207,9 +207,6 @@
                                 '  <button type="button" data-panel-id="' + data.jobId + '" onclick="jobEdit(this)"  class="btn btn-sm btn-success"><i class="fa fa-edit" title="Edit"></i></button>\n' +
                                 '  <button type="button" data-panel-id="' + data.jobId + '" onclick="deleteJob(this)" class="btn btn-sm btn-danger top"><i class="fa fa-trash-o" title="Remove"></i></button>\n' +
                                 '</div>';
-                            // return '<a data-panel-id="' + data.jobId + '" onclick="jobEdit(this)"  class="btn btn-sm btn-success top"><i class="fa fa-edit"></i></a>&nbsp;' +
-                            //     '<a data-panel-id="' + data.jobId + '" onclick="deleteJob(this)" class="btn btn-sm btn-danger top"><i class="fa fa-trash-o"></i></a>&nbsp;'
-
                         }
                         ;},
                         "orderable": false, "searchable":false

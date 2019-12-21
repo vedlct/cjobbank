@@ -61,13 +61,20 @@
                                             </p>
 
                                         </td>
+                                        <?php
+                                            if($personalInfo->image != ''){
+                                                $personalInfoimage = $personalInfo->image;
+                                            }else{
+                                                $personalInfoimage = '1cvImage.jpg';
+                                            }
+                                        ?>
                                         <td style="width: 13%; border: none; "><img height="150px" width="150px"
                                                 src="
                                                 <?php if($viewMode): ?>
-                                                <?php echo e(url('public/candidateImages/thumb').'/'.$personalInfo->image); ?>
+                                                <?php echo e(url('public/candidateImages/thumb').'/'.$personalInfoimage); ?>
 
                                                 <?php else: ?>
-                                                <?php echo e(public_path().'/candidateImages/thumb/'.$personalInfo->image); ?>
+                                                <?php echo e(public_path().'/candidateImages/thumb/'.$personalInfoimage); ?>
 
                                                 <?php endif; ?>
                                                 "></td>
@@ -659,7 +666,7 @@
                                 <table border="0" style="width:100%; margin-top: 25px; border: none;">
 
                                     <b>Declaration:</b> I do hereby declare that the above information is true and correct to the best of my knowledge.
-
+                                    <?php if($personalInfo->sign != ''): ?>
                                     <tr>
                                         <td style="width: 13%; border: none; "><img height="100px" width="100px"
                                                         src="
@@ -672,6 +679,7 @@
                                                         <?php endif; ?>
                                                         " alt=""></td>
                                     </tr>
+                                    <?php endif; ?>
                                     <tr>
                                         <td style="width: 13%; border: none; ">&nbsp;&nbsp;Signature</td>
                                     </tr>
@@ -697,25 +705,6 @@
 <?php $__env->startSection('foot-js'); ?>
 
     <script>
-
-        
-
-        
-            
-            
-            
-            
-                
-                    
-                    
-                    
-
-                    
-                
-            
-        
-
-        
         <?php if(Session::has('message') && $msg != null): ?>
 
         $.alert({
@@ -732,23 +721,7 @@
                 }
             }
         });
-
         <?php endif; ?>
-        
-
-
-        
-        
-        
-        
-        
-
-
-        
-        
-
-
-        
     </script>
 
 <?php $__env->stopSection(); ?>

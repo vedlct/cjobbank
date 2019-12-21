@@ -62,12 +62,19 @@
                                             </p>
 
                                         </td>
+                                        @php
+                                            if($personalInfo->image != ''){
+                                                $personalInfoimage = $personalInfo->image;
+                                            }else{
+                                                $personalInfoimage = '1cvImage.jpg';
+                                            }
+                                        @endphp
                                         <td style="width: 13%; border: none; "><img height="150px" width="150px"
                                                 src="
                                                 @if($viewMode)
-                                                {{url('public/candidateImages/thumb').'/'.$personalInfo->image}}
+                                                {{url('public/candidateImages/thumb').'/'.$personalInfoimage}}
                                                 @else
-                                                {{public_path().'/candidateImages/thumb/'.$personalInfo->image}}
+                                                {{public_path().'/candidateImages/thumb/'.$personalInfoimage}}
                                                 @endif
                                                 "></td>
                                     </tr>
@@ -633,7 +640,7 @@
                                 <table border="0" style="width:100%; margin-top: 25px; border: none;">
 
                                     <b>Declaration:</b> I do hereby declare that the above information is true and correct to the best of my knowledge.
-
+                                    @if($personalInfo->sign != '')
                                     <tr>
                                         <td style="width: 13%; border: none; "><img height="100px" width="100px"
                                                         src="
@@ -644,6 +651,7 @@
                                                         @endif
                                                         " alt=""></td>
                                     </tr>
+                                    @endif
                                     <tr>
                                         <td style="width: 13%; border: none; ">&nbsp;&nbsp;Signature</td>
                                     </tr>
@@ -669,25 +677,6 @@
 @section('foot-js')
 
     <script>
-
-        {{--@if(Session::has('message') && $allEmp != null &&  $allEmp->cvStatus == null)--}}
-
-        {{--$.alert({--}}
-            {{--title: 'Error',--}}
-            {{--type: 'red',--}}
-            {{--content: 'Your CV is not Completed yet,Please Complete First',--}}
-            {{--buttons: {--}}
-                {{--tryAgain: {--}}
-                    {{--text: 'Ok',--}}
-                    {{--btnClass: 'btn-green',--}}
-                    {{--action: function () {--}}
-
-                    {{--}--}}
-                {{--}--}}
-            {{--}--}}
-        {{--});--}}
-
-        {{--@endif--}}
         @if(Session::has('message') && $msg != null)
 
         $.alert({
@@ -704,23 +693,7 @@
                 }
             }
         });
-
         @endif
-        {{--function viewUserCv() {--}}
-
-
-        {{--$.ajax({--}}
-        {{--type: "get",--}}
-        {{--url: '{{route('userCv.post')}}',--}}
-        {{--data: {_token:"{{csrf_token()}}",id:"{{$allEmp->employeeId}}"},--}}
-        {{--success: function (data) {--}}
-
-
-        {{--},--}}
-        {{--});--}}
-
-
-        {{--}--}}
     </script>
 
 @endsection

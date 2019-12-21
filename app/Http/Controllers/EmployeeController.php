@@ -100,10 +100,9 @@ class EmployeeController extends Controller
         return redirect()->route('job.all');
     }
 
-    public function getEmployeeshowFullCv()
-    {
+    public function getEmployeeshowFullCv(){
 
-        $empId=Employee::select('employeeId','cvStatus')->where('fkuserId',Auth::user()->userId)->first();
+        $empId = Employee::select('employeeId','cvStatus')->where('fkuserId',Auth::user()->userId)->first();
 
         if ($empId != null) {
 
@@ -122,9 +121,6 @@ class EmployeeController extends Controller
 
             } else {
                 $msg = null;
-//                Session::flash('message', 'Your CV is not Completed yet,Please Complete First');
-
-
 
             if ($empId->cvStatus == 0) {
 
@@ -150,7 +146,7 @@ class EmployeeController extends Controller
                     ->leftJoin('religion', 'religion.religionId', 'fkreligionId')
                     ->leftJoin('nationality', 'nationality.nationalityId', 'fknationalityId')
                     ->leftJoin('emp_ques_obj', 'emp_ques_obj.empId', 'employee.employeeId')
-                    ->findOrFail($empId);
+                    ->find($empId);
 
                 $education = Education::select('degreeName', 'education.institutionName', 'boardName', 'education.fkemployeeId', 'education.status', 'education.resultSystem', 'education.result', 'educationlevel.educationLevelName',
                     'educationmajor.educationMajorName', 'education.fkMajorId', 'passingYear')
@@ -198,9 +194,6 @@ class EmployeeController extends Controller
 
                 $memberShip=MembershipInSocialNetwork::where('fkemployeeId',$empId)->get();
 
-
-//                return $memberShip;
-
                 $languageNames=EmployeeLanguage::select('fklanguageHead','languagename')
                     ->where('fkemployeeId',$empId)
                     ->leftJoin('languagehead','languagehead.id','emp_language.fklanguageHead')
@@ -211,20 +204,17 @@ class EmployeeController extends Controller
                     ->leftJoin('languageskill','languageskill.id','emp_language.fklanguageSkill')
                     ->get();
 
-
-
-//                return $languages;
                 $salary=QuestionObjective::where('empId',$empId)->first();
                 $viewMode=true;
 
-
-//                return $salary;
-
-                return view('userCv.cvPdf.userCvPdf', compact('viewMode','allEmp', 'personalInfo', 'education',
-                    'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree',
-                    'relativeCb', 'empOtherSkillls', 'empComputerSkill', 'empOtherInfo','memberShip','languages','languageNames','salary'));
-
-
+                if ($allEmp && $personalInfo && $education && $professionalCertificate && $jobExperience && $trainingCertificate && $refree && $relativeCb && $empOtherSkillls && $empOtherInfo && $memberShip && $languages && $languageNames && $salary){
+                    return view('userCv.cvPdf.userCvPdf', compact('viewMode','allEmp', 'personalInfo', 'education',
+                        'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree',
+                        'relativeCb', 'empOtherSkillls', 'empComputerSkill', 'empOtherInfo','memberShip','languages','languageNames','salary'));
+                }else{
+                    Session::flash('message', 'Your CV information is not found ,please make your CV first');
+                    return back();
+                }
             }
         }
         }else{

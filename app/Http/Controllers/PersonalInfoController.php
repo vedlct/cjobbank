@@ -72,8 +72,6 @@ class PersonalInfoController extends Controller
             'religion' => 'required',
             'ethnicity' => 'required',
             'disability' => 'required',
-            'nId' => 'max:25',
-            'bId' => 'max:25',
             'homeTelephone' => 'nullable|max:20|regex:/^([0-9\s\-\+\(\)]*)$/',
             'officeTelephone' => 'nullable|max:20|regex:/^([0-9\s\-\+\(\)]*)$/',
             'telephone' => 'nullable|max:20|regex:/^([0-9\s\-\+\(\)]*)$/',
@@ -180,8 +178,6 @@ class PersonalInfoController extends Controller
             'religion' => 'required',
             'ethnicity' => 'required',
             'disability' => 'required',
-            'nId' => 'max:25',
-            'bId' => 'max:25',
             'homeTelephone' => 'nullable|max:20|regex:/^([0-9\s\-\+\(\)]*)$/',
             'officeTelephone' => 'nullable|max:20|regex:/^([0-9\s\-\+\(\)]*)$/',
             'telephone' => 'nullable|max:20|regex:/^([0-9\s\-\+\(\)]*)$/',
@@ -244,7 +240,8 @@ class PersonalInfoController extends Controller
         $employee->save();
 
         if($r->hasFile('image')){
-            if(file_exists(public_path('candidateImages/'.$employee->image))){
+            if($employee->image != '' && file_exists(public_path('candidateImages/'.$employee->image)) && file_exists(public_path('candidateImages/thumb/'.$employee->image))){
+                unlink(public_path('candidateImages/thumb/'.$employee->image));
                 unlink(public_path('candidateImages/'.$employee->image));
             }
             $img = $r->file('image');
@@ -259,7 +256,8 @@ class PersonalInfoController extends Controller
         }
 
         if($r->hasFile('sign')){
-            if(file_exists(public_path('candidateSigns/'.$employee->sign))){
+            if($employee->sign != '' && file_exists(public_path('candidateSigns/'.$employee->sign)) && file_exists(public_path('candidateSigns/thumb/'.$employee->sign))){
+                unlink(public_path('candidateSigns/thumb/'.$employee->sign));
                 unlink(public_path('candidateSigns/'.$employee->sign));
             }
             $sign = $r->file('sign');
