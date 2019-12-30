@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 
-<!-- Mirrored from themesdesign.in/upcube/layouts/horizontal/pages-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 May 2018 07:47:39 GMT -->
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <title>caritas job bank</title>
+    <title>Caritas Job Bank</title>
     <meta content="Admin Dashboard" name="description" />
     <meta content="Themesdesign" name="author" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -132,7 +132,7 @@
         <div class="card-footer">
 
             <div style="text-align: center">
-                © <?php echo e(date('Y')); ?> caritas job bank
+                © <?php echo e(date('Y')); ?> CARITAS JOB BANK
             </div>
 
 
@@ -154,9 +154,9 @@
 <script src="<?php echo e(url('public/assets/js/jquery.scrollTo.min.js')); ?>"></script>
 
 <!-- App js -->
-<script src="<?php echo e(url('public/')); ?>assets/js/app.js"></script>
+<script src="<?php echo e(url('public/assets/js/app.js')); ?>"></script>
 
 </body>
 
-<!-- Mirrored from themesdesign.in/upcube/layouts/horizontal/pages-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 May 2018 07:47:39 GMT -->
+
 </html>

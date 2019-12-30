@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /*
  * This file is part of PHPUnit.
  *
@@ -9,19 +9,9 @@
  */
 namespace PHPUnit\Framework\Constraint;
 
-/**
- */
-class SameSize extends Count
+final class SameSize extends Count
 {
-    /**
-     * @var int
-     */
-    protected $expectedCount;
-
-    /**
-     * @param int $expected
-     */
-    public function __construct($expected)
+    public function __construct(iterable $expected)
     {
         parent::__construct($this->getCountOf($expected));
     }
