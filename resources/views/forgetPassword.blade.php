@@ -77,7 +77,7 @@
                     <div class="form-group row">
                         <div class="col-12">
                             {{--<input class="form-control" name="password" type="password" placeholder="Password" required>--}}
-                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Password"  required>
 
                             @if ($errors->has('password'))
 
@@ -86,6 +86,9 @@
                                     </span>
                             @endif
                         </div>
+                        <p id="passwordHelpBlock" class="form-text text-muted" style="font-size: small">
+                            Your password must be more than 8 characters long, should contain at-least 1 Uppercase, 1 Lowercase, 1 Numeric and 1 special character.
+                        </p>
                     </div>
 
 
@@ -117,7 +120,8 @@
         <div class="card-footer">
 
             <div style="text-align: center">
-                © {{date('Y')}} caritas job bank .
+                © {{date('Y')}} caritas job bank<br>
+                HELP: CBGENERAL@CARITASBD.ORG
             </div>
 
 

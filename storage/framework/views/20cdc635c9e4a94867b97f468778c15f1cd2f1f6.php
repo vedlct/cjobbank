@@ -49,11 +49,11 @@
                 </table>
             </td >
             <td style="width: 15%;" align="center" >
-            @if(isset($viewMode))
-                <img src="{{url('public//logo/TCL_logo.png')}}" alt="logo">
-            @else
-                <img src="{{public_path().'/logo/TCL_logo.png'}}" alt="logo">
-            @endif
+            <?php if(isset($viewMode)): ?>
+                <img src="<?php echo e(url('public//logo/TCL_logo.png')); ?>" alt="logo">
+            <?php else: ?>
+                <img src="<?php echo e(public_path().'/logo/TCL_logo.png'); ?>" alt="logo">
+            <?php endif; ?>
             </td>
 
             <td style="width: 45%;">
@@ -78,7 +78,7 @@
 
     <table width="100%" >
         <tr>
-            <td>{{$address->officeAddress}}</td>
+            <td><?php echo e($address->officeAddress); ?></td>
         </tr>
     </table>
 </div>
@@ -88,11 +88,13 @@
     <table style="width: 100%;border-top: 1px solid black;border-bottom: 1px solid black" >
         <tr>
             <td align="left" style="width: 50%;">
-                <b>Ref No: </b>{{$refNo}}
+                <b>Ref No: </b><?php echo e($refNo); ?>
+
 
             </td>
             <td style="width: 50%;" align="center">
-                <b>Date: </b>{{date('d-m-Y')}}
+                <b>Date: </b><?php echo e(date('d-m-Y')); ?>
+
             </td>
         </tr>
     </table>
@@ -107,10 +109,11 @@
                 <tr >
                     <td align="left">
                         To <br>
-                        {{$empInfo->firstName.' '.$empInfo->lastName}}<br>
-                        {{$empInfo->presentAddress}}<br>
-                        Email: {{$empInfo->email}}<br>
-                        Cell: {{$empInfo->personalMobile}}
+                        <?php echo e($empInfo->firstName.' '.$empInfo->lastName); ?><br>
+                        <?php echo e($empInfo->presentAddress); ?><br>
+                        Email: <?php echo e($empInfo->email); ?><br>
+                        Cell: <?php echo e($empInfo->personalMobile); ?>
+
                     </td>
                 </tr>
             </table>
@@ -125,7 +128,7 @@
     <table style="width: 100%">
         <tr>
         <td style="width: 100%" align="left">
-            <b>Subject: {{$subjectLine.' for the post of '}}{{$jobInfo->position}}</b>
+            <b>Subject: <?php echo e($subjectLine.' for the post of '); ?><?php echo e($jobInfo->position); ?></b>
         </td>
         </tr>
 
@@ -138,12 +141,12 @@
     <table style="width: 100%">
         <tr>
         <td style="width: 100%" align="left">
-            <b>Dear @if($empInfo->gender == "M"){{"Mr "}}@elseif($empInfo->gender == "F"){{"Mrs "}}@endif{{$empInfo->firstName.' '.$empInfo->lastName}}</b>,
+            <b>Dear <?php if($empInfo->gender == "M"): ?><?php echo e("Mr "); ?><?php elseif($empInfo->gender == "F"): ?><?php echo e("Mrs "); ?><?php endif; ?><?php echo e($empInfo->firstName.' '.$empInfo->lastName); ?></b>,
         </td>
         </tr>
         <tr>
             <td align="left" width="100%"><br>
-                <span>{!! $emailtamplateBody !!}</span>
+                <span><?php echo $emailtamplateBody; ?></span>
                 <span>This is a computer-generated document. No signature is required</span>
             </td>
         </tr>
@@ -167,7 +170,7 @@
             <td align="left" style="width: 60%">
                 <table>
                     <tr  >
-                        <td>{!! $templateFooter !!}</td>
+                        <td><?php echo $templateFooter; ?></td>
                     </tr>
                 </table>
             </td>
@@ -176,9 +179,10 @@
                 <table >
                     <tr>
                         <td>
-                            Tel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{$address->zonePhone}}<br>
-                            E-mail&nbsp;&nbsp;&nbsp;: {{$address->zoneEmail}}<br>
-                            Website: {{$address->zoneWeb}}
+                            Tel&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <?php echo e($address->zonePhone); ?><br>
+                            E-mail&nbsp;&nbsp;&nbsp;: <?php echo e($address->zoneEmail); ?><br>
+                            Website: <?php echo e($address->zoneWeb); ?>
+
                         </td>
                     </tr>
                 </table>

@@ -39,7 +39,7 @@
     <div class="card">
         <div class="card-header">
             <h4 class="text-center">
-                <b class="waves-effect waves-light">caritas job bank</b>
+                <b class="waves-effect waves-light">Caritas Job Bank</b>
             </h4>
 
         </div>
@@ -77,7 +77,7 @@
                     <div class="form-group row">
                         <div class="col-12">
                             {{--<input class="form-control" name="password" type="password" placeholder="Password" required>--}}
-                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Password" required>
 
                             @if ($errors->has('password'))
 
@@ -130,7 +130,8 @@
         <div class="card-footer">
 
             <div style="text-align: center">
-                © {{date('Y')}} CARITAS JOB BANK
+                © {{date('Y')}} CARITAS JOB BANK<br>
+                HELP: CBGENERAL@CARITASBD.ORG
             </div>
 
 

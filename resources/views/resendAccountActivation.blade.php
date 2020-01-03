@@ -105,7 +105,8 @@
         <div class="card-footer">
 
             <div style="text-align: center">
-                © {{date('Y')}} caritas job bank .
+                © {{date('Y')}} caritas job bank <br>
+                HELP: CBGENERAL@CARITASBD.ORG
             </div>
 
 

@@ -85,12 +85,16 @@
 
                     <div class="form-group row">
                         <div class="col-12 {{ $errors->has('password') ? ' has-error' : '' }}">
+
                             <input class="form-control" type="password" required="" value="{{ old('password') }}" name="password" placeholder="Password">
                             @if ($errors->has('password'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                             @endif
+                            <p id="passwordHelpBlock" class="form-text text-muted" style="font-size: small">
+                                Your password must be more than 8 characters long, should contain at-least 1 Uppercase, 1 Lowercase, 1 Numeric and 1 special character.
+                            </p>
                         </div>
                     </div>
 
@@ -120,6 +124,12 @@
                     </div>
 
                 </form>
+                <div class="form-group m-t-10 mb-0">
+                    <div class="col-12 m-t-20 text-center">
+                        <p>HELP: CBGENERAL@CARITASBD.ORG</p>
+                    </div>
+                </div>
+
             </div>
 
         </div>

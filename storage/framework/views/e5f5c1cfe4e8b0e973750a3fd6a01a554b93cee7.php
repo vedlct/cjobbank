@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
 
-
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <title>Caritas Job Bank</title>
+    <title>caritas job bank</title>
     <meta content="Admin Dashboard" name="description" />
     <meta content="Themesdesign" name="author" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -39,7 +38,7 @@
     <div class="card">
         <div class="card-header">
             <h4 class="text-center">
-                <b class="waves-effect waves-light">Caritas Job Bank</b>
+                <b class="waves-effect waves-light">caritas job bank</b>
             </h4>
 
         </div>
@@ -47,7 +46,7 @@
 
 
             <div align="center">
-                <img src="<?php echo e(url('public/logo/Final_Logo_Caritas_2010.jpg')); ?>" height="180" width="200">
+                <img src="<?php echo e(url('public/logo/TCL_logo.png')); ?>" height="150" width="200">
             </div>
             <div>
                 <?php if(Session::has('notActive')): ?>
@@ -56,15 +55,14 @@
             </div>
 
             <div class="p-3">
-                <form method="POST" class="form-horizontal m-t-20" action="<?php echo e(route('login')); ?>">
+                <form method="POST" class="form-horizontal m-t-20" action="<?php echo e(route('account.resendActivationMail')); ?>">
                     <?php echo e(csrf_field()); ?>
 
 
                     <div class="form-group row">
                         <div class="col-12">
-                            
-                            <input id="email" type="text" placeholder="email" class="form-control<?php echo e($errors->has('email') ? ' is-invalid' : ''); ?>" name="email" value="<?php echo e(old('email')); ?>" required autofocus>
 
+                            <input id="email" type="text" placeholder="email" class="form-control<?php echo e($errors->has('email') ? ' is-invalid' : ''); ?>" name="email" value="<?php echo e(old('email')); ?>" required autofocus>
 
                             <?php if($errors->has('email')): ?>
 
@@ -75,53 +73,29 @@
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <div class="col-12">
-                            
-                            <input id="password" type="password" class="form-control<?php echo e($errors->has('password') ? ' is-invalid' : ''); ?>" name="password" placeholder="Password" required>
-
-                            <?php if($errors->has('password')): ?>
-
-                                <span class="">
-                                        <strong><?php echo e($errors->first('password')); ?></strong>
-                                    </span>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-
-
-
-
-
-
-
-                    <div class="form-group row">
-                        <div class="col-12">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" name="remember" <?php echo e(old('remember') ? 'checked' : ''); ?>> <?php echo e(__('Remember Me')); ?>
-
-
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="form-group text-center row m-t-20">
                         <div class="col-12">
-                            <button class="btn btn-info btn-block waves-effect waves-light" type="submit">Log In</button>
+                            <button class="btn btn-info btn-block waves-effect waves-light" type="submit">Resend</button>
 
                         </div>
                     </div>
 
                     <div class="form-group m-t-10 mb-0 row">
                         <div class="col-sm-7 m-t-20">
-                            <a href="<?php echo e(route('account.forgetPass')); ?>" class="text-muted"><i class="mdi mdi-lock"></i> Forgot your password?</a></div>
+                            <a href="<?php echo e(route('account.forgetPass')); ?>" class="text-muted"><i class="mdi mdi-lock"></i> Forgot your password?</a>
+                        </div>
                         <div class="col-sm-5 m-t-20">
                             <a href="<?php echo e(route('register')); ?>" class="text-muted"><i class="mdi mdi-account-circle"></i> Create an account</a>
                         </div>
                     </div>
-                    <div align="center" class="form-group m-t-10 mb-0">
-                        <a href="<?php echo e(route('account.activationResend')); ?>" class="text-muted"><i class="mdi mdi-email"></i> Resend activation Mail</a>
+
+                    <div class="form-group m-t-10 mb-0">
+                        <div class="col-12 m-t-20 text-center">
+                            <a href="<?php echo e(url('/')); ?>" class="text-muted"><i class="mdi mdi-account-key"></i>Sign In</a>
+                        </div>
                     </div>
+
 
 
                 </form>
@@ -132,7 +106,7 @@
         <div class="card-footer">
 
             <div style="text-align: center">
-                © <?php echo e(date('Y')); ?> CARITAS JOB BANK<br>
+                © <?php echo e(date('Y')); ?> caritas job bank <br>
                 HELP: CBGENERAL@CARITASBD.ORG
             </div>
 
@@ -154,10 +128,8 @@
 <script src="<?php echo e(url('public/assets/js/jquery.nicescroll.js')); ?>"></script>
 <script src="<?php echo e(url('public/assets/js/jquery.scrollTo.min.js')); ?>"></script>
 
-<!-- App js -->
-<script src="<?php echo e(url('public/assets/js/app.js')); ?>"></script>
+
+
 
 </body>
-
-
 </html>
