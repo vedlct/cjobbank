@@ -1,8 +1,6 @@
-@extends('main')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <style>
-        @media only screen and (max-width: 420px) {
+        @media  only screen and (max-width: 420px) {
             .top{
                 margin-top: 4%;
             }
@@ -18,23 +16,23 @@
                     <div class="col-md-3">
 
                         <div class="sidenav">
-                            <a href="{{route('candidate.cvPersonalInfo')}}">Personal details</a>
-                            <a href="{{route('candidate.cvQuesObj')}}">Career objective and application information</a>
-                            <a href="{{route('candidate.cvEducation')}}">Education</a>
-                            <a href="{{route('candidate.language.index')}}">Language</a>
-                            <a href="{{route('candidate.computerSkill.index')}}">Computer-skill</a>
-                            {{--<a href="{{route('candidate.skill.index')}}">Other Skill Information</a>--}}
-                            <a href="{{route('cv.OthersInfo')}}">Other information</a>
-                            <a href="{{route('candidate.cvTrainingCertificate')}}">Training certification</a>
-                            <a class="activeNav" href="{{route('candidate.cvProfessionalCertificate')}}">Professional
+                            <a href="<?php echo e(route('candidate.cvPersonalInfo')); ?>">Personal details</a>
+                            <a href="<?php echo e(route('candidate.cvQuesObj')); ?>">Career objective and application information</a>
+                            <a href="<?php echo e(route('candidate.cvEducation')); ?>">Education</a>
+                            <a href="<?php echo e(route('candidate.language.index')); ?>">Language</a>
+                            <a href="<?php echo e(route('candidate.computerSkill.index')); ?>">Computer-skill</a>
+                            
+                            <a href="<?php echo e(route('cv.OthersInfo')); ?>">Other information</a>
+                            <a href="<?php echo e(route('candidate.cvTrainingCertificate')); ?>">Training certification</a>
+                            <a class="activeNav" href="<?php echo e(route('candidate.cvProfessionalCertificate')); ?>">Professional
                                 certification</a>
-                            <a href="{{route('JobExperience.index')}}">Job experience</a>
-                            <a href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas
+                            <a href="<?php echo e(route('JobExperience.index')); ?>">Job experience</a>
+                            <a href="<?php echo e(route('candidate.previousWorkInCB.index')); ?>">Previous work information in Caritas
                                 Bangladesh</a>
-                            <a href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership
+                            <a href="<?php echo e(route('candidate.membershipInSocialNetwork.index')); ?>">Certification of membership
                                 in professional network/ forum</a>
-                            <a href="{{route('refree.index')}}">Referee</a>
-                            <a href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas
+                            <a href="<?php echo e(route('refree.index')); ?>">Referee</a>
+                            <a href="<?php echo e(route('relativeInCaritas.getRelationInfo')); ?>">Relatives working in Caritas
                                 Bangladesh</a>
                         </div>
 
@@ -48,28 +46,29 @@
 
                             <div id="profCertificateDiv">
 
-                                @php($tempHr=0)
-                                @foreach($professional as $val)
-                                    @if($tempHr>0)
+                                <?php ($tempHr=0); ?>
+                                <?php $__currentLoopData = $professional; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $val): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <?php if($tempHr>0): ?>
                                         <div class="col-md-12">
                                             <hr style="border-top:1px dotted #000;">
                                         </div>
-                                    @endif
-                                    <div id="edit{{$val->professionalQualificationId}}">
+                                    <?php endif; ?>
+                                    <div id="edit<?php echo e($val->professionalQualificationId); ?>">
                                         <input type="hidden" name="professionalQualificationId[]"
-                                               value="{{$val->professionalQualificationId}}">
+                                               value="<?php echo e($val->professionalQualificationId); ?>">
                                         <div class="row">
                                             <div class="form-group col-md-10">
                                                 <label for="inputEmail4">Certificate name :</label>
-                                                {{$val->certificateName}}
-                                                {{--<input type="text" class="form-control" name="certificateName{{$val->professionalQualificationId}}" id="inputEmail4" value="{{$val->certificateName}}" placeholder="certificate" required>--}}
+                                                <?php echo e($val->certificateName); ?>
+
+                                                
                                             </div>
                                             <div class="form-group col-md-2 ">
                                                 <button type="button" class="btn btn-info btn-sm "
-                                                        onclick="editInfo({{$val->professionalQualificationId}})"><i
+                                                        onclick="editInfo(<?php echo e($val->professionalQualificationId); ?>)"><i
                                                             class="fa fa-edit"></i></button>
                                                 <button type="button" class="btn btn-danger btn-sm "
-                                                        onclick="deleteProfession({{$val->professionalQualificationId}})">
+                                                        onclick="deleteProfession(<?php echo e($val->professionalQualificationId); ?>)">
                                                     <i class="fa fa-trash"></i></button>
 
                                             </div>
@@ -79,97 +78,104 @@
                                         <div class="row">
                                             <div class="form-group col-md-8">
                                                 <label for="inputEmail4">Institute name :</label>
-                                                {{$val->institutionName}}
-                                                {{--<input type="text" class="form-control" name="institutionName{{$val->professionalQualificationId}}" id="inputEmail4" value="{{$val->institutionName}}" placeholder="institution" required>--}}
+                                                <?php echo e($val->institutionName); ?>
+
+                                                
                                             </div>
 
 
-                                            {{--@if($val->resultSystem)--}}
-                                            {{--<div class="form-group col-md-4">--}}
-                                            {{--<label for="inputPassword4">Result System :</label>--}}
-                                            {{--<label for="inputPassword4">{{$val->grade}}</label>--}}
-                                            {{--</div>--}}
+                                            
+                                            
+                                            
+                                            
+                                            
 
-                                            {{--@else--}}
+                                            
                                             <div class="form-group col-md-4">
                                                 <label for="inputEmail4">Result System :</label>
 
 
-                                                {{--@foreach(RESULT_SYSTEM as $key=>$value)--}}
-                                                {{--@if($value==$val->resultSystem){{$key}}--}}
-                                                {{--@endif--}}
-                                                {{--@endforeach--}}
+                                                
+                                                
+                                                
+                                                
 
-                                                @if($val->resultSystem!=4)
+                                                <?php if($val->resultSystem!=4): ?>
 
-                                                    @foreach(RESULT_SYSTEM as $key=>$value)
-                                                        @if($val->resultSystem ==$value)
-                                                            {{$key}}
-                                                        @endif
+                                                    <?php $__currentLoopData = RESULT_SYSTEM; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <?php if($val->resultSystem ==$value): ?>
+                                                            <?php echo e($key); ?>
 
-
-                                                    @endforeach
-                                                @else
-                                                    {{$val->resultSystemName}}
-                                                @endif
+                                                        <?php endif; ?>
 
 
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                <?php else: ?>
+                                                    <?php echo e($val->resultSystemName); ?>
 
-                                                {{--<input type="text" class="form-control" name="institutionName{{$val->professionalQualificationId}}" id="inputEmail4" value="{{$val->institutionName}}" placeholder="institution" required>--}}
+                                                <?php endif; ?>
+
+
+
+                                                
                                             </div>
-                                            {{--@endif--}}
+                                            
 
 
                                             <div class="form-group col-md-4">
                                                 <label for="inputPassword4">Result :</label>
-                                                {{$val->result}}
-                                                {{--<input type="text" class="form-control" name="result{{$val->professionalQualificationId}}" value="{{$val->result}}" id="inputPassword4" placeholder="">--}}
+                                                <?php echo e($val->result); ?>
+
+                                                
                                             </div>
 
                                             <div class="form-group col-md-4">
                                                 <label for="inputPassword4">Start date :</label>
-                                                {{$val->startDate}}
-                                                {{--<input type="text" class="form-control date" name="startDate{{$val->professionalQualificationId}}" value="{{$val->startDate}}" id="start" placeholder="date" required>--}}
+                                                <?php echo e($val->startDate); ?>
+
+                                                
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="inputPassword4">End date :</label>
-                                                {{$val->endDate}}
-                                                {{--<input type="text" class="form-control date" name="endDate{{$val->professionalQualificationId}}" value="{{$val->endDate}}" id="end" placeholder="date">--}}
+                                                <?php echo e($val->endDate); ?>
+
+                                                
                                             </div>
-                                            @if($val->hour || $val->day || $val->week || $val->month || $val->year)
+                                            <?php if($val->hour || $val->day || $val->week || $val->month || $val->year): ?>
                                                 <div class="form-group col-md-12">
                                                     <label for="inputEmail4">Duration :</label>
-                                                    <label for="inputEmail4">{{"H:".$val->hour." D:".$val->day." W:".$val->week." M:".$val->month." Y:".$val->year}} </label>
-                                                    {{--<input type="text" class="form-control" name="vanue[]" id="inputEmail4" placeholder="vanue" required>--}}
+                                                    <label for="inputEmail4"><?php echo e("H:".$val->hour." D:".$val->day." W:".$val->week." M:".$val->month." Y:".$val->year); ?> </label>
+                                                    
                                                 </div>
-                                            @endif
+                                            <?php endif; ?>
 
                                             <div class="form-group col-md-4">
                                                 <label for="inputPassword4">Status :</label>
 
-                                                @foreach(COMPLETING_STATUS as $key=>$values)
+                                                <?php $__currentLoopData = COMPLETING_STATUS; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$values): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
-                                                    @if($val->status == $values) {{$key}} @endif
-                                                @endforeach
-                                                {{--@if($value->status == 1)--}}
-                                                {{--Completed--}}
-                                                {{--@endif--}}
-                                                {{--@if($value->status == 2)--}}
-                                                {{--On going--}}
-                                                {{--@endif--}}
+                                                    <?php if($val->status == $values): ?> <?php echo e($key); ?> <?php endif; ?>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                
 
                                             </div>
                                         </div>
                                     </div>
 
-                                    @php($tempHr++)
+                                    <?php ($tempHr++); ?>
 
-                                @endforeach
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
-                                <form id="" action="{{route('submit.cvProfessionalCertificate')}}" onsubmit="return chkProfessinalCertificate()" method="post">
+                                <form id="" action="<?php echo e(route('submit.cvProfessionalCertificate')); ?>" onsubmit="return chkProfessinalCertificate()" method="post">
                                     <!-- One "tab" for each step in the form: -->
-                                    {{csrf_field()}}
+                                    <?php echo e(csrf_field()); ?>
+
                                     <input class="form-check-input" type="hidden" id="hasProfCertificate" name="hasProfCertificate" value="1">
                                     <div id="TextBoxesGroup">
 
@@ -181,11 +187,11 @@
 
                                     <div style="overflow:auto;" class="top">
                                         <div style="float:right;">
-                                            <a href="{{route('candidate.cvTrainingCertificate')}}">
+                                            <a href="<?php echo e(route('candidate.cvTrainingCertificate')); ?>">
                                                 <button type="button" id="btnPevious">Back</button>
                                             </a>
                                             <button type="submit" id="submitBtn">Save</button>
-                                            <a href="{{route('JobExperience.index')}}">
+                                            <a href="<?php echo e(route('JobExperience.index')); ?>">
                                                 <button type="button" id="nextBtn">Next</button>
                                             </a>
                                         </div>
@@ -218,16 +224,16 @@
     <!-- end wrapper -->
 
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('foot-js')
+<?php $__env->startSection('foot-js'); ?>
     <script>
         function editInfo(x) {
             $.ajax({
                 type: 'POST',
-                url: "{!! route('professionalQualificationId.edit') !!}",
+                url: "<?php echo route('professionalQualificationId.edit'); ?>",
                 cache: false,
-                data: {_token: "{{csrf_token()}}", 'professionalQualificationId': x},
+                data: {_token: "<?php echo e(csrf_token()); ?>", 'professionalQualificationId': x},
                 success: function (data) {
                     $('#edit' + x).html(data);
 
@@ -323,9 +329,9 @@
                     confirm: function () {
                         $.ajax({
                             type: 'POST',
-                            url: "{!! route('professionalQualificationId.delete') !!}",
+                            url: "<?php echo route('professionalQualificationId.delete'); ?>",
                             cache: false,
-                            data: {_token: "{{csrf_token()}}", 'professionalQualificationId': x},
+                            data: {_token: "<?php echo e(csrf_token()); ?>", 'professionalQualificationId': x},
                             success: function (data) {
                                 location.reload();
                             }
@@ -372,7 +378,7 @@
 
             var resultSydtem = document.getElementById("resultSydtem" + x).value;
 
-            if (resultSydtem == "{{OTHERS}}") {
+            if (resultSydtem == "<?php echo e(OTHERS); ?>") {
 
                 $("#resultSydtemNameDiv" + x).show();
             } else {
@@ -518,10 +524,10 @@
                     '<label for="">Result System</label>' +
                     '<select name="resultSystem[]" class="form-control" id="resultSydtem' + counter + '" data-panel-id="' + counter + '" onchange="getResultSystemName(' + counter + ')">' +
                     '<option value="">Select System</option>' +
-                        @foreach(RESULT_SYSTEM as $key=>$value)
-                            '<option value="{{$value}}">{{$key}}</option>' +
-                        @endforeach
-                            '<option value="{{OTHERS}}" >{{OTHERS}}</option>' +
+                        <?php $__currentLoopData = RESULT_SYSTEM; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            '<option value="<?php echo e($value); ?>"><?php echo e($key); ?></option>' +
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            '<option value="<?php echo e(OTHERS); ?>" ><?php echo e(OTHERS); ?></option>' +
                     '</select>' +
 
                     '</div>' +
@@ -554,9 +560,9 @@
                     '<select  class="form-control js-example-basic-single"id="trainingCertificatehour" name="hour[]">' +
 
                     '<option value="">Select Hour</option>' +
-                        @for($i = 1 ; $i <=330 ; $i++)
-                            '<option value="{{$i}}">{{$i}}</option>' +
-                        @endfor
+                        <?php for($i = 1 ; $i <=330 ; $i++): ?>
+                            '<option value="<?php echo e($i); ?>"><?php echo e($i); ?></option>' +
+                        <?php endfor; ?>
                             '</select>' +
                     '</div>' +
                     '<div class="form-group col-md-2">' +
@@ -564,9 +570,9 @@
                     '<select  class="form-control js-example-basic-single"id="trainingCertificateday" name="day[]">' +
 
                     '<option value="">Select Day</option>' +
-                        @for($i = 1 ; $i <=365 ; $i++)
-                            '<option value="{{$i}}">{{$i}}</option>' +
-                        @endfor
+                        <?php for($i = 1 ; $i <=365 ; $i++): ?>
+                            '<option value="<?php echo e($i); ?>"><?php echo e($i); ?></option>' +
+                        <?php endfor; ?>
                             '</select>' +
                     '</div>' +
                     '<div class="form-group col-md-2">' +
@@ -574,9 +580,9 @@
                     '<select  class="form-control js-example-basic-single"id="trainingCertificateweek" name="week[]">' +
 
                     '<option value="">Select Week</option>' +
-                        @for($i = 1 ; $i <=52 ; $i++)
-                            '<option value="{{$i}}">{{$i}}</option>' +
-                        @endfor
+                        <?php for($i = 1 ; $i <=52 ; $i++): ?>
+                            '<option value="<?php echo e($i); ?>"><?php echo e($i); ?></option>' +
+                        <?php endfor; ?>
                             '</select>' +
                     '</div>' +
                     '<div class="form-group col-md-2">' +
@@ -584,9 +590,9 @@
                     '<select  class="form-control js-example-basic-single"id="trainingCertificatemonth" name="month[]">' +
 
                     '<option value="">Select month</option>' +
-                        @for($i = 1 ; $i <=12 ; $i++)
-                            '<option value="{{$i}}">{{$i}}</option>' +
-                        @endfor
+                        <?php for($i = 1 ; $i <=12 ; $i++): ?>
+                            '<option value="<?php echo e($i); ?>"><?php echo e($i); ?></option>' +
+                        <?php endfor; ?>
                             '</select>' +
                     '</div>' +
                     '<div class="form-group col-md-2">' +
@@ -594,9 +600,9 @@
                     '<select  class="form-control js-example-basic-single"id="trainingCertificateyear" name="year[]">' +
 
                     '<option value="">Select year</option>' +
-                        @for($i = 1 ; $i <51 ; $i++)
-                            '<option value="{{$i}}">{{$i}}</option>' +
-                        @endfor
+                        <?php for($i = 1 ; $i <51 ; $i++): ?>
+                            '<option value="<?php echo e($i); ?>"><?php echo e($i); ?></option>' +
+                        <?php endfor; ?>
                             '</select>' +
                     '</div>' +
                     '</div>' +
@@ -604,9 +610,9 @@
                     '<label for="inputPassword4">Staus<span style="color: red">*</span></label>' +
                     '<select  class="form-control" id="professinalCertificateStatus' + counter + '" name="status[]" data-panel-id="' + counter + '" onchange="selectStatusAdd(this)">' +
                     '<option value="">Select Status</option>' +
-                        @foreach(COMPLETING_STATUS as $key=>$value)
-                            '<option value="{{$value}}">{{$key}}</option>' +
-                        @endforeach
+                        <?php $__currentLoopData = COMPLETING_STATUS; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            '<option value="<?php echo e($value); ?>"><?php echo e($key); ?></option>' +
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             '</select>' +
                     '</div>'
                 );
@@ -684,4 +690,6 @@
 
 
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
