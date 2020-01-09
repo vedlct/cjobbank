@@ -73,7 +73,7 @@ class MembershipInSocialNetworkController extends Controller
 
 
 
-       Session::flash('message', 'SocialMembership Added Successfully');
+       Session::flash('message', 'Social Membership Added Successfully');
        return redirect()->route('candidate.membershipInSocialNetwork.index');
 
    }
@@ -95,7 +95,7 @@ class MembershipInSocialNetworkController extends Controller
 
        $socialMembership->save();
 
-       Session::flash('message', 'SocialMembership Updated Successfully');
+       Session::flash('message', 'Social Membership Updated Successfully');
 
        return redirect()->route('candidate.membershipInSocialNetwork.index');
    }
@@ -104,6 +104,6 @@ class MembershipInSocialNetworkController extends Controller
        MembershipInSocialNetwork::destroy($r->id);
 
 
-       Session::flash('message', 'SocialMembership Deleted Successfully');
+       Session::flash('message', 'Social Membership Deleted Successfully');
    }
 }
