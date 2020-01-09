@@ -144,24 +144,19 @@
                             {{--<a class="dropdown-item" href="#"><i class="dripicons-user text-muted"></i> Profile</a>--}}
                             {{--<a class="dropdown-item" href="#"><i class="dripicons-wallet text-muted"></i>Team</a>--}}
                             <a class="dropdown-item" href="{{route('password')}}"><i class="dripicons-gear text-muted"></i>Change Password</a>
-
                             <div class="dropdown-divider"></div>
-                            {{--<a class="dropdown-item" href="{{ route('logout') }}"--}}
-                               {{--onclick="event.preventDefault();--}}
-                                                     {{--document.getElementById('logout-form').submit();"><i class="dripicons-gear text-muted"></i>Logout</a>--}}
-
-
-                            {{--Logout Button--}}
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                 <i class="fa fa-sign-out"></i> {{ __('Logout') }}
                             </a>
-
-
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 {{csrf_field()}}
                             </form>
+                            @if(USER_TYPE['User']== Auth::user()->fkuserTypeId)
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{url('remove-account')}}" style="background-color: red;color: aliceblue"><i class="fa fa-trash"></i> {{ __('Remove account') }}</a>
+                            @endif
                         </div>
                     </li>
                     <li class="menu-item list-inline-item">

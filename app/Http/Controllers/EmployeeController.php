@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Aggrement;
 use App\Education;
 use App\email;
 use App\Employee;
@@ -16,13 +17,16 @@ use App\Jobapply;
 use App\JobExperience;
 use App\MembershipInSocialNetwork;
 use App\Nationality;
+use App\PreviousWorkInCB;
 use App\ProfessionalQualification;
 use App\QuestionObjective;
+use App\QuestionObjectiveAns;
 use App\Refree;
 use App\RelativeInCb;
 use App\Religion;
 
 use App\Traning;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Session;
@@ -71,9 +75,8 @@ class EmployeeController extends Controller
     {
         $userId=Auth::user()->userId;
         return view('userCv.careerObjective');
-
-
     }
+
     public function applyJob($jobId,Request $r)
     {
 
@@ -223,16 +226,65 @@ class EmployeeController extends Controller
             $msg='Your CV information is not found ,please make your CV first';
 
             return view('userCv.cvPdf.userCvPdf', compact('msg','allEmp'));
-
         }
-
-
-
-
-
 
     }
 
+    public function removeAccount()
+    {
+        $emp = Employee::where('fkuserId',Auth::user()->userId)->first();
+        if (!empty($emp)){
+            $empId = $emp->employeeId;
+            Refree::where('fkemployeeId', $empId)->delete();
+            Refree::where('fkemployeeId', $empId)->delete();
+            MembershipInSocialNetwork::where('fkemployeeId', $empId)->delete();
+            PreviousWorkInCB::where('fkemployeeId', $empId)->delete();
+            JobExperience::where('fkemployeeId', $empId)->delete();
+            ProfessionalQualification::where('fkemployeeId', $empId)->delete();
+            Traning::where('fkemployeeId', $empId)->delete();
+            EmployeeOtherInfo::where('fk_empId', $empId)->delete();
+            EmpOtherSkill::where('fkemployeeId', $empId)->delete();
+            EmployeeComputerSkill::where('fk_empId', $empId)->delete();
+            EmployeeLanguage::where('fkemployeeId', $empId)->delete();
+            Education::where('fkemployeeId', $empId)->delete();
+            QuestionObjective::where('empId', $empId)->delete();
+            QuestionObjectiveAns::where('fkemployeeId', $empId)->delete();
+            Jobapply::where('fkemployeeId', $empId)->delete();
+            Aggrement::where('fkuserId', Auth::user()->userId)->delete();
+            if($emp->image != '' && file_exists(public_path('candidateImages/'.$emp->image))){
+                unlink(public_path('candidateImages/'.$emp->image));
+                unlink(public_path('candidateImages/thumb/'.$emp->image));
+            }
+            if($emp->sign != '' && file_exists(public_path('candidateSigns/'.$emp->sign))){
+                unlink(public_path('candidateSigns/'.$emp->sign));
+                unlink(public_path('candidateSigns/thumb/'.$emp->sign));
+            }
+            RelativeInCb::where('fkemployeeId', $empId)->delete();
+            Employee::destroy($empId);
+            User::destroy(Auth::user()->userId);
 
+            Auth::logout();
+            return redirect('/');
+
+//            EmployeeComputerSkill::where('fk_empId',$empId)->delete();
+//            Employee::find($empId)->delete();
+//            EmployeeLanguage::where('fkemployeeId',$empId)->delete();
+//            EmployeeOtherInfo::where('fk_empId',$empId)->delete();
+//            EmpOtherSkill::where('fkemployeeId',$empId)->delete();
+//            HR::where('fkuserId',Auth::user()->userId)->delete();
+//            Jobapply::where('fkemployeeId',$empId)->delete();
+//            JobExperience::where('fkemployeeId',$empId)->delete();
+//            PreviousWorkInCB::where('fkemployeeId',$empId)->delete();
+//            ProfessionalQualification::where('fkemployeeId',$empId)->delete();
+//            Refree::where('fkemployeeId',$empId)->delete();
+//            RelativeInCb::where('fkemployeeId',$empId)->delete();
+//            Traning::where('fkemployeeId',$empId)->delete();
+//            User::find('fkemployeeId',Auth::user()->userId)->delete();
+
+        }else{
+            Session::flash('message', 'There is a problem in remove your account.');
+            return back();
+        }
+    }
 
 }

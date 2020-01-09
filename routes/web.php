@@ -405,5 +405,5 @@ Route::get('/email-template-settings','Admin\SettingsController@emailTemplateSet
 Route::post('change-template/update-template','Admin\SettingsController@updateemailtemplate')->name('changeemailtemplate.updateemailtemplate');
 
 /* Guest */
-//Route::get('/available-job','GuestController@guestAvailablejob');
+Route::get('/remove-account','EmployeeController@removeAccount');
 //Route::post('/available-job/all','GuestController@guestGetJobData');
