@@ -260,9 +260,11 @@ class EmployeeController extends Controller
                 unlink(public_path('candidateSigns/thumb/'.$emp->sign));
             }
             RelativeInCb::where('fkemployeeId', $empId)->delete();
-            Employee::destroy($empId);
-            User::destroy(Auth::user()->userId);
-
+            $employee = Employee::findOrFail($empId);
+            $employee->delete();
+            //User::destroy(Auth::user()->userId);
+            $users = User::findOrFail(Auth::user()->userId);
+            $users->delete();
             Auth::logout();
             return redirect('/');
 
