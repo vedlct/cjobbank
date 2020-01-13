@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <title>caritas job bank</title>
+    <title>Caritas Job Bank</title>
     <meta content="Admin Dashboard" name="description" />
     <meta content="Themesdesign" name="author" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -39,7 +39,7 @@
     <div class="card">
         <div class="card-header">
             <h4 class="text-center">
-                <b class="waves-effect waves-light">caritas job bank</b>
+                <b class="waves-effect waves-light">Caritas Job Bank</b>
             </h4>
 
         </div>
@@ -121,7 +121,7 @@
         <div class="card-footer">
 
             <div style="text-align: center">
-                © <?php echo e(date('Y')); ?> caritas job bank<br>
+                © <?php echo e(date('Y')); ?> CARITAS JOB BANK<br>
                 HELP: CBGENERAL@CARITASBD.ORG
             </div>
 

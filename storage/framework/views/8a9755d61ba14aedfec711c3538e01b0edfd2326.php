@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<!-- Mirrored from themesdesign.in/upcube/layouts/horizontal/pages-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 May 2018 07:47:39 GMT -->
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,7 +39,7 @@
     <div class="card">
         <div class="card-header">
             <h4 class="text-center">
-                <b class="waves-effect waves-light">caritas job bank</b>
+                <b class="waves-effect waves-light">Caritas Job Bank</b>
             </h4>
 
         </div>
@@ -78,7 +78,7 @@
                     <div class="form-group row">
                         <div class="col-12">
                             
-                            <input id="password" type="password" class="form-control<?php echo e($errors->has('password') ? ' is-invalid' : ''); ?>" name="password" required>
+                            <input id="password" type="password" class="form-control<?php echo e($errors->has('password') ? ' is-invalid' : ''); ?>" name="password" placeholder="Password" required>
 
                             <?php if($errors->has('password')): ?>
 
@@ -132,7 +132,8 @@
         <div class="card-footer">
 
             <div style="text-align: center">
-                © <?php echo e(date('Y')); ?> CARITAS JOB BANK
+                © <?php echo e(date('Y')); ?> CARITAS JOB BANK<br>
+                HELP: CBGENERAL@CARITASBD.ORG
             </div>
 
 
@@ -154,9 +155,9 @@
 <script src="<?php echo e(url('public/assets/js/jquery.scrollTo.min.js')); ?>"></script>
 
 <!-- App js -->
-<script src="<?php echo e(url('public/')); ?>assets/js/app.js"></script>
+<script src="<?php echo e(url('public/assets/js/app.js')); ?>"></script>
 
 </body>
 
-<!-- Mirrored from themesdesign.in/upcube/layouts/horizontal/pages-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 07 May 2018 07:47:39 GMT -->
+
 </html>

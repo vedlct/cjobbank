@@ -158,7 +158,7 @@ class JobController extends Controller
 
 
        if($r->hasFile('jobPdf')){
-           if(file_exists(public_path('jobPdf/'.$jobInfo->pdflink))){
+           if($jobInfo->pdflink != '' && file_exists(public_path('jobPdf/'.$jobInfo->pdflink))){
                unlink(public_path('jobPdf/'.$jobInfo->pdflink));
            }
            $img = $r->file('jobPdf');
