@@ -1,5 +1,4 @@
-@extends('main')
-@section('content')
+<?php $__env->startSection('content'); ?>
 
     <!-- Modal -->
     <div class="modal fade" id="NewEducationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -13,8 +12,9 @@
 
                 <div class="modal-body">
 
-                    <form action="{{route('manage.education.insert')}}" method="post">
-                    {{csrf_field()}}
+                    <form action="<?php echo e(route('manage.education.insert')); ?>" method="post">
+                    <?php echo e(csrf_field()); ?>
+
 
                         <div class="form-group">
                             <label for="">Education Level Name</label>
@@ -77,15 +77,15 @@
 
 
                 <div class="card-body">
-                    @if ($errors->any())
+                    <?php if($errors->any()): ?>
                         <div class="alert alert-danger">
                             <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
+                                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <li><?php echo e($error); ?></li>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </ul>
                         </div>
-                    @endif
+                    <?php endif; ?>
                     <div class="card-header-tabs">
                         <h4>Manage Education Level</h4>
                     </div>
@@ -108,21 +108,22 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($educations as $education)
+                        <?php $__currentLoopData = $educations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $education): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>
-                                <td>{{$education->educationLevelName}}</td>
-                                <td>@if($education->eduLvlUnder == "1")Board @elseif($education->eduLvlUnder == "2")University @endif</td>
+                                <td><?php echo e($education->educationLevelName); ?></td>
+                                <td><?php if($education->eduLvlUnder == "1"): ?>Board <?php elseif($education->eduLvlUnder == "2"): ?>University <?php endif; ?></td>
                                 <td>
-                                    @foreach(STATUS as $key=>$value)
-                                        @if($education->status == $key)
-                                            {{$value}}
-                                        @endif
-                                    @endforeach
+                                    <?php $__currentLoopData = STATUS; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <?php if($education->status == $key): ?>
+                                            <?php echo e($value); ?>
+
+                                        <?php endif; ?>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </td>
-                                <td><button class="btn btn-sm btn-success" data-panel-id="{{$education->educationLevelId}}" onclick="editEducation(this)">Edit</button>
+                                <td><button class="btn btn-sm btn-success" data-panel-id="<?php echo e($education->educationLevelId); ?>" onclick="editEducation(this)">Edit</button>
                                 </td>
                             </tr>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
                         </tbody>
@@ -140,11 +141,11 @@
 
 
 
-@endsection
-@section('foot-js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('foot-js'); ?>
 
-    <script src="{{url('public/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{url('public/assets/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="<?php echo e(url('public/assets/plugins/datatables/jquery.dataTables.min.js')); ?>"></script>
+    <script src="<?php echo e(url('public/assets/plugins/datatables/dataTables.bootstrap4.min.js')); ?>"></script>
 
     <script>
         $(function () {
@@ -163,9 +164,9 @@
 
             $.ajax({
                 type: 'POST',
-                url: "{!! route('admin.editEducation') !!}",
+                url: "<?php echo route('admin.editEducation'); ?>",
                 cache: false,
-                data: {_token: "{{csrf_token()}}",'id': id},
+                data: {_token: "<?php echo e(csrf_token()); ?>",'id': id},
                 success: function (data) {
 //                    console.log(data);
                     $('#editModalBody').html(data);
@@ -184,4 +185,5 @@
     </script>
 
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

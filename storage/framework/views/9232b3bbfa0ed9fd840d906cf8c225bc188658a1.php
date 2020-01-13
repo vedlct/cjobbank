@@ -1,5 +1,4 @@
-@extends('main')
-@section('content')
+<?php $__env->startSection('content'); ?>
 
     <div class="modal fade" id="NewZoneModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -10,8 +9,9 @@
                 </div>
 
                 <div class="modal-body">
-                    <form method="post" action="{{route('admin.zone.insert')}}">
-                        {{csrf_field()}}
+                    <form method="post" action="<?php echo e(route('admin.zone.insert')); ?>">
+                        <?php echo e(csrf_field()); ?>
+
                         <div class="form-group">
                             <label >Zone Name <span style="color: red">*</span></label>
                             <input type="text" class="form-control" placeholder="zone" name="zone">
@@ -38,9 +38,9 @@
                             <label for="">Status <span style="color: red">*</span></label>
                             <select class="form-control" name="status">
                                 <option value="">Select Status</option>
-                                @foreach(STATUS as $key=>$value)
-                                    <option value="{{$key}}">{{$value}}</option>
-                                @endforeach
+                                <?php $__currentLoopData = STATUS; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($key); ?>"><?php echo e($value); ?></option>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                         </div>
                         <div class="form-group">
@@ -80,15 +80,15 @@
     <div class="row">
         <div class="col-12">
             <div class="card container">
-                @if ($errors->any())
+                <?php if($errors->any()): ?>
                     <div class="alert alert-danger">
                         <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
+                            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <li><?php echo e($error); ?></li>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </ul>
                     </div>
-                @endif
+                <?php endif; ?>
 
                 <div class="card-body">
                     <div class="card-header-tabs">
@@ -114,23 +114,24 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($zones as $zone)
+                            <?php $__currentLoopData = $zones; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $zone): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                    <td>{{$zone->zoneName}}</td>
-                                    <td>{{$zone->officeAddress}}</td>
-                                    <td>{{$zone->zonePhone}}</td>
-                                    <td>{{$zone->zoneEmail}}</td>
-                                    <td>{{$zone->zoneWeb}}</td>
+                                    <td><?php echo e($zone->zoneName); ?></td>
+                                    <td><?php echo e($zone->officeAddress); ?></td>
+                                    <td><?php echo e($zone->zonePhone); ?></td>
+                                    <td><?php echo e($zone->zoneEmail); ?></td>
+                                    <td><?php echo e($zone->zoneWeb); ?></td>
                                     <td>
-                                        @foreach(STATUS as $key=>$value)
-                                            @if($zone->status == $key)
-                                                {{$value}}
-                                            @endif
-                                        @endforeach
+                                        <?php $__currentLoopData = STATUS; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <?php if($zone->status == $key): ?>
+                                                <?php echo e($value); ?>
+
+                                            <?php endif; ?>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </td>
-                                    <td><button class="btn btn-success btn-sm" data-panel-id="{{$zone->zoneId}}" onclick="editZone(this)">Edit</button></td>
+                                    <td><button class="btn btn-success btn-sm" data-panel-id="<?php echo e($zone->zoneId); ?>" onclick="editZone(this)">Edit</button></td>
                                 </tr>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </tbody>
                         </table>
                     </div>
@@ -141,10 +142,10 @@
         </div> <!-- end col -->
     </div> <!-- end row -->
 
-@endsection
-@section('foot-js')
-    <script src="{{url('public/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{url('public/assets/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('foot-js'); ?>
+    <script src="<?php echo e(url('public/assets/plugins/datatables/jquery.dataTables.min.js')); ?>"></script>
+    <script src="<?php echo e(url('public/assets/plugins/datatables/dataTables.bootstrap4.min.js')); ?>"></script>
     <script>
         $(function () {
             $('#manageZone').DataTable(
@@ -158,9 +159,9 @@
             var id=$(x).data('panel-id');
             $.ajax({
                 type: 'POST',
-                url: "{!! route('admin.editZone') !!}",
+                url: "<?php echo route('admin.editZone'); ?>",
                 cache: false,
-                data: {_token: "{{csrf_token()}}",'id': id},
+                data: {_token: "<?php echo e(csrf_token()); ?>",'id': id},
                 success: function (data) {
                     $('#editModalBody').html(data);
                     $('#editModal').modal();
@@ -171,4 +172,6 @@
             $('#NewZoneModal').modal({show:true});
         }
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
