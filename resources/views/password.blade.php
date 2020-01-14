@@ -33,13 +33,21 @@
                             <input type="password" name="oldPass" class="form-control">
                         </div>
 
-                        <div class="form-group">
-                            <label for="password">Password</label>
+                        <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
+                            <label for="password"> New Password</label>
                             <input type="password" class="form-control" id="password" name="password" />
+                            @if ($errors->has('password'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                            @endif
                         </div>
+                        <p id="passwordHelpBlock" class="form-text text-muted" style="font-size: small">
+                            Your password must be more than 8 characters long, should contain at-least 1 Uppercase, 1 Lowercase, 1 Numeric and 1 special character.
+                        </p>
 
                         <div class="form-group">
-                            <label for="password_again">Again</label>
+                            <label for="password_again">Enter New Password Again</label>
                             <input type="password" class="form-control" id="password_again" name="password_again" />
                         </div>
 
