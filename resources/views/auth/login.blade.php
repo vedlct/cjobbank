@@ -25,6 +25,18 @@
             background-position-x: center;
             background-position-y: 50%;
         }
+        .field-icon {
+            float: right;
+            margin-left: -25px;
+            margin-top: -25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .container{
+            padding-top:50px;
+            margin: auto;
+        }
     </style>
 
 </head>
@@ -77,8 +89,8 @@
                     <div class="form-group row">
                         <div class="col-12">
                             {{--<input class="form-control" name="password" type="password" placeholder="Password" required>--}}
-                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Password" required>
-
+                            <input id="password-field" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Password" required>
+                            <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                             @if ($errors->has('password'))
 
                                 <span class="">
@@ -154,6 +166,18 @@
 
 <!-- App js -->
 <script src="{{url('public/assets/js/app.js')}}"></script>
+<script>
+    $(".toggle-password").click(function() {
+
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });
+</script>
 
 </body>
 

@@ -10,7 +10,7 @@
         <label class="radio-inline">
             <input type="radio" @if($education->eduLvlUnder == '1') checked @endif value="1" required name="eduLvlUnder">Board
         </label>
-        <label class="radio-inline">
+        <label class="radio-inline" style="margin-left: 6%;">
             <input type="radio" required value="2" @if($education->eduLvlUnder == '2') checked @endif name="eduLvlUnder">University
         </label>
 

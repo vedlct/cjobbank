@@ -96,7 +96,7 @@ class EmployeeController extends Controller
             $customBody = email::where('emailfor','Acknowledgement')->first();
             Mail::send('mail.jobApplySuccess',['email' => $email,'customBody' => $customBody->emailbody], function($message) use ($customBody,$email)
             {
-                $message->to($email)->subject('APPLY SUCCESSFUL');
+                $message->to($email)->subject('Applied for the job successfully');
             });
         }
 

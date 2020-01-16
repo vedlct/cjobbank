@@ -2,6 +2,20 @@
 
 @section('content')
 
+    <style>
+        .field-icon {
+            float: right;
+            margin-left: -25px;
+            margin-top: -25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .container{
+            padding-top:50px;
+            margin: auto;
+        }
+    </style>
     <div class="card">
         <div class="card-body">
 
@@ -35,8 +49,9 @@
 
                         <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password"> New Password</label>
-                            <input type="password" class="form-control" id="password" name="password" />
-                            @if ($errors->has('password'))
+                            <input type="password" class="form-control" id="password-field" name="password" />
+                            <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                        @if ($errors->has('password'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
@@ -49,6 +64,7 @@
                         <div class="form-group">
                             <label for="password_again">Enter New Password Again</label>
                             <input type="password" class="form-control" id="password_again" name="password_again" />
+                            <span toggle="#password_again" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                         </div>
 
 
@@ -92,5 +108,17 @@
             }
         });
     </script>
+            <script>
+                $(".toggle-password").click(function() {
+
+                    $(this).toggleClass("fa-eye fa-eye-slash");
+                    var input = $($(this).attr("toggle"));
+                    if (input.attr("type") == "password") {
+                        input.attr("type", "text");
+                    } else {
+                        input.attr("type", "password");
+                    }
+                });
+            </script>
 
 @endsection
