@@ -116,6 +116,7 @@
                                     <thead>
                                     <tr>
                                         <th style="text-align: center" >Degree</th>
+                                        <th style="text-align: center" >Major</th>
                                         <th style="text-align: center" >Institution / Board</th>
                                         <th style="text-align: center" >Passing year</th>
                                         <th style="text-align: center" >Result</th>
@@ -126,6 +127,7 @@
                                         <tr>
 {{--                                            <td style="text-align: center">{{$edu->educationLevelName}} in {{$edu->degreeName}} </td>--}}
                                             <td style="text-align: center">{{$edu->degreeName}} </td>
+                                            <td style="text-align: center">{{$edu->educationMajorName}} </td>
                                             <td style="text-align: center">{{$edu->institutionName}}
                                                 @if($edu->boardName)
                                                     /
@@ -172,7 +174,7 @@
                                                     <span class="bold"> Company name : </span> &nbsp;&nbsp {{$exp->organization}}  &nbsp;&nbsp;
                                                     <div class="pull-right"><span class="bold">Position:</span>&nbsp;&nbsp;&nbsp; {{$exp->degisnation}} </div><br>
 
-                                                    <span class="bold"> Major responsibilities :</span>&nbsp;&nbsp;&nbsp; {{$exp->majorResponsibilities}} <br>
+                                                    <span class="bold"> Major responsibilities :</span>&nbsp;&nbsp;&nbsp; {!! $exp->majorResponsibilities  !!}<br>
                                                     <span class="bold"> Address:</span>&nbsp;&nbsp;&nbsp; {{$exp->address}} <br>
                                                     <span class="bold"> Duration:</span>&nbsp;&nbsp;&nbsp; {{$exp->startDate}} -  @if($exp->endDate) {{$exp->endDate}} @else
                                                         Continuing

@@ -48,7 +48,7 @@
     <div class="card">
         <div class="card-body">
 
-            <h2 class="text-muted text-center font-18">Agreements</h2>
+            <h2 class="text-muted text-center font-18">Self Declaration</h2>
 
             <div class="p-3">
                 <form class="form-horizontal m-t-20" method="post" action="{{route('register.newUserAgreement')}}">

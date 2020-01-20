@@ -94,6 +94,7 @@
             <thead>
             <tr>
                 <th style="text-align: center" >Degree</th>
+                <th style="text-align: center" >Major</th>
                 <th style="text-align: center" >Institution / Board</th>
                 <th style="text-align: center" >Passing Year</th>
                 <th style="text-align: center" >Result</th>
@@ -104,7 +105,7 @@
                 <?php if($edu->passingYear==null): ?>
                     <tr>
                         <td style="text-align: center"><?php echo e($edu->educationLevelName); ?> in <?php echo e($edu->degreeName); ?> </td>
-                        
+                        <td style="text-align: center"><?php echo e($edu->educationMajorName); ?> </td>
                         <td style="text-align: center"><?php echo e($edu->institutionName); ?>
 
                             <?php if($edu->boardName): ?>
@@ -127,7 +128,7 @@
             <?php $__currentLoopData = $education; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $edu): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr>
                     <td style="text-align: center"><?php echo e($edu->educationLevelName); ?> in <?php echo e($edu->degreeName); ?> </td>
-                    
+                    <td style="text-align: center"><?php echo e($edu->educationMajorName); ?> </td>
                     <td style="text-align: center"><?php echo e($edu->institutionName); ?>
 
                         <?php if($edu->boardName): ?>

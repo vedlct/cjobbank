@@ -117,6 +117,7 @@
                                     <thead>
                                     <tr>
                                         <th style="text-align: center" >Degree</th>
+                                        <th style="text-align: center" >Major</th>
                                         <th style="text-align: center" >Institution / Board</th>
                                         <th style="text-align: center" >Passing year</th>
                                         <th style="text-align: center" >Result</th>
@@ -127,6 +128,7 @@
                                         <tr>
 
                                             <td style="text-align: center"><?php echo e($edu->degreeName); ?> </td>
+                                            <td style="text-align: center"><?php echo e($edu->educationMajorName); ?> </td>
                                             <td style="text-align: center"><?php echo e($edu->institutionName); ?>
 
                                                 <?php if($edu->boardName): ?>
@@ -175,7 +177,7 @@
                                                     <span class="bold"> Company name : </span> &nbsp;&nbsp <?php echo e($exp->organization); ?>  &nbsp;&nbsp;
                                                     <div class="pull-right"><span class="bold">Position:</span>&nbsp;&nbsp;&nbsp; <?php echo e($exp->degisnation); ?> </div><br>
 
-                                                    <span class="bold"> Major responsibilities :</span>&nbsp;&nbsp;&nbsp; <?php echo e($exp->majorResponsibilities); ?> <br>
+                                                    <span class="bold"> Major responsibilities :</span>&nbsp;&nbsp;&nbsp; <?php echo $exp->majorResponsibilities; ?><br>
                                                     <span class="bold"> Address:</span>&nbsp;&nbsp;&nbsp; <?php echo e($exp->address); ?> <br>
                                                     <span class="bold"> Duration:</span>&nbsp;&nbsp;&nbsp; <?php echo e($exp->startDate); ?> -  <?php if($exp->endDate): ?> <?php echo e($exp->endDate); ?> <?php else: ?>
                                                         Continuing
