@@ -56,7 +56,7 @@
         <a href="#"><i class="ti-user"></i>User Management</a>
         <ul class="submenu">
             <li><a href="<?php echo e(route('admin.manageUser')); ?>">Employee</a></li>
-            
+            <li><a href="<?php echo e(route('admin.manageUser.user')); ?>">User</a></li>
         </ul>
     </li>
     <?php endif; ?>

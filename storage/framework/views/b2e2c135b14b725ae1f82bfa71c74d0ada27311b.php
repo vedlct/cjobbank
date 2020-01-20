@@ -1,5 +1,19 @@
 <?php $__env->startSection('content'); ?>
 
+    <style>
+        .field-icon {
+            float: right;
+            margin-left: -25px;
+            margin-top: -25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .container{
+            padding-top:50px;
+            margin: auto;
+        }
+    </style>
     <div class="card">
         <div class="card-body">
 
@@ -32,14 +46,24 @@
                             <input type="password" name="oldPass" class="form-control">
                         </div>
 
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="password" />
+                        <div class="form-group <?php echo e($errors->has('password') ? ' has-error' : ''); ?>">
+                            <label for="password"> New Password</label>
+                            <input type="password" class="form-control" id="password-field" name="password" />
+                            <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                        <?php if($errors->has('password')): ?>
+                                <span class="help-block">
+                                        <strong><?php echo e($errors->first('password')); ?></strong>
+                                    </span>
+                            <?php endif; ?>
                         </div>
+                        <p id="passwordHelpBlock" class="form-text text-muted" style="font-size: small">
+                            Your password must be more than 8 characters long, should contain at-least 1 Uppercase, 1 Lowercase, 1 Numeric and 1 special character.
+                        </p>
 
                         <div class="form-group">
-                            <label for="password_again">Again</label>
+                            <label for="password_again">Enter New Password Again</label>
                             <input type="password" class="form-control" id="password_again" name="password_again" />
+                            <span toggle="#password_again" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                         </div>
 
 
@@ -83,6 +107,18 @@
             }
         });
     </script>
+            <script>
+                $(".toggle-password").click(function() {
+
+                    $(this).toggleClass("fa-eye fa-eye-slash");
+                    var input = $($(this).attr("toggle"));
+                    if (input.attr("type") == "password") {
+                        input.attr("type", "text");
+                    } else {
+                        input.attr("type", "password");
+                    }
+                });
+            </script>
 
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

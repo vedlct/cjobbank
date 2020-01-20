@@ -96,7 +96,7 @@ class EmployeeController extends Controller
             $customBody = email::where('emailfor','Acknowledgement')->first();
             Mail::send('mail.jobApplySuccess',['email' => $email,'customBody' => $customBody->emailbody], function($message) use ($customBody,$email)
             {
-                $message->to($email)->subject('APPLY SUCCESSFUL');
+                $message->to($email)->subject('Applied for the job successfully');
             });
         }
 
@@ -259,9 +259,11 @@ class EmployeeController extends Controller
                 unlink(public_path('candidateSigns/thumb/'.$emp->sign));
             }
             RelativeInCb::where('fkemployeeId', $empId)->delete();
-            Employee::destroy($empId);
-            User::destroy(Auth::user()->userId);
-
+            $employee = Employee::findOrFail($empId);
+            $employee->delete();
+            //User::destroy(Auth::user()->userId);
+            $users = User::findOrFail(Auth::user()->userId);
+            $users->delete();
             Auth::logout();
             return redirect('/');
 

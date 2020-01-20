@@ -144,26 +144,21 @@
                             
                             
                             <a class="dropdown-item" href="<?php echo e(route('password')); ?>"><i class="dripicons-gear text-muted"></i>Change Password</a>
-
                             <div class="dropdown-divider"></div>
-                            
-                               
-                                                     
-
-
-                            
                             <a class="dropdown-item" href="<?php echo e(route('logout')); ?>"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                 <i class="fa fa-sign-out"></i> <?php echo e(__('Logout')); ?>
 
                             </a>
-
-
                             <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
                                 <?php echo e(csrf_field()); ?>
 
                             </form>
+                            <?php if(USER_TYPE['User']== Auth::user()->fkuserTypeId): ?>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="<?php echo e(url('remove-account')); ?>" style="background-color: red;color: aliceblue"><i class="fa fa-trash"></i> <?php echo e(__('Remove account')); ?></a>
+                            <?php endif; ?>
                         </div>
                     </li>
                     <li class="menu-item list-inline-item">

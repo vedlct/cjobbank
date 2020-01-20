@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <title>caritas job bank</title>
+    <title>Caritas Job Bank</title>
     <meta content="Admin Dashboard" name="description" />
     <meta content="Themesdesign" name="author" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -17,7 +17,20 @@
     <link href="{{url('public/assets/css/icons.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{url('public/assets/css/style.css')}}" rel="stylesheet" type="text/css" />
 
+<style>
+    .field-icon {
+        float: right;
+        margin-left: -25px;
+        margin-top: -25px;
+        position: relative;
+        z-index: 2;
+    }
 
+    .container{
+        padding-top:50px;
+        margin: auto;
+    }
+</style>
 </head>
 
 
@@ -52,7 +65,7 @@
                     <div class="form-group row">
                         <div class="col-12">
                             <input id="password" type="password" class="form-control" name="password" required>
-
+                            <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                             @if ($errors->has('password'))
                                 <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <title>caritas job bank</title>
+    <title>Caritas Job Bank</title>
     <meta content="Admin Dashboard" name="description" />
     <meta content="Themesdesign" name="author" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -25,6 +25,18 @@
             background-position-x: center;
             background-position-y: 50%;
         }
+        .field-icon {
+            float: right;
+            margin-left: -25px;
+            margin-top: -25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .container{
+            padding-top:50px;
+            margin: auto;
+        }
     </style>
 
 </head>
@@ -39,7 +51,7 @@
     <div class="card">
         <div class="card-header">
             <h4 class="text-center">
-                <b class="waves-effect waves-light">caritas job bank</b>
+                <b class="waves-effect waves-light">Caritas Job Bank</b>
             </h4>
 
         </div>
@@ -77,7 +89,8 @@
                     <div class="form-group row">
                         <div class="col-12">
                             {{--<input class="form-control" name="password" type="password" placeholder="Password" required>--}}
-                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="Password"  required>
+                            <input id="password-field" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="New Password"  required>
+                            <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
 
                             @if ($errors->has('password'))
 
@@ -120,7 +133,7 @@
         <div class="card-footer">
 
             <div style="text-align: center">
-                © {{date('Y')}} caritas job bank<br>
+                © {{date('Y')}} CARITAS JOB BANK<br>
                 HELP: CBGENERAL@CARITASBD.ORG
             </div>
 
@@ -142,7 +155,18 @@
 <script src="{{url('public/assets/js/jquery.nicescroll.js')}}"></script>
 <script src="{{url('public/assets/js/jquery.scrollTo.min.js')}}"></script>
 
+<script>
+    $(".toggle-password").click(function() {
 
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });
+</script>
 
 </body>
 

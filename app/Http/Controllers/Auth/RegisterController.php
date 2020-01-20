@@ -152,7 +152,7 @@ class RegisterController extends Controller
 
         try {
             Mail::send('mail.AccountCreate', $data, function ($message) use ($data) {
-                $message->to($data['email'], 'Caritas BD')->subject('New - Account');
+                $message->to($data['email'], 'Caritas BD')->subject('Action required to activate Caritas Bangladesh account');
 
             });
 
@@ -321,28 +321,33 @@ class RegisterController extends Controller
 
         ];
 
-        $customMessages = [
-//            'unique' => 'This User is already been registered.Please Login !'
-        ];
 
-        $this->validate($r, $rules, $customMessages);
 
-        $userInfo=User::where('email', $r->email)->first();
+        $this->validate($r, $rules);
+
+        $userInfo=User::select('firstName','lastName', 'gender','user.token','register')->leftjoin('employee', 'fkuserId', 'userId')
+        ->where('user.email', $r->email)->first();
+        $userInfosave = User::where('email', $r->email)->first();
 
         if(!empty($userInfo)) {
 
             if ($userInfo->register == 'Y') {
 
 
-                $userToken=$userInfo->token=str_random(64);
-                $userInfo->save();
+                $userToken=$userInfosave->token=str_random(64);
+                $userInfosave->save();
+                $firstName = $userInfo->firstName;
+                $lastName = $userInfo->lastName;
+                $gender = $userInfo->gender;
 
-                $data = array('email'=>$r->email,'pass'=>$r->password,'userToken'=>$userToken);
+
+                $data = array('firstName'=>$firstName,'lastName'=>$lastName,'gender'=>$gender,'email'=>$r->email,'pass'=>$r->password,'userToken'=>$userToken);
+
 
                 try {
 
                     Mail::send('mail.ForgetPassword', $data, function ($message) use ($data) {
-                        $message->to($data['email'], 'Caritas BD')->subject('Account-Reset Password');
+                        $message->to($data['email'], 'Caritas BD')->subject('Your Caritas Bangladesh Password Reset Information');
 
                     });
                     Session::flash('notActive', 'Reset Password Confirmation Mail is sent to your mail');
