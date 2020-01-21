@@ -107,6 +107,11 @@
                 <tr >
                     <td align="left">
                         To <br>
+                        @if($empInfo->gender == 'F')
+                            Ms.
+                        @elseif($empInfo->gender == 'M')
+                            Mr.
+                        @endif
                         {{$empInfo->firstName.' '.$empInfo->lastName}}<br>
                         {{$empInfo->presentAddress}}<br>
                         Email: {{$empInfo->email}}<br>

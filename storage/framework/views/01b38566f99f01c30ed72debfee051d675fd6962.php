@@ -109,6 +109,9 @@
                 <tr >
                     <td align="left">
                         To <br>
+                        <?php if($empInfo->gender == 'F'): ?>
+                            Ms.
+                            <?php endif; ?>
                         <?php echo e($empInfo->firstName.' '.$empInfo->lastName); ?><br>
                         <?php echo e($empInfo->presentAddress); ?><br>
                         Email: <?php echo e($empInfo->email); ?><br>
@@ -141,7 +144,7 @@
     <table style="width: 100%">
         <tr>
         <td style="width: 100%" align="left">
-            <b>Dear </b><?php echo e($empInfo->firstName.' '.$empInfo->lastName); ?>,
+            <b>Dear <?php if($empInfo->gender == "M"): ?><?php echo e("Mr "); ?><?php elseif($empInfo->gender == "F"): ?><?php echo e("Mrs "); ?><?php endif; ?><?php echo e($empInfo->firstName.' '.$empInfo->lastName); ?></b>,
         </td>
         </tr>
         <tr>
