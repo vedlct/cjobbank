@@ -355,7 +355,7 @@ class UserCvController extends Controller
            'educationmajor.educationMajorName', 'education.fkMajorId', 'passingYear')
            ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
            ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
-           ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
+           ->leftJoin('educationmajor', 'educationmajor.educationMajorId', '=', 'education.fkMajorId')
            ->leftJoin('board', 'board.boardId', '=', 'education.fkboardId')
            ->where('fkemployeeId', $empId)
            ->orderBy('passingYear', 'desc')

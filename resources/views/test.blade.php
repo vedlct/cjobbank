@@ -93,6 +93,7 @@
             <thead>
             <tr>
                 <th style="text-align: center" >Degree</th>
+                <th style="text-align: center" >Major</th>
                 <th style="text-align: center" >Institution / Board</th>
                 <th style="text-align: center" >Passing Year</th>
                 <th style="text-align: center" >Result</th>
@@ -103,7 +104,7 @@
                 @if($edu->passingYear==null)
                     <tr>
                         <td style="text-align: center">{{$edu->educationLevelName}} in {{$edu->degreeName}} </td>
-                        {{--                        <td style="text-align: center">{{$edu->educationLevelName}} </td>--}}
+                        <td style="text-align: center">{{$edu->educationMajorName}} </td>
                         <td style="text-align: center">{{$edu->institutionName}}
                             @if($edu->boardName)
                                 /{{$edu->boardName}}
@@ -123,7 +124,7 @@
             @foreach($education as $edu)
                 <tr>
                     <td style="text-align: center">{{$edu->educationLevelName}} in {{$edu->degreeName}} </td>
-                    {{--                    <td style="text-align: center">{{$edu->educationLevelName}} </td>--}}
+                    <td style="text-align: center">{{$edu->educationMajorName}} </td>
                     <td style="text-align: center">{{$edu->institutionName}}
                         @if($edu->boardName)
                             /{{$edu->boardName}}

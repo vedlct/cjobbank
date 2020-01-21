@@ -155,13 +155,12 @@ class EmployeeController extends Controller
                     'educationmajor.educationMajorName', 'education.fkMajorId', 'passingYear')
                     ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
                     ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
-                    ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
+                    ->leftJoin('educationmajor', 'educationmajor.educationMajorId', '=', 'education.fkMajorId')
                     ->leftJoin('board', 'board.boardId', '=', 'education.fkboardId')
                     ->where('fkemployeeId', $empId)
                     ->orderBy('passingYear', 'desc')
                     ->groupBy('education.educationId')
                     ->get();
-
 
                 $empOtherSkillls = EmpOtherSkill::where('fkemployeeId', $empId)
                     ->leftJoin('otherskillsinformation', 'otherskillsinformation.id', 'emp_otherskill_achievement.otherSkillId')

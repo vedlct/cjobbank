@@ -374,7 +374,7 @@
                 </div>
                 <hr>
                 <div class="form-group">
-                    <label style="text-align: center" class="col-12">Job Experiences</label>
+                    <label style="text-align: center" class="col-12">Job Experience</label>
 
                     <div class=" form-group ">
                         <label>From</label>&nbsp;<span style="color: red">(Year)</span>

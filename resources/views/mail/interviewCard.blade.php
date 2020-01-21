@@ -107,6 +107,11 @@
                 <tr >
                     <td align="left">
                         To <br>
+                        @if($empInfo->gender == 'F')
+                            Mrs.
+                        @elseif($empInfo->gender == 'M')
+                            Mr.
+                        @endif
                         {{$empInfo->firstName.' '.$empInfo->lastName}}<br>
                         {{$empInfo->presentAddress}}<br>
                         Email: {{$empInfo->email}}<br>
@@ -138,7 +143,7 @@
     <table style="width: 100%">
         <tr>
         <td style="width: 100%" align="left">
-            <b>Dear @if($empInfo->gender == "M"){{"Mr "}}@elseif($empInfo->gender == "F"){{"Mrs "}}@endif{{$empInfo->firstName.' '.$empInfo->lastName}}</b>,
+            <b>Dear @if($empInfo->gender == "M"){{"Mr. "}}@elseif($empInfo->gender == "F"){{"Mrs. "}}@endif{{$empInfo->firstName.' '.$empInfo->lastName}}</b>,
         </td>
         </tr>
         <tr>
