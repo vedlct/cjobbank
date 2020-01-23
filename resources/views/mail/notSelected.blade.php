@@ -104,7 +104,7 @@
             <td style="width: 50%" align="left">
                 To <br>
                 @if($empInfo->gender == 'F')
-                    Ms.
+                    Mrs.
                 @elseif($empInfo->gender == 'M')
                     Mr.
                 @endif
@@ -120,16 +120,13 @@
 </div>
 
 <div style="margin: 0px 30px 0px 30px;">
-
     <table >
         <tr>
             <td width="100%" align="left">
                 <b>Dear </b>@if($empInfo->gender == "M"){{"Mr "}}@elseif($empInfo->gender == "F"){{"Ms "}}@endif{{$empInfo->firstName.' '.$empInfo->lastName}},
             </td>
         </tr>
-
     </table>
-
 </div>
 
 <div style="margin: 20px 30px 20px 30px;">

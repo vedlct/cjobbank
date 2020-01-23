@@ -108,7 +108,7 @@
                     <td align="left">
                         To <br>
                         @if($empInfo->gender == 'F')
-                            Ms.
+                            Mrs.
                         @elseif($empInfo->gender == 'M')
                             Mr.
                         @endif
