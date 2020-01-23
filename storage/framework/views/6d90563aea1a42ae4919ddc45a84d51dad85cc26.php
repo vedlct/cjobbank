@@ -157,7 +157,7 @@
                             </form>
                             <?php if(USER_TYPE['User']== Auth::user()->fkuserTypeId): ?>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="<?php echo e(url('remove-account')); ?>" style="background-color: red;color: aliceblue"><i class="fa fa-trash"></i> <?php echo e(__('Remove account')); ?></a>
+                            <a onclick="remove_account()" class="dropdown-item" href="javascript:void(0)" style="background-color: red;color: aliceblue"><i class="fa fa-trash"></i> <?php echo e(__('Remove account')); ?></a>
                             <?php endif; ?>
                         </div>
                     </li>

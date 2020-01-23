@@ -34,8 +34,7 @@
                                 <b><h4 class="modal-title dark profile-title" id="myModalLabel">Mail Info</h4></b>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                             </div>
-
-                            <div class="modal-body">
+                            <div class="modal-body" id="sendViewMail">
                                 <div id="email-preview"></div>
                                 <div id="email-send">
                                     <div class="row">
@@ -161,7 +160,9 @@
                                 <div style="display: none" id="HRreport03" class="form-group">
                                     <a href="#" onclick="return myfunchrreport03()" ><button type="submit" class="btn btn-success">Submit</button></a>
                                 </div>
-
+                                <div style="display: none" id="HRreport04" class="form-group">
+                                    <a href="#" onclick="return myfunchrreport04()" ><button type="submit" class="btn btn-success">Submit</button></a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -420,6 +421,9 @@
                         <div class="col-md-3">
                             <a onclick="excelReport02InfomationSubmit()"><button class="btn btn-primary btn-sm top left">Export HR report-03</button></a>
                         </div>
+{{--                        <div class="col-md-3">--}}
+{{--                            <a onclick="excelReport04InfomationSubmit()"><button class="btn btn-primary btn-sm top left">Export HR report-04</button></a>--}}
+{{--                        </div>--}}
                     </div>
                     <div style="margin-top: 10px;" class="row">
 
@@ -1196,13 +1200,11 @@
                         cache: false,
                         data: {'jobApply': products,'excelName':$('#excelName').val(),_token:"{{csrf_token()}}",jobTitle:$('#jobTitle').val()},
                         success: function (data) {
-
                             $('#SessionMessage').load(document.URL +  ' #SessionMessage');
                             table.ajax.reload();
                             selecteds=[];
                             $(':checkbox:checked').prop('checked',false);
                             if (data.success=='1'){
-
                                 $.alert({
                                     title: 'Success!',
                                     type: 'green',
@@ -1212,7 +1214,6 @@
                                             text: 'Ok',
                                             btnClass: 'btn-blue',
                                             action: function () {
-
                                                 var link = document.createElement("a");
                                                 link.download = data.fileName+".xls";
                                                 var uri = '{{url("public/exportedExcel")}}'+"/"+data.fileName+".xls";
@@ -1228,7 +1229,6 @@
                                 });
 
                             }else if(data.success=='0'){
-
                                 $.alert({
                                     title: 'Alert!',
                                     type: 'Red',
@@ -1254,17 +1254,12 @@
                         buttons: {
                             tryAgain: {
                                 text: 'Ok',
-                                btnClass: 'btn-red',
-                                action: function () {
-
-                                }
+                                btnClass: 'btn-red'
                             }
                         }
                     });
                 }
-
             }else {
-
                 $.alert({
                     title: 'Alert!',
                     type: 'red',
@@ -1272,15 +1267,98 @@
                     buttons: {
                         tryAgain: {
                             text: 'Ok',
-                            btnClass: 'btn-blue',
-                            action: function () {
-
-                            }
+                            btnClass: 'btn-blue'
                         }
                     }
                 });
             }
         }
+
+        function myfunchrreport04() {
+            alert('work');
+            // if ($('#jobTitle').val()!=""){
+            {{--    var products=selecteds;--}}
+            {{--    if (products.length >0) {--}}
+            {{--        $.ajax({--}}
+            {{--            type: 'POST',--}}
+            {{--            url: "{!! route('jobAppliedCadidate.admin.Exporthrreport02xls') !!}",--}}
+            {{--            cache: false,--}}
+            {{--            data: {'jobApply': products,'excelName':$('#excelName').val(),_token:"{{csrf_token()}}",jobTitle:$('#jobTitle').val()},--}}
+            {{--            success: function (data) {--}}
+            {{--                $('#SessionMessage').load(document.URL +  ' #SessionMessage');--}}
+            {{--                table.ajax.reload();--}}
+            {{--                selecteds=[];--}}
+            {{--                $(':checkbox:checked').prop('checked',false);--}}
+            {{--                if (data.success=='1'){--}}
+            {{--                    $.alert({--}}
+            {{--                        title: 'Success!',--}}
+            {{--                        type: 'green',--}}
+            {{--                        content: data.message,--}}
+            {{--                        buttons: {--}}
+            {{--                            tryAgain: {--}}
+            {{--                                text: 'Ok',--}}
+            {{--                                btnClass: 'btn-blue',--}}
+            {{--                                action: function () {--}}
+            {{--                                    var link = document.createElement("a");--}}
+            {{--                                    link.download = data.fileName+".xls";--}}
+            {{--                                    var uri = '{{url("public/exportedExcel")}}'+"/"+data.fileName+".xls";--}}
+            {{--                                    link.href = uri;--}}
+            {{--                                    document.body.appendChild(link);--}}
+            {{--                                    link.click();--}}
+            {{--                                    document.body.removeChild(link);--}}
+            {{--                                    delete link;--}}
+            {{--                                    location.reload();--}}
+            {{--                                }--}}
+            {{--                            }--}}
+            {{--                        }--}}
+            {{--                    });--}}
+
+            {{--                }else if(data.success=='0'){--}}
+            {{--                    $.alert({--}}
+            {{--                        title: 'Alert!',--}}
+            {{--                        type: 'Red',--}}
+            {{--                        content: data.message,--}}
+            {{--                        buttons: {--}}
+            {{--                            tryAgain: {--}}
+            {{--                                text: 'Ok',--}}
+            {{--                                btnClass: 'btn-red',--}}
+            {{--                                action: function () {--}}
+            {{--                                    location.reload();--}}
+            {{--                                }--}}
+            {{--                            }--}}
+            {{--                        }--}}
+            {{--                    });--}}
+            {{--                }--}}
+            {{--            }--}}
+            {{--        });--}}
+            {{--    }else {--}}
+            {{--        $.alert({--}}
+            {{--            title: 'Alert!',--}}
+            {{--            type: 'Red',--}}
+            {{--            content: 'Please select Application for exporting CV',--}}
+            {{--            buttons: {--}}
+            {{--                tryAgain: {--}}
+            {{--                    text: 'Ok',--}}
+            {{--                    btnClass: 'btn-red'--}}
+            {{--                }--}}
+            {{--            }--}}
+            {{--        });--}}
+            {{--    }--}}
+            {{--}else {--}}
+            {{--    $.alert({--}}
+            {{--        title: 'Alert!',--}}
+            {{--        type: 'red',--}}
+            {{--        content: 'Please Filter With Job Title First',--}}
+            {{--        buttons: {--}}
+            {{--            tryAgain: {--}}
+            {{--                text: 'Ok',--}}
+            {{--                btnClass: 'btn-blue'--}}
+            {{--            }--}}
+            {{--        }--}}
+            {{--    });--}}
+            {{--}--}}
+        }
+
         function sendMail() {
 
             if ($('#jobTitle').val()!==""){
@@ -1288,6 +1366,10 @@
                 var products=selecteds;
 
                 if (products.length >0) {
+                    previewEmailClose();
+                    CKEDITOR.instances['emailtamplateBody'].setData('');
+                    $('#sendViewMail').find("select").prop("selectedIndex",0);
+                    $('#sendViewMail').find('input:text').val('');
                     $('#subjectLine').val('For '+$('#jobTitle').val());
                     $('#mail_info').modal({show: true});
                     $("#totalSelected").val(products.length);
@@ -1483,7 +1565,6 @@
                     }
                 });
             }else{
-
                 $.alert({
                     title: 'Alert!',
                     type: 'red',
@@ -1515,7 +1596,6 @@
                 selecteds=[];
                 $(':checkbox:checked').prop('checked',false);
             }
-
         });
 
         function getEmpCv(id) {
@@ -1565,7 +1645,6 @@
         }
 
         function validationError(errorMsg){
-
             $.alert({
                 title: 'Error',
                 type: 'red',
@@ -1573,14 +1652,12 @@
                 buttons: {
                     tryAgain: {
                         text: 'Ok',
-                        btnClass: 'btn-green',
-                        action: function () {
-
-                        }
+                        btnClass: 'btn-green'
                     }
                 }
             });
         }
+
         function emptySelect(){
 
             selecteds=[];
@@ -1705,6 +1782,7 @@
 
                     $('#excel_info').modal({show: true});
                     $("#HRfullreport").show();
+                    $("#HRreport04").hide();
                     $("#HRreport02").hide();
                     $("#HRreport03").hide();
                 }
@@ -1741,20 +1819,14 @@
         function excelReport03InfomationSubmit()
         {
             if ($('#jobTitle').val()!=""){
-
-
                 var products=selecteds;
-
                 if (products.length >0) {
-
                     $('#excel_info').modal({show: true});
                     $("#HRfullreport").hide();
+                    $("#HRreport04").hide();
                     $("#HRreport03").show();
                     $("#HRreport02").hide();
-                }
-                else {
-
-
+                }else {
                     $.alert({
                         title: 'Alert!',
                         type: 'Red',
@@ -1762,20 +1834,12 @@
                         buttons: {
                             tryAgain: {
                                 text: 'Ok',
-                                btnClass: 'btn-red',
-                                action: function () {
-
-
-                                }
+                                btnClass: 'btn-red'
                             }
-
                         }
                     });
                 }
-
-            }
-            else {
-
+            }else {
                 $.alert({
                     title: 'Alert!',
                     type: 'red',
@@ -1784,17 +1848,51 @@
                         tryAgain: {
                             text: 'Ok',
                             btnClass: 'btn-blue',
-                            action: function () {
-
-
-                            }
                         }
-
                     }
                 });
 
             }
         }
+
+        function excelReport04InfomationSubmit()
+        {
+            if ($('#jobTitle').val()!=""){
+                var products=selecteds;
+                if (products.length >0) {
+                    $('#excel_info').modal({show: true});
+                    $("#HRfullreport").hide();
+                    $("#HRreport04").show();
+                    $("#HRreport02").hide();
+                    $("#HRreport03").hide();
+                }else {
+                    $.alert({
+                        title: 'Alert!',
+                        type: 'Red',
+                        content: 'Please select Application for Export',
+                        buttons: {
+                            tryAgain: {
+                                text: 'Ok',
+                                btnClass: 'btn-red'
+                            }
+                        }
+                    });
+                }
+            }else {
+                $.alert({
+                    title: 'Alert!',
+                    type: 'red',
+                    content: 'Please Filter With Job Title First',
+                    buttons: {
+                        tryAgain: {
+                            text: 'Ok',
+                            btnClass: 'btn-blue',
+                        }
+                    }
+                });
+            }
+        }
+
         function excelReport02InfomationSubmit()
         {
             if ($('#jobTitle').val()!=""){
@@ -1807,6 +1905,7 @@
                     $('#excel_info').modal({show: true});
                     $("#HRfullreport").hide();
                     $("#HRreport03").hide();
+                    $("#HRreport04").hide();
                     $("#HRreport02").show();
                 }
                 else {

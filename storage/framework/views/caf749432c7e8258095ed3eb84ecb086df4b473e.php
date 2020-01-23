@@ -122,28 +122,25 @@
 </div>
 
 <div style="margin: 0px 30px 0px 30px;">
-
     <table >
         <tr>
             <td width="100%" align="left">
                 <b>Dear </b><?php if($empInfo->gender == "M"): ?><?php echo e("Mr "); ?><?php elseif($empInfo->gender == "F"): ?><?php echo e("Ms "); ?><?php endif; ?><?php echo e($empInfo->firstName.' '.$empInfo->lastName); ?>,
             </td>
         </tr>
-
     </table>
-
 </div>
-<div style="margin: 20px 30px 20px 30px;">
 
-    <table >
-        <tr>
-            <td width="100%" align="left">
-                Cordial Greetings from Caritas Bangladesh!
-            </td>
-        </tr>
-    </table>
 
-</div>
+
+
+
+
+
+
+
+
+
 
 <div style="margin: 0px 30px 0px 30px;">
 

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-    <title>caritas job bank</title>
+    <title>Caritas Job Bank</title>
     <meta content="Admin Dashboard" name="description" />
     <meta content="Themesdesign" name="author" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -25,6 +25,18 @@
             background-position-x: center;
             background-position-y: 50%;
         }
+        .field-icon {
+            float: right;
+            margin-left: -25px;
+            margin-top: -25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .container{
+            padding-top:50px;
+            margin: auto;
+        }
     </style>
 
 </head>
@@ -39,7 +51,7 @@
     <div class="card">
         <div class="card-header">
             <h4 class="text-center">
-                <b class="waves-effect waves-light">caritas job bank</b>
+                <b class="waves-effect waves-light">Caritas Job Bank</b>
             </h4>
 
         </div>
@@ -78,7 +90,8 @@
                     <div class="form-group row">
                         <div class="col-12">
                             
-                            <input id="password" type="password" class="form-control<?php echo e($errors->has('password') ? ' is-invalid' : ''); ?>" name="password" required>
+                            <input id="password-field" type="password" class="form-control<?php echo e($errors->has('password') ? ' is-invalid' : ''); ?>" name="password" placeholder="New Password"  required>
+                            <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
 
                             <?php if($errors->has('password')): ?>
 
@@ -87,6 +100,9 @@
                                     </span>
                             <?php endif; ?>
                         </div>
+                        <p id="passwordHelpBlock" class="form-text text-muted" style="font-size: small">
+                            Your password must be more than 8 characters long, should contain at-least 1 Uppercase, 1 Lowercase, 1 Numeric and 1 special character.
+                        </p>
                     </div>
 
 
@@ -118,7 +134,8 @@
         <div class="card-footer">
 
             <div style="text-align: center">
-                © <?php echo e(date('Y')); ?> caritas job bank .
+                © <?php echo e(date('Y')); ?> CARITAS JOB BANK<br>
+                HELP: CBGENERAL@CARITASBD.ORG
             </div>
 
 
@@ -139,7 +156,18 @@
 <script src="<?php echo e(url('public/assets/js/jquery.nicescroll.js')); ?>"></script>
 <script src="<?php echo e(url('public/assets/js/jquery.scrollTo.min.js')); ?>"></script>
 
+<script>
+    $(".toggle-password").click(function() {
 
+        $(this).toggleClass("fa-eye fa-eye-slash");
+        var input = $($(this).attr("toggle"));
+        if (input.attr("type") == "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });
+</script>
 
 </body>
 

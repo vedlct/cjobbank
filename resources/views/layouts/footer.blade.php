@@ -33,6 +33,26 @@
 {{--<script type="text/javascript" src="https://cdn.datatables.net/w/dt/dt-1.10.18/b-1.5.6/datatables.min.js"></script>--}}
 <script>
     var ckBaseUrl = "<?php echo url('/');; ?>";
+    function remove_account(){
+        $.alert({
+            title: 'Warning!',
+            type: 'warning',
+            content: 'Want to remove your account !',
+            buttons: {
+                tryAgain: {
+                    text: 'YES',
+                    btnClass: 'btn-red',
+                    action: function () {
+                        window.location.replace("{{url('remove-account')}}");
+                    }
+                },
+                try: {
+                    text: 'No',
+                    btnClass: 'btn-blue'
+                }
+            }
+        });
+    }
 </script>
 
 @yield('foot-js')

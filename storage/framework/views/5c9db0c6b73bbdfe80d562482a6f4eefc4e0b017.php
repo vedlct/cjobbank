@@ -106,12 +106,12 @@
                                         <textarea class="form-control" rows="5" name="address[]"  id="address" placeholder="address"></textarea>
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <label for="inputPassword4">Major responsibilities <span id="notice">Max limit 5000 character</span></label>
-                                        <textarea class="form-control ckeditor" rows="15" name="majorResponsibilities[]" maxlength="5000"  id="majorResponsibilities" placeholder="max limit 5000"></textarea>
+                                        <label for="inputPassword4">Major responsibilities </label>
+                                        <textarea class="form-control ckeditor" rows="15" name="majorResponsibilities[]" id="majorResponsibilities"></textarea>
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <label for="inputPassword4">Key achievement <span id="notice">Max limit 5000 character</span></label>
-                                        <textarea class="form-control ckeditor" rows="15" name="keyAchivement[]" maxlength="5000"  id="keyAchivement" placeholder="max limit 5000"></textarea>
+                                        <label for="inputPassword4">Key achievement </label>
+                                        <textarea class="form-control ckeditor" rows="15" name="keyAchivement[]" id="keyAchivement"></textarea>
                                     </div>
 
                                     <div class="form-group col-md-6" id="supervisorDiv">
@@ -517,26 +517,26 @@
                //     validationError(errorMsg);
                //     return false;
                // }
-                if(majorResponsibilities[i].value!= "") {
+               //  if(majorResponsibilities[i].value!= "") {
+               //
+               //      if (majorResponsibilities[i].value.length > 5000) {
+               //
+               //          var errorMsg = 'Major responsibilities should not more than 5000 charecter length!!'
+               //          validationError(errorMsg)
+               //          return false;
+               //
+               //      }
+               //  }
 
-                    if (majorResponsibilities[i].value.length > 5000) {
-
-                        var errorMsg = 'Major responsibilities should not more than 5000 charecter length!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
-                }
-
-                if(keyAchivement[i].value!="") {
-                    if (keyAchivement[i].value.length > 5000) {
-
-                        var errorMsg = 'Key achivement should not more than 5000 charecter length!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
-                }
+                // if(keyAchivement[i].value!="") {
+                //     if (keyAchivement[i].value.length > 5000) {
+                //
+                //         var errorMsg = 'Key achivement should not more than 5000 charecter length!!'
+                //         validationError(errorMsg)
+                //         return false;
+                //
+                //     }
+                // }
 
                 // if(supervisorName[i].value!="") {
                 //     if (supervisorName[i].value.length > 200) {
@@ -663,26 +663,26 @@
                     //     validationError(errorMsg);
                     //     return false;
                     // }
-                    if (majorResponsibilities.length > 5000){
-
-                        var errorMsg='Major responsibilities should not more than 5000 charecter length!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
+                    // if (majorResponsibilities.length > 5000){
+                    //
+                    //     var errorMsg='Major responsibilities should not more than 5000 charecter length!!'
+                    //     validationError(errorMsg)
+                    //     return false;
+                    //
+                    // }
                     // if(keyAchivement==""){
                     //
                     //     var errorMsg='Please type key achivement first!!'
                     //     validationError(errorMsg)
                     //     return false;
                     // }
-                    if (keyAchivement.length > 5000){
-
-                        var errorMsg='Key achivement should not more than 5000 charecter length!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
+                    // if (keyAchivement.length > 5000){
+                    //
+                    //     var errorMsg='Key achivement should not more than 5000 charecter length!!'
+                    //     validationError(errorMsg)
+                    //     return false;
+                    //
+                    // }
 
 
                     // if(reservationContactingEmployer==""){
@@ -804,26 +804,26 @@
                     //     validationError(errorMsg);
                     //     return false;
                     // }
-                    if (majorResponsibilities.length > 5000){
-
-                        var errorMsg='Major responsibilities should not more than 5000 charecter length!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
+                    // if (majorResponsibilities.length > 5000){
+                    //
+                    //     var errorMsg='Major responsibilities should not more than 5000 charecter length!!'
+                    //     validationError(errorMsg)
+                    //     return false;
+                    //
+                    // }
                     // if(keyAchivement==""){
                     //
                     //     var errorMsg='Please type key achivement First!!'
                     //     validationError(errorMsg)
                     //     return false;
                     // }
-                    if (keyAchivement.length > 5000){
-
-                        var errorMsg='Key achivement should not more than 5000 charecter length!!'
-                        validationError(errorMsg)
-                        return false;
-
-                    }
+                    // if (keyAchivement.length > 5000){
+                    //
+                    //     var errorMsg='Key achivement should not more than 5000 charecter length!!'
+                    //     validationError(errorMsg)
+                    //     return false;
+                    //
+                    // }
                     // if(supervisorName==""){
                     //
                     //     var errorMsg='Please type supervisor name first!!'
@@ -919,11 +919,11 @@
                     '</div> ' +
                     '<div class="form-group col-md-12">'+
                     '<label for="inputPassword4">Major responsibilities </label>'+
-                    '<textarea class="form-control" name="majorResponsibilities[]" maxlength="5000"  id="majorResponsibilities'+counter+'" placeholder="Major responsibilities"></textarea>'+
+                    '<textarea class="form-control" name="majorResponsibilities[]" id="majorResponsibilities'+counter+'" placeholder="Major responsibilities"></textarea>'+
                     '</div>'+
                     '<div class="form-group col-md-12">'+
                     '<label for="inputPassword4">Key achievement </label>'+
-                    '<textarea class="form-control" name="keyAchivement[]" maxlength="5000"  id="keyAchivement'+counter+'" placeholder="Key achievement"></textarea>'+
+                    '<textarea class="form-control" name="keyAchivement[]" id="keyAchivement'+counter+'" placeholder="Key achievement"></textarea>'+
                     '</div>'+
                     '<div class="form-group col-md-6">'+
                     '<label for="inputEmail4">Name of supervisor</label>'+

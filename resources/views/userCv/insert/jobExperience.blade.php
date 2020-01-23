@@ -108,11 +108,11 @@
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="inputPassword4">Major responsibilities </label>
-                                        <textarea class="form-control ckeditor" rows="15" name="majorResponsibilities[]" maxlength="5000"  id="majorResponsibilities" placeholder="max limit 5000"></textarea>
+                                        <textarea class="form-control ckeditor" rows="15" name="majorResponsibilities[]" id="majorResponsibilities"></textarea>
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="inputPassword4">Key achievement </label>
-                                        <textarea class="form-control ckeditor" rows="15" name="keyAchivement[]" maxlength="5000"  id="keyAchivement" placeholder="max limit 5000"></textarea>
+                                        <textarea class="form-control ckeditor" rows="15" name="keyAchivement[]" id="keyAchivement"></textarea>
                                     </div>
 
                                     <div class="form-group col-md-6" id="supervisorDiv">
@@ -920,11 +920,11 @@
                     '</div> ' +
                     '<div class="form-group col-md-12">'+
                     '<label for="inputPassword4">Major responsibilities </label>'+
-                    '<textarea class="form-control" name="majorResponsibilities[]" maxlength="5000"  id="majorResponsibilities'+counter+'" placeholder="Major responsibilities"></textarea>'+
+                    '<textarea class="form-control" name="majorResponsibilities[]" id="majorResponsibilities'+counter+'" placeholder="Major responsibilities"></textarea>'+
                     '</div>'+
                     '<div class="form-group col-md-12">'+
                     '<label for="inputPassword4">Key achievement </label>'+
-                    '<textarea class="form-control" name="keyAchivement[]" maxlength="5000"  id="keyAchivement'+counter+'" placeholder="Key achievement"></textarea>'+
+                    '<textarea class="form-control" name="keyAchivement[]" id="keyAchivement'+counter+'" placeholder="Key achievement"></textarea>'+
                     '</div>'+
                     '<div class="form-group col-md-6">'+
                     '<label for="inputEmail4">Name of supervisor</label>'+

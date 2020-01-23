@@ -22,6 +22,19 @@
             background-position-x: center;
             background-position-y: 50%;
         }
+
+        .field-icon {
+            float: right;
+            margin-left: -25px;
+            margin-top: -25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .container{
+            padding-top:50px;
+            margin: auto;
+        }
     </style>
 
 </head>
@@ -86,12 +99,17 @@
 
                     <div class="form-group row">
                         <div class="col-12 <?php echo e($errors->has('password') ? ' has-error' : ''); ?>">
-                            <input class="form-control" type="password" required="" value="<?php echo e(old('password')); ?>" name="password" placeholder="Password">
+
+                            <input class="form-control" id="password-field" type="password" required="" value="<?php echo e(old('password')); ?>" name="password" placeholder="Password">
+                            <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                             <?php if($errors->has('password')): ?>
                                 <span class="help-block">
                                         <strong><?php echo e($errors->first('password')); ?></strong>
                                     </span>
                             <?php endif; ?>
+                            <p id="passwordHelpBlock" class="form-text text-muted" style="font-size: small">
+                                Your password must be more than 8 characters long, should contain at-least 1 Uppercase, 1 Lowercase, 1 Numeric and 1 special character.
+                            </p>
                         </div>
                     </div>
 
@@ -121,6 +139,12 @@
                     </div>
 
                 </form>
+                <div class="form-group m-t-10 mb-0">
+                    <div class="col-12 m-t-20 text-center">
+                        <p>HELP: CBGENERAL@CARITASBD.ORG</p>
+                    </div>
+                </div>
+
             </div>
 
         </div>
@@ -147,3 +171,16 @@
 
 <!-- App js -->
 <script src="<?php echo e(url('public/assets/js/app.js')); ?>"></script>
+
+    <script>
+        $(".toggle-password").click(function() {
+
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var input = $($(this).attr("toggle"));
+            if (input.attr("type") == "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
+            }
+        });
+    </script>

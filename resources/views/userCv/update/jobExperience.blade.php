@@ -141,7 +141,6 @@
                             @endforeach
 
                             <input class="form-check-input"  type="hidden"  name="hasProfCertificate" value="1">
-{{--                            <button type="button" id="addButton" class="btn btn-success">Add more</button>--}}
                             <button type="button" onclick="add_new()" class="btn btn-success">Add more</button>
                             <button type="button" id="removeButton" class="btn btn-success" >Remove</button>
 

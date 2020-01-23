@@ -129,18 +129,15 @@
     </table>
 </div>
 
-<div style="margin: 20px 30px 20px 30px;">
-
-    <table >
-        <tr>
-            <td width="100%" align="left">
-                Cordial Greetings from Caritas Bangladesh!
-            </td>
-        </tr>
-
-    </table>
-
-</div>
+{{--<div style="margin: 20px 30px 20px 30px;">--}}
+{{--    <table >--}}
+{{--        <tr>--}}
+{{--            <td width="100%" align="left">--}}
+{{--                Cordial Greetings from Caritas Bangladesh!--}}
+{{--            </td>--}}
+{{--        </tr>--}}
+{{--    </table>--}}
+{{--</div>--}}
 
 <div style="margin: 0px 30px 0px 30px;">
 

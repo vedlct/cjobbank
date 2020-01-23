@@ -155,7 +155,7 @@
                             </form>
                             @if(USER_TYPE['User']== Auth::user()->fkuserTypeId)
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{url('remove-account')}}" style="background-color: red;color: aliceblue"><i class="fa fa-trash"></i> {{ __('Remove account') }}</a>
+                            <a onclick="remove_account()" class="dropdown-item" href="javascript:void(0)" style="background-color: red;color: aliceblue"><i class="fa fa-trash"></i> {{ __('Remove account') }}</a>
                             @endif
                         </div>
                     </li>

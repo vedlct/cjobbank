@@ -48,12 +48,12 @@
         </div>
 
         <div class="form-group col-md-12">
-            <label for="inputPassword4">Major responsibilities<span id="notice">Max limit 5000 character</span> </label>
-            <textarea class="form-control ckeditor" rows="15" name="majorResponsibilities" maxlength="5000"  id="majorResponsibilities" placeholder="Major responsibilities"></textarea>
+            <label for="majorResponsibilities">Major responsibilities</label>
+            <textarea class="form-control ckeditor" rows="15" name="majorResponsibilities" id="majorResponsibilities" placeholder="Major responsibilities"></textarea>
         </div>
         <div class="form-group col-md-12">
-            <label for="inputPassword4">Key achievement<span id="notice">Max limit 5000 character</span> </label>
-            <textarea class="form-control ckeditor" rows="15" name="keyAchivement" maxlength="5000"  id="keyAchivement" placeholder="Key Achievement"></textarea>
+            <label for="keyAchivement">Key achievement</label>
+            <textarea class="form-control ckeditor" rows="15" name="keyAchivement" id="keyAchivement" placeholder="Key Achievement"></textarea>
         </div>
         <div class="form-group col-md-6">
             <label for="inputEmail4">Name of supervisor</label>
@@ -64,7 +64,7 @@
             <select class="form-control" id="reservationContactingEmployer" name="reservationContactingEmployer" >
                 <option value="" selected>Select option</option>
                 <?php $__currentLoopData = YES_NO; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <option value="<?php echo e($value); ?>"><?php echo e($key); ?></option>
+                <option value="<?php echo e($value); ?>"><?php echo e($key); ?></option>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </select>&nbsp;
         </div>
@@ -308,19 +308,19 @@
             }
         }
 
-        if (majorResponsibilities.length > 5000){
-
-            var errorMsg='Major Responsibilities Should not more than 5000 Charecter Length!!'
-            validationError(errorMsg)
-            return false;
-
-        }
-
-        if (keyAchivement.length > 5000){
-            var errorMsg='Key Achivement Should not more than 5000 Charecter Length!!'
-            validationError(errorMsg)
-            return false;
-        }
+        // if (majorResponsibilities.length > 5000){
+        //
+        //     var errorMsg='Major Responsibilities Should not more than 5000 Charecter Length!!'
+        //     validationError(errorMsg)
+        //     return false;
+        //
+        // }
+        //
+        // if (keyAchivement.length > 5000){
+        //     var errorMsg='Key Achivement Should not more than 5000 Charecter Length!!'
+        //     validationError(errorMsg)
+        //     return false;
+        // }
 
         if(employmentType==""){
 

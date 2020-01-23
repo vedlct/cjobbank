@@ -50,12 +50,12 @@
                 </div>
 
                 <div class="form-group col-md-12">
-                    <label for="inputPassword4">Major responsibilities<span id="notice">Max limit 5000 character</span> </label>
-                    <textarea class="form-control ckeditor" rows="15" name="majorResponsibilities" maxlength="5000"  id="majorResponsibilities" placeholder="Major responsibilities"><?php echo $experience->majorResponsibilities; ?></textarea>
+                    <label for="inputPassword4">Major responsibilities</label>
+                    <textarea class="form-control ckeditor" rows="15" name="majorResponsibilities" id="majorResponsibilities" placeholder="Major responsibilities"><?php echo $experience->majorResponsibilities; ?></textarea>
                 </div>
                 <div class="form-group col-md-12">
-                    <label for="inputPassword4">Key achievement<span id="notice">Max limit 5000 character</span> </label>
-                    <textarea class="form-control ckeditor" rows="15" name="keyAchivement" maxlength="5000"  id="keyAchivement" placeholder="Key Achievement"><?php echo e($experience->keyAchivement); ?></textarea>
+                    <label for="inputPassword4">Key achievement</label>
+                    <textarea class="form-control ckeditor" rows="15" name="keyAchivement" id="keyAchivement" placeholder="Key Achievement"><?php echo e($experience->keyAchivement); ?></textarea>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">Name of supervisor</label>
@@ -391,26 +391,26 @@
         //     validationError(errorMsg);
         //     return false;
         // }
-        if (majorResponsibilities.length > 5000){
-
-            var errorMsg='Major Responsibilities Should not more than 5000 Charecter Length!!'
-            validationError(errorMsg)
-            return false;
-
-        }
+        // if (majorResponsibilities.length > 5000){
+        //
+        //     var errorMsg='Major Responsibilities Should not more than 5000 Charecter Length!!'
+        //     validationError(errorMsg)
+        //     return false;
+        //
+        // }
         // if(keyAchivement==""){
         //
         //     var errorMsg='Please Type Key Achivement First!!'
         //     validationError(errorMsg)
         //     return false;
         // }
-        if (keyAchivement.length > 5000){
-
-            var errorMsg='Key Achivement Should not more than 5000 Charecter Length!!'
-            validationError(errorMsg)
-            return false;
-
-        }
+        // if (keyAchivement.length > 5000){
+        //
+        //     var errorMsg='Key Achivement Should not more than 5000 Charecter Length!!'
+        //     validationError(errorMsg)
+        //     return false;
+        //
+        // }
         // if(supervisorName==""){
         //
         //     var errorMsg='Please Type Supervisor Name First!!'

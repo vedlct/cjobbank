@@ -83,7 +83,6 @@ class EducationController extends Controller
             echo "<option value='' selected>Select Degree</option>";
             foreach ($degree as $deg) {
                 echo "<option value='$deg->degreeId'>$deg->degreeName</option>";
-
             }
             echo  "<option value=".OTHERS.">".OTHERS."</option>";
         }

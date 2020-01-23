@@ -150,7 +150,6 @@
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                             <input class="form-check-input"  type="hidden"  name="hasProfCertificate" value="1">
-
                             <button type="button" onclick="add_new()" class="btn btn-success">Add more</button>
                             <button type="button" id="removeButton" class="btn btn-success" >Remove</button>
 
@@ -408,26 +407,26 @@
                     //     validationError(errorMsg);
                     //     return false;
                     // }
-                    if(majorResponsibilities[i].value!= "") {
+                    // if(majorResponsibilities[i].value!= "") {
+                    //
+                    //     if (majorResponsibilities[i].value.length > 5000) {
+                    //
+                    //         var errorMsg = 'Major responsibilities should not more than 5000 charecter length!!'
+                    //         validationError(errorMsg)
+                    //         return false;
+                    //
+                    //     }
+                    // }
 
-                        if (majorResponsibilities[i].value.length > 5000) {
-
-                            var errorMsg = 'Major responsibilities should not more than 5000 charecter length!!'
-                            validationError(errorMsg)
-                            return false;
-
-                        }
-                    }
-
-                    if(keyAchivement[i].value!="") {
-                        if (keyAchivement[i].value.length > 5000) {
-
-                            var errorMsg = 'Key achivement should not more than 5000 charecter length!!'
-                            validationError(errorMsg)
-                            return false;
-
-                        }
-                    }
+                    // if(keyAchivement[i].value!="") {
+                    //     if (keyAchivement[i].value.length > 5000) {
+                    //
+                    //         var errorMsg = 'Key achivement should not more than 5000 charecter length!!'
+                    //         validationError(errorMsg)
+                    //         return false;
+                    //
+                    //     }
+                    // }
 
                     // if(supervisorName[i].value!="") {
                     //     if (supervisorName[i].value.length > 200) {

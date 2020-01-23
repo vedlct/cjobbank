@@ -47,12 +47,12 @@
         </div>
 
         <div class="form-group col-md-12">
-            <label for="inputPassword4">Major responsibilities<span id="notice">Max limit 5000 character</span> </label>
-            <textarea class="form-control ckeditor" rows="15" name="majorResponsibilities" maxlength="5000"  id="majorResponsibilities" placeholder="Major responsibilities"></textarea>
+            <label for="majorResponsibilities">Major responsibilities</label>
+            <textarea class="form-control ckeditor" rows="15" name="majorResponsibilities" id="majorResponsibilities" placeholder="Major responsibilities"></textarea>
         </div>
         <div class="form-group col-md-12">
-            <label for="inputPassword4">Key achievement<span id="notice">Max limit 5000 character</span> </label>
-            <textarea class="form-control ckeditor" rows="15" name="keyAchivement" maxlength="5000"  id="keyAchivement" placeholder="Key Achievement"></textarea>
+            <label for="keyAchivement">Key achievement</label>
+            <textarea class="form-control ckeditor" rows="15" name="keyAchivement" id="keyAchivement" placeholder="Key Achievement"></textarea>
         </div>
         <div class="form-group col-md-6">
             <label for="inputEmail4">Name of supervisor</label>
@@ -63,7 +63,7 @@
             <select class="form-control" id="reservationContactingEmployer" name="reservationContactingEmployer" >
                 <option value="" selected>Select option</option>
                 @foreach(YES_NO as $key=>$value)
-                    <option value="{{$value}}">{{$key}}</option>
+                <option value="{{$value}}">{{$key}}</option>
                 @endforeach
             </select>&nbsp;
         </div>
@@ -218,34 +218,26 @@
         else if ( (age.years == 0) && (age.months > 0) && (age.days == 0) )
             ageString = age.months + monthString
         else ageString = "Oops! Could not calculate !";
-
         return ageString;
-
     }
 
 
     $('#employmentType1').on('change', function() {
-
         var employmentType =$('#employmentType1').val();
-
         if (employmentType == "{{OTHERS}}"){
-
             $("#employmentTypeTextDiv").show();
         }else {
             $("#employmentTypeTextDiv").hide();
         }
-
     });
 
     function checkJobExperience(){
-
         var organizationType=$('#organizationType').val();
         var organization=$('#organization').val();
         var degisnation=$('#degisnation').val();
         var start=$('#start').val();
         var end=$('#end').val();
         var address=$('#address').val();
-
         var majorResponsibilities=$('#majorResponsibilities').val();
         var keyAchivement=$('#keyAchivement').val();
         var supervisorName=$('#supervisorName').val();
@@ -253,83 +245,72 @@
         var employmentType=$('#employmentType').val();
         var employmentTypeText=$('#employmentTypeText').val();
 
-
-
         if(organizationType==""){
-
             var errorMsg='Please Select a Organization Type First!!'
             validationError(errorMsg)
             return false;
         }
 
         if(organization==""){
-
             var errorMsg='Please Type Organization Name First!!'
             validationError(errorMsg)
             return false;
         }
-        if (organization.length > 100){
 
+        if (organization.length > 100){
             var errorMsg='Organization Name Should not more than 100 Charecter Length!!'
             validationError(errorMsg)
             return false;
-
         }
-        if(degisnation==""){
 
+        if(degisnation==""){
             var errorMsg='Please Type Designation First!!'
             validationError(errorMsg)
             return false;
-
         }
-        if (degisnation.length > 100){
 
+        if (degisnation.length > 100){
             var errorMsg='Designation Should not more than 100 Charecter Length!!';
             validationError(errorMsg);
             return false;
-
         }
-        if(start==""){
 
+        if(start==""){
             var errorMsg='Please Select a Strat Date First!!';
             validationError(errorMsg);
             return false;
-
         }
+
         if(end != "") {
-
             if (Date.parse(end) < Date.parse(start)) {
-
                 var errorMsg = 'End date should after Start Date!!';
                 validationError(errorMsg);
                 return false;
-
             }
         }
 
-        if (majorResponsibilities.length > 5000){
-
-            var errorMsg='Major Responsibilities Should not more than 5000 Charecter Length!!'
-            validationError(errorMsg)
-            return false;
-
-        }
-
-        if (keyAchivement.length > 5000){
-            var errorMsg='Key Achivement Should not more than 5000 Charecter Length!!'
-            validationError(errorMsg)
-            return false;
-        }
+        // if (majorResponsibilities.length > 5000){
+        //
+        //     var errorMsg='Major Responsibilities Should not more than 5000 Charecter Length!!'
+        //     validationError(errorMsg)
+        //     return false;
+        //
+        // }
+        //
+        // if (keyAchivement.length > 5000){
+        //     var errorMsg='Key Achivement Should not more than 5000 Charecter Length!!'
+        //     validationError(errorMsg)
+        //     return false;
+        // }
 
         if(employmentType==""){
-
             var errorMsg='Please Select Employment Type First!!'
             validationError(errorMsg)
             return false;
         }
+
         if (employmentType != ""){
             if (employmentType == "{{OTHERS}}" && employmentTypeText != "" ){
-
                 var errorMsg='Please Write Employement Other Text First!!';
                 validationError(errorMsg);
                 return false;
@@ -338,7 +319,6 @@
     }
 
     function validationError(errorMsg){
-
         $.alert({
             title: 'Error',
             type: 'red',
@@ -346,14 +326,11 @@
             buttons: {
                 tryAgain: {
                     text: 'Ok',
-                    btnClass: 'btn-green',
-                    action: function () {
-
-                    }
+                    btnClass: 'btn-green'
                 }
             }
         });
-
     }
+
 </script>
 

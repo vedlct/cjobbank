@@ -33,6 +33,26 @@
 
 <script>
     var ckBaseUrl = "<?php echo url('/');; ?>";
+    function remove_account(){
+        $.alert({
+            title: 'Warning!',
+            type: 'warning',
+            content: 'Want to remove your account !',
+            buttons: {
+                tryAgain: {
+                    text: 'YES',
+                    btnClass: 'btn-red',
+                    action: function () {
+                        window.location.replace("<?php echo e(url('remove-account')); ?>");
+                    }
+                },
+                try: {
+                    text: 'No',
+                    btnClass: 'btn-blue'
+                }
+            }
+        });
+    }
 </script>
 
 <?php echo $__env->yieldContent('foot-js'); ?>
