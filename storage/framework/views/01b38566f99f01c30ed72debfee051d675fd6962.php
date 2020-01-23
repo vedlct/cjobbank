@@ -110,7 +110,7 @@
                     <td align="left">
                         To <br>
                         <?php if($empInfo->gender == 'F'): ?>
-                            Ms.
+                            Mrs.
                         <?php elseif($empInfo->gender == 'M'): ?>
                             Mr.
                         <?php endif; ?>
