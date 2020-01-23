@@ -162,8 +162,8 @@
 
                             <span class="bold"> Company Name : </span> &nbsp;&nbsp; {{$exp->organization}}  &nbsp;&nbsp;
                             <div class="pull-right"><span class="bold">Position:</span>&nbsp;{{$exp->degisnation}} </div><br>
-                            <p><span class="bold" > Major Responsibilities :</span>&nbsp;&nbsp;
-                                <span style="text-align: justify">{!! $exp->majorResponsibilities !!}</span> <br></p>
+                            <p><span class="bold" > Major Responsibilities :</span><span style="text-align: justify">{!! $exp->majorResponsibilities !!}</span> <br></p>
+                            <p><span class="bold" > Key achievement :</span><span style="text-align: justify">{!! $exp->keyAchivement !!}</span> <br></p>
                             <span class="bold"> Address:</span>&nbsp;&nbsp;&nbsp; {{$exp->address}} <br>
                             <span class="bold"> Duration:</span>&nbsp;&nbsp;&nbsp; {{$exp->startDate}} -  @if($exp->endDate) {{$exp->endDate}} @else
                                 Continuing
@@ -185,27 +185,32 @@
             @endif
         </table>
 
-        {{--        @if(!$jobExperience->isEmpty() && count($jobExperience) >=2)--}}
-        {{--            <p style="page-break-after: always;"></p>--}}
-        {{--        @elseif(!$jobExperience->isEmpty())--}}
-        {{--            <p style="page-break-after: always;"></p>--}}
-        {{--        @elseif($jobExperience->isEmpty()&& count($trainingCertificate)>=2)--}}
-        {{--            <p style="page-break-after: always;"></p>--}}
-        {{--        @endif--}}
-
-        {{--        @if(!empty($exp->keyAchivement))--}}
-        {{--        <table border="0" style="width:100%; margin-top: 15px; border: none;">--}}
-        {{--            <tr>--}}
-        {{--                <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000; background-color: #eff0f1;" ><b>Key achievement</b> </td>--}}
-        {{--            </tr>--}}
-        {{--        </table>--}}
-
-        {{--        <table border="0" style="width:100%; margin-top: 10px; border: none;">--}}
-        {{--            @if($exp->keyAchivement==null)<tr><td style=" border: none; text-align: center"> <strong>None </strong> </td> </tr>@else--}}
-        {{--            <br><span style="text-align: justify">{!! $exp->keyAchivement !!}</span>@endif--}}
-        {{--        </table>--}}
-        {{--        @endif--}}
-
+        @if(count($previousWorkInCB)>0)
+            <div class="table-responsive">
+                <table border="0" style="width:100%; margin-top: 15px; border: none;">
+                    <tr>
+                        <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000; background-color: #eff0f1;" ><b>Previous work information in Caritas Bangladesh</b> </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="table-responsive">
+                <table border="0" style="width:100%; margin-top: 10px; border: none;">
+                    @php $pcount=1;@endphp
+                    @foreach($previousWorkInCB as $p_in_caritasbd)
+                        <tr>
+                            <td width="2%" style="border: none; vertical-align: top">
+                                <span class="bold">{{$pcount++}}.</span>
+                            </td>
+                            <td style="border: none;">
+                                <span class="bold"> Designation :</span> &nbsp;&nbsp;&nbsp;{{$p_in_caritasbd->designation}} <br>
+                                <span class="bold"> Start date :</span> &nbsp;&nbsp;&nbsp;{{$p_in_caritasbd->startDate}} <br>
+                                <span class="bold"> End date :</span> &nbsp;&nbsp;&nbsp;{{$p_in_caritasbd->endDate}}
+                            </td>
+                        </tr>
+                    @endforeach
+                </table>
+            </div>
+        @endif
 
         <table border="0" style="width:100%; margin-top: 15px; border: none;">
             <tr>

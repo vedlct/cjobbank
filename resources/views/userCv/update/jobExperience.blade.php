@@ -399,26 +399,26 @@
                     //     validationError(errorMsg);
                     //     return false;
                     // }
-                    if(majorResponsibilities[i].value!= "") {
+                    // if(majorResponsibilities[i].value!= "") {
+                    //
+                    //     if (majorResponsibilities[i].value.length > 5000) {
+                    //
+                    //         var errorMsg = 'Major responsibilities should not more than 5000 charecter length!!'
+                    //         validationError(errorMsg)
+                    //         return false;
+                    //
+                    //     }
+                    // }
 
-                        if (majorResponsibilities[i].value.length > 5000) {
-
-                            var errorMsg = 'Major responsibilities should not more than 5000 charecter length!!'
-                            validationError(errorMsg)
-                            return false;
-
-                        }
-                    }
-
-                    if(keyAchivement[i].value!="") {
-                        if (keyAchivement[i].value.length > 5000) {
-
-                            var errorMsg = 'Key achivement should not more than 5000 charecter length!!'
-                            validationError(errorMsg)
-                            return false;
-
-                        }
-                    }
+                    // if(keyAchivement[i].value!="") {
+                    //     if (keyAchivement[i].value.length > 5000) {
+                    //
+                    //         var errorMsg = 'Key achivement should not more than 5000 charecter length!!'
+                    //         validationError(errorMsg)
+                    //         return false;
+                    //
+                    //     }
+                    // }
 
                     // if(supervisorName[i].value!="") {
                     //     if (supervisorName[i].value.length > 200) {

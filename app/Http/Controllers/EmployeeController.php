@@ -180,8 +180,7 @@ class EmployeeController extends Controller
                         DB::raw("TIMESTAMPDIFF(MONTH,`jobexperience`.`startDate`,`jobexperience`.`endDate`) as expMonth"))
                     ->get();
 
-                //return $jobExperience;
-
+                $previousWorkInCB = PreviousWorkInCB::where('fkemployeeId', $empId)->get();
 
                 $trainingCertificate = Traning::where('fkemployeeId', $empId)
                     ->orderBy('startDate', 'desc')
@@ -211,7 +210,7 @@ class EmployeeController extends Controller
 
                 if ($allEmp && $personalInfo && $education && $professionalCertificate && $jobExperience && $trainingCertificate && $refree && $relativeCb && $empOtherSkillls && $empOtherInfo && $memberShip && $languages && $languageNames && $salary){
                     return view('userCv.cvPdf.userCvPdf', compact('viewMode','allEmp', 'personalInfo', 'education',
-                        'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree',
+                        'professionalCertificate', 'jobExperience', 'previousWorkInCB','trainingCertificate', 'refree',
                         'relativeCb', 'empOtherSkillls', 'empComputerSkill', 'empOtherInfo','memberShip','languages','languageNames','salary'));
                 }else{
                     Session::flash('message', 'Your CV information is not found ,please make your CV first');

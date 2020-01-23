@@ -173,8 +173,8 @@
 
                                                     <span class="bold"> Company name : </span> &nbsp;&nbsp {{$exp->organization}}  &nbsp;&nbsp;
                                                     <div class="pull-right"><span class="bold">Position:</span>&nbsp;&nbsp;&nbsp; {{$exp->degisnation}} </div><br>
-
-                                                    <span class="bold"> Major responsibilities :</span>&nbsp;&nbsp;&nbsp; {!! $exp->majorResponsibilities  !!}<br>
+                                                    <span class="bold"> Major responsibilities :</span>&nbsp;&nbsp;&nbsp; {!! $exp->majorResponsibilities !!}<br>
+                                                    <span class="bold"> Key achievement :</span>    {!! $exp->keyAchivement !!}<br>
                                                     <span class="bold"> Address:</span>&nbsp;&nbsp;&nbsp; {{$exp->address}} <br>
                                                     <span class="bold"> Duration:</span>&nbsp;&nbsp;&nbsp; {{$exp->startDate}} -  @if($exp->endDate) {{$exp->endDate}} @else
                                                         Continuing
@@ -183,24 +183,46 @@
 
                                                     <span class="bold"> Total job experience:</span>
 
-
                                                     @if ($exp->startDate!=null && $exp->endDate==null)
 
                                                         {{$sub_struct=\Carbon\Carbon::parse($exp->startDate)->diff(\Carbon\Carbon::now())->format('%y years, %m months and %d days')}}
                                                     @else
                                                         {{$sub_struct=\Carbon\Carbon::parse($exp->startDate)->diff(\Carbon\Carbon::parse($exp->endDate))->format('%y years, %m months and %d days')}}
                                                     @endif
-
-
-
                                                 </td>
                                             </tr>
 
                                         @endforeach
                                     @endif
-
                                 </table>
                             </div>
+
+                            @if(count($previousWorkInCB)>0)
+                            <div class="table-responsive">
+                                <table border="0" style="width:100%; margin-top: 15px; border: none;">
+                                    <tr>
+                                        <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000; background-color: #eff0f1;" ><b>Previous work information in Caritas Bangladesh</b> </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="table-responsive">
+                                <table border="0" style="width:100%; margin-top: 10px; border: none;">
+                                    @php $pcount=1;@endphp
+                                    @foreach($previousWorkInCB as $p_in_caritasbd)
+                                        <tr>
+                                            <td width="2%" style="border: none; vertical-align: top">
+                                                <span class="bold">{{$pcount++}}.</span>
+                                            </td>
+                                            <td style="border: none;">
+                                                <span class="bold"> Designation :</span> &nbsp;&nbsp;&nbsp;{{$p_in_caritasbd->designation}} <br>
+                                                <span class="bold"> Start date :</span> &nbsp;&nbsp;&nbsp;{{$p_in_caritasbd->startDate}} <br>
+                                                <span class="bold"> End date :</span> &nbsp;&nbsp;&nbsp;{{$p_in_caritasbd->endDate}}                                               .
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </table>
+                            </div>
+                            @endif
 
                             <div class="table-responsive">
                                 <table border="0" style="width:100%; margin-top: 15px; border: none;">
@@ -212,10 +234,7 @@
                             <div class="table-responsive">
                                 <table border="0" style="width:100%; margin-top: 10px; border: none;">
                                     @if($trainingCertificate->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @endif
-
                                     @php $count=1;@endphp
-
-
                                     @foreach($trainingCertificate as $certificate)
                                         <tr>
                                             <td width="2%" style="border: none; vertical-align: top">
@@ -228,13 +247,9 @@
                                                     Continuing
                                                 @endif
                                                 .
-
-
-
                                             </td>
                                         </tr>
                                     @endforeach
-
                                 </table>
                             </div>
 

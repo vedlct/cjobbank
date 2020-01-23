@@ -124,7 +124,7 @@
     <table >
         <tr>
             <td width="100%" align="left">
-                <b>Dear </b>{{$empInfo->firstName.' '.$empInfo->lastName}},
+                <b>Dear </b>@if($empInfo->gender == "M"){{"Mr "}}@elseif($empInfo->gender == "F"){{"Ms "}}@endif{{$empInfo->firstName.' '.$empInfo->lastName}},
             </td>
         </tr>
 

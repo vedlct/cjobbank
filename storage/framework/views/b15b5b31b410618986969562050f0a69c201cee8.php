@@ -176,8 +176,8 @@
 
                                                     <span class="bold"> Company name : </span> &nbsp;&nbsp <?php echo e($exp->organization); ?>  &nbsp;&nbsp;
                                                     <div class="pull-right"><span class="bold">Position:</span>&nbsp;&nbsp;&nbsp; <?php echo e($exp->degisnation); ?> </div><br>
-
                                                     <span class="bold"> Major responsibilities :</span>&nbsp;&nbsp;&nbsp; <?php echo $exp->majorResponsibilities; ?><br>
+                                                    <span class="bold"> Key achievement :</span>    <?php echo $exp->keyAchivement; ?><br>
                                                     <span class="bold"> Address:</span>&nbsp;&nbsp;&nbsp; <?php echo e($exp->address); ?> <br>
                                                     <span class="bold"> Duration:</span>&nbsp;&nbsp;&nbsp; <?php echo e($exp->startDate); ?> -  <?php if($exp->endDate): ?> <?php echo e($exp->endDate); ?> <?php else: ?>
                                                         Continuing
@@ -185,7 +185,6 @@
                                                     .<br>
 
                                                     <span class="bold"> Total job experience:</span>
-
 
                                                     <?php if($exp->startDate!=null && $exp->endDate==null): ?>
 
@@ -195,17 +194,40 @@
                                                         <?php echo e($sub_struct=\Carbon\Carbon::parse($exp->startDate)->diff(\Carbon\Carbon::parse($exp->endDate))->format('%y years, %m months and %d days')); ?>
 
                                                     <?php endif; ?>
-
-
-
                                                 </td>
                                             </tr>
 
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     <?php endif; ?>
-
                                 </table>
                             </div>
+
+                            <?php if(count($previousWorkInCB)>0): ?>
+                            <div class="table-responsive">
+                                <table border="0" style="width:100%; margin-top: 15px; border: none;">
+                                    <tr>
+                                        <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000; background-color: #eff0f1;" ><b>Previous work information in Caritas Bangladesh</b> </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="table-responsive">
+                                <table border="0" style="width:100%; margin-top: 10px; border: none;">
+                                    <?php $pcount=1;?>
+                                    <?php $__currentLoopData = $previousWorkInCB; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p_in_caritasbd): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <tr>
+                                            <td width="2%" style="border: none; vertical-align: top">
+                                                <span class="bold"><?php echo e($pcount++); ?>.</span>
+                                            </td>
+                                            <td style="border: none;">
+                                                <span class="bold"> Designation :</span> &nbsp;&nbsp;&nbsp;<?php echo e($p_in_caritasbd->designation); ?> <br>
+                                                <span class="bold"> Start date :</span> &nbsp;&nbsp;&nbsp;<?php echo e($p_in_caritasbd->startDate); ?> <br>
+                                                <span class="bold"> End date :</span> &nbsp;&nbsp;&nbsp;<?php echo e($p_in_caritasbd->endDate); ?>                                               .
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </table>
+                            </div>
+                            <?php endif; ?>
 
                             <div class="table-responsive">
                                 <table border="0" style="width:100%; margin-top: 15px; border: none;">
@@ -217,10 +239,7 @@
                             <div class="table-responsive">
                                 <table border="0" style="width:100%; margin-top: 10px; border: none;">
                                     <?php if($trainingCertificate->isEmpty()): ?><td style=" border: none; text-align: center"> <strong>None </strong> </td> <?php endif; ?>
-
                                     <?php $count=1;?>
-
-
                                     <?php $__currentLoopData = $trainingCertificate; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $certificate): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr>
                                             <td width="2%" style="border: none; vertical-align: top">
@@ -233,13 +252,9 @@
                                                     Continuing
                                                 <?php endif; ?>
                                                 .
-
-
-
                                             </td>
                                         </tr>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
                                 </table>
                             </div>
 
