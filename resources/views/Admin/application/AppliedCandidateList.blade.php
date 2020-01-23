@@ -1,15 +1,11 @@
-
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-{{--    <link href="{{url('public/css/exceltable.css')}}" rel="stylesheet">--}}
 
     <style>
         .Border{
             border: 2px solid ;
         }
-
-
         td{
             wrap-text:true;
             vertical-align: top;
@@ -33,7 +29,6 @@
 
 <table class="table">
 
-
     <tr>
         <td colspan="22" style="text-align: center;vertical-align: top;height: 20;"><span style="font-weight: bold">{{strtoupper($jobTitle['title'])}}</span>
             <b>- {{$excelName}}</b>
@@ -44,9 +39,6 @@
         <td colspan="22" style="text-align: center;vertical-align: top;height: 20">
             <span style="font-weight: bold">Last date: {{$jobTitle['deadline']}} </span>
         </td>
-        {{--<td colspan="5"></td>--}}
-        {{--<td colspan="4" style="text-align: center;vertical-align: top;height: 20"><span style="font-weight: bold">Last date: {{$jobTitle['deadline']}} </span></td>--}}
-        {{--<td colspan="5"> </td>--}}
     </tr>
 
 </table>
@@ -58,23 +50,18 @@
     <tr style="border: 2px solid #000000;">
         <th colspan="1"style="text-align: center;">Sl No.</th>
         <th colspan="3"style="text-align: center">NAME</th>
-        {{--<th>Gender</th>--}}
-        {{--<th>Disability</th>--}}
-        {{--<th>Ethnicity</th>--}}
         <th colspan="1"style="text-align: center" >  AGE  </th>
         <th style="text-align: center" colspan="5">Educational Qualification</th>
-        {{--<th colspan="2">Professional Qualification</th>--}}
-        {{--<th colspan="2">Training</th>--}}
         <th style="text-align: center" colspan="5">Job Experiences</th>
+        @if(isset($previousWorkExperienceInCBList))
+        <th style="text-align: center" colspan="2">Previous work in Caritas Bangladesh</th>
+        @endif
         @if($withoutsalary != 'true')
         <th style="text-align: center" colspan="1">Salary Information</th>
         @endif
         <th style="text-align: center" colspan="2">National ID No./ Birth Identification No.</th>
         <th style="text-align: center">Photo (2)</th>
         <th style="text-align: center">Name of  two Referees</th>
-        {{--<th>Relative in CB</th>--}}
-{{--        <th style="text-align: center" colspan="2">Remarks</th>--}}
-
     </tr>
     </thead>
     <tbody>
@@ -233,6 +220,17 @@
                     Total job experience : {{$diff}}
 
             </td>
+
+            @if(isset($previousWorkExperienceInCBList))
+            <td colspan="2" height="600" style="text-align: left;vertical-align: top;">
+                @foreach($previousWorkExperienceInCBList->where('fkemployeeId',$emp['employeeId']) as $prjob)
+                    Designation: {{$prjob->designation}}<br>
+                    Start date: {{$prjob->startDate}}<br>
+                    End date: {{$prjob->endDate}}<br><br><br>
+                @endforeach
+            </td>
+            @endif
+
             @if($withoutsalary != 'true')
             <td  height="600" style="text-align: left;vertical-align: middle;" colspan="1">
                 @foreach($salaryList->where('fkemployeeId',$emp['employeeId']) as $salary)

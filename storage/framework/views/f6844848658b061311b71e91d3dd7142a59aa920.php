@@ -1,15 +1,11 @@
-
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
 
     <style>
         .Border{
             border: 2px solid ;
         }
-
-
         td{
             wrap-text:true;
             vertical-align: top;
@@ -33,7 +29,6 @@
 
 <table class="table">
 
-
     <tr>
         <td colspan="22" style="text-align: center;vertical-align: top;height: 20;"><span style="font-weight: bold"><?php echo e(strtoupper($jobTitle['title'])); ?></span>
             <b>- <?php echo e($excelName); ?></b>
@@ -44,9 +39,6 @@
         <td colspan="22" style="text-align: center;vertical-align: top;height: 20">
             <span style="font-weight: bold">Last date: <?php echo e($jobTitle['deadline']); ?> </span>
         </td>
-        
-        
-        
     </tr>
 
 </table>
@@ -58,23 +50,18 @@
     <tr style="border: 2px solid #000000;">
         <th colspan="1"style="text-align: center;">Sl No.</th>
         <th colspan="3"style="text-align: center">NAME</th>
-        
-        
-        
         <th colspan="1"style="text-align: center" >  AGE  </th>
         <th style="text-align: center" colspan="5">Educational Qualification</th>
-        
-        
         <th style="text-align: center" colspan="5">Job Experiences</th>
+        <?php if(isset($previousWorkExperienceInCBList)): ?>
+        <th style="text-align: center" colspan="2">Previous work in Caritas Bangladesh</th>
+        <?php endif; ?>
         <?php if($withoutsalary != 'true'): ?>
         <th style="text-align: center" colspan="1">Salary Information</th>
         <?php endif; ?>
         <th style="text-align: center" colspan="2">National ID No./ Birth Identification No.</th>
         <th style="text-align: center">Photo (2)</th>
         <th style="text-align: center">Name of  two Referees</th>
-        
-
-
     </tr>
     </thead>
     <tbody>
@@ -238,6 +225,17 @@
 
 
             </td>
+
+            <?php if(isset($previousWorkExperienceInCBList)): ?>
+            <td colspan="2" height="600" style="text-align: left;vertical-align: top;">
+                <?php $__currentLoopData = $previousWorkExperienceInCBList->where('fkemployeeId',$emp['employeeId']); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $prjob): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    Designation: <?php echo e($prjob->designation); ?><br>
+                    Start date: <?php echo e($prjob->startDate); ?><br>
+                    End date: <?php echo e($prjob->endDate); ?><br><br><br>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </td>
+            <?php endif; ?>
+
             <?php if($withoutsalary != 'true'): ?>
             <td  height="600" style="text-align: left;vertical-align: middle;" colspan="1">
                 <?php $__currentLoopData = $salaryList->where('fkemployeeId',$emp['employeeId']); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $salary): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
