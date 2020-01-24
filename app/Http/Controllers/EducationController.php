@@ -72,6 +72,7 @@ class EducationController extends Controller
         }
 
     }
+
     public function getDegreePerEducation(Request $r)
     {
         $degree=Degree::select('degreeId','degreeName')->where('educationLevelId', '=',$r->id)->where('status',1)->orderBy('degreeName', 'ASC')->get();
@@ -86,24 +87,18 @@ class EducationController extends Controller
             }
             echo  "<option value=".OTHERS.">".OTHERS."</option>";
         }
-
-
-
     }
+
     public function getBoradOrUniversity(Request $r)
     {
-        $eduLvlUnder=Educationlevel::findOrFail($r->id)->eduLvlUnder;
-
+        $eduLvlUnder=Educationlevel::find($r->id)->eduLvlUnder;
         if($eduLvlUnder){
             return $eduLvlUnder;
         }else{
             return 0;
         }
-
-
-
-
     }
+
     public function getMajorPerEducation(Request $r)
     {
 
@@ -131,35 +126,25 @@ class EducationController extends Controller
     }
     public function insertPersonalEducation(Request $r)
     {
-       // return $r;
         $employee=Employee::where('fkuserId', '=',Auth::user()->userId)->first()->employeeId;
-
-
-
         for($i=0;$i<count($r->degree);$i++){
             $professional=new Education();
-
             if ($r->degree[$i]==OTHERS){
                 $degreeName=new Degree();
                 $degreeName->degreeName=$r->degreeName[$i];
                 $degreeName->educationLevelId=$r->educationLevel[$i];
                 $degreeName->status=1;
                 $degreeName->save();
-
                 $professional->fkdegreeId=$degreeName->degreeId;
-
             }else{
                 $professional->fkdegreeId=$r->degree[$i];
-
             }
 
             if ($r->board[$i]==OTHERS){
-
                 $boardName=new Board();
                 $boardName->boardName=$r->boardName[$i];
                 $boardName->status=1;
                 $boardName->save();
-
                 $professional->fkboardId=$boardName->boardId;
             }else{
                 $professional->fkboardId=$r->board[$i];
@@ -167,7 +152,6 @@ class EducationController extends Controller
 
 
             if ($r->resultSystem[$i]==OTHERS){
-
                 $professional->resultSystem=4;
                 $professional->resultSystemName=$r->resultSydtemName[$i];
             }else{
@@ -175,7 +159,6 @@ class EducationController extends Controller
             }
 
             if ($r->major[$i] == OTHERS){
-
                 $eduMajor=new Educationmajor();
                 $eduMajor->educationMajorName=$r->subjectName[$i];
 
@@ -184,12 +167,10 @@ class EducationController extends Controller
                 }else{
                     $eduMajor->fkDegreeId=$r->degree[$i];
                 }
-
                 $eduMajor->status=1;
                 $eduMajor->save();
 
                 $professional->fkMajorId=$eduMajor->educationMajorId;
-
             }else{
                 $professional->fkMajorId=$r->major[$i];
             }

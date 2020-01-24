@@ -242,19 +242,13 @@
             });
 
             function checkMajor(x) {
-
-
-
                 var major =$('#majorSub'+x).val();
-                if (major == "<?php echo e(OTHERS); ?>"){
-
+                if (major == "OTHERSMajor"){
                     $("#subjectNameDiv"+x).show();
                 }else {
                     $("#subjectNameDiv"+x).hide();
                 }
-
             }
-
 
             function editInfo(x) {
                 $.ajax({
@@ -289,7 +283,6 @@
                             text: 'Yes',
                             btnClass: 'btn-red',
                             action: function(){
-
                                 $.ajax({
                                     type: "POST",
                                     url: '<?php echo e(route('cv.PersonalEducationDelete')); ?>',
@@ -326,14 +319,12 @@
             fixStepIndicator(currentTab); // Display the crurrent tab
 
             function fixStepIndicator(n) {
-                // This function removes the "active" class of all steps...
                 var x1 = document.getElementsByClassName("tab");
                 x1[n].style.display = "block";
                 var i, x = document.getElementsByClassName("step");
                 for (i = 0; i < x.length; i++) {
                     x[i].className = x[i].className.replace(" active", "");
                 }
-                //... and adds the "active" class on the current step:
                 x[(n+1)].className += " active";
             }
 
@@ -356,25 +347,19 @@
 
 
                 $("#addButton").click(function () {
-
                     if(counter>10){
                         alert("Only 10 section allow per time!!");
                         return false;
                     }
-
                     if (counter > 2 ){
-
                         var educationLevel=$('#educationLevel'+(counter-1)).val();
                         var degree=$('#degree'+(counter-1)).val();
                         var instituteName=$('#instituteName'+(counter-1)).val();
-    //                    var major=$('#major'+(counter-1)).val();
                         var country=$('#country'+(counter-1)).val();
                         var year=$('#passingYear'+(counter-1)).val();
                         var resultSydtem=$('#resultSydtem'+(counter-1)).val();
                         var cgpa=$('#cgpa'+(counter-1)).val();
-    //                    var resultOutOf=$('#resultOutOf'+(counter-1)).val();
                         var status=$('#educationStatus'+(counter-1)).val();
-
                         var major=$('#majorSub'+(counter-1)).val();
                         var universityType=$('#universityType'+(counter-1)).val();
 
@@ -385,83 +370,71 @@
                         }
 
                         if(educationLevel==""){
-
                             var errorMsg='Please select a education level first!!'
                             validationError(errorMsg)
                             return false;
                         }
-                        if(degree==""){
 
+                        if(degree==""){
                             var errorMsg='Please select degree first!!'
                             validationError(errorMsg)
                             return false;
-
                         }
+
                         if(instituteName!="") {
                             if (instituteName == "") {
-
                                 var errorMsg = 'Please type institute name first!!'
                                 validationError(errorMsg)
                                 return false;
-
                             }
                             if (instituteName.length > 255) {
-
                                 var errorMsg = 'Institute name should not more than 255 charecter length!!'
                                 validationError(errorMsg)
                                 return false;
                             }
                         }
+
                         if(universityType!="") {
                             if (universityType == "") {
-
                                 var errorMsg = 'Please type university type first!!';
                                 validationError(errorMsg);
                                 return false;
-
                             }
-
                         }
+
                         if(country==""){
-
                             var errorMsg='Please select a country first!!'
-                            validationError(errorMsg)
+                            validationError(errorMsg);
                             return false;
-
                         }
+
                         if(year!="") {
                             if (year == "") {
-
                                 var errorMsg = 'Please select a year first!!'
-                                validationError(errorMsg)
+                                validationError(errorMsg);
                                 return false;
-
                             }
                         }
+
                         if(resultSydtem==""){
-
                             var errorMsg='Please select a result system first!!'
-                            validationError(errorMsg)
+                            validationError(errorMsg);
                             return false;
-
                         }
+
                         if(cgpa!="") {
                             if (cgpa == "") {
-
                                 var errorMsg = 'Please type your result/CGPA first!!'
-                                validationError(errorMsg)
+                                validationError(errorMsg);
                                 return false;
-
                             }
                         }
+
                         if(status==""){
-
                             var errorMsg='Please select a status first!!'
-                            validationError(errorMsg)
+                            validationError(errorMsg);
                             return false;
-
                         }
-
                     }
 
                     var newTextBoxDiv = $(document.createElement('div'))
@@ -475,7 +448,6 @@
                                 '<option value="<?php echo e($edulevel->educationLevelId); ?>"><?php echo e($edulevel->educationLevelName); ?></option>'+
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 '</select>'+
-
                         '</div>'+
                         '<div class="form-group col-md-8">'+
 
@@ -522,12 +494,11 @@
 
                         '</div>'+
 
-
                         '<div class="form-group col-md-9">'+
                         '<label for="">Major</label>'+
                         '<select name="major[]" class="form-control js-example-basic-single" onchange="checkMajor('+counter+')" id="majorSub'+counter+'">'+
                         '<option value="">Select Major</option>'+
-                        '<option value="<?php echo e(OTHERS); ?>" ><?php echo e(OTHERS); ?></option>'+
+                        '<option value="OTHERSMajor"><?php echo e(OTHERS); ?></option>'+
                         '</select>'+
                         '</div>'+
                         '<div style="display: none" id="subjectNameDiv'+counter+'" class="form-group col-md-6">'+
@@ -597,23 +568,16 @@
                     });
 
                     if(counter>=2){
-    //                    document.getElementById("removeButton").style.display='block';
                         $("#removeButton").show();
                         $("#submitBtn").show();
-
-
-
                     }
 
                     counter++;
-
                     $('.js-example-basic-single').select2();
 
                 });
 
                 $("#removeButton").click(function () {
-
-
                     counter--;
                     if(counter<=2){
                         $("#removeButton").hide();
@@ -622,12 +586,9 @@
                     }
                     $("#TextBoxDiv" + counter).remove();
                 });
-
             });
 
-
             function getDegree(x){
-
                 btn = $(x).data('panel-id');
                 var educationLavel=document.getElementById("educationLevel"+btn).value;
                 $.ajax({
@@ -637,7 +598,6 @@
                     cache: false,
                     success:function(data) {
                         document.getElementById("degree"+btn).innerHTML = data;
-
                     }
                 });
 
@@ -648,58 +608,44 @@
                     cache: false,
                     success:function(data) {
                         if(data==0){
-
                             $("#instituteNameDiv"+btn).show();
                             $("#boardDiv"+btn).show();
-
                             $("#universityTypeDiv"+btn).hide();
                             $("#board"+btn).val($("#board"+btn+"option:first").val());
                             $("#universityType"+btn).val($("#universityType"+btn+"option:first").val());
                             $("#resultSydtem"+btn).val($("#resultSydtem"+btn+" option:first").val());
                             $("#resultSydtemNameDiv"+btn).hide();
                             $("#boardNameDiv"+btn).hide();
-
                             $("#degreeNameDiv"+btn).hide();
                             $("#subjectNameDiv"+btn).hide();
                             $('#majorSub'+btn).children('option:not(:first,:last)').remove();
                             $("#majorSub"+btn).val($("#majorSub"+btn+"option:first").val());
-
-
                         }else if (data == 1){
                             $("#instituteNameDiv"+btn).show();
                             $("#boardDiv"+btn).show();
                             $("#universityTypeDiv"+btn).hide();
-
                             $("#board"+btn).val($("#board"+btn+" option:first").val());
                             $("#universityType"+btn).val($("#universityType"+btn+" option:first").val());
                             $("#resultSydtem"+btn).val($("#resultSydtem"+btn+" option:first").val());
                             $("#resultSydtemNameDiv"+btn).hide();
-
                             $("#boardNameDiv"+btn).hide();
-
                             $("#degreeNameDiv"+btn).hide();
                             $("#subjectNameDiv"+btn).hide();
                             $('#majorSub'+btn).children('option:not(:first,:last)').remove();
                             $("#majorSub"+btn).val($("#majorSub"+btn+"option:first").val());
-
                         }else if (data == 2){
                             $("#instituteNameDiv"+btn).show();
                             $("#boardDiv"+btn).hide();
                             $("#universityTypeDiv"+btn).show();
-
-
-
                             $("#board"+btn).val($("#board"+btn+" option:first").val());
                             $("#universityType"+btn).val($("#universityType"+btn+" option:first").val());
                             $("#resultSydtem"+btn).val($("#resultSydtem"+btn+" option:first").val());
                             $("#resultSydtemNameDiv"+btn).hide();
-
                             $("#boardNameDiv"+btn).hide();
                             $("#degreeNameDiv"+btn).hide();
                             $("#subjectNameDiv"+btn).hide();
                             $('#majorSub'+btn).children('option:not(:first,:last)').remove();
                             $("#majorSub"+btn).val($("#majorSub"+btn+"option:first").val());
-
                         }
 
                     }
@@ -708,26 +654,11 @@
             }
             function getMajor(x){
 
-                
-                
-
-                
-                    
-                    
-                    
-                    
-                    
-                        
-
-                    
-                
-
                 btn = $(x).data('panel-id');
                 var degree=document.getElementById("degree"+btn).value;
 
 
                 if (degree == "<?php echo e(OTHERS); ?>"){
-
                     $("#degreeNameDiv"+btn).show();
                     $("#subjectNameDiv"+btn).show();
 
@@ -756,7 +687,6 @@
             }
 
             function getBoardName(x){
-
                 var board=document.getElementById("board"+x).value;
                 if (board == "OTHERSBoard"){
                     $("#boardNameDiv"+btn).show();
