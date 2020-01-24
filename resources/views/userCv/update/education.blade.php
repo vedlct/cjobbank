@@ -501,7 +501,7 @@
                             @foreach($boards as $board)
                                 '<option value="{{$board->boardId}}" >{{$board->boardName}}</option>'+
                             @endforeach
-                                '<option value="{{OTHERS}}" >{{OTHERS}}</option>'+
+                                '<option value="OTHERSBoard" >{{OTHERS}}</option>'+
                         '</select>' +
                         '</div>'+
 
@@ -739,55 +739,30 @@
                         cache: false,
                         success:function(data) {
                             document.getElementById("majorSub"+btn).innerHTML = data;
-
                         }
                     });
                 }
-
-
-
             }
 
             function getBoardName(x){
-
-
-
-
                 var board=document.getElementById("board"+x).value;
-
-
-                if (board == "{{OTHERS}}"){
-
+                if (board == "OTHERSBoard"){
                     $("#boardNameDiv"+btn).show();
                 }else {
-
-
                     $("#boardNameDiv"+btn).hide();
-
-
                 }
-
             }
+
             function getResultSystemName(x){
-
-
                 var resultSydtem=document.getElementById("resultSydtem"+x).value;
-
                 if (resultSydtem == "{{OTHERS}}"){
-
                     $("#resultSydtemNameDiv"+btn).show();
                 }else {
-
-
                     $("#resultSydtemNameDiv"+btn).hide();
-
-
                 }
-
             }
 
             function validationError(errorMsg){
-
                 $.alert({
                     title: 'Error',
                     type: 'red',
@@ -795,10 +770,7 @@
                     buttons: {
                         tryAgain: {
                             text: 'Ok',
-                            btnClass: 'btn-green',
-                            action: function () {
-
-                            }
+                            btnClass: 'btn-green'
                         }
                     }
                 });
