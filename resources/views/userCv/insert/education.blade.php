@@ -108,7 +108,7 @@
                                     <label for="">Major</label>
                                     <select name="major[]" class="form-control js-example-basic-single" id="majorSub">
                                         <option value="" >Select major</option>
-                                        <option value="{{OTHERS}}" >{{OTHERS}}</option>
+                                        <option value="OTHERSMajor" >{{OTHERS}}</option>
                                     </select>
                                 </div>
                                 <div style="display: none" id="subjectNameDiv" class="form-group col-md-6">
@@ -251,153 +251,94 @@
             for (i = 0; i < x.length; i++) {
                 x[i].className = x[i].className.replace(" active", "");
             }
-            //... and adds the "active" class on the current step:
             x[(n+1)].className += " active";
         }
 
         $('#majorSub').on('change', function() {
-
             var major =$('#majorSub').val();
-            if (major == "{{OTHERS}}"){
-
+            if (major == "OTHERSMajor"){
                 $("#subjectNameDiv").show();
             }else {
                 $("#subjectNameDiv").hide();
             }
-
-
         });
+
         $('#educationStatus').on('change', function() {
-
             var educationStatus =$('#educationStatus').val();
-
             if (educationStatus == '{{COMPLETING_STATUS['On going']}}'){
-
                 $("#cgpa").prop('required',false);
                 $("#passingYear").prop('required',false);
-
             }else {
-
                 $("#cgpa").prop('required',true);
                 $("#passingYear").prop('required',true);
             }
-
-
         });
 
         function checkMajor(x) {
-
-
-
             var major =$('#majorSub'+x).val();
-            if (major == "{{OTHERS}}"){
-
+            if (major == "OTHERSMajor"){
                 $("#subjectNameDiv"+x).show();
             }else {
                 $("#subjectNameDiv"+x).hide();
             }
-
         }
 
-
         function checkeducationStatus(x) {
-
             var educationStatus =$('#educationStatus'+x).val();
-
             if (educationStatus == '{{COMPLETING_STATUS['On going']}}'){
-
                 $("#cgpa"+x).prop('required',false);
                 $("#passingYear"+x).prop('required',false);
-
             }else {
-
                 $("#cgpa"+x).prop('required',true);
                 $("#passingYear"+x).prop('required',true);
             }
-
-
         }
 
-
-
-
         $(document).ready(function(){
-
             $("#removeButton").hide();
             $("#btnPevious").show();
             $("#submitBtn").show();
-
-
-
-
-
             var counter = 1;
 
-//            $('#majorSub'+(counter)).on('change', function() {
-//
-//                alert(1);
-//
-//                var major =$('#majorSub'+(counter)).val();
-//                if (major == "{{OTHERS}}"){
-//
-//                    $("#subjectNameDiv"+(counter)).show();
-//                }else {
-//                    $("#subjectNameDiv"+(counter)).hide();
-//                }
-//
-//
-//            });
-
-
-
             $("#addButton").click(function () {
-
                 if(counter>10){
                     alert("Only 10 section allow per time!!");
                     return false;
                 }
-
                 if (counter == 1 ){
                     var educationLevel=$('#educationLevel').val();
                     var degree=$('#degree').val();
                     var instituteName=$('#instituteName').val();
-//                    var major=$('#major').val();
                     var country=$('#country').val();
                     var year=$('#passingYear').val();
                     var resultSydtem=$('#resultSydtem').val();
                     var cgpa=$('#cgpa').val();
-//                    var resultOutOf=$('#resultOutOf').val();
                     var status=$('#educationStatus').val();
 
                     var major=$('#majorSub').val();
                     var universityType=$('#universityType').val();
 
-                    if(major=="{{OTHERS}}" && $("#subjectName").val()=="" ){
-                        var errorMsg='Please type a subject name first!!'
+                    if(major=="OTHERSMajor" && $("#subjectName").val()=="" ){
+                        var errorMsg='Please type a subject name first!!';
                         validationError(errorMsg);
                         return false;
                     }
 
                     if(educationLevel==""){
-
                         var errorMsg='Please select a education level first!!'
-                       validationError(errorMsg)
+                       validationError(errorMsg);
                         return false;
                     }
                     if(degree==""){
-
                         var errorMsg='Please select degree first!!'
-                        validationError(errorMsg)
+                        validationError(errorMsg);
                         return false;
-
                     }
                     if(instituteName!="") {
                         if (instituteName == "") {
-
                             var errorMsg = 'Please type institute name first!!'
-                            validationError(errorMsg)
+                            validationError(errorMsg);
                             return false;
-
                         }
                         if (instituteName.length > 255) {
 
@@ -476,7 +417,7 @@
                     var major=$('#majorSub'+(counter-1)).val();
                     var universityType=$('#universityType'+(counter-1)).val();
 
-                    if(major=="{{OTHERS}}" && $("#subjectName"+(counter-1)).val()=="" ){
+                    if(major=="OTHERSMajor" && $("#subjectName"+(counter-1)).val()=="" ){
                         var errorMsg='Please Type a Subject Name First!!'
                         validationError(errorMsg);
                         return false;
@@ -629,7 +570,7 @@
                     '<label for="">Major</label>'+
                     '<select name="major[]" class="form-control js-example-basic-single" onchange="checkMajor('+counter+')" id="majorSub'+counter+'">'+
                     '<option value="">Select major</option>'+
-                    '<option value="{{OTHERS}}" >{{OTHERS}}</option>'+
+                    '<option value="OTHERSMajor" >{{OTHERS}}</option>'+
                 '</select>'+
                 '</div>'+
                     '<div style="display: none" id="subjectNameDiv'+counter+'" class="form-group col-md-6">'+
@@ -928,9 +869,6 @@
                         $("#instituteNameDiv"+btn).show();
                         $("#boardDiv"+btn).hide();
                         $("#universityTypeDiv"+btn).show();
-
-
-
                         $("#board"+btn).val($("#board"+btn+" option:first").val());
                         $("#universityType"+btn).val($("#universityType"+btn+" option:first").val());
                         $("#resultSydtem"+btn).val($("#resultSydtem"+btn+" option:first").val());

@@ -230,7 +230,6 @@
         <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>" />
     <?php $__env->stopSection(); ?>
 
-
     <?php $__env->startSection('foot-js'); ?>
 
         <script>
@@ -243,6 +242,7 @@
 
             function checkMajor(x) {
                 var major =$('#majorSub'+x).val();
+                // alert(x);
                 if (major == "OTHERSMajor"){
                     $("#subjectNameDiv"+x).show();
                 }else {
@@ -363,7 +363,7 @@
                         var major=$('#majorSub'+(counter-1)).val();
                         var universityType=$('#universityType'+(counter-1)).val();
 
-                        if(major=="<?php echo e(OTHERS); ?>" && $("#subjectName"+(counter-1)).val()=="" ){
+                        if(major=="OTHERSMajor" && $("#subjectName"+(counter-1)).val()=="" ){
                             var errorMsg='Please type a subject name first!!'
                             validationError(errorMsg);
                             return false;
@@ -663,7 +663,7 @@
                     $("#subjectNameDiv"+btn).show();
 
                     $('#majorSub'+btn).children('option:not(:first,:last)').remove();
-                    $("#majorSub"+btn+" option[value='<?php echo e(OTHERS); ?>']").attr("selected", true);
+                    $("#majorSub"+btn+" option[value='OTHERSMajor']").attr("selected", true);
                     $("#resultSydtem"+btn).val($("#resultSydtem"+btn+" option:first").val());
 
                 }else {

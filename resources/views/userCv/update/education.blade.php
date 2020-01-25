@@ -231,6 +231,7 @@
 
             function checkMajor(x) {
                 var major =$('#majorSub'+x).val();
+                // alert(x);
                 if (major == "OTHERSMajor"){
                     $("#subjectNameDiv"+x).show();
                 }else {
@@ -351,7 +352,7 @@
                         var major=$('#majorSub'+(counter-1)).val();
                         var universityType=$('#universityType'+(counter-1)).val();
 
-                        if(major=="{{OTHERS}}" && $("#subjectName"+(counter-1)).val()=="" ){
+                        if(major=="OTHERSMajor" && $("#subjectName"+(counter-1)).val()=="" ){
                             var errorMsg='Please type a subject name first!!'
                             validationError(errorMsg);
                             return false;
@@ -651,7 +652,7 @@
                     $("#subjectNameDiv"+btn).show();
 
                     $('#majorSub'+btn).children('option:not(:first,:last)').remove();
-                    $("#majorSub"+btn+" option[value='{{OTHERS}}']").attr("selected", true);
+                    $("#majorSub"+btn+" option[value='OTHERSMajor']").attr("selected", true);
                     $("#resultSydtem"+btn).val($("#resultSydtem"+btn+" option:first").val());
 
                 }else {
