@@ -115,31 +115,29 @@
                                 <table border="0" style="width:100%; margin-top: 10px; ">
                                     <thead>
                                     <tr>
-                                        <th style="text-align: center" >Degree</th>
-                                        <th style="text-align: center" >Major</th>
-                                        <th style="text-align: center" >Institution / Board</th>
-                                        <th style="text-align: center" >Passing year</th>
-                                        <th style="text-align: center" >Result</th>
+                                        <th style="text-align: center;width: 50%;" >Degree</th>
+                                        <th style="text-align: center;width: 40%;" >Major</th>
+                                        <th style="text-align: center;width: 10%;" >Institution / Board</th>
+                                        <th style="text-align: center;width: 10%;" >Passing Year</th>
+                                        <th style="text-align: center;width: 10%;" >Result</th>
                                     </tr>
                                     </thead>
                                     <tbody >
                                     @foreach($education as $edu)
                                         <tr>
 {{--                                            <td style="text-align: center">{{$edu->educationLevelName}} in {{$edu->degreeName}} </td>--}}
-                                            <td style="text-align: center">{{$edu->degreeName}} </td>
-                                            <td style="text-align: center">{{$edu->educationMajorName}} </td>
-                                            <td style="text-align: center">{{$edu->institutionName}}
+                                            <td style="text-align: center;font-size: 14px;width: 50%;">{{$edu->degreeName}} </td>
+                                            <td style="text-align: center;font-size: 14px;width: 40%;">{{$edu->educationMajorName}} </td>
+                                            <td style="text-align: center;font-size: 14px;width: 10%;">{{$edu->institutionName}}
                                                 @if($edu->boardName)
                                                     /
                                                     {{$edu->boardName}}
-
                                                 @endif
-
                                             </td>
 
-                                            <td style="text-align: center">{{$edu->passingYear}} </td>
+                                            <td style="text-align: center;font-size: 14px;width: 10%;">{{$edu->passingYear}} </td>
 
-                                            <td style="text-align: center"> {{$edu->result}}</td>
+                                            <td style="text-align: center;font-size: 14px;width: 10%;"> {{$edu->result}}</td>
                                         </tr>
                                     @endforeach
 
@@ -197,32 +195,26 @@
                                 </table>
                             </div>
 
-                            @if(count($previousWorkInCB)>0)
-                            <div class="table-responsive">
-                                <table border="0" style="width:100%; margin-top: 15px; border: none;">
-                                    <tr>
-                                        <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000; background-color: #eff0f1;" ><b>Previous work information in Caritas Bangladesh</b> </td>
-                                    </tr>
-                                </table>
-                            </div>
                             <div class="table-responsive">
                                 <table border="0" style="width:100%; margin-top: 10px; border: none;">
-                                    @php $pcount=1;@endphp
-                                    @foreach($previousWorkInCB as $p_in_caritasbd)
-                                        <tr>
-                                            <td width="2%" style="border: none; vertical-align: top">
-                                                <span class="bold">{{$pcount++}}.</span>
-                                            </td>
-                                            <td style="border: none;">
-                                                <span class="bold"> Designation :</span> &nbsp;&nbsp;&nbsp;{{$p_in_caritasbd->designation}} <br>
-                                                <span class="bold"> Start date :</span> &nbsp;&nbsp;&nbsp;{{$p_in_caritasbd->startDate}} <br>
-                                                <span class="bold"> End date :</span> &nbsp;&nbsp;&nbsp;{{$p_in_caritasbd->endDate}}                                               .
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                    @if(count($previousWorkInCB)<1)
+                                        <tr><td style=" border: none; text-align: center"><strong>None</strong></td></tr>@else
+                                        @php $pcount=1;@endphp
+                                        @foreach($previousWorkInCB as $p_in_caritasbd)
+                                            <tr>
+                                                <td width="2%" style="border: none; vertical-align: top">
+                                                    <span class="bold">{{$pcount++}}.</span>
+                                                </td>
+                                                <td style="border: none;">
+                                                    <span class="bold"> Designation :</span> &nbsp;&nbsp;&nbsp;{{$p_in_caritasbd->designation}} <br>
+                                                    <span class="bold"> Start date :</span> &nbsp;&nbsp;&nbsp;{{$p_in_caritasbd->startDate}} <br>
+                                                    <span class="bold"> End date :</span> &nbsp;&nbsp;&nbsp;{{$p_in_caritasbd->endDate}}
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                 </table>
+                                @endif
                             </div>
-                            @endif
 
                             <div class="table-responsive">
                                 <table border="0" style="width:100%; margin-top: 15px; border: none;">

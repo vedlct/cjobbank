@@ -242,9 +242,10 @@
 
             function checkMajor(x) {
                 var major =$('#majorSub'+x).val();
-                // alert(x);
+               //  alert(x);
                 if (major == "OTHERSMajor"){
                     $("#subjectNameDiv"+x).show();
+
                 }else {
                     $("#subjectNameDiv"+x).hide();
                 }
@@ -441,7 +442,7 @@
                         .attr("id", 'TextBoxDiv' + counter).attr("class", 'row');
                     newTextBoxDiv.after().html('<div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>'
                         +'<div class="form-group col-md-4">'+
-                        '<label for="">Education level<span style="color: red">*</span></label>'+
+                        '<label for="">Exam/Level<span style="color: red">*</span></label>'+
                         '<select name="educationLevel[]" class="form-control" data-panel-id="'+ counter+'" required onchange="getDegree(this)"id="educationLevel'+counter+'">'+
                         '<option value="">Select education level</option>'+
                             <?php $__currentLoopData = $educationLevel; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $edulevel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -451,7 +452,7 @@
                         '</div>'+
                         '<div class="form-group col-md-8">'+
 
-                        '<label for="">Degree<span style="color: red">*</span></label>'+
+                        '<label for="">Subject/Group<span style="color: red">*</span></label>'+
                         '<select name="degree[]" class="form-control" data-panel-id="'+ counter+'" required onchange="getMajor(this)" id="degree'+counter+'">'+
                         '<option value="">Select degree</option>'+
 
@@ -660,10 +661,10 @@
 
                 if (degree == "<?php echo e(OTHERS); ?>"){
                     $("#degreeNameDiv"+btn).show();
-                    $("#subjectNameDiv"+btn).show();
+                   // $("#subjectNameDiv"+btn).show();
 
                     $('#majorSub'+btn).children('option:not(:first,:last)').remove();
-                    $("#majorSub"+btn+" option[value='OTHERSMajor']").attr("selected", true);
+                   // $("#majorSub"+btn+" option[value='OTHERSMajor']").attr("selected", true);
                     $("#resultSydtem"+btn).val($("#resultSydtem"+btn+" option:first").val());
 
                 }else {

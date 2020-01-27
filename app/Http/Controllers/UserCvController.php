@@ -128,7 +128,7 @@ class UserCvController extends Controller
        $empOtherInfo=EmployeeOtherInfo::where('fk_empId', $empId)
            ->first();
 
-
+       $previousWorkInCB = PreviousWorkInCB::where('fkemployeeId', $empId)->get();
 
        $memberShip=MembershipInSocialNetwork::where('fkemployeeId',$empId)->get();
 
@@ -157,7 +157,7 @@ class UserCvController extends Controller
        }
 
        $pdf = PDF::loadView('test',compact( 'personalInfo', 'education',
-           'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree',
+           'professionalCertificate', 'jobExperience','previousWorkInCB', 'trainingCertificate', 'refree',
            'relativeCb','empOtherSkillls','empComputerSkill','empOtherInfo','empOtherInfo','languageNames','languages','salary','memberShip'));
 
        return $pdf->download('Curriculam Vitae of '.$personalInfo->firstName." ".$personalInfo->lastName.'.pdf',array('Attachment'=>false));

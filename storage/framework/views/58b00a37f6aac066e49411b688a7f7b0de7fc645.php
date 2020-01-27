@@ -89,36 +89,36 @@
             </tr>
         </table>
 
-
+        <div class="table-responsive">
         <table border="0" style="width:100%; margin-top: 10px; ">
             <thead>
             <tr>
-                <th style="text-align: center" >Degree</th>
-                <th style="text-align: center" >Major</th>
-                <th style="text-align: center" >Institution / Board</th>
-                <th style="text-align: center" >Passing Year</th>
-                <th style="text-align: center" >Result</th>
+                <th style="text-align: center;width: 50%;" >Degree</th>
+                <th style="text-align: center;width: 40%;" >Major</th>
+                <th style="text-align: center;width: 6%;" >Institution / Board</th>
+                <th style="text-align: center;width: 10%;" >Passing Year</th>
+                <th style="text-align: center;width: 10%;" >Result</th>
             </tr>
             </thead>
             <tbody >
             <?php $__currentLoopData = $education; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $Key => $edu): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <?php if($edu->passingYear==null): ?>
                     <tr>
-                        <td style="text-align: center"><?php echo e($edu->educationLevelName); ?> in <?php echo e($edu->degreeName); ?> </td>
-                        <td style="text-align: center"><?php echo e($edu->educationMajorName); ?> </td>
-                        <td style="text-align: center"><?php echo e($edu->institutionName); ?>
+                        <td style="text-align: center;font-size: 14px;width: 50%;"><?php echo e($edu->degreeName); ?> </td>
+                        <td style="text-align: center;font-size: 14px;width: 40%;"><?php echo e($edu->educationMajorName); ?> </td>
+                        <td style="text-align: center;font-size: 14px;width: 6%;"><?php echo e($edu->institutionName); ?>
 
                             <?php if($edu->boardName): ?>
                                 /<?php echo e($edu->boardName); ?>
 
                             <?php endif; ?>
                         </td>
-                        <td style="text-align: center">
+                        <td style="text-align: center;font-size: 14px;width: 10%;">
                             <?php echo e($edu->passingYear); ?>
 
                         </td>
 
-                        <td style="text-align: center"> <?php echo e($edu->result); ?></td>
+                        <td style="text-align: center;font-size: 14px;width: 10%;"> <?php echo e($edu->result); ?></td>
                     </tr>
                     <?php unset($education[$Key]); ?>
                     <?php break; ?>
@@ -127,28 +127,26 @@
 
             <?php $__currentLoopData = $education; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $edu): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr>
-                    <td style="text-align: center"><?php echo e($edu->educationLevelName); ?> in <?php echo e($edu->degreeName); ?> </td>
-                    <td style="text-align: center"><?php echo e($edu->educationMajorName); ?> </td>
-                    <td style="text-align: center"><?php echo e($edu->institutionName); ?>
+                    <td style="text-align: center;font-size: 14px;width: 50%;"><?php echo e($edu->degreeName); ?> </td>
+                    <td style="text-align: center;font-size: 14px;width: 40%;"><?php echo e($edu->educationMajorName); ?> </td>
+                    <td style="text-align: center;font-size: 14px;width: 6%;"><?php echo e($edu->institutionName); ?>
 
                         <?php if($edu->boardName): ?>
                             /<?php echo e($edu->boardName); ?>
 
                         <?php endif; ?>
                     </td>
-
-                    <td style="text-align: center">
+                    <td style="text-align: center;font-size: 14px;width: 10%;">
                         <?php echo e($edu->passingYear); ?>
 
                     </td>
-
-                    <td style="text-align: center"> <?php echo e($edu->result); ?></td>
+                    <td style="text-align: center;font-size: 14px;width: 10%;"> <?php echo e($edu->result); ?></td>
                 </tr>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
             </tbody>
 
         </table>
+        </div>
 
         <table border="0" style="width:100%; margin-top: 25px; border: none;">
             <tr>
@@ -156,7 +154,7 @@
             </tr>
         </table>
 
-        <table border="0" style="width:100%; margin-top: 10px; border: none;">
+        <table style="width:100%; margin-top: 10px; border: none;">
             <?php if($jobExperience->isEmpty()): ?><tr><td style=" border: none; text-align: center"> <strong>None </strong> </td> </tr><?php else: ?>
 
                 <?php $count=1;$flag=0;?>
@@ -165,7 +163,7 @@
                         <td width="5%" style="border: none; vertical-align: top">
                             <span class="bold"><?php echo e($count++); ?>.</span>
                         </td>
-                        <td>
+                        <td style="font-size: 22px;">
 
                             <span class="bold"> Company Name : </span> &nbsp;&nbsp; <?php echo e($exp->organization); ?>  &nbsp;&nbsp;
                             <div class="pull-right"><span class="bold">Position:</span>&nbsp;<?php echo e($exp->degisnation); ?> </div><br>
@@ -194,16 +192,17 @@
             <?php endif; ?>
         </table>
 
-        <?php if(count($previousWorkInCB)>0): ?>
-            <div class="table-responsive">
-                <table border="0" style="width:100%; margin-top: 15px; border: none;">
-                    <tr>
-                        <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000; background-color: #eff0f1;" ><b>Previous work information in Caritas Bangladesh</b> </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="table-responsive">
-                <table border="0" style="width:100%; margin-top: 10px; border: none;">
+        <div class="table-responsive">
+            <table border="0" style="width:100%; margin-top: 15px; border: none;">
+                <tr>
+                    <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000; background-color: #eff0f1;" ><b>Previous work information in Caritas Bangladesh</b> </td>
+                </tr>
+            </table>
+        </div>
+        <div class="table-responsive">
+            <table border="0" style="width:100%; margin-top: 10px; border: none;">
+                <?php if(count($previousWorkInCB)<1): ?>
+                    <tr><td style=" border: none; text-align: center"><strong>None</strong></td></tr><?php else: ?>
                     <?php $pcount=1;?>
                     <?php $__currentLoopData = $previousWorkInCB; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p_in_caritasbd): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <tr>
@@ -219,8 +218,8 @@
                         </tr>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </table>
-            </div>
-        <?php endif; ?>
+            <?php endif; ?>
+        </div>
 
         <table border="0" style="width:100%; margin-top: 15px; border: none;">
             <tr>
