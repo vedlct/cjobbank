@@ -133,7 +133,7 @@ class EducationController extends Controller
                 $degreeName=new Degree();
                 $degreeName->degreeName=$r->degreeName[$i];
                 $degreeName->educationLevelId=$r->educationLevel[$i];
-                $degreeName->status=0;
+                $degreeName->status=1;
                 $degreeName->save();
                 $professional->fkdegreeId=$degreeName->degreeId;
             }else{
@@ -143,7 +143,7 @@ class EducationController extends Controller
             if ($r->board[$i]==OTHERS){
                 $boardName=new Board();
                 $boardName->boardName=$r->boardName[$i];
-                $boardName->status=0;
+                $boardName->status=1;
                 $boardName->save();
                 $professional->fkboardId=$boardName->boardId;
             }else{
@@ -167,7 +167,7 @@ class EducationController extends Controller
                 }else{
                     $eduMajor->fkDegreeId=$r->degree[$i];
                 }
-                $eduMajor->status=0;
+                $eduMajor->status=1;
                 $eduMajor->save();
 
                 $professional->fkMajorId=$eduMajor->educationMajorId;

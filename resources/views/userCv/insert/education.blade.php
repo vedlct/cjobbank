@@ -896,10 +896,10 @@
             if (degree == "{{OTHERS}}"){
 
                 $("#degreeNameDiv"+btn).show();
-                $("#subjectNameDiv"+btn).show();
+                //$("#subjectNameDiv"+btn).show();
 
                 $('#majorSub'+btn).children('option:not(:first,:last)').remove();
-                $("#majorSub"+btn+" option[value='{{OTHERS}}']").attr("selected", true);
+              //  $("#majorSub"+btn+" option[value='{{OTHERS}}']").attr("selected", true);
                 $("#resultSydtem"+btn).val($("#resultSydtem"+btn+" option:first").val());
 
             }else {
