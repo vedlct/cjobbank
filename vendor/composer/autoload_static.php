@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitbf8cb622a31160cdcd81908c2f50f46a
+class ComposerStaticInit1645cdc684685c62a8e4745a866dc464
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -13,8 +13,8 @@ class ComposerStaticInitbf8cb622a31160cdcd81908c2f50f46a
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
-        'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
+        'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
@@ -635,6 +635,7 @@ class ComposerStaticInitbf8cb622a31160cdcd81908c2f50f46a
         'DeepCopy\\TypeFilter\\Date\\DateIntervalFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/Date/DateIntervalFilter.php',
         'DeepCopy\\TypeFilter\\ReplaceFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/ReplaceFilter.php',
         'DeepCopy\\TypeFilter\\ShallowCopyFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/ShallowCopyFilter.php',
+        'DeepCopy\\TypeFilter\\Spl\\ArrayObjectFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/Spl/ArrayObjectFilter.php',
         'DeepCopy\\TypeFilter\\Spl\\SplDoublyLinkedList' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/Spl/SplDoublyLinkedList.php',
         'DeepCopy\\TypeFilter\\Spl\\SplDoublyLinkedListFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/Spl/SplDoublyLinkedListFilter.php',
         'DeepCopy\\TypeFilter\\TypeFilter' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/TypeFilter/TypeFilter.php',
@@ -4240,11 +4241,11 @@ class ComposerStaticInitbf8cb622a31160cdcd81908c2f50f46a
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitbf8cb622a31160cdcd81908c2f50f46a::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitbf8cb622a31160cdcd81908c2f50f46a::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInitbf8cb622a31160cdcd81908c2f50f46a::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitbf8cb622a31160cdcd81908c2f50f46a::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitbf8cb622a31160cdcd81908c2f50f46a::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit1645cdc684685c62a8e4745a866dc464::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit1645cdc684685c62a8e4745a866dc464::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit1645cdc684685c62a8e4745a866dc464::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit1645cdc684685c62a8e4745a866dc464::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit1645cdc684685c62a8e4745a866dc464::$classMap;
 
         }, null, ClassLoader::class);
     }

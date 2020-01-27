@@ -30,7 +30,7 @@
 <table style="width: 100%">
     <tr>
         <td style="width: 100%" align="left">
-            <b>Dear </b>{{$empInfo->firstName.' '.$empInfo->lastName}},
+            <b>Dear @if($empInfo->gender == "M"){{"Mr. "}}@elseif($empInfo->gender == "F"){{"Ms. "}}@endif{{$empInfo->firstName.' '.$empInfo->lastName}}</b>,
         </td>
     </tr>
     <tr>

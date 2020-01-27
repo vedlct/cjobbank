@@ -1039,7 +1039,7 @@ class ApplicationController extends Controller
 
                     Mail::send('mail.MailBody',['employeeInfo' => $employeeInfo], function($message) use ($pdf,$employeeInfo)
                     {
-                        $message->to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)->subject('INTERVIEW CARD FROM CARITAS BD');
+                        $message->to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)->subject('INTERVIEW CARD FROM CARITAS BANGLADESH');
                         $message->attachData($pdf->output(),'INTERVIEW-CARD.pdf',['mime' => 'application/pdf']);
                     });
 
@@ -1057,7 +1057,7 @@ class ApplicationController extends Controller
 
                     Mail::send('mail.MailBody',['employeeInfo' => $employeeInfo], function($message) use ($pdf,$employeeInfo)
                     {
-                        $message->to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)->subject('PANEL-LIST LETTER FROM CARITAS BD');
+                        $message->to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)->subject('Panel listed letter from Caritas Bangladesh');
                         $message->attachData($pdf->output(),'PANEL-LIST.pdf',['mime' => 'application/pdf']);
                     });
 //                    Storage::put('mailPreview/'.$folder_name.'/'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'-PANEL-LIST.pdf', $pdf->output());
@@ -1072,7 +1072,7 @@ class ApplicationController extends Controller
 
                     Mail::send('mail.MailBody',['employeeInfo' => $employeeInfo], function($message) use ($pdf,$employeeInfo)
                     {
-                        $message->to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)->subject('APOLOGY LETTER FROM CARITAS BD');
+                        $message->to($employeeInfo->email,$employeeInfo->firstName.' '.$employeeInfo->lastName)->subject('Regret letter from Caritas Bangladesh');
                         $message->attachData($pdf->output(),'NOTSELECTED-CARD.pdf',['mime' => 'application/pdf']);
                     });
 //                    Storage::put('mailPreview/'.$folder_name.'/'.$employeeInfo->firstName.' '.$employeeInfo->lastName.'-NOTSELECTED-CARD.pdf', $pdf->output());

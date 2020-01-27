@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <body>
-Dear @if($gender=="M"){{'Mr. '}}@elseif($gender=="F"){{'Mrs. '}}@else{{" "}}@endif{{$firstName }} {{ $lastName}}<br><br>
+<b>Dear @if($gender=="M"){{'Mr. '}}@elseif($gender=="F"){{'Ms. '}}@else{{" "}}@endif{{$firstName }} {{ $lastName}}</b><br><br>
 <h3>Cordial Greetings from Caritas Bangladesh!</h3><br>
 We have received a request from you that, you forgotten your password. We are happy to help you. <br><br>
 
