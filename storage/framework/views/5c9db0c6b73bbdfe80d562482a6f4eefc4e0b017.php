@@ -115,44 +115,36 @@
                                     </div>
 
                                     <div class="form-group col-md-6" id="supervisorDiv">
-                                        <label for="inputEmail4">Name of supervisor</label>
+                                        <label for="supervisorName">Name of supervisor<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" name="supervisorName[]" id="supervisorName" placeholder="Name of Supervisor" >
 
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Any reservation contacting your employer?</label>
+                                        <label for="reservationContactingEmployer">Any reservation contacting your employer?</label>
                                         <select class="form-control" id="reservationContactingEmployer" name="reservationContactingEmployer[]" >
                                             <option value="" selected>Select Option</option>
                                             <?php $__currentLoopData = YES_NO; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <option value="<?php echo e($value); ?>"><?php echo e($key); ?></option>
-                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($value); ?>"><?php echo e($key); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>&nbsp;
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Type of employment<span style="color: red">*</span></label>
+                                        <label for="employmentType">Type of employment<span style="color: red">*</span></label>
                                         <select class="form-control"  id="employmentType" name="employmentType[]" >
-
                                             <option value="" selected>Select employment type</option>
                                             <?php $__currentLoopData = $employmentType; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $eT): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                                <option value="<?php echo e($eT->employmentTypeName); ?>"><?php echo e($eT->employmentTypeName); ?></option>
-
-                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($eT->employmentTypeName); ?>"><?php echo e($eT->employmentTypeName); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             <option value="<?php echo e(OTHERS); ?>">Others</option>
                                         </select>&nbsp;
                                     </div>
                                     <div style="display: none" id="employmentTypeTextDiv" class="form-group col-md-6">
-
-                                        <label for="inputEmail4">Please mention other types</label>
+                                        <label for="employmentTypeText">Please mention other types</label>
                                         <input type="text" class="form-control" name="employmentTypeText[]" id="employmentTypeText" placeholder="Write Employment Type">
-
-
                                     </div>
                                 </div>
-
-
                             </div>
-
 
 
 
@@ -442,74 +434,49 @@
             var employmentTypeText=document.getElementsByName('employmentTypeText[]');
 
             for (i=0;i<organization.length;i++){
-
                 if(end[i].value =="" && supervisorName[i].value==""){
-
                     var errorMsg='Please insert supervisor name for running job !!';
                     validationError(errorMsg)
                     return false;
                 }
 
                 if(organizationType[i].value==""){
-
                     var errorMsg='Please select a organization type first!!'
                     validationError(errorMsg)
                     return false;
                 }
 
-                // if(organization[i].value==""){
-                //
-                //     var errorMsg='Please type organization name first!!'
-                //     validationError(errorMsg)
-                //     return false;
-                // }
                 if (organization[i].value.length > 100){
-
                     var errorMsg='Organization name should not more than 100 charecter length!!'
                     validationError(errorMsg)
                     return false;
-
                 }
-                if(degisnation[i].value==""){
 
+                if(degisnation[i].value==""){
                     var errorMsg='Please type designation first!!'
                     validationError(errorMsg)
                     return false;
-
                 }
-                if (degisnation[i].value.length > 100){
 
+                if (degisnation[i].value.length > 100){
                     var errorMsg='Designation should not more than 100 charecter length!!';
                     validationError(errorMsg);
                     return false;
-
                 }
-                if(start[i].value==""){
 
+                if(start[i].value==""){
                     var errorMsg='Please select a strat date first!!';
                     validationError(errorMsg);
                     return false;
-
                 }
+
                  if(end[i].value != "") {
-
-
                      if (Date.parse(end[i].value) < Date.parse(start[i].value)) {
-
                          var errorMsg = 'End date should after start date!!';
                          validationError(errorMsg);
                          return false;
-
                      }
                  }
-
-//                if($.trim(address[i].value)==""){
-//
-//                    var errorMsg='Please type address first!!';
-//                    validationError(errorMsg);
-//                    return false;
-//
-//                }
 
                // if(majorResponsibilities[i].value==""){
                //
