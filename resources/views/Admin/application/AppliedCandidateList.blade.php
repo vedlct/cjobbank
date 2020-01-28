@@ -226,7 +226,8 @@
                 @foreach($previousWorkExperienceInCBList->where('fkemployeeId',$emp['employeeId']) as $prjob)
                     Designation: {{$prjob->designation}}<br>
                     Start date: {{$prjob->startDate}}<br>
-                    End date: {{$prjob->endDate}}<br><br><br>
+                    End date: {{$prjob->endDate}}<br>
+                    Work station: {{$prjob->location}}<br><br><br>
                 @endforeach
             </td>
             @endif

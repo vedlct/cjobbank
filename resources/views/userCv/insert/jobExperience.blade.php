@@ -116,44 +116,36 @@
                                     </div>
 
                                     <div class="form-group col-md-6" id="supervisorDiv">
-                                        <label for="inputEmail4">Name of supervisor</label>
+                                        <label for="supervisorName">Name of supervisor<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" name="supervisorName[]" id="supervisorName" placeholder="Name of Supervisor" >
 
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Any reservation contacting your employer?</label>
+                                        <label for="reservationContactingEmployer">Any reservation contacting your employer?</label>
                                         <select class="form-control" id="reservationContactingEmployer" name="reservationContactingEmployer[]" >
                                             <option value="" selected>Select Option</option>
                                             @foreach(YES_NO as $key=>$value)
-                                                <option value="{{$value}}">{{$key}}</option>
-                                                @endforeach
+                                            <option value="{{$value}}">{{$key}}</option>
+                                            @endforeach
                                         </select>&nbsp;
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label for="inputEmail4">Type of employment<span style="color: red">*</span></label>
+                                        <label for="employmentType">Type of employment<span style="color: red">*</span></label>
                                         <select class="form-control"  id="employmentType" name="employmentType[]" >
-
                                             <option value="" selected>Select employment type</option>
                                             @foreach($employmentType as $eT)
-                                                <option value="{{$eT->employmentTypeName}}">{{$eT->employmentTypeName}}</option>
-
-                                                @endforeach
+                                            <option value="{{$eT->employmentTypeName}}">{{$eT->employmentTypeName}}</option>
+                                            @endforeach
                                             <option value="{{OTHERS}}">Others</option>
                                         </select>&nbsp;
                                     </div>
                                     <div style="display: none" id="employmentTypeTextDiv" class="form-group col-md-6">
-
-                                        <label for="inputEmail4">Please mention other types</label>
+                                        <label for="employmentTypeText">Please mention other types</label>
                                         <input type="text" class="form-control" name="employmentTypeText[]" id="employmentTypeText" placeholder="Write Employment Type">
-
-
                                     </div>
                                 </div>
-
-
                             </div>
-
 {{--                            <button type="button" id="addButton" class="btn btn-success">Add more</button>--}}
 {{--                            <button type="button" id="removeButton" class="btn btn-success" >Remove</button>--}}
 
@@ -443,74 +435,49 @@
             var employmentTypeText=document.getElementsByName('employmentTypeText[]');
 
             for (i=0;i<organization.length;i++){
-
                 if(end[i].value =="" && supervisorName[i].value==""){
-
                     var errorMsg='Please insert supervisor name for running job !!';
                     validationError(errorMsg)
                     return false;
                 }
 
                 if(organizationType[i].value==""){
-
                     var errorMsg='Please select a organization type first!!'
                     validationError(errorMsg)
                     return false;
                 }
 
-                // if(organization[i].value==""){
-                //
-                //     var errorMsg='Please type organization name first!!'
-                //     validationError(errorMsg)
-                //     return false;
-                // }
                 if (organization[i].value.length > 100){
-
                     var errorMsg='Organization name should not more than 100 charecter length!!'
                     validationError(errorMsg)
                     return false;
-
                 }
-                if(degisnation[i].value==""){
 
+                if(degisnation[i].value==""){
                     var errorMsg='Please type designation first!!'
                     validationError(errorMsg)
                     return false;
-
                 }
-                if (degisnation[i].value.length > 100){
 
+                if (degisnation[i].value.length > 100){
                     var errorMsg='Designation should not more than 100 charecter length!!';
                     validationError(errorMsg);
                     return false;
-
                 }
-                if(start[i].value==""){
 
+                if(start[i].value==""){
                     var errorMsg='Please select a strat date first!!';
                     validationError(errorMsg);
                     return false;
-
                 }
+
                  if(end[i].value != "") {
-
-
                      if (Date.parse(end[i].value) < Date.parse(start[i].value)) {
-
                          var errorMsg = 'End date should after start date!!';
                          validationError(errorMsg);
                          return false;
-
                      }
                  }
-
-//                if($.trim(address[i].value)==""){
-//
-//                    var errorMsg='Please type address first!!';
-//                    validationError(errorMsg);
-//                    return false;
-//
-//                }
 
                // if(majorResponsibilities[i].value==""){
                //

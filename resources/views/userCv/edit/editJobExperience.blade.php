@@ -57,7 +57,7 @@
                     <textarea class="form-control ckeditor" rows="15" name="keyAchivement" id="keyAchivement" placeholder="Key Achievement">{{$experience->keyAchivement}}</textarea>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="inputEmail4">Name of supervisor</label>
+                    <label for="inputEmail4">Name of supervisor<span style="color: red">*</span></label>
                     <input type="text" class="form-control" name="supervisorName" value="{{$experience->supervisorName}}" id="supervisorName" placeholder="Name of Supervisor">
                 </div>
                 <div class="form-group col-md-6">

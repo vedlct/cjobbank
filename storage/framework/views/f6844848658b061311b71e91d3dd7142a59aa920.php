@@ -231,7 +231,8 @@
                 <?php $__currentLoopData = $previousWorkExperienceInCBList->where('fkemployeeId',$emp['employeeId']); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $prjob): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     Designation: <?php echo e($prjob->designation); ?><br>
                     Start date: <?php echo e($prjob->startDate); ?><br>
-                    End date: <?php echo e($prjob->endDate); ?><br><br><br>
+                    End date: <?php echo e($prjob->endDate); ?><br>
+                    Work station: <?php echo e($prjob->location); ?><br><br><br>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </td>
             <?php endif; ?>
