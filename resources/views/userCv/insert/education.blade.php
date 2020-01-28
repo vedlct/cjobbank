@@ -48,7 +48,7 @@
                             <div id="TextBoxesGroup" class="row">
                                 <div class="form-group col-md-4">
 
-                                    <label for="">Education exam/level<span style="color: red">*</span></label>
+                                    <label for="">Exam/level<span style="color: red">*</span></label>
                                     <select name="educationLevel[]" class="form-control" required="" id="educationLevel">
                                         <option value="">Select education exam/level</option>
                                         @foreach($educationLevel as $edulevel)

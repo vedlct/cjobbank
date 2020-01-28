@@ -8,7 +8,7 @@
         <div  class="row">
             <div class="form-group col-md-4">
 
-                <label for="">Education exam/level<span style="color: red">*</span></label>
+                <label for="">Exam/level<span style="color: red">*</span></label>
                 <select name="educationLevel" class="form-control" required="" id="educationLevel">
                     <option value="">Select Education Level</option>
                     <?php $__currentLoopData = $educationLevel; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $edulevel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

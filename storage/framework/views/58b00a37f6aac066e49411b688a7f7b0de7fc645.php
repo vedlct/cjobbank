@@ -201,8 +201,7 @@
         </div>
         <div class="table-responsive">
             <table border="0" style="width:100%; margin-top: 10px; border: none;">
-                <?php if(count($previousWorkInCB)<1): ?>
-                    <tr><td style=" border: none; text-align: center"><strong>None</strong></td></tr><?php else: ?>
+                <?php if(isset($previousWorkInCB) && count($previousWorkInCB)>0): ?>
                     <?php $pcount=1;?>
                     <?php $__currentLoopData = $previousWorkInCB; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p_in_caritasbd): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <tr>
@@ -218,8 +217,10 @@
                             </td>
                         </tr>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <?php else: ?>
+                    <tr><td style=" border: none; text-align: center"><strong>None</strong></td></tr>
+                <?php endif; ?>
                 </table>
-            <?php endif; ?>
         </div>
 
         <table border="0" style="width:100%; margin-top: 15px; border: none;">

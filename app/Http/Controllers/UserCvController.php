@@ -94,7 +94,7 @@ class UserCvController extends Controller
            'educationmajor.educationMajorName', 'education.fkMajorId', 'passingYear')
            ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
            ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
-           ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
+           ->leftJoin('educationmajor', 'educationmajor.educationMajorId', '=', 'education.fkMajorId')
            ->leftJoin('board', 'board.boardId', '=', 'education.fkboardId')
            ->where('fkemployeeId', $empId)
            ->orderBy('passingYear', 'desc')
@@ -176,11 +176,11 @@ class UserCvController extends Controller
             ->leftJoin('emp_ques_obj', 'emp_ques_obj.empId', 'employee.employeeId')
             ->findOrFail($empId);
 
-        $education = Education::select('degreeName', 'education.institutionName', 'boardName','education.fkemployeeId', 'education.status', 'education.resultSystem', 'education.result', 'educationlevel.educationLevelName',
+        $education = Education::select('degreeName', 'education.institutionName', 'boardName','degree.degreeName','education.fkemployeeId', 'education.status', 'education.resultSystem', 'education.result', 'educationlevel.educationLevelName',
             'educationmajor.educationMajorName', 'education.fkMajorId', 'passingYear')
             ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
             ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
-            ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
+            ->leftJoin('educationmajor', 'educationmajor.educationMajorId', '=', 'education.fkMajorId')
             ->leftJoin('board', 'board.boardId', '=', 'education.fkboardId')
             ->where('fkemployeeId', $empId)
             ->orderBy('passingYear', 'desc')
@@ -273,7 +273,7 @@ class UserCvController extends Controller
            'educationmajor.educationMajorName', 'education.fkMajorId', 'passingYear')
            ->leftJoin('degree', 'degree.degreeId', '=', 'education.fkdegreeId')
            ->leftJoin('educationlevel', 'educationlevel.educationLevelId', '=', 'degree.educationLevelId')
-           ->leftJoin('educationmajor', 'educationmajor.fkDegreeId', '=', 'education.fkMajorId')
+           ->leftJoin('educationmajor', 'educationmajor.educationMajorId', '=', 'education.fkMajorId')
            ->leftJoin('board', 'board.boardId', '=', 'education.fkboardId')
            ->where('fkemployeeId', $empId)
            ->orderBy('passingYear', 'desc')

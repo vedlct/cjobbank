@@ -148,8 +148,9 @@
         </table>
 
         <table style="width:100%; margin-top: 10px; border: none;">
-            @if($jobExperience->isEmpty())<tr><td style=" border: none; text-align: center"> <strong>None </strong> </td> </tr>@else
-
+            @if($jobExperience->isEmpty())
+                <tr><td style=" border: none; text-align: center"> <strong>None </strong> </td> </tr>
+            @else
                 @php $count=1;$flag=0;@endphp
                 @foreach($jobExperience as $exp)
                     <tr>
@@ -177,8 +178,6 @@
                             @endif
                         </td>
                     </tr>
-
-
                 @endforeach
             @endif
         </table>
@@ -192,8 +191,7 @@
         </div>
         <div class="table-responsive">
             <table border="0" style="width:100%; margin-top: 10px; border: none;">
-                @if(count($previousWorkInCB)<1)
-                    <tr><td style=" border: none; text-align: center"><strong>None</strong></td></tr>@else
+                @if(isset($previousWorkInCB) && count($previousWorkInCB)>0)
                     @php $pcount=1;@endphp
                     @foreach($previousWorkInCB as $p_in_caritasbd)
                         <tr>
@@ -208,8 +206,10 @@
                             </td>
                         </tr>
                     @endforeach
+                @else
+                    <tr><td style=" border: none; text-align: center"><strong>None</strong></td></tr>
+                @endif
                 </table>
-            @endif
         </div>
 
         <table border="0" style="width:100%; margin-top: 15px; border: none;">

@@ -193,6 +193,14 @@
                             </div>
 
                             <div class="table-responsive">
+                                <table border="0" style="width:100%; margin-top: 15px; border: none;">
+                                    <tr>
+                                        <td class="label" style="text-align: left; border: none; border-bottom: 1px solid #000; background-color: #eff0f1;" ><b>Previous work information in Caritas Bangladesh</b> </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div class="table-responsive">
                                 <table border="0" style="width:100%; margin-top: 10px; border: none;">
                                     @if(count($previousWorkInCB)<1)
                                         <tr><td style=" border: none; text-align: center"><strong>None</strong></td></tr>@else
