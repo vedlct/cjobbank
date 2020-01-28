@@ -56,16 +56,20 @@
 
 
                                     <div class="form-group col-md-12">
-                                        <label for="inputEmail4">Designation<span style="color: red">*</span></label>
+                                        <label for="degisnation">Designation<span style="color: red">*</span></label>
                                         <input type="text" class="form-control" name="degisnation[]" id="degisnation" placeholder="designation" >
                                     </div>
+                                    <div class="form-group col-md-12">
+                                        <label for="location">Location<span style="color: red">*</span></label>
+                                        <textarea class="form-control" name="location[]" id="location" placeholder="designation"></textarea>
+                                    </div>
                                     <div class="form-group col-md-6">
-                                        <label for="inputPassword4">Start date<span style="color: red">*</span></label>
+                                        <label for="start">Start date<span style="color: red">*</span></label>
                                         <input type="text" class="form-control date" name="startDate[]" id="start" placeholder="date">
                                     </div>
                                     <div class="form-group col-md-6">
 
-                                        <label for="inputPassword4">End date</label> /
+                                        <label for="end">End date</label> /
                                         <input type="checkbox" class="col-md-2" id="currentlyRunning" onclick="chkEXPCurrent()" name="currentlyRunning[]" value="1">Running
                                         <input type="text" class="form-control end" name="endDate[]" id="end" placeholder="date">
 
@@ -421,60 +425,45 @@
 
             if ($("input[name=hasWorkedInCB]:checked").val()=="1") {
 
-
-
-                var degisnation=document.getElementsByName('degisnation[]');
-                var startDate=document.getElementsByName('startDate[]');
-
-                var currentlyRunning=document.getElementsByName('currentlyRunning[]');
-
-
-                var endDate=document.getElementsByName('endDate[]');
-
+                var degisnation = document.getElementsByName('degisnation[]');
+                var location = document.getElementsByName('location[]');
+                var startDate = document.getElementsByName('startDate[]');
+                var currentlyRunning = document.getElementsByName('currentlyRunning[]');
+                var endDate = document.getElementsByName('endDate[]');
 
                 for (i=0;i<degisnation.length;i++){
-
                     if(degisnation[i].value==""){
-
                         var errorMsg='Please type a designation first!!';
                         validationError(errorMsg);
                         return false;
                     }
 
-                    if(startDate[i].value==""){
+                    if(location[i].value==""){
+                        var errorMsg='Please enter location!!';
+                        validationError(errorMsg);
+                        return false;
+                    }
 
+                    if(startDate[i].value==""){
                         var errorMsg='Please type start date first!!';
                         validationError(errorMsg);
                         return false;
                     }
 
                     if ($("input[name=currentlyRunning]:checked").val()!=1){
-
                         if(endDate[i].value!=""){
-
-
                             if(Date.parse(startDate[i].value) > Date.parse(endDate[i].value)){
 
                                 var errorMsg='start date must be less then end date';
                                 validationError(errorMsg);
                                 return false;
                             }
-
                         }
-
                     }
-
-
                 }
-
-
-            }
-            else {
+            }else {
                 return true;
-
-
             }
-
         }
 
         $(document).ready(function(){

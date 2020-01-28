@@ -41,7 +41,6 @@
                                 <div id="edit<?php echo e($prevWc->id); ?>">
                                     <div class="row">
                                         <div class="form-group col-md-10">
-
                                             <label for="inputEmail4">Designation :</label>
                                             <?php echo e($prevWc->designation); ?>
 
@@ -50,9 +49,15 @@
                                         <div class="form-group col-md-2 ">
                                             <button type="button" class="btn btn-info btn-sm " onclick="editInfo(<?php echo e($prevWc->id); ?>)"><i class="fa fa-edit"></i></button>
                                             <button type="button" class="btn btn-danger btn-sm " onclick="deletePreViousWork(<?php echo e($prevWc->id); ?>)"><i class="fa fa-trash"></i></button>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <label>Location</label>
+                                            <?php echo e($prevWc->location); ?>
 
                                         </div>
-
                                     </div>
 
                                     <div class="row">
@@ -69,19 +74,13 @@
                                             <?php else: ?>
                                                 Running
                                             <?php endif; ?>
-
-
                                         </div>
                                         <div class="col-md-6">
                                             <label for="inputPassword4">Total experience :</label>
                                             <span id="TE<?php echo e($tempHr); ?>"></span>
-
                                         </div>
                                     </div>
-
                                     <?php ($tempHr++); ?>
-
-
                                 </div>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>
@@ -90,18 +89,9 @@
                             <input type="hidden" required name="hasWorkedInCB" value="1">&nbsp;
                             <?php echo e(csrf_field()); ?>
 
-
-                            <div id="TextBoxesGroup">
-
-
-                            </div>
-
-
+                            <div id="TextBoxesGroup"></div>
                             <button type="button" id="addButton" class="btn btn-success">Add more</button>
                             <button type="button" id="removeButton" class="btn btn-success" >Remove</button>
-
-
-
                             <div style="overflow:auto;">
                                 <div style="float:right;">
                                     <a href="<?php echo e(route('JobExperience.index')); ?>"><button type="button" id="btnPevious" >Back</button></a>
@@ -143,28 +133,23 @@
 
 <?php $__env->startSection('foot-js'); ?>
     <script>
-        var currentTab = 0; // Current tab is set to be the first tab (0)
-        fixStepIndicator(currentTab); // Display the crurrent tab
+        var currentTab = 0;
+        fixStepIndicator(currentTab);
 
         function editInfo(x) {
-
             $.ajax({
                 type: 'POST',
                 url: "<?php echo route('candidate.previousWorkInCB.edit'); ?>",
                 cache: false,
                 data: {_token: "<?php echo e(csrf_token()); ?>",'id': x},
                 success: function (data) {
-
                     $('#edit'+x).html(data);
                     $("#addButton").hide();
-
-
                 }
             });
         }
+
         function deletePreViousWork(x) {
-
-
             $.confirm({
                 title: 'Delete!',
                 content: 'Are you sure ?',
@@ -396,59 +381,45 @@
                     alert("Only 10 Section allow per Time!!");
                     return false;
                 }
-
-                if (counter > 1)
-                {
+                if (counter > 1){
                     var degisnation=$('#degisnation'+(counter-1)).val();
+                    var location=$('#location'+(counter-1)).val();
                     var start=$('#start'+(counter-1)).val();
                     var end=$('#end'+(counter-1)).val();
-
-
                     if(degisnation==""){
-
                         var errorMsg='Please type designation first!!'
                         validationError(errorMsg)
                         return false;
-
+                    }
+                    if(location==""){
+                        var errorMsg='Please enter location!!'
+                        validationError(errorMsg)
+                        return false;
                     }
                     if (degisnation.length > 255){
-
                         var errorMsg='Designation should not more than 255 charecter length!!';
                         validationError(errorMsg);
                         return false;
-
                     }
                     if(start==""){
-
                         var errorMsg='Please select a start date first!!';
                         validationError(errorMsg);
                         return false;
-
                     }
                     if(end != "") {
-
-
                         if (Date.parse(end) < Date.parse(start)) {
-
                             var errorMsg = 'End date should after start date!!';
                             validationError(errorMsg);
                             return false;
-
                         }
                     }else {
                         if ($("#currentlyRunning"+(counter-1)).prop('checked') != true){
-
                             var errorMsg = 'Either end date or currently running should be selected!!';
                             validationError(errorMsg);
                             return false;
-
                         }
                     }
-
                 }
-
-
-
 
                 var newTextBoxDiv = $(document.createElement('div'))
                     .attr("id", 'TextBoxDiv' + counter).attr("class", 'row');
@@ -458,6 +429,10 @@
                     '<div class="form-group col-md-12"> ' +
                     '<label for="inputEmail4">Designation</label> ' +
                     '<input type="text" class="form-control" name="degisnation[]" id="degisnation'+counter+'" placeholder="designation" > ' +
+                    '</div> ' +
+                    '<div class="form-group col-md-12"> ' +
+                    '<label for="location">Location</label> ' +
+                    '<input type="text" class="form-control" name="location[]" id="location'+counter+'" placeholder="designation" > ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
                     '<label for="inputPassword4">Start date</label> ' +
@@ -491,8 +466,6 @@
             });
 
             $("#removeButton").click(function () {
-
-
                 if(counter=='1'){
                     alert("Atleast one course section is needed!!");
                     return false;
@@ -504,37 +477,27 @@
                 }
                 $("#TextBoxDiv" + counter).remove();
             });
-
-
         });
 
         function chkPreviousWork() {
-
-
-
-
-
-
                 var degisnation=document.getElementsByName('degisnation[]');
+                var location=document.getElementsByName('location[]');
                 var startDate=document.getElementsByName('startDate[]');
-
                 var currentlyRunning=document.getElementsByName('currentlyRunning[]');
-
-
                 var endDate=document.getElementsByName('endDate[]');
-
-
                 for (i=0;i<degisnation.length;i++){
-
                     if(degisnation[i].value==""){
-
+                        var errorMsg='Please type a designation first!!';
+                        validationError(errorMsg);
+                        return false;
+                    }
+                    if(location[i].value==""){
                         var errorMsg='Please type a designation first!!';
                         validationError(errorMsg);
                         return false;
                     }
 
                     if(startDate[i].value==""){
-
                         var errorMsg='Please type start date first!!';
                         validationError(errorMsg);
                         return false;
@@ -543,24 +506,14 @@
                     if ($("input[name=currentlyRunning]:checked").val()!=1){
 
                         if(endDate[i].value!=""){
-
                             if(Date.parse(startDate[i].value) > Date.parse(endDate[i].value)){
-
                                 var errorMsg='startDate must be less then endDate';
                                 validationError(errorMsg);
                                 return false;
                             }
-
                         }
-
                     }
-
-
                 }
-
-
-
-
         }
 
         function validationError(errorMsg){

@@ -126,7 +126,7 @@
     <table >
         <tr>
             <td width="100%" align="left">
-                <b>Dear </b><?php if($empInfo->gender == "M"): ?><?php echo e("Mr "); ?><?php elseif($empInfo->gender == "F"): ?><?php echo e("Ms "); ?><?php endif; ?><?php echo e($empInfo->firstName.' '.$empInfo->lastName); ?>,
+                <b>Dear <?php if($empInfo->gender == "M"): ?><?php echo e("Mr. "); ?><?php elseif($empInfo->gender == "F"): ?><?php echo e("Ms. "); ?><?php endif; ?><?php echo e($empInfo->firstName.' '.$empInfo->lastName); ?></b>,
             </td>
         </tr>
     </table>

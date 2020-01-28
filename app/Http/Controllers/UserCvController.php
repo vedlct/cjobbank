@@ -116,6 +116,7 @@ class UserCvController extends Controller
        $jobExperience = JobExperience::where('fkemployeeId', $empId)
            ->orderBy('startDate', 'desc')
            ->get();
+       $previousWorkInCB = PreviousWorkInCB::where('fkemployeeId', $empId)->get();
 
        $trainingCertificate = Traning::where('fkemployeeId', $empId)
            ->orderBy('startDate', 'desc')
@@ -129,11 +130,7 @@ class UserCvController extends Controller
            ->first();
 
        $previousWorkInCB = PreviousWorkInCB::where('fkemployeeId', $empId)->get();
-
        $memberShip=MembershipInSocialNetwork::where('fkemployeeId',$empId)->get();
-
-
-//                return $memberShip;
 
        $languageNames=EmployeeLanguage::select('fklanguageHead','languagename')
            ->where('fkemployeeId',$empId)
@@ -157,7 +154,7 @@ class UserCvController extends Controller
        }
 
        $pdf = PDF::loadView('test',compact( 'personalInfo', 'education',
-           'professionalCertificate', 'jobExperience','previousWorkInCB', 'trainingCertificate', 'refree',
+           'professionalCertificate', 'previousWorkInCB', 'jobExperience','previousWorkInCB', 'trainingCertificate', 'refree',
            'relativeCb','empOtherSkillls','empComputerSkill','empOtherInfo','empOtherInfo','languageNames','languages','salary','memberShip'));
 
        return $pdf->download('Curriculam Vitae of '.$personalInfo->firstName." ".$personalInfo->lastName.'.pdf',array('Attachment'=>false));
@@ -206,6 +203,7 @@ class UserCvController extends Controller
             ->orderBy('startDate', 'desc')
             ->get();
 
+        $previousWorkInCB = PreviousWorkInCB::where('fkemployeeId', $empId)->get();
         $trainingCertificate = Traning::where('fkemployeeId', $empId)
             ->orderBy('startDate', 'desc')
             ->get();
@@ -253,7 +251,7 @@ class UserCvController extends Controller
 //        return $pdf->download('Curriculam Vitae of '.$personalInfo->firstName." ".$personalInfo->lastName.'.pdf',array('Attachment'=>false));
 
         return view('test',compact( 'viewMode','personalInfo', 'education',
-           'professionalCertificate', 'jobExperience', 'trainingCertificate', 'refree',
+           'professionalCertificate','previousWorkInCB','jobExperience', 'trainingCertificate', 'refree',
            'relativeCb','empOtherSkillls','empComputerSkill','empOtherInfo','empOtherInfo','languageNames','languages','salary','memberShip'));
 
     }

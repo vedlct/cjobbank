@@ -130,7 +130,7 @@
     <table style="width: 100%">
         <tr>
         <td style="width: 100%" align="left">
-            <b>Subject: {{$subjectLine.' for the post of '}}{{$jobInfo->position}}</b>
+            <b>Subject: {{$subjectLine}}</b>
         </td>
         </tr>
 

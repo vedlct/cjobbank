@@ -203,7 +203,8 @@
                             <td style="border: none;">
                                 <span class="bold"> Designation :</span> &nbsp;&nbsp;&nbsp;{{$p_in_caritasbd->designation}} <br>
                                 <span class="bold"> Start date :</span> &nbsp;&nbsp;&nbsp;{{$p_in_caritasbd->startDate}} <br>
-                                <span class="bold"> End date :</span> &nbsp;&nbsp;&nbsp;{{$p_in_caritasbd->endDate}}
+                                <span class="bold"> End date :</span> &nbsp;&nbsp;&nbsp;{{$p_in_caritasbd->endDate}} <br>
+                                <span class="bold"> Location :</span> &nbsp;&nbsp;&nbsp;{{$p_in_caritasbd->location}}
                             </td>
                         </tr>
                     @endforeach

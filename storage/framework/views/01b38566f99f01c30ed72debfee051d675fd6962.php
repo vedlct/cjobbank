@@ -133,7 +133,7 @@
     <table style="width: 100%">
         <tr>
         <td style="width: 100%" align="left">
-            <b>Subject: <?php echo e($subjectLine.' for the post of '); ?><?php echo e($jobInfo->position); ?></b>
+            <b>Subject: <?php echo e($subjectLine); ?></b>
         </td>
         </tr>
 
@@ -146,7 +146,7 @@
     <table style="width: 100%">
         <tr>
         <td style="width: 100%" align="left">
-            <b>Dear <?php if($empInfo->gender == "M"): ?><?php echo e("Mr "); ?><?php elseif($empInfo->gender == "F"): ?><?php echo e("Ms "); ?><?php endif; ?><?php echo e($empInfo->firstName.' '.$empInfo->lastName); ?></b>,
+            <b>Dear <?php if($empInfo->gender == "M"): ?><?php echo e("Mr. "); ?><?php elseif($empInfo->gender == "F"): ?><?php echo e("Ms. "); ?><?php endif; ?><?php echo e($empInfo->firstName.' '.$empInfo->lastName); ?></b>,
         </td>
         </tr>
         <tr>

@@ -17,43 +17,25 @@ class PreviousWorkInCBController extends Controller
 {
     public function __construct()
     {
-//        $this->middleware('auth');
         $this->middleware(function ($request, $next) {
-
             if (Auth::check()){
-
                 return $next($request);
-
-
             }else{
-
                 return redirect('/');
             }
-
-
         });
     }
-   public function index(){
 
+    public function index(){
        $employee=Employee::select('employeeId','hasWorkedInCB')->where('fkuserId',Auth::user()->userId)->first();
-
-
        if (is_null($employee->hasWorkedInCB)) {
-
            $hasWorkedInCB = null;
-
            return view('userCv.insert.previousWorkInCB',compact('hasWorkedInCB'));
-       }
-       elseif ($employee->hasWorkedInCB == 0){
-
+       }elseif ($employee->hasWorkedInCB == 0){
            $hasWorkedInCB=0;
-
            return view('userCv.insert.previousWorkInCB',compact('hasWorkedInCB'));
-
        }elseif ($employee->hasWorkedInCB == 1){
-
            $hasWorkedInCB=1;
-
            $previousWorkInCB=PreviousWorkInCB::select('previous_work_in_caritasbd.*')
                ->addSelect(DB::raw("(CASE WHEN `previous_work_in_caritasbd`.`endDate` IS NOT null AND `previous_work_in_caritasbd`.`startDate` IS NOT null THEN TIMESTAMPDIFF(YEAR,`previous_work_in_caritasbd`.`startDate`,`previous_work_in_caritasbd`.`endDate`) WHEN `previous_work_in_caritasbd`.`startDate` IS NOT null AND `previous_work_in_caritasbd`.`endDate` IS null THEN TIMESTAMPDIFF(YEAR,`previous_work_in_caritasbd`.`startDate`,CURDATE()) ELSE 0 END) AS expYear"),
                    DB::raw("(CASE WHEN `previous_work_in_caritasbd`.`endDate` IS NOT null AND `previous_work_in_caritasbd`.`startDate` IS NOT null THEN TIMESTAMPDIFF(MONTH,`previous_work_in_caritasbd`.`startDate`,`previous_work_in_caritasbd`.`endDate`) WHEN `previous_work_in_caritasbd`.`startDate` IS NOT null AND `previous_work_in_caritasbd`.`endDate` IS null THEN TIMESTAMPDIFF(MONTH,`previous_work_in_caritasbd`.`startDate`,CURDATE()) ELSE 0 END) AS expMonth"),
@@ -62,34 +44,24 @@ class PreviousWorkInCBController extends Controller
            ->where('fkemployeeId',$employee->employeeId)
                ->get();
 
-
-
            if($previousWorkInCB->isEmpty()){
                return view('userCv.insert.previousWorkInCB',compact('hasWorkedInCB'));
-           }
-
-           else{
+           }else{
                return view('userCv.update.previousWorkInCB',compact('hasWorkedInCB','previousWorkInCB'));
            }
-
-
        }
-
-
    }
+
    public function insert(Request $r){
 
        $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)
            ->first();
 
-       $emp=Employee::findOrFail($employee->employeeId);
+       $emp=Employee::find($employee->employeeId);
        if ($r->hasWorkedInCB==0){
-
            $emp->hasWorkedInCB=0;
            $emp->save();
-
-       }
-       else {
+       }else{
            $emp->hasWorkedInCB = 1;
            $emp->save();
 
@@ -97,6 +69,7 @@ class PreviousWorkInCBController extends Controller
                $preWorkCB=new PreviousWorkInCB();
 
                $preWorkCB->designation=$r->degisnation[$i];
+               $preWorkCB->location=$r->location[$i];
                $preWorkCB->startDate=$r->startDate[$i];
 
                if ($r->currentlyRunning){
@@ -104,15 +77,10 @@ class PreviousWorkInCBController extends Controller
                }else{
                    $preWorkCB->endDate=$r->endDate[$i];
                }
-
-
                $preWorkCB->fkemployeeId=$employee->employeeId;
-
                $preWorkCB->save();
            }
        }
-
-
 
        Session::flash('message', 'Previous Work Added Successfully');
        return redirect()->route('candidate.previousWorkInCB.index');
@@ -120,9 +88,7 @@ class PreviousWorkInCBController extends Controller
    }
 
    public function edit(Request $r){
-
        $previousWorkInCB=PreviousWorkInCB::findOrFail($r->id);
-
        return view('userCv.edit.previousWorkInCB',compact('previousWorkInCB'));
    }
 
@@ -130,6 +96,7 @@ class PreviousWorkInCBController extends Controller
 
        $preWorkCB=PreviousWorkInCB::findOrFail($r->id);
 
+       $preWorkCB->location=$r->location;
        $preWorkCB->designation=$r->degisnation;
        $preWorkCB->startDate=$r->startDate;
 
@@ -138,12 +105,9 @@ class PreviousWorkInCBController extends Controller
        }else{
            $preWorkCB->endDate=$r->endDate;
        }
-
-
        $preWorkCB->save();
 
        Session::flash('message', 'Previous Work In CB Updated Successfully');
-
        return redirect()->route('candidate.previousWorkInCB.index');
    }
 

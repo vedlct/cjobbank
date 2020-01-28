@@ -9,6 +9,10 @@
             <label for="inputEmail4">Designation<span style="color: red">*</span></label>
             <input type="text" class="form-control" name="degisnation" value="{{$previousWorkInCB->designation}}" id="degisnation" placeholder="designation" >
         </div>
+        <div class="form-group col-md-12">
+            <label for="location">Location<span style="color: red">*</span></label>
+            <textarea class="form-control" name="location" id="location" placeholder="designation">{{$previousWorkInCB->location}}</textarea>
+        </div>
         <div class="form-group col-md-6">
             <label for="inputPassword4">Start date<span style="color: red">*</span></label>
             <input type="text" class="form-control date" name="startDate" value="{{$previousWorkInCB->startDate}}" id="start" placeholder="date">
@@ -19,12 +23,10 @@
             <input type="checkbox" class="col-md-2" id="currentlyRunning" onclick="chkEXPCurrent()" name="currentlyRunning" @if($previousWorkInCB->currentlyRunning=='1')checked @endif value="1"> Running
 
         @if($previousWorkInCB->currentlyRunning=='0')
-                <input type="text" id="endDate"name="endDate" placeholder="End Date" value="{{$previousWorkInCB->endDate}}" class="form-control date"/>
-            @else
-                <input type="text" id="endDate"name="endDate" placeholder="End Date"  class="form-control date"/>
-            @endif
-
-
+            <input type="text" id="endDate"name="endDate" placeholder="End Date" value="{{$previousWorkInCB->endDate}}" class="form-control date"/>
+        @else
+            <input type="text" id="endDate"name="endDate" placeholder="End Date"  class="form-control date"/>
+        @endif
         </div>
 
         <div id="experienceDiv" style="display: none" class="form-group col-md-4">
@@ -61,16 +63,10 @@
 
             var end = new Date($('#endDate').val());
             var start = new Date($('#start').val());
-            var exp=calcDate(end,start)
-
-
+            var exp=calcDate(end,start);
             $("#totalExpValue").val(exp);
-
             $("#experienceDiv").show();
-
-
         }else {
-
             $("#experienceDiv").hide();
         }
 
@@ -83,19 +79,14 @@
 
             var end = new Date($('#endDate').val());
             var start = new Date($('#start').val());
-            var exp=calcDate(end,start)
-
+            var exp=calcDate(end,start);
 
             $("#totalExpValue").val(exp);
             $("#currentlyRunning"). prop("checked", false);
-
             $("#experienceDiv").show();
-
-
         }else {
             $("#experienceDiv").hide();
         }
-
     });
 
     function chkEXPCurrent() {
@@ -108,57 +99,18 @@
 
                 var end = new Date();
                 var start = new Date($('#start').val());
-                var exp=calcDate(end,start)
-
+                var exp=calcDate(end,start);
 
                 $("#totalExpValue").val(exp);
-                // document.getElementById("myText").value = "Johnny Bravo";
                 $('#endDate').val("");
-
-
                 $("#experienceDiv").show();
-
-
             }else {
                 $("#experienceDiv").hide();
             }
-
-
-
         }
-
     }
+
     function calcDate(date1,date2) {
-        // var diff = Math.floor(date1.getTime() - date2.getTime());
-        // var day = 1000 * 60 * 60 * 24;
-        //
-        // var days = Math.floor(diff/day);
-        // var months = Math.floor((days%365)/31);
-        // var years = Math.floor(days/365);
-        // var daydiffs = Math.floor(days%30);
-        //
-        // if (days>0) {
-        //
-        //
-        //     if (daydiffs == 0) {
-        //         var month = (months + 1);
-        //     } else {
-        //         var month = months;
-        //     }
-        //
-        // }
-        //
-        // // if (years > 0){
-        // //     var month=Math.round((months-(12*years)+1));
-        // // }else {
-        // //     var month=months;
-        // // }
-        //
-        // var message = years + "years ";
-        // message += month + " months ";
-        // message += daydiffs + "days ";
-        //
-        // return message;
 
         var now = date1;
         var today = date2;
@@ -166,11 +118,6 @@
         var yearNow = now.getYear();
         var monthNow = now.getMonth();
         var dateNow = now.getDate();
-
-        // var dob = new Date(dateString.substring(6,10),
-        //     dateString.substring(0,2)-1,
-        //     dateString.substring(3,5)
-        // );
 
         var yearDob = today.getYear();
         var monthDob = today.getMonth();
