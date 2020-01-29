@@ -51,10 +51,10 @@
                             <label for="password"> New Password</label>
                             <input type="password" class="form-control" id="password-field" name="password" />
                             <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                        @if ($errors->has('password'))
+                            @if ($errors->has('password'))
                                 <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                </span>
                             @endif
                         </div>
                         <p id="passwordHelpBlock" class="form-text text-muted" style="font-size: small">
@@ -63,15 +63,13 @@
 
                         <div class="form-group">
                             <label for="password_again">Enter New Password Again</label>
-                            <input type="password" class="form-control" id="password_again" name="password_again" />
+                            <input type="password" class="form-control" id="password_again" name="password_confirmation" />
                             <span toggle="#password_again" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                         </div>
 
-
-                <div class="col-md-2">
-                    <button type="submit" style="" class="btn btn-success mt-4" >Change</button>
-
-                </div>
+                        <div class="col-md-2">
+                            <button type="submit" style="" class="btn btn-success mt-4" >Change</button>
+                        </div>
                 </form>
 
             </div>
@@ -88,30 +86,16 @@
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
 
     <script>
-        //        jQuery.validator.setDefaults({
-        //            debug: true,
-        //            success: "valid"
-        //        });
-        $( '#myform' ).validate({
-            rules: {
-                password: "required",
-                password_again: {
-                    equalTo: "#password"
-                }
+        $(".toggle-password").click(function() {
+
+            $(this).toggleClass("fa-eye fa-eye-slash");
+            var input = $($(this).attr("toggle"));
+            if (input.attr("type") == "password") {
+                input.attr("type", "text");
+            } else {
+                input.attr("type", "password");
             }
         });
     </script>
-            <script>
-                $(".toggle-password").click(function() {
-
-                    $(this).toggleClass("fa-eye fa-eye-slash");
-                    var input = $($(this).attr("toggle"));
-                    if (input.attr("type") == "password") {
-                        input.attr("type", "text");
-                    } else {
-                        input.attr("type", "password");
-                    }
-                });
-            </script>
 
 @endsection

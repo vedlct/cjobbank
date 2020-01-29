@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Aggrement;
 use App\Education;
 use App\email;
@@ -44,28 +43,15 @@ class EmployeeController extends Controller
      */
     public function __construct()
     {
-//        $this->middleware('auth');
         $this->middleware(function ($request, $next) {
-
             if (Auth::check()){
-
                 return $next($request);
-
-
             }else{
-
                 return redirect('/');
             }
-
-
         });
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return view('home');
@@ -79,6 +65,22 @@ class EmployeeController extends Controller
 
     public function applyJob($jobId,Request $r)
     {
+        $education_count = Education::where('employee.fkuserId', Auth::user()->userId)
+            ->leftJoin('employee', 'employee.employeeId', 'education.fkemployeeId')
+            ->count();
+
+        $language_count = EmployeeLanguage::where('employee.fkuserId', Auth::user()->userId)
+            ->leftJoin('employee', 'employee.employeeId', 'emp_language.fkemployeeId')
+            ->count();
+
+        $empcomputer_skill_count = EmployeeComputerSkill::where('employee.fkuserId', Auth::user()->userId)
+            ->leftJoin('employee', 'employee.employeeId', 'empcomputerskill.fk_empId')
+            ->count();
+
+        if ($empcomputer_skill_count ==0 || $education_count == 0 || $language_count == 0 || $empId->cvStatus == 0) {
+            Session::flash('message', 'Your CV is not Completed yet,Please Complete First');
+            return redirect('job/all');
+        }
 
         $empId=Employee::where('fkuserId',Auth::user()->userId)->first()->employeeId;
 
@@ -108,38 +110,35 @@ class EmployeeController extends Controller
         $empId = Employee::select('employeeId','cvStatus')->where('fkuserId',Auth::user()->userId)->first();
 
         if ($empId != null) {
+            $education_count = Education::where('employee.fkuserId', Auth::user()->userId)
+                ->leftJoin('employee', 'employee.employeeId', 'education.fkemployeeId')
+                ->count();
+
+            $language_count = EmployeeLanguage::where('employee.fkuserId', Auth::user()->userId)
+                ->leftJoin('employee', 'employee.employeeId', 'emp_language.fkemployeeId')
+                ->count();
+
+            $empcomputer_skill_count = EmployeeComputerSkill::where('employee.fkuserId', Auth::user()->userId)
+                ->leftJoin('employee', 'employee.employeeId', 'empcomputerskill.fk_empId')
+                ->count();
 
             $count = Refree::where('employee.fkuserId', Auth::user()->userId)
                 ->leftJoin('employee', 'employee.employeeId', 'referee.fkemployeeId')
                 ->count();
 
             if ($count < 2) {
-
                 $allEmp = $empId;
-
                 $msg = 'Your CV is not Completed yet ! Candidate must have atleast 2 reference';
                 Session::flash('message', 'Your CV is not Completed yet ! Candidate must have atleast 2 reference');
-
                 return view('userCv.cvPdf.userCvPdf', compact('allEmp', 'msg'));
-
             } else {
                 $msg = null;
-
-            if ($empId->cvStatus == 0) {
-
+                if ($empcomputer_skill_count ==0 || $education_count == 0 || $language_count == 0 || $empId->cvStatus == 0) {
+                    Session::flash('message', 'Your CV is not Completed yet,Please Complete First');
+                    $msg=null;
+                    return back();
+                }else{
                 $allEmp = $empId;
-
-
-                 Session::flash('message', 'Your CV is not Completed yet,Please Complete First');
-                $msg=null;
-
-                return view('userCv.cvPdf.userCvPdf', compact('allEmp', 'msg'));
-
-            } else {
-
-                $allEmp = $empId;
-
-
                 $empId = $empId->employeeId;
 
                 $personalInfo = Employee::select('emp_ques_obj.objective', 'firstName', 'lastName',

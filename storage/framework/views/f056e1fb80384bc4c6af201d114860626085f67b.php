@@ -48,7 +48,7 @@
                             <div id="TextBoxesGroup" class="row">
                                 <div class="form-group col-md-4">
 
-                                    <label for="">Education exam/level<span style="color: red">*</span></label>
+                                    <label for="">Exam/level<span style="color: red">*</span></label>
                                     <select name="educationLevel[]" class="form-control" required="" id="educationLevel">
                                         <option value="">Select education exam/level</option>
                                         <?php $__currentLoopData = $educationLevel; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $edulevel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -896,10 +896,10 @@
             if (degree == "<?php echo e(OTHERS); ?>"){
 
                 $("#degreeNameDiv"+btn).show();
-                $("#subjectNameDiv"+btn).show();
+                //$("#subjectNameDiv"+btn).show();
 
                 $('#majorSub'+btn).children('option:not(:first,:last)').remove();
-                $("#majorSub"+btn+" option[value='<?php echo e(OTHERS); ?>']").attr("selected", true);
+              //  $("#majorSub"+btn+" option[value='<?php echo e(OTHERS); ?>']").attr("selected", true);
                 $("#resultSydtem"+btn).val($("#resultSydtem"+btn+" option:first").val());
 
             }else {

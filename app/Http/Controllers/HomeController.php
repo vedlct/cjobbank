@@ -62,12 +62,9 @@ class HomeController extends Controller
 
     public function changePassword(Request $r){
         $rules = [
-
-            'password' => 'required|string|min:8|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/',
-
+            'oldPass' => 'required',
+            'password' => 'required|confirmed|string|min:8|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/',
         ];
-
-
 
         $this->validate($r, $rules);
         $old=$r->oldPass;

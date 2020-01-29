@@ -2,7 +2,7 @@
 <html lang="en">
 <body>
 
-Dear {{$employeeInfo['firstName'].' '.$employeeInfo['lastName']}},<br>
+Dear @if($employeeInfo['gender'] == "M"){{"Mr. "}}@elseif($employeeInfo['gender'] == "F"){{"Ms. "}}@endif{{$employeeInfo['firstName'].' '.$employeeInfo['lastName']}},<br>
 
 
 Please see the attached file with this email.<br>

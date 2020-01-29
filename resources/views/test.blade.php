@@ -111,10 +111,20 @@
                             @endif
                         </td>
                         <td style="text-align: center;font-size: 14px;width: 10%;">
+                            @if(empty($edu->passingYear))
+                                {{'On going'}}
+                            @else
                             {{$edu->passingYear}}
+                            @endif
                         </td>
 
-                        <td style="text-align: center;font-size: 14px;width: 10%;"> {{$edu->result}}</td>
+                        <td style="text-align: center;font-size: 14px;width: 10%;">
+                            @if(empty($edu->result))
+                                {{'On going'}}
+                            @else
+                                {{$edu->result}}
+                            @endif
+                        </td>
                     </tr>
                     @unset($education[$Key])
                     @break
@@ -131,9 +141,19 @@
                         @endif
                     </td>
                     <td style="text-align: center;font-size: 14px;width: 10%;">
-                        {{$edu->passingYear}}
+                        @if(empty($edu->passingYear))
+                            {{'On going'}}
+                        @else
+                            {{$edu->passingYear}}
+                        @endif
                     </td>
-                    <td style="text-align: center;font-size: 14px;width: 10%;"> {{$edu->result}}</td>
+                    <td style="text-align: center;font-size: 14px;width: 10%;">
+                        @if(empty($edu->result))
+                            {{'On going'}}
+                        @else
+                            {{$edu->result}}
+                        @endif
+                    </td>
                 </tr>
             @endforeach
             </tbody>

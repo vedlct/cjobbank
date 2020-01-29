@@ -17,7 +17,7 @@
                         <tr>
                             <th>No</th>
                             <th>Name</th>
-                            <th>Degisnation</th>
+                            <th>Position</th>
                             <th>Gender</th>
                             <th>Email</th>
                             <th>Zone</th>
