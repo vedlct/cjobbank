@@ -134,10 +134,20 @@
                                                     {{$edu->boardName}}
                                                 @endif
                                             </td>
-
-                                            <td style="text-align: center;font-size: 14px;width: 10%;">{{$edu->passingYear}} </td>
-
-                                            <td style="text-align: center;font-size: 14px;width: 10%;"> {{$edu->result}}</td>
+                                            <td style="text-align: center;font-size: 14px;width: 10%;">
+                                                @if(empty($edu->passingYear))
+                                                    {{'On going'}}
+                                                @else
+                                                    {{$edu->passingYear}}
+                                                @endif
+                                            </td>
+                                            <td style="text-align: center;font-size: 14px;width: 10%;">
+                                                @if(empty($edu->result))
+                                                    {{'On going'}}
+                                                @else
+                                                    {{$edu->result}}
+                                                @endif
+                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -163,9 +173,7 @@
                                                     <span class="bold">{{$count++}}.</span>
                                                 </td>
 
-
                                                 <td style="border: none;">
-
                                                     <span class="bold"> Company name : </span> &nbsp;&nbsp {{$exp->organization}}  &nbsp;&nbsp;
                                                     <div class="pull-right"><span class="bold">Position:</span>&nbsp;&nbsp;&nbsp; {{$exp->degisnation}} </div><br>
                                                     <span class="bold"> Major responsibilities :</span>&nbsp;&nbsp;&nbsp; {!! $exp->majorResponsibilities !!}<br>
@@ -186,7 +194,6 @@
                                                     @endif
                                                 </td>
                                             </tr>
-
                                         @endforeach
                                     @endif
                                 </table>
@@ -214,7 +221,7 @@
                                                     <span class="bold"> Designation :</span> &nbsp;&nbsp;&nbsp;{{$p_in_caritasbd->designation}} <br>
                                                     <span class="bold"> Start date :</span> &nbsp;&nbsp;&nbsp;{{$p_in_caritasbd->startDate}} <br>
                                                     <span class="bold"> End date :</span> &nbsp;&nbsp;&nbsp;{{$p_in_caritasbd->endDate}} <br>
-                                                    <span class="bold"> Location :</span> &nbsp;&nbsp;&nbsp;{{$p_in_caritasbd->location}}
+                                                    <span class="bold"> Work station :</span> &nbsp;&nbsp;&nbsp;{{$p_in_caritasbd->location}}
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -77,7 +77,7 @@ class EmployeeController extends Controller
             ->leftJoin('employee', 'employee.employeeId', 'empcomputerskill.fk_empId')
             ->count();
 
-        if ($empcomputer_skill_count ==0 || $education_count == 0 || $language_count == 0 || $empId->cvStatus == 0) {
+        if ($empcomputer_skill_count ==0 || $education_count == 0 || $language_count == 0) {
             Session::flash('message', 'Your CV is not Completed yet,Please Complete First');
             return redirect('job/all');
         }

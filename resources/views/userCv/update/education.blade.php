@@ -264,7 +264,7 @@
 
                 $.confirm({
                     title: 'Confirm!',
-                    content: 'Are you sure To delete this Education?',
+                    content: 'Are you sure to delete this education?',
                     icon: 'fa fa-warning',
                     type: 'red',
                     typeAnimated: true,

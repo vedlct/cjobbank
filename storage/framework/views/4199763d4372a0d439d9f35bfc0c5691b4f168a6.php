@@ -1,32 +1,33 @@
-<form method="post" onsubmit="return checkTrainingCertificate()" action="{{route('candidate.previousWorkInCB.update')}}">
-    {{csrf_field()}}
+<form method="post" onsubmit="return checkTrainingCertificate()" action="<?php echo e(route('candidate.previousWorkInCB.update')); ?>">
+    <?php echo e(csrf_field()); ?>
 
-    <input type="hidden" name="id" value="{{$previousWorkInCB->id}}">
+
+    <input type="hidden" name="id" value="<?php echo e($previousWorkInCB->id); ?>">
     <div class="row">
 
 
         <div class="form-group col-md-12">
             <label for="inputEmail4">Designation<span style="color: red">*</span></label>
-            <input type="text" class="form-control" name="degisnation" value="{{$previousWorkInCB->designation}}" id="degisnation" placeholder="designation" >
+            <input type="text" class="form-control" name="degisnation" value="<?php echo e($previousWorkInCB->designation); ?>" id="degisnation" placeholder="designation" >
         </div>
         <div class="form-group col-md-12">
             <label for="location">Work station<span style="color: red">*</span></label>
-            <textarea class="form-control" name="location" id="location">{{$previousWorkInCB->location}}</textarea>
+            <textarea class="form-control" name="location" id="location"><?php echo e($previousWorkInCB->location); ?></textarea>
         </div>
         <div class="form-group col-md-6">
             <label for="inputPassword4">Start date<span style="color: red">*</span></label>
-            <input type="text" class="form-control date" name="startDate" value="{{$previousWorkInCB->startDate}}" id="start" placeholder="date">
+            <input type="text" class="form-control date" name="startDate" value="<?php echo e($previousWorkInCB->startDate); ?>" id="start" placeholder="date">
         </div>
         <div class="form-group col-md-6">
             <label for="inputPassword4">End date</label>
             /
-            <input type="checkbox" class="col-md-2" id="currentlyRunning" onclick="chkEXPCurrent()" name="currentlyRunning" @if($previousWorkInCB->currentlyRunning=='1')checked @endif value="1"> Running
+            <input type="checkbox" class="col-md-2" id="currentlyRunning" onclick="chkEXPCurrent()" name="currentlyRunning" <?php if($previousWorkInCB->currentlyRunning=='1'): ?>checked <?php endif; ?> value="1"> Running
 
-        @if($previousWorkInCB->currentlyRunning=='0')
-            <input type="text" id="endDate"name="endDate" placeholder="End Date" value="{{$previousWorkInCB->endDate}}" class="form-control date"/>
-        @else
+        <?php if($previousWorkInCB->currentlyRunning=='0'): ?>
+            <input type="text" id="endDate"name="endDate" placeholder="End Date" value="<?php echo e($previousWorkInCB->endDate); ?>" class="form-control date"/>
+        <?php else: ?>
             <input type="text" id="endDate"name="endDate" placeholder="End Date"  class="form-control date"/>
-        @endif
+        <?php endif; ?>
         </div>
 
         <div id="experienceDiv" style="display: none" class="form-group col-md-4">
@@ -35,14 +36,14 @@
         </div>
 
         <div class="form-group col-md-12">
-            <a class="btn btn-danger pull-right" href="{{route('candidate.previousWorkInCB.index')}}">Cancel</a>&nbsp;&nbsp;
+            <a class="btn btn-danger pull-right" href="<?php echo e(route('candidate.previousWorkInCB.index')); ?>">Cancel</a>&nbsp;&nbsp;
             <button  class="btn btn-info pull-right">Update</button>
         </div>
 
     </div>
 </form>
 
-<meta name="csrf-token" content="{{ csrf_token() }}" />
+<meta name="csrf-token" content="<?php echo e(csrf_token()); ?>" />
 <script>
     $.ajaxSetup({
         headers: {
@@ -187,48 +188,53 @@
     function checkTrainingCertificate(){
 
         var degisnation=$('#degisnation').val();
-        var location=$('#location').val();
         var start=$('#start').val();
         var end=$('#endDate').val();
 
         if(degisnation==""){
+
             var errorMsg='Please Type Designation First!!'
             validationError(errorMsg)
             return false;
+
         }
         if (degisnation.length > 255){
+
             var errorMsg='Designation Should not more than 255 Charecter Length!!';
             validationError(errorMsg);
             return false;
-        }
-        if(location==""){
-            var errorMsg='Please Type Address First!!';
-            validationError(errorMsg);
-            return false;
-        }
-        if (location.length > 255){
-            var errorMsg='Address Should not more than 255 Charecter Length!!';
-            validationError(errorMsg);
-            return false;
+
         }
         if(start==""){
+
             var errorMsg='Please Select a Start Date First!!';
             validationError(errorMsg);
             return false;
+
         }
         if(end != "") {
+
+
+
+
             if (Date.parse(end) < Date.parse(start)) {
+
                 var errorMsg = 'End date should after Start Date!!';
                 validationError(errorMsg);
                 return false;
+
             }
-        }else {
+        }
+        else {
             if ($("#currentlyRunning").prop('checked') != true){
+
                 var errorMsg = 'Either End date or Currently Running Should be Selected!!';
                 validationError(errorMsg);
                 return false;
+
             }
         }
+
     }
 
     function validationError(errorMsg){

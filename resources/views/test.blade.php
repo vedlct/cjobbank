@@ -222,7 +222,7 @@
                                 <span class="bold"> Designation :</span> &nbsp;&nbsp;&nbsp;{{$p_in_caritasbd->designation}} <br>
                                 <span class="bold"> Start date :</span> &nbsp;&nbsp;&nbsp;{{$p_in_caritasbd->startDate}} <br>
                                 <span class="bold"> End date :</span> &nbsp;&nbsp;&nbsp;{{$p_in_caritasbd->endDate}} <br>
-                                <span class="bold"> Location :</span> &nbsp;&nbsp;&nbsp;{{$p_in_caritasbd->location}}
+                                <span class="bold"> Work station :</span> &nbsp;&nbsp;&nbsp;{{$p_in_caritasbd->location}}
                             </td>
                         </tr>
                     @endforeach
@@ -275,8 +275,6 @@
             </tr>
         </table>
 
-
-
         <table border="0" style="width:100%; margin-top: 10px; border: none;">
             @if($professionalCertificate->isEmpty())<tr><td style=" border: none; text-align: center"> <strong>None </strong> </td></tr> @endif
 
@@ -310,17 +308,14 @@
                         @else
                             Completed
                         @endif
-
                     </td>
                 </tr>
 
                 <tr>
-
                     <td style="border: none; width: 20%">Result</td>
                     <td style="border: none; width: 5%">:</td>
                     <td style="border: none;">{{$certificate->result}}</td>
                 </tr>
-
             @endforeach
 
         </table >

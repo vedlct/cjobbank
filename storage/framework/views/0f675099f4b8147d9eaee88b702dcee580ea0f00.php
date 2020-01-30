@@ -1,6 +1,4 @@
-@extends('main')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
     <div class="row ">
 
@@ -11,27 +9,28 @@
                     <div class="col-md-3">
 
                         <div class="sidenav">
-                            <a href="{{route('candidate.cvPersonalInfo')}}">Personal details</a>
-                            <a href="{{route('candidate.cvQuesObj')}}">Career objective and application information</a>
-                            <a href="{{route('candidate.cvEducation')}}">Education</a>
-                            <a href="{{route('candidate.language.index')}}" >Language</a>
-                            <a href="{{route('candidate.computerSkill.index')}}" >Computer-skill</a>
-                            {{--<a href="{{route('candidate.skill.index')}}" >Other Skill Information</a>--}}
-                            <a href="{{route('cv.OthersInfo')}}" >Other information</a>
-                            <a href="{{route('candidate.cvTrainingCertificate')}}">Training certification</a>
-                            <a href="{{route('candidate.cvProfessionalCertificate')}}">Professional certification</a>
-                            <a  href="{{route('JobExperience.index')}}">Job experience</a>
-                            <a class="activeNav" href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
-                            <a <?php if ($hasWorkedInCB!='0'){?> onclick="return false;" class="incomplete"<?php } ?> href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
-                            <a onclick="return false;" class="incomplete" href="{{route('refree.index')}}">Referee</a>
-                            <a onclick="return false;" class="incomplete" href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas Bangladesh</a>
+                            <a href="<?php echo e(route('candidate.cvPersonalInfo')); ?>">Personal details</a>
+                            <a href="<?php echo e(route('candidate.cvQuesObj')); ?>">Career objective and application information</a>
+                            <a href="<?php echo e(route('candidate.cvEducation')); ?>">Education</a>
+                            <a href="<?php echo e(route('candidate.language.index')); ?>" >Language</a>
+                            <a href="<?php echo e(route('candidate.computerSkill.index')); ?>" >Computer-skill</a>
+                            
+                            <a href="<?php echo e(route('cv.OthersInfo')); ?>" >Other information</a>
+                            <a href="<?php echo e(route('candidate.cvTrainingCertificate')); ?>">Training certification</a>
+                            <a href="<?php echo e(route('candidate.cvProfessionalCertificate')); ?>">Professional certification</a>
+                            <a  href="<?php echo e(route('JobExperience.index')); ?>">Job experience</a>
+                            <a class="activeNav" href="<?php echo e(route('candidate.previousWorkInCB.index')); ?>">Previous work information in Caritas Bangladesh</a>
+                            <a <?php if ($hasWorkedInCB!='0'){?> onclick="return false;" class="incomplete"<?php } ?> href="<?php echo e(route('candidate.membershipInSocialNetwork.index')); ?>">Certification of membership in professional network/ forum</a>
+                            <a onclick="return false;" class="incomplete" href="<?php echo e(route('refree.index')); ?>">Referee</a>
+                            <a onclick="return false;" class="incomplete" href="<?php echo e(route('relativeInCaritas.getRelationInfo')); ?>">Relatives working in Caritas Bangladesh</a>
                         </div>
 
                     </div>
 
-                    <form class="col-md-9" id="regForm" onsubmit="return chkPreviousWork()" action="{{route('candidate.previousWorkInCB.insert')}}" method="post">
+                    <form class="col-md-9" id="regForm" onsubmit="return chkPreviousWork()" action="<?php echo e(route('candidate.previousWorkInCB.insert')); ?>" method="post">
                         <!-- One "tab" for each step in the form: -->
-                        {{csrf_field()}}
+                        <?php echo e(csrf_field()); ?>
+
 
                         <div id="" class="tab">
 
@@ -95,11 +94,11 @@
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
-                                <a href="{{route('JobExperience.index')}}"><button type="button" id="btnPevious" >Back</button></a>
+                                <a href="<?php echo e(route('JobExperience.index')); ?>"><button type="button" id="btnPevious" >Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
-                                @if($hasWorkedInCB == '1' || $hasWorkedInCB == '0')
-                                <a href="{{route('candidate.membershipInSocialNetwork.index')}}"><button type="button" id="nextBtn" >Next</button></a>
-                                @endif
+                                <?php if($hasWorkedInCB == '1' || $hasWorkedInCB == '0'): ?>
+                                <a href="<?php echo e(route('candidate.membershipInSocialNetwork.index')); ?>"><button type="button" id="nextBtn" >Next</button></a>
+                                <?php endif; ?>
                             </div>
                         </div>
 
@@ -130,9 +129,9 @@
 
 
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('foot-js')
+<?php $__env->startSection('foot-js'); ?>
     <script>
         var currentTab = 0; // Current tab is set to be the first tab (0)
         fixStepIndicator(currentTab); // Display the crurrent tab
@@ -640,4 +639,6 @@
 
 
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

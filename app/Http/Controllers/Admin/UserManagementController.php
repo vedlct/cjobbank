@@ -145,7 +145,7 @@ class UserManagementController extends Controller
         $hr->status=1;
         $hr->save();
 
-        Session::flash('message', 'User Added Successfully!');
+        Session::flash('message', 'User Added Successfully');
         return redirect()->route('admin.manageUser.add');
     }
 

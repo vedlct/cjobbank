@@ -1,18 +1,19 @@
 
-<form  method="post" action="{{route('cv.updatePersonalEducation')}}" onsubmit="return checkEducation()" >
+<form  method="post" action="<?php echo e(route('cv.updatePersonalEducation')); ?>" onsubmit="return checkEducation()" >
 
-{{csrf_field()}}
+<?php echo e(csrf_field()); ?>
 
-        <input type="hidden" name="educationId" value="{{$education->educationId}}">
+
+        <input type="hidden" name="educationId" value="<?php echo e($education->educationId); ?>">
         <div  class="row">
             <div class="form-group col-md-4">
 
                 <label for="">Exam/level<span style="color: red">*</span></label>
                 <select name="educationLevel" class="form-control" required="" id="educationLevel">
                     <option value="">Select Education Level</option>
-                    @foreach($educationLevel as $edulevel)
-                        <option @if($edulevel->educationLevelId==$education->educationLevelId)selected @endif value="{{$edulevel->educationLevelId}}">{{$edulevel->educationLevelName}}</option>
-                    @endforeach
+                    <?php $__currentLoopData = $educationLevel; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $edulevel): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <option <?php if($edulevel->educationLevelId==$education->educationLevelId): ?>selected <?php endif; ?> value="<?php echo e($edulevel->educationLevelId); ?>"><?php echo e($edulevel->educationLevelName); ?></option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
 
             </div>
@@ -21,8 +22,8 @@
                 <label for="">Subject/Group<span style="color: red">*</span></label>
                 <select name="degree" class="form-control" required id="degree">
                     <option value="">Select degree</option>
-                    <option  selected value="{{$education->degreeId}}">{{$education->degreeName}}</option>
-                    <option  value="{{OTHERS}}">{{OTHERS}}</option>
+                    <option  selected value="<?php echo e($education->degreeId); ?>"><?php echo e($education->degreeName); ?></option>
+                    <option  value="<?php echo e(OTHERS); ?>"><?php echo e(OTHERS); ?></option>
 
 
                 </select>
@@ -35,116 +36,132 @@
 
             </div>
 
-            {{--@if($education->eduLvlUnder == 2 || $education->eduLvlUnder==null )--}}
+            
 
-            <div @if($education->eduLvlUnder == 2 || $education->eduLvlUnder==null ) style=" dispaly:none" @endif id="instituteNameDiv" class="form-group col-md-12">
+            <div <?php if($education->eduLvlUnder == 2 || $education->eduLvlUnder==null ): ?> style=" dispaly:none" <?php endif; ?> id="instituteNameDiv" class="form-group col-md-12">
                 <label for="">School/College/Institution name<span style="color: red">*</span></label>
-                <input type="text" name="instituteName"  class="form-control" required id="instituteName" value="{{$education->institutionName}}" placeholder="">
+                <input type="text" name="instituteName"  class="form-control" required id="instituteName" value="<?php echo e($education->institutionName); ?>" placeholder="">
             </div>
 
-            {{--@endif--}}
+            
 
 
 
-            <div @if(($education->eduLvlUnder != 2 || $education->eduLvlUnder== null) && $education->universityType == null) style=" display: none" @endif id="instituteNameDiv" class="form-group col-md-3">
+            <div <?php if(($education->eduLvlUnder != 2 || $education->eduLvlUnder== null) && $education->universityType == null): ?> style=" display: none" <?php endif; ?> id="instituteNameDiv" class="form-group col-md-3">
                 <label for="">University type</label>
                 <select name="universityType" class="form-control" id="universityType">
                     <option value="" >Select type</option>
-                    @foreach(UNIVERSITY_TYPE as $key=>$value)
-                        <option @if($value == $education->universityType) selected @endif value="{{$value}}" >{{$key}}</option>
-                    @endforeach
+                    <?php $__currentLoopData = UNIVERSITY_TYPE; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <option <?php if($value == $education->universityType): ?> selected <?php endif; ?> value="<?php echo e($value); ?>" ><?php echo e($key); ?></option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
+
             </div>
 
-            <div @if($education->eduLvlUnder != 1 || $education->eduLvlUnder==null ) style="display: none" @endif id="boardDiv" class="form-group col-md-3">
-                <label for="board">Board/University</label>
+
+
+
+
+            <div <?php if($education->eduLvlUnder != 1 || $education->eduLvlUnder==null ): ?> style="display: none" <?php endif; ?> id="boardDiv" class="form-group col-md-3">
+                <label for="">Board/University</label>
                 <select name="board" class="form-control" id="board">
-                    <option value="" >Select board</option>
-                    @foreach($boards as $board)
-                        <option value="{{$board->boardId}}" @if($board->boardId == $education->fkboardId) selected @endif >{{$board->boardName}}</option>
-                    @endforeach
-                    <option value="{{OTHERS}}" >{{OTHERS}}</option>
+                    <option value="" >Select doard</option>
+                    <?php $__currentLoopData = $boards; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $board): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <option value="<?php echo e($board->boardId); ?>" <?php if($board->boardId == $education->fkboardId): ?> selected <?php endif; ?> ><?php echo e($board->boardName); ?></option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e(OTHERS); ?>" ><?php echo e(OTHERS); ?></option>
                 </select>
             </div>
 
             <div style="display: none" id="boardNameDiv" class="form-group col-md-3">
-                <label for="boardName">Board name</label>
-                <input type="text" maxlength="255" name="boardName" class="form-control" id="boardName">
+                <label for="">Board name</label>
+                <input type="text" maxlength="255" name="boardName" class="form-control" id="boardName"  placeholder="">
+
             </div>
 
+
             <div class="form-group col-md-9">
-                <label for="majorSub">Major</label>
+                <label for="">Major</label>
                 <select name="major"  class="form-control js-example-basic-single" id="majorSub">
-                    <option value="">Select major</option>
-                    @foreach($major as $mj)
-                    <option @if($mj->educationMajorId == $education->fkMajorId) selected @endif value="{{$mj->educationMajorId}}">{{$mj->educationMajorName}}</option>
-                    @endforeach
-                    <option value="{{OTHERS}}">{{OTHERS}}</option>
+                    <option value="">Select Major</option>
+
+                    <?php $__currentLoopData = $major; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $mj): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option <?php if($mj->educationMajorId == $education->fkMajorId): ?> selected <?php endif; ?> value="<?php echo e($mj->educationMajorId); ?>"><?php echo e($mj->educationMajorName); ?></option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+                    <option value="<?php echo e(OTHERS); ?>"><?php echo e(OTHERS); ?></option>
                 </select>
             </div>
             <div style="display: none" id="subjectNameDiv" class="form-group col-md-6">
-                <label for="subjectName">Subject name</label>
-                <input type="text" name="subjectName" maxlength="255" class="form-control" id="subjectName">
+                <label for="">Subject name</label>
+                <input type="text" name="subjectName" maxlength="255" class="form-control" id="subjectName"  placeholder="">
+
             </div>
 
+
+
             <div class="form-group col-md-3">
-                <label for="country">Country<span style="color: red">*</span></label>
+                <label for="">Country<span style="color: red">*</span></label>
                 <select  name="country" class="form-control js-example-basic-single" required id="country">
                     <option value="">Select country</option>
-                    @foreach($country as $coun)
-                        <option @if($coun->countryId == $education->fkcountryId )selected @endif value="{{$coun->countryId}}">{{$coun->countryName}}</option>
-                    @endforeach
+                    <?php $__currentLoopData = $country; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $coun): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <option <?php if($coun->countryId == $education->fkcountryId ): ?>selected <?php endif; ?> value="<?php echo e($coun->countryId); ?>"><?php echo e($coun->countryName); ?></option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
             </div>
 
             <div class="form-group col-md-3">
-                <label for="educationStatus">Status<span style="color: red">*</span></label>
+                <label for="">Status<span style="color: red">*</span></label>
                 <select name="status"class="form-control" required id="educationStatus">
-                    @foreach(COMPLETING_STATUS as $key=>$value)
-                        <option @if($value == $education->status) selected @endif value="{{$value}}">{{$key}}</option>
-                    @endforeach
+                    <?php $__currentLoopData = COMPLETING_STATUS; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <option <?php if($value == $education->status): ?> selected <?php endif; ?> value="<?php echo e($value); ?>"><?php echo e($key); ?></option>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
                 </select>
             </div>
 
+
             <div class="form-group col-md-3">
-                <label for="passingYear">Passing year</label>
-                <input name="passingYear" type="text" class="form-control date" value="{{$education->passingYear}}" id="passingYear"  placeholder="passing Year">
+                <label for="">Passing year</label>
+                <input name="passingYear" type="text" class="form-control date" value="<?php echo e($education->passingYear); ?>" id="passingYear"  placeholder="passing Year">
             </div>
             <div class="form-group col-md-3">
-                <label for="resultSydtem">Result system<span style="color: red">*</span></label>
+                <label for="">Result system<span style="color: red">*</span></label>
                 <select name="resultSystem" class="form-control" required id="resultSydtem">
                     <option value="">Select System</option>
-                    @if($education->resultSystem!=4)
-                    @foreach(RESULT_SYSTEM as $key=>$value)
-                        <option @if($value==$education->resultSystem)selected @endif value="{{$value}}">{{$key}}</option>
-                    @endforeach
-                        <option value="{{OTHERS}}" >{{OTHERS}}</option>
-                    @else
-                    <option selected value="{{OTHERS}}" >{{OTHERS}}</option>
-                    @endif
+                    <?php if($education->resultSystem!=4): ?>
+                    <?php $__currentLoopData = RESULT_SYSTEM; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <option <?php if($value==$education->resultSystem): ?>selected <?php endif; ?> value="<?php echo e($value); ?>"><?php echo e($key); ?></option>
+
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <option value="<?php echo e(OTHERS); ?>" ><?php echo e(OTHERS); ?></option>
+                    <?php else: ?>
+                    <option selected value="<?php echo e(OTHERS); ?>" ><?php echo e(OTHERS); ?></option>
+                    <?php endif; ?>
                 </select>
             </div>
 
-            <div @if($education->resultSystem !=4)style="display: none" @endif id="resultSydtemNameDiv" class="form-group col-md-3">
+            <div <?php if($education->resultSystem !=4): ?>style="display: none" <?php endif; ?> id="resultSydtemNameDiv" class="form-group col-md-3">
                 <label for="">Result system name</label>
-                <input type="text" maxlength="255" name="resultSydtemName" value="{{$education->resultSystemName}}" class="form-control" id="resultSydtemName">
+                <input type="text" maxlength="255" name="resultSydtemName" value="<?php echo e($education->resultSystemName); ?>" class="form-control" id="resultSydtemName"  placeholder="">
+
             </div>
 
             <div class="form-group col-md-3">
                 <label for="">Result/CGPA/Score</label>
-                <input name="result" type="text" class="form-control" value="{{$education->result}}"  id="cgpa" maxlength="10" placeholder="">
+                <input name="result" type="text" class="form-control" value="<?php echo e($education->result); ?>"  id="cgpa" maxlength="10" placeholder="">
             </div>
             <div class="form-group col-md-3">
                 <label for="">Out of</label>
-                <input type="text" name="resultOutOf" class="form-control" id="resultOutOf"  value="{{$education->resultOutOf}}"placeholder="CGPA Out of">
+                <input type="text" name="resultOutOf" class="form-control" id="resultOutOf"  value="<?php echo e($education->resultOutOf); ?>"placeholder="CGPA Out of">
             </div>
 
 
 
         </div>
     <div class="form-group col-md-12">
-        {{--<a class="btn btn-danger pull-left" href="{{route('candidate.cvEducation')}}">Cancel</a>&nbsp;&nbsp;--}}
-        <button class="btn btn-danger pull-left" onclick="{{route('candidate.cvEducation')}}">Cancel</button>&nbsp;&nbsp;
+        
+        <button class="btn btn-danger pull-left" onclick="<?php echo e(route('candidate.cvEducation')); ?>">Cancel</button>&nbsp;&nbsp;
         <button class="btn btn-success">Update</button>
 
     </div>
@@ -152,7 +169,7 @@
 </form>
 
 
-<meta name="csrf-token" content="{{ csrf_token() }}" />
+<meta name="csrf-token" content="<?php echo e(csrf_token()); ?>" />
 <script>
     $('.js-example-basic-single').select2();
     $.ajaxSetup({
@@ -172,7 +189,7 @@
     $('#majorSub').on('change', function() {
 
         var major =$('#majorSub').val();
-        if (major == "{{OTHERS}}"){
+        if (major == "<?php echo e(OTHERS); ?>"){
 
             $("#subjectNameDiv").show();
         }else {
@@ -185,7 +202,7 @@
     $('#board').on('change', function() {
 
         var board =$('#board').val();
-        if (board == "{{OTHERS}}"){
+        if (board == "<?php echo e(OTHERS); ?>"){
 
             $("#boardNameDiv").show();
         }else {
@@ -203,7 +220,7 @@
 
         $.ajax({
             type:'POST',
-            url:'{{route('cv.getDegreeForEducation')}}',
+            url:'<?php echo e(route('cv.getDegreeForEducation')); ?>',
             data:{id:this.value},
             cache: false,
             success:function(data) {
@@ -214,7 +231,7 @@
 
         $.ajax({
             type:'POST',
-            url:'{{route('cv.getBoradOrUniversity')}}',
+            url:'<?php echo e(route('cv.getBoradOrUniversity')); ?>',
             data:{id:this.value},
             cache: false,
             success:function(data) {
@@ -271,7 +288,7 @@
     $('#resultSydtem').on('change', function() {
 
         var resultSydtem =$('#resultSydtem').val();
-        if (resultSydtem == "{{OTHERS}}"){
+        if (resultSydtem == "<?php echo e(OTHERS); ?>"){
 
             $("#resultSydtemNameDiv").show();
         }else {
@@ -290,13 +307,13 @@
 
 
         var degree =$('#degree').val();
-        if (degree == "{{OTHERS}}"){
+        if (degree == "<?php echo e(OTHERS); ?>"){
 
             $("#degreeNameDiv").show();
             $("#subjectNameDiv").show();
 
             $('#majorSub').children('option:not(:first,:last)').remove();
-            $("#majorSub option[value='{{OTHERS}}']").attr("selected", true);
+            $("#majorSub option[value='<?php echo e(OTHERS); ?>']").attr("selected", true);
             $("#resultSydtem").val($("#resultSydtem option:first").val());
 
         }else {
@@ -309,7 +326,7 @@
 
             $.ajax({
                 type:'POST',
-                url:'{{route('cv.getMajorForEducation')}}',
+                url:'<?php echo e(route('cv.getMajorForEducation')); ?>',
                 data:{id:this.value},
                 cache: false,
                 success:function(data) {
@@ -337,7 +354,7 @@
 
         var universityType=$('#universityType').val();
 
-        if(major=="{{OTHERS}}" && $("#subjectName").val()=="" ){
+        if(major=="<?php echo e(OTHERS); ?>" && $("#subjectName").val()=="" ){
             var errorMsg='Please Type a Subject Name First!!'
             validationError(errorMsg);
             return false;
@@ -453,7 +470,7 @@
     $('#educationStatus').on('change', function() {
 
         var educationStatus =$('#educationStatus').val();
-        if (educationStatus == '{{COMPLETING_STATUS['On going']}}'){
+        if (educationStatus == '<?php echo e(COMPLETING_STATUS['On going']); ?>'){
 
             $("#cgpa").prop('required',false);
             $("#passingYear").prop('required',false);

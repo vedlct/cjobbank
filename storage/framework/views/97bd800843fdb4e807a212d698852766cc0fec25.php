@@ -1,6 +1,4 @@
-@extends('main')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
     <div class="row ">
 
@@ -11,20 +9,20 @@
                     <div class="col-md-3">
 
                         <div class="sidenav">
-                            <a href="{{route('candidate.cvPersonalInfo')}}">Personal details</a>
-                            <a href="{{route('candidate.cvQuesObj')}}">Career objective and application information</a>
-                            <a href="{{route('candidate.cvEducation')}}">Education</a>
-                            <a href="{{route('candidate.language.index')}}" >Language</a>
-                            <a href="{{route('candidate.computerSkill.index')}}" >Computer-skill</a>
-                            {{--<a href="{{route('candidate.skill.index')}}" >Other Skill Information</a>--}}
-                            <a href="{{route('cv.OthersInfo')}}" >Other information</a>
-                            <a href="{{route('candidate.cvTrainingCertificate')}}">Training certification</a>
-                            <a href="{{route('candidate.cvProfessionalCertificate')}}">Professional certification</a>
-                            <a  href="{{route('JobExperience.index')}}">Job experience</a>
-                            <a class="activeNav" href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
-                            <a  href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
-                            <a  href="{{route('refree.index')}}">Referee</a>
-                            <a  href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas Bangladesh</a>
+                            <a href="<?php echo e(route('candidate.cvPersonalInfo')); ?>">Personal details</a>
+                            <a href="<?php echo e(route('candidate.cvQuesObj')); ?>">Career objective and application information</a>
+                            <a href="<?php echo e(route('candidate.cvEducation')); ?>">Education</a>
+                            <a href="<?php echo e(route('candidate.language.index')); ?>" >Language</a>
+                            <a href="<?php echo e(route('candidate.computerSkill.index')); ?>" >Computer-skill</a>
+                            
+                            <a href="<?php echo e(route('cv.OthersInfo')); ?>" >Other information</a>
+                            <a href="<?php echo e(route('candidate.cvTrainingCertificate')); ?>">Training certification</a>
+                            <a href="<?php echo e(route('candidate.cvProfessionalCertificate')); ?>">Professional certification</a>
+                            <a  href="<?php echo e(route('JobExperience.index')); ?>">Job experience</a>
+                            <a class="activeNav" href="<?php echo e(route('candidate.previousWorkInCB.index')); ?>">Previous work information in Caritas Bangladesh</a>
+                            <a  href="<?php echo e(route('candidate.membershipInSocialNetwork.index')); ?>">Certification of membership in professional network/ forum</a>
+                            <a  href="<?php echo e(route('refree.index')); ?>">Referee</a>
+                            <a  href="<?php echo e(route('relativeInCaritas.getRelationInfo')); ?>">Relatives working in Caritas Bangladesh</a>
                         </div>
 
                     </div>
@@ -35,65 +33,70 @@
                         <div id="" class="tab">
 
                             <h2 style="margin-bottom: 30px;">Previous work information in caritas bangladesh</h2>
-                            @php($tempHr=0)
-                            @foreach($previousWorkInCB as $prevWc)
-                                @if($tempHr>0)
+                            <?php ($tempHr=0); ?>
+                            <?php $__currentLoopData = $previousWorkInCB; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $prevWc): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php if($tempHr>0): ?>
                                     <div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>
-                                @endif
-                                <div id="edit{{$prevWc->id}}">
+                                <?php endif; ?>
+                                <div id="edit<?php echo e($prevWc->id); ?>">
                                     <div class="row">
                                         <div class="form-group col-md-10">
                                             <label for="inputEmail4">Designation :</label>
-                                            {{$prevWc->designation}}
+                                            <?php echo e($prevWc->designation); ?>
+
                                         </div>
 
                                         <div class="form-group col-md-2 ">
-                                            <button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$prevWc->id}})"><i class="fa fa-edit"></i></button>
-                                            <button type="button" class="btn btn-danger btn-sm " onclick="deletePreViousWork({{$prevWc->id}})"><i class="fa fa-trash"></i></button>
+                                            <button type="button" class="btn btn-info btn-sm " onclick="editInfo(<?php echo e($prevWc->id); ?>)"><i class="fa fa-edit"></i></button>
+                                            <button type="button" class="btn btn-danger btn-sm " onclick="deletePreViousWork(<?php echo e($prevWc->id); ?>)"><i class="fa fa-trash"></i></button>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-12">
                                             <label>Work station</label>
-                                            {{$prevWc->location}}
+                                            <?php echo e($prevWc->location); ?>
+
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label>Start date</label>
-                                            {{$prevWc->startDate}}
+                                            <?php echo e($prevWc->startDate); ?>
+
                                         </div>
                                         <div class="col-md-6">
                                             <label>End date</label>
-                                            @if($prevWc->currentlyRunning=='0')
-                                                {{$prevWc->endDate}}
-                                            @else
+                                            <?php if($prevWc->currentlyRunning=='0'): ?>
+                                                <?php echo e($prevWc->endDate); ?>
+
+                                            <?php else: ?>
                                                 Running
-                                            @endif
+                                            <?php endif; ?>
                                         </div>
                                         <div class="col-md-6">
                                             <label for="inputPassword4">Total experience :</label>
-                                            <span id="TE{{$tempHr}}"></span>
+                                            <span id="TE<?php echo e($tempHr); ?>"></span>
                                         </div>
                                     </div>
-                                    @php($tempHr++)
+                                    <?php ($tempHr++); ?>
                                 </div>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </div>
-                        <form onsubmit="return chkPreviousWork()"action="{{route('candidate.previousWorkInCB.insert')}}" method="post">
+                        <form onsubmit="return chkPreviousWork()"action="<?php echo e(route('candidate.previousWorkInCB.insert')); ?>" method="post">
                             <!-- One "tab" for each step in the form: -->
                             <input type="hidden" required name="hasWorkedInCB" value="1">&nbsp;
-                            {{csrf_field()}}
+                            <?php echo e(csrf_field()); ?>
+
                             <div id="TextBoxesGroup"></div>
                             <button type="button" id="addButton" class="btn btn-success">Add more</button>
                             <button type="button" id="removeButton" class="btn btn-success" >Remove</button>
                             <div style="overflow:auto;">
                                 <div style="float:right;">
-                                    <a href="{{route('JobExperience.index')}}"><button type="button" id="btnPevious" >Back</button></a>
+                                    <a href="<?php echo e(route('JobExperience.index')); ?>"><button type="button" id="btnPevious" >Back</button></a>
                                     <button type="submit" id="submitBtn">Save</button>
-                                    <a href="{{route('candidate.membershipInSocialNetwork.index')}}"><button type="button" id="nextBtn" >Next</button></a>
+                                    <a href="<?php echo e(route('candidate.membershipInSocialNetwork.index')); ?>"><button type="button" id="nextBtn" >Next</button></a>
                                 </div>
                             </div>
                         </form>
@@ -126,9 +129,9 @@
 
 
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('foot-js')
+<?php $__env->startSection('foot-js'); ?>
     <script>
         var currentTab = 0;
         fixStepIndicator(currentTab);
@@ -136,9 +139,9 @@
         function editInfo(x) {
             $.ajax({
                 type: 'POST',
-                url: "{!! route('candidate.previousWorkInCB.edit') !!}",
+                url: "<?php echo route('candidate.previousWorkInCB.edit'); ?>",
                 cache: false,
-                data: {_token: "{{csrf_token()}}",'id': x},
+                data: {_token: "<?php echo e(csrf_token()); ?>",'id': x},
                 success: function (data) {
                     $('#edit'+x).html(data);
                     $("#addButton").hide();
@@ -154,9 +157,9 @@
                     confirm: function () {
                         $.ajax({
                             type: 'POST',
-                            url: "{!! route('candidate.previousWorkInCB.delete') !!}",
+                            url: "<?php echo route('candidate.previousWorkInCB.delete'); ?>",
                             cache: false,
-                            data: {_token: "{{csrf_token()}}",'id': x},
+                            data: {_token: "<?php echo e(csrf_token()); ?>",'id': x},
                             success: function (data) {
                                 location.reload();
                             }
@@ -200,14 +203,14 @@
 
 
             <?php $ii=0;?>
-            @foreach($previousWorkInCB as $pwc)
-            @if(!is_null($pwc->startDate) && !is_null($pwc->endDate))
-            document.getElementById("TE"+'{{$ii}}').innerHTML = calcDate(new Date('{{$pwc->endDate}}'),new Date('{{$pwc->startDate}}'));
-            @elseif(!is_null($pwc->startDate) && is_null($pwc->endDate))
-            document.getElementById("TE"+'{{$ii}}').innerHTML = calcDate(new Date(),new Date('{{$pwc->startDate}}'));
-            @endif
+            <?php $__currentLoopData = $previousWorkInCB; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $pwc): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php if(!is_null($pwc->startDate) && !is_null($pwc->endDate)): ?>
+            document.getElementById("TE"+'<?php echo e($ii); ?>').innerHTML = calcDate(new Date('<?php echo e($pwc->endDate); ?>'),new Date('<?php echo e($pwc->startDate); ?>'));
+            <?php elseif(!is_null($pwc->startDate) && is_null($pwc->endDate)): ?>
+            document.getElementById("TE"+'<?php echo e($ii); ?>').innerHTML = calcDate(new Date(),new Date('<?php echo e($pwc->startDate); ?>'));
+            <?php endif; ?>
             <?php $ii++;?>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
         });
 
@@ -536,4 +539,6 @@
 
 
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

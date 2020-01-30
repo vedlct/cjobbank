@@ -137,10 +137,24 @@
 
                                                 <?php endif; ?>
                                             </td>
+                                            <td style="text-align: center;font-size: 14px;width: 10%;">
+                                                <?php if(empty($edu->passingYear)): ?>
+                                                    <?php echo e('On going'); ?>
 
-                                            <td style="text-align: center;font-size: 14px;width: 10%;"><?php echo e($edu->passingYear); ?> </td>
+                                                <?php else: ?>
+                                                    <?php echo e($edu->passingYear); ?>
 
-                                            <td style="text-align: center;font-size: 14px;width: 10%;"> <?php echo e($edu->result); ?></td>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td style="text-align: center;font-size: 14px;width: 10%;">
+                                                <?php if(empty($edu->result)): ?>
+                                                    <?php echo e('On going'); ?>
+
+                                                <?php else: ?>
+                                                    <?php echo e($edu->result); ?>
+
+                                                <?php endif; ?>
+                                            </td>
                                         </tr>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </tbody>
@@ -166,9 +180,7 @@
                                                     <span class="bold"><?php echo e($count++); ?>.</span>
                                                 </td>
 
-
                                                 <td style="border: none;">
-
                                                     <span class="bold"> Company name : </span> &nbsp;&nbsp <?php echo e($exp->organization); ?>  &nbsp;&nbsp;
                                                     <div class="pull-right"><span class="bold">Position:</span>&nbsp;&nbsp;&nbsp; <?php echo e($exp->degisnation); ?> </div><br>
                                                     <span class="bold"> Major responsibilities :</span>&nbsp;&nbsp;&nbsp; <?php echo $exp->majorResponsibilities; ?><br>
@@ -191,7 +203,6 @@
                                                     <?php endif; ?>
                                                 </td>
                                             </tr>
-
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     <?php endif; ?>
                                 </table>
@@ -219,7 +230,7 @@
                                                     <span class="bold"> Designation :</span> &nbsp;&nbsp;&nbsp;<?php echo e($p_in_caritasbd->designation); ?> <br>
                                                     <span class="bold"> Start date :</span> &nbsp;&nbsp;&nbsp;<?php echo e($p_in_caritasbd->startDate); ?> <br>
                                                     <span class="bold"> End date :</span> &nbsp;&nbsp;&nbsp;<?php echo e($p_in_caritasbd->endDate); ?> <br>
-                                                    <span class="bold"> Location :</span> &nbsp;&nbsp;&nbsp;<?php echo e($p_in_caritasbd->location); ?>
+                                                    <span class="bold"> Work station :</span> &nbsp;&nbsp;&nbsp;<?php echo e($p_in_caritasbd->location); ?>
 
                                                 </td>
                                             </tr>
