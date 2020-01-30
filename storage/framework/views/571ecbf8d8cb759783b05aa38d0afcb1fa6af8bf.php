@@ -1,6 +1,4 @@
-@extends('main')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <style>
         .updateCard {
             height:2500px;
@@ -20,7 +18,7 @@
         /*}*/
     </style>
     <style>
-        @media only screen and (max-width: 420px) {
+        @media  only screen and (max-width: 420px) {
             .top{
                 margin-top: 4%;
             }
@@ -36,20 +34,20 @@
                     <div class="col-md-3">
 
                         <div class="sidenav">
-                            <a href="{{route('candidate.cvPersonalInfo')}}">Personal details</a>
-                            <a href="{{route('candidate.cvQuesObj')}}">Career objective and application information</a>
-                            <a href="{{route('candidate.cvEducation')}}">Education</a>
-                            <a href="{{route('candidate.language.index')}}" >Language</a>
-                            <a href="{{route('candidate.computerSkill.index')}}" >Computer-skill</a>
-                            {{--<a href="{{route('candidate.skill.index')}}" >Other Skill Information</a>--}}
-                            <a href="{{route('cv.OthersInfo')}}" >Other information</a>
-                            <a href="{{route('candidate.cvTrainingCertificate')}}">Training certification</a>
-                            <a href="{{route('candidate.cvProfessionalCertificate')}}">Professional certification</a>
-                            <a href="{{route('JobExperience.index')}}">Job experience</a>
-                            <a href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
-                            <a href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
-                            <a class="activeNav"  href="{{route('refree.index')}}">Referee</a>
-                            <a href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas Bangladesh</a>
+                            <a href="<?php echo e(route('candidate.cvPersonalInfo')); ?>">Personal details</a>
+                            <a href="<?php echo e(route('candidate.cvQuesObj')); ?>">Career objective and application information</a>
+                            <a href="<?php echo e(route('candidate.cvEducation')); ?>">Education</a>
+                            <a href="<?php echo e(route('candidate.language.index')); ?>" >Language</a>
+                            <a href="<?php echo e(route('candidate.computerSkill.index')); ?>" >Computer-skill</a>
+                            
+                            <a href="<?php echo e(route('cv.OthersInfo')); ?>" >Other information</a>
+                            <a href="<?php echo e(route('candidate.cvTrainingCertificate')); ?>">Training certification</a>
+                            <a href="<?php echo e(route('candidate.cvProfessionalCertificate')); ?>">Professional certification</a>
+                            <a href="<?php echo e(route('JobExperience.index')); ?>">Job experience</a>
+                            <a href="<?php echo e(route('candidate.previousWorkInCB.index')); ?>">Previous work information in Caritas Bangladesh</a>
+                            <a href="<?php echo e(route('candidate.membershipInSocialNetwork.index')); ?>">Certification of membership in professional network/ forum</a>
+                            <a class="activeNav"  href="<?php echo e(route('refree.index')); ?>">Referee</a>
+                            <a href="<?php echo e(route('relativeInCaritas.getRelationInfo')); ?>">Relatives working in Caritas Bangladesh</a>
                         </div>
 
                     </div>
@@ -60,77 +58,84 @@
 
                         <div id="" class="tab">
 
-                            @php($tempHr=0)
+                            <?php ($tempHr=0); ?>
 
-                                    @foreach($refrees as $refree)
-                                        @if($tempHr>0)
+                                    <?php $__currentLoopData = $refrees; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $refree): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <?php if($tempHr>0): ?>
                                             <div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>
-                                        @endif
-                                <div id="edit{{$refree->refereeId}}">
-                                    <h2 style="margin-bottom: 30px;">Referee - {{++$tempHr}} </h2>
+                                        <?php endif; ?>
+                                <div id="edit<?php echo e($refree->refereeId); ?>">
+                                    <h2 style="margin-bottom: 30px;">Referee - <?php echo e(++$tempHr); ?> </h2>
                                     <div class="row">
                                         <div class="form-group offset-10 col-md-2 pull">
-                                            <button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$refree->refereeId}})"><i class="fa fa-edit"></i></button>
-                                            <button type="button" class="btn btn-danger btn-sm " onclick="deleteReferee({{$refree->refereeId}})"><i class="fa fa-trash"></i></button>
+                                            <button type="button" class="btn btn-info btn-sm " onclick="editInfo(<?php echo e($refree->refereeId); ?>)"><i class="fa fa-edit"></i></button>
+                                            <button type="button" class="btn btn-danger btn-sm " onclick="deleteReferee(<?php echo e($refree->refereeId); ?>)"><i class="fa fa-trash"></i></button>
 
                                         </div>
                                     </div>
                                         <div class="row">
                                             <div class="form-group col-md-6">
                                                 <label for="inputEmail4">Name</label>
-                                                {{$refree->firstName}}
-                                                {{--<input type="text" class="form-control" name="firstName[]" id="inputEmail4" placeholder="first name" required>--}}
+                                                <?php echo e($refree->firstName); ?>
+
+                                                
                                             </div>
 
 
 
-{{--                                            <div class="form-group col-md-6">--}}
-{{--                                                <label for="inputEmail4">Last name</label>--}}
-{{--                                                {{$refree->lastName}}--}}
-{{--                                                --}}{{--<input type="text" class="form-control" name="lastName[]" id="inputEmail4" placeholder="last name" required>--}}
-{{--                                            </div>--}}
+
+
+
+
+
 
 
 
 
                                             <div class="form-group col-md-6">
                                                 <label for="inputEmail4">Present position</label>
-                                                {{$refree->presentposition}}
-                                                {{--<input type="text" class="form-control" name="presentposition[]" id="inputEmail4" placeholder="position" required>--}}
+                                                <?php echo e($refree->presentposition); ?>
+
+                                                
                                             </div>
 
                                             <div class="form-group col-md-6">
                                                 <label for="inputPassword4">Name of organization</label>
-                                                {{$refree->organization}}
-                                                {{--<input type="text" class="form-control" name="organization[]" id="inputPassword4" placeholder="organization" required>--}}
+                                                <?php echo e($refree->organization); ?>
+
+                                                
                                             </div>
 
                                             <div class="form-group col-md-6">
                                                 <label for="inputPassword4">Email</label>
-                                                {{$refree->email}}
-                                                {{--<input type="email" class="form-control" name="email[]" id="inputPassword4" placeholder="email" required>--}}
+                                                <?php echo e($refree->email); ?>
+
+                                                
                                             </div>
 
                                             <div class="form-group col-md-6">
                                                 <label for="inputPassword4">Phone</label>
-                                                {{$refree->phone}}
-                                                {{--<input type="text" class="form-control" name="phone[]" id="inputPassword4" placeholder="email" required>--}}
+                                                <?php echo e($refree->phone); ?>
+
+                                                
                                             </div>
 
                                             <div class="form-group col-md-6">
                                                 <label for="inputPassword4">Relation</label>
-                                                {{$refree->relation}}
-                                                {{--<input type="text" class="form-control" name="relation[]" id="inputPassword4" placeholder="relation" required>--}}
+                                                <?php echo e($refree->relation); ?>
+
+                                                
                                             </div>
                                         </div>
                                 </div>
-                                            {{--@php($tempHr++)--}}
-                                    @endforeach
+                                            
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
-                                    <form  action="{{route('submit.refree')}}" method="post">
+                                    <form  action="<?php echo e(route('submit.refree')); ?>" method="post">
                                         <!-- One "tab" for each step in the form: -->
-                                        {{csrf_field()}}
+                                        <?php echo e(csrf_field()); ?>
+
 
                                         <div id="TextBoxesGroup">
 
@@ -138,7 +143,7 @@
 
 
 
-                                   {{--</div>--}}
+                                   
 
                             <button type="button" id="addButton" class="btn btn-success">Add more</button>
                             <button type="button" id="removeButton" class="btn btn-success" >Remove</button>
@@ -147,9 +152,9 @@
 
                         <div style="overflow:auto;" class="top">
                             <div style="float:right;">
-                                <a href="{{route('candidate.membershipInSocialNetwork.index')}}"><button type="button" id="btnPevious" >Back</button></a>
+                                <a href="<?php echo e(route('candidate.membershipInSocialNetwork.index')); ?>"><button type="button" id="btnPevious" >Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
-                                <a <?php if ($tempHr < 2){?> onclick="return alert('atleast 2 refree needed')"  class="incomplete" <?php }else{?> href="{{route('relativeInCaritas.getRelationInfo')}}" <?php } ?> ><button type="button" id="nextBtn" >Next</button></a>
+                                <a <?php if ($tempHr < 2){?> onclick="return alert('atleast 2 refree needed')"  class="incomplete" <?php }else{?> href="<?php echo e(route('relativeInCaritas.getRelationInfo')); ?>" <?php } ?> ><button type="button" id="nextBtn" >Next</button></a>
                             </div>
                         </div>
                         </form>
@@ -181,9 +186,9 @@
     <!-- end wrapper -->
 
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('foot-js')
+<?php $__env->startSection('foot-js'); ?>
     <script>
         var currentTab = 0; // Current tab is set to be the first tab (0)
         fixStepIndicator(currentTab); // Display the crurrent tab
@@ -193,9 +198,9 @@
         function editInfo(x) {
             $.ajax({
                 type: 'POST',
-                url: "{!! route('refree.edit') !!}",
+                url: "<?php echo route('refree.edit'); ?>",
                 cache: false,
-                data: {_token: "{{csrf_token()}}",'refereeId': x},
+                data: {_token: "<?php echo e(csrf_token()); ?>",'refereeId': x},
                 success: function (data) {
 //                    $("#btnPevious").hide();
                     $('#edit'+x).html(data);
@@ -211,9 +216,9 @@
                     confirm: function () {
                         $.ajax({
                             type: 'POST',
-                            url: "{!! route('refree.delete') !!}",
+                            url: "<?php echo route('refree.delete'); ?>",
                             cache: false,
-                            data: {_token: "{{csrf_token()}}",'refereeId': x},
+                            data: {_token: "<?php echo e(csrf_token()); ?>",'refereeId': x},
                             success: function (data) {
                                 location.reload();
                             }
@@ -254,7 +259,7 @@
         });
 
         $(document).ready(function(){
-            var tempCounter='{{count($refrees)}}';
+            var tempCounter='<?php echo e(count($refrees)); ?>';
             tempCounter++;
             var counter = 1;
 
@@ -488,4 +493,6 @@
 
 
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

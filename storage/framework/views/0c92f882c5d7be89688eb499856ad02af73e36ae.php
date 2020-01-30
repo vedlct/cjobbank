@@ -4,40 +4,41 @@
     }
 </style>
 
-<form  action="{{route('update.jobExperience')}}" onsubmit="return checkJobExperience()" method="post">
+<form  action="<?php echo e(route('update.jobExperience')); ?>" onsubmit="return checkJobExperience()" method="post">
     <!-- One "tab" for each step in the form: -->
-    {{csrf_field()}}
-    <input type="hidden" name="jobExperienceId" value="{{$experience->jobExperienceId}}">
+    <?php echo e(csrf_field()); ?>
+
+    <input type="hidden" name="jobExperienceId" value="<?php echo e($experience->jobExperienceId); ?>">
 
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">Organization type<span style="color: red">*</span></label>
                     <select required name="organizationType" class="form-control" id="organizationType">
                         <option selected value="">Select organization type</option>
-                        @foreach($companyType as $natio)
-                            <option @if($experience->fkOrganizationType == $natio->organizationTypeId ) selected @endif value="{{$natio->organizationTypeId}}">{{$natio->organizationTypeName}}</option>
-                        @endforeach
+                        <?php $__currentLoopData = $companyType; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $natio): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option <?php if($experience->fkOrganizationType == $natio->organizationTypeId ): ?> selected <?php endif; ?> value="<?php echo e($natio->organizationTypeId); ?>"><?php echo e($natio->organizationTypeName); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </select>
 
-                    {{--<input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" required>--}}
+                    
                 </div>
 
                 <div class="form-group col-md-10">
                     <label for="inputEmail4">Organization name<span style="color: red">*</span></label>
-                    <input type="text" class="form-control" name="organization" value="{{$experience->organization}}" id="organization" placeholder="organization" required>
+                    <input type="text" class="form-control" name="organization" value="<?php echo e($experience->organization); ?>" id="organization" placeholder="organization" required>
                 </div>
 
                     <div class="form-group col-md-4">
                     <label for="inputEmail4">Designation<span style="color: red">*</span></label>
-                    <input type="text" class="form-control" name="degisnation" value="{{$experience->degisnation}}"  id="degisnation" placeholder="designation" required>
+                    <input type="text" class="form-control" name="degisnation" value="<?php echo e($experience->degisnation); ?>"  id="degisnation" placeholder="designation" required>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="inputPassword4">Start date<span style="color: red">*</span></label>
-                    <input type="text" class="form-control date" name="startDate" value="{{$experience->startDate}}"  id="start" placeholder="date" required>
+                    <input type="text" class="form-control date" name="startDate" value="<?php echo e($experience->startDate); ?>"  id="start" placeholder="date" required>
                 </div>
                 <div class="form-group col-md-4">
                     <label for="inputPassword4">End date</label>
-                    <input type="text" class="form-control date" name="endDate" value="{{$experience->endDate}}"  id="end" placeholder="date">
+                    <input type="text" class="form-control date" name="endDate" value="<?php echo e($experience->endDate); ?>"  id="end" placeholder="date">
                 </div>
                 <div id="experienceDiv" style="display: none" class="form-group col-md-4">
                     <label for="inputPassword4">Total Experience</label>
@@ -45,28 +46,28 @@
                 </div>
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Organization address</label>
-                    <textarea  class="form-control" rows="5" name="address"id="address" placeholder="address">{{$experience->address}} </textarea>
+                    <textarea  class="form-control" rows="5" name="address"id="address" placeholder="address"><?php echo e($experience->address); ?> </textarea>
                 </div>
 
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Major responsibilities <span style="color: red">* (Maximum 5000 character)</span></label>
-                    <textarea class="form-control ckeditor" rows="15" name="majorResponsibilities" id="majorResponsibilities" placeholder="Major responsibilities">{!! $experience->majorResponsibilities !!}</textarea>
+                    <textarea class="form-control ckeditor" rows="15" name="majorResponsibilities" id="majorResponsibilities" placeholder="Major responsibilities"><?php echo $experience->majorResponsibilities; ?></textarea>
                 </div>
                 <div class="form-group col-md-12">
                     <label for="inputPassword4">Key achievement <span style="color: red">* (Maximum 5000 character)</span></label>
-                    <textarea class="form-control ckeditor" rows="15" name="keyAchivement" id="keyAchivement" placeholder="Key Achievement">{{$experience->keyAchivement}}</textarea>
+                    <textarea class="form-control ckeditor" rows="15" name="keyAchivement" id="keyAchivement" placeholder="Key Achievement"><?php echo e($experience->keyAchivement); ?></textarea>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">Name of supervisor<span style="color: red">*</span></label>
-                    <input type="text" class="form-control" name="supervisorName" value="{{$experience->supervisorName}}" id="supervisorName" placeholder="Name of Supervisor">
+                    <input type="text" class="form-control" name="supervisorName" value="<?php echo e($experience->supervisorName); ?>" id="supervisorName" placeholder="Name of Supervisor">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="inputEmail4">Any reservation contacting your employer?</label>
                     <select class="form-control" id="reservationContactingEmployer" name="reservationContactingEmployer" >
                         <option value="" selected>Select option</option>
-                        @foreach(YES_NO as $key=>$value)
-                            <option @if($experience->reservationContactingEmployer == $value) selected @endif value="{{$value}}">{{$key}}</option>
-                        @endforeach
+                        <?php $__currentLoopData = YES_NO; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option <?php if($experience->reservationContactingEmployer == $value): ?> selected <?php endif; ?> value="<?php echo e($value); ?>"><?php echo e($key); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </select>&nbsp;
                 </div>
 
@@ -75,24 +76,24 @@
                     <select class="form-control" id="employmentType1"  name="employmentType" required>
 
                         <option value="" selected>Select Employment Type</option>
-                        @foreach($employmentType as $eT)
-                            <option @if($eT->employmentTypeName == $experience->employmentType)selected @endif value="{{$eT->employmentTypeName}}">{{$eT->employmentTypeName}}</option>
-                        @endforeach
-                        <option @if($experience->employmentType == OTHERS)selected @endif value="{{OTHERS}}">Others</option>
+                        <?php $__currentLoopData = $employmentType; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $eT): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option <?php if($eT->employmentTypeName == $experience->employmentType): ?>selected <?php endif; ?> value="<?php echo e($eT->employmentTypeName); ?>"><?php echo e($eT->employmentTypeName); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <option <?php if($experience->employmentType == OTHERS): ?>selected <?php endif; ?> value="<?php echo e(OTHERS); ?>">Others</option>
                     </select>&nbsp;
                 </div>
 
-                <div @if($experience->employmentType != OTHERS) style="display: none" @endif id="employmentTypeTextDiv" class="form-group col-md-6">
+                <div <?php if($experience->employmentType != OTHERS): ?> style="display: none" <?php endif; ?> id="employmentTypeTextDiv" class="form-group col-md-6">
 
                     <label for="inputEmail4">Please mention other types<span style="color: red">*</span></label>
 
-                    <input type="text" class="form-control" value="{{$experience->employmentTypeText}}" name="employmentTypeText" id="employmentTypeText" placeholder="Write Employment Type">
+                    <input type="text" class="form-control" value="<?php echo e($experience->employmentTypeText); ?>" name="employmentTypeText" id="employmentTypeText" placeholder="Write Employment Type">
 
                 </div>
 
 
                 <div class="form-group col-md-12">
-                    <a class="btn btn-danger pull-right" href="{{route('JobExperience.index')}}">Cancel</a>
+                    <a class="btn btn-danger pull-right" href="<?php echo e(route('JobExperience.index')); ?>">Cancel</a>
                     <button  class="btn btn-info pull-right">Update</button>
                 </div>
             </div>
@@ -101,8 +102,8 @@
 
     </form>
 
-<meta name="csrf-token" content="{{ csrf_token() }}" />
-<script type="text/javascript" src="{{url('public/assets/ckeditor/ckeditor.js')}}"></script>
+<meta name="csrf-token" content="<?php echo e(csrf_token()); ?>" />
+<script type="text/javascript" src="<?php echo e(url('public/assets/ckeditor/ckeditor.js')); ?>"></script>
 <script>
     $.ajaxSetup({
         headers: {
@@ -294,7 +295,7 @@
 
         var employmentType =$('#employmentType1').val();
 
-        if (employmentType == "{{OTHERS}}"){
+        if (employmentType == "<?php echo e(OTHERS); ?>"){
 
             $("#employmentTypeTextDiv").show();
         }else {
@@ -408,7 +409,7 @@
         }
 
         if (employmentType != ""){
-            if (employmentType == "{{OTHERS}}" && employmentTypeText != "" ){
+            if (employmentType == "<?php echo e(OTHERS); ?>" && employmentTypeText != "" ){
                 var errorMsg='Please Write Employement Other Text First!!';
                 validationError(errorMsg);
                 return false;

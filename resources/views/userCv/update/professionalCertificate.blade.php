@@ -318,7 +318,7 @@
         function deleteProfession(x) {
             $.confirm({
                 title: 'Delete!',
-                content: 'Are you sure ?',
+                content: 'Are you sure to delete this professional certification?',
                 buttons: {
                     confirm: function () {
                         $.ajax({

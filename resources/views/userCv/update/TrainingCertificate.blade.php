@@ -200,7 +200,7 @@
 
             $.confirm({
                 title: 'Delete!',
-                content: 'Are you sure ?',
+                content: 'Are you sure to delete this training certification?',
                 buttons: {
                     confirm: function () {
                         $.ajax({

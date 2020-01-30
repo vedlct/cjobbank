@@ -1,12 +1,10 @@
-@extends('main')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <style>
         .updateCard {
             height:2500px;
         }
 
-        @media only screen and (max-width: 1450px) and (min-width: 801px) {
+        @media  only screen and (max-width: 1450px) and (min-width: 801px) {
             .updateCard {
             height:3800px;
         }
@@ -18,7 +16,7 @@
         }
     </style>
     <style>
-        @media only screen and (max-width: 400px) {
+        @media  only screen and (max-width: 400px) {
             .top{
                 margin-top: 4%;
             }
@@ -34,20 +32,20 @@
                     <div class="col-md-3">
 
                         <div class="sidenav">
-                            <a href="{{route('candidate.cvPersonalInfo')}}">Personal details</a>
-                            <a href="{{route('candidate.cvQuesObj')}}">Career objective and application information</a>
-                            <a href="{{route('candidate.cvEducation')}}">Education</a>
-                            <a href="{{route('candidate.language.index')}}" >Language</a>
-                            <a href="{{route('candidate.computerSkill.index')}}" >Computer-skill</a>
-                            {{--<a href="{{route('candidate.skill.index')}}" >Other Skill Information</a>--}}
-                            <a href="{{route('cv.OthersInfo')}}" >Other information</a>
-                            <a href="{{route('candidate.cvTrainingCertificate')}}">Training certification</a>
-                            <a href="{{route('candidate.cvProfessionalCertificate')}}">Professional certification</a>
-                            <a class="activeNav" href="{{route('JobExperience.index')}}">Job experience</a>
-                            <a href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
-                            <a  href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
-                            <a  href="{{route('refree.index')}}">Referee</a>
-                            <a  href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas Bangladesh</a>
+                            <a href="<?php echo e(route('candidate.cvPersonalInfo')); ?>">Personal details</a>
+                            <a href="<?php echo e(route('candidate.cvQuesObj')); ?>">Career objective and application information</a>
+                            <a href="<?php echo e(route('candidate.cvEducation')); ?>">Education</a>
+                            <a href="<?php echo e(route('candidate.language.index')); ?>" >Language</a>
+                            <a href="<?php echo e(route('candidate.computerSkill.index')); ?>" >Computer-skill</a>
+                            
+                            <a href="<?php echo e(route('cv.OthersInfo')); ?>" >Other information</a>
+                            <a href="<?php echo e(route('candidate.cvTrainingCertificate')); ?>">Training certification</a>
+                            <a href="<?php echo e(route('candidate.cvProfessionalCertificate')); ?>">Professional certification</a>
+                            <a class="activeNav" href="<?php echo e(route('JobExperience.index')); ?>">Job experience</a>
+                            <a href="<?php echo e(route('candidate.previousWorkInCB.index')); ?>">Previous work information in Caritas Bangladesh</a>
+                            <a  href="<?php echo e(route('candidate.membershipInSocialNetwork.index')); ?>">Certification of membership in professional network/ forum</a>
+                            <a  href="<?php echo e(route('refree.index')); ?>">Referee</a>
+                            <a  href="<?php echo e(route('relativeInCaritas.getRelationInfo')); ?>">Relatives working in Caritas Bangladesh</a>
                         </div>
 
                     </div>
@@ -59,86 +57,97 @@
                         <div id="all_data" class="tab">
 
                             <h2 style="margin-bottom: 30px;">Job experience</h2>
-                            @php($tempHr=0)
-                            @foreach($experiences as $experience)
-                                @if($tempHr>0)
+                            <?php ($tempHr=0); ?>
+                            <?php $__currentLoopData = $experiences; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $experience): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php if($tempHr>0): ?>
                                     <div class="col-md-12"><hr style="border-top:1px dotted #000;"></div>
-                                @endif
+                                <?php endif; ?>
                                         <div class="row">
 
                                             <div class="form-group col-md-6">
                                                 <label for="inputEmail4">Organization type :</label>
-                                                {{$experience->organizationTypeName}}
+                                                <?php echo e($experience->organizationTypeName); ?>
+
                                             </div>
 
                                             <div class="form-group col-md-10">
                                                 <label for="inputEmail4">Organization name :</label>
-                                              {{$experience->organization}}
+                                              <?php echo e($experience->organization); ?>
+
                                             </div>
 
                                             <div class="form-group col-md-2">
-                                                <button type="button" class="btn btn-info btn-sm " onclick="editInfo({{$experience->jobExperienceId}})"><i class="fa fa-edit"></i></button>
-                                                <button type="button" class="btn btn-danger btn-sm " onclick="deleteExperience({{$experience->jobExperienceId}})"><i class="fa fa-trash"></i></button>
+                                                <button type="button" class="btn btn-info btn-sm " onclick="editInfo(<?php echo e($experience->jobExperienceId); ?>)"><i class="fa fa-edit"></i></button>
+                                                <button type="button" class="btn btn-danger btn-sm " onclick="deleteExperience(<?php echo e($experience->jobExperienceId); ?>)"><i class="fa fa-trash"></i></button>
                                             </div>
 
                                             <div class="form-group col-md-4">
                                                 <label for="inputEmail4">Designation :</label>
-                                                {{$experience->degisnation}}
+                                                <?php echo e($experience->degisnation); ?>
+
                                             </div>
                                             <div class="form-group col-md-4">
                                                 <label for="inputPassword4">Start date :</label>
-                                                {{$experience->startDate}}
+                                                <?php echo e($experience->startDate); ?>
+
 
                                             </div>
                                             <div class="form-group col-md-4">
 
-                                                @if($experience->endDate==null)
+                                                <?php if($experience->endDate==null): ?>
                                                     <label for="inputPassword4">Status :</label>
                                                     Running
-                                                @else
+                                                <?php else: ?>
                                                     <label for="inputPassword4">End date :</label>
-                                                {{$experience->endDate}}
-                                                @endif
+                                                <?php echo e($experience->endDate); ?>
+
+                                                <?php endif; ?>
                                             </div>
                                             <div class="form-group col-md-12">
                                                 <label for="inputPassword4">Total experience :</label>
-                                                <span id="TE{{$tempHr}}"></span>
+                                                <span id="TE<?php echo e($tempHr); ?>"></span>
                                             </div>
                                             <div class="form-group col-md-12">
                                                 <label for="inputPassword4">Organization address :</label>
-                                                {{$experience->address}}
+                                                <?php echo e($experience->address); ?>
+
                                             </div>
                                             <div class="form-group col-md-12">
                                                 <label for="inputPassword4">Major responsibilities :</label><br>
-                                                {!! $experience->majorResponsibilities !!}
+                                                <?php echo $experience->majorResponsibilities; ?>
+
                                             </div>
                                             <div class="form-group col-md-12">
                                                 <label for="inputPassword4">Key achievement :</label><br>
-                                                {!! $experience->keyAchivement  !!}
+                                                <?php echo $experience->keyAchivement; ?>
+
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="inputPassword4">Name of supervisor :</label>
-                                                {{$experience->supervisorName}}
+                                                <?php echo e($experience->supervisorName); ?>
+
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="inputPassword4">Any reservation contacting your employer? :</label>
-                                                @foreach(YES_NO as $key=>$value)
-                                                    @if($value==$experience->reservationContactingEmployer){{$key}} @endif
-                                                @endforeach
+                                                <?php $__currentLoopData = YES_NO; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <?php if($value==$experience->reservationContactingEmployer): ?><?php echo e($key); ?> <?php endif; ?>
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="inputPassword4">Type of employment :</label>
-                                                {{$experience->employmentType}}
+                                                <?php echo e($experience->employmentType); ?>
+
                                             </div>
-                                            @if($experience->employmentType== OTHERS)
+                                            <?php if($experience->employmentType== OTHERS): ?>
                                             <div class="form-group col-md-6">
                                                 <label for="inputPassword4">Employment type (other) :</label>
-                                                {{$experience->employmentTypeText}}
+                                                <?php echo e($experience->employmentTypeText); ?>
+
                                             </div>
-                                            @endif
+                                            <?php endif; ?>
                                         </div>
-                                    @php($tempHr++)
-                            @endforeach
+                                    <?php ($tempHr++); ?>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                             <input class="form-check-input"  type="hidden"  name="hasProfCertificate" value="1">
                             <button type="button" onclick="add_new()" class="btn btn-success">Add more</button>
@@ -146,9 +155,9 @@
 
                             <div style="overflow:auto;">
                                 <div style="float:right;">
-                                    <a href="{{route('candidate.cvProfessionalCertificate')}}"><button type="button" id="btnPevious" >Back</button></a>
-                                    {{--<a href="{{route('refree.index')}}"><button type="button" id="nextBtn" >Next</button></a>--}}
-                                    <a href="{{route('candidate.previousWorkInCB.index')}}"><button type="button" id="nextBtn" >Next</button></a>
+                                    <a href="<?php echo e(route('candidate.cvProfessionalCertificate')); ?>"><button type="button" id="btnPevious" >Back</button></a>
+                                    
+                                    <a href="<?php echo e(route('candidate.previousWorkInCB.index')); ?>"><button type="button" id="nextBtn" >Next</button></a>
 
                                 </div>
                             </div>
@@ -172,9 +181,9 @@
         </div> <!-- end col -->
     </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('foot-js')
+<?php $__env->startSection('foot-js'); ?>
     <script>
         var currentTab = 0; // Current tab is set to be the first tab (0)
         fixStepIndicator(currentTab); // Display the crurrent tab
@@ -183,9 +192,9 @@
             $("#all_data").hide();
             $.ajax({
                 type: 'POST',
-                url: "{!! route('JobExperience.edit') !!}",
+                url: "<?php echo route('JobExperience.edit'); ?>",
                 cache: false,
-                data: {_token: "{{csrf_token()}}",'jobExperienceId': x},
+                data: {_token: "<?php echo e(csrf_token()); ?>",'jobExperienceId': x},
                 success: function (data) {
                     $('#edit').html(data);
                     $("#addButton").hide();
@@ -196,9 +205,9 @@
             $("#all_data").hide();
             $.ajax({
                 type: 'POST',
-                url: "{!! route('JobExperience.add') !!}",
+                url: "<?php echo route('JobExperience.add'); ?>",
                 cache: false,
-                data: {_token: "{{csrf_token()}}"},
+                data: {_token: "<?php echo e(csrf_token()); ?>"},
                 success: function (data) {
                     $('#TextBoxesGroup').html(data);
                     $("#addButton").hide();
@@ -213,9 +222,9 @@
                     confirm: function () {
                         $.ajax({
                             type: 'POST',
-                            url: "{!! route('JobExperience.delete') !!}",
+                            url: "<?php echo route('JobExperience.delete'); ?>",
                             cache: false,
-                            data: {_token: "{{csrf_token()}}",'jobExperienceId': x},
+                            data: {_token: "<?php echo e(csrf_token()); ?>",'jobExperienceId': x},
                             success: function () {
                                 location.reload();
                             }
@@ -247,7 +256,7 @@
             $('.date').datepicker({
                 format: 'yyyy-m-d'
             });
-           // var expss= '{{$experiences}}';
+           // var expss= '<?php echo e($experiences); ?>';
 
           //  console.log(expss[0]);
 
@@ -267,16 +276,16 @@
 
 
                 <?php $ii=0;?>
-                @foreach($experiences as $experience)
+                <?php $__currentLoopData = $experiences; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $experience): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
 
-                @if(!is_null($experience->startDate) && !is_null($experience->endDate))
-                document.getElementById("TE"+'{{$ii}}').innerHTML = calcDate(new Date('{{$experience->endDate}}'),new Date('{{$experience->startDate}}'));
-                @elseif(!is_null($experience->startDate) && is_null($experience->endDate))
-                document.getElementById("TE"+'{{$ii}}').innerHTML = calcDate(new Date(),new Date('{{$experience->startDate}}'));
-                @endif
+                <?php if(!is_null($experience->startDate) && !is_null($experience->endDate)): ?>
+                document.getElementById("TE"+'<?php echo e($ii); ?>').innerHTML = calcDate(new Date('<?php echo e($experience->endDate); ?>'),new Date('<?php echo e($experience->startDate); ?>'));
+                <?php elseif(!is_null($experience->startDate) && is_null($experience->endDate)): ?>
+                document.getElementById("TE"+'<?php echo e($ii); ?>').innerHTML = calcDate(new Date(),new Date('<?php echo e($experience->startDate); ?>'));
+                <?php endif; ?>
             <?php $ii++;?>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
 
@@ -444,7 +453,7 @@
                     }
                     if (employmentType[i].value != ""){
 
-                        if (employmentType[i].value == "{{OTHERS}}" && employmentTypeText[i].value != "" ){
+                        if (employmentType[i].value == "<?php echo e(OTHERS); ?>" && employmentTypeText[i].value != "" ){
 
                             var errorMsg='Please write employement other text first!!';
                             validationError(errorMsg);
@@ -464,7 +473,7 @@
 
             var employmentType =$('#employmentType'+x).val();
 
-            if (employmentType == "{{OTHERS}}"){
+            if (employmentType == "<?php echo e(OTHERS); ?>"){
 
                 $("#employmentTypeTextDiv"+x).show();
             }else {
@@ -627,4 +636,6 @@
 
 
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

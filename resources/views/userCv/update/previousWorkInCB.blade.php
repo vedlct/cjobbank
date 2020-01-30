@@ -149,7 +149,7 @@
         function deletePreViousWork(x) {
             $.confirm({
                 title: 'Delete!',
-                content: 'Are you sure ?',
+                content: 'Are you sure to delete this previous work?',
                 buttons: {
                     confirm: function () {
                         $.ajax({

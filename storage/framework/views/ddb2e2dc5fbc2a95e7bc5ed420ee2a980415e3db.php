@@ -4,20 +4,21 @@
     }
 </style>
 
-    <form onsubmit="return checkJobExperience()" action="{{route('jobExperience.submit')}}" method="post">
-    {{csrf_field()}}
+    <form onsubmit="return checkJobExperience()" action="<?php echo e(route('jobExperience.submit')); ?>" method="post">
+    <?php echo e(csrf_field()); ?>
+
 
     <div class="row">
         <div class="form-group col-md-6">
             <label for="inputEmail4">Organization type<span style="color: red">*</span></label>
             <select required name="organizationType" class="form-control" id="organizationType">
                 <option selected value="">Select organization type</option>
-                @foreach($companyType as $natio)
-                    <option value="{{$natio->organizationTypeId}}">{{$natio->organizationTypeName}}</option>
-                @endforeach
+                <?php $__currentLoopData = $companyType; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $natio): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($natio->organizationTypeId); ?>"><?php echo e($natio->organizationTypeName); ?></option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </select>
 
-            {{--<input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" required>--}}
+            
         </div>
 
         <div class="form-group col-md-10">
@@ -62,9 +63,9 @@
             <label for="inputEmail4">Any reservation contacting your employer?</label>
             <select class="form-control" id="reservationContactingEmployer" name="reservationContactingEmployer" >
                 <option value="" selected>Select option</option>
-                @foreach(YES_NO as $key=>$value)
-                <option value="{{$value}}">{{$key}}</option>
-                @endforeach
+                <?php $__currentLoopData = YES_NO; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <option value="<?php echo e($value); ?>"><?php echo e($key); ?></option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </select>&nbsp;
         </div>
 
@@ -73,19 +74,19 @@
             <select class="form-control" id="employmentType1"  name="employmentType" required>
 
                 <option value="" selected>Select Employment Type</option>
-                @foreach($employmentType as $eT)
-                    <option value="{{$eT->employmentTypeName}}">{{$eT->employmentTypeName}}</option>
-                @endforeach
+                <?php $__currentLoopData = $employmentType; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $eT): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <option value="<?php echo e($eT->employmentTypeName); ?>"><?php echo e($eT->employmentTypeName); ?></option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </select>&nbsp;
         </div>
 
-{{--        <div @if($experience->employmentType != OTHERS) style="display: none" @endif id="employmentTypeTextDiv" class="form-group col-md-6">--}}
 
-{{--            <label for="inputEmail4">Please mention other types<span style="color: red">*</span></label>--}}
 
-{{--            <input type="text" class="form-control" value="{{$experience->employmentTypeText}}" name="employmentTypeText" id="employmentTypeText" placeholder="Write Employment Type">--}}
 
-{{--        </div>--}}
+
+
+
+
 
 
         <div class="form-group col-md-12">
@@ -101,7 +102,7 @@
 
 </form>
 
-<script type="text/javascript" src="{{url('public/assets/ckeditor/ckeditor.js')}}"></script>
+<script type="text/javascript" src="<?php echo e(url('public/assets/ckeditor/ckeditor.js')); ?>"></script>
 <script>
     $.ajaxSetup({
         headers: {
@@ -224,7 +225,7 @@
 
     $('#employmentType1').on('change', function() {
         var employmentType =$('#employmentType1').val();
-        if (employmentType == "{{OTHERS}}"){
+        if (employmentType == "<?php echo e(OTHERS); ?>"){
             $("#employmentTypeTextDiv").show();
         }else {
             $("#employmentTypeTextDiv").hide();
@@ -327,7 +328,7 @@
         }
 
         if (employmentType != ""){
-            if (employmentType == "{{OTHERS}}" && employmentTypeText != "" ){
+            if (employmentType == "<?php echo e(OTHERS); ?>" && employmentTypeText != "" ){
                 var errorMsg='Please Write Employement Other Text First!!';
                 validationError(errorMsg);
                 return false;

@@ -189,7 +189,7 @@
         function deleteRelative(x) {
             $.confirm({
                 title: 'Delete!',
-                content: 'Are you sure ?',
+                content: 'Are you sure to delete this relative working in caritas bangladesh?',
                 buttons: {
                     confirm: function () {
                         $.ajax({

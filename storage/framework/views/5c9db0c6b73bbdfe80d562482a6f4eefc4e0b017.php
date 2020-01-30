@@ -1,6 +1,4 @@
-@extends('main')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
     <style>
         #notice{
@@ -14,7 +12,7 @@
         }
     </style>
     <style>
-        @media only screen and (max-width: 400px) {
+        @media  only screen and (max-width: 400px) {
             .top{
                 margin-top: 4%;
             }
@@ -30,26 +28,27 @@
                     <div class="col-md-3">
 
                         <div class="sidenav">
-                            <a href="{{route('candidate.cvPersonalInfo')}}">Personal details</a>
-                            <a href="{{route('candidate.cvQuesObj')}}">Career objective and application information</a>
-                            <a href="{{route('candidate.cvEducation')}}">Education</a>
-                            <a href="{{route('candidate.language.index')}}" >Language</a>
-                            <a href="{{route('candidate.computerSkill.index')}}" >Computer-skill</a>
-                            {{--<a href="{{route('candidate.skill.index')}}" >Other Skill Information</a>--}}
-                            <a href="{{route('cv.OthersInfo')}}" >Other Information</a>
-                            <a href="{{route('candidate.cvTrainingCertificate')}}">Training certification</a>
-                            <a href="{{route('candidate.cvProfessionalCertificate')}}">Professional certification</a>
-                            <a class="activeNav" href="{{route('JobExperience.index')}}">Job experience</a>
-                            <a <?php if ($hasProfCertificate!='0'){?> onclick="return false;" class="incomplete" <?php } ?> href="{{route('candidate.previousWorkInCB.index')}}">Previous work information in Caritas Bangladesh</a>
-                            <a onclick="return false;" class="incomplete" href="{{route('candidate.membershipInSocialNetwork.index')}}">Certification of membership in professional network/ forum</a>
-                            <a onclick="return false;" class="incomplete" href="{{route('refree.index')}}">Referee</a>
-                            <a onclick="return false;" class="incomplete" href="{{route('relativeInCaritas.getRelationInfo')}}">Relatives working in Caritas Bangladesh</a>
+                            <a href="<?php echo e(route('candidate.cvPersonalInfo')); ?>">Personal details</a>
+                            <a href="<?php echo e(route('candidate.cvQuesObj')); ?>">Career objective and application information</a>
+                            <a href="<?php echo e(route('candidate.cvEducation')); ?>">Education</a>
+                            <a href="<?php echo e(route('candidate.language.index')); ?>" >Language</a>
+                            <a href="<?php echo e(route('candidate.computerSkill.index')); ?>" >Computer-skill</a>
+                            
+                            <a href="<?php echo e(route('cv.OthersInfo')); ?>" >Other Information</a>
+                            <a href="<?php echo e(route('candidate.cvTrainingCertificate')); ?>">Training certification</a>
+                            <a href="<?php echo e(route('candidate.cvProfessionalCertificate')); ?>">Professional certification</a>
+                            <a class="activeNav" href="<?php echo e(route('JobExperience.index')); ?>">Job experience</a>
+                            <a <?php if ($hasProfCertificate!='0'){?> onclick="return false;" class="incomplete" <?php } ?> href="<?php echo e(route('candidate.previousWorkInCB.index')); ?>">Previous work information in Caritas Bangladesh</a>
+                            <a onclick="return false;" class="incomplete" href="<?php echo e(route('candidate.membershipInSocialNetwork.index')); ?>">Certification of membership in professional network/ forum</a>
+                            <a onclick="return false;" class="incomplete" href="<?php echo e(route('refree.index')); ?>">Referee</a>
+                            <a onclick="return false;" class="incomplete" href="<?php echo e(route('relativeInCaritas.getRelationInfo')); ?>">Relatives working in Caritas Bangladesh</a>
                         </div>
 
                     </div>
 
-                    <form class="col-md-9" id="regForm" onsubmit="return checkJobExperience()" action="{{route('submit.jobExperience')}}" method="post">
-                        {{csrf_field()}}
+                    <form class="col-md-9" id="regForm" onsubmit="return checkJobExperience()" action="<?php echo e(route('submit.jobExperience')); ?>" method="post">
+                        <?php echo e(csrf_field()); ?>
+
                         <div id="" class="tab">
 
                             <h2 style="margin-bottom: 30px;">Job experience</h2>
@@ -72,12 +71,12 @@
                                         <label for="inputEmail4">Organization type<span style="color: red">*</span></label>
                                         <select name="organizationType[]" class="form-control" id="organizationType">
                                             <option selected value="">Select organization type</option>
-                                            @foreach($companyType as $natio)
-                                                <option value="{{$natio->organizationTypeId}}">{{$natio->organizationTypeName}}</option>
-                                            @endforeach
+                                            <?php $__currentLoopData = $companyType; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $natio): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($natio->organizationTypeId); ?>"><?php echo e($natio->organizationTypeName); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
 
-                                        {{--<input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" required>--}}
+                                        
                                     </div>
                                     <div class="form-group col-md-12">
                                         <label for="inputEmail4">Organization name<span style="color: red">*</span></label>
@@ -122,20 +121,20 @@
                                         <label for="reservationContactingEmployer">Any reservation contacting your employer?</label>
                                         <select class="form-control" id="reservationContactingEmployer" name="reservationContactingEmployer[]" >
                                             <option value="" selected>Select Option</option>
-                                            @foreach(YES_NO as $key=>$value)
-                                            <option value="{{$value}}">{{$key}}</option>
-                                            @endforeach
+                                            <?php $__currentLoopData = YES_NO; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($value); ?>"><?php echo e($key); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>&nbsp;
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label for="employmentType">Type of employment <span style="color: red">*</span></label>
+                                        <label for="employmentType">Type of employment<span style="color: red">*</span></label>
                                         <select class="form-control"  id="employmentType" name="employmentType[]" >
                                             <option value="" selected>Select employment type</option>
-                                            @foreach($employmentType as $eT)
-                                            <option value="{{$eT->employmentTypeName}}">{{$eT->employmentTypeName}}</option>
-                                            @endforeach
-                                            <option value="{{OTHERS}}">Others</option>
+                                            <?php $__currentLoopData = $employmentType; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $eT): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($eT->employmentTypeName); ?>"><?php echo e($eT->employmentTypeName); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e(OTHERS); ?>">Others</option>
                                         </select>&nbsp;
                                     </div>
                                     <div style="display: none" id="employmentTypeTextDiv" class="form-group col-md-6">
@@ -144,19 +143,19 @@
                                     </div>
                                 </div>
                             </div>
-{{--                            <button type="button" id="addButton" class="btn btn-success">Add more</button>--}}
-{{--                            <button type="button" id="removeButton" class="btn btn-success" >Remove</button>--}}
+
+
 
                         </div>
                         </div>
 
                         <div style="overflow:auto;">
                             <div style="float:right;">
-                                <a href="{{route('candidate.cvProfessionalCertificate')}}"><button type="button" id="btnPevious" >Back</button></a>
+                                <a href="<?php echo e(route('candidate.cvProfessionalCertificate')); ?>"><button type="button" id="btnPevious" >Back</button></a>
                                 <button type="submit" id="submitBtn">Save</button>
-                                @if($hasProfCertificate == 0 || $hasProfCertificate== 1 )
-                                <a href="{{route('candidate.previousWorkInCB.index')}}"><button type="button" id="nextBtn" class="top" >Next</button></a>
-                                @endif
+                                <?php if($hasProfCertificate == 0 || $hasProfCertificate== 1 ): ?>
+                                <a href="<?php echo e(route('candidate.previousWorkInCB.index')); ?>"><button type="button" id="nextBtn" class="top" >Next</button></a>
+                                <?php endif; ?>
                             </div>
                         </div>
 
@@ -183,10 +182,10 @@
 
 
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('foot-js')
-    <script type="text/javascript" src="{{url('public/assets/ckeditor/ckeditor.js')}}"></script>
+<?php $__env->startSection('foot-js'); ?>
+    <script type="text/javascript" src="<?php echo e(url('public/assets/ckeditor/ckeditor.js')); ?>"></script>
     <script>
         var currentTab = 0; // Current tab is set to be the first tab (0)
         fixStepIndicator(currentTab); // Display the crurrent tab
@@ -430,6 +429,11 @@
             var employmentTypeText=document.getElementsByName('employmentTypeText[]');
 
             for (i=0;i<organization.length;i++){
+                if(end[i].value =="" && supervisorName[i].value==""){
+                    var errorMsg='Please insert supervisor name for running job !!';
+                    validationError(errorMsg)
+                    return false;
+                }
 
                 if(organizationType[i].value==""){
                     var errorMsg='Please select a organization type first!!'
@@ -492,28 +496,59 @@
                     validationError(errorMsg);
                     return false;
                 }
+
+                // if(keyAchivement[i].value!="") {
+                //     if (keyAchivement[i].value.length > 5000) {
+                //
+                //         var errorMsg = 'Key achivement should not more than 5000 charecter length!!'
+                //         validationError(errorMsg)
+                //         return false;
+                //
+                //     }
+                // }
+
+                // if(supervisorName[i].value!="") {
+                //     if (supervisorName[i].value.length > 200) {
+                //
+                //         var errorMsg = 'Supervisor name should not more than 200 charecter length!!'
+                //         validationError(errorMsg)
+                //         return false;
+                //
+                //     }
+                // }
+
+                // if(reservationContactingEmployer[i].value==""){
+                //
+                //     var errorMsg='Please select reservation of contacting employer first!!'
+                //     validationError(errorMsg)
+                //     return false;
+                // }
+
                 if(employmentType[i].value==""){
+
                     var errorMsg='Please select employment type first!!'
                     validationError(errorMsg)
                     return false;
                 }
                 if (employmentType[i].value != ""){
-                    if (employmentType[i].value == "{{OTHERS}}" && employmentTypeText[i].value != "" ){
+
+                    if (employmentType[i].value == "<?php echo e(OTHERS); ?>" && employmentTypeText[i].value != "" ){
+
                         var errorMsg='Please write employement other text first!!';
                         validationError(errorMsg);
                         return false;
+
                     }
+
                 }
 
-                if(supervisorName[i].value==""){
-                    var errorMsg='Please insert supervisor name!!';
-                    validationError(errorMsg);
-                    return false;
-                }
             }
-        }else{
-            return true;
+
         }
+        else {
+                return true;
+
+            }
         }
 
 
@@ -634,7 +669,7 @@
                     }
                     if (employmentType != ""){
 
-                        if (employmentType == "{{OTHERS}}" && employmentTypeText != "" ){
+                        if (employmentType == "<?php echo e(OTHERS); ?>" && employmentTypeText != "" ){
 
                             var errorMsg='Please write employement other text first!!';
                             validationError(errorMsg);
@@ -787,7 +822,7 @@
                     }
                     if (employmentType != ""){
 
-                        if (employmentType == "{{OTHERS}}" && employmentTypeText != "" ){
+                        if (employmentType == "<?php echo e(OTHERS); ?>" && employmentTypeText != "" ){
 
                             var errorMsg='Please write employement other text first!!';
                             validationError(errorMsg);
@@ -820,12 +855,12 @@
                     '<label for="inputEmail4">Organization type<span style="color: red">*</span></label>'+
                     '<select required name="organizationType[]" class="form-control" id="sel1">'+
                     '<option selected value="">Select organization Type</option>'+
-                @foreach($companyType as $natio)
-                '<option value="{{$natio->organizationTypeId}}">{{$natio->organizationTypeName}}</option>'+
-                        @endforeach
+                <?php $__currentLoopData = $companyType; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $natio): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                '<option value="<?php echo e($natio->organizationTypeId); ?>"><?php echo e($natio->organizationTypeName); ?></option>'+
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     '</select>'+
 
-                        {{--<input type="text" class="form-control" name="organization[]" id="organization" placeholder="organization" required>--}}
+                        
                     '</div>'+
                     '<div class="form-group col-md-12"> ' +
                     '<label for="inputEmail4">Organization name<span style="color: red">*</span></label> ' +
@@ -867,9 +902,9 @@
                     '<label for="inputEmail4">Any reservation contacting your employer?</label>'+
                     '<select class="form-control" id="reservationContactingEmployer'+counter+'" name="reservationContactingEmployer[]" >'+
                 '<option value="" selected>Select option</option>'+
-                @foreach(YES_NO as $key=>$value)
-                '<option value="{{$value}}">{{$key}}</option>'+
-                        @endforeach
+                <?php $__currentLoopData = YES_NO; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                '<option value="<?php echo e($value); ?>"><?php echo e($key); ?></option>'+
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     '</select>'+
                 '</div>'+
 
@@ -877,10 +912,10 @@
                     '<label for="inputEmail4">Type of employment<span style="color: red">*</span></label>'+
                     '<select required class="form-control" id="employmentType'+counter+'" onchange="employmentTypefunc('+counter+')" name="employmentType[]" >'+
                 '<option value="" selected>Select employment type</option>'+
-                    @foreach($employmentType as $eT)
-                    '<option value="{{$eT->employmentTypeName}}">{{$eT->employmentTypeName}}</option>'+
-                        @endforeach
-                    '<option value="{{OTHERS}}">Others</option>'+
+                    <?php $__currentLoopData = $employmentType; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $eT): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    '<option value="<?php echo e($eT->employmentTypeName); ?>"><?php echo e($eT->employmentTypeName); ?></option>'+
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    '<option value="<?php echo e(OTHERS); ?>">Others</option>'+
                     '</select>'+
                 '</div>'+
                 '<div style="display: none" id="employmentTypeTextDiv'+counter+'" class="form-group col-md-6">'+
@@ -923,7 +958,7 @@
         $('#employmentType').on('change', function() {
 
             var employmentType =$('#employmentType').val();
-            if (employmentType == "{{OTHERS}}"){
+            if (employmentType == "<?php echo e(OTHERS); ?>"){
 
                 $("#employmentTypeTextDiv").show();
             }else {
@@ -937,7 +972,7 @@
 
             var employmentType =$('#employmentType'+x).val();
 
-            if (employmentType == "{{OTHERS}}"){
+            if (employmentType == "<?php echo e(OTHERS); ?>"){
 
                 $("#employmentTypeTextDiv"+x).show();
             }else {
@@ -969,4 +1004,6 @@
 
 
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
