@@ -1,7 +1,6 @@
-@extends('main')
-@section('content')
+<?php $__env->startSection('content'); ?>
 <style>
-    @media only screen and (max-width: 1299px) {
+    @media  only screen and (max-width: 1299px) {
         #button {
             margin-top: 10%;
         }
@@ -9,18 +8,18 @@
             margin-left: 7%;
         }
     }
-    @media only screen and (min-width: 1201px) and (max-width: 1299px) {
+    @media  only screen and (min-width: 1201px) and (max-width: 1299px) {
         .left1{
             margin-left: 4%;
         }
     }
 
-    @media only screen and (min-width: 1300px) and (max-width: 1679px) {
+    @media  only screen and (min-width: 1300px) and (max-width: 1679px) {
         .top{
             margin-top: -8%;
         }
     }
-    @media only screen and (min-width: 1300px) and (max-width: 1371px) {
+    @media  only screen and (min-width: 1300px) and (max-width: 1371px) {
         .top1{
             margin-top:4%;
         }
@@ -28,7 +27,7 @@
             margin-left: 5%;
         }
     }
-    @media only screen and (min-width: 1371px) and (max-width: 1679px) {
+    @media  only screen and (min-width: 1371px) and (max-width: 1679px) {
         .bottom{
             margin-top:-4%;
         }
@@ -60,9 +59,9 @@
                     <label>Gender</label>
                     <select name="genderFilter" id="genderFilter" class="form-control">
                         <option value="">Select a Gender</option>
-                        @foreach(GENDER as $key=>$value)
-                            <option value="{{$value}}">{{$key}}</option>
-                        @endforeach
+                        <?php $__currentLoopData = GENDER; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($value); ?>"><?php echo e($key); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                     </select>
                 </div>
@@ -71,9 +70,9 @@
                     <label>Marital Status</label>
                     <select name="maritalStatusFilter" id="maritalStatusFilter" class="form-control">
                         <option value="">Select marital status</option>
-                        @foreach(MARITAL_STATUS as $key=>$value)
-                            <option value="{{$value}}">{{$key}}</option>
-                        @endforeach
+                        <?php $__currentLoopData = MARITAL_STATUS; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key=>$value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($value); ?>"><?php echo e($key); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </select>
                 </div>
 
@@ -82,9 +81,9 @@
                     <label>Religion</label>
                     <select name="religionFilter" id="religionFilter" class="form-control">
                         <option value="">Select a Religion</option>
-                        @foreach($religion as $reli)
-                            <option value="{{$reli->religionId}}">{{$reli->religionName}}</option>
-                        @endforeach
+                        <?php $__currentLoopData = $religion; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $reli): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($reli->religionId); ?>"><?php echo e($reli->religionName); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                     </select>
                 </div>
@@ -92,9 +91,9 @@
                     <label>Ethnicity</label>
                     <select name="ethnicityFilter" id="ethnicityFilter" class="form-control">
                         <option value="">Select a Ethnicity</option>
-                        @foreach($ethnicity as $ethi)
-                            <option value="{{$ethi->ethnicityId}}">{{$ethi->ethnicityName}}</option>
-                        @endforeach
+                        <?php $__currentLoopData = $ethnicity; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $ethi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <option value="<?php echo e($ethi->ethnicityId); ?>"><?php echo e($ethi->ethnicityName); ?></option>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                     </select>
                 </div>
@@ -156,12 +155,12 @@
 
 
 
-@endsection
-@section('foot-js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('foot-js'); ?>
 
-    <script src="{{url('public/assets/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{url('public/assets/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
-    <script src="{{url('public/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
+    <script src="<?php echo e(url('public/assets/plugins/datatables/jquery.dataTables.min.js')); ?>"></script>
+    <script src="<?php echo e(url('public/assets/plugins/datatables/dataTables.bootstrap4.min.js')); ?>"></script>
+    <script src="<?php echo e(url('public/assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')); ?>"></script>
     <script type="text/javascript">
         var gend = [];
 
@@ -186,11 +185,11 @@
                 stateSave: true,
                 "ordering": false,
                 "ajax": {
-                    "url": "{!! route('cv.admin.manageApplicationData')!!}",
+                    "url": "<?php echo route('cv.admin.manageApplicationData'); ?>",
                     "type": "POST",
                     data: function (d) {
 
-                        d._token = "{{csrf_token()}}";
+                        d._token = "<?php echo e(csrf_token()); ?>";
 
                         if ($('#maritalStatusFilter').val()!=""){
                             d.maritalStatusFilter=$('#maritalStatusFilter').val();
@@ -224,9 +223,9 @@
                         "data": "image",
                         "render": function (data, type, full, meta) {
                             if (data != '') {
-                                return "<img src=\"{{url('public/candidateImages/thumb')}}" + "/" + data + "\" height=\"50\"/>";
+                                return "<img src=\"<?php echo e(url('public/candidateImages/thumb')); ?>" + "/" + data + "\" height=\"50\"/>";
                             } else {
-                                return "<img src=\"{{url('public/candidateImages/thumb/1cvImage.jpg')}}" + "\" height=\"50\"/>";
+                                return "<img src=\"<?php echo e(url('public/candidateImages/thumb/1cvImage.jpg')); ?>" + "\" height=\"50\"/>";
                             }
 
                         },
@@ -350,7 +349,7 @@
 
                     $.ajax({
                         type: 'GET',
-                        url: "{!! route('userCv.post') !!}",
+                        url: "<?php echo route('userCv.post'); ?>",
                         cache: false,
                         data: {'id': selecteds[i]},
                         success: function (data) {
@@ -361,17 +360,17 @@
                     });
 
                 }
-                {{--$.ajax({--}}
-                {{--type: 'POST',--}}
-                {{--url: "{!! route('userCv.select') !!}",--}}
-                {{--cache: false,--}}
-                {{--data: {_token: "{{csrf_token()}}",'ids': selecteds},--}}
-                {{--success: function (data) {--}}
+                
+                
+                
+                
+                
+                
 
-                {{--// console.log(data);--}}
+                
 
-                {{--}--}}
-                {{--});--}}
+                
+                
             } else {
 
                 $.alert({
@@ -576,13 +575,13 @@
         });
 
         function getEmpCv(id){
-            var url = "{{ route('userCv.get', ':empId') }}";
+            var url = "<?php echo e(route('userCv.get', ':empId')); ?>";
             url = url.replace(':empId', id);
             window.open(url, '_blank');
         }
 
         function viewEmpCv(id) {
-            var url = "{{ route('userCv.view', ':empId') }}";
+            var url = "<?php echo e(route('userCv.view', ':empId')); ?>";
             url = url.replace(':empId', id);
             window.open(url, '_blank');
         }
@@ -600,9 +599,9 @@
                         action: function () {
                             $.ajax({
                                 type: 'post',
-                                url: "{!! route('userCv.delete') !!}",
+                                url: "<?php echo route('userCv.delete'); ?>",
                                 cache: false,
-                                data: {'id': id, _token: "{{csrf_token()}}"},
+                                data: {'id': id, _token: "<?php echo e(csrf_token()); ?>"},
                                 success: function (data) {
                                     if (data != 0) {
                                         $.confirm({
@@ -612,9 +611,9 @@
                                                 confirm: function () {
                                                     $.ajax({
                                                         type: 'post',
-                                                        url: "{!! route('userCv.confirm.delete') !!}",
+                                                        url: "<?php echo route('userCv.confirm.delete'); ?>",
                                                         cache: false,
-                                                        data: {'id': id, _token: "{{csrf_token()}}"},
+                                                        data: {'id': id, _token: "<?php echo e(csrf_token()); ?>"},
                                                         success: function (data) {
                                                             $.alert({
                                                                 title: 'Success',
@@ -703,4 +702,6 @@
 
     </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('main', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1619,6 +1619,7 @@
             $.alert({
                 title: 'Error',
                 type: 'red',
+                content: 'Are you sure to delete this application?',
                 buttons: {
                     tryAgain: {
                         text: 'Ok',

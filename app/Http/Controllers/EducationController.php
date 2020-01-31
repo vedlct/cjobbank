@@ -140,7 +140,11 @@ class EducationController extends Controller
                 $professional->fkdegreeId=$r->degree[$i];
             }
 
-            if ($r->board[$i]==OTHERS){
+            if ($r->board[$i]=='OTHERSBoard'){
+                if (empty($r->boardName[$i]) || $r->boardName[$i] == ''){
+                    Session::flash('message', 'Board Name is required.Education Added Unsuccessfully');
+                    return redirect()->back();
+                }
                 $boardName=new Board();
                 $boardName->boardName=$r->boardName[$i];
                 $boardName->status=1;

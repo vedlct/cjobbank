@@ -181,14 +181,10 @@
 
 
 
-                        <form id="" action="<?php echo e(route('cv.insertPersonalEducation')); ?>"  method="post">
-                            <!-- One "tab" for each step in the form: -->
+                        <form action="<?php echo e(route('cv.insertPersonalEducation')); ?>"  method="post">
                             <?php echo e(csrf_field()); ?>
 
-                            <div id="TextBoxesGroup">
-
-
-                            </div>
+                            <div id="TextBoxesGroup"></div>
 
                             <button type="button" id="addButton" class="btn btn-success">Add more</button>
                             <button type="button" id="removeButton" class="btn btn-success" >Remove</button>
@@ -491,7 +487,7 @@
 
                         '<div style="display: none" id="boardNameDiv'+counter+'" class="form-group col-md-3">'+
                         '<label for="">Board name</label>'+
-                        '<input type="text" maxlength="255" name="boardName[]" class="form-control" id="boardName'+counter+'"  placeholder="">'+
+                        '<input type="text" maxlength="255" name="boardName[]" class="form-control" id="boardName'+counter+'">'+
 
                         '</div>'+
 

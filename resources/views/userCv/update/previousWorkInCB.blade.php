@@ -384,13 +384,13 @@
                     var start=$('#start'+(counter-1)).val();
                     var end=$('#end'+(counter-1)).val();
                     if(degisnation==""){
-                        var errorMsg='Please type designation first!!'
-                        validationError(errorMsg)
+                        var errorMsg='Please type designation first!!';
+                        validationError(errorMsg);
                         return false;
                     }
                     if(location==""){
-                        var errorMsg='Please enter location!!'
-                        validationError(errorMsg)
+                        var errorMsg='Please enter work station!!';
+                        validationError(errorMsg);
                         return false;
                     }
                     if (degisnation.length > 255){
@@ -424,19 +424,19 @@
                     '<div class="form-group"><hr style="border-top:1px dotted #000;"></div>' +
 //                    '<div class="row"> ' +
                     '<div class="form-group col-md-12"> ' +
-                    '<label for="inputEmail4">Designation</label> ' +
+                    '<label for="inputEmail4">Designation <span style="color: red">*</span></label> ' +
                     '<input type="text" class="form-control" name="degisnation[]" id="degisnation'+counter+'" placeholder="designation" > ' +
                     '</div> ' +
                     '<div class="form-group col-md-12"> ' +
-                    '<label for="location">Work station</label> ' +
+                    '<label for="location">Work station <span style="color: red">*</span></label> ' +
                     '<textarea type="text" class="form-control" name="location[]" id="location'+counter+'" placeholder="Address" ></textarea> ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
-                    '<label for="inputPassword4">Start date</label> ' +
+                    '<label for="inputPassword4">Start date <span style="color: red">*</span></label> ' +
                     '<input type="text" class="form-control date" name="startDate[]" onchange="getExp('+counter+')" id="start'+counter+'" placeholder="date"> ' +
                     '</div> ' +
                     '<div class="form-group col-md-6"> ' +
-                    '<label for="inputPassword4">End date</label> ' +
+                    '<label for="inputPassword4">End date <span style="color: red">*</span></label> ' +
                     '/ <input type="checkbox"  class="col-md-2" id="currentlyRunning'+counter+'" onclick="getchkExp('+counter+')" name="currentlyRunning[]" value="1">Running'+
                     '<input type="text" class="form-control date" name="endDate[]" onchange="getExp('+counter+')" id="end'+counter+'" placeholder="date"> ' +
 
@@ -489,7 +489,7 @@
                         return false;
                     }
                     if(location[i].value==""){
-                        var errorMsg='Please type a designation first!!';
+                        var errorMsg='Please type a work station first!!';
                         validationError(errorMsg);
                         return false;
                     }

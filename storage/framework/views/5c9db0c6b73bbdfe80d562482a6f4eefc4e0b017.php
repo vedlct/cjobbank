@@ -128,7 +128,7 @@
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label for="employmentType">Type of employment<span style="color: red">*</span></label>
+                                        <label for="employmentType">Type of employment <span style="color: red">*</span></label>
                                         <select class="form-control"  id="employmentType" name="employmentType[]" >
                                             <option value="" selected>Select employment type</option>
                                             <?php $__currentLoopData = $employmentType; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $eT): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -429,11 +429,6 @@
             var employmentTypeText=document.getElementsByName('employmentTypeText[]');
 
             for (i=0;i<organization.length;i++){
-                if(end[i].value =="" && supervisorName[i].value==""){
-                    var errorMsg='Please insert supervisor name for running job !!';
-                    validationError(errorMsg)
-                    return false;
-                }
 
                 if(organizationType[i].value==""){
                     var errorMsg='Please select a organization type first!!'
@@ -496,59 +491,28 @@
                     validationError(errorMsg);
                     return false;
                 }
-
-                // if(keyAchivement[i].value!="") {
-                //     if (keyAchivement[i].value.length > 5000) {
-                //
-                //         var errorMsg = 'Key achivement should not more than 5000 charecter length!!'
-                //         validationError(errorMsg)
-                //         return false;
-                //
-                //     }
-                // }
-
-                // if(supervisorName[i].value!="") {
-                //     if (supervisorName[i].value.length > 200) {
-                //
-                //         var errorMsg = 'Supervisor name should not more than 200 charecter length!!'
-                //         validationError(errorMsg)
-                //         return false;
-                //
-                //     }
-                // }
-
-                // if(reservationContactingEmployer[i].value==""){
-                //
-                //     var errorMsg='Please select reservation of contacting employer first!!'
-                //     validationError(errorMsg)
-                //     return false;
-                // }
-
                 if(employmentType[i].value==""){
-
                     var errorMsg='Please select employment type first!!'
                     validationError(errorMsg)
                     return false;
                 }
                 if (employmentType[i].value != ""){
-
                     if (employmentType[i].value == "<?php echo e(OTHERS); ?>" && employmentTypeText[i].value != "" ){
-
                         var errorMsg='Please write employement other text first!!';
                         validationError(errorMsg);
                         return false;
-
                     }
-
                 }
 
+                if(supervisorName[i].value==""){
+                    var errorMsg='Please insert supervisor name!!';
+                    validationError(errorMsg);
+                    return false;
+                }
             }
-
+        }else{
+            return true;
         }
-        else {
-                return true;
-
-            }
         }
 
 

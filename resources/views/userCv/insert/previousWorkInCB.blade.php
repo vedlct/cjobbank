@@ -440,7 +440,7 @@
                     }
 
                     if(location[i].value==""){
-                        var errorMsg='Please enter location!!';
+                        var errorMsg='Please enter work station!!';
                         validationError(errorMsg);
                         return false;
                     }
@@ -454,7 +454,6 @@
                     if ($("input[name=currentlyRunning]:checked").val()!=1){
                         if(endDate[i].value!=""){
                             if(Date.parse(startDate[i].value) > Date.parse(endDate[i].value)){
-
                                 var errorMsg='start date must be less then end date';
                                 validationError(errorMsg);
                                 return false;
@@ -480,6 +479,7 @@
                 }
                 if (counter == 1 ){
                     var degisnation=$('#degisnation').val();
+                    var location=$('#location').val();
                     var start=$('#start').val();
                     var end=$('#end').val();
 
@@ -491,6 +491,12 @@
 
                     if (degisnation.length > 255){
                         var errorMsg='Designation should not more than 255 charecter length!!';
+                        validationError(errorMsg);
+                        return false;
+                    }
+
+                    if(location==""){
+                        var errorMsg='Please enter work station!!';
                         validationError(errorMsg);
                         return false;
                     }

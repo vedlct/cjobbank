@@ -227,7 +227,7 @@
             var id=$(x).data('panel-id');
             $.confirm({
                 title: 'Delete!',
-                content: 'Are you sure ?',
+                content: 'Are you sure to delete this language?',
                 buttons: {
                     confirm: function () {
                         $.ajax({
