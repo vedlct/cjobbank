@@ -56,7 +56,7 @@
         <a href="#"><i class="ti-user"></i>User Management</a>
         <ul class="submenu">
             <li><a href="{{route('admin.manageUser')}}">Employee</a></li>
-            <li><a href="{{route('admin.manageUser.user')}}">User</a></li>
+{{--            <li><a href="{{route('admin.manageUser.user')}}">User</a></li>--}}
         </ul>
     </li>
     @endif

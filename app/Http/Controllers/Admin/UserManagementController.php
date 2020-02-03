@@ -78,10 +78,10 @@ class UserManagementController extends Controller
 
     }
 
-    public function manageUser()
-    {
-        return view('Admin.userMange.manageuser');
-    }
+//    public function manageUser()
+//    {
+//        return view('Admin.userMange.manageuser');
+//    }
 
     public function manageUserGet(Request $data)
     {

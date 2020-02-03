@@ -224,7 +224,7 @@ Route::get('Admin-Export-All-AppliedCandidate1','Admin\ApplicationController@exp
 
 //Employee Management
 Route::get('Admin-Manage-Employee','Admin\UserManagementController@home')->name('admin.manageUser');
-Route::get('Admin-Manage-User','Admin\UserManagementController@manageUser')->name('admin.manageUser.user');
+//Route::get('Admin-Manage-User','Admin\UserManagementController@manageUser')->name('admin.manageUser.user');
 Route::post('Admin-Manage-UserData','Admin\UserManagementController@manageUserGet')->name('admin.getmanageUserData.User');
 Route::post('Admin-Change-User-Password','Admin\UserManagementController@changeUserPassword')->name('admin.changeUserPassword');
 Route::post('admin/Admin-Manage-User','Admin\UserManagementController@getUserData')->name('admin.getmanageUserData');

@@ -98,33 +98,20 @@
                         d._token="{{csrf_token()}}";
                         d.zoneId=$('#zoneId').val();
                         d.designationId=$('#designationId').val();
-
-                    },
+                    }
                 },
                 columns: [
-
-
-//                    { "data": function(data){
-//                        return "<input type='checkbox'>";
-//                        },
-//                        "orderable": false, "searchable":false
-//                    },
-
                     { data: 'firstName', name: 'firstName', "orderable": false, "searchable":true },
                     { data: 'lastName', name: 'lastName', "orderable": false, "searchable":true },
                     { data: 'designationName', name: 'designationName', "orderable": false, "searchable":true },
-
-//                    { data: 'gender', name: 'gender', "orderable": false, "searchable":true },
                     { "data": function(data){
-
-
                         if( data.gender == "M"){
-                            return "Male"
+                            return "<span>Male</span>";
                         }else if (data.gender == "F") {
-                            return "Female"
+                            return "<span>Female</span>";
+                        }else{
+                            return "<span>Other</span>";
                         }
-
-                        //return btn;
                     },
                         "orderable": false, "searchable":true
                     },
@@ -150,32 +137,24 @@
                     },
 
                     { "data": function(data){
-
-
                         if (data.cvStatus == 1){
-
                             var btn="<button class='btn btn-success btn-sm' data-panel-id='"+data.hrId+"' onclick='editUser(this)'>Edit</button>&nbsp;"+
                                 '<button class="btn btn-smbtn-info" onclick="getEmpCv('+data.employeeId+')" ><i class="fa fa-file-pdf-o"></i></button>';
                         }else {
                             var btn="<button class='btn btn-success btn-sm' data-panel-id='"+data.hrId+"' onclick='editUser(this)'>Edit</button>"
-
                         }
-
                         return btn;
                         },
                         "orderable": false, "searchable":false
                     },
-
-
                 ],
 
             });
 
         } );
 
-        $('#zoneId').change(function(){ //button filter event click
-//                table.search("").draw(); //just redraw myTableFilter
-            table.ajax.reload();  //just reload table
+        $('#zoneId').change(function(){
+            table.ajax.reload();
             emptySelect();
             if ($('#zoneId').val()!=""){
 
@@ -184,21 +163,16 @@
                 $('#zoneId').css("background-color", "#FFF").css('color', 'black');
             }
         });
-        $('#designationId').change(function(){ //button filter event click
-//                table.search("").draw(); //just redraw myTableFilter
-            table.ajax.reload();  //just reload table
+        $('#designationId').change(function(){
+            table.ajax.reload();
             emptySelect();
             if ($('#designationId').val()!=""){
-
                 $('#designationId').css("background-color", "#7c9").css('color', 'white');
             }else {
                 $('#designationId').css("background-color", "#FFF").css('color', 'black');
             }
         });
 
-//        function refreshTable() {
-//            table.ajax.reload();
-//        }
         function editUser(x) {
             var id=$(x).data('panel-id');
             var url = "{{ route('admin.editmanageUserData', ':id') }}";
@@ -215,9 +189,6 @@
             cache: false,
             data: {_token: "{{csrf_token()}}",'id': id},
             success: function (data) {
-
-
-
                 $.alert({
                     title: 'Success',
                     type: 'green',
@@ -227,19 +198,16 @@
                             text: 'Ok',
                             btnClass: 'btn-green',
                             action: function () {
-
                                 table.ajax.reload();
                                 emptySelect();
-
                             }
                         }
                     }
                 });
-
-
             }
             });
         }
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
