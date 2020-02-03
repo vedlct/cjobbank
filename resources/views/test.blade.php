@@ -167,40 +167,72 @@
             </tr>
         </table>
 
-        <table style="width:100%; margin-top: 10px; border: none;">
+        <div class="container">
             @if($jobExperience->isEmpty())
-                <tr><td style=" border: none; text-align: center"> <strong>None </strong> </td> </tr>
-            @else
-                @php $count=1;$flag=0;@endphp
-                @foreach($jobExperience as $exp)
+                <table border="0" style="width:100%; margin-top: 10px; border: none;">
                     <tr>
-                        <td width="5%" style="border: none; vertical-align: top">
-                            <span class="bold">{{$count++}}.</span>
-                        </td>
-                        <td style="font-size: 22px;">
-
-                            <span class="bold"> Company Name : </span> &nbsp;&nbsp; {{$exp->organization}}  &nbsp;&nbsp;
-                            <div class="pull-right"><span class="bold">Position:</span>&nbsp;{{$exp->degisnation}} </div><br>
-                            <p><span class="bold" > Major Responsibilities :</span><span style="text-align: justify">{!! $exp->majorResponsibilities !!}</span> <br></p>
-                            <p><span class="bold" > Key achievement :</span><span style="text-align: justify">{!! $exp->keyAchivement !!}</span> <br></p>
-                            <span class="bold"> Address:</span>&nbsp;&nbsp;&nbsp; {{$exp->address}} <br>
-                            <span class="bold"> Duration:</span>&nbsp;&nbsp;&nbsp; {{$exp->startDate}} -  @if($exp->endDate) {{$exp->endDate}} @else
-                                Continuing
-                            @endif
-                            <br>
-
-                            <span class="bold"> Total job experience:</span>
-
-                            @if ($exp->startDate!=null && $exp->endDate==null)
-                                {{$sub_struct=\Carbon\Carbon::parse($exp->startDate)->diff(\Carbon\Carbon::now())->format('%y years, %m months and %d days')}}
-                            @else
-                                {{$sub_struct=\Carbon\Carbon::parse($exp->startDate)->diff(\Carbon\Carbon::parse($exp->endDate))->format('%y years, %m months and %d days')}}
-                            @endif
-                        </td>
+                        <td style=" border: none; text-align: center"> <strong>None </strong> </td>
                     </tr>
+                </table>
+            @else
+                @foreach($jobExperience as $key => $exp)
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p><strong> Company name : </strong> &nbsp;{{$exp->organization}}</p>
+                            <p><strong> Position : </strong> &nbsp;{{$exp->degisnation}}</p>
+                            <p style="text-align: justify"><strong> Major responsibilities :</strong> &nbsp;{!! $exp->majorResponsibilities !!} </p>
+                            <p style="text-align: justify"><strong> Key achievement :</strong> &nbsp;{!! $exp->keyAchivement !!} </p>
+                            <p style="text-align: justify"><strong> Address :</strong> &nbsp;{{ $exp->address }} </p>
+                            <p style="text-align: justify"><strong> Duration :</strong> &nbsp;{{$exp->startDate}} -  @if($exp->endDate) {{$exp->endDate}} @else Continuing @endif </p>
+                            <p style="text-align: justify"><strong> Total job experience :</strong> &nbsp;
+                                @if ($exp->startDate!=null && $exp->endDate==null)
+                                    {{$sub_struct=\Carbon\Carbon::parse($exp->startDate)->diff(\Carbon\Carbon::now())->format('%y years, %m months and %d days')}}
+                                @else
+                                    {{$sub_struct=\Carbon\Carbon::parse($exp->startDate)->diff(\Carbon\Carbon::parse($exp->endDate))->format('%y years, %m months and %d days')}}
+                                @endif
+                            </p>
+
+                        </div>
+                    </div>
+                    @if(count($jobExperience)>1 && count($jobExperience) !== $key+1)<hr>@endif
                 @endforeach
             @endif
-        </table>
+        </div>
+
+{{--        <table>--}}
+{{--            @if($jobExperience->isEmpty())--}}
+{{--                <tr><td style=" border: none; text-align: center"> <strong>None </strong> </td> </tr>--}}
+{{--            @else--}}
+{{--                @php $count=1;$flag=0;@endphp--}}
+{{--                @foreach($jobExperience as $exp)--}}
+{{--                    <tr>--}}
+{{--                        <td width="5%" style="border: none; vertical-align: top">--}}
+{{--                            <span class="bold">{{$count++}}.</span>--}}
+{{--                        </td>--}}
+{{--                        <td style="font-size: 22px;">--}}
+
+{{--                            <span class="bold"> Company Name : </span> &nbsp;&nbsp; {{$exp->organization}}  &nbsp;&nbsp;--}}
+{{--                            <div class="pull-right"><span class="bold">Position:</span>&nbsp;{{$exp->degisnation}} </div><br>--}}
+{{--                            <p><span class="bold" > Major Responsibilities :</span><span style="text-align: justify">{{ $exp->majorResponsibilities }}</span> <br></p>--}}
+{{--                            <p><span class="bold" > Key achievement :</span><span style="text-align: justify">{{ $exp->keyAchivement }}</span> <br></p>--}}
+{{--                            <span class="bold"> Address:</span>&nbsp;&nbsp;&nbsp; {{$exp->address}} <br>--}}
+{{--                            <span class="bold"> Duration:</span>&nbsp;&nbsp;&nbsp; {{$exp->startDate}} -  @if($exp->endDate) {{$exp->endDate}} @else--}}
+{{--                                Continuing--}}
+{{--                            @endif--}}
+{{--                            <br>--}}
+
+{{--                            <span class="bold"> Total job experience:</span>--}}
+
+{{--                            @if ($exp->startDate!=null && $exp->endDate==null)--}}
+{{--                                {{$sub_struct=\Carbon\Carbon::parse($exp->startDate)->diff(\Carbon\Carbon::now())->format('%y years, %m months and %d days')}}--}}
+{{--                            @else--}}
+{{--                                {{$sub_struct=\Carbon\Carbon::parse($exp->startDate)->diff(\Carbon\Carbon::parse($exp->endDate))->format('%y years, %m months and %d days')}}--}}
+{{--                            @endif--}}
+{{--                        </td>--}}
+{{--                    </tr>--}}
+{{--                @endforeach--}}
+{{--            @endif--}}
+{{--        </table>--}}
 
         <div class="table-responsive">
             <table border="0" style="width:100%; margin-top: 15px; border: none;">

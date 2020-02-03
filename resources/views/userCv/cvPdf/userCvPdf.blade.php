@@ -161,42 +161,36 @@
                                     </tr>
                                 </table>
                             </div>
-
-                            <div class="table-responsive">
+                            <div class="container">
+                                @if($jobExperience->isEmpty())
                                 <table border="0" style="width:100%; margin-top: 10px; border: none;">
-                                    @if($jobExperience->isEmpty())<td style=" border: none; text-align: center"> <strong>None </strong> </td> @else
-                                        @php $count=1;@endphp
-                                        @foreach($jobExperience as $exp)
-
-                                            <tr>
-                                                <td width="2%" style="border: none; vertical-align: top">
-                                                    <span class="bold">{{$count++}}.</span>
-                                                </td>
-
-                                                <td style="border: none;">
-                                                    <span class="bold"> Company name : </span> &nbsp;&nbsp {{$exp->organization}}  &nbsp;&nbsp;
-                                                    <div class="pull-right"><span class="bold">Position:</span>&nbsp;&nbsp;&nbsp; {{$exp->degisnation}} </div><br>
-                                                    <span class="bold"> Major responsibilities :</span>&nbsp;&nbsp;&nbsp; {!! $exp->majorResponsibilities !!}<br>
-                                                    <span class="bold"> Key achievement :</span>    {!! $exp->keyAchivement !!}<br>
-                                                    <span class="bold"> Address:</span>&nbsp;&nbsp;&nbsp; {{$exp->address}} <br>
-                                                    <span class="bold"> Duration:</span>&nbsp;&nbsp;&nbsp; {{$exp->startDate}} -  @if($exp->endDate) {{$exp->endDate}} @else
-                                                        Continuing
-                                                    @endif
-                                                    .<br>
-
-                                                    <span class="bold"> Total job experience:</span>
-
-                                                    @if ($exp->startDate!=null && $exp->endDate==null)
-
-                                                        {{$sub_struct=\Carbon\Carbon::parse($exp->startDate)->diff(\Carbon\Carbon::now())->format('%y years, %m months and %d days')}}
-                                                    @else
-                                                        {{$sub_struct=\Carbon\Carbon::parse($exp->startDate)->diff(\Carbon\Carbon::parse($exp->endDate))->format('%y years, %m months and %d days')}}
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @endif
+                                    <tr>
+                                        <td style=" border: none; text-align: center"> <strong>None </strong> </td>
+                                    </tr>
                                 </table>
+                                @else
+                                    @foreach($jobExperience as $key => $exp)
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <p><strong> Company name : </strong> &nbsp;{{$exp->organization}}</p>
+                                            <p><strong> Position : </strong> &nbsp;{{$exp->degisnation}}</p>
+                                            <p style="text-align: justify"><strong> Major responsibilities :</strong> &nbsp;{!! $exp->majorResponsibilities !!} </p>
+                                            <p style="text-align: justify"><strong> Key achievement :</strong> &nbsp;{!! $exp->keyAchivement !!} </p>
+                                            <p style="text-align: justify"><strong> Address :</strong> &nbsp;{{ $exp->address }} </p>
+                                            <p style="text-align: justify"><strong> Duration :</strong> &nbsp;{{$exp->startDate}} -  @if($exp->endDate) {{$exp->endDate}} @else Continuing @endif </p>
+                                            <p style="text-align: justify"><strong> Total job experience :</strong> &nbsp;
+                                                @if ($exp->startDate!=null && $exp->endDate==null)
+                                                    {{$sub_struct=\Carbon\Carbon::parse($exp->startDate)->diff(\Carbon\Carbon::now())->format('%y years, %m months and %d days')}}
+                                                @else
+                                                    {{$sub_struct=\Carbon\Carbon::parse($exp->startDate)->diff(\Carbon\Carbon::parse($exp->endDate))->format('%y years, %m months and %d days')}}
+                                                @endif
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                    @if(count($jobExperience)>1 && count($jobExperience) !== $key+1)<hr>@endif
+                                    @endforeach
+                                @endif
                             </div>
 
                             <div class="table-responsive">
