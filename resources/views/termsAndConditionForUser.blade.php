@@ -19,11 +19,11 @@
     <style>
 
         .wrapper-page{
-            width: 50%;
+            width: 100%;
             max-width:90% !important;
         }
         .card-body{
-            max-height: 700px;
+            max-height: 1000px;
             overflow-y: scroll;
         }
     </style>
@@ -47,7 +47,6 @@
 
     <div class="card">
         <div class="card-body">
-
             <h3 align="center">{{$terms->page_Header}}</h3>
 
             {{--<h4 class="text-muted text-center font-18"><b>{{$terms->page_Header}}</b></h4>--}}
