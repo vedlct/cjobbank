@@ -1,49 +1,48 @@
 <html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-{{--<link href="{{url('public/css/exceltable.css')}}" rel="stylesheet">--}}
-<style>
-    .Border{
-        border: 2px solid ;
-    }
+    <style>
+        .Border{
+            border: 2px solid ;
+        }
+        td{
+            wrap-text:true;
+            vertical-align: top;
+        }
+        .bold{
+            font-weight: bold;
+        }
+        .noTopBorder{
+            border-top: none !important ;
+            border-bottom: none !important ;
+            border-right: 2px solid !important ;
+            border-left: 2px solid !important ;
+        }
+        .testStyle{
+            border-right: 2px solid !important ;
+            border-left: 2px solid !important ;
+        }
+    </style>
 
+</head>
 
-    td{
-        wrap-text:true;
-        vertical-align: top;
-    }
-    .bold{
-        font-weight: bold;
-    }
-    .noTopBorder{
-        border-top: none !important ;
-        border-bottom: none !important ;
-        border-right: 2px solid !important ;
-        border-left: 2px solid !important ;
-    }
-    .testStyle{
-        border-right: 2px solid !important ;
-        border-left: 2px solid !important ;
-    }
-</style>
-
-<body>
 
 
 <table class="table">
 
     <tr>
 
-        <td class="Border"colspan="34" style="text-align: center;vertical-align: top;height: 20"></td>
+        <td class="Border" colspan="34" style="text-align: center;vertical-align: top;height: 20"></td>
 
     </tr>
-    <tr >
-        <td class="Border"colspan="34" style="text-align: center;vertical-align: top;height: 20"><span style="font-weight: bold">CARITAS BANGLADESH</span></td>
+    <tr>
+        <td class="Border" colspan="34" style="text-align: center;vertical-align: top;height: 20"><span style="font-weight: bold">CARITAS BANGLADESH</span></td>
     </tr>
 
     <tr>
 
-        <td class="Border"colspan="34" style="text-align: center;">
+        <td class="Border" colspan="34" style="text-align: center;">
             <span id="red" style="color: #FF0000">{{strtoupper($jobTitle)}}</span>
             <b>- {{$excelName}}</b>
         </td>
@@ -54,6 +53,7 @@
 </table>
 
 <table class="table" style="font-size:10">
+    <thead>
     <tr style="font-weight: bold">
         <td class="Border" colspan="1" style="text-align: center">Sl No.</td>
         <td class="Border" colspan="4" style="text-align: center">Name and personal information</td>
@@ -64,11 +64,13 @@
         <td class="Border" colspan="4" style="text-align: center">References</td>
         <td class="Border" colspan="3" style="text-align: center">Remarks</td>
     </tr>
-    <?php $sl=0; ?>
+    </thead>
+    <tbody>
+    <?php (int)$sl=0; ?>
     @foreach($employee as $emp)
     <tr>
-        <td colspan="1" class="Border" height="620" style="text-align: left;border-right: 2px solid black!important">{{++$sl}}</td>
-        <td colspan="4" height="620" class="testStyle" style="text-align: left;border-left: 2px solid black!important">
+        <td colspan="1" class="Border" height="620" style="text-align: left;border-right: 2px solid black !important">{{++$sl}}</td>
+        <td colspan="4" height="620" class="testStyle" style="text-align: left;border-left: 2px solid black !important">
             <span style="text-align: left">{{$emp->firstName}} {{$emp->lastName}}</span>
             <br>
             <span style="text-align: left">
@@ -117,8 +119,6 @@
             @endforeach
         </td>
 
-
-
         <td colspan="4" class="Border" height="620" style="text-align: left;">
             <?php  $temp=0; ?>
             @foreach($education->where('fkemployeeId',$emp->employeeId) as $edu)
@@ -157,22 +157,10 @@
                         @endphp
                     @endif
 
-
-
-
-
-
                 <br><br>
                     <?php
 
-
-
-
-
-
                     $totalexpDay = $totalexpDay + $subDay ;
-//                    $totalexpmonth = $totalexpmonth + $job->expMonth ;
-//                    $totalexpyr = $totalexpyr + $job->expYear ;
 
                     ?>
 
@@ -188,18 +176,10 @@
                 $nextDate=\Carbon\Carbon::now()->addDays($totalexpDay);
                 $diff=$now->diff($nextDate)->format('%y years, %m months and %d days');
 
-//                $result = array($totalexpDay);
-//                $sub_struct_month = floor($result[0] / 30) ;
-//                $sub_struct_months = floor($sub_struct_month%12);
-//                $sub_struct_year = floor($sub_struct_month / 12) ;
-//                $sub_struct_days = floor($result[0] % 30); // the rest of days
-//                $sub_struct = $sub_struct_year."years ".$sub_struct_months."months ".$sub_struct_days."days";
-
                 ?>
                 Total job experience :
-                {{--{{$totalexpDay}}--}}
                 {{$diff}}
-                {{--Total job experience : {{"year:".$years." "."months:".$months." "."days".$days}}--}}
+
         </td>
         <td colspan="8" class="Border" height="620" style="text-align: left;">
             Extracurricular activities<br>
@@ -209,12 +189,6 @@
             {{$emp->awardReceived}}<br>
             3.Research/Publciation:<br>
             {{$emp->researchPublication}}<br>
-
-
-            {{--4.Other skills:<br>--}}
-            {{--@foreach($extraCurriculumn->where('fkemployeeId',$emp->employeeId) as $c)--}}
-                {{--Name: {{$c->skillName}} -{{$c->ratiing}}%<br><br>--}}
-            {{--@endforeach--}}
 
             Computer skill:<br>
             @foreach($computerSkill->where('fk_empId',$emp->employeeId) as $skill)
@@ -253,31 +227,10 @@
     <tr>
         <td colspan="1" class="Border" height="450" style="text-align: left;border-right: 2px solid black!important;border-bottom: 2px solid black!important "></td>
         <td colspan="4" class="testStyle" height="450" style="text-align: left;border-left: 2px solid black!important">
-{{--            <span style="text-align: left">--}}
-{{--                Telephone: {{$emp->telephone}}<br>--}}
-{{--                Personal Phone no:  {{$emp->personalMobile}}<br>--}}
-{{--                Alternative phone no: {{$emp->alternativePhoneNo}}<br>--}}
-{{--                Home Phone: {{$emp->homeNumber}}<br>--}}
-{{--                Office Phone: {{$emp->officeNumber}}<br>--}}
-{{--                Email: {{$emp->email}}<br>--}}
-{{--                Alternative Email: {{$emp->alternativeEmail}}<br>--}}
-{{--                Skype :  {{$emp->skype}}<br>--}}
-{{--                Date Of Birth: {{$emp->dateOfBirth}}<br>--}}
-{{--                National ID Card No: {{$emp->nationalId}}.<br>--}}
-{{--                Passport No:  {{$emp->passport}}<br>--}}
 
-{{--                Parmanent Adress: {{$emp->parmanentAddress}}<br>--}}
-
-
-{{--                Present Adress: {{$emp->presentAddress}}<br>--}}
-
-{{--            </span>--}}
         </td>
         <td colspan="4" class="Border" height="450" style="text-align: left;">
-            {{--Why you are intersted for the position applied for?<br>--}}
-            {{--@if($empQuestion->where('empId',$emp->employeeId)->first())--}}
-                {{--{{$empQuestion->where('empId',$emp->employeeId)->first()->ques_2}}--}}
-            {{--@endif--}}
+
         </td>
         <td colspan="4" class="Border" height="450" style="text-align: left;">
             Professional Qualification:<br>
@@ -293,16 +246,15 @@
             @endforeach
         </td>
         <td colspan="6" class="Border" height="450"   style="text-align: left;">
-            <?php $temporary=0; ?>
+            <?php $temporary=1; ?>
             @foreach($jobExperience->where('fkemployeeId',$emp->employeeId) as $job)
-              {{++$temporary}}.{{$job->organization}}->{{$job->degisnation}}<br>
-                Major Job responsibility: {!! $job->majorResponsibilities !!}<br>
-                Key Achievement: {!! $job->keyAchivement !!}<br>
+              {{$temporary}}.{{$job->organization}}->{{$job->degisnation}}<br>
+                    Major Job responsibility: <?php echo strip_tags(($job->majorResponsibilities),'<li><br>')?><br>
+                    Key Achievement: <?php echo strip_tags(($job->keyAchivement), '<li><br>' ) ?><br>
+
                 <br>
+                    <?php  $temporary++; ?>
             @endforeach
-
-
-
 
             Previous work information in Caritas Bangladesh (If )<br>
 
@@ -315,11 +267,6 @@
 
         </td>
         <td colspan="4" class="Border" height="450" style="text-align: left;">
-
-            {{--1. Name of Referees, Designation, Organization, adress, mobile number and email number, Relation<br>--}}
-            {{--2. Name of Referees, Designation, Organization, adress, mobile number and email number, Relation--}}
-
-
 
         </td>
         <td colspan="3" class="Border" height="450" style="text-align: left;"></td>
@@ -406,7 +353,7 @@
         <td colspan="4" class="Border" height="300" style="text-align: left;">
             Answers of declaration form:
             @foreach($agreement->where('employeeId',$emp->employeeId) as $ag)
-            {{--$agreement--}}
+            $agreement
                 {{$ag->qus}} : {{$ag->ans}} <br>
 
             @endforeach
@@ -432,8 +379,7 @@
 
 
 @endforeach
-
+    </tbody>
 </table>
 
-</body>
 </html>
