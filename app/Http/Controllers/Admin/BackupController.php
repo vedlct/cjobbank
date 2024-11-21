@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Ifsnop\Mysqldump as IMysqldump;
 use Illuminate\Support\Facades\Session;
-
 
 class BackupController extends Controller
 {
@@ -55,7 +53,6 @@ class BackupController extends Controller
 
     }
 
-
     public function wholeDbBackup()
     {
 
@@ -95,11 +92,4 @@ class BackupController extends Controller
 
 
     }
-
-
-
-
-
-
-
 }

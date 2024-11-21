@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Employee;
+use App\Models\Employee;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
-use Auth;
-use Session;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -36,7 +36,7 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function login(\Illuminate\Http\Request $request) {
+    public function login(Request $request) {
         $this->validateLogin($request);
 
         if ($this->hasTooManyLoginAttempts($request)) {

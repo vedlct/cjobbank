@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Aggrement;
-use App\Employee;
-use App\User;
+use App\Models\Aggrement;
+use App\Models\Employee;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class ManageQuestionApplication extends Controller
 {
@@ -33,6 +33,7 @@ class ManageQuestionApplication extends Controller
         return DataTables::of($aggrements)->make(true);
 //
     }
+
     public function test(){
 
         $aggrements = Aggrement::select('agreementqus.qus','employee.email','employee.personalMobile',DB::raw('CONCAT_WS(" ",employee.firstName,employee.lastName) AS full_name'))
@@ -45,6 +46,7 @@ class ManageQuestionApplication extends Controller
 
 
     }
+
     public function getManageQuestionAnswer(){
         return view('manage.showQuestionAnswer');
     }

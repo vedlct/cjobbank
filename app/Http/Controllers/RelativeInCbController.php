@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Refree;
-use App\RelativeInCb;
-use App\User;
+use App\Models\Refree;
+use App\Models\RelativeInCb;
 use Illuminate\Http\Request;
-
-use App\Employee;
-
-use Auth;
-use Session;
+use App\Models\Employee;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class RelativeInCbController extends Controller
 {
@@ -108,7 +105,6 @@ class RelativeInCbController extends Controller
 
         return redirect()->route('relativeInCaritas.getRelationInfo');
     }
-
 
     public function  submitRelativeInCbYesOrNo(Request $r){
 

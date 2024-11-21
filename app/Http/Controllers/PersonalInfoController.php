@@ -1,15 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Employee;
-use App\Ethnicity;
-use App\Nationality;
-use App\Religion;
+use App\Models\Employee;
+use App\Models\Ethnicity;
+use App\Models\Nationality;
+use App\Models\Religion;
 use Illuminate\Http\Request;
-use Artisan;
-use Session;
-use Auth;
-use Image;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 
 class PersonalInfoController extends Controller
 {
@@ -55,6 +55,7 @@ class PersonalInfoController extends Controller
         }
 
     }
+
     public function insertPersonalInfo(Request $r)
     {
 

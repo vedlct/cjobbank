@@ -2,31 +2,28 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Aggrementqus;
-use App\Board;
-use App\Degree;
-use App\Designation;
-use App\Education;
-use App\Educationlevel;
-use App\Educationmajor;
-use App\Ethnicity;
-use App\LanguageHead;
-use App\Nationality;
-
-use App\OtherSkillInformation;
-use App\QuestionObjective;
-use App\QuestionObjectiveAndInfo;
-use App\Religion;
-
-use App\OrganizationType;
-
-use App\TermsAndConditions;
-use App\TypeOfEmployment;
-use App\Zone;
-use App\email;
+use App\Models\Aggrementqus;
+use App\Models\Board;
+use App\Models\Degree;
+use App\Models\Designation;
+use App\Models\Education;
+use App\Models\Educationlevel;
+use App\Models\Educationmajor;
+use App\Models\Ethnicity;
+use App\Models\LanguageHead;
+use App\Models\Nationality;
+use App\Models\OtherSkillInformation;
+use App\Models\QuestionObjective;
+use App\Models\QuestionObjectiveAndInfo;
+use App\Models\Religion;
+use App\Models\OrganizationType;
+use App\Models\TermsAndConditions;
+use App\Models\TypeOfEmployment;
+use App\Models\Zone;
+use App\Models\email;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Session;
+use Illuminate\Support\Facades\Session;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -37,41 +34,43 @@ class SettingsController extends Controller
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            if (Auth::check()){
-                if(Auth::user()->fkuserTypeId==USER_TYPE['Admin'] || Auth::user()->fkuserTypeId==USER_TYPE['Emp'] ){
+            if (Auth::check()) {
+                if (Auth::user()->fkuserTypeId == USER_TYPE['Admin'] || Auth::user()->fkuserTypeId == USER_TYPE['Emp']) {
                     return $next($request);
-                }else{
+                } else {
                     return redirect('/');
                 }
-            }else{
+            } else {
                 return redirect('/');
             }
         });
     }
 
     /*---------------------- Zone -----------------*/
+
     public function zone()
     {
-        $zones=Zone::get();
-        return view('manage.zone',compact('zones'));
+        $zones = Zone::get();
+        return view('manage.zone', compact('zones'));
     }
 
-    public function insertZone(Request $r){
+    public function insertZone(Request $r)
+    {
         $r->validate([
             'zone' => 'required|max:50|unique:zone,zoneName',
 
         ]);
-        $zone=new Zone();
-        $zone->zoneName=$r->zone;
-        $zone->officeAddress=$r->officeAddress;
-        $zone->zonePhone=$r->zonePhone;
-        $zone->zoneEmail=$r->zoneEmail;
-        $zone->zoneWeb=$r->zoneWeb;
+        $zone = new Zone();
+        $zone->zoneName = $r->zone;
+        $zone->officeAddress = $r->officeAddress;
+        $zone->zonePhone = $r->zonePhone;
+        $zone->zoneEmail = $r->zoneEmail;
+        $zone->zoneWeb = $r->zoneWeb;
 
-        if ($r->status ==""){
-            $zone->status='1';
-        }else{
-            $zone->status=$r->status;
+        if ($r->status == "") {
+            $zone->status = '1';
+        } else {
+            $zone->status = $r->status;
         }
 
         $zone->save();
@@ -80,48 +79,53 @@ class SettingsController extends Controller
         return back();
     }
 
-    public function editZone(Request $r){
-        $zone=Zone::findOrFail($r->id);
-        return view('manage.editZone',compact('zone'));
+    public function editZone(Request $r)
+    {
+        $zone = Zone::findOrFail($r->id);
+        return view('manage.editZone', compact('zone'));
     }
-    public function updateZone($id,Request $r){
-        $zone=Zone::findOrFail($r->id);
-        $zone->zoneName=$r->zone;
-        $zone->officeAddress=$r->officeAddress;
-        $zone->zonePhone=$r->zonePhone;
-        $zone->zoneEmail=$r->zoneEmail;
-        $zone->zoneWeb=$r->zoneWeb;
 
-        if ($r->status ==""){
-            $zone->status='1';
-        }else{
-            $zone->status=$r->status;
+    public function updateZone($id, Request $r)
+    {
+        $zone = Zone::findOrFail($r->id);
+        $zone->zoneName = $r->zone;
+        $zone->officeAddress = $r->officeAddress;
+        $zone->zonePhone = $r->zonePhone;
+        $zone->zoneEmail = $r->zoneEmail;
+        $zone->zoneWeb = $r->zoneWeb;
+
+        if ($r->status == "") {
+            $zone->status = '1';
+        } else {
+            $zone->status = $r->status;
         }
         $zone->save();
         Session::flash('message', 'Zone Updated Successfully!');
         return redirect()->route('manage.zone');
     }
 
-
     /*---------------------- Language -----------------*/
-    public function language(){
-        $languages=LanguageHead::get();
 
-        return view('manage.language',compact('languages'));
+    public function language()
+    {
+        $languages = LanguageHead::get();
+
+        return view('manage.language', compact('languages'));
     }
 
-    public function insertLanguage(Request $r){
+    public function insertLanguage(Request $r)
+    {
         $r->validate([
             'language' => 'required|max:25|unique:languagehead,languagename',
 
         ]);
-        $language=new LanguageHead();
-        $language->languagename=$r->language;
+        $language = new LanguageHead();
+        $language->languagename = $r->language;
 
-        if ($r->status ==""){
-            $language->status='1';
-        }else{
-            $language->status=$r->status;
+        if ($r->status == "") {
+            $language->status = '1';
+        } else {
+            $language->status = $r->status;
         }
 
         $language->save();
@@ -130,18 +134,21 @@ class SettingsController extends Controller
         return back();
     }
 
-    public function editLanguage(Request $r){
-        $language=LanguageHead::findOrFail($r->id);
+    public function editLanguage(Request $r)
+    {
+        $language = LanguageHead::findOrFail($r->id);
 
-        return view('manage.editLanguage',compact('language'));
+        return view('manage.editLanguage', compact('language'));
     }
-    public function updateLanguage($id,Request $r){
-        $language=LanguageHead::findOrFail($r->id);
-        $language->languagename=$r->language;
-        if ($r->status ==""){
-            $language->status='1';
-        }else{
-            $language->status=$r->status;
+
+    public function updateLanguage($id, Request $r)
+    {
+        $language = LanguageHead::findOrFail($r->id);
+        $language->languagename = $r->language;
+        if ($r->status == "") {
+            $language->status = '1';
+        } else {
+            $language->status = $r->status;
         }
         $language->save();
         Session::flash('message', 'Language Updated Successfully!');
@@ -150,39 +157,45 @@ class SettingsController extends Controller
 
     /*---------------------- Education -----------------*/
 
-    public function education(){
-        $educations=Educationlevel::get();
+    public function education()
+    {
+        $educations = Educationlevel::get();
 
-        return view('manage.education',compact('educations'));
+        return view('manage.education', compact('educations'));
     }
 
-    public function insertEducation(Request $r){
+    public function insertEducation(Request $r)
+    {
         $r->validate([
             'education' => 'required|max:128|unique:educationlevel,educationLevelName',
 
         ]);
-        $education=new Educationlevel();
-        $education->educationLevelName=$r->education;
-        $education->eduLvlUnder=$r->eduLvlUnder;
+        $education = new Educationlevel();
+        $education->educationLevelName = $r->education;
+        $education->eduLvlUnder = $r->eduLvlUnder;
 
         $education->save();
 
         Session::flash('message', 'Education Updated Successfully!');
         return redirect()->route('manage.education');
     }
-    public function editEducation(Request $r){
-        $education=Educationlevel::findOrFail($r->id);
 
-        return view('manage.editEducation',compact('education'));
+    public function editEducation(Request $r)
+    {
+        $education = Educationlevel::findOrFail($r->id);
+
+        return view('manage.editEducation', compact('education'));
     }
-    public function updateEducation($id,Request $r){
+
+    public function updateEducation($id, Request $r)
+    {
         $r->validate([
-            'education' => 'required|max:128|unique:educationlevel,educationLevelName,'.$id.',educationLevelId',
+            'education' => 'required|max:128|unique:educationlevel,educationLevelName,' . $id . ',educationLevelId',
         ]);
 
-        $education=Educationlevel::findOrFail($id);
-        $education->educationLevelName=$r->education;
-        $education->eduLvlUnder=$r->eduLvlUnder;
+        $education = Educationlevel::findOrFail($id);
+        $education->educationLevelName = $r->education;
+        $education->eduLvlUnder = $r->eduLvlUnder;
         $education->status = $r->status;
         $education->save();
 
@@ -192,31 +205,33 @@ class SettingsController extends Controller
 
     /*====================== Education Degree ============================*/
 
-    public function educationDegree(){
-        $degree=Degree::select('educationlevel.educationLevelName','degree.degreeName','degree.degreeId','degree.status')->leftJoin('educationlevel','educationlevel.educationLevelId','degree.educationLevelId')->get();
-        $educations=Educationlevel::where('status','!=',0)->get();
+    public function educationDegree()
+    {
+        $degree = Degree::select('educationlevel.educationLevelName', 'degree.degreeName', 'degree.degreeId', 'degree.status')->leftJoin('educationlevel', 'educationlevel.educationLevelId', 'degree.educationLevelId')->get();
+        $educations = Educationlevel::where('status', '!=', 0)->get();
 //        $datatables = DataTables::of($degree);
 //
 //        return $datatables->make(true);
 //        return $degree;
 
-        return view('manage.educationDegree',compact('degree','educations'));
+        return view('manage.educationDegree', compact('degree', 'educations'));
     }
 
-    public function insertEducationDegree(Request $r){
+    public function insertEducationDegree(Request $r)
+    {
         $r->validate([
             'educationLevel' => 'required',
             'degree' => 'required|max:255',
 
         ]);
-        $degree =new Degree();
-        $degree->degreeName=$r->degree;
-        $degree->educationLevelId=$r->educationLevel;
+        $degree = new Degree();
+        $degree->degreeName = $r->degree;
+        $degree->educationLevelId = $r->educationLevel;
 
-        if ($r->status ==""){
-            $degree->status='1';
-        }else{
-            $degree->status=$r->status;
+        if ($r->status == "") {
+            $degree->status = '1';
+        } else {
+            $degree->status = $r->status;
         }
 
         $degree->save();
@@ -226,22 +241,24 @@ class SettingsController extends Controller
 
     }
 
-    public function editEducationDegree(Request $r){
-        $degree=Degree::findOrFail($r->id);
-        $educations=Educationlevel::get();
+    public function editEducationDegree(Request $r)
+    {
+        $degree = Degree::findOrFail($r->id);
+        $educations = Educationlevel::get();
 
-        return view('manage.editDegree',compact('degree','educations'));
+        return view('manage.editDegree', compact('degree', 'educations'));
     }
 
-    public function updateDegree($id,Request $r){
-        $degree =Degree::findOrFail($id);
-        $degree->degreeName=$r->degree;
-        $degree->educationLevelId=$r->educationLevel;
+    public function updateDegree($id, Request $r)
+    {
+        $degree = Degree::findOrFail($id);
+        $degree->degreeName = $r->degree;
+        $degree->educationLevelId = $r->educationLevel;
 
-        if ($r->status ==""){
-            $degree->status='1';
-        }else{
-            $degree->status=$r->status;
+        if ($r->status == "") {
+            $degree->status = '1';
+        } else {
+            $degree->status = $r->status;
         }
 
         $degree->save();
@@ -253,23 +270,24 @@ class SettingsController extends Controller
 
     /*====================== Nationality ============================*/
 
-    public function nationality(){
+    public function nationality()
+    {
 
-        $nationality=Nationality::get();
+        $nationality = Nationality::get();
 
-        return view('manage.nationality',compact('nationality'));
+        return view('manage.nationality', compact('nationality'));
     }
 
-
-    public function insertNationality(Request $r){
+    public function insertNationality(Request $r)
+    {
         $r->validate([
             'nationality' => 'required',
             'country' => 'required',
 
         ]);
-        $nationality =new Nationality();
-        $nationality->nationalityName=$r->nationality;
-        $nationality->countryName=$r->country;
+        $nationality = new Nationality();
+        $nationality->nationalityName = $r->nationality;
+        $nationality->countryName = $r->country;
         $nationality->save();
 
         Session::flash('message', 'Nationality Added Successfully!');
@@ -277,18 +295,17 @@ class SettingsController extends Controller
 
     }
 
-
-
-    public function editNationality(Request $r){
-        $editNationality=Nationality::findOrFail($r->id);
-        return view('manage.editNationality',compact('editNationality'));
+    public function editNationality(Request $r)
+    {
+        $editNationality = Nationality::findOrFail($r->id);
+        return view('manage.editNationality', compact('editNationality'));
     }
 
-
-    public function updateNationality($id,Request $r){
-        $nationality =Nationality::findOrFail($id);
-        $nationality->nationalityName=$r->nationality;
-        $nationality->countryName=$r->country;
+    public function updateNationality($id, Request $r)
+    {
+        $nationality = Nationality::findOrFail($id);
+        $nationality->nationalityName = $r->nationality;
+        $nationality->countryName = $r->country;
         $nationality->status = $r->status;
         $nationality->save();
 
@@ -297,24 +314,23 @@ class SettingsController extends Controller
 
     }
 
-
-
-
     /*====================== Religion ============================*/
 
-    public function religion(){
+    public function religion()
+    {
 
-        $religion=Religion::get();
-        return view('manage.religion',compact('religion'));
+        $religion = Religion::get();
+        return view('manage.religion', compact('religion'));
     }
 
-    public function insertReligion(Request $r){
+    public function insertReligion(Request $r)
+    {
         $r->validate([
             'religionName' => 'required',
 
         ]);
-        $religion =new Religion();
-        $religion->religionName=$r->religionName;
+        $religion = new Religion();
+        $religion->religionName = $r->religionName;
         $religion->save();
 
         Session::flash('message', 'Religion Added Successfully!');
@@ -322,14 +338,16 @@ class SettingsController extends Controller
 
     }
 
-    public function editReligion(Request $r){
-        $editReligion=Religion::findOrFail($r->id);
-        return view('manage.editReligion',compact('editReligion'));
+    public function editReligion(Request $r)
+    {
+        $editReligion = Religion::findOrFail($r->id);
+        return view('manage.editReligion', compact('editReligion'));
     }
 
-    public function updateReligion($id,Request $r){
-        $nationality =Religion::findOrFail($id);
-        $nationality->religionName=$r->religionName;
+    public function updateReligion($id, Request $r)
+    {
+        $nationality = Religion::findOrFail($id);
+        $nationality->religionName = $r->religionName;
         $nationality->status = $r->status;
         $nationality->save();
 
@@ -339,15 +357,17 @@ class SettingsController extends Controller
     }
 
     /* ================== Ethnicity =====================*/
-    public function manageEthnicity(){
 
-        $ethnicity=Ethnicity::get();
+    public function manageEthnicity()
+    {
 
-        return view('manage.ethnicity',compact('ethnicity'));
+        $ethnicity = Ethnicity::get();
+
+        return view('manage.ethnicity', compact('ethnicity'));
     }
 
-
-    public function insertEthnicity(Request $r){
+    public function insertEthnicity(Request $r)
+    {
 
         $r->validate([
             'ethnicityName' => 'required|max:50',
@@ -355,14 +375,14 @@ class SettingsController extends Controller
 
         ]);
 
-        $ethnicity =new Ethnicity();
+        $ethnicity = new Ethnicity();
 
-        $ethnicity->ethnicityName=$r->ethnicityName;
+        $ethnicity->ethnicityName = $r->ethnicityName;
 
-        if ($r->status ==""){
-            $ethnicity->status='1';
-        }else{
-            $ethnicity->status=$r->status;
+        if ($r->status == "") {
+            $ethnicity->status = '1';
+        } else {
+            $ethnicity->status = $r->status;
         }
 
         $ethnicity->save();
@@ -372,26 +392,27 @@ class SettingsController extends Controller
 
     }
 
-    public function editEthnicity(Request $r){
-        $editEthnicity=Ethnicity::findOrFail($r->id);
-        return view('manage.editEthnicity',compact('editEthnicity'));
+    public function editEthnicity(Request $r)
+    {
+        $editEthnicity = Ethnicity::findOrFail($r->id);
+        return view('manage.editEthnicity', compact('editEthnicity'));
     }
 
-
-    public function updateEthnicity($id,Request $r){
+    public function updateEthnicity($id, Request $r)
+    {
 
         $r->validate([
-            'ethnicityName' => 'required|max:50|unique:ethnicity,ethnicityName,'.$id.',ethnicityId',
+            'ethnicityName' => 'required|max:50|unique:ethnicity,ethnicityName,' . $id . ',ethnicityId',
 
         ]);
 
-        $ethnicity =Ethnicity::findOrFail($id);
+        $ethnicity = Ethnicity::findOrFail($id);
 
-        $ethnicity->ethnicityName=$r->ethnicityName;
-        if ($r->status ==""){
-            $ethnicity->status='1';
-        }else{
-            $ethnicity->status=$r->status;
+        $ethnicity->ethnicityName = $r->ethnicityName;
+        if ($r->status == "") {
+            $ethnicity->status = '1';
+        } else {
+            $ethnicity->status = $r->status;
         }
 
         $ethnicity->save();
@@ -401,29 +422,31 @@ class SettingsController extends Controller
 
     }
 
-
     /* ================ organization Type ================= */
-    public function manageorganizationType(){
 
-        $organizationType=DB::table('organizationtype')->get();
+    public function manageorganizationType()
+    {
 
-        return view('manage.organizationType',compact('organizationType'));
+        $organizationType = DB::table('organizationtype')->get();
+
+        return view('manage.organizationType', compact('organizationType'));
     }
 
-    public function insertorganizationType(Request $r){
+    public function insertorganizationType(Request $r)
+    {
 
         $r->validate([
             'typeName' => 'required|max:50',
 
         ]);
 
-        $organizationType =new OrganizationType();
-        $organizationType->organizationTypeName=$r->typeName;
+        $organizationType = new OrganizationType();
+        $organizationType->organizationTypeName = $r->typeName;
 
-        if ($r->status ==""){
-            $organizationType->status='1';
-        }else{
-            $organizationType->status=$r->status;
+        if ($r->status == "") {
+            $organizationType->status = '1';
+        } else {
+            $organizationType->status = $r->status;
         }
 
 
@@ -434,26 +457,28 @@ class SettingsController extends Controller
 
     }
 
-    public function editOrganizationType(Request $r){
-        $organizationType=OrganizationType::findOrFail($r->id);
-        return view('manage.editOrganizationType',compact('organizationType'));
+    public function editOrganizationType(Request $r)
+    {
+        $organizationType = OrganizationType::findOrFail($r->id);
+        return view('manage.editOrganizationType', compact('organizationType'));
     }
 
-    public function updateOrganizationType($id,Request $r){
+    public function updateOrganizationType($id, Request $r)
+    {
 
         $r->validate([
-            'typeName' => 'required|max:50|unique:organizationtype,organizationTypeName,'.$id.',organizationTypeId',
+            'typeName' => 'required|max:50|unique:organizationtype,organizationTypeName,' . $id . ',organizationTypeId',
 
         ]);
 
-        $orgType =OrganizationType::findOrFail($id);
+        $orgType = OrganizationType::findOrFail($id);
 
-        $orgType->organizationTypeName=$r->typeName;
+        $orgType->organizationTypeName = $r->typeName;
 
-        if ($r->status ==""){
-            $orgType->status='1';
-        }else{
-            $orgType->status=$r->status;
+        if ($r->status == "") {
+            $orgType->status = '1';
+        } else {
+            $orgType->status = $r->status;
         }
 
         $orgType->save();
@@ -463,27 +488,28 @@ class SettingsController extends Controller
 
     }
 
-
     /*====================== Agreement Question ============================*/
 
-    public function agreement(){
+    public function agreement()
+    {
 
-        $agreement=Aggrementqus::get();
+        $agreement = Aggrementqus::get();
         $lastserialnumber = Aggrementqus::select('serial')
             ->orderBy('serial', 'DESC')
             ->first();
-        return view('manage.agreement',compact('agreement', 'lastserialnumber'));
+        return view('manage.agreement', compact('agreement', 'lastserialnumber'));
     }
 
-    public function insertAgreement(Request $r){
+    public function insertAgreement(Request $r)
+    {
         $r->validate([
             'qus' => 'required',
             'serial' => 'required|unique:agreementqus,serial',
 
         ]);
-        $agreement =new Aggrementqus();
-        $agreement->qus=$r->qus;
-        $agreement->serial=$r->serial;
+        $agreement = new Aggrementqus();
+        $agreement->qus = $r->qus;
+        $agreement->serial = $r->serial;
         $agreement->save();
 
         Session::flash('message', 'Agreement Question Added Successfully!');
@@ -491,26 +517,26 @@ class SettingsController extends Controller
 
     }
 
-
-    public function editAgreement(Request $r){
-        $editAgreement=Aggrementqus::findOrFail($r->id);
+    public function editAgreement(Request $r)
+    {
+        $editAgreement = Aggrementqus::findOrFail($r->id);
         $lastserialnumber = Aggrementqus::select('serial')
             ->orderBy('serial', 'DESC')
             ->first();
-        return view('manage.editAgreement',compact('editAgreement', 'lastserialnumber'));
+        return view('manage.editAgreement', compact('editAgreement', 'lastserialnumber'));
     }
 
-
-    public function updateAgreement($id,Request $r){
+    public function updateAgreement($id, Request $r)
+    {
 
         $r->validate([
             'qus' => 'required',
-            'serial' => 'required|unique:agreementqus,serial,'.$id.',agreementQusId',
+            'serial' => 'required|unique:agreementqus,serial,' . $id . ',agreementQusId',
 
         ]);
-        $agreement =Aggrementqus::findOrFail($id);
-        $agreement->qus=$r->qus;
-        $agreement->serial=$r->serial;
+        $agreement = Aggrementqus::findOrFail($id);
+        $agreement->qus = $r->qus;
+        $agreement->serial = $r->serial;
         $agreement->status = $r->status;
         $agreement->save();
 
@@ -519,30 +545,30 @@ class SettingsController extends Controller
 
     }
 
-
-
     /*====================== Degisnation ============================*/
 
-    public function degisnation(){
+    public function degisnation()
+    {
 
-        $degisnation=Designation::get();
+        $degisnation = Designation::get();
 
-        return view('manage.degisnation',compact('degisnation'));
+        return view('manage.degisnation', compact('degisnation'));
     }
 
-    public function insertDegisnation(Request $r){
+    public function insertDegisnation(Request $r)
+    {
         $r->validate([
             'designationName' => 'required',
 
         ]);
-        $degisnation =new Designation();
+        $degisnation = new Designation();
 
-        $degisnation->designationName=$r->designationName;
+        $degisnation->designationName = $r->designationName;
 
-        if ($r->status ==""){
-            $degisnation->status='1';
-        }else{
-            $degisnation->status=$r->status;
+        if ($r->status == "") {
+            $degisnation->status = '1';
+        } else {
+            $degisnation->status = $r->status;
         }
 
         $degisnation->save();
@@ -552,22 +578,24 @@ class SettingsController extends Controller
 
     }
 
-    public function editDegisnation(Request $r){
-        $editDesignation=Designation::findOrFail($r->id);
-        return view('manage.editDegisnation',compact('editDesignation'));
+    public function editDegisnation(Request $r)
+    {
+        $editDesignation = Designation::findOrFail($r->id);
+        return view('manage.editDegisnation', compact('editDesignation'));
     }
 
-    public function updateDesignation($id,Request $r){
-        $nationality =Designation::findOrFail($id);
-        $nationality->designationName=$r->designationName;
+    public function updateDesignation($id, Request $r)
+    {
+        $nationality = Designation::findOrFail($id);
+        $nationality->designationName = $r->designationName;
 
-        if ($r->status ==""){
-            $nationality->status='1';
-        }else{
-            $nationality->status=$r->status;
+        if ($r->status == "") {
+            $nationality->status = '1';
+        } else {
+            $nationality->status = $r->status;
         }
 
-       // $nationality->status = $r->status;
+        // $nationality->status = $r->status;
         $nationality->save();
 
         Session::flash('message', 'Designation Updated Successfully!');
@@ -577,26 +605,28 @@ class SettingsController extends Controller
 
     /*====================== Major ============================*/
 
-    public function major(){
+    public function major()
+    {
 
-        $major=Educationmajor::select('educationmajor.educationMajorName','degree.degreeName','educationmajor.educationMajorId','educationmajor.status','educationmajor.type')
-            ->leftjoin('degree','degree.degreeId','educationmajor.fkDegreeId')
+        $major = Educationmajor::select('educationmajor.educationMajorName', 'degree.degreeName', 'educationmajor.educationMajorId', 'educationmajor.status', 'educationmajor.type')
+            ->leftjoin('degree', 'degree.degreeId', 'educationmajor.fkDegreeId')
             ->orderBy('educationmajor.educationMajorName')
             ->get();
-        $degree = Degree::where('status','!=',0)->get();
-        return view('manage.major',compact('major', 'degree'));
+        $degree = Degree::where('status', '!=', 0)->get();
+        return view('manage.major', compact('major', 'degree'));
     }
 
-    public function insertMajor(Request $r){
+    public function insertMajor(Request $r)
+    {
         $r->validate([
             'major' => 'required',
         ]);
-        $major =new Educationmajor();
-        $major->educationMajorName=$r->major;
-        $major->fkDegreeId=$r->degree;
-        $major->status='1';
-        if ($r->global){
-            $major->type='g';
+        $major = new Educationmajor();
+        $major->educationMajorName = $r->major;
+        $major->fkDegreeId = $r->degree;
+        $major->status = '1';
+        if ($r->global) {
+            $major->type = 'g';
         }
         $major->save();
 
@@ -605,21 +635,23 @@ class SettingsController extends Controller
 
     }
 
-    public function editMajor(Request $r){
-        $editMajor=Educationmajor::findOrFail($r->id);
-        $degree = Degree::where('status','!=',0)->get();
-        return view('manage.editMajor',compact('editMajor','degree'));
+    public function editMajor(Request $r)
+    {
+        $editMajor = Educationmajor::findOrFail($r->id);
+        $degree = Degree::where('status', '!=', 0)->get();
+        return view('manage.editMajor', compact('editMajor', 'degree'));
     }
 
-    public function updateMajor($id,Request $r){
-        $major =Educationmajor::findOrFail($id);
-        $major->educationMajorName=$r->major;
-        $major->fkDegreeId=$r->degree;
+    public function updateMajor($id, Request $r)
+    {
+        $major = Educationmajor::findOrFail($id);
+        $major->educationMajorName = $r->major;
+        $major->fkDegreeId = $r->degree;
         $major->status = $r->status;
-        if ($r->global){
-            $major->type='g';
-        }else{
-            $major->type='';
+        if ($r->global) {
+            $major->type = 'g';
+        } else {
+            $major->type = '';
         }
         $major->save();
 
@@ -630,19 +662,21 @@ class SettingsController extends Controller
 
     /*====================== Board ============================*/
 
-    public function board(){
+    public function board()
+    {
 
-        $board=Board::get();
-        return view('manage.board',compact('board'));
+        $board = Board::get();
+        return view('manage.board', compact('board'));
     }
 
-    public function insertBoard(Request $r){
+    public function insertBoard(Request $r)
+    {
         $r->validate([
             'board' => 'required',
 
         ]);
-        $board =new Board();
-        $board->boardName=$r->board;
+        $board = new Board();
+        $board->boardName = $r->board;
         $board->save();
 
         Session::flash('message', 'Board Added Successfully!');
@@ -650,14 +684,16 @@ class SettingsController extends Controller
 
     }
 
-    public function editBoard(Request $r){
-        $editBoard=Board::findOrFail($r->id);
-        return view('manage.editBoard',compact('editBoard'));
+    public function editBoard(Request $r)
+    {
+        $editBoard = Board::findOrFail($r->id);
+        return view('manage.editBoard', compact('editBoard'));
     }
 
-    public function updateBoard($id,Request $r){
-        $board =Board::findOrFail($id);
-        $board->boardName=$r->board;
+    public function updateBoard($id, Request $r)
+    {
+        $board = Board::findOrFail($id);
+        $board->boardName = $r->board;
         $board->status = $r->status;
         $board->save();
 
@@ -666,25 +702,27 @@ class SettingsController extends Controller
 
     }
 
-
     /*========================Other Skill ============================= */
-    public function otherSkill(){
-        $otherSkill=OtherSkillInformation::get();
-        return view('manage.otherSkill',compact('otherSkill'));
+
+    public function otherSkill()
+    {
+        $otherSkill = OtherSkillInformation::get();
+        return view('manage.otherSkill', compact('otherSkill'));
     }
 
-    public function insertOtherSkill(Request $r){
+    public function insertOtherSkill(Request $r)
+    {
         $r->validate([
             'skillName' => 'required|max:255',
         ]);
-        $skill =new OtherSkillInformation();
+        $skill = new OtherSkillInformation();
 
-        $skill->skillName=$r->skillName;
+        $skill->skillName = $r->skillName;
 
-        if ($r->status ==""){
-            $skill->status='1';
-        }else{
-            $skill->status=$r->status;
+        if ($r->status == "") {
+            $skill->status = '1';
+        } else {
+            $skill->status = $r->status;
         }
 
         $skill->save();
@@ -693,22 +731,25 @@ class SettingsController extends Controller
         return redirect()->route('manage.otherSkill');
     }
 
-    public function editOtherSkill(Request $r){
-        $skill=OtherSkillInformation::findOrFail($r->id);
+    public function editOtherSkill(Request $r)
+    {
+        $skill = OtherSkillInformation::findOrFail($r->id);
 
-        return view('manage.editSkill',compact('skill'));
+        return view('manage.editSkill', compact('skill'));
     }
-    public function updateOtherSkill($id,Request $r){
+
+    public function updateOtherSkill($id, Request $r)
+    {
         $r->validate([
             'skillName' => 'required|max:255',
         ]);
-        $skill=OtherSkillInformation::findOrFail($id);
-        $skill->skillName=$r->skillName;
+        $skill = OtherSkillInformation::findOrFail($id);
+        $skill->skillName = $r->skillName;
 
-        if ($r->status ==""){
-            $skill->status='1';
-        }else{
-            $skill->status=$r->status;
+        if ($r->status == "") {
+            $skill->status = '1';
+        } else {
+            $skill->status = $r->status;
         }
 
         $skill->save();
@@ -716,30 +757,32 @@ class SettingsController extends Controller
         return redirect()->route('manage.otherSkill');
 
     }
+
     /* careerObjectiveAndApplicationInformation */
 
-    public function careerObjectiveAndApplicationInformation(){
+    public function careerObjectiveAndApplicationInformation()
+    {
 
 
-        $questionObj=QuestionObjectiveAndInfo::get();
+        $questionObj = QuestionObjectiveAndInfo::get();
         $lastserialnumber = QuestionObjectiveAndInfo::select('serial')
             ->orderBy('serial', 'DESC')
             ->first();
 
-       
-        return view('manage.careerObjectiveAndApplication',compact('questionObj','lastserialnumber'));
+
+        return view('manage.careerObjectiveAndApplication', compact('questionObj', 'lastserialnumber'));
     }
 
-
-    public function insertobjectivePageQuestion(Request $r){
+    public function insertobjectivePageQuestion(Request $r)
+    {
         $r->validate([
             'qus' => 'required',
             'serial' => 'required|unique:emp_ques_objective_and_info,serial',
 
         ]);
-        $agreement =new QuestionObjectiveAndInfo();
-        $agreement->ques=$r->qus;
-        $agreement->serial=$r->serial;
+        $agreement = new QuestionObjectiveAndInfo();
+        $agreement->ques = $r->qus;
+        $agreement->serial = $r->serial;
         $agreement->save();
 
         Session::flash('message', 'Question Added Successfully!');
@@ -747,27 +790,29 @@ class SettingsController extends Controller
 
     }
 
-    public function editobjectivePageQuestion(Request $r){
+    public function editobjectivePageQuestion(Request $r)
+    {
 
-        $editAgreement=QuestionObjectiveAndInfo::findOrFail($r->id);
+        $editAgreement = QuestionObjectiveAndInfo::findOrFail($r->id);
         $lastserialnumber = QuestionObjectiveAndInfo::select('serial')
             ->orderBy('serial', 'DESC')
             ->first();
 
-        return view('manage.editCareerObjectiveAndApplicationInformation',compact('editAgreement', 'lastserialnumber'));
+        return view('manage.editCareerObjectiveAndApplicationInformation', compact('editAgreement', 'lastserialnumber'));
     }
 
-    public function updateobjectivePageQuestion($id,Request $r){
+    public function updateobjectivePageQuestion($id, Request $r)
+    {
 
         $r->validate([
             'qus' => 'required',
-            'serial' => 'required|unique:emp_ques_objective_and_info,serial,'.$id.',id',
+            'serial' => 'required|unique:emp_ques_objective_and_info,serial,' . $id . ',id',
 
         ]);
 
-        $agreement =QuestionObjectiveAndInfo::findOrFail($id);
-        $agreement->ques=$r->qus;
-        $agreement->serial=$r->serial;
+        $agreement = QuestionObjectiveAndInfo::findOrFail($id);
+        $agreement->ques = $r->qus;
+        $agreement->serial = $r->serial;
         $agreement->status = $r->status;
         $agreement->save();
 
@@ -776,32 +821,28 @@ class SettingsController extends Controller
 
     }
 
+    public function termsConditionShow()
+    {
 
-    public function termsConditionShow(){
 
-
-        $terms=TermsAndConditions::first();
-        return view('manage.termsAndCondition',compact('terms'));
+        $terms = TermsAndConditions::first();
+        return view('manage.termsAndCondition', compact('terms'));
     }
 
+    public function termsConditionUpdate(Request $r)
+    {
 
-    public function termsConditionUpdate(Request $r){
-
-        try
-        {
-            $terms=TermsAndConditions::firstOrFail();
-        }
-// catch(Exception $e) catch any exception
-        catch(ModelNotFoundException $e)
-        {
-            $terms=new TermsAndConditions();
+        try {
+            $terms = TermsAndConditions::firstOrFail();
+        } // catch(Exception $e) catch any exception
+        catch (ModelNotFoundException $e) {
+            $terms = new TermsAndConditions();
 
         }
 
-        $terms->page_Header=$r->title;
-        $terms->page_content=$r->contents;
+        $terms->page_Header = $r->title;
+        $terms->page_content = $r->contents;
         $terms->save();
-
 
 
         Session::flash('message', 'Updated Successfully!');
@@ -809,12 +850,14 @@ class SettingsController extends Controller
 
     }
 
-    public function typeOfEmploymentShow(){
+    public function typeOfEmploymentShow()
+    {
 
 
-        $type=TypeOfEmployment::get();
-        return view('manage.typeOfEmployment',compact('type'));
+        $type = TypeOfEmployment::get();
+        return view('manage.typeOfEmployment', compact('type'));
     }
+
     public function inserttypeOfEmployment(Request $r)
     {
 
@@ -828,20 +871,21 @@ class SettingsController extends Controller
         Session::flash('message', 'Inserted Successfully!');
         return redirect()->route('manage.typeOfEmployment');
     }
+
     public function edittypeOfEmployment(Request $r)
     {
 
-        $type =TypeOfEmployment::findOrFail($r->id);
+        $type = TypeOfEmployment::findOrFail($r->id);
 
-        return view('manage.editTypeOfEmployment',compact('type'));
+        return view('manage.editTypeOfEmployment', compact('type'));
 
     }
 
-    public function updatetypeOfEmployment($id,Request $r){
+    public function updatetypeOfEmployment($id, Request $r)
+    {
 
 
-
-        $type =TypeOfEmployment::findOrFail($id);
+        $type = TypeOfEmployment::findOrFail($id);
         $type->employmentTypeName = $r->employmentTypeName;
         $type->status = $r->status;
         $type->save();
@@ -853,20 +897,20 @@ class SettingsController extends Controller
 
     public function changeinterviewcard()
     {
-        $email_data = email::where('emailfor','interview')->first();
-        return view('emailTemplte.interview',compact('email_data'));
+        $email_data = email::where('emailfor', 'interview')->first();
+        return view('emailTemplte.interview', compact('email_data'));
     }
 
     public function changepanellisted()
     {
-        $email_data = email::where('emailfor','panellisted')->first();
-        return view('emailTemplte.panellisted',compact('email_data'));
+        $email_data = email::where('emailfor', 'panellisted')->first();
+        return view('emailTemplte.panellisted', compact('email_data'));
     }
 
     public function notselected()
     {
-        $email_data = email::where('emailfor','notselected')->first();
-        return view('emailTemplte.notselected',compact('email_data'));
+        $email_data = email::where('emailfor', 'notselected')->first();
+        return view('emailTemplte.notselected', compact('email_data'));
     }
 
     public function updateemailtemplate(Request $r)
@@ -875,22 +919,22 @@ class SettingsController extends Controller
             $email = email::find($r->contant_id);
         else
             $email = new email;
-            $email->emailfor=$r->contant_type;
-            $email->emailbody=$r->contents;
-            $email->save();
+        $email->emailfor = $r->contant_type;
+        $email->emailbody = $r->contents;
+        $email->save();
 
-            return $this->emailTemplateSettings();
+        return $this->emailTemplateSettings();
     }
 
     public function emailTemplateSettings()
     {
-        $email_data = email::where('emailfor','interview')->first();
-        return view('emailTemplte.interview',compact('email_data'));
+        $email_data = email::where('emailfor', 'interview')->first();
+        return view('emailTemplte.interview', compact('email_data'));
     }
 
     public function acknowledgement()
     {
-        $email_data = email::where('emailfor','Acknowledgement')->first();
-        return view('emailTemplte.acknowledgement',compact('email_data'));
+        $email_data = email::where('emailfor', 'Acknowledgement')->first();
+        return view('emailTemplte.acknowledgement', compact('email_data'));
     }
 }

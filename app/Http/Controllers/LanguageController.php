@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Employee;
-use App\EmployeeLanguage;
-use App\LanguageHead;
-use App\LanguageSkill;
+use App\Models\Employee;
+use App\Models\EmployeeLanguage;
+use App\Models\LanguageHead;
+use App\Models\LanguageSkill;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Auth;
-use Session;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+
 class LanguageController extends Controller
 {
     //

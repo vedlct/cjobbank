@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Employee;
-use App\Ethnicity;
-use App\Jobapply;
-use App\Nationality;
-use App\Religion;
+use App\Models\Employee;
+use App\Models\Ethnicity;
+use App\Models\Jobapply;
+use App\Models\Nationality;
+use App\Models\Religion;
 use Illuminate\Http\Request;
-use Session;
-use Auth;
-use Image;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 
 class EmployeeApplicationController extends Controller
 {
@@ -66,7 +65,4 @@ class EmployeeApplicationController extends Controller
 
 
     }
-
-
-
 }

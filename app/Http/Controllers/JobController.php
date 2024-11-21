@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Employee;
-use App\Jobapply;
+use App\Models\Employee;
+use App\Models\Jobapply;
 use Illuminate\Http\Request;
-use App\Job;
-use Auth;
+use App\Models\Job;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
@@ -15,75 +15,76 @@ class JobController extends Controller
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
-            if (Auth::check()){
+            if (Auth::check()) {
                 return $next($request);
-            }else{
+            } else {
                 return redirect('/');
             }
         });
     }
 
-   public function index(Request $r){
+    public function index(Request $r)
+    {
 
-       $allZone=DB::table('zone')->where('status',1)->get();
+        $allZone = DB::table('zone')->where('status', 1)->get();
 
-       $jobs=Job::select('job.jobId','job.title','job.details','job.details','job.deadline','job.pdflink')
-                    ->where('job.status',1)
-                    ->where('job.deadline','>=',date('Y-m-d'));
+        $jobs = Job::select('job.jobId', 'job.title', 'job.details', 'job.details', 'job.deadline', 'job.pdflink')
+            ->where('job.status', 1)
+            ->where('job.deadline', '>=', date('Y-m-d'));
 
-       if($r->search !=""){
-           $jobs=$jobs->where('job.title', 'like', '%' . $r->search . '%');
-       }
-       if ($r->zonefilter){
-           $jobs= $jobs->where('job.fkzoneId',$r->zonefilter);
-       }
-       $jobs=$jobs->paginate(10);
+        if ($r->search != "") {
+            $jobs = $jobs->where('job.title', 'like', '%' . $r->search . '%');
+        }
+        if ($r->zonefilter) {
+            $jobs = $jobs->where('job.fkzoneId', $r->zonefilter);
+        }
+        $jobs = $jobs->paginate(10);
 
-       $empId1=Employee::where('fkuserId',Auth::user()->userId)->first();
+        $empId1 = Employee::where('fkuserId', Auth::user()->userId)->first();
 
-       if ($empId1 != null ){
+        if ($empId1 != null) {
 
-           $cvStatus=$empId1->cvStatus;
+            $cvStatus = $empId1->cvStatus;
 
-           $applyjob = Jobapply::select('fkjobId')
-               ->where('fkemployeeId' , $empId1->employeeId)
-               ->get();
+            $applyjob = Jobapply::select('fkjobId')
+                ->where('fkemployeeId', $empId1->employeeId)
+                ->get();
 
-       }else {
-           $cvStatus=null;
-           $applyjob = null;
-       }
+        } else {
+            $cvStatus = null;
+            $applyjob = null;
+        }
 
-       if ($r->ajax()) {
-           return view('job.getAllJob',compact('jobs','cvStatus', 'applyjob','allZone'));
-       }
+        if ($r->ajax()) {
+            return view('job.getAllJob', compact('jobs', 'cvStatus', 'applyjob', 'allZone'));
+        }
 
-       return view('job.all',compact('allZone','applyjob'));
+        return view('job.all', compact('allZone', 'applyjob'));
 
-   }
+    }
 
-   public function guestAvailablejob()
-   {
-       $allZone=DB::table('zone')->where('status',1)->get();
-       return view('guest.availableJob',compact('allZone'));
-   }
+    public function guestAvailablejob()
+    {
+        $allZone = DB::table('zone')->where('status', 1)->get();
+        return view('guest.availableJob', compact('allZone'));
+    }
 
-   public function guestGetJobData(Request $r)
-   {
-       $allZone=DB::table('zone')->where('status',1)->get();
+    public function guestGetJobData(Request $r)
+    {
+        $allZone = DB::table('zone')->where('status', 1)->get();
 
-       $jobs=Job::select('job.jobId','job.title','job.details','job.details','job.deadline','job.pdflink')
-           ->where('job.status',1)
-           ->where('job.deadline','>=',date('Y-m-d'));
-       if($r->search !=""){
-           $jobs=$jobs->where('job.title', 'like', '%' . $r->search . '%');
-       }
-       if ($r->zonefilter){
-           $jobs= $jobs->where('job.fkzoneId',$r->zonefilter);
-       }
+        $jobs = Job::select('job.jobId', 'job.title', 'job.details', 'job.details', 'job.deadline', 'job.pdflink')
+            ->where('job.status', 1)
+            ->where('job.deadline', '>=', date('Y-m-d'));
+        if ($r->search != "") {
+            $jobs = $jobs->where('job.title', 'like', '%' . $r->search . '%');
+        }
+        if ($r->zonefilter) {
+            $jobs = $jobs->where('job.fkzoneId', $r->zonefilter);
+        }
 
 
-       $jobs=$jobs->paginate(10);
+        $jobs = $jobs->paginate(10);
 
 //       $cvStatus=Employee::where('fkuserId',Auth::user()->userId)->first()->cvStatus;
 
@@ -106,22 +107,23 @@ class JobController extends Controller
 //           $applyjob = null;
 //       }
 
-       return view('job.getAllJob',compact('jobs','allZone'));
-   }
+        return view('job.getAllJob', compact('jobs', 'allZone'));
+    }
 
-   public function getJobData(Request $r){
+    public function getJobData(Request $r)
+    {
 
-       $allZone=DB::table('zone')->where('status',1)->get();
+        $allZone = DB::table('zone')->where('status', 1)->get();
 
-       $jobs=Job::select('job.jobId','job.title','job.details','job.details','job.deadline','job.pdflink')
-           ->where('job.status',1)
-           ->where('job.deadline','>=',date('Y-m-d'));
-       if($r->search !=""){
-           $jobs=$jobs->where('job.title', 'like', '%' . $r->search . '%');
-       }
-       if ($r->zonefilter){
-           $jobs= $jobs->where('job.fkzoneId',$r->zonefilter);
-       }
+        $jobs = Job::select('job.jobId', 'job.title', 'job.details', 'job.details', 'job.deadline', 'job.pdflink')
+            ->where('job.status', 1)
+            ->where('job.deadline', '>=', date('Y-m-d'));
+        if ($r->search != "") {
+            $jobs = $jobs->where('job.title', 'like', '%' . $r->search . '%');
+        }
+        if ($r->zonefilter) {
+            $jobs = $jobs->where('job.fkzoneId', $r->zonefilter);
+        }
 //       $empId=Employee::where('fkuserId',Auth::user()->userId)->first()->employeeId;
 //
 //       $applyjob = Jobapply::select('fkjobId')
@@ -129,35 +131,35 @@ class JobController extends Controller
 //           ->get();
 
 
-       $jobs=$jobs->paginate(10);
+        $jobs = $jobs->paginate(10);
 
 //       $cvStatus=Employee::where('fkuserId',Auth::user()->userId)->first()->cvStatus;
 
-       $empId1=Employee::where('fkuserId',Auth::user()->userId)->first();
+        $empId1 = Employee::where('fkuserId', Auth::user()->userId)->first();
 
 
-       if ($empId1 != null ){
+        if ($empId1 != null) {
 
-           $cvStatus=$empId1->cvStatus;
+            $cvStatus = $empId1->cvStatus;
 
-           $applyjob = Jobapply::select('fkjobId')
-               ->where('fkemployeeId' , $empId1->employeeId)
-               ->get();
+            $applyjob = Jobapply::select('fkjobId')
+                ->where('fkemployeeId', $empId1->employeeId)
+                ->get();
 
 
+        } else {
+            $cvStatus = null;
 
-       }else {
-           $cvStatus=null;
+            $applyjob = null;
+        }
 
-           $applyjob = null;
-       }
+        return view('job.getAllJob', compact('jobs', 'cvStatus', 'applyjob', 'allZone'));
+    }
 
-       return view('job.getAllJob',compact('jobs','cvStatus','applyjob','allZone'));
-   }
-
-   public function applyJobModal(Request $r){
+    public function applyJobModal(Request $r)
+    {
         $jobId = $r->jobId;
         $jobTitle = $r->jobTitle;
-        return view('job.jobModal',compact('jobId'));
-   }
+        return view('job.jobModal', compact('jobId'));
+    }
 }

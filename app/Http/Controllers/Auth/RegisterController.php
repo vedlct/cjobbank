@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Aggrement;
-use App\Aggrementqus;
-use App\User;
+use App\Models\Aggrement;
+use App\Models\Aggrementqus;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Mail;
-use Session;
-
-use Auth;
-use Hash;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
@@ -23,7 +22,7 @@ class RegisterController extends Controller
     |--------------------------------------------------------------------------
     |
     | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
+    | validation and creation. By default, this controller uses a trait to
     | provide this functionality without requiring any additional code.
     |
     */
@@ -35,7 +34,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected string $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
@@ -66,7 +65,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return User
      */
     protected function create(array $data)
     {
@@ -122,6 +121,7 @@ class RegisterController extends Controller
 //        return view('newUserAgreement',compact('userToken','userPass','userEmail','aggrementsQues','userId'));
         return view('newUserAgreement',compact('userToken','userPass','userEmail','aggrementsQues','userFirstName','userLastName'));
     }
+
     public function newUserAgreement(Request $r)
     {
 
@@ -284,7 +284,6 @@ class RegisterController extends Controller
 
     }
 
-
     public function ChangePass($email,$password,$userToken)
     {
 
@@ -309,8 +308,6 @@ class RegisterController extends Controller
 
 
     }
-
-
 
     public function changeForgetPassword(Request $r)
     {

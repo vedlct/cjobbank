@@ -2,22 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Education;
-use App\Employee;
-use App\EmployeeComputerSkill;
-use App\EmployeeLanguage;
-use App\EmployeeOtherInfo;
-use App\EmpOtherSkill;
-use App\JobExperience;
-use App\MembershipInSocialNetwork;
-use App\OtherSkillInformation;
-use App\ProfessionalQualification;
-use App\QuestionObjective;
-use App\Refree;
-use App\Traning;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Excel;
+use App\Models\Education;
+use App\Models\Employee;
+use App\Models\EmployeeComputerSkill;
+use App\Models\EmployeeLanguage;
+use App\Models\EmployeeOtherInfo;
+use App\Models\EmpOtherSkill;
+use App\Models\JobExperience;
+use App\Models\MembershipInSocialNetwork;
+use App\Models\OtherSkillInformation;
+use App\Models\ProfessionalQualification;
+use App\Models\QuestionObjective;
+use App\Models\Refree;
+use App\Models\Traning;
+use Maatwebsite\Excel\Facades\Excel;
 use phpDocumentor\Reflection\DocBlock\Tags\Reference\Reference;
 
 class testController extends Controller

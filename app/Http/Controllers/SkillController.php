@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Employee;
-use App\EmpOtherSkill;
-use App\OtherSkillInformation;
+use App\Models\Employee;
+use App\Models\EmpOtherSkill;
+use App\Models\OtherSkillInformation;
 use Illuminate\Http\Request;
-use Auth;
-use Session;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class SkillController extends Controller
 {
@@ -28,6 +28,7 @@ class SkillController extends Controller
 
         });
     }
+
     public function index(){
 
         $employee=Employee::select('employeeId','hasOtherSkill')->where('fkuserId',Auth::user()->userId)->first();
@@ -132,6 +133,7 @@ class SkillController extends Controller
         return redirect()->route('candidate.skill.index');
 
     }
+
     public function update(Request $r){
 
 //        return $r;

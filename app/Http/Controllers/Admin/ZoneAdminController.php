@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Employee;
-use App\Ethnicity;
-use App\HR;
-use App\Jobapply;
-use App\Religion;
+use App\Models\Employee;
+use App\Models\Ethnicity;
+use App\Models\HR;
+use App\Models\Jobapply;
+use App\Models\Religion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class ZoneAdminController extends Controller
 {

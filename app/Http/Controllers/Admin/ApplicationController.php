@@ -1,49 +1,48 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Aggrement;
-use App\Degree;
-use App\Education;
-use App\Educationlevel;
-use App\Educationmajor;
-use App\Employee;
-use App\EmpQuestionObjAns;
-use App\Ethnicity;
-use App\HR;
-use App\email;
+use App\Models\Aggrement;
+use App\Models\Degree;
+use App\Models\Education;
+use App\Models\Educationlevel;
+use App\Models\Educationmajor;
+use App\Models\Employee;
+use App\Models\EmpQuestionObjAns;
+use App\Models\Ethnicity;
+use App\Models\HR;
+use App\Models\email;
 use App\Http\Controllers\Controller;
-
-use App\Job;
-use App\Jobapply;
-use App\JobExperience;
+use App\Models\Job;
+use App\Models\Jobapply;
+use App\Models\JobExperience;
 use App\Mail\newMail;
-use App\MailTamplate;
-use App\Nationality;
-use App\PreviousWorkInCB;
-use App\ProfessionalQualification;
-use App\MembershipInSocialNetwork;
-use App\QuestionObjective;
-use App\EmpOtherSkill;
-use App\EmployeeComputerSkill;
-use App\EmployeeLanguage;
-use App\Refree;
-use App\RelativeInCb;
-use App\Religion;
-use App\Traning;
-use App\Zone;
+use App\Models\MailTamplate;
+use App\Models\Nationality;
+use App\Models\PreviousWorkInCB;
+use App\Models\ProfessionalQualification;
+use App\Models\MembershipInSocialNetwork;
+use App\Models\QuestionObjective;
+use App\Models\EmpOtherSkill;
+use App\Models\EmployeeComputerSkill;
+use App\Models\EmployeeLanguage;
+use App\Models\Refree;
+use App\Models\RelativeInCb;
+use App\Models\Religion;
+use App\Models\Traning;
+use App\Models\Zone;
 use Carbon\Carbon;
 use Chumper\Zipper\Facades\Zipper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App as AppAlias;
 use Illuminate\Support\Facades\DB;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Session;
+use Illuminate\Support\Facades\Session;
 use Yajra\DataTables\DataTables;
-use Excel;
-use PDF;
-use Mail;
-use File;
+use Maatwebsite\Excel\Facades\Excel;
+use niklasravnsborg\LaravelPdf\Facades\Pdf;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\File;
 
 class ApplicationController extends Controller
 {
@@ -89,7 +88,6 @@ class ApplicationController extends Controller
 
         return view('Admin.application.manageApplication',compact('zones','religion','degree','ethnicity','natinality','allZone','allJobTitle','allEducationLevel','organizationType','mailTamplate'));
     }
-
 
     public function showAllDegreeForEducation(Request $r){
 
@@ -473,6 +471,7 @@ class ApplicationController extends Controller
 
 
     }
+
     public function exportAppliedCandidateHrReport03(Request $r)
     {
         $appliedList=$r->jobApply;

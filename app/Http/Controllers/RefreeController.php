@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use Illuminate\Http\Request;
-use App\Refree;
-use App\Employee;
+use App\Models\Refree;
+use App\Models\Employee;
 
-use Auth;
-use Session;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class RefreeController extends Controller
 {
@@ -72,6 +71,7 @@ class RefreeController extends Controller
 
 
     }
+
     public function submitRefree(Request $r){
 
         $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();

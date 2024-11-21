@@ -3,17 +3,17 @@
 namespace App\Http\Controllers;
 
 
-use App\Employee;
+use App\Models\Employee;
 
-use App\EmployeeOtherInfo;
-use App\QuestionObjective;
-use App\QuestionObjectiveAndInfo;
-use App\QuestionObjectiveAns;
+use App\Models\EmployeeOtherInfo;
+use App\Models\QuestionObjective;
+use App\Models\QuestionObjectiveAndInfo;
+use App\Models\QuestionObjectiveAns;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use Session;
-use Auth;
-use Image;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 
 class QuestionObjectiveController extends Controller
 {
@@ -78,6 +78,7 @@ class QuestionObjectiveController extends Controller
         }
 
     }
+
     public function insertObjectiveAndQuestion(Request $r)
     {
        // return $r->CareerQues[$i];
@@ -250,6 +251,4 @@ class QuestionObjectiveController extends Controller
 
 
     }
-
-
 }

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Employee;
-use App\EmployeeOtherInfo;
+use App\Models\Employee;
+use App\Models\EmployeeOtherInfo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -49,6 +49,7 @@ class EmployeeOtherInfoController extends Controller
         Session::flash('message', 'Other Info Saved Successfully');
         return redirect()->route('cv.OthersInfo');
     }
+
     public function editOtherInfo(Request $r)
     {
 
@@ -58,6 +59,7 @@ class EmployeeOtherInfoController extends Controller
 
 
     }
+
     public  function updateOtherInfo(Request $r){
 
 //        return $r;
@@ -77,6 +79,4 @@ class EmployeeOtherInfoController extends Controller
                 return redirect()->route('cv.OthersInfo');
 //        return 'call from update';
     }
-
-
 }

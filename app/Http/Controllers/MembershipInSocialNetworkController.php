@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\MembershipInSocialNetwork;
-use App\PreviousWorkInCB;
+use App\Models\MembershipInSocialNetwork;
+use App\Models\PreviousWorkInCB;
 use Illuminate\Http\Request;
-use Auth;
-use Session;
-
-use App\Traning;
-use App\Country;
-use App\Employee;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use App\Models\Traning;
+use App\Models\Country;
+use App\Models\Employee;
 
 class MembershipInSocialNetworkController extends Controller
 {
@@ -20,12 +18,12 @@ class MembershipInSocialNetworkController extends Controller
 //        $this->middleware('auth');
         $this->middleware(function ($request, $next) {
 
-            if (Auth::check()){
+            if (Auth::check()) {
 
                 return $next($request);
 
 
-            }else{
+            } else {
 
                 return redirect('/');
             }
@@ -33,77 +31,80 @@ class MembershipInSocialNetworkController extends Controller
 
         });
     }
-   public function index(){
 
-       $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)->first();
+    public function index()
+    {
 
-       $socialMembership=MembershipInSocialNetwork::where('fkemployeeId',$employee->employeeId)
-           ->get();
+        $employee = Employee::select('employeeId')->where('fkuserId', Auth::user()->userId)->first();
 
-       if($socialMembership->isEmpty()){
+        $socialMembership = MembershipInSocialNetwork::where('fkemployeeId', $employee->employeeId)
+            ->get();
 
-           return view('userCv.insert.SocialMembership');
-       }
+        if ($socialMembership->isEmpty()) {
 
-       else{
-           return view('userCv.update.SocialMembership',compact('socialMembership'));
-       }
-
-
-   }
-   public function insert(Request $r){
+            return view('userCv.insert.SocialMembership');
+        } else {
+            return view('userCv.update.SocialMembership', compact('socialMembership'));
+        }
 
 
+    }
 
-       $employee=Employee::select('employeeId')->where('fkuserId',Auth::user()->userId)
-           ->first();
-
-       for($i=0;$i<count($r->networkName);$i++){
-
-           $socialMembership=new MembershipInSocialNetwork();
-
-           $socialMembership->networkName=$r->networkName[$i];
-           $socialMembership->membershipType=$r->membershipType[$i];
-           $socialMembership->duration=$r->duration[$i];
-
-           $socialMembership->fkemployeeId=$employee->employeeId;
-
-           $socialMembership->save();
-       }
+    public function insert(Request $r)
+    {
 
 
+        $employee = Employee::select('employeeId')->where('fkuserId', Auth::user()->userId)
+            ->first();
 
-       Session::flash('message', 'Social Membership Added Successfully');
-       return redirect()->route('candidate.membershipInSocialNetwork.index');
+        for ($i = 0; $i < count($r->networkName); $i++) {
 
-   }
+            $socialMembership = new MembershipInSocialNetwork();
 
-   public function edit(Request $r){
+            $socialMembership->networkName = $r->networkName[$i];
+            $socialMembership->membershipType = $r->membershipType[$i];
+            $socialMembership->duration = $r->duration[$i];
 
-       $socialMembership=MembershipInSocialNetwork::findOrFail($r->id);
+            $socialMembership->fkemployeeId = $employee->employeeId;
 
-       return view('userCv.edit.SocialMembership',compact('socialMembership'));
-   }
-
-   public function update(Request $r){
-
-       $socialMembership=MembershipInSocialNetwork::findOrFail($r->membershipId);
-
-       $socialMembership->networkName=$r->networkName;
-       $socialMembership->membershipType=$r->membershipType;
-       $socialMembership->duration=$r->duration;
-
-       $socialMembership->save();
-
-       Session::flash('message', 'Social Membership Updated Successfully');
-
-       return redirect()->route('candidate.membershipInSocialNetwork.index');
-   }
-
-   public function delete(Request $r){
-       MembershipInSocialNetwork::destroy($r->id);
+            $socialMembership->save();
+        }
 
 
-       Session::flash('message', 'Social Membership Deleted Successfully');
-   }
+        Session::flash('message', 'Social Membership Added Successfully');
+        return redirect()->route('candidate.membershipInSocialNetwork.index');
+
+    }
+
+    public function edit(Request $r)
+    {
+
+        $socialMembership = MembershipInSocialNetwork::findOrFail($r->id);
+
+        return view('userCv.edit.SocialMembership', compact('socialMembership'));
+    }
+
+    public function update(Request $r)
+    {
+
+        $socialMembership = MembershipInSocialNetwork::findOrFail($r->membershipId);
+
+        $socialMembership->networkName = $r->networkName;
+        $socialMembership->membershipType = $r->membershipType;
+        $socialMembership->duration = $r->duration;
+
+        $socialMembership->save();
+
+        Session::flash('message', 'Social Membership Updated Successfully');
+
+        return redirect()->route('candidate.membershipInSocialNetwork.index');
+    }
+
+    public function delete(Request $r)
+    {
+        MembershipInSocialNetwork::destroy($r->id);
+
+
+        Session::flash('message', 'Social Membership Deleted Successfully');
+    }
 }

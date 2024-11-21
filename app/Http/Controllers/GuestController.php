@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Job;
-use App\Zone;
+use App\Models\Job;
+use App\Models\Zone;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 

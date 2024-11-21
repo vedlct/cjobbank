@@ -2,37 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use App\Aggrement;
-use App\Education;
-use App\email;
-use App\Employee;
-use App\EmployeeComputerSkill;
-use App\EmployeeLanguage;
-use App\EmployeeOtherInfo;
-use App\EmpOtherSkill;
-use App\EmpQuestionObj;
-use App\Ethnicity;
-use App\Jobapply;
-use App\JobExperience;
-use App\MembershipInSocialNetwork;
-use App\Nationality;
-use App\PreviousWorkInCB;
-use App\ProfessionalQualification;
-use App\QuestionObjective;
-use App\QuestionObjectiveAns;
-use App\Refree;
-use App\RelativeInCb;
-use App\Religion;
-
-use App\Traning;
-use App\User;
+use App\Models\Aggrement;
+use App\Models\Education;
+use App\Models\email;
+use App\Models\Employee;
+use App\Models\EmployeeComputerSkill;
+use App\Models\EmployeeLanguage;
+use App\Models\EmployeeOtherInfo;
+use App\Models\EmpOtherSkill;
+use App\Models\EmpQuestionObj;
+use App\Models\Ethnicity;
+use App\Models\Jobapply;
+use App\Models\JobExperience;
+use App\Models\MembershipInSocialNetwork;
+use App\Models\Nationality;
+use App\Models\PreviousWorkInCB;
+use App\Models\ProfessionalQualification;
+use App\Models\QuestionObjective;
+use App\Models\QuestionObjectiveAns;
+use App\Models\Refree;
+use App\Models\RelativeInCb;
+use App\Models\Religion;
+use App\Models\Traning;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Session;
-use Auth;
-use Image;
-use PDF;
-use Mail;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
+use niklasravnsborg\LaravelPdf\Facades\Pdf;
+use Illuminate\Support\Facades\Mail;
 
 class EmployeeController extends Controller
 {
@@ -285,5 +284,4 @@ class EmployeeController extends Controller
             return back();
         }
     }
-
 }

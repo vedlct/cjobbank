@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Employee;
-use App\Ethnicity;
-use App\Nationality;
-use App\Religion;
-use App\ProfessionalQualification;
+use App\Models\Employee;
+use App\Models\Ethnicity;
+use App\Models\Nationality;
+use App\Models\Religion;
+use App\Models\ProfessionalQualification;
 use Illuminate\Http\Request;
-use Session;
-use Auth;
-//use Image;
-
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 class ProfessionalCertificateController extends Controller
 {
@@ -33,6 +31,7 @@ class ProfessionalCertificateController extends Controller
 
         });
     }
+
     public function getEmployeeCvProfessionalCertificate()
     {
         $employee=Employee::select('employeeId','hasProfCertificate')->where('fkuserId',Auth::user()->userId)->first();
@@ -175,6 +174,7 @@ class ProfessionalCertificateController extends Controller
         Session::flash('message', 'Certificate Edited Successfully');
         return redirect()->route('candidate.cvProfessionalCertificate');
     }
+
     public function editProfessionalQualification(Request $r){
         $professional=ProfessionalQualification::findOrFail($r->professionalQualificationId);
 

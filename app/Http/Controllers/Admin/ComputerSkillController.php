@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\ComputerSkill;
+use App\Models\ComputerSkill;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +25,9 @@ class ComputerSkillController extends Controller
             }
         });
     }
+
     /*---------------------- Zone -----------------*/
+
     public function skill(){
         $zones=ComputerSkill::get();
         return view('manage.computerSkill',compact('zones'));
@@ -55,6 +57,7 @@ class ComputerSkillController extends Controller
         $zone=ComputerSkill::findOrFail($r->id);
         return view('manage.editComputerSkill',compact('zone'));
     }
+
     public function updateSkill($id,Request $r){
         $zone=ComputerSkill::findOrFail($r->id);
         $zone->computerSkillName=$r->zone;
@@ -67,5 +70,4 @@ class ComputerSkillController extends Controller
         Session::flash('message', 'Computer SKill Updated Successfully!');
         return redirect()->route('manage.skill');
     }
-
 }

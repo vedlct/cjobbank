@@ -2,16 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\TermsAndConditions;
-use Illuminate\Http\Request;
+use App\Models\TermsAndConditions;
 
 class TermsAndController extends Controller
 {
-    //
-
-    public function termsConditionShowToUser(){
-
-
+    public function termsConditionShowToUser()
+    {
         $terms=TermsAndConditions::first();
 
         return view('termsAndConditionForUser',compact('terms'));

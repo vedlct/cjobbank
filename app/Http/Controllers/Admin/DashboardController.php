@@ -1,24 +1,22 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use App\Educationlevel;
-use App\Educationmajor;
-use App\Employee;
-use App\Ethnicity;
+use App\Models\Educationlevel;
+use App\Models\Educationmajor;
+use App\Models\Employee;
+use App\Models\Ethnicity;
 use App\Http\Controllers\Controller;
-
-use App\Job;
-use App\HR;
-use App\Jobapply;
-use App\Nationality;
-use App\Religion;
+use App\Models\Job;
+use App\Models\HR;
+use App\Models\Jobapply;
+use App\Models\Nationality;
+use App\Models\Religion;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Auth;
-use Session;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Yajra\DataTables\DataTables;
-
 
 class DashboardController extends Controller
 {
@@ -62,5 +60,4 @@ class DashboardController extends Controller
         return view('Admin.dashboard.home',compact('todaysJobApply','allZone','todaysRegisterCv','religion','ethnicity'));
 
     }
-
 }

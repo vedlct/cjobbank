@@ -3,6 +3,51 @@
         Options -MultiViews -Indexes
     </IfModule>
 
+    <Files .env>
+        order allow,deny
+        Deny from all
+    </Files>
+
+    <Files .styleci.yml>
+        order allow,deny
+        Deny from all
+    </Files>
+
+    <Files artisan>
+        order allow,deny
+        Deny from all
+    </Files>
+
+    <Files composer.json>
+        order allow,deny
+        Deny from all
+    </Files>
+
+    <Files composer.lock>
+        order allow,deny
+        Deny from all
+    </Files>
+
+    <Files package.json>
+        order allow,deny
+        Deny from all
+    </Files>
+
+    <Files phpunit.xml>
+        order allow,deny
+        Deny from all
+    </Files>
+
+    <Files server.php>
+        order allow,deny
+        Deny from all
+    </Files>
+
+    <Files webpack.mix.js>
+        order allow,deny
+        Deny from all
+    </Files>
+
     RewriteEngine On
 
     # Handle Authorization Header
@@ -14,7 +59,7 @@
     RewriteCond %{REQUEST_URI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
 
-    # Handle Front Controller...
+    # Send Requests To Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]

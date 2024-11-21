@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Employee;
-use App\TermsAndConditions;
+use App\Models\Employee;
+use App\Models\TermsAndConditions;
 use Illuminate\Http\Request;
-use App\User;
-use Auth;
-use Hash;
-use Session;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+
 class HomeController extends Controller
 {
     /**
@@ -59,7 +60,6 @@ class HomeController extends Controller
         return view('password');
     }
 
-
     public function changePassword(Request $r){
         $rules = [
             'oldPass' => 'required',
@@ -79,5 +79,4 @@ class HomeController extends Controller
         Session::flash('message', 'Password Did not Match!');
         return back();
     }
-
 }

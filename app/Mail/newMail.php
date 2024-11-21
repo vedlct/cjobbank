@@ -6,8 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
-
-use PDF;
+use niklasravnsborg\LaravelPdf\Facades\Pdf;
 
 class newMail extends Mailable
 {
@@ -31,8 +30,6 @@ class newMail extends Mailable
 
     public function __construct($employeeInfo,$template, $testDate,$testAddress,$testDetails,$footerAndSign,$subjectLine,$refNo,$jobInfo)
     {
-        //
-
         $this->empInfo = $employeeInfo;
         $this->template = $template;
         $this->testDate = $testDate;
@@ -51,8 +48,7 @@ class newMail extends Mailable
      */
     public function build()
     {
-        if ($this->template =='1'){
-
+        if ($this->template == '1') {
 //            $pdf = PDF::loadView('mail.interviewCard',['empInfo' => $this->empInfo,'testDate'=>$this->testDate,'testAddress'=>$this->testAddress,
 //                'testDetails'=>$this->testDetails,'footerAndSign'=>$this->footerAndSign,'subjectLine'=>$this->subjectLine,'refNo'=>$this->refNo,'jobInfo'=>$this->jobInfo]);
 
@@ -61,11 +57,6 @@ class newMail extends Mailable
 //                    'mime' => 'application/pdf',
 //                ])
                 ->subject('INTERVIEW CARD From CARITAS BD');
-
-
-
-
         }
-
     }
 }

@@ -2,31 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Aggrement;
-use App\Employee;
-use App\Education;
-use App\EmployeeComputerSkill;
-use App\EmployeeLanguage;
-use App\EmployeeOtherInfo;
-use App\EmpOtherSkill;
-use App\Jobapply;
-use App\JobExperience;
-use App\MembershipInSocialNetwork;
-use App\PreviousWorkInCB;
-use App\ProfessionalQualification;
-use App\QuestionObjective;
-use App\QuestionObjectiveAns;
-use App\Refree;
-use App\RelativeInCb;
-use App\Traning;
-use App\User;
+use App\Models\Aggrement;
+use App\Models\Employee;
+use App\Models\Education;
+use App\Models\EmployeeComputerSkill;
+use App\Models\EmployeeLanguage;
+use App\Models\EmployeeOtherInfo;
+use App\Models\EmpOtherSkill;
+use App\Models\Jobapply;
+use App\Models\JobExperience;
+use App\Models\MembershipInSocialNetwork;
+use App\Models\PreviousWorkInCB;
+use App\Models\ProfessionalQualification;
+use App\Models\QuestionObjective;
+use App\Models\QuestionObjectiveAns;
+use App\Models\Refree;
+use App\Models\RelativeInCb;
+use App\Models\Traning;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use PDF;
-use Auth;
+use niklasravnsborg\LaravelPdf\Facades\Pdf;
+use Illuminate\Support\Facades\Auth;
+
 class UserCvController extends Controller
 {
-
     public function __construct()
     {
 //        $this->middleware('auth');
