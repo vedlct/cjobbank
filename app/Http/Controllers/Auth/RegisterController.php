@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -112,7 +113,7 @@ class RegisterController extends Controller
         $userPass=$r->password;
         $userFirstName=$r->firstName;
         $userLastName=$r->lastName;
-        $userToken=str_random(64);
+        $userToken=Str::random(64);
 
 
         $aggrementsQues=Aggrementqus::where('status',1)->orderBy('serial', 'ASC')->get();
@@ -137,7 +138,7 @@ class RegisterController extends Controller
 
 
 
-        for ($i=0;$i<count($r->qesId);$i++){
+        for ($i=0, $iMax = count($r->qesId); $i< $iMax; $i++){
 
             $userAggrement=new Aggrement();
             $userAggrement->fkuserId=$user->userId;
@@ -221,7 +222,7 @@ class RegisterController extends Controller
 
             if ($userInfo->register == 'N') {
 
-                $userToken=$userInfo->token=str_random(64);
+                $userToken=$userInfo->token=Str::random(64);
                 $userInfo->save();
 
                 $data = array('email'=>$r->email,'userToken'=>$userToken);
@@ -235,8 +236,8 @@ class RegisterController extends Controller
                     Session::flash('notActive', 'Account Activation Mail is sent to your mail , Also Check Spam');
                     return redirect('/');
 
-                }catch (\Exception $ex) {
-
+                } catch (\Exception $ex) {
+                    dd($ex->getMessage());
                     Session::flash('notActive', 'Account Activation Email Does not Sent.Please contact us');
 
                     return redirect()->route('account.activationResend');

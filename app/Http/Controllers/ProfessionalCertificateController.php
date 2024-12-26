@@ -99,7 +99,7 @@ class ProfessionalCertificateController extends Controller
             $emp->hasProfCertificate=1;
             $emp->save();
 
-            for($i=0;$i<count($r->certificateName);$i++){
+            for($i=0, $iMax = count($r->certificateName); $i< $iMax; $i++){
                 $professional=new ProfessionalQualification();
                 $professional->certificateName=$r->certificateName[$i];
                 $professional->institutionName=$r->institutionName[$i];
@@ -108,7 +108,7 @@ class ProfessionalCertificateController extends Controller
 //                $professional->resultSystem=$r->resultSystem[$i];
                 $professional->result=$r->result[$i];
                 $professional->status=$r->status[$i];
-                if($r->grade[$i]){
+                if($r->has('grade') && $r->grade[$i] != null){
                     $professional->grade=$r->grade[$i];
                 }
 

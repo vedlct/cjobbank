@@ -143,7 +143,10 @@
 
                     ],
                     "ordering": false,
-
+                    lengthMenu: [
+                        [10, 25, 50, 100, -1],
+                        [10, 25, 50, 100, "All"]
+                    ],
                 }
             );
             table2=$('#todayRegisterCV').DataTable(
@@ -158,7 +161,10 @@
 
                     ],
                     "ordering": false,
-
+                    lengthMenu: [
+                        [10, 25, 50, 100, -1],
+                        [10, 25, 50, 100, "All"]
+                    ],
                 }
             );
         } );

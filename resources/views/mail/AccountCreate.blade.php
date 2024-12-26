@@ -11,7 +11,7 @@ Password: {{$pass}}<br><br>
 
 To active your account and for completing the process please click the link below:<br>
 
-<a href="{{route('account.active',['email'=>$email,'userToken'=>$userToken])}}">Please click this link to activate your account</a><br><br>
+<a href="{{route('account.active',['email'=>$email,'token'=>$userToken])}}">Please click this link to activate your account</a><br><br>
 
 ------------------------<br><br>
 

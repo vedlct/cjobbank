@@ -12,7 +12,7 @@ Username: {{$email}}<br>
 
 
 
-<a href="{{route('account.Reactive',['email'=>$email,'userToken'=>$userToken])}}">Please click this link to activate your account</a>
+<a href="{{route('account.Reactive',['email'=>$email,'token'=>$userToken])}}">Please click this link to activate your account</a>
 
 </body>
 </html>

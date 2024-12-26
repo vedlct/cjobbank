@@ -6,7 +6,6 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
-        "ext-pdo": "*",
         "guzzlehttp/guzzle": "^7.2",
         "ifsnop/mysqldump-php": "^2.12",
         "intervention/image": "2.7",
