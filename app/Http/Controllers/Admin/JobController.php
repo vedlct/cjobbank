@@ -93,8 +93,7 @@ class JobController extends Controller
     public function jobEdit($jobId)
     {
 
-        $jobInfo = Job::leftJoin('zone', 'zone.zoneId', '=', 'job.fkzoneId')->where('jobId', $jobId)
-            ->get();
+        $jobInfo = Job::query()->where('jobId', 235)->first(); //leftJoin('zone', 'zone.zoneId', '=', 'job.fkzoneId')
 
         if (Auth::user()->fkuserTypeId == USER_TYPE['Emp'] || Auth::user()->fkuserTypeId == USER_TYPE['ZoneAdmin']) {
             $myZone = HR::where('fkuserId', Auth::user()->userId)->first();

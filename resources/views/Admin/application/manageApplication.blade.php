@@ -1107,20 +1107,26 @@
         }
 
         function myfunchrreport03() {
-            if ($('#jobTitle').val()!=""){
-                var products=selecteds;
-                if (products.length >0) {
+            if ($('#jobTitle').val() != "") {
+                let products = selecteds;
+
+                if (products.length > 0) {
                     $.ajax({
                         type: 'POST',
                         url: "{!! route('jobAppliedCadidate.admin.Exporthrreport03xls') !!}",
                         cache: false,
-                        data: {'jobApply': products,'excelName':$('#excelName').val(),_token:"{{csrf_token()}}",jobTitle:$('#jobTitle').val()},
+                        data: {
+                            _token: "{{csrf_token()}}",
+                            'jobApply': products,
+                            'excelName': $('#excelName').val(),
+                            'jobTitle': $('#jobTitle').val()
+                        },
                         success: function (data) {
                             $('#SessionMessage').load(document.URL +  ' #SessionMessage');
                             table.ajax.reload();
-                            selecteds=[];
+                            selecteds = [];
                             $(':checkbox:checked').prop('checked',false);
-                            if (data.success=='1'){
+                            if (data.success == '1') {
                                 $.alert({
                                     title: 'Success!',
                                     type: 'green',
@@ -1130,15 +1136,12 @@
                                             text: 'Ok',
                                             btnClass: 'btn-blue',
                                             action: function () {
-
-                                                var link = document.createElement("a");
-                                                link.download = data.fileName+".xls";
-                                                var uri = '{{url("public/exportedExcel")}}'+"/"+data.fileName+".xls";
-                                                link.href = uri;
+                                                let link = document.createElement("a");
+                                                link.download = data.fileName + ".xls";
+                                                link.href = '{{ url("public/exportedExcel") }}' + "/" + data.fileName + ".xls";
                                                 document.body.appendChild(link);
                                                 link.click();
                                                 document.body.removeChild(link);
-                                                delete link;
 
                                                 location.reload();
                                             }
@@ -1146,8 +1149,7 @@
 
                                     }
                                 });
-                            }else if(data.success=='0'){
-
+                            } else if (data.success == '0') {
                                 $.alert({
                                     title: 'Alert!',
                                     type: 'Red',
@@ -1165,7 +1167,7 @@
                             }
                         }
                     });
-                }else {
+                } else {
                     $.alert({
                         title: 'Alert!',
                         type: 'Red',
@@ -1178,8 +1180,7 @@
                         }
                     });
                 }
-            }else {
-
+            } else {
                 $.alert({
                     title: 'Alert!',
                     type: 'red',

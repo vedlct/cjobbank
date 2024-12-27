@@ -56,6 +56,14 @@ return [
             'throw' => false,
         ],
 
+        'custom' => [
+            'driver' => 'local',
+            'root' => public_path('exportedExcel'),
+            'url' => url('/').'/public/exportedExcel',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
     ],
 
     /*

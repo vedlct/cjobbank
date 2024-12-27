@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ZoneAdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/zone-admin-dashboard','Admin\ZoneAdminController@home')->name('zone.admin.dashboard');
+Route::get('/zone-admin-dashboard', [ZoneAdminController::class, 'home'])->name('zone.admin.dashboard');

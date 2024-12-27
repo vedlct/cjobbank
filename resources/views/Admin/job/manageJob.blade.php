@@ -287,7 +287,7 @@
 
             $.confirm({
                 title: 'Confirm!',
-                content: 'Are you sure to delete this Job?',
+                content: 'Are you sure to change the job status?',
                 icon: 'fa fa-warning',
                 type: 'red',
                 typeAnimated: true,
