@@ -6,7 +6,7 @@ use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromView;
 
-class AppliedCandidateHrReportExport implements FromView
+class AppliedCandidateHrReport03Export implements FromView
 {
     use Exportable;
 

@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
+    <title></title>
     <style>
         .Border{
             border: 2px solid ;
@@ -24,35 +24,24 @@
             border-left: 2px solid !important ;
         }
     </style>
-
 </head>
 
-
-
 <table class="table">
-
     <tr>
-
-        <td class="Border" colspan="34" style="text-align: center;vertical-align: top;height: 20"></td>
-
+        <td class="Border" colspan="34" style="text-align: center;vertical-align: top;height: 20px"></td>
     </tr>
     <tr>
-        <td class="Border" colspan="34" style="text-align: center;vertical-align: top;height: 20"><span style="font-weight: bold">CARITAS BANGLADESH</span></td>
+        <td class="Border" colspan="34" style="text-align: center;vertical-align: top;height: 20px"><span style="font-weight: bold">CARITAS BANGLADESH</span></td>
     </tr>
-
     <tr>
-
         <td class="Border" colspan="34" style="text-align: center;">
             <span id="red" style="color: #FF0000">{{strtoupper($jobTitle)}}</span>
             <b>- {{$excelName}}</b>
         </td>
-
     </tr>
-
-
 </table>
 
-<table class="table" style="font-size:10">
+<table class="table">
     <thead>
     <tr style="font-weight: bold">
         <td class="Border" colspan="1" style="text-align: center">Sl No.</td>
@@ -66,7 +55,7 @@
     </tr>
     </thead>
     <tbody>
-    <?php (int)$sl=0; ?>
+    <?php $sl = 0; ?>
     @foreach($employee as $emp)
     <tr>
         <td colspan="1" class="Border" height="620" style="text-align: left;border-right: 2px solid black !important">{{++$sl}}</td>
@@ -133,7 +122,7 @@
         </td>
         <td colspan="6" class="Border" height="620"   style="text-align: left;">
             <?php $tJEY=0;$tJEM=0;$tJED=0; $totalexpyr = 0;$totalexpDay = 0; $totalexpmonth = 0;$subDay=0; ?>
-            <?php $temp=0; $totalday  = 0; ?>
+            <?php $temp=0; $totalday = 0; ?>
             @foreach($jobExperience->where('fkemployeeId',$emp->employeeId) as $job)
             {{++$temp}}. Position: {{$job->degisnation}}<br>
             Organization name: {{$job->organization}}<br>
@@ -212,7 +201,7 @@
 
         </td>
         <td colspan="4" class="Border" height="620" style="text-align: left;">
-            <?php $temp=0;  ?>
+            <?php $temp=0; ?>
             @foreach($reference->where('fkemployeeId',$emp->employeeId) as $ref)
             {{++$temp}}. {{$ref->firstName}} {{$ref->lastName}}<br>
             {{$ref->presentposition}}<br>
@@ -224,6 +213,7 @@
         <td colspan="3" class="Border" height="620" style="text-align: left;"></td>
 
     </tr>
+
     <tr>
         <td colspan="1" class="Border" height="450" style="text-align: left;border-right: 2px solid black!important;border-bottom: 2px solid black!important "></td>
         <td colspan="4" class="testStyle" height="450" style="text-align: left;border-left: 2px solid black!important">
@@ -334,8 +324,6 @@
 
     </tr>
 
-
-
     <tr>
         <td colspan="1" class="Border" height="300" style="text-align: left;"></td>
         <td colspan="4" class="Border" height="300" style="text-align: left;"><span style="text-align: left">
@@ -346,14 +334,13 @@
                 Type of Membership: {{$s->membershipType}}<br>
                 Duration: {{$s->duration}}<br>
                 @endforeach
-
             </span>
 
         </td>
         <td colspan="4" class="Border" height="300" style="text-align: left;">
             Answers of declaration form:
             @foreach($agreement->where('employeeId',$emp->employeeId) as $ag)
-            $agreement
+{{--            $agreement--}}
                 {{$ag->qus}} : {{$ag->ans}} <br>
 
             @endforeach
@@ -361,13 +348,13 @@
 
 
         </td>
-        <td colspan="4"class="Border"  height="300" style="text-align: left;">
+        <td colspan="4" class="Border"  height="300" style="text-align: left;">
 
         </td>
         <td colspan="6" class="Border" height="300"   style="text-align: left;">
 
         </td>
-        <td colspan="8"class="Border"  height="300" style="text-align: left;">
+        <td colspan="8" class="Border"  height="300" style="text-align: left;">
 
         </td>
         <td colspan="4" class="Border" height="300" style="text-align: left;">
@@ -376,9 +363,7 @@
         <td colspan="3" class="Border" height="300" style="text-align: left;"></td>
 
     </tr>
-
-
-@endforeach
+    @endforeach
     </tbody>
 </table>
 

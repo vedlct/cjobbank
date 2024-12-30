@@ -59,7 +59,7 @@ return [
         'custom' => [
             'driver' => 'local',
             'root' => public_path('exportedExcel'),
-            'url' => url('/').'/public/exportedExcel',
+            'url' => env('APP_URL').'/public/exportedExcel',
             'visibility' => 'public',
             'throw' => false,
         ],
