@@ -1605,7 +1605,7 @@
                             });
                         }
                     },Again: {
-                        text: 'Cancle',
+                        text: 'Cancel',
                         btnClass: 'btn-red'
                     }
                 }

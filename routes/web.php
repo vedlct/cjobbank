@@ -193,7 +193,7 @@ Route::get('job/all', [JobController::class, 'index'])->name('job.all');
 Route::post('job/all', [JobController::class, 'getJobData'])->name('job.getJobData');
 Route::post('job/applyJobModal', [JobController::class, 'applyJobModal'])->name('job.applyJobModal');
 //Route::get('Candidate-Job-Apply/{jobId}','EmployeeController@applyJob')->name('candidate.ApplyJob');
-Route::post('Candidate-Job-Apply/{jobId}', [JobController::class, 'applyJob'])->name('candidate.ApplyJob');
+Route::post('Candidate-Job-Apply/{jobId}', [EmployeeController::class, 'applyJob'])->name('candidate.ApplyJob');
 
 //candidate Application
 Route::get('Candidate-Applications', [EmployeeApplicationController::class, 'getAllApplication'])->name('candidate.manageApplication');
