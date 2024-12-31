@@ -8,7 +8,7 @@ return [
 	'keywords'              => '',
 	'creator'               => 'Laravel Pdf',
 	'display_mode'          => 'fullpage',
-	'tempDir'               => public_path('temp/'),
+	'tempDir'               => storage_path('app/public/temp/'),
 	'pdf_a'                 => false,
 	'pdf_a_auto'            => false,
 	'icc_profile_path'      => '',

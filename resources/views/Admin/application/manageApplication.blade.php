@@ -1371,13 +1371,22 @@
                         type: 'POST',
                         url: "{!! route('jobAppliedCadidate.admin.downloadMailData') !!}",
                         cache: false,
-                        data: {'templateFooter': CKEDITOR.instances['emailtamplatefooter'].getData(),'jobApply': products,'zoneid': $('#zone_address').val(),_token:"{{csrf_token()}}",'tamplateId':$('#mailTamplate').val(),'emailtamplateBody':CKEDITOR.instances['emailtamplateBody'].getData(),
-                            'subjectLine':$('#subjectLine').val(),'refNo':$('#refNo').val(),'selected':$('#totalSelected').val()},
+                        data: {
+                            'templateFooter': CKEDITOR.instances['emailtamplatefooter'].getData(),
+                            'jobApply': products,
+                            'zoneid': $('#zone_address').val(),
+                            _token:"{{csrf_token()}}",
+                            'tamplateId':$('#mailTamplate').val(),
+                            'emailtamplateBody':CKEDITOR.instances['emailtamplateBody'].getData(),
+                            'subjectLine':$('#subjectLine').val(),
+                            'refNo':$('#refNo').val(),
+                            'selected':$('#totalSelected').val()
+                        },
                         success: function (data) {
                             table.ajax.reload();
                             $('#mail_info').modal('hide');
 
-                            var url = '{{url('/downloadZip')}}'+'/'+data;
+                            var url = '{{ url('/downloadZip') }}' + '/' + data;
                             window.open(url,'_blank');
                         }
                     });
